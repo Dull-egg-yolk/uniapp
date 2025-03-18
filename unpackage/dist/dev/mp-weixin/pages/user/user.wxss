@@ -1,0 +1,35 @@
+
+.content {
+	padding: 0;
+}
+.person-head {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 170rpx;
+	padding-left: 20rpx;
+	background: linear-gradient(to top, #4073ff, #20a0ff);
+	border-top: 0;
+}
+.person-head-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 20rpx;
+}
+.user-name {
+	font-size: 18px;
+	font-weight: 1000;
+	color: #000000;
+	font-family: '楷体';
+}
+.user-id {
+	font-size: 14px;
+	font-weight: 1000;
+	color: #000000;
+}
+.person-list {
+	background: #FFFFFF;
+}
+

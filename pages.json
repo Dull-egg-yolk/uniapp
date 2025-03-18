@@ -1,0 +1,173 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "测试"
+            }
+        },{
+            "path": "pages/main/main",
+            "style": {
+                "navigationBarTitleText": "主页"
+            }
+        },{
+            "path": "pages/warehouseManagement/index",
+            "style": {
+                "navigationBarTitleText": "库房管理"
+            }
+        },{
+            "path": "pages/classification/index",
+            "style": {
+                "navigationBarTitleText": "分类列表"
+            }
+        },{
+            "path": "pages/enter/index",
+            "style": {
+                "navigationBarTitleText": "物品录入"
+            }
+        },{
+            "path": "pages/home/home",
+            "style": {
+                "navigationBarTitleText": "home"
+            }
+        },{
+            "path": "pages/form/form",
+            "style": {
+                "navigationBarTitleText": "表单"
+            }
+        },
+		{
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "仓库"
+            }
+        },{
+            "path": "pages/user/user",
+            "style": {
+                "navigationBarTitleText": "我的"
+            }
+        },{
+            "path": "pages/reg/reg",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        },{
+            "path": "pages/pwd/pwd",
+            "style": {
+                "navigationBarTitleText": "找回密码"
+            }
+        },{
+            "path": "pages/purchase/purchaseMaterials",
+            "style": {
+                "navigationBarTitleText": "选择物料"
+            }
+        },{
+            "path": "pages/purchase/purchase",
+            "style": {
+                "navigationBarTitleText": "新建请购单"
+            }
+        },{
+            "path": "pages/user/phoneus",
+            "style": {
+                "navigationBarTitleText": "联系我们"
+            }
+        },{
+            "path": "pages/user/setting",
+            "style": {
+                "navigationBarTitleText": "系统设置"
+            }
+        },{
+            "path": "pages/user/myinfo",
+            "style": {
+                "navigationBarTitleText": "我的信息"
+            }
+        },{
+		    "path": "pages/detail/detail",
+		    "style": {
+		        "navigationBarTitleText": "货物详情"
+		    }
+		},{
+		    "path": "pages/detail/outDetails",
+		    "style": {
+		        "navigationBarTitleText": "出库单详情"
+		    }
+		},{
+		    "path": "pages/detail/purchaseDetails",
+		    "style": {
+		        "navigationBarTitleText": "请购单详情"
+		    }
+		},{
+		    "path": "pages/detail/sellDetails",
+		    "style": {
+		        "navigationBarTitleText": "销售单详情"
+		    }
+		},{
+		    "path": "pages/detail/exchangeDetails",
+		    "style": {
+		        "navigationBarTitleText": "转库申请单详情"
+		    }
+		},{
+            "path": "pages/out/out",
+            "style": {
+                "navigationBarTitleText": "新建出库单"
+            }
+        },{
+            "path": "pages/out/outMaterials",
+            "style": {
+                "navigationBarTitleText": "选择物料"
+            }
+        },{
+            "path": "pages/sell/sell",
+            "style": {
+                "navigationBarTitleText": "新建销售单"
+            }
+        },{
+            "path": "pages/sell/sellMaterials",
+            "style": {
+                "navigationBarTitleText": "物料选择"
+            }
+        },{
+            "path": "pages/exchange/exchange",
+            "style": {
+                "navigationBarTitleText": "新建转库单"
+            }
+        },{
+            "path": "pages/exchange/exchangeMaterials",
+            "style": {
+                "navigationBarTitleText": "物料选择"
+            }
+        }
+    ],
+    "tabBar": {//下方导航栏
+        "color": "#7a7e83",
+        "selectedColor": "#0faeff",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/home/home",
+            "text": "home",
+            "iconPath": "static/img/all.png",
+            "selectedIconPath": "static/img/all.png"
+        },{
+            "pagePath": "pages/main/main",
+            "text": "主页",
+            "iconPath": "static/img/home.png",
+            "selectedIconPath": "static/img/homeHL.png"
+        },{
+            "pagePath": "pages/index/index",
+            "text": "二维码",
+            "iconPath": "static/img/all.png",
+            "selectedIconPath": "static/img/allHL.png"
+        },{
+            "pagePath": "pages/user/user",
+            "text": "我的",
+            "iconPath": "static/img/user.png",
+            "selectedIconPath": "static/img/userHL.png"
+        }
+		]
+    },
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#fff",
+        "backgroundColor": "#fbf9fe"
+    }
+}

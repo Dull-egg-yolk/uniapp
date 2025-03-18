@@ -1,0 +1,1 @@
+<view class="content"><view class="btn-row"><w-button vue-id="096b76a1-1" text="退 出 登 录" data-event-opts="{{[['tap',[['logout']]]]}}" bindtap="__e" bind:__l="__l"></w-button></view></view>

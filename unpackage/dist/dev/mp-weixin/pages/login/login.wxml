@@ -1,0 +1,1 @@
+<view class="content"><view class="main"></view><w-button vue-id="35a7246c-1" text="快速初始化" rotate="{{isRotate}}" data-event-opts="{{[['tap',[['startLogin']]]]}}" bindtap="__e" bind:__l="__l"></w-button></view>

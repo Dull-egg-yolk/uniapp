@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "新建转库单",
+  "usingComponents": {
+    "w-picker": "/components/w-picker/w-picker",
+    "uni-card": "/components/uni-card/uni-card",
+    "lb-picker": "/components/lb-picker/index"
+  }
+}
