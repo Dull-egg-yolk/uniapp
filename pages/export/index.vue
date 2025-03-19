@@ -2,33 +2,15 @@
   <view class="container">
     <!-- 分类列表 -->
     <view class="list">
-      <view class="item" v-for="(item, index) in classList" :key="index">
+      <view class="item" v-for="(item, index) in classList" :key="index" @click="navigateTo(item.key)">
         <view class="info">
           <text class="name">{{ item.name }}</text>
-          <!-- <text class="description">{{ item.description }}</text> -->
         </view>
         <view class="actions">
-          <text class="edit" @click="openEditPopup(index)">〉</text>
+          <text class="edit"></text>
         </view>
       </view>
     </view>
-       <!-- 新增按钮 -->
-    <view class="add-button" @click="openAddPopup">
-      <text>新增</text>
-    </view>
-     <!-- 新增库房弹窗 -->
-     <uni-popup ref="addPopup" type="dialog">
-      <view class="popup-content">
-        <view class="form-item">
-          <text class="label">类别名称</text>
-          <input class="input" v-model="newCategory.name" placeholder="请输入类别名称" />
-        </view>
-        <view class="popup-buttons">
-          <button class="popup-button" @click="closeAddPopup">取消</button>
-          <button class="popup-button confirm" @click="addWarehouse">确认</button>
-        </view>
-      </view>
-    </uni-popup>
   </view>
 </template>
 
@@ -37,9 +19,16 @@ export default {
   data() {
     return {
       classList: [
-        { name: '分类1' },
-        { name: '分类2' },
-        { name: '分类3' },
+        { name: '物品出库明细',
+          key: 'inventoryDetails'
+         },
+        { name: '实时库存明细',
+          key: 'realTimeInventoryDetails'
+         },
+        { name: '盘点',
+          key: 'newStocktaking'
+         },
+        { name: '月度消耗明细' },
       ],
       newCategory: {
         name: "",
@@ -48,26 +37,12 @@ export default {
     }
   },
   methods: {
-    openAddPopup(index) {
-      this.newCategory = { name: "" };
-      this.$refs.addPopup.open();
-    },
-    // 关闭新增弹窗
-    closeAddPopup() {
-      this.$refs.addPopup.close();
-    },
-    // 提交新增列表
-    addWarehouse() {
-      if (!this.newCategory.name) {
-        uni.showToast({
-          title: "请填写完整信息",
-          icon: "none"
-        });
-        return;
-      }
-      this.warehouseList.push({ ...this.newCategory });
-      this.closeAddPopup();
-    },
+    navigateTo(page) {
+      // 打开对应报表
+      uni.navigateTo({
+        url: `/pages/${page}/index`
+      })
+    }
   }
 }
 </script>

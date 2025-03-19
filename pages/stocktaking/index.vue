@@ -1,90 +1,61 @@
 <template>
   <view class="container">
-    <uni-steps :active="activeStep" :options="steps" />
-    <view v-if="activeStep === 0" class="step-content">
-      <text>新盘点</text>
-      <view class="form-content">
-        <view class="form-item">
-          <text>盘点日期</text>
-          <input type="date" v-model="inventoryDate" />
+    <!-- 盘点列表 -->
+    <view class="list">
+      <view class="item" v-for="(item, index) in inventoryList" :key="index">
+        <view class="info">
+          <text class="name">盘点 <text class="icon">{{ item.title }}</text></text>
         </view>
-        <view class="form-item">
-          <text>盘点部门</text>
-          <picker mode="selector" :range="departments" @change="onDepartmentChange">
-            <view class="picker">{{ selectedDepartment }}</view>
-          </picker>
-        </view>
-        <view class="form-item">
-          <text>盘点人</text>
-          <input type="text" v-model="inventoryPerson" placeholder="请输入" />
-        </view>
-        <view class="form-item">
-          <text>备注</text>
-          <input type="text" v-model="remarks" placeholder="请输入备注" />
+        <view class="actions">
+          <text class="edit">{{ item.date }}</text>
         </view>
       </view>
-      <!-- 这里可以添加选择物品的组件或表单 -->
     </view>
-    <view v-if="activeStep === 1" class="step-content">
-      <text>盘点</text>
-      <!-- 这里可以添加盘点的组件或表单 -->
-    </view>
-    <view v-if="activeStep === 2" class="step-content">
-      <text>生成报表</text>
-      <!-- 这里可以添加生成报表的组件或表单 -->
-    </view>
-    <view class="add-button" @click="nextStep">
-      <text>下一步</text>
+    <!-- 点击新盘点 -->
+    <view class="add-button" @click="navigateTo">
+      <text>新盘点</text>
     </view>
   </view>
 </template>
 
 <script>
-
 export default {
-  components: {},
   data() {
     return {
-      activeStep: 0,
-      steps: ['选择物品', '盘点', '生成报表'],
-      inventoryDate: '',
-      departments: ['财务', '客房'],
-      selectedDepartment: '财务',
-      inventoryPerson: '',
-      remarks: ''
-    };
+      inventoryList: [
+        { title: '盘点中', date: '2024.12.01' },
+        { title: '已完成', date: '2024.11.01' },
+        { title: '已完成', date: '2024.10.01' },
+        { title: '已完成', date: '2024.09.01' },
+        { title: '已完成', date: '2024.08.01' }
+      ]
+    }
   },
   methods: {
-    nextStep() {
-      if (this.activeStep < this.steps.length - 1) {
-        this.activeStep++;
-      }
-    },
-    onDepartmentChange(e) {
-      this.selectedDepartment = this.departments[e.detail.value];
+    navigateTo(){
+      uni.navigateTo({
+				url: '../newStocktaking/index'
+			});
     }
   }
-};
+}
 </script>
 
-<style>
+<style scoped>
 .container {
-  padding: 20px;
+  padding: 20rpx;
   width: 100%;
 }
-.step-content {
-  margin-top: 20px;
+.list {
+  margin-bottom: 100rpx;
 }
-.form-content {
-  margin-top: 20px;
-}
-.form-item {
-  margin-bottom: 15px;
-}
-.picker {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
 }
 .add-button {
   position: fixed;
@@ -99,5 +70,14 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
+}
+.icon {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: #ff9500;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
 }
 </style>

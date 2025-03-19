@@ -26,9 +26,34 @@
                 "navigationBarTitleText": "物品录入"
             }
         },{
+            "path": "pages/itemPage/index",
+            "style": {
+                "navigationBarTitleText": "物品列表"
+            }
+        },{
             "path": "pages/stocktaking/index",
             "style": {
                 "navigationBarTitleText": "物品盘点"
+            }
+        },{
+            "path": "pages/export/index",
+            "style": {
+                "navigationBarTitleText": "报表下载"
+            }
+        },{
+            "path": "pages/inventoryDetails/index",
+            "style": {
+                "navigationBarTitleText": "物品出入库明细"
+            }
+        },{
+            "path": "pages/realTimeInventoryDetails/index",
+            "style": {
+                "navigationBarTitleText": "实时库存"
+            }
+        },{
+            "path": "pages/newStocktaking/index",
+            "style": {
+                "navigationBarTitleText": "盘点"
             }
         },{
             "path": "pages/home/home",
