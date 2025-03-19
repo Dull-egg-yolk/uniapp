@@ -26,6 +26,11 @@
                 "navigationBarTitleText": "物品录入"
             }
         },{
+            "path": "pages/stocktaking/index",
+            "style": {
+                "navigationBarTitleText": "物品盘点"
+            }
+        },{
             "path": "pages/home/home",
             "style": {
                 "navigationBarTitleText": "home"
@@ -33,7 +38,7 @@
         },{
             "path": "pages/form/form",
             "style": {
-                "navigationBarTitleText": "表单"
+                "navigationBarTitleText": "初始化"
             }
         },
 		{

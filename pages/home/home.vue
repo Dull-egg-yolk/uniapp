@@ -24,8 +24,8 @@
         <view class="function-button" @click="navigateTo('warehouseManagement')"><img src="../../static/img/allHL.png"/><button class="btn">库房</button></view>
         <view class="function-button" @click="navigateTo('classification')"><img src="../../static/img/allHL.png"/><button class="btn">分类</button></view>
         <view class="function-button" @click="navigateTo('物品列表')"><img src="../../static/img/allHL.png"/><button class="btn">物品列表</button></view>
-        <view class="function-button" @click="navigateTo('物品录入')"><img src="../../static/img/allHL.png"/><button class="btn">物品录入</button></view>
-        <view class="function-button" @click="navigateTo('盘点')"><img src="../../static/img/allHL.png"/><button class="btn">盘点</button></view>
+        <view class="function-button" @click="navigateTo('enter')"><img src="../../static/img/allHL.png"/><button class="btn">物品录入</button></view>
+        <view class="function-button" @click="navigateTo('stocktaking')"><img src="../../static/img/allHL.png"/><button class="btn">盘点</button></view>
         <view class="function-button" @click="navigateTo('报表')"><img src="../../static/img/allHL.png"/><button class="btn">报表</button></view>
       </view>
     </view>
