@@ -1,9 +1,15 @@
 {
     "pages": [ //pages数组中第一项表示应用启动页,
         {
+            "path": "pages/initialization/index",
+            "style": {
+                "navigationBarTitleText": "九点绘库存管理系统"
+            }
+        },
+        {
             "path": "pages/login/login",
             "style": {
-                "navigationBarTitleText": "测试"
+                "navigationBarTitleText": "登录"
             }
         },{
             "path": "pages/main/main",

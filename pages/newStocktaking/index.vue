@@ -1,9 +1,15 @@
 <template>
   <view class="container">
-    <uni-steps :active="activeStep" :options="steps" />
-    <view v-if="activeStep === 0" class="step-content">
-      <text>新盘点</text>
-      <view class="form-content">
+    <view class="title">
+      <text class="tab active-tab">新盘点</text>
+      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+      <text class="tab">选择物品</text>
+      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+      <text class="tab">盘点</text>
+      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+      <text class="tab">生成报表</text>
+     </view>
+     <view class="form-content">
         <view class="form-item">
           <text>盘点日期</text>
           <input type="date" v-model="inventoryDate" />
@@ -23,16 +29,6 @@
           <input type="text" v-model="remarks" placeholder="请输入备注" />
         </view>
       </view>
-      <!-- 这里可以添加选择物品的组件或表单 -->
-    </view>
-    <view v-if="activeStep === 1" class="step-content">
-      <text>盘点</text>
-      <!-- 这里可以添加盘点的组件或表单 -->
-    </view>
-    <view v-if="activeStep === 2" class="step-content">
-      <text>生成报表</text>
-      <!-- 这里可以添加生成报表的组件或表单 -->
-    </view>
     <view class="add-button" @click="nextStep">
       <text>下一步</text>
     </view>
@@ -69,6 +65,26 @@ export default {
 
 <style>
 @import '../../common/index.css';
+.container {
+  background-color: #f5f5f5;
+}
+.title {
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tab {
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  background-color: #fff;
+  color: #918d8d;
+}
+.active-tab {
+  background-color: #fcca00;
+  color: #000;
+}
 .step-content {
   margin-top: 20px;
 }

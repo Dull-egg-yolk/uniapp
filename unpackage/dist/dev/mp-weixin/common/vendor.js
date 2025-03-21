@@ -12289,6 +12289,39 @@ module.exports = {
 
 /***/ }),
 
+/***/ 440:
+/*!****************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/user.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.submitHotel = exports.getData = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 642));
+var getData = function getData(params) {
+  return (0, _request.default)('/api/hotel/item', 'GET', params);
+};
+
+// 初始化提交
+exports.getData = getData;
+var submitHotel = function submitHotel(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/item',
+    method: 'POST',
+    data: data
+  });
+};
+exports.submitHotel = submitHotel;
+
+/***/ }),
+
 /***/ 452:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
@@ -25435,6 +25468,103 @@ function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 642:
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/request.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+// utils/request.js
+
+var baseUrl = 'http://101.43.59.126:30001'; // 替换为你的接口地址
+
+// 请求拦截器
+var requestInterceptor = function requestInterceptor(config) {
+  // 在请求发送之前做一些处理
+  var token = uni.getStorageSync('token'); // 从本地存储获取 token
+  if (token) {
+    config.header = _objectSpread(_objectSpread({}, config.header), {}, {
+      Authorization: "Bearer ".concat(token) // 添加 token 到请求头
+    });
+  }
+
+  return config;
+};
+
+// 响应拦截器
+var responseInterceptor = function responseInterceptor(response) {
+  // 对响应数据做一些处理
+  if (response.statusCode === 200) {
+    return response.data; // 返回响应数据
+  } else if (response.statusCode === 401) {
+    // Token 过期，跳转到登录页面
+    uni.showToast({
+      title: '登录已过期，请重新登录',
+      icon: 'none'
+    });
+    uni.navigateTo({
+      url: '/pages/login/login'
+    });
+    return Promise.reject(response.data);
+  } else {
+    // 处理其他错误状态码
+    uni.showToast({
+      title: "\u8BF7\u6C42\u5931\u8D25\uFF1A".concat(response.statusCode),
+      icon: 'none'
+    });
+    return Promise.reject(response.data);
+  }
+};
+
+// 封装 request 方法
+var request = function request(config) {
+  // 请求拦截
+  config = requestInterceptor(config);
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: baseUrl + config.url,
+      // 拼接完整 URL
+      method: config.method || 'GET',
+      // 默认 GET 请求
+      data: config.data || {},
+      // 请求参数
+      header: config.header || {},
+      // 请求头
+      success: function success(res) {
+        console.log(res, '8989');
+
+        // 响应拦截
+        resolve(responseInterceptor(res));
+      },
+      fail: function fail(err) {
+        // 请求失败处理
+        uni.showToast({
+          title: '网络请求失败',
+          icon: 'none'
+        });
+        reject(err);
+      }
+    });
+  });
+};
+var _default = request;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

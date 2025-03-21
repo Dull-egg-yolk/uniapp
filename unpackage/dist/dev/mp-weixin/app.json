@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/initialization/index",
     "pages/login/login",
     "pages/main/main",
     "pages/warehouseManagement/index",

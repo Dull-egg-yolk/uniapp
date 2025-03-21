@@ -104,7 +104,7 @@ try {
       return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 447))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 463))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 463))
     },
     uniEasyinput: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 470))
@@ -166,10 +166,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 452));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 454));
+var _user = __webpack_require__(/*! ../../api/user.js */ 440);
 //
 //
 //
@@ -207,9 +211,13 @@ var _default = {
     return {
       // 校验表单数据
       valiFormData: {
-        name: '',
-        age: '',
-        introduction: ''
+        Address: '',
+        BankAccount: '',
+        BankAddress: '',
+        Company: '',
+        Name: '',
+        SocialCode: '',
+        Telephone: ''
       },
       // 校验规则
       rules: {
@@ -236,17 +244,50 @@ var _default = {
   onReady: function onReady() {},
   methods: {
     submit: function submit(ref) {
-      uni.switchTab({
-        url: '../home/home'
-      });
-      // this.$refs[ref].validate().then(res => {
-      // 	console.log('success', res);
-      // 	uni.showToast({
-      // 		title: `校验通过`
-      // 	})
-      // }).catch(err => {
-      // 	console.log('err', err);
-      // })
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var valid, res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                valid = _this.$refs[ref].validate();
+                if (!valid) {
+                  _context.next = 9;
+                  break;
+                }
+                _context.next = 4;
+                return (0, _user.submitHotel)(_this.valiFormData);
+              case 4:
+                res = _context.sent;
+                console.log(res, '000');
+                if (res.Data) {
+                  uni.showToast({
+                    title: '提交成功',
+                    icon: 'success'
+                  });
+                  setTimeout(function () {
+                    uni.switchTab({
+                      url: '../home/home'
+                    });
+                  }, 200);
+                } else {
+                  uni.showToast({
+                    title: '提交失败',
+                    icon: 'none'
+                  });
+                }
+                _context.next = 10;
+                break;
+              case 9:
+                console.log('表单校验失败');
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 };
