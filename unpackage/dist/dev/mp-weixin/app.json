@@ -5,6 +5,13 @@
     "pages/warehouseManagement/index",
     "pages/classification/index",
     "pages/enter/index",
+    "pages/itemPage/index",
+    "pages/stocktaking/index",
+    "pages/export/index",
+    "pages/inventoryDetails/index",
+    "pages/realTimeInventoryDetails/index",
+    "pages/newStocktaking/index",
+    "pages/itemDetail/index",
     "pages/home/home",
     "pages/form/form",
     "pages/index/index",
@@ -41,7 +48,7 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "home",
+        "text": "工作台",
         "iconPath": "static/img/all.png",
         "selectedIconPath": "static/img/all.png"
       },

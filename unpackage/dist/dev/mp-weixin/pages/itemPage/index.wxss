@@ -1,0 +1,32 @@
+.container.data-v-1233dafe {
+  padding: 20rpx;
+  width: 100%;
+}
+.add-button.data-v-1233dafe {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.filter-section.data-v-1233dafe {
+  margin-bottom: 20rpx;
+}
+.picker.data-v-1233dafe {
+  padding: 10rpx;
+  background-color: #f5f5f5;
+  border-radius: 10rpx;
+}
+.section.data-v-1233dafe {
+  display: flex;
+  align-items: center;
+}
+

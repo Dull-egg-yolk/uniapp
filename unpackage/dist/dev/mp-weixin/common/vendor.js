@@ -67,48 +67,6 @@ module.exports = _nonIterableRest, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 107:
-/*!********************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/service.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 管理账号信息
-var USERS_KEY = 'USERS_KEY';
-var STATE_KEY = 'STATE_KEY';
-var getUsers = function getUsers() {
-  var ret = '';
-  ret = uni.getStorageSync(USERS_KEY);
-  if (!ret) {
-    ret = '[]';
-  }
-  return JSON.parse(ret);
-};
-var addUser = function addUser(userInfo) {
-  var users = getUsers();
-  users.push({
-    account: userInfo.account,
-    password: userInfo.password
-  });
-  uni.setStorageSync(USERS_KEY, JSON.stringify(users));
-};
-var _default = {
-  getUsers: getUsers,
-  addUser: addUser
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
 /***/ 11:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
@@ -152,10 +110,235 @@ module.exports = toPropertyKey, module.exports.__esModule = true, module.exports
 
 /***/ }),
 
-/***/ 120:
-/*!***********************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/purchaseMaterials.js ***!
-  \***********************************************************************************************/
+/***/ 13:
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 14:
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 142:
+/*!*************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/static/img/allHL.png ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
+/***/ 15:
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
+var isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct.js */ 17);
+function _construct(t, e, r) {
+  if (isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && setPrototypeOf(p, r.prototype), p;
+}
+module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 16:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _setPrototypeOf(o, p);
+}
+module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 161:
+/*!********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/English.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  total_iden: '001',
+  total_name: '合肥仓',
+  orga_iden: '2020001',
+  orga_name: '合肥艺朝艺夕艺术有限公司',
+  material_iden: '222111',
+  material_name: '新概念',
+  material_specification: '1KG',
+  material_model: '书本',
+  material_meterage: '本',
+  ts_present_num: '200',
+  ts_present_price: '80',
+  ts_present_sum: '16000'
+}, {
+  total_iden: '002',
+  total_name: '南京仓',
+  orga_iden: '2020001',
+  orga_name: '合肥艺朝艺夕艺术有限公司',
+  material_iden: '222112',
+  material_name: '视听说',
+  material_specification: '1KG',
+  material_model: '书本',
+  material_meterage: '本',
+  ts_present_num: '200',
+  ts_present_price: '80',
+  ts_present_sum: '16000'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 17:
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeReflectConstruct() {
+  try {
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+  } catch (t) {}
+  return (module.exports = _isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
+}
+module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 178:
+/*!***************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/service.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 管理账号信息
+var USERS_KEY = 'USERS_KEY';
+var STATE_KEY = 'STATE_KEY';
+var getUsers = function getUsers() {
+  var ret = '';
+  ret = uni.getStorageSync(USERS_KEY);
+  if (!ret) {
+    ret = '[]';
+  }
+  return JSON.parse(ret);
+};
+var addUser = function addUser(userInfo) {
+  var users = getUsers();
+  users.push({
+    account: userInfo.account,
+    password: userInfo.password
+  });
+  uni.setStorageSync(USERS_KEY, JSON.stringify(users));
+};
+var _default = {
+  getUsers: getUsers,
+  addUser: addUser
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
+/***/ 18:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 19:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 191:
+/*!******************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/purchaseMaterials.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -215,423 +398,6 @@ var data = [{
   material_model: '1234',
   material_meterage: '双',
   material_attr: '200'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 129:
-/*!***************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/common/catUtil.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function formateDate(datetime, type) {
-  var year = datetime.getFullYear(),
-    month = ("0" + (datetime.getMonth() + 1)).slice(-2),
-    date = ("0" + datetime.getDate()).slice(-2),
-    hour = ("0" + datetime.getHours()).slice(-2),
-    minute = ("0" + datetime.getMinutes()).slice(-2),
-    second = ("0" + datetime.getSeconds()).slice(-2);
-  if (type === "Y-M-D h:min:s") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
-  } else if (type === "Y-M-D h:min") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute;
-  } else if (type === "Y-M-D") {
-    var result = year + "-" + month + "-" + date;
-  } else if (type === "Y") {
-    var result = year;
-  } else if (type === "Y-M") {
-    var result = year + "-" + month;
-  } else if (type === "M") {
-    var result = month;
-  } else if (type === "h:min:s") {
-    var result = hour + ":" + minute + ":" + second;
-  } else if (type === "h:min") {
-    var result = hour + ":" + minute;
-  } else if (type === "h") {
-    var result = hour;
-  } else if (type === "min") {
-    var result = minute;
-  } else if (type === "s") {
-    var result = second;
-  }
-  return result;
-}
-function formatNumber(value, pattern) {
-  if (value == null) return value;
-  var strarr = value ? value.toString().split('.') : ['0'];
-  var fmtarr = pattern ? pattern.split('.') : [''];
-  var retstr = '';
-  // 整数部分   
-  var str = strarr[0];
-  var fmt = fmtarr[0];
-  var i = str.length - 1;
-  var comma = false;
-  for (var f = fmt.length - 1; f >= 0; f--) {
-    switch (fmt.substr(f, 1)) {
-      case '#':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;
-        break;
-      case '0':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;else retstr = '0' + retstr;
-        break;
-      case ',':
-        comma = true;
-        retstr = ',' + retstr;
-        break;
-    }
-  }
-  if (i >= 0) {
-    if (comma) {
-      var l = str.length;
-      for (; i >= 0; i--) {
-        retstr = str.substr(i, 1) + retstr;
-        if (i > 0 && (l - i) % 3 == 0) retstr = ',' + retstr;
-      }
-    } else retstr = str.substr(0, i + 1) + retstr;
-  }
-  retstr = retstr + '.';
-  // 处理小数部分   
-  str = strarr.length > 1 ? strarr[1] : '';
-  fmt = fmtarr.length > 1 ? fmtarr[1] : '';
-  i = 0;
-  for (var _f = 0; _f < fmt.length; _f++) {
-    switch (fmt.substr(_f, 1)) {
-      case '#':
-        if (i < str.length) retstr += str.substr(i++, 1);
-        break;
-      case '0':
-        if (i < str.length) retstr += str.substr(i++, 1);else retstr += '0';
-        break;
-    }
-  }
-  return retstr.replace(/^,+/, '').replace(/\.$/, '');
-}
-//格式化金额
-function catformatMoney(value, pattern) {
-  if (!value || value == 0) return 0;
-  var sign = value < 0 ? '-' : '';
-  return sign + formatNumber(Math.abs(value), pattern || '#,##0.00');
-}
-function formatMoneyAuto(value) {
-  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '#,##0.00';
-  var unit = "元";
-  if (value) {
-    var unitNum = {
-      // '千': 1000.00,
-      '万': 10000.00,
-      '千万': 10000000.00,
-      '亿': 100000000.00,
-      '百亿': 10000000000.00
-    };
-    var unitCount = {
-      // "4": '千',
-      "5": '万',
-      "8": '千万',
-      "9": '亿',
-      "11": '百亿'
-    };
-    var count = 0;
-    var money = value;
-    while (money >= 1) {
-      money = money / 10;
-      count++;
-    }
-    var tmp = unitCount[count + ""];
-    while (count >= 4 && tmp === undefined) {
-      tmp = unitCount[--count + ""];
-    }
-    unit = tmp === undefined ? unit : tmp;
-    value = count >= 4 ? value / unitNum[unit] : value;
-  }
-  return formatMoney(value, pattern) + unit || "";
-}
-// 格式化文件大小
-function formatFileSize(value) {
-  if (null == value || value == '') {
-    return "0 Bytes";
-  }
-  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
-  var index = 0;
-  var srcsize = parseFloat(value);
-  index = Math.floor(Math.log(srcsize) / Math.log(1024));
-  var size = srcsize / Math.pow(1024, index);
-  size = size.toFixed(2);
-  return size + unitArr[index];
-}
-var emptyPatt = /(^$)|(^[\u4E00-\u9FA5a-zA-Z0-9,，,.,!,@,#,$,%,^,&,*,(,),-,+,/,\\,!,￥,……,*,（,）,~,·,]{1,250}$)/;
-var phonePatt = /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-8])|(9[1,8,9]))\d{8}$/;
-var cardPatt = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-module.exports = {
-  formateDate: formateDate
-};
-
-/***/ }),
-
-/***/ 13:
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
-}
-module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 14:
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-function toPrimitive(t, r) {
-  if ("object" != _typeof(t) || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r || "default");
-    if ("object" != _typeof(i)) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 15:
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-var isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct.js */ 17);
-function _construct(t, e, r) {
-  if (isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
-  var o = [null];
-  o.push.apply(o, e);
-  var p = new (t.bind.apply(t, o))();
-  return r && setPrototypeOf(p, r.prototype), p;
-}
-module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 16:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _setPrototypeOf(o, p);
-}
-module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 168:
-/*!****************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/outDetails.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  msod_iden: '010100001',
-  msod_name: '钢琴',
-  msod_specification: '16键',
-  msod_model: '圆形',
-  msod_meterage: '台',
-  msod_num: '20',
-  msod_present_num: '50',
-  msod_remarks: '上音乐课借用器材'
-}, {
-  id: 2,
-  msod_iden: '020100003',
-  msod_name: '足球',
-  msod_specification: '黑白',
-  msod_model: '签名款',
-  msod_meterage: '个',
-  msod_num: '30',
-  msod_present_num: '50',
-  msod_remarks: '上体育课借用器材'
-}, {
-  id: 3,
-  msod_iden: '030100018',
-  msod_name: '画纸',
-  msod_specification: 'A4',
-  msod_model: '宣纸',
-  msod_meterage: '张',
-  msod_num: '50',
-  msod_present_num: '200',
-  msod_remarks: '上美术课借用器材'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 17:
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _isNativeReflectConstruct() {
-  try {
-    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-  } catch (t) {}
-  return (module.exports = _isNativeReflectConstruct = function _isNativeReflectConstruct() {
-    return !!t;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
-}
-module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 18:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 185:
-/*!*****************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/sellDetails.js ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  sod_iden: '010100001',
-  sod_name: '钢琴',
-  sod_specification: '16键',
-  sod_model: '圆形',
-  sod_meterage: '台',
-  sod_num: '20',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '4300.00',
-  sod_remarks: '上音乐课借用器材'
-}, {
-  id: 2,
-  sod_iden: '020100003',
-  sod_name: '足球',
-  sod_specification: '黑白',
-  sod_model: '签名款',
-  sod_meterage: '个',
-  sod_num: '30',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '120.00',
-  sod_remarks: '上体育课借用器材'
-}, {
-  id: 3,
-  sod_iden: '030100018',
-  sod_name: '画纸',
-  sod_specification: 'A4',
-  sod_model: '宣纸',
-  sod_meterage: '张',
-  sod_num: '50',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '1.00',
-  sod_remarks: '上美术课借用器材'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 19:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 194:
-/*!*********************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/exchangeDetails.js ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  trd_iden: '010100001',
-  trd_name: '钢琴',
-  trd_specification: '16键',
-  trd_model: '圆形',
-  trd_meterage: '台',
-  trd_num: '20',
-  trd_present_num: '50',
-  trd_remarks: '上音乐课借用器材'
-}, {
-  id: 2,
-  trd_iden: '020100003',
-  trd_name: '足球',
-  trd_specification: '黑白',
-  trd_model: '签名款',
-  trd_meterage: '个',
-  trd_num: '30',
-  trd_present_num: '50',
-  trd_remarks: '上体育课借用器材'
-}, {
-  id: 3,
-  trd_iden: '030100018',
-  trd_name: '画纸',
-  trd_specification: 'A4',
-  trd_model: '宣纸',
-  trd_meterage: '张',
-  trd_num: '50',
-  trd_present_num: '200',
-  trd_remarks: '上美术课借用器材'
 }];
 module.exports = {
   data: data
@@ -3100,6 +2866,156 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
+/***/ 200:
+/*!**********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/common/catUtil.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function formateDate(datetime, type) {
+  var year = datetime.getFullYear(),
+    month = ("0" + (datetime.getMonth() + 1)).slice(-2),
+    date = ("0" + datetime.getDate()).slice(-2),
+    hour = ("0" + datetime.getHours()).slice(-2),
+    minute = ("0" + datetime.getMinutes()).slice(-2),
+    second = ("0" + datetime.getSeconds()).slice(-2);
+  if (type === "Y-M-D h:min:s") {
+    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  } else if (type === "Y-M-D h:min") {
+    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute;
+  } else if (type === "Y-M-D") {
+    var result = year + "-" + month + "-" + date;
+  } else if (type === "Y") {
+    var result = year;
+  } else if (type === "Y-M") {
+    var result = year + "-" + month;
+  } else if (type === "M") {
+    var result = month;
+  } else if (type === "h:min:s") {
+    var result = hour + ":" + minute + ":" + second;
+  } else if (type === "h:min") {
+    var result = hour + ":" + minute;
+  } else if (type === "h") {
+    var result = hour;
+  } else if (type === "min") {
+    var result = minute;
+  } else if (type === "s") {
+    var result = second;
+  }
+  return result;
+}
+function formatNumber(value, pattern) {
+  if (value == null) return value;
+  var strarr = value ? value.toString().split('.') : ['0'];
+  var fmtarr = pattern ? pattern.split('.') : [''];
+  var retstr = '';
+  // 整数部分   
+  var str = strarr[0];
+  var fmt = fmtarr[0];
+  var i = str.length - 1;
+  var comma = false;
+  for (var f = fmt.length - 1; f >= 0; f--) {
+    switch (fmt.substr(f, 1)) {
+      case '#':
+        if (i >= 0) retstr = str.substr(i--, 1) + retstr;
+        break;
+      case '0':
+        if (i >= 0) retstr = str.substr(i--, 1) + retstr;else retstr = '0' + retstr;
+        break;
+      case ',':
+        comma = true;
+        retstr = ',' + retstr;
+        break;
+    }
+  }
+  if (i >= 0) {
+    if (comma) {
+      var l = str.length;
+      for (; i >= 0; i--) {
+        retstr = str.substr(i, 1) + retstr;
+        if (i > 0 && (l - i) % 3 == 0) retstr = ',' + retstr;
+      }
+    } else retstr = str.substr(0, i + 1) + retstr;
+  }
+  retstr = retstr + '.';
+  // 处理小数部分   
+  str = strarr.length > 1 ? strarr[1] : '';
+  fmt = fmtarr.length > 1 ? fmtarr[1] : '';
+  i = 0;
+  for (var _f = 0; _f < fmt.length; _f++) {
+    switch (fmt.substr(_f, 1)) {
+      case '#':
+        if (i < str.length) retstr += str.substr(i++, 1);
+        break;
+      case '0':
+        if (i < str.length) retstr += str.substr(i++, 1);else retstr += '0';
+        break;
+    }
+  }
+  return retstr.replace(/^,+/, '').replace(/\.$/, '');
+}
+//格式化金额
+function catformatMoney(value, pattern) {
+  if (!value || value == 0) return 0;
+  var sign = value < 0 ? '-' : '';
+  return sign + formatNumber(Math.abs(value), pattern || '#,##0.00');
+}
+function formatMoneyAuto(value) {
+  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '#,##0.00';
+  var unit = "元";
+  if (value) {
+    var unitNum = {
+      // '千': 1000.00,
+      '万': 10000.00,
+      '千万': 10000000.00,
+      '亿': 100000000.00,
+      '百亿': 10000000000.00
+    };
+    var unitCount = {
+      // "4": '千',
+      "5": '万',
+      "8": '千万',
+      "9": '亿',
+      "11": '百亿'
+    };
+    var count = 0;
+    var money = value;
+    while (money >= 1) {
+      money = money / 10;
+      count++;
+    }
+    var tmp = unitCount[count + ""];
+    while (count >= 4 && tmp === undefined) {
+      tmp = unitCount[--count + ""];
+    }
+    unit = tmp === undefined ? unit : tmp;
+    value = count >= 4 ? value / unitNum[unit] : value;
+  }
+  return formatMoney(value, pattern) + unit || "";
+}
+// 格式化文件大小
+function formatFileSize(value) {
+  if (null == value || value == '') {
+    return "0 Bytes";
+  }
+  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
+  var index = 0;
+  var srcsize = parseFloat(value);
+  index = Math.floor(Math.log(srcsize) / Math.log(1024));
+  var size = srcsize / Math.pow(1024, index);
+  size = size.toFixed(2);
+  return size + unitArr[index];
+}
+var emptyPatt = /(^$)|(^[\u4E00-\u9FA5a-zA-Z0-9,，,.,!,@,#,$,%,^,&,*,(,),-,+,/,\\,!,￥,……,*,（,）,~,·,]{1,250}$)/;
+var phonePatt = /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-8])|(9[1,8,9]))\d{8}$/;
+var cardPatt = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
+module.exports = {
+  formateDate: formateDate
+};
+
+/***/ }),
+
 /***/ 21:
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
@@ -3664,6 +3580,50 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 239:
+/*!***********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/outDetails.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  msod_iden: '010100001',
+  msod_name: '钢琴',
+  msod_specification: '16键',
+  msod_model: '圆形',
+  msod_meterage: '台',
+  msod_num: '20',
+  msod_present_num: '50',
+  msod_remarks: '上音乐课借用器材'
+}, {
+  id: 2,
+  msod_iden: '020100003',
+  msod_name: '足球',
+  msod_specification: '黑白',
+  msod_model: '签名款',
+  msod_meterage: '个',
+  msod_num: '30',
+  msod_present_num: '50',
+  msod_remarks: '上体育课借用器材'
+}, {
+  id: 3,
+  msod_iden: '030100018',
+  msod_name: '画纸',
+  msod_specification: 'A4',
+  msod_model: '宣纸',
+  msod_meterage: '张',
+  msod_num: '50',
+  msod_present_num: '200',
+  msod_remarks: '上美术课借用器材'
+}];
+module.exports = {
+  data: data
+};
 
 /***/ }),
 
@@ -9778,10 +9738,57 @@ internalMixin(Vue);
 
 /***/ }),
 
+/***/ 256:
+/*!************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/sellDetails.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  sod_iden: '010100001',
+  sod_name: '钢琴',
+  sod_specification: '16键',
+  sod_model: '圆形',
+  sod_meterage: '台',
+  sod_num: '20',
+  sod_taxRate: '13',
+  sod_tax_unitPrice: '4300.00',
+  sod_remarks: '上音乐课借用器材'
+}, {
+  id: 2,
+  sod_iden: '020100003',
+  sod_name: '足球',
+  sod_specification: '黑白',
+  sod_model: '签名款',
+  sod_meterage: '个',
+  sod_num: '30',
+  sod_taxRate: '13',
+  sod_tax_unitPrice: '120.00',
+  sod_remarks: '上体育课借用器材'
+}, {
+  id: 3,
+  sod_iden: '030100018',
+  sod_name: '画纸',
+  sod_specification: 'A4',
+  sod_model: '宣纸',
+  sod_meterage: '张',
+  sod_num: '50',
+  sod_taxRate: '13',
+  sod_tax_unitPrice: '1.00',
+  sod_remarks: '上美术课借用器材'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
 /***/ 26:
-/*!********************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/pages.json ***!
-  \********************************************************************************/
+/*!***************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages.json ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9789,809 +9796,47 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 292:
-/*!****************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/evan-icons/icons.js ***!
-  \****************************************************************************************************/
+/***/ 265:
+/*!****************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/exchangeDetails.js ***!
+  \****************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  "glass": "\uF000",
-  "music": "\uF001",
-  "search": "\uF002",
-  "envelope-o": "\uF003",
-  "heart": "\uF004",
-  "star": "\uF005",
-  "star-o": "\uF006",
-  "user": "\uF007",
-  "film": "\uF008",
-  "th-large": "\uF009",
-  "th": "\uF00A",
-  "th-list": "\uF00B",
-  "check": "\uF00C",
-  "remove": "\uF00D",
-  "close": "\uF00D",
-  "times": "\uF00D",
-  "search-plus": "\uF00E",
-  "search-minus": "\uF010",
-  "power-off": "\uF011",
-  "signal": "\uF012",
-  "gear": "\uF013",
-  "cog": "\uF013",
-  "trash-o": "\uF014",
-  "home": "\uF015",
-  "file-o": "\uF016",
-  "clock-o": "\uF017",
-  "road": "\uF018",
-  "download": "\uF019",
-  "arrow-circle-o-down": "\uF01A",
-  "arrow-circle-o-up": "\uF01B",
-  "inbox": "\uF01C",
-  "play-circle-o": "\uF01D",
-  "rotate-right": "\uF01E",
-  "repeat": "\uF01E",
-  "refresh": "\uF021",
-  "list-alt": "\uF022",
-  "lock": "\uF023",
-  "flag": "\uF024",
-  "headphones": "\uF025",
-  "volume-off": "\uF026",
-  "volume-down": "\uF027",
-  "volume-up": "\uF028",
-  "qrcode": "\uF029",
-  "barcode": "\uF02A",
-  "tag": "\uF02B",
-  "tags": "\uF02C",
-  "book": "\uF02D",
-  "bookmark": "\uF02E",
-  "print": "\uF02F",
-  "camera": "\uF030",
-  "font": "\uF031",
-  "bold": "\uF032",
-  "italic": "\uF033",
-  "text-height": "\uF034",
-  "text-width": "\uF035",
-  "align-left": "\uF036",
-  "align-center": "\uF037",
-  "align-right": "\uF038",
-  "align-justify": "\uF039",
-  "list": "\uF03A",
-  "dedent": "\uF03B",
-  "outdent": "\uF03B",
-  "indent": "\uF03C",
-  "video-camera": "\uF03D",
-  "photo": "\uF03E",
-  "image": "\uF03E",
-  "picture-o": "\uF03E",
-  "pencil": "\uF040",
-  "map-marker": "\uF041",
-  "adjust": "\uF042",
-  "tint": "\uF043",
-  "edit": "\uF044",
-  "pencil-square-o": "\uF044",
-  "share-square-o": "\uF045",
-  "check-square-o": "\uF046",
-  "arrows": "\uF047",
-  "step-backward": "\uF048",
-  "fast-backward": "\uF049",
-  "backward": "\uF04A",
-  "play": "\uF04B",
-  "pause": "\uF04C",
-  "stop": "\uF04D",
-  "forward": "\uF04E",
-  "fast-forward": "\uF050",
-  "step-forward": "\uF051",
-  "eject": "\uF052",
-  "chevron-left": "\uF053",
-  "chevron-right": "\uF054",
-  "plus-circle": "\uF055",
-  "minus-circle": "\uF056",
-  "times-circle": "\uF057",
-  "check-circle": "\uF058",
-  "question-circle": "\uF059",
-  "info-circle": "\uF05A",
-  "crosshairs": "\uF05B",
-  "times-circle-o": "\uF05C",
-  "check-circle-o": "\uF05D",
-  "ban": "\uF05E",
-  "arrow-left": "\uF060",
-  "arrow-right": "\uF061",
-  "arrow-up": "\uF062",
-  "arrow-down": "\uF063",
-  "mail-forward": "\uF064",
-  "share": "\uF064",
-  "expand": "\uF065",
-  "compress": "\uF066",
-  "plus": "\uF067",
-  "minus": "\uF068",
-  "asterisk": "\uF069",
-  "exclamation-circle": "\uF06A",
-  "gift": "\uF06B",
-  "leaf": "\uF06C",
-  "fire": "\uF06D",
-  "eye": "\uF06E",
-  "eye-slash": "\uF070",
-  "warning": "\uF071",
-  "exclamation-triangle": "\uF071",
-  "plane": "\uF072",
-  "calendar": "\uF073",
-  "random": "\uF074",
-  "comment": "\uF075",
-  "magnet": "\uF076",
-  "chevron-up": "\uF077",
-  "chevron-down": "\uF078",
-  "retweet": "\uF079",
-  "shopping-cart": "\uF07A",
-  "folder": "\uF07B",
-  "folder-open": "\uF07C",
-  "arrows-v": "\uF07D",
-  "arrows-h": "\uF07E",
-  "bar-chart-o": "\uF080",
-  "bar-chart": "\uF080",
-  "twitter-square": "\uF081",
-  "facebook-square": "\uF082",
-  "camera-retro": "\uF083",
-  "key": "\uF084",
-  "gears": "\uF085",
-  "cogs": "\uF085",
-  "comments": "\uF086",
-  "thumbs-o-up": "\uF087",
-  "thumbs-o-down": "\uF088",
-  "star-half": "\uF089",
-  "heart-o": "\uF08A",
-  "sign-out": "\uF08B",
-  "linkedin-square": "\uF08C",
-  "thumb-tack": "\uF08D",
-  "external-link": "\uF08E",
-  "sign-in": "\uF090",
-  "trophy": "\uF091",
-  "github-square": "\uF092",
-  "upload": "\uF093",
-  "lemon-o": "\uF094",
-  "phone": "\uF095",
-  "square-o": "\uF096",
-  "bookmark-o": "\uF097",
-  "phone-square": "\uF098",
-  "twitter": "\uF099",
-  "facebook-f": "\uF09A",
-  "facebook": "\uF09A",
-  "github": "\uF09B",
-  "unlock": "\uF09C",
-  "credit-card": "\uF09D",
-  "feed": "\uF09E",
-  "rss": "\uF09E",
-  "hdd-o": "\uF0A0",
-  "bullhorn": "\uF0A1",
-  "bell-o": "\uF0A2",
-  "certificate": "\uF0A3",
-  "hand-o-right": "\uF0A4",
-  "hand-o-left": "\uF0A5",
-  "hand-o-up": "\uF0A6",
-  "hand-o-down": "\uF0A7",
-  "arrow-circle-left": "\uF0A8",
-  "arrow-circle-right": "\uF0A9",
-  "arrow-circle-up": "\uF0AA",
-  "arrow-circle-down": "\uF0AB",
-  "globe": "\uF0AC",
-  "wrench": "\uF0AD",
-  "tasks": "\uF0AE",
-  "filter": "\uF0B0",
-  "briefcase": "\uF0B1",
-  "arrows-alt": "\uF0B2",
-  "group": "\uF0C0",
-  "users": "\uF0C0",
-  "chain": "\uF0C1",
-  "link": "\uF0C1",
-  "cloud": "\uF0C2",
-  "flask": "\uF0C3",
-  "cut": "\uF0C4",
-  "scissors": "\uF0C4",
-  "copy": "\uF0C5",
-  "files-o": "\uF0C5",
-  "paperclip": "\uF0C6",
-  "save": "\uF0C7",
-  "floppy-o": "\uF0C7",
-  "square": "\uF0C8",
-  "navicon": "\uF0C9",
-  "reorder": "\uF0C9",
-  "bars": "\uF0C9",
-  "list-ul": "\uF0CA",
-  "list-ol": "\uF0CB",
-  "strikethrough": "\uF0CC",
-  "underline": "\uF0CD",
-  "table": "\uF0CE",
-  "magic": "\uF0D0",
-  "truck": "\uF0D1",
-  "pinterest": "\uF0D2",
-  "pinterest-square": "\uF0D3",
-  "google-plus-square": "\uF0D4",
-  "google-plus": "\uF0D5",
-  "money": "\uF0D6",
-  "caret-down": "\uF0D7",
-  "caret-up": "\uF0D8",
-  "caret-left": "\uF0D9",
-  "caret-right": "\uF0DA",
-  "columns": "\uF0DB",
-  "unsorted": "\uF0DC",
-  "sort": "\uF0DC",
-  "sort-down": "\uF0DD",
-  "sort-desc": "\uF0DD",
-  "sort-up": "\uF0DE",
-  "sort-asc": "\uF0DE",
-  "envelope": "\uF0E0",
-  "linkedin": "\uF0E1",
-  "rotate-left": "\uF0E2",
-  "undo": "\uF0E2",
-  "legal": "\uF0E3",
-  "gavel": "\uF0E3",
-  "dashboard": "\uF0E4",
-  "tachometer": "\uF0E4",
-  "comment-o": "\uF0E5",
-  "comments-o": "\uF0E6",
-  "flash": "\uF0E7",
-  "bolt": "\uF0E7",
-  "sitemap": "\uF0E8",
-  "umbrella": "\uF0E9",
-  "paste": "\uF0EA",
-  "clipboard": "\uF0EA",
-  "lightbulb-o": "\uF0EB",
-  "exchange": "\uF0EC",
-  "cloud-download": "\uF0ED",
-  "cloud-upload": "\uF0EE",
-  "user-md": "\uF0F0",
-  "stethoscope": "\uF0F1",
-  "suitcase": "\uF0F2",
-  "bell": "\uF0F3",
-  "coffee": "\uF0F4",
-  "cutlery": "\uF0F5",
-  "file-text-o": "\uF0F6",
-  "building-o": "\uF0F7",
-  "hospital-o": "\uF0F8",
-  "ambulance": "\uF0F9",
-  "medkit": "\uF0FA",
-  "fighter-jet": "\uF0FB",
-  "beer": "\uF0FC",
-  "h-square": "\uF0FD",
-  "plus-square": "\uF0FE",
-  "angle-double-left": "\uF100",
-  "angle-double-right": "\uF101",
-  "angle-double-up": "\uF102",
-  "angle-double-down": "\uF103",
-  "angle-left": "\uF104",
-  "angle-right": "\uF105",
-  "angle-up": "\uF106",
-  "angle-down": "\uF107",
-  "desktop": "\uF108",
-  "laptop": "\uF109",
-  "tablet": "\uF10A",
-  "mobile-phone": "\uF10B",
-  "mobile": "\uF10B",
-  "circle-o": "\uF10C",
-  "quote-left": "\uF10D",
-  "quote-right": "\uF10E",
-  "spinner": "\uF110",
-  "circle": "\uF111",
-  "mail-reply": "\uF112",
-  "reply": "\uF112",
-  "github-alt": "\uF113",
-  "folder-o": "\uF114",
-  "folder-open-o": "\uF115",
-  "smile-o": "\uF118",
-  "frown-o": "\uF119",
-  "meh-o": "\uF11A",
-  "gamepad": "\uF11B",
-  "keyboard-o": "\uF11C",
-  "flag-o": "\uF11D",
-  "flag-checkered": "\uF11E",
-  "terminal": "\uF120",
-  "code": "\uF121",
-  "mail-reply-all": "\uF122",
-  "reply-all": "\uF122",
-  "star-half-empty": "\uF123",
-  "star-half-full": "\uF123",
-  "star-half-o": "\uF123",
-  "location-arrow": "\uF124",
-  "crop": "\uF125",
-  "code-fork": "\uF126",
-  "unlink": "\uF127",
-  "chain-broken": "\uF127",
-  "question": "\uF128",
-  "info": "\uF129",
-  "exclamation": "\uF12A",
-  "superscript": "\uF12B",
-  "subscript": "\uF12C",
-  "eraser": "\uF12D",
-  "puzzle-piece": "\uF12E",
-  "microphone": "\uF130",
-  "microphone-slash": "\uF131",
-  "shield": "\uF132",
-  "calendar-o": "\uF133",
-  "fire-extinguisher": "\uF134",
-  "rocket": "\uF135",
-  "maxcdn": "\uF136",
-  "chevron-circle-left": "\uF137",
-  "chevron-circle-right": "\uF138",
-  "chevron-circle-up": "\uF139",
-  "chevron-circle-down": "\uF13A",
-  "html5": "\uF13B",
-  "css3": "\uF13C",
-  "anchor": "\uF13D",
-  "unlock-alt": "\uF13E",
-  "bullseye": "\uF140",
-  "ellipsis-h": "\uF141",
-  "ellipsis-v": "\uF142",
-  "rss-square": "\uF143",
-  "play-circle": "\uF144",
-  "ticket": "\uF145",
-  "minus-square": "\uF146",
-  "minus-square-o": "\uF147",
-  "level-up": "\uF148",
-  "level-down": "\uF149",
-  "check-square": "\uF14A",
-  "pencil-square": "\uF14B",
-  "external-link-square": "\uF14C",
-  "share-square": "\uF14D",
-  "compass": "\uF14E",
-  "toggle-down": "\uF150",
-  "caret-square-o-down": "\uF150",
-  "toggle-up": "\uF151",
-  "caret-square-o-up": "\uF151",
-  "toggle-right": "\uF152",
-  "caret-square-o-right": "\uF152",
-  "fa-euro": "\uF153",
-  "fa-eur": "\uF153",
-  "gbp": "\uF154",
-  "dollar": "\uF155",
-  "usd": "\uF155",
-  "rupee": "\uF156",
-  "inr": "\uF156",
-  "cny": "\uF157",
-  "rmb": "\uF157",
-  "yen": "\uF157",
-  "jpy": "\uF157",
-  "ruble": "\uF158",
-  "rouble": "\uF158",
-  "rub": "\uF158",
-  "won": "\uF159",
-  "krw": "\uF159",
-  "bitcoin": "\uF15A",
-  "btc": "\uF15A",
-  "file": "\uF15B",
-  "file-text": "\uF15C",
-  "sort-alpha-asc": "\uF15D",
-  "sort-alpha-desc": "\uF15E",
-  "sort-amount-asc": "\uF160",
-  "sort-amount-desc": "\uF161",
-  "sort-numeric-asc": "\uF162",
-  "sort-numeric-desc": "\uF163",
-  "thumbs-up": "\uF164",
-  "thumbs-down": "\uF165",
-  "youtube-square": "\uF166",
-  "youtube": "\uF167",
-  "xing": "\uF168",
-  "xing-square": "\uF169",
-  "youtube-play": "\uF16A",
-  "dropbox": "\uF16B",
-  "stack-overflow": "\uF16C",
-  "instagram": "\uF16D",
-  "flickr": "\uF16E",
-  "adn": "\uF170",
-  "bitbucket": "\uF171",
-  "bitbucket-square": "\uF172",
-  "tumblr": "\uF173",
-  "tumblr-square": "\uF174",
-  "long-arrow-down": "\uF175",
-  "long-arrow-up": "\uF176",
-  "long-arrow-left": "\uF177",
-  "long-arrow-right": "\uF178",
-  "apple": "\uF179",
-  "windows": "\uF17A",
-  "android": "\uF17B",
-  "linux": "\uF17C",
-  "dribbble": "\uF17D",
-  "skype": "\uF17E",
-  "foursquare": "\uF180",
-  "trello": "\uF181",
-  "female": "\uF182",
-  "male": "\uF183",
-  "gittip": "\uF184",
-  "gratipay": "\uF184",
-  "sun-o": "\uF185",
-  "moon-o": "\uF186",
-  "archive": "\uF187",
-  "bug": "\uF188",
-  "vk": "\uF189",
-  "weibo": "\uF18A",
-  "renren": "\uF18B",
-  "pagelines": "\uF18C",
-  "stack-exchange": "\uF18D",
-  "arrow-circle-o-right": "\uF18E",
-  "arrow-circle-o-left": "\uF190",
-  "toggle-left": "\uF191",
-  "caret-square-o-left": "\uF191",
-  "dot-circle-o": "\uF192",
-  "wheelchair": "\uF193",
-  "vimeo-square": "\uF194",
-  "turkish-lira": "\uF195",
-  "try": "\uF195",
-  "plus-square-o": "\uF196",
-  "space-shuttle": "\uF197",
-  "slack": "\uF198",
-  "envelope-square": "\uF199",
-  "wordpress": "\uF19A",
-  "openid": "\uF19B",
-  "institution": "\uF19C",
-  "bank": "\uF19C",
-  "university": "\uF19C",
-  "mortar-board": "\uF19D",
-  "graduation-cap": "\uF19D",
-  "yahoo": "\uF19E",
-  "google": "\uF1A0",
-  "reddit": "\uF1A1",
-  "reddit-square": "\uF1A2",
-  "stumbleupon-circle": "\uF1A3",
-  "stumbleupon": "\uF1A4",
-  "delicious": "\uF1A5",
-  "digg": "\uF1A6",
-  "pied-piper-pp": "\uF1A7",
-  "pied-piper-alt": "\uF1A8",
-  "drupal": "\uF1A9",
-  "joomla": "\uF1AA",
-  "language": "\uF1AB",
-  "fax": "\uF1AC",
-  "building": "\uF1AD",
-  "child": "\uF1AE",
-  "paw": "\uF1B0",
-  "spoon": "\uF1B1",
-  "cube": "\uF1B2",
-  "cubes": "\uF1B3",
-  "behance": "\uF1B4",
-  "behance-square": "\uF1B5",
-  "steam": "\uF1B6",
-  "steam-square": "\uF1B7",
-  "recycle": "\uF1B8",
-  "automobile": "\uF1B9",
-  "car": "\uF1B9",
-  "cab": "\uF1BA",
-  "taxi": "\uF1BA",
-  "tree": "\uF1BB",
-  "spotify": "\uF1BC",
-  "deviantart": "\uF1BD",
-  "soundcloud": "\uF1BE",
-  "database": "\uF1C0",
-  "file-pdf-o": "\uF1C1",
-  "file-word-o": "\uF1C2",
-  "file-excel-o": "\uF1C3",
-  "file-powerpoint-o": "\uF1C4",
-  "file-photo-o": "\uF1C5",
-  "file-picture-o": "\uF1C5",
-  "file-image-o": "\uF1C5",
-  "file-zip-o": "\uF1C6",
-  "file-archive-o": "\uF1C6",
-  "file-sound-o": "\uF1C7",
-  "file-audio-o": "\uF1C7",
-  "file-movie-o": "\uF1C8",
-  "file-video-o": "\uF1C8",
-  "file-code-o": "\uF1C9",
-  "vine": "\uF1CA",
-  "codepen": "\uF1CB",
-  "jsfiddle": "\uF1CC",
-  "life-bouy": "\uF1CD",
-  "life-buoy": "\uF1CD",
-  "life-saver": "\uF1CD",
-  "support": "\uF1CD",
-  "life-ring": "\uF1CD",
-  "circle-o-notch": "\uF1CE",
-  "ra": "\uF1D0",
-  "resistance": "\uF1D0",
-  "rebel": "\uF1D0",
-  "ge": "\uF1D1",
-  "empire": "\uF1D1",
-  "git-square": "\uF1D2",
-  "git": "\uF1D3",
-  "y-combinator-square": "\uF1D4",
-  "yc-square": "\uF1D4",
-  "hacker-news": "\uF1D4",
-  "tencent-weibo": "\uF1D5",
-  "qq": "\uF1D6",
-  "wechat": "\uF1D7",
-  "weixin": "\uF1D7",
-  "send": "\uF1D8",
-  "paper-plane": "\uF1D8",
-  "send-o": "\uF1D9",
-  "paper-plane-o": "\uF1D9",
-  "history": "\uF1DA",
-  "circle-thin": "\uF1DB",
-  "header": "\uF1DC",
-  "paragraph": "\uF1DD",
-  "sliders": "\uF1DE",
-  "share-alt": "\uF1E0",
-  "share-alt-square": "\uF1E1",
-  "bomb": "\uF1E2",
-  "soccer-ball-o": "\uF1E3",
-  "futbol-o": "\uF1E3",
-  "tty": "\uF1E4",
-  "binoculars": "\uF1E5",
-  "plug": "\uF1E6",
-  "slideshare": "\uF1E7",
-  "twitch": "\uF1E8",
-  "yelp": "\uF1E9",
-  "newspaper-o": "\uF1EA",
-  "wifi": "\uF1EB",
-  "calculator": "\uF1EC",
-  "paypal": "\uF1ED",
-  "google-wallet": "\uF1EE",
-  "cc-visa": "\uF1F0",
-  "cc-mastercard": "\uF1F1",
-  "cc-discover": "\uF1F2",
-  "cc-amex": "\uF1F3",
-  "cc-paypal": "\uF1F4",
-  "cc-stripe": "\uF1F5",
-  "bell-slash": "\uF1F6",
-  "bell-slash-o": "\uF1F7",
-  "trash": "\uF1F8",
-  "copyright": "\uF1F9",
-  "at": "\uF1FA",
-  "eyedropper": "\uF1FB",
-  "paint-brush": "\uF1FC",
-  "birthday-cake": "\uF1FD",
-  "area-chart": "\uF1FE",
-  "pie-chart": "\uF200",
-  "line-chart": "\uF201",
-  "lastfm": "\uF202",
-  "lastfm-square": "\uF203",
-  "toggle-off": "\uF204",
-  "toggle-on": "\uF205",
-  "bicycle": "\uF206",
-  "bus": "\uF207",
-  "ioxhost": "\uF208",
-  "angellist": "\uF209",
-  "cc": "\uF20A",
-  "shekel": "\uF20B",
-  "sheqel": "\uF20B",
-  "ils": "\uF20B",
-  "meanpath": "\uF20C",
-  "buysellads": "\uF20D",
-  "connectdevelop": "\uF20E",
-  "dashcube": "\uF210",
-  "forumbee": "\uF211",
-  "leanpub": "\uF212",
-  "sellsy": "\uF213",
-  "shirtsinbulk": "\uF214",
-  "simplybuilt": "\uF215",
-  "skyatlas": "\uF216",
-  "cart-plus": "\uF217",
-  "cart-arrow-down": "\uF218",
-  "diamond": "\uF219",
-  "ship": "\uF21A",
-  "user-secret": "\uF21B",
-  "motorcycle": "\uF21C",
-  "street-view": "\uF21D",
-  "heartbeat": "\uF21E",
-  "venus": "\uF221",
-  "mars": "\uF222",
-  "mercury": "\uF223",
-  "intersex": "\uF224",
-  "transgender": "\uF224",
-  "transgender-alt": "\uF225",
-  "venus-double": "\uF226",
-  "mars-double": "\uF227",
-  "venus-mars": "\uF228",
-  "mars-stroke": "\uF229",
-  "mars-stroke-v": "\uF22A",
-  "mars-stroke-h": "\uF22B",
-  "neuter": "\uF22C",
-  "genderless": "\uF22D",
-  "facebook-official": "\uF230",
-  "pinterest-p": "\uF231",
-  "whatsapp": "\uF232",
-  "server": "\uF233",
-  "user-plus": "\uF234",
-  "user-times": "\uF235",
-  "hotel": "\uF236",
-  "bed": "\uF236",
-  "viacoin": "\uF237",
-  "train": "\uF238",
-  "subway": "\uF239",
-  "medium": "\uF23A",
-  "yc": "\uF23B",
-  "y-combinator": "\uF23B",
-  "optin-monster": "\uF23C",
-  "opencart": "\uF23D",
-  "expeditedssl": "\uF23E",
-  "battery-4": "\uF240",
-  "battery": "\uF240",
-  "battery-full": "\uF240",
-  "battery-3": "\uF241",
-  "battery-three-quarters": "\uF241",
-  "battery-2": "\uF242",
-  "battery-half": "\uF242",
-  "battery-1": "\uF243",
-  "battery-quarter": "\uF243",
-  "battery-0": "\uF244",
-  "battery-empty": "\uF244",
-  "mouse-pointer": "\uF245",
-  "i-cursor": "\uF246",
-  "object-group": "\uF247",
-  "object-ungroup": "\uF248",
-  "sticky-note": "\uF249",
-  "sticky-note-o": "\uF24A",
-  "cc-jcb": "\uF24B",
-  "cc-diners-club": "\uF24C",
-  "clone": "\uF24D",
-  "balance-scale": "\uF24E",
-  "hourglass-o": "\uF250",
-  "hourglass-1": "\uF251",
-  "hourglass-start": "\uF251",
-  "hourglass-2": "\uF252",
-  "hourglass-half": "\uF252",
-  "hourglass-3": "\uF253",
-  "hourglass-end": "\uF253",
-  "hourglass": "\uF254",
-  "hand-grab-o": "\uF255",
-  "hand-rock-o": "\uF255",
-  "hand-stop-o": "\uF256",
-  "hand-paper-o": "\uF256",
-  "hand-scissors-o": "\uF257",
-  "hand-lizard-o": "\uF258",
-  "hand-spock-o": "\uF259",
-  "hand-pointer-o": "\uF25A",
-  "hand-peace-o": "\uF25B",
-  "trademark": "\uF25C",
-  "registered": "\uF25D",
-  "creative-commons": "\uF25E",
-  "gg": "\uF260",
-  "gg-circle": "\uF261",
-  "tripadvisor": "\uF262",
-  "odnoklassniki": "\uF263",
-  "odnoklassniki-square": "\uF264",
-  "get-pocket": "\uF265",
-  "wikipedia-w": "\uF266",
-  "safari": "\uF267",
-  "chrome": "\uF268",
-  "firefox": "\uF269",
-  "opera": "\uF26A",
-  "internet-explorer": "\uF26B",
-  "tv": "\uF26C",
-  "television": "\uF26C",
-  "contao": "\uF26D",
-  "500px": "\uF26E",
-  "amazon": "\uF270",
-  "calendar-plus-o": "\uF271",
-  "calendar-minus-o": "\uF272",
-  "calendar-times-o": "\uF273",
-  "calendar-check-o": "\uF274",
-  "industry": "\uF275",
-  "map-pin": "\uF276",
-  "map-signs": "\uF277",
-  "map-o": "\uF278",
-  "map": "\uF279",
-  "commenting": "\uF27A",
-  "commenting-o": "\uF27B",
-  "houzz": "\uF27C",
-  "vimeo": "\uF27D",
-  "black-tie": "\uF27E",
-  "fonticons": "\uF280",
-  "reddit-alien": "\uF281",
-  "edge": "\uF282",
-  "credit-card-alt": "\uF283",
-  "codiepie": "\uF284",
-  "modx": "\uF285",
-  "fort-awesome": "\uF286",
-  "usb": "\uF287",
-  "product-hunt": "\uF288",
-  "mixcloud": "\uF289",
-  "scribd": "\uF28A",
-  "pause-circle": "\uF28B",
-  "pause-circle-o": "\uF28C",
-  "stop-circle": "\uF28D",
-  "stop-circle-o": "\uF28E",
-  "shopping-bag": "\uF290",
-  "shopping-basket": "\uF291",
-  "hashtag": "\uF292",
-  "bluetooth": "\uF293",
-  "bluetooth-b": "\uF294",
-  "percent": "\uF295",
-  "gitlab": "\uF296",
-  "wpbeginner": "\uF297",
-  "wpforms": "\uF298",
-  "envira": "\uF299",
-  "universal-access": "\uF29A",
-  "wheelchair-alt": "\uF29B",
-  "question-circle-o": "\uF29C",
-  "blind": "\uF29D",
-  "audio-description": "\uF29E",
-  "volume-control-phone": "\uF2A0",
-  "braille": "\uF2A1",
-  "assistive-listening-systems": "\uF2A2",
-  "asl-interpreting": "\uF2A3",
-  "american-sign-language-interpreting": "\uF2A3",
-  "deafness": "\uF2A4",
-  "hard-of-hearing": "\uF2A4",
-  "deaf": "\uF2A4",
-  "glide": "\uF2A5",
-  "glide-g": "\uF2A6",
-  "signing": "\uF2A7",
-  "sign-language": "\uF2A7",
-  "low-vision": "\uF2A8",
-  "viadeo": "\uF2A9",
-  "viadeo-square": "\uF2AA",
-  "snapchat": "\uF2AB",
-  "snapchat-ghost": "\uF2AC",
-  "snapchat-square": "\uF2AD",
-  "pied-piper": "\uF2AE",
-  "first-order": "\uF2B0",
-  "yoast": "\uF2B1",
-  "themeisle": "\uF2B2",
-  "google-plus-circle": "\uF2B3",
-  "google-plus-official": "\uF2B3",
-  "fa": "\uF2B4",
-  "font-awesome": "\uF2B4",
-  "handshake-o": "\uF2B5",
-  "envelope-open": "\uF2B6",
-  "envelope-open-o": "\uF2B7",
-  "linode": "\uF2B8",
-  "address-book": "\uF2B9",
-  "address-book-o": "\uF2BA",
-  "vcard": "\uF2BB",
-  "address-card": "\uF2BB",
-  "vcard-o": "\uF2BC",
-  "address-card-o": "\uF2BC",
-  "user-circle": "\uF2BD",
-  "user-circle-o": "\uF2BE",
-  "user-o": "\uF2C0",
-  "id-badge": "\uF2C1",
-  "drivers-license": "\uF2C2",
-  "id-card": "\uF2C2",
-  "drivers-license-o": "\uF2C3",
-  "id-card-o": "\uF2C3",
-  "quora": "\uF2C4",
-  "free-code-camp": "\uF2C5",
-  "telegram": "\uF2C6",
-  "thermometer-4": "\uF2C7",
-  "thermometer": "\uF2C7",
-  "thermometer-full": "\uF2C7",
-  "thermometer-3": "\uF2C8",
-  "thermometer-three-quarters": "\uF2C8",
-  "thermometer-2": "\uF2C9",
-  "thermometer-half": "\uF2C9",
-  "thermometer-1": "\uF2CA",
-  "thermometer-quarter": "\uF2CA",
-  "thermometer-0": "\uF2CB",
-  "thermometer-empty": "\uF2CB",
-  "shower": "\uF2CC",
-  "bathtub": "\uF2CD",
-  "s15": "\uF2CD",
-  "bath": "\uF2CD",
-  "podcast": "\uF2CE",
-  "window-maximize": "\uF2D0",
-  "window-minimize": "\uF2D1",
-  "window-restore": "\uF2D2",
-  "times-rectangle": "\uF2D3",
-  "window-close": "\uF2D3",
-  "times-rectangle-o": "\uF2D4",
-  "window-close-o": "\uF2D4",
-  "bandcamp": "\uF2D5",
-  "grav": "\uF2D6",
-  "etsy": "\uF2D7",
-  "imdb": "\uF2D8",
-  "ravelry": "\uF2D9",
-  "eercast": "\uF2DA",
-  "microchip": "\uF2DB",
-  "snowflake-o": "\uF2DC",
-  "superpowers": "\uF2DD",
-  "wpexplorer": "\uF2DE",
-  "meetup": "\uF2E0"
+var data = [{
+  id: 1,
+  trd_iden: '010100001',
+  trd_name: '钢琴',
+  trd_specification: '16键',
+  trd_model: '圆形',
+  trd_meterage: '台',
+  trd_num: '20',
+  trd_present_num: '50',
+  trd_remarks: '上音乐课借用器材'
+}, {
+  id: 2,
+  trd_iden: '020100003',
+  trd_name: '足球',
+  trd_specification: '黑白',
+  trd_model: '签名款',
+  trd_meterage: '个',
+  trd_num: '30',
+  trd_present_num: '50',
+  trd_remarks: '上体育课借用器材'
+}, {
+  id: 3,
+  trd_iden: '030100018',
+  trd_name: '画纸',
+  trd_specification: 'A4',
+  trd_model: '宣纸',
+  trd_meterage: '张',
+  trd_num: '50',
+  trd_present_num: '200',
+  trd_remarks: '上美术课借用器材'
+}];
+module.exports = {
+  data: data
 };
-exports.default = _default;
 
 /***/ }),
 
@@ -10759,9 +10004,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 33:
-/*!************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/store/index.js ***!
-  \************************************************************************************/
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/store/index.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12059,9 +11304,9 @@ module.exports = index_cjs;
 /***/ }),
 
 /***/ 35:
-/*!**************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/common/config.js ***!
-  \**************************************************************************************/
+/*!*********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/common/config.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12079,10 +11324,2481 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 356:
+/***/ 36:
+/*!**********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/common/request.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 35));
+var _default = {
+  config: {
+    baseUrl: _config.default.webUrl,
+    header: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    data: {},
+    method: "POST",
+    dataType: "json"
+  },
+  request: function request() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    options.header = options.header || this.config.header;
+    options.method = options.method || this.config.method;
+    options.dataType = options.dataType || this.config.dataType;
+    options.url = this.config.baseUrl + options.url;
+    //TODO: token等操作
+    // if(options.token) {
+    // 	if(options.checkToken && !User.token) {
+    // 		uni.showToast({ title: '您未登录', icon:"none" })
+    // 		return uni.navigateTo({
+    // 			url: '/pages/login/login'
+    // 		});
+    // 	}
+    // 	options.header.token = User.token;
+    // }
+
+    return uni.request(options);
+  },
+  get: function get(url, data) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'GET';
+    return this.request(options);
+  },
+  post: function post(url, data) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'POST';
+    return this.request(options);
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
+/***/ 363:
+/*!***********************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/evan-icons/icons.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  "glass": "\uF000",
+  "music": "\uF001",
+  "search": "\uF002",
+  "envelope-o": "\uF003",
+  "heart": "\uF004",
+  "star": "\uF005",
+  "star-o": "\uF006",
+  "user": "\uF007",
+  "film": "\uF008",
+  "th-large": "\uF009",
+  "th": "\uF00A",
+  "th-list": "\uF00B",
+  "check": "\uF00C",
+  "remove": "\uF00D",
+  "close": "\uF00D",
+  "times": "\uF00D",
+  "search-plus": "\uF00E",
+  "search-minus": "\uF010",
+  "power-off": "\uF011",
+  "signal": "\uF012",
+  "gear": "\uF013",
+  "cog": "\uF013",
+  "trash-o": "\uF014",
+  "home": "\uF015",
+  "file-o": "\uF016",
+  "clock-o": "\uF017",
+  "road": "\uF018",
+  "download": "\uF019",
+  "arrow-circle-o-down": "\uF01A",
+  "arrow-circle-o-up": "\uF01B",
+  "inbox": "\uF01C",
+  "play-circle-o": "\uF01D",
+  "rotate-right": "\uF01E",
+  "repeat": "\uF01E",
+  "refresh": "\uF021",
+  "list-alt": "\uF022",
+  "lock": "\uF023",
+  "flag": "\uF024",
+  "headphones": "\uF025",
+  "volume-off": "\uF026",
+  "volume-down": "\uF027",
+  "volume-up": "\uF028",
+  "qrcode": "\uF029",
+  "barcode": "\uF02A",
+  "tag": "\uF02B",
+  "tags": "\uF02C",
+  "book": "\uF02D",
+  "bookmark": "\uF02E",
+  "print": "\uF02F",
+  "camera": "\uF030",
+  "font": "\uF031",
+  "bold": "\uF032",
+  "italic": "\uF033",
+  "text-height": "\uF034",
+  "text-width": "\uF035",
+  "align-left": "\uF036",
+  "align-center": "\uF037",
+  "align-right": "\uF038",
+  "align-justify": "\uF039",
+  "list": "\uF03A",
+  "dedent": "\uF03B",
+  "outdent": "\uF03B",
+  "indent": "\uF03C",
+  "video-camera": "\uF03D",
+  "photo": "\uF03E",
+  "image": "\uF03E",
+  "picture-o": "\uF03E",
+  "pencil": "\uF040",
+  "map-marker": "\uF041",
+  "adjust": "\uF042",
+  "tint": "\uF043",
+  "edit": "\uF044",
+  "pencil-square-o": "\uF044",
+  "share-square-o": "\uF045",
+  "check-square-o": "\uF046",
+  "arrows": "\uF047",
+  "step-backward": "\uF048",
+  "fast-backward": "\uF049",
+  "backward": "\uF04A",
+  "play": "\uF04B",
+  "pause": "\uF04C",
+  "stop": "\uF04D",
+  "forward": "\uF04E",
+  "fast-forward": "\uF050",
+  "step-forward": "\uF051",
+  "eject": "\uF052",
+  "chevron-left": "\uF053",
+  "chevron-right": "\uF054",
+  "plus-circle": "\uF055",
+  "minus-circle": "\uF056",
+  "times-circle": "\uF057",
+  "check-circle": "\uF058",
+  "question-circle": "\uF059",
+  "info-circle": "\uF05A",
+  "crosshairs": "\uF05B",
+  "times-circle-o": "\uF05C",
+  "check-circle-o": "\uF05D",
+  "ban": "\uF05E",
+  "arrow-left": "\uF060",
+  "arrow-right": "\uF061",
+  "arrow-up": "\uF062",
+  "arrow-down": "\uF063",
+  "mail-forward": "\uF064",
+  "share": "\uF064",
+  "expand": "\uF065",
+  "compress": "\uF066",
+  "plus": "\uF067",
+  "minus": "\uF068",
+  "asterisk": "\uF069",
+  "exclamation-circle": "\uF06A",
+  "gift": "\uF06B",
+  "leaf": "\uF06C",
+  "fire": "\uF06D",
+  "eye": "\uF06E",
+  "eye-slash": "\uF070",
+  "warning": "\uF071",
+  "exclamation-triangle": "\uF071",
+  "plane": "\uF072",
+  "calendar": "\uF073",
+  "random": "\uF074",
+  "comment": "\uF075",
+  "magnet": "\uF076",
+  "chevron-up": "\uF077",
+  "chevron-down": "\uF078",
+  "retweet": "\uF079",
+  "shopping-cart": "\uF07A",
+  "folder": "\uF07B",
+  "folder-open": "\uF07C",
+  "arrows-v": "\uF07D",
+  "arrows-h": "\uF07E",
+  "bar-chart-o": "\uF080",
+  "bar-chart": "\uF080",
+  "twitter-square": "\uF081",
+  "facebook-square": "\uF082",
+  "camera-retro": "\uF083",
+  "key": "\uF084",
+  "gears": "\uF085",
+  "cogs": "\uF085",
+  "comments": "\uF086",
+  "thumbs-o-up": "\uF087",
+  "thumbs-o-down": "\uF088",
+  "star-half": "\uF089",
+  "heart-o": "\uF08A",
+  "sign-out": "\uF08B",
+  "linkedin-square": "\uF08C",
+  "thumb-tack": "\uF08D",
+  "external-link": "\uF08E",
+  "sign-in": "\uF090",
+  "trophy": "\uF091",
+  "github-square": "\uF092",
+  "upload": "\uF093",
+  "lemon-o": "\uF094",
+  "phone": "\uF095",
+  "square-o": "\uF096",
+  "bookmark-o": "\uF097",
+  "phone-square": "\uF098",
+  "twitter": "\uF099",
+  "facebook-f": "\uF09A",
+  "facebook": "\uF09A",
+  "github": "\uF09B",
+  "unlock": "\uF09C",
+  "credit-card": "\uF09D",
+  "feed": "\uF09E",
+  "rss": "\uF09E",
+  "hdd-o": "\uF0A0",
+  "bullhorn": "\uF0A1",
+  "bell-o": "\uF0A2",
+  "certificate": "\uF0A3",
+  "hand-o-right": "\uF0A4",
+  "hand-o-left": "\uF0A5",
+  "hand-o-up": "\uF0A6",
+  "hand-o-down": "\uF0A7",
+  "arrow-circle-left": "\uF0A8",
+  "arrow-circle-right": "\uF0A9",
+  "arrow-circle-up": "\uF0AA",
+  "arrow-circle-down": "\uF0AB",
+  "globe": "\uF0AC",
+  "wrench": "\uF0AD",
+  "tasks": "\uF0AE",
+  "filter": "\uF0B0",
+  "briefcase": "\uF0B1",
+  "arrows-alt": "\uF0B2",
+  "group": "\uF0C0",
+  "users": "\uF0C0",
+  "chain": "\uF0C1",
+  "link": "\uF0C1",
+  "cloud": "\uF0C2",
+  "flask": "\uF0C3",
+  "cut": "\uF0C4",
+  "scissors": "\uF0C4",
+  "copy": "\uF0C5",
+  "files-o": "\uF0C5",
+  "paperclip": "\uF0C6",
+  "save": "\uF0C7",
+  "floppy-o": "\uF0C7",
+  "square": "\uF0C8",
+  "navicon": "\uF0C9",
+  "reorder": "\uF0C9",
+  "bars": "\uF0C9",
+  "list-ul": "\uF0CA",
+  "list-ol": "\uF0CB",
+  "strikethrough": "\uF0CC",
+  "underline": "\uF0CD",
+  "table": "\uF0CE",
+  "magic": "\uF0D0",
+  "truck": "\uF0D1",
+  "pinterest": "\uF0D2",
+  "pinterest-square": "\uF0D3",
+  "google-plus-square": "\uF0D4",
+  "google-plus": "\uF0D5",
+  "money": "\uF0D6",
+  "caret-down": "\uF0D7",
+  "caret-up": "\uF0D8",
+  "caret-left": "\uF0D9",
+  "caret-right": "\uF0DA",
+  "columns": "\uF0DB",
+  "unsorted": "\uF0DC",
+  "sort": "\uF0DC",
+  "sort-down": "\uF0DD",
+  "sort-desc": "\uF0DD",
+  "sort-up": "\uF0DE",
+  "sort-asc": "\uF0DE",
+  "envelope": "\uF0E0",
+  "linkedin": "\uF0E1",
+  "rotate-left": "\uF0E2",
+  "undo": "\uF0E2",
+  "legal": "\uF0E3",
+  "gavel": "\uF0E3",
+  "dashboard": "\uF0E4",
+  "tachometer": "\uF0E4",
+  "comment-o": "\uF0E5",
+  "comments-o": "\uF0E6",
+  "flash": "\uF0E7",
+  "bolt": "\uF0E7",
+  "sitemap": "\uF0E8",
+  "umbrella": "\uF0E9",
+  "paste": "\uF0EA",
+  "clipboard": "\uF0EA",
+  "lightbulb-o": "\uF0EB",
+  "exchange": "\uF0EC",
+  "cloud-download": "\uF0ED",
+  "cloud-upload": "\uF0EE",
+  "user-md": "\uF0F0",
+  "stethoscope": "\uF0F1",
+  "suitcase": "\uF0F2",
+  "bell": "\uF0F3",
+  "coffee": "\uF0F4",
+  "cutlery": "\uF0F5",
+  "file-text-o": "\uF0F6",
+  "building-o": "\uF0F7",
+  "hospital-o": "\uF0F8",
+  "ambulance": "\uF0F9",
+  "medkit": "\uF0FA",
+  "fighter-jet": "\uF0FB",
+  "beer": "\uF0FC",
+  "h-square": "\uF0FD",
+  "plus-square": "\uF0FE",
+  "angle-double-left": "\uF100",
+  "angle-double-right": "\uF101",
+  "angle-double-up": "\uF102",
+  "angle-double-down": "\uF103",
+  "angle-left": "\uF104",
+  "angle-right": "\uF105",
+  "angle-up": "\uF106",
+  "angle-down": "\uF107",
+  "desktop": "\uF108",
+  "laptop": "\uF109",
+  "tablet": "\uF10A",
+  "mobile-phone": "\uF10B",
+  "mobile": "\uF10B",
+  "circle-o": "\uF10C",
+  "quote-left": "\uF10D",
+  "quote-right": "\uF10E",
+  "spinner": "\uF110",
+  "circle": "\uF111",
+  "mail-reply": "\uF112",
+  "reply": "\uF112",
+  "github-alt": "\uF113",
+  "folder-o": "\uF114",
+  "folder-open-o": "\uF115",
+  "smile-o": "\uF118",
+  "frown-o": "\uF119",
+  "meh-o": "\uF11A",
+  "gamepad": "\uF11B",
+  "keyboard-o": "\uF11C",
+  "flag-o": "\uF11D",
+  "flag-checkered": "\uF11E",
+  "terminal": "\uF120",
+  "code": "\uF121",
+  "mail-reply-all": "\uF122",
+  "reply-all": "\uF122",
+  "star-half-empty": "\uF123",
+  "star-half-full": "\uF123",
+  "star-half-o": "\uF123",
+  "location-arrow": "\uF124",
+  "crop": "\uF125",
+  "code-fork": "\uF126",
+  "unlink": "\uF127",
+  "chain-broken": "\uF127",
+  "question": "\uF128",
+  "info": "\uF129",
+  "exclamation": "\uF12A",
+  "superscript": "\uF12B",
+  "subscript": "\uF12C",
+  "eraser": "\uF12D",
+  "puzzle-piece": "\uF12E",
+  "microphone": "\uF130",
+  "microphone-slash": "\uF131",
+  "shield": "\uF132",
+  "calendar-o": "\uF133",
+  "fire-extinguisher": "\uF134",
+  "rocket": "\uF135",
+  "maxcdn": "\uF136",
+  "chevron-circle-left": "\uF137",
+  "chevron-circle-right": "\uF138",
+  "chevron-circle-up": "\uF139",
+  "chevron-circle-down": "\uF13A",
+  "html5": "\uF13B",
+  "css3": "\uF13C",
+  "anchor": "\uF13D",
+  "unlock-alt": "\uF13E",
+  "bullseye": "\uF140",
+  "ellipsis-h": "\uF141",
+  "ellipsis-v": "\uF142",
+  "rss-square": "\uF143",
+  "play-circle": "\uF144",
+  "ticket": "\uF145",
+  "minus-square": "\uF146",
+  "minus-square-o": "\uF147",
+  "level-up": "\uF148",
+  "level-down": "\uF149",
+  "check-square": "\uF14A",
+  "pencil-square": "\uF14B",
+  "external-link-square": "\uF14C",
+  "share-square": "\uF14D",
+  "compass": "\uF14E",
+  "toggle-down": "\uF150",
+  "caret-square-o-down": "\uF150",
+  "toggle-up": "\uF151",
+  "caret-square-o-up": "\uF151",
+  "toggle-right": "\uF152",
+  "caret-square-o-right": "\uF152",
+  "fa-euro": "\uF153",
+  "fa-eur": "\uF153",
+  "gbp": "\uF154",
+  "dollar": "\uF155",
+  "usd": "\uF155",
+  "rupee": "\uF156",
+  "inr": "\uF156",
+  "cny": "\uF157",
+  "rmb": "\uF157",
+  "yen": "\uF157",
+  "jpy": "\uF157",
+  "ruble": "\uF158",
+  "rouble": "\uF158",
+  "rub": "\uF158",
+  "won": "\uF159",
+  "krw": "\uF159",
+  "bitcoin": "\uF15A",
+  "btc": "\uF15A",
+  "file": "\uF15B",
+  "file-text": "\uF15C",
+  "sort-alpha-asc": "\uF15D",
+  "sort-alpha-desc": "\uF15E",
+  "sort-amount-asc": "\uF160",
+  "sort-amount-desc": "\uF161",
+  "sort-numeric-asc": "\uF162",
+  "sort-numeric-desc": "\uF163",
+  "thumbs-up": "\uF164",
+  "thumbs-down": "\uF165",
+  "youtube-square": "\uF166",
+  "youtube": "\uF167",
+  "xing": "\uF168",
+  "xing-square": "\uF169",
+  "youtube-play": "\uF16A",
+  "dropbox": "\uF16B",
+  "stack-overflow": "\uF16C",
+  "instagram": "\uF16D",
+  "flickr": "\uF16E",
+  "adn": "\uF170",
+  "bitbucket": "\uF171",
+  "bitbucket-square": "\uF172",
+  "tumblr": "\uF173",
+  "tumblr-square": "\uF174",
+  "long-arrow-down": "\uF175",
+  "long-arrow-up": "\uF176",
+  "long-arrow-left": "\uF177",
+  "long-arrow-right": "\uF178",
+  "apple": "\uF179",
+  "windows": "\uF17A",
+  "android": "\uF17B",
+  "linux": "\uF17C",
+  "dribbble": "\uF17D",
+  "skype": "\uF17E",
+  "foursquare": "\uF180",
+  "trello": "\uF181",
+  "female": "\uF182",
+  "male": "\uF183",
+  "gittip": "\uF184",
+  "gratipay": "\uF184",
+  "sun-o": "\uF185",
+  "moon-o": "\uF186",
+  "archive": "\uF187",
+  "bug": "\uF188",
+  "vk": "\uF189",
+  "weibo": "\uF18A",
+  "renren": "\uF18B",
+  "pagelines": "\uF18C",
+  "stack-exchange": "\uF18D",
+  "arrow-circle-o-right": "\uF18E",
+  "arrow-circle-o-left": "\uF190",
+  "toggle-left": "\uF191",
+  "caret-square-o-left": "\uF191",
+  "dot-circle-o": "\uF192",
+  "wheelchair": "\uF193",
+  "vimeo-square": "\uF194",
+  "turkish-lira": "\uF195",
+  "try": "\uF195",
+  "plus-square-o": "\uF196",
+  "space-shuttle": "\uF197",
+  "slack": "\uF198",
+  "envelope-square": "\uF199",
+  "wordpress": "\uF19A",
+  "openid": "\uF19B",
+  "institution": "\uF19C",
+  "bank": "\uF19C",
+  "university": "\uF19C",
+  "mortar-board": "\uF19D",
+  "graduation-cap": "\uF19D",
+  "yahoo": "\uF19E",
+  "google": "\uF1A0",
+  "reddit": "\uF1A1",
+  "reddit-square": "\uF1A2",
+  "stumbleupon-circle": "\uF1A3",
+  "stumbleupon": "\uF1A4",
+  "delicious": "\uF1A5",
+  "digg": "\uF1A6",
+  "pied-piper-pp": "\uF1A7",
+  "pied-piper-alt": "\uF1A8",
+  "drupal": "\uF1A9",
+  "joomla": "\uF1AA",
+  "language": "\uF1AB",
+  "fax": "\uF1AC",
+  "building": "\uF1AD",
+  "child": "\uF1AE",
+  "paw": "\uF1B0",
+  "spoon": "\uF1B1",
+  "cube": "\uF1B2",
+  "cubes": "\uF1B3",
+  "behance": "\uF1B4",
+  "behance-square": "\uF1B5",
+  "steam": "\uF1B6",
+  "steam-square": "\uF1B7",
+  "recycle": "\uF1B8",
+  "automobile": "\uF1B9",
+  "car": "\uF1B9",
+  "cab": "\uF1BA",
+  "taxi": "\uF1BA",
+  "tree": "\uF1BB",
+  "spotify": "\uF1BC",
+  "deviantart": "\uF1BD",
+  "soundcloud": "\uF1BE",
+  "database": "\uF1C0",
+  "file-pdf-o": "\uF1C1",
+  "file-word-o": "\uF1C2",
+  "file-excel-o": "\uF1C3",
+  "file-powerpoint-o": "\uF1C4",
+  "file-photo-o": "\uF1C5",
+  "file-picture-o": "\uF1C5",
+  "file-image-o": "\uF1C5",
+  "file-zip-o": "\uF1C6",
+  "file-archive-o": "\uF1C6",
+  "file-sound-o": "\uF1C7",
+  "file-audio-o": "\uF1C7",
+  "file-movie-o": "\uF1C8",
+  "file-video-o": "\uF1C8",
+  "file-code-o": "\uF1C9",
+  "vine": "\uF1CA",
+  "codepen": "\uF1CB",
+  "jsfiddle": "\uF1CC",
+  "life-bouy": "\uF1CD",
+  "life-buoy": "\uF1CD",
+  "life-saver": "\uF1CD",
+  "support": "\uF1CD",
+  "life-ring": "\uF1CD",
+  "circle-o-notch": "\uF1CE",
+  "ra": "\uF1D0",
+  "resistance": "\uF1D0",
+  "rebel": "\uF1D0",
+  "ge": "\uF1D1",
+  "empire": "\uF1D1",
+  "git-square": "\uF1D2",
+  "git": "\uF1D3",
+  "y-combinator-square": "\uF1D4",
+  "yc-square": "\uF1D4",
+  "hacker-news": "\uF1D4",
+  "tencent-weibo": "\uF1D5",
+  "qq": "\uF1D6",
+  "wechat": "\uF1D7",
+  "weixin": "\uF1D7",
+  "send": "\uF1D8",
+  "paper-plane": "\uF1D8",
+  "send-o": "\uF1D9",
+  "paper-plane-o": "\uF1D9",
+  "history": "\uF1DA",
+  "circle-thin": "\uF1DB",
+  "header": "\uF1DC",
+  "paragraph": "\uF1DD",
+  "sliders": "\uF1DE",
+  "share-alt": "\uF1E0",
+  "share-alt-square": "\uF1E1",
+  "bomb": "\uF1E2",
+  "soccer-ball-o": "\uF1E3",
+  "futbol-o": "\uF1E3",
+  "tty": "\uF1E4",
+  "binoculars": "\uF1E5",
+  "plug": "\uF1E6",
+  "slideshare": "\uF1E7",
+  "twitch": "\uF1E8",
+  "yelp": "\uF1E9",
+  "newspaper-o": "\uF1EA",
+  "wifi": "\uF1EB",
+  "calculator": "\uF1EC",
+  "paypal": "\uF1ED",
+  "google-wallet": "\uF1EE",
+  "cc-visa": "\uF1F0",
+  "cc-mastercard": "\uF1F1",
+  "cc-discover": "\uF1F2",
+  "cc-amex": "\uF1F3",
+  "cc-paypal": "\uF1F4",
+  "cc-stripe": "\uF1F5",
+  "bell-slash": "\uF1F6",
+  "bell-slash-o": "\uF1F7",
+  "trash": "\uF1F8",
+  "copyright": "\uF1F9",
+  "at": "\uF1FA",
+  "eyedropper": "\uF1FB",
+  "paint-brush": "\uF1FC",
+  "birthday-cake": "\uF1FD",
+  "area-chart": "\uF1FE",
+  "pie-chart": "\uF200",
+  "line-chart": "\uF201",
+  "lastfm": "\uF202",
+  "lastfm-square": "\uF203",
+  "toggle-off": "\uF204",
+  "toggle-on": "\uF205",
+  "bicycle": "\uF206",
+  "bus": "\uF207",
+  "ioxhost": "\uF208",
+  "angellist": "\uF209",
+  "cc": "\uF20A",
+  "shekel": "\uF20B",
+  "sheqel": "\uF20B",
+  "ils": "\uF20B",
+  "meanpath": "\uF20C",
+  "buysellads": "\uF20D",
+  "connectdevelop": "\uF20E",
+  "dashcube": "\uF210",
+  "forumbee": "\uF211",
+  "leanpub": "\uF212",
+  "sellsy": "\uF213",
+  "shirtsinbulk": "\uF214",
+  "simplybuilt": "\uF215",
+  "skyatlas": "\uF216",
+  "cart-plus": "\uF217",
+  "cart-arrow-down": "\uF218",
+  "diamond": "\uF219",
+  "ship": "\uF21A",
+  "user-secret": "\uF21B",
+  "motorcycle": "\uF21C",
+  "street-view": "\uF21D",
+  "heartbeat": "\uF21E",
+  "venus": "\uF221",
+  "mars": "\uF222",
+  "mercury": "\uF223",
+  "intersex": "\uF224",
+  "transgender": "\uF224",
+  "transgender-alt": "\uF225",
+  "venus-double": "\uF226",
+  "mars-double": "\uF227",
+  "venus-mars": "\uF228",
+  "mars-stroke": "\uF229",
+  "mars-stroke-v": "\uF22A",
+  "mars-stroke-h": "\uF22B",
+  "neuter": "\uF22C",
+  "genderless": "\uF22D",
+  "facebook-official": "\uF230",
+  "pinterest-p": "\uF231",
+  "whatsapp": "\uF232",
+  "server": "\uF233",
+  "user-plus": "\uF234",
+  "user-times": "\uF235",
+  "hotel": "\uF236",
+  "bed": "\uF236",
+  "viacoin": "\uF237",
+  "train": "\uF238",
+  "subway": "\uF239",
+  "medium": "\uF23A",
+  "yc": "\uF23B",
+  "y-combinator": "\uF23B",
+  "optin-monster": "\uF23C",
+  "opencart": "\uF23D",
+  "expeditedssl": "\uF23E",
+  "battery-4": "\uF240",
+  "battery": "\uF240",
+  "battery-full": "\uF240",
+  "battery-3": "\uF241",
+  "battery-three-quarters": "\uF241",
+  "battery-2": "\uF242",
+  "battery-half": "\uF242",
+  "battery-1": "\uF243",
+  "battery-quarter": "\uF243",
+  "battery-0": "\uF244",
+  "battery-empty": "\uF244",
+  "mouse-pointer": "\uF245",
+  "i-cursor": "\uF246",
+  "object-group": "\uF247",
+  "object-ungroup": "\uF248",
+  "sticky-note": "\uF249",
+  "sticky-note-o": "\uF24A",
+  "cc-jcb": "\uF24B",
+  "cc-diners-club": "\uF24C",
+  "clone": "\uF24D",
+  "balance-scale": "\uF24E",
+  "hourglass-o": "\uF250",
+  "hourglass-1": "\uF251",
+  "hourglass-start": "\uF251",
+  "hourglass-2": "\uF252",
+  "hourglass-half": "\uF252",
+  "hourglass-3": "\uF253",
+  "hourglass-end": "\uF253",
+  "hourglass": "\uF254",
+  "hand-grab-o": "\uF255",
+  "hand-rock-o": "\uF255",
+  "hand-stop-o": "\uF256",
+  "hand-paper-o": "\uF256",
+  "hand-scissors-o": "\uF257",
+  "hand-lizard-o": "\uF258",
+  "hand-spock-o": "\uF259",
+  "hand-pointer-o": "\uF25A",
+  "hand-peace-o": "\uF25B",
+  "trademark": "\uF25C",
+  "registered": "\uF25D",
+  "creative-commons": "\uF25E",
+  "gg": "\uF260",
+  "gg-circle": "\uF261",
+  "tripadvisor": "\uF262",
+  "odnoklassniki": "\uF263",
+  "odnoklassniki-square": "\uF264",
+  "get-pocket": "\uF265",
+  "wikipedia-w": "\uF266",
+  "safari": "\uF267",
+  "chrome": "\uF268",
+  "firefox": "\uF269",
+  "opera": "\uF26A",
+  "internet-explorer": "\uF26B",
+  "tv": "\uF26C",
+  "television": "\uF26C",
+  "contao": "\uF26D",
+  "500px": "\uF26E",
+  "amazon": "\uF270",
+  "calendar-plus-o": "\uF271",
+  "calendar-minus-o": "\uF272",
+  "calendar-times-o": "\uF273",
+  "calendar-check-o": "\uF274",
+  "industry": "\uF275",
+  "map-pin": "\uF276",
+  "map-signs": "\uF277",
+  "map-o": "\uF278",
+  "map": "\uF279",
+  "commenting": "\uF27A",
+  "commenting-o": "\uF27B",
+  "houzz": "\uF27C",
+  "vimeo": "\uF27D",
+  "black-tie": "\uF27E",
+  "fonticons": "\uF280",
+  "reddit-alien": "\uF281",
+  "edge": "\uF282",
+  "credit-card-alt": "\uF283",
+  "codiepie": "\uF284",
+  "modx": "\uF285",
+  "fort-awesome": "\uF286",
+  "usb": "\uF287",
+  "product-hunt": "\uF288",
+  "mixcloud": "\uF289",
+  "scribd": "\uF28A",
+  "pause-circle": "\uF28B",
+  "pause-circle-o": "\uF28C",
+  "stop-circle": "\uF28D",
+  "stop-circle-o": "\uF28E",
+  "shopping-bag": "\uF290",
+  "shopping-basket": "\uF291",
+  "hashtag": "\uF292",
+  "bluetooth": "\uF293",
+  "bluetooth-b": "\uF294",
+  "percent": "\uF295",
+  "gitlab": "\uF296",
+  "wpbeginner": "\uF297",
+  "wpforms": "\uF298",
+  "envira": "\uF299",
+  "universal-access": "\uF29A",
+  "wheelchair-alt": "\uF29B",
+  "question-circle-o": "\uF29C",
+  "blind": "\uF29D",
+  "audio-description": "\uF29E",
+  "volume-control-phone": "\uF2A0",
+  "braille": "\uF2A1",
+  "assistive-listening-systems": "\uF2A2",
+  "asl-interpreting": "\uF2A3",
+  "american-sign-language-interpreting": "\uF2A3",
+  "deafness": "\uF2A4",
+  "hard-of-hearing": "\uF2A4",
+  "deaf": "\uF2A4",
+  "glide": "\uF2A5",
+  "glide-g": "\uF2A6",
+  "signing": "\uF2A7",
+  "sign-language": "\uF2A7",
+  "low-vision": "\uF2A8",
+  "viadeo": "\uF2A9",
+  "viadeo-square": "\uF2AA",
+  "snapchat": "\uF2AB",
+  "snapchat-ghost": "\uF2AC",
+  "snapchat-square": "\uF2AD",
+  "pied-piper": "\uF2AE",
+  "first-order": "\uF2B0",
+  "yoast": "\uF2B1",
+  "themeisle": "\uF2B2",
+  "google-plus-circle": "\uF2B3",
+  "google-plus-official": "\uF2B3",
+  "fa": "\uF2B4",
+  "font-awesome": "\uF2B4",
+  "handshake-o": "\uF2B5",
+  "envelope-open": "\uF2B6",
+  "envelope-open-o": "\uF2B7",
+  "linode": "\uF2B8",
+  "address-book": "\uF2B9",
+  "address-book-o": "\uF2BA",
+  "vcard": "\uF2BB",
+  "address-card": "\uF2BB",
+  "vcard-o": "\uF2BC",
+  "address-card-o": "\uF2BC",
+  "user-circle": "\uF2BD",
+  "user-circle-o": "\uF2BE",
+  "user-o": "\uF2C0",
+  "id-badge": "\uF2C1",
+  "drivers-license": "\uF2C2",
+  "id-card": "\uF2C2",
+  "drivers-license-o": "\uF2C3",
+  "id-card-o": "\uF2C3",
+  "quora": "\uF2C4",
+  "free-code-camp": "\uF2C5",
+  "telegram": "\uF2C6",
+  "thermometer-4": "\uF2C7",
+  "thermometer": "\uF2C7",
+  "thermometer-full": "\uF2C7",
+  "thermometer-3": "\uF2C8",
+  "thermometer-three-quarters": "\uF2C8",
+  "thermometer-2": "\uF2C9",
+  "thermometer-half": "\uF2C9",
+  "thermometer-1": "\uF2CA",
+  "thermometer-quarter": "\uF2CA",
+  "thermometer-0": "\uF2CB",
+  "thermometer-empty": "\uF2CB",
+  "shower": "\uF2CC",
+  "bathtub": "\uF2CD",
+  "s15": "\uF2CD",
+  "bath": "\uF2CD",
+  "podcast": "\uF2CE",
+  "window-maximize": "\uF2D0",
+  "window-minimize": "\uF2D1",
+  "window-restore": "\uF2D2",
+  "times-rectangle": "\uF2D3",
+  "window-close": "\uF2D3",
+  "times-rectangle-o": "\uF2D4",
+  "window-close-o": "\uF2D4",
+  "bandcamp": "\uF2D5",
+  "grav": "\uF2D6",
+  "etsy": "\uF2D7",
+  "imdb": "\uF2D8",
+  "ravelry": "\uF2D9",
+  "eercast": "\uF2DA",
+  "microchip": "\uF2DB",
+  "snowflake-o": "\uF2DC",
+  "superpowers": "\uF2DD",
+  "wpexplorer": "\uF2DE",
+  "meetup": "\uF2E0"
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 392:
+/*!***********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 393));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 394));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 395));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 393:
+/*!**********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
+  \**********************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
+
+/***/ }),
+
+/***/ 394:
 /*!***************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/w-picker/city-data/province.js ***!
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
   \***************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
+
+/***/ }),
+
+/***/ 395:
+/*!***************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
+  \***************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
+
+/***/ }),
+
+/***/ 4:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 43:
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/accunt.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  user_id: '2017214879',
+  user_pwd: '2017214879'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 452:
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// TODO(Babel 8): Remove this file.
+
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 453)();
+module.exports = runtime;
+
+/***/ }),
+
+/***/ 453:
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+    return e;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  var t,
+    e = {},
+    r = Object.prototype,
+    n = r.hasOwnProperty,
+    o = Object.defineProperty || function (t, e, r) {
+      t[e] = r.value;
+    },
+    i = "function" == typeof Symbol ? Symbol : {},
+    a = i.iterator || "@@iterator",
+    c = i.asyncIterator || "@@asyncIterator",
+    u = i.toStringTag || "@@toStringTag";
+  function define(t, e, r) {
+    return Object.defineProperty(t, e, {
+      value: r,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), t[e];
+  }
+  try {
+    define({}, "");
+  } catch (t) {
+    define = function define(t, e, r) {
+      return t[e] = r;
+    };
+  }
+  function wrap(t, e, r, n) {
+    var i = e && e.prototype instanceof Generator ? e : Generator,
+      a = Object.create(i.prototype),
+      c = new Context(n || []);
+    return o(a, "_invoke", {
+      value: makeInvokeMethod(t, r, c)
+    }), a;
+  }
+  function tryCatch(t, e, r) {
+    try {
+      return {
+        type: "normal",
+        arg: t.call(e, r)
+      };
+    } catch (t) {
+      return {
+        type: "throw",
+        arg: t
+      };
+    }
+  }
+  e.wrap = wrap;
+  var h = "suspendedStart",
+    l = "suspendedYield",
+    f = "executing",
+    s = "completed",
+    y = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var p = {};
+  define(p, a, function () {
+    return this;
+  });
+  var d = Object.getPrototypeOf,
+    v = d && d(d(values([])));
+  v && v !== r && n.call(v, a) && (p = v);
+  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+  function defineIteratorMethods(t) {
+    ["next", "throw", "return"].forEach(function (e) {
+      define(t, e, function (t) {
+        return this._invoke(e, t);
+      });
+    });
+  }
+  function AsyncIterator(t, e) {
+    function invoke(r, o, i, a) {
+      var c = tryCatch(t[r], t, o);
+      if ("throw" !== c.type) {
+        var u = c.arg,
+          h = u.value;
+        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
+          invoke("next", t, i, a);
+        }, function (t) {
+          invoke("throw", t, i, a);
+        }) : e.resolve(h).then(function (t) {
+          u.value = t, i(u);
+        }, function (t) {
+          return invoke("throw", t, i, a);
+        });
+      }
+      a(c.arg);
+    }
+    var r;
+    o(this, "_invoke", {
+      value: function value(t, n) {
+        function callInvokeWithMethodAndArg() {
+          return new e(function (e, r) {
+            invoke(t, n, e, r);
+          });
+        }
+        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(e, r, n) {
+    var o = h;
+    return function (i, a) {
+      if (o === f) throw Error("Generator is already running");
+      if (o === s) {
+        if ("throw" === i) throw a;
+        return {
+          value: t,
+          done: !0
+        };
+      }
+      for (n.method = i, n.arg = a;;) {
+        var c = n.delegate;
+        if (c) {
+          var u = maybeInvokeDelegate(c, n);
+          if (u) {
+            if (u === y) continue;
+            return u;
+          }
+        }
+        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
+          if (o === h) throw o = s, n.arg;
+          n.dispatchException(n.arg);
+        } else "return" === n.method && n.abrupt("return", n.arg);
+        o = f;
+        var p = tryCatch(e, r, n);
+        if ("normal" === p.type) {
+          if (o = n.done ? s : l, p.arg === y) continue;
+          return {
+            value: p.arg,
+            done: n.done
+          };
+        }
+        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(e, r) {
+    var n = r.method,
+      o = e.iterator[n];
+    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
+    var i = tryCatch(o, e.iterator, r.arg);
+    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
+    var a = i.arg;
+    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
+  }
+  function pushTryEntry(t) {
+    var e = {
+      tryLoc: t[0]
+    };
+    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
+  }
+  function resetTryEntry(t) {
+    var e = t.completion || {};
+    e.type = "normal", delete e.arg, t.completion = e;
+  }
+  function Context(t) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], t.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(e) {
+    if (e || "" === e) {
+      var r = e[a];
+      if (r) return r.call(e);
+      if ("function" == typeof e.next) return e;
+      if (!isNaN(e.length)) {
+        var o = -1,
+          i = function next() {
+            for (; ++o < e.length;) {
+              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
+            }
+            return next.value = t, next.done = !0, next;
+          };
+        return i.next = i;
+      }
+    }
+    throw new TypeError(_typeof(e) + " is not iterable");
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), o(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
+    var e = "function" == typeof t && t.constructor;
+    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
+  }, e.mark = function (t) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
+  }, e.awrap = function (t) {
+    return {
+      __await: t
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
+    return this;
+  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
+    void 0 === i && (i = Promise);
+    var a = new AsyncIterator(wrap(t, r, n, o), i);
+    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
+      return t.done ? t.value : a.next();
+    });
+  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
+    return this;
+  }), define(g, "toString", function () {
+    return "[object Generator]";
+  }), e.keys = function (t) {
+    var e = Object(t),
+      r = [];
+    for (var n in e) {
+      r.push(n);
+    }
+    return r.reverse(), function next() {
+      for (; r.length;) {
+        var t = r.pop();
+        if (t in e) return next.value = t, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, e.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function reset(e) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
+        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
+      }
+    },
+    stop: function stop() {
+      this.done = !0;
+      var t = this.tryEntries[0].completion;
+      if ("throw" === t.type) throw t.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(e) {
+      if (this.done) throw e;
+      var r = this;
+      function handle(n, o) {
+        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
+      }
+      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
+        var i = this.tryEntries[o],
+          a = i.completion;
+        if ("root" === i.tryLoc) return handle("end");
+        if (i.tryLoc <= this.prev) {
+          var c = n.call(i, "catchLoc"),
+            u = n.call(i, "finallyLoc");
+          if (c && u) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          } else if (c) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+          } else {
+            if (!u) throw Error("try statement without catch or finally");
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function abrupt(t, e) {
+      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+        var o = this.tryEntries[r];
+        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
+          var i = o;
+          break;
+        }
+      }
+      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
+      var a = i ? i.completion : {};
+      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
+    },
+    complete: function complete(t, e) {
+      if ("throw" === t.type) throw t.arg;
+      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
+    },
+    finish: function finish(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
+      }
+    },
+    "catch": function _catch(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.tryLoc === t) {
+          var n = r.completion;
+          if ("throw" === n.type) {
+            var o = n.arg;
+            resetTryEntry(r);
+          }
+          return o;
+        }
+      }
+      throw Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(e, r, n) {
+      return this.delegate = {
+        iterator: values(e),
+        resultName: r,
+        nextLoc: n
+      }, "next" === this.method && (this.arg = t), y;
+    }
+  }, e;
+}
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 454:
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 455:
+/*!***********************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 452));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 456));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 457));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 459));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 454));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var pattern = {
+  email: /^\S+?@\S+?\.\S+?$/,
+  idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+  url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i')
+};
+var FORMAT_MAPPING = {
+  "int": 'integer',
+  "bool": 'boolean',
+  "double": 'number',
+  "long": 'number',
+  "password": 'string'
+  // "fileurls": 'array'
+};
+
+function formatMessage(args) {
+  var resources = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var defaultMessage = ['label'];
+  defaultMessage.forEach(function (item) {
+    if (args[item] === undefined) {
+      args[item] = '';
+    }
+  });
+  var str = resources;
+  for (var key in args) {
+    var reg = new RegExp('{' + key + '}');
+    str = str.replace(reg, args[key]);
+  }
+  return str;
+}
+function isEmptyValue(value, type) {
+  if (value === undefined || value === null) {
+    return true;
+  }
+  if (typeof value === 'string' && !value) {
+    return true;
+  }
+  if (Array.isArray(value) && !value.length) {
+    return true;
+  }
+  if (type === 'object' && !Object.keys(value).length) {
+    return true;
+  }
+  return false;
+}
+var types = {
+  integer: function integer(value) {
+    return types.number(value) && parseInt(value, 10) === value;
+  },
+  string: function string(value) {
+    return typeof value === 'string';
+  },
+  number: function number(value) {
+    if (isNaN(value)) {
+      return false;
+    }
+    return typeof value === 'number';
+  },
+  "boolean": function boolean(value) {
+    return typeof value === 'boolean';
+  },
+  "float": function float(value) {
+    return types.number(value) && !types.integer(value);
+  },
+  array: function array(value) {
+    return Array.isArray(value);
+  },
+  object: function object(value) {
+    return (0, _typeof2.default)(value) === 'object' && !types.array(value);
+  },
+  date: function date(value) {
+    return value instanceof Date;
+  },
+  timestamp: function timestamp(value) {
+    if (!this.integer(value) || Math.abs(value).toString().length > 16) {
+      return false;
+    }
+    return true;
+  },
+  file: function file(value) {
+    return typeof value.url === 'string';
+  },
+  email: function email(value) {
+    return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
+  },
+  url: function url(value) {
+    return typeof value === 'string' && !!value.match(pattern.url);
+  },
+  pattern: function pattern(reg, value) {
+    try {
+      return new RegExp(reg).test(value);
+    } catch (e) {
+      return false;
+    }
+  },
+  method: function method(value) {
+    return typeof value === 'function';
+  },
+  idcard: function idcard(value) {
+    return typeof value === 'string' && !!value.match(pattern.idcard);
+  },
+  'url-https': function urlHttps(value) {
+    return this.url(value) && value.startsWith('https://');
+  },
+  'url-scheme': function urlScheme(value) {
+    return value.startsWith('://');
+  },
+  'url-web': function urlWeb(value) {
+    return false;
+  }
+};
+var RuleValidator = /*#__PURE__*/function () {
+  function RuleValidator(message) {
+    (0, _classCallCheck2.default)(this, RuleValidator);
+    this._message = message;
+  }
+  (0, _createClass2.default)(RuleValidator, [{
+    key: "validateRule",
+    value: function () {
+      var _validateRule = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(fieldKey, fieldValue, value, data, allData) {
+        var result, rules, hasRequired, message, i, rule, vt, now, resultExpr;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                result = null;
+                rules = fieldValue.rules;
+                hasRequired = rules.findIndex(function (item) {
+                  return item.required;
+                });
+                if (!(hasRequired < 0)) {
+                  _context.next = 8;
+                  break;
+                }
+                if (!(value === null || value === undefined)) {
+                  _context.next = 6;
+                  break;
+                }
+                return _context.abrupt("return", result);
+              case 6:
+                if (!(typeof value === 'string' && !value.length)) {
+                  _context.next = 8;
+                  break;
+                }
+                return _context.abrupt("return", result);
+              case 8:
+                message = this._message;
+                if (!(rules === undefined)) {
+                  _context.next = 11;
+                  break;
+                }
+                return _context.abrupt("return", message['default']);
+              case 11:
+                i = 0;
+              case 12:
+                if (!(i < rules.length)) {
+                  _context.next = 35;
+                  break;
+                }
+                rule = rules[i];
+                vt = this._getValidateType(rule);
+                Object.assign(rule, {
+                  label: fieldValue.label || "[\"".concat(fieldKey, "\"]")
+                });
+                if (!RuleValidatorHelper[vt]) {
+                  _context.next = 20;
+                  break;
+                }
+                result = RuleValidatorHelper[vt](rule, value, message);
+                if (!(result != null)) {
+                  _context.next = 20;
+                  break;
+                }
+                return _context.abrupt("break", 35);
+              case 20:
+                if (!rule.validateExpr) {
+                  _context.next = 26;
+                  break;
+                }
+                now = Date.now();
+                resultExpr = rule.validateExpr(value, allData, now);
+                if (!(resultExpr === false)) {
+                  _context.next = 26;
+                  break;
+                }
+                result = this._getMessage(rule, rule.errorMessage || this._message['default']);
+                return _context.abrupt("break", 35);
+              case 26:
+                if (!rule.validateFunction) {
+                  _context.next = 32;
+                  break;
+                }
+                _context.next = 29;
+                return this.validateFunction(rule, value, data, allData, vt);
+              case 29:
+                result = _context.sent;
+                if (!(result !== null)) {
+                  _context.next = 32;
+                  break;
+                }
+                return _context.abrupt("break", 35);
+              case 32:
+                i++;
+                _context.next = 12;
+                break;
+              case 35:
+                if (result !== null) {
+                  result = message.TAG + result;
+                }
+                return _context.abrupt("return", result);
+              case 37:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function validateRule(_x, _x2, _x3, _x4, _x5) {
+        return _validateRule.apply(this, arguments);
+      }
+      return validateRule;
+    }()
+  }, {
+    key: "validateFunction",
+    value: function () {
+      var _validateFunction = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(rule, value, data, allData, vt) {
+        var result, callbackMessage, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                result = null;
+                _context2.prev = 1;
+                callbackMessage = null;
+                _context2.next = 5;
+                return rule.validateFunction(rule, value, allData || data, function (message) {
+                  callbackMessage = message;
+                });
+              case 5:
+                res = _context2.sent;
+                if (callbackMessage || typeof res === 'string' && res || res === false) {
+                  result = this._getMessage(rule, callbackMessage || res, vt);
+                }
+                _context2.next = 12;
+                break;
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](1);
+                result = this._getMessage(rule, _context2.t0.message, vt);
+              case 12:
+                return _context2.abrupt("return", result);
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 9]]);
+      }));
+      function validateFunction(_x6, _x7, _x8, _x9, _x10) {
+        return _validateFunction.apply(this, arguments);
+      }
+      return validateFunction;
+    }()
+  }, {
+    key: "_getMessage",
+    value: function _getMessage(rule, message, vt) {
+      return formatMessage(rule, message || rule.errorMessage || this._message[vt] || message['default']);
+    }
+  }, {
+    key: "_getValidateType",
+    value: function _getValidateType(rule) {
+      var result = '';
+      if (rule.required) {
+        result = 'required';
+      } else if (rule.format) {
+        result = 'format';
+      } else if (rule.arrayType) {
+        result = 'arrayTypeFormat';
+      } else if (rule.range) {
+        result = 'range';
+      } else if (rule.maximum !== undefined || rule.minimum !== undefined) {
+        result = 'rangeNumber';
+      } else if (rule.maxLength !== undefined || rule.minLength !== undefined) {
+        result = 'rangeLength';
+      } else if (rule.pattern) {
+        result = 'pattern';
+      } else if (rule.validateFunction) {
+        result = 'validateFunction';
+      }
+      return result;
+    }
+  }]);
+  return RuleValidator;
+}();
+var RuleValidatorHelper = {
+  required: function required(rule, value, message) {
+    if (rule.required && isEmptyValue(value, rule.format || (0, _typeof2.default)(value))) {
+      return formatMessage(rule, rule.errorMessage || message.required);
+    }
+    return null;
+  },
+  range: function range(rule, value, message) {
+    var range = rule.range,
+      errorMessage = rule.errorMessage;
+    var list = new Array(range.length);
+    for (var i = 0; i < range.length; i++) {
+      var item = range[i];
+      if (types.object(item) && item.value !== undefined) {
+        list[i] = item.value;
+      } else {
+        list[i] = item;
+      }
+    }
+    var result = false;
+    if (Array.isArray(value)) {
+      result = new Set(value.concat(list)).size === list.length;
+    } else {
+      if (list.indexOf(value) > -1) {
+        result = true;
+      }
+    }
+    if (!result) {
+      return formatMessage(rule, errorMessage || message['enum']);
+    }
+    return null;
+  },
+  rangeNumber: function rangeNumber(rule, value, message) {
+    if (!types.number(value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    var minimum = rule.minimum,
+      maximum = rule.maximum,
+      exclusiveMinimum = rule.exclusiveMinimum,
+      exclusiveMaximum = rule.exclusiveMaximum;
+    var min = exclusiveMinimum ? value <= minimum : value < minimum;
+    var max = exclusiveMaximum ? value >= maximum : value > maximum;
+    if (minimum !== undefined && min) {
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMinimum ? 'exclusiveMinimum' : 'minimum']);
+    } else if (maximum !== undefined && max) {
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMaximum ? 'exclusiveMaximum' : 'maximum']);
+    } else if (minimum !== undefined && maximum !== undefined && (min || max)) {
+      return formatMessage(rule, rule.errorMessage || message['number'].range);
+    }
+    return null;
+  },
+  rangeLength: function rangeLength(rule, value, message) {
+    if (!types.string(value) && !types.array(value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    var min = rule.minLength;
+    var max = rule.maxLength;
+    var val = value.length;
+    if (min !== undefined && val < min) {
+      return formatMessage(rule, rule.errorMessage || message['length'].minLength);
+    } else if (max !== undefined && val > max) {
+      return formatMessage(rule, rule.errorMessage || message['length'].maxLength);
+    } else if (min !== undefined && max !== undefined && (val < min || val > max)) {
+      return formatMessage(rule, rule.errorMessage || message['length'].range);
+    }
+    return null;
+  },
+  pattern: function pattern(rule, value, message) {
+    if (!types['pattern'](rule.pattern, value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    return null;
+  },
+  format: function format(rule, value, message) {
+    var customTypes = Object.keys(types);
+    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : rule.format || rule.arrayType;
+    if (customTypes.indexOf(format) > -1) {
+      if (!types[format](value)) {
+        return formatMessage(rule, rule.errorMessage || message.typeError);
+      }
+    }
+    return null;
+  },
+  arrayTypeFormat: function arrayTypeFormat(rule, value, message) {
+    if (!Array.isArray(value)) {
+      return formatMessage(rule, rule.errorMessage || message.typeError);
+    }
+    for (var i = 0; i < value.length; i++) {
+      var element = value[i];
+      var formatResult = this.format(rule, element, message);
+      if (formatResult !== null) {
+        return formatResult;
+      }
+    }
+    return null;
+  }
+};
+var SchemaValidator = /*#__PURE__*/function (_RuleValidator) {
+  (0, _inherits2.default)(SchemaValidator, _RuleValidator);
+  var _super = _createSuper(SchemaValidator);
+  function SchemaValidator(schema, options) {
+    var _this;
+    (0, _classCallCheck2.default)(this, SchemaValidator);
+    _this = _super.call(this, SchemaValidator.message);
+    _this._schema = schema;
+    _this._options = options || null;
+    return _this;
+  }
+  (0, _createClass2.default)(SchemaValidator, [{
+    key: "updateSchema",
+    value: function updateSchema(schema) {
+      this._schema = schema;
+    }
+  }, {
+    key: "validate",
+    value: function () {
+      var _validate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context3.next = 5;
+                  break;
+                }
+                _context3.next = 4;
+                return this.invokeValidate(data, false, allData);
+              case 4:
+                result = _context3.sent;
+              case 5:
+                return _context3.abrupt("return", result.length ? result[0] : null);
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+      function validate(_x11, _x12) {
+        return _validate.apply(this, arguments);
+      }
+      return validate;
+    }()
+  }, {
+    key: "validateAll",
+    value: function () {
+      var _validateAll = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context4.next = 5;
+                  break;
+                }
+                _context4.next = 4;
+                return this.invokeValidate(data, true, allData);
+              case 4:
+                result = _context4.sent;
+              case 5:
+                return _context4.abrupt("return", result);
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+      function validateAll(_x13, _x14) {
+        return _validateAll.apply(this, arguments);
+      }
+      return validateAll;
+    }()
+  }, {
+    key: "validateUpdate",
+    value: function () {
+      var _validateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context5.next = 5;
+                  break;
+                }
+                _context5.next = 4;
+                return this.invokeValidateUpdate(data, false, allData);
+              case 4:
+                result = _context5.sent;
+              case 5:
+                return _context5.abrupt("return", result.length ? result[0] : null);
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+      function validateUpdate(_x15, _x16) {
+        return _validateUpdate.apply(this, arguments);
+      }
+      return validateUpdate;
+    }()
+  }, {
+    key: "invokeValidate",
+    value: function () {
+      var _invokeValidate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(data, all, allData) {
+        var result, schema, key, value, errorMessage;
+        return _regenerator.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                result = [];
+                schema = this._schema;
+                _context6.t0 = _regenerator.default.keys(schema);
+              case 3:
+                if ((_context6.t1 = _context6.t0()).done) {
+                  _context6.next = 15;
+                  break;
+                }
+                key = _context6.t1.value;
+                value = schema[key];
+                _context6.next = 8;
+                return this.validateRule(key, value, data[key], data, allData);
+              case 8:
+                errorMessage = _context6.sent;
+                if (!(errorMessage != null)) {
+                  _context6.next = 13;
+                  break;
+                }
+                result.push({
+                  key: key,
+                  errorMessage: errorMessage
+                });
+                if (all) {
+                  _context6.next = 13;
+                  break;
+                }
+                return _context6.abrupt("break", 15);
+              case 13:
+                _context6.next = 3;
+                break;
+              case 15:
+                return _context6.abrupt("return", result);
+              case 16:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+      function invokeValidate(_x17, _x18, _x19) {
+        return _invokeValidate.apply(this, arguments);
+      }
+      return invokeValidate;
+    }()
+  }, {
+    key: "invokeValidateUpdate",
+    value: function () {
+      var _invokeValidateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee7(data, all, allData) {
+        var result, key, errorMessage;
+        return _regenerator.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                result = [];
+                _context7.t0 = _regenerator.default.keys(data);
+              case 2:
+                if ((_context7.t1 = _context7.t0()).done) {
+                  _context7.next = 13;
+                  break;
+                }
+                key = _context7.t1.value;
+                _context7.next = 6;
+                return this.validateRule(key, this._schema[key], data[key], data, allData);
+              case 6:
+                errorMessage = _context7.sent;
+                if (!(errorMessage != null)) {
+                  _context7.next = 11;
+                  break;
+                }
+                result.push({
+                  key: key,
+                  errorMessage: errorMessage
+                });
+                if (all) {
+                  _context7.next = 11;
+                  break;
+                }
+                return _context7.abrupt("break", 13);
+              case 11:
+                _context7.next = 2;
+                break;
+              case 13:
+                return _context7.abrupt("return", result);
+              case 14:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+      function invokeValidateUpdate(_x20, _x21, _x22) {
+        return _invokeValidateUpdate.apply(this, arguments);
+      }
+      return invokeValidateUpdate;
+    }()
+  }, {
+    key: "_checkFieldInSchema",
+    value: function _checkFieldInSchema(data) {
+      var keys = Object.keys(data);
+      var keys2 = Object.keys(this._schema);
+      if (new Set(keys.concat(keys2)).size === keys2.length) {
+        return '';
+      }
+      var noExistFields = keys.filter(function (key) {
+        return keys2.indexOf(key) < 0;
+      });
+      var errorMessage = formatMessage({
+        field: JSON.stringify(noExistFields)
+      }, SchemaValidator.message.TAG + SchemaValidator.message['defaultInvalid']);
+      return [{
+        key: 'invalid',
+        errorMessage: errorMessage
+      }];
+    }
+  }]);
+  return SchemaValidator;
+}(RuleValidator);
+function Message() {
+  return {
+    TAG: "",
+    default: '验证错误',
+    defaultInvalid: '提交的字段{field}在数据库中并不存在',
+    validateFunction: '验证无效',
+    required: '{label}必填',
+    'enum': '{label}超出范围',
+    timestamp: '{label}格式无效',
+    whitespace: '{label}不能为空',
+    typeError: '{label}类型无效',
+    date: {
+      format: '{label}日期{value}格式无效',
+      parse: '{label}日期无法解析,{value}无效',
+      invalid: '{label}日期{value}无效'
+    },
+    length: {
+      minLength: '{label}长度不能少于{minLength}',
+      maxLength: '{label}长度不能超过{maxLength}',
+      range: '{label}必须介于{minLength}和{maxLength}之间'
+    },
+    number: {
+      minimum: '{label}不能小于{minimum}',
+      maximum: '{label}不能大于{maximum}',
+      exclusiveMinimum: '{label}不能小于等于{minimum}',
+      exclusiveMaximum: '{label}不能大于等于{maximum}',
+      range: '{label}必须介于{minimum}and{maximum}之间'
+    },
+    pattern: {
+      mismatch: '{label}格式不匹配'
+    }
+  };
+}
+SchemaValidator.message = new Message();
+var _default = SchemaValidator;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 456:
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 457:
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 458);
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return assertThisInitialized(self);
+}
+module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 458:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 459:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _getPrototypeOf(o);
+}
+module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 460:
+/*!********************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.typeFilter = exports.type = exports.setDataValue = exports.realName = exports.rawData = exports.objSet = exports.objGet = exports.name2arr = exports.isRequiredField = exports.isRealName = exports.isNumber = exports.isEqual = exports.isBoolean = exports.getValue = exports.getDataValueType = exports.getDataValue = exports.deepCopy = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+/**
+ * 简单处理对象拷贝
+ * @param {Obejct} 被拷贝对象
+ * @@return {Object} 拷贝对象
+ */
+var deepCopy = function deepCopy(val) {
+  return JSON.parse(JSON.stringify(val));
+};
+/**
+ * 过滤数字类型
+ * @param {String} format 数字类型
+ * @@return {Boolean} 返回是否为数字类型
+ */
+exports.deepCopy = deepCopy;
+var typeFilter = function typeFilter(format) {
+  return format === 'int' || format === 'double' || format === 'number' || format === 'timestamp';
+};
+
+/**
+ * 把 value 转换成指定的类型，用于处理初始值，原因是初始值需要入库不能为 undefined
+ * @param {String} key 字段名
+ * @param {any} value 字段值
+ * @param {Object} rules 表单校验规则
+ */
+exports.typeFilter = typeFilter;
+var getValue = function getValue(key, value, rules) {
+  var isRuleNumType = rules.find(function (val) {
+    return val.format && typeFilter(val.format);
+  });
+  var isRuleBoolType = rules.find(function (val) {
+    return val.format && val.format === 'boolean' || val.format === 'bool';
+  });
+  // 输入类型为 number
+  if (!!isRuleNumType) {
+    if (!value && value !== 0) {
+      value = null;
+    } else {
+      value = isNumber(Number(value)) ? Number(value) : value;
+    }
+  }
+
+  // 输入类型为 boolean
+  if (!!isRuleBoolType) {
+    value = isBoolean(value) ? value : false;
+  }
+  return value;
+};
+
+/**
+ * 获取表单数据
+ * @param {String|Array} name 真实名称，需要使用 realName 获取
+ * @param {Object} data 原始数据
+ * @param {any} value  需要设置的值
+ */
+exports.getValue = getValue;
+var setDataValue = function setDataValue(field, formdata, value) {
+  formdata[field] = value;
+  return value || '';
+};
+
+/**
+ * 获取表单数据
+ * @param {String|Array} field 真实名称，需要使用 realName 获取
+ * @param {Object} data 原始数据
+ */
+exports.setDataValue = setDataValue;
+var getDataValue = function getDataValue(field, data) {
+  return objGet(data, field);
+};
+
+/**
+ * 获取表单类型
+ * @param {String|Array} field 真实名称，需要使用 realName 获取
+ */
+exports.getDataValue = getDataValue;
+var getDataValueType = function getDataValueType(field, data) {
+  var value = getDataValue(field, data);
+  return {
+    type: type(value),
+    value: value
+  };
+};
+
+/**
+ * 获取表单可用的真实name
+ * @param {String|Array} name 表单name
+ * @@return {String} 表单可用的真实name
+ */
+exports.getDataValueType = getDataValueType;
+var realName = function realName(name) {
+  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var base_name = _basePath(name);
+  if ((0, _typeof2.default)(base_name) === 'object' && Array.isArray(base_name) && base_name.length > 1) {
+    var realname = base_name.reduce(function (a, b) {
+      return a += "#".concat(b);
+    }, '_formdata_');
+    return realname;
+  }
+  return base_name[0] || name;
+};
+
+/**
+ * 判断是否表单可用的真实name
+ * @param {String|Array} name 表单name
+ * @@return {String} 表单可用的真实name
+ */
+exports.realName = realName;
+var isRealName = function isRealName(name) {
+  var reg = /^_formdata_#*/;
+  return reg.test(name);
+};
+
+/**
+ * 获取表单数据的原始格式
+ * @@return {Object|Array} object 需要解析的数据
+ */
+exports.isRealName = isRealName;
+var rawData = function rawData() {
+  var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var name = arguments.length > 1 ? arguments[1] : undefined;
+  var newData = JSON.parse(JSON.stringify(object));
+  var formData = {};
+  for (var i in newData) {
+    var path = name2arr(i);
+    objSet(formData, path, newData[i]);
+  }
+  return formData;
+};
+
+/**
+ * 真实name还原为 array
+ * @param {*} name 
+ */
+exports.rawData = rawData;
+var name2arr = function name2arr(name) {
+  var field = name.replace('_formdata_#', '');
+  field = field.split('#').map(function (v) {
+    return isNumber(v) ? Number(v) : v;
+  });
+  return field;
+};
+
+/**
+ * 对象中设置值
+ * @param {Object|Array} object 源数据
+ * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
+ * @param {String} value 需要设置的值
+ */
+exports.name2arr = name2arr;
+var objSet = function objSet(object, path, value) {
+  if ((0, _typeof2.default)(object) !== 'object') return object;
+  _basePath(path).reduce(function (o, k, i, _) {
+    if (i === _.length - 1) {
+      // 若遍历结束直接赋值
+      o[k] = value;
+      return null;
+    } else if (k in o) {
+      // 若存在对应路径，则返回找到的对象，进行下一次遍历
+      return o[k];
+    } else {
+      // 若不存在对应路径，则创建对应对象，若下一路径是数字，新对象赋值为空数组，否则赋值为空对象
+      o[k] = /^[0-9]{1,}$/.test(_[i + 1]) ? [] : {};
+      return o[k];
+    }
+  }, object);
+  // 返回object
+  return object;
+};
+
+// 处理 path， path有三种形式：'a[0].b.c'、'a.0.b.c' 和 ['a','0','b','c']，需要统一处理成数组，便于后续使用
+exports.objSet = objSet;
+function _basePath(path) {
+  // 若是数组，则直接返回
+  if (Array.isArray(path)) return path;
+  // 若有 '[',']'，则替换成将 '[' 替换成 '.',去掉 ']'
+  return path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+}
+
+/**
+ * 从对象中获取值
+ * @param {Object|Array} object 源数据
+ * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
+ * @param {String} defaultVal 如果无法从调用链中获取值的默认值
+ */
+var objGet = function objGet(object, path) {
+  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'undefined';
+  // 先将path处理成统一格式
+  var newPath = _basePath(path);
+  // 递归处理，返回最后结果
+  var val = newPath.reduce(function (o, k) {
+    return (o || {})[k];
+  }, object);
+  return !val || val !== undefined ? val : defaultVal;
+};
+
+/**
+ * 是否为 number 类型 
+ * @param {any} num 需要判断的值
+ * @return {Boolean} 是否为 number
+ */
+exports.objGet = objGet;
+var isNumber = function isNumber(num) {
+  return !isNaN(Number(num));
+};
+
+/**
+ * 是否为 boolean 类型 
+ * @param {any} bool 需要判断的值
+ * @return {Boolean} 是否为 boolean
+ */
+exports.isNumber = isNumber;
+var isBoolean = function isBoolean(bool) {
+  return typeof bool === 'boolean';
+};
+/**
+ * 是否有必填字段
+ * @param {Object} rules 规则
+ * @return {Boolean} 是否有必填字段
+ */
+exports.isBoolean = isBoolean;
+var isRequiredField = function isRequiredField(rules) {
+  var isNoField = false;
+  for (var i = 0; i < rules.length; i++) {
+    var ruleData = rules[i];
+    if (ruleData.required) {
+      isNoField = true;
+      break;
+    }
+  }
+  return isNoField;
+};
+
+/**
+ * 获取数据类型
+ * @param {Any} obj 需要获取数据类型的值
+ */
+exports.isRequiredField = isRequiredField;
+var type = function type(obj) {
+  var class2type = {};
+
+  // 生成class2type映射
+  "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function (item, index) {
+    class2type["[object " + item + "]"] = item.toLowerCase();
+  });
+  if (obj == null) {
+    return obj + "";
+  }
+  return (0, _typeof2.default)(obj) === "object" || typeof obj === "function" ? class2type[Object.prototype.toString.call(obj)] || "object" : (0, _typeof2.default)(obj);
+};
+
+/**
+ * 判断两个值是否相等
+ * @param {any} a 值  
+ * @param {any} b 值  
+ * @return {Boolean} 是否相等
+ */
+exports.type = type;
+var isEqual = function isEqual(a, b) {
+  //如果a和b本来就全等
+  if (a === b) {
+    //判断是否为0和-0
+    return a !== 0 || 1 / a === 1 / b;
+  }
+  //判断是否为null和undefined
+  if (a == null || b == null) {
+    return a === b;
+  }
+  //接下来判断a和b的数据类型
+  var classNameA = toString.call(a),
+    classNameB = toString.call(b);
+  //如果数据类型不相等，则返回false
+  if (classNameA !== classNameB) {
+    return false;
+  }
+  //如果数据类型相等，再根据不同数据类型分别判断
+  switch (classNameA) {
+    case '[object RegExp]':
+    case '[object String]':
+      //进行字符串转换比较
+      return '' + a === '' + b;
+    case '[object Number]':
+      //进行数字转换比较,判断是否为NaN
+      if (+a !== +a) {
+        return +b !== +b;
+      }
+      //判断是否为0或-0
+      return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+    case '[object Date]':
+    case '[object Boolean]':
+      return +a === +b;
+  }
+  //如果是对象类型
+  if (classNameA == '[object Object]') {
+    //获取a和b的属性长度
+    var propsA = Object.getOwnPropertyNames(a),
+      propsB = Object.getOwnPropertyNames(b);
+    if (propsA.length != propsB.length) {
+      return false;
+    }
+    for (var i = 0; i < propsA.length; i++) {
+      var propName = propsA[i];
+      //如果对应属性对应值不相等，则返回false
+      if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  //如果是数组类型
+  if (classNameA == '[object Array]') {
+    if (a.toString() == b.toString()) {
+      return true;
+    }
+    return false;
+  }
+};
+exports.isEqual = isEqual;
+
+/***/ }),
+
+/***/ 5:
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 517:
+/*!**********************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/province.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12202,10 +13918,10 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 357:
-/*!***********************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/w-picker/city-data/city.js ***!
-  \***********************************************************************************************************/
+/***/ 518:
+/*!******************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/city.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13324,10 +15040,10 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 358:
-/*!***********************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/w-picker/city-data/area.js ***!
-  \***********************************************************************************************************/
+/***/ 519:
+/*!******************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/area.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22444,10 +24160,108 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 359:
-/*!*****************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/w-picker/w-picker.js ***!
-  \*****************************************************************************************************/
+/***/ 52:
+/*!*********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/outStore.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  mso_iden: 'MSO2001020001',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库01',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 14:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上体育课借用器材',
+  mso_status: '草稿',
+  mso_creator: '张恩普',
+  mso_createDate: '2020-1-2 12:02:00'
+}, {
+  id: 2,
+  mso_iden: 'MSO2001020002',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库03',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 15:00:00',
+  mso_req_department: '合工大中心',
+  mso_remarks: '上音乐课借用器材',
+  mso_status: '已审批',
+  mso_creator: '钟小林',
+  mso_createDate: '2020-1-2 12:03:00'
+}, {
+  id: 3,
+  mso_iden: 'MSO2001020003',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库02',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 16:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上美术课借用器材',
+  mso_status: '已审批',
+  mso_creator: '董新宇',
+  mso_createDate: '2020-1-2 12:09:00'
+}, {
+  id: 4,
+  mso_iden: 'MSO2001020004',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库04',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 17:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上体育课借用器材',
+  mso_status: '草稿',
+  mso_creator: '李浩',
+  mso_createDate: '2020-1-2 12:04:00'
+}, {
+  id: 5,
+  mso_iden: 'MSO2001020005',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库01',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 18:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上美术课借用器材',
+  mso_status: '草稿',
+  mso_creator: '张恩普',
+  mso_createDate: '2020-1-2 12:05:00'
+}, {
+  id: 6,
+  mso_iden: 'MSO2001020006',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库01',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 19:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上音乐课借用器材',
+  mso_status: '草稿',
+  mso_creator: '张恩普',
+  mso_createDate: '2020-1-2 12:06:00'
+}, {
+  id: 7,
+  mso_iden: 'MSO2001020007',
+  mso_orga: '合肥库存组织01',
+  mso_warehouse: '合工大中心仓库01',
+  mso_type: '材料出库',
+  mso_date: '2020-1-2 20:00:00',
+  mso_req_department: '非中心',
+  mso_remarks: '上体育课借用器材',
+  mso_status: '草稿',
+  mso_creator: '张恩普',
+  mso_createDate: '2020-1-2 12:07:00'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 520:
+/*!************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/w-picker.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23236,75 +25050,10 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 36:
-/*!***************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/common/request.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 35));
-var _default = {
-  config: {
-    baseUrl: _config.default.webUrl,
-    header: {
-      'Content-Type': 'application/json;charset=UTF-8'
-    },
-    data: {},
-    method: "POST",
-    dataType: "json"
-  },
-  request: function request() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    options.header = options.header || this.config.header;
-    options.method = options.method || this.config.method;
-    options.dataType = options.dataType || this.config.dataType;
-    options.url = this.config.baseUrl + options.url;
-    //TODO: token等操作
-    // if(options.token) {
-    // 	if(options.checkToken && !User.token) {
-    // 		uni.showToast({ title: '您未登录', icon:"none" })
-    // 		return uni.navigateTo({
-    // 			url: '/pages/login/login'
-    // 		});
-    // 	}
-    // 	options.header.token = User.token;
-    // }
-
-    return uni.request(options);
-  },
-  get: function get(url, data) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'GET';
-    return this.request(options);
-  },
-  post: function post(url, data) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'POST';
-    return this.request(options);
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
-/***/ 367:
-/*!************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/lb-picker/style/picker.scss ***!
-  \************************************************************************************************************/
+/***/ 528:
+/*!*******************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/style/picker.scss ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23314,10 +25063,10 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 368:
-/*!***************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/lb-picker/utils.js ***!
-  \***************************************************************************************************/
+/***/ 529:
+/*!**********************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/utils.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23339,10 +25088,151 @@ function getIndicatorHeight() {
 
 /***/ }),
 
-/***/ 381:
-/*!*********************************************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
-  \*********************************************************************************************************************************************/
+/***/ 53:
+/*!*********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/purchase.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  rp_iden: 'PR2001020001',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 14:00:00',
+  rp_remarks: '上体育课借用器材',
+  rp_status: '草稿',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:02:00'
+}, {
+  id: 2,
+  rp_iden: 'PR2001020002',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 15:00:00',
+  rp_remarks: '上音乐课借用器材',
+  rp_status: '已审批',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:03:00'
+}, {
+  id: 3,
+  rp_iden: 'PR2001020003',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 16:00:00',
+  rp_remarks: '上美术课借用器材',
+  rp_status: '已关闭',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:09:00'
+}, {
+  id: 4,
+  rp_iden: 'PR2001020004',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 17:00:00',
+  rp_remarks: '上体育课借用器材',
+  rp_status: '草稿',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:04:00'
+}, {
+  id: 5,
+  rp_iden: 'PR2001020005',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 18:00:00',
+  rp_remarks: '上美术课借用器材',
+  rp_status: '草稿',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:05:00'
+}, {
+  id: 6,
+  rp_iden: 'PR2001020006',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 19:00:00',
+  rp_remarks: '上音乐课借用器材',
+  rp_status: '草稿',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:06:00'
+}, {
+  id: 7,
+  rp_iden: 'PR2001020007',
+  rp_orga: '合肥库存组织01',
+  rp_type: '教学用品',
+  rp_req_department: '非中心',
+  rp_date: '2020-1-2 20:00:00',
+  rp_remarks: '上体育课借用器材',
+  rp_status: '草稿',
+  rp_creator: '张恩普',
+  rp_createDate: '2020-1-2 12:07:00'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 54:
+/*!*****************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/sell.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  so_iden: 'SO2001020001',
+  so_orga: '合肥库存组织01',
+  so_type: '普通发票',
+  so_custom: '董新宇',
+  so_date: '2020-1-2 14:00:00',
+  so_warehouse: '合工大中心仓库01',
+  so_remarks: '上体育课借用器材',
+  so_status: '草稿',
+  so_creator: '张恩普',
+  so_createDate: '2020-1-2 12:02:00'
+}, {
+  id: 2,
+  so_iden: 'SO2001020002',
+  so_orga: '合肥库存组织01',
+  so_type: '普通发票',
+  so_custom: '董新宇',
+  so_date: '2020-1-2 15:00:00',
+  so_warehouse: '合工大中心仓库03',
+  so_remarks: '上音乐课借用器材',
+  so_status: '已审批',
+  so_creator: '张恩普',
+  so_createDate: '2020-1-2 12:03:00'
+}, {
+  id: 3,
+  so_iden: 'SO2001020003',
+  so_orga: '合肥库存组织01',
+  so_type: '普通发票',
+  so_custom: '余钱',
+  so_date: '2020-1-2 16:00:00',
+  so_warehouse: '合工大中心仓库02',
+  so_remarks: '上美术课借用器材',
+  so_status: '草稿',
+  so_creator: '张恩普',
+  so_createDate: '2020-1-2 12:09:00'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 542:
+/*!****************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23474,1802 +25364,10 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 394:
-/*!*****************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/components/lb-picker/style/picker-item.scss ***!
-  \*****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 4:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 43:
-/*!************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/accunt.js ***!
-  \************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  user_id: '2017214879',
-  user_pwd: '2017214879'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 462:
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// TODO(Babel 8): Remove this file.
-
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 463)();
-module.exports = runtime;
-
-/***/ }),
-
-/***/ 463:
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-function _regeneratorRuntime() {
-  "use strict";
-
-  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
-    return e;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  var t,
-    e = {},
-    r = Object.prototype,
-    n = r.hasOwnProperty,
-    o = Object.defineProperty || function (t, e, r) {
-      t[e] = r.value;
-    },
-    i = "function" == typeof Symbol ? Symbol : {},
-    a = i.iterator || "@@iterator",
-    c = i.asyncIterator || "@@asyncIterator",
-    u = i.toStringTag || "@@toStringTag";
-  function define(t, e, r) {
-    return Object.defineProperty(t, e, {
-      value: r,
-      enumerable: !0,
-      configurable: !0,
-      writable: !0
-    }), t[e];
-  }
-  try {
-    define({}, "");
-  } catch (t) {
-    define = function define(t, e, r) {
-      return t[e] = r;
-    };
-  }
-  function wrap(t, e, r, n) {
-    var i = e && e.prototype instanceof Generator ? e : Generator,
-      a = Object.create(i.prototype),
-      c = new Context(n || []);
-    return o(a, "_invoke", {
-      value: makeInvokeMethod(t, r, c)
-    }), a;
-  }
-  function tryCatch(t, e, r) {
-    try {
-      return {
-        type: "normal",
-        arg: t.call(e, r)
-      };
-    } catch (t) {
-      return {
-        type: "throw",
-        arg: t
-      };
-    }
-  }
-  e.wrap = wrap;
-  var h = "suspendedStart",
-    l = "suspendedYield",
-    f = "executing",
-    s = "completed",
-    y = {};
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-  var p = {};
-  define(p, a, function () {
-    return this;
-  });
-  var d = Object.getPrototypeOf,
-    v = d && d(d(values([])));
-  v && v !== r && n.call(v, a) && (p = v);
-  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
-  function defineIteratorMethods(t) {
-    ["next", "throw", "return"].forEach(function (e) {
-      define(t, e, function (t) {
-        return this._invoke(e, t);
-      });
-    });
-  }
-  function AsyncIterator(t, e) {
-    function invoke(r, o, i, a) {
-      var c = tryCatch(t[r], t, o);
-      if ("throw" !== c.type) {
-        var u = c.arg,
-          h = u.value;
-        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
-          invoke("next", t, i, a);
-        }, function (t) {
-          invoke("throw", t, i, a);
-        }) : e.resolve(h).then(function (t) {
-          u.value = t, i(u);
-        }, function (t) {
-          return invoke("throw", t, i, a);
-        });
-      }
-      a(c.arg);
-    }
-    var r;
-    o(this, "_invoke", {
-      value: function value(t, n) {
-        function callInvokeWithMethodAndArg() {
-          return new e(function (e, r) {
-            invoke(t, n, e, r);
-          });
-        }
-        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-      }
-    });
-  }
-  function makeInvokeMethod(e, r, n) {
-    var o = h;
-    return function (i, a) {
-      if (o === f) throw Error("Generator is already running");
-      if (o === s) {
-        if ("throw" === i) throw a;
-        return {
-          value: t,
-          done: !0
-        };
-      }
-      for (n.method = i, n.arg = a;;) {
-        var c = n.delegate;
-        if (c) {
-          var u = maybeInvokeDelegate(c, n);
-          if (u) {
-            if (u === y) continue;
-            return u;
-          }
-        }
-        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
-          if (o === h) throw o = s, n.arg;
-          n.dispatchException(n.arg);
-        } else "return" === n.method && n.abrupt("return", n.arg);
-        o = f;
-        var p = tryCatch(e, r, n);
-        if ("normal" === p.type) {
-          if (o = n.done ? s : l, p.arg === y) continue;
-          return {
-            value: p.arg,
-            done: n.done
-          };
-        }
-        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
-      }
-    };
-  }
-  function maybeInvokeDelegate(e, r) {
-    var n = r.method,
-      o = e.iterator[n];
-    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
-    var i = tryCatch(o, e.iterator, r.arg);
-    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
-    var a = i.arg;
-    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
-  }
-  function pushTryEntry(t) {
-    var e = {
-      tryLoc: t[0]
-    };
-    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
-  }
-  function resetTryEntry(t) {
-    var e = t.completion || {};
-    e.type = "normal", delete e.arg, t.completion = e;
-  }
-  function Context(t) {
-    this.tryEntries = [{
-      tryLoc: "root"
-    }], t.forEach(pushTryEntry, this), this.reset(!0);
-  }
-  function values(e) {
-    if (e || "" === e) {
-      var r = e[a];
-      if (r) return r.call(e);
-      if ("function" == typeof e.next) return e;
-      if (!isNaN(e.length)) {
-        var o = -1,
-          i = function next() {
-            for (; ++o < e.length;) {
-              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
-            }
-            return next.value = t, next.done = !0, next;
-          };
-        return i.next = i;
-      }
-    }
-    throw new TypeError(_typeof(e) + " is not iterable");
-  }
-  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
-    value: GeneratorFunctionPrototype,
-    configurable: !0
-  }), o(GeneratorFunctionPrototype, "constructor", {
-    value: GeneratorFunction,
-    configurable: !0
-  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
-    var e = "function" == typeof t && t.constructor;
-    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
-  }, e.mark = function (t) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
-  }, e.awrap = function (t) {
-    return {
-      __await: t
-    };
-  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
-    return this;
-  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
-    void 0 === i && (i = Promise);
-    var a = new AsyncIterator(wrap(t, r, n, o), i);
-    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
-      return t.done ? t.value : a.next();
-    });
-  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
-    return this;
-  }), define(g, "toString", function () {
-    return "[object Generator]";
-  }), e.keys = function (t) {
-    var e = Object(t),
-      r = [];
-    for (var n in e) {
-      r.push(n);
-    }
-    return r.reverse(), function next() {
-      for (; r.length;) {
-        var t = r.pop();
-        if (t in e) return next.value = t, next.done = !1, next;
-      }
-      return next.done = !0, next;
-    };
-  }, e.values = values, Context.prototype = {
-    constructor: Context,
-    reset: function reset(e) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
-        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
-      }
-    },
-    stop: function stop() {
-      this.done = !0;
-      var t = this.tryEntries[0].completion;
-      if ("throw" === t.type) throw t.arg;
-      return this.rval;
-    },
-    dispatchException: function dispatchException(e) {
-      if (this.done) throw e;
-      var r = this;
-      function handle(n, o) {
-        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
-      }
-      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
-        var i = this.tryEntries[o],
-          a = i.completion;
-        if ("root" === i.tryLoc) return handle("end");
-        if (i.tryLoc <= this.prev) {
-          var c = n.call(i, "catchLoc"),
-            u = n.call(i, "finallyLoc");
-          if (c && u) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          } else if (c) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-          } else {
-            if (!u) throw Error("try statement without catch or finally");
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          }
-        }
-      }
-    },
-    abrupt: function abrupt(t, e) {
-      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
-        var o = this.tryEntries[r];
-        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
-          var i = o;
-          break;
-        }
-      }
-      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
-      var a = i ? i.completion : {};
-      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
-    },
-    complete: function complete(t, e) {
-      if ("throw" === t.type) throw t.arg;
-      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
-    },
-    finish: function finish(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
-      }
-    },
-    "catch": function _catch(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.tryLoc === t) {
-          var n = r.completion;
-          if ("throw" === n.type) {
-            var o = n.arg;
-            resetTryEntry(r);
-          }
-          return o;
-        }
-      }
-      throw Error("illegal catch attempt");
-    },
-    delegateYield: function delegateYield(e, r, n) {
-      return this.delegate = {
-        iterator: values(e),
-        resultName: r,
-        nextLoc: n
-      }, "next" === this.method && (this.arg = t), y;
-    }
-  }, e;
-}
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 464:
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 465:
-/*!****************************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/uni_modules/uni-forms/components/uni-forms/validate.js ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 462));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 466));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 467));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 469));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 464));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var pattern = {
-  email: /^\S+?@\S+?\.\S+?$/,
-  idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
-  url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i')
-};
-var FORMAT_MAPPING = {
-  "int": 'integer',
-  "bool": 'boolean',
-  "double": 'number',
-  "long": 'number',
-  "password": 'string'
-  // "fileurls": 'array'
-};
-
-function formatMessage(args) {
-  var resources = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var defaultMessage = ['label'];
-  defaultMessage.forEach(function (item) {
-    if (args[item] === undefined) {
-      args[item] = '';
-    }
-  });
-  var str = resources;
-  for (var key in args) {
-    var reg = new RegExp('{' + key + '}');
-    str = str.replace(reg, args[key]);
-  }
-  return str;
-}
-function isEmptyValue(value, type) {
-  if (value === undefined || value === null) {
-    return true;
-  }
-  if (typeof value === 'string' && !value) {
-    return true;
-  }
-  if (Array.isArray(value) && !value.length) {
-    return true;
-  }
-  if (type === 'object' && !Object.keys(value).length) {
-    return true;
-  }
-  return false;
-}
-var types = {
-  integer: function integer(value) {
-    return types.number(value) && parseInt(value, 10) === value;
-  },
-  string: function string(value) {
-    return typeof value === 'string';
-  },
-  number: function number(value) {
-    if (isNaN(value)) {
-      return false;
-    }
-    return typeof value === 'number';
-  },
-  "boolean": function boolean(value) {
-    return typeof value === 'boolean';
-  },
-  "float": function float(value) {
-    return types.number(value) && !types.integer(value);
-  },
-  array: function array(value) {
-    return Array.isArray(value);
-  },
-  object: function object(value) {
-    return (0, _typeof2.default)(value) === 'object' && !types.array(value);
-  },
-  date: function date(value) {
-    return value instanceof Date;
-  },
-  timestamp: function timestamp(value) {
-    if (!this.integer(value) || Math.abs(value).toString().length > 16) {
-      return false;
-    }
-    return true;
-  },
-  file: function file(value) {
-    return typeof value.url === 'string';
-  },
-  email: function email(value) {
-    return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
-  },
-  url: function url(value) {
-    return typeof value === 'string' && !!value.match(pattern.url);
-  },
-  pattern: function pattern(reg, value) {
-    try {
-      return new RegExp(reg).test(value);
-    } catch (e) {
-      return false;
-    }
-  },
-  method: function method(value) {
-    return typeof value === 'function';
-  },
-  idcard: function idcard(value) {
-    return typeof value === 'string' && !!value.match(pattern.idcard);
-  },
-  'url-https': function urlHttps(value) {
-    return this.url(value) && value.startsWith('https://');
-  },
-  'url-scheme': function urlScheme(value) {
-    return value.startsWith('://');
-  },
-  'url-web': function urlWeb(value) {
-    return false;
-  }
-};
-var RuleValidator = /*#__PURE__*/function () {
-  function RuleValidator(message) {
-    (0, _classCallCheck2.default)(this, RuleValidator);
-    this._message = message;
-  }
-  (0, _createClass2.default)(RuleValidator, [{
-    key: "validateRule",
-    value: function () {
-      var _validateRule = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(fieldKey, fieldValue, value, data, allData) {
-        var result, rules, hasRequired, message, i, rule, vt, now, resultExpr;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                result = null;
-                rules = fieldValue.rules;
-                hasRequired = rules.findIndex(function (item) {
-                  return item.required;
-                });
-                if (!(hasRequired < 0)) {
-                  _context.next = 8;
-                  break;
-                }
-                if (!(value === null || value === undefined)) {
-                  _context.next = 6;
-                  break;
-                }
-                return _context.abrupt("return", result);
-              case 6:
-                if (!(typeof value === 'string' && !value.length)) {
-                  _context.next = 8;
-                  break;
-                }
-                return _context.abrupt("return", result);
-              case 8:
-                message = this._message;
-                if (!(rules === undefined)) {
-                  _context.next = 11;
-                  break;
-                }
-                return _context.abrupt("return", message['default']);
-              case 11:
-                i = 0;
-              case 12:
-                if (!(i < rules.length)) {
-                  _context.next = 35;
-                  break;
-                }
-                rule = rules[i];
-                vt = this._getValidateType(rule);
-                Object.assign(rule, {
-                  label: fieldValue.label || "[\"".concat(fieldKey, "\"]")
-                });
-                if (!RuleValidatorHelper[vt]) {
-                  _context.next = 20;
-                  break;
-                }
-                result = RuleValidatorHelper[vt](rule, value, message);
-                if (!(result != null)) {
-                  _context.next = 20;
-                  break;
-                }
-                return _context.abrupt("break", 35);
-              case 20:
-                if (!rule.validateExpr) {
-                  _context.next = 26;
-                  break;
-                }
-                now = Date.now();
-                resultExpr = rule.validateExpr(value, allData, now);
-                if (!(resultExpr === false)) {
-                  _context.next = 26;
-                  break;
-                }
-                result = this._getMessage(rule, rule.errorMessage || this._message['default']);
-                return _context.abrupt("break", 35);
-              case 26:
-                if (!rule.validateFunction) {
-                  _context.next = 32;
-                  break;
-                }
-                _context.next = 29;
-                return this.validateFunction(rule, value, data, allData, vt);
-              case 29:
-                result = _context.sent;
-                if (!(result !== null)) {
-                  _context.next = 32;
-                  break;
-                }
-                return _context.abrupt("break", 35);
-              case 32:
-                i++;
-                _context.next = 12;
-                break;
-              case 35:
-                if (result !== null) {
-                  result = message.TAG + result;
-                }
-                return _context.abrupt("return", result);
-              case 37:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-      function validateRule(_x, _x2, _x3, _x4, _x5) {
-        return _validateRule.apply(this, arguments);
-      }
-      return validateRule;
-    }()
-  }, {
-    key: "validateFunction",
-    value: function () {
-      var _validateFunction = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(rule, value, data, allData, vt) {
-        var result, callbackMessage, res;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                result = null;
-                _context2.prev = 1;
-                callbackMessage = null;
-                _context2.next = 5;
-                return rule.validateFunction(rule, value, allData || data, function (message) {
-                  callbackMessage = message;
-                });
-              case 5:
-                res = _context2.sent;
-                if (callbackMessage || typeof res === 'string' && res || res === false) {
-                  result = this._getMessage(rule, callbackMessage || res, vt);
-                }
-                _context2.next = 12;
-                break;
-              case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](1);
-                result = this._getMessage(rule, _context2.t0.message, vt);
-              case 12:
-                return _context2.abrupt("return", result);
-              case 13:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this, [[1, 9]]);
-      }));
-      function validateFunction(_x6, _x7, _x8, _x9, _x10) {
-        return _validateFunction.apply(this, arguments);
-      }
-      return validateFunction;
-    }()
-  }, {
-    key: "_getMessage",
-    value: function _getMessage(rule, message, vt) {
-      return formatMessage(rule, message || rule.errorMessage || this._message[vt] || message['default']);
-    }
-  }, {
-    key: "_getValidateType",
-    value: function _getValidateType(rule) {
-      var result = '';
-      if (rule.required) {
-        result = 'required';
-      } else if (rule.format) {
-        result = 'format';
-      } else if (rule.arrayType) {
-        result = 'arrayTypeFormat';
-      } else if (rule.range) {
-        result = 'range';
-      } else if (rule.maximum !== undefined || rule.minimum !== undefined) {
-        result = 'rangeNumber';
-      } else if (rule.maxLength !== undefined || rule.minLength !== undefined) {
-        result = 'rangeLength';
-      } else if (rule.pattern) {
-        result = 'pattern';
-      } else if (rule.validateFunction) {
-        result = 'validateFunction';
-      }
-      return result;
-    }
-  }]);
-  return RuleValidator;
-}();
-var RuleValidatorHelper = {
-  required: function required(rule, value, message) {
-    if (rule.required && isEmptyValue(value, rule.format || (0, _typeof2.default)(value))) {
-      return formatMessage(rule, rule.errorMessage || message.required);
-    }
-    return null;
-  },
-  range: function range(rule, value, message) {
-    var range = rule.range,
-      errorMessage = rule.errorMessage;
-    var list = new Array(range.length);
-    for (var i = 0; i < range.length; i++) {
-      var item = range[i];
-      if (types.object(item) && item.value !== undefined) {
-        list[i] = item.value;
-      } else {
-        list[i] = item;
-      }
-    }
-    var result = false;
-    if (Array.isArray(value)) {
-      result = new Set(value.concat(list)).size === list.length;
-    } else {
-      if (list.indexOf(value) > -1) {
-        result = true;
-      }
-    }
-    if (!result) {
-      return formatMessage(rule, errorMessage || message['enum']);
-    }
-    return null;
-  },
-  rangeNumber: function rangeNumber(rule, value, message) {
-    if (!types.number(value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    var minimum = rule.minimum,
-      maximum = rule.maximum,
-      exclusiveMinimum = rule.exclusiveMinimum,
-      exclusiveMaximum = rule.exclusiveMaximum;
-    var min = exclusiveMinimum ? value <= minimum : value < minimum;
-    var max = exclusiveMaximum ? value >= maximum : value > maximum;
-    if (minimum !== undefined && min) {
-      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMinimum ? 'exclusiveMinimum' : 'minimum']);
-    } else if (maximum !== undefined && max) {
-      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMaximum ? 'exclusiveMaximum' : 'maximum']);
-    } else if (minimum !== undefined && maximum !== undefined && (min || max)) {
-      return formatMessage(rule, rule.errorMessage || message['number'].range);
-    }
-    return null;
-  },
-  rangeLength: function rangeLength(rule, value, message) {
-    if (!types.string(value) && !types.array(value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    var min = rule.minLength;
-    var max = rule.maxLength;
-    var val = value.length;
-    if (min !== undefined && val < min) {
-      return formatMessage(rule, rule.errorMessage || message['length'].minLength);
-    } else if (max !== undefined && val > max) {
-      return formatMessage(rule, rule.errorMessage || message['length'].maxLength);
-    } else if (min !== undefined && max !== undefined && (val < min || val > max)) {
-      return formatMessage(rule, rule.errorMessage || message['length'].range);
-    }
-    return null;
-  },
-  pattern: function pattern(rule, value, message) {
-    if (!types['pattern'](rule.pattern, value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    return null;
-  },
-  format: function format(rule, value, message) {
-    var customTypes = Object.keys(types);
-    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : rule.format || rule.arrayType;
-    if (customTypes.indexOf(format) > -1) {
-      if (!types[format](value)) {
-        return formatMessage(rule, rule.errorMessage || message.typeError);
-      }
-    }
-    return null;
-  },
-  arrayTypeFormat: function arrayTypeFormat(rule, value, message) {
-    if (!Array.isArray(value)) {
-      return formatMessage(rule, rule.errorMessage || message.typeError);
-    }
-    for (var i = 0; i < value.length; i++) {
-      var element = value[i];
-      var formatResult = this.format(rule, element, message);
-      if (formatResult !== null) {
-        return formatResult;
-      }
-    }
-    return null;
-  }
-};
-var SchemaValidator = /*#__PURE__*/function (_RuleValidator) {
-  (0, _inherits2.default)(SchemaValidator, _RuleValidator);
-  var _super = _createSuper(SchemaValidator);
-  function SchemaValidator(schema, options) {
-    var _this;
-    (0, _classCallCheck2.default)(this, SchemaValidator);
-    _this = _super.call(this, SchemaValidator.message);
-    _this._schema = schema;
-    _this._options = options || null;
-    return _this;
-  }
-  (0, _createClass2.default)(SchemaValidator, [{
-    key: "updateSchema",
-    value: function updateSchema(schema) {
-      this._schema = schema;
-    }
-  }, {
-    key: "validate",
-    value: function () {
-      var _validate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context3.next = 5;
-                  break;
-                }
-                _context3.next = 4;
-                return this.invokeValidate(data, false, allData);
-              case 4:
-                result = _context3.sent;
-              case 5:
-                return _context3.abrupt("return", result.length ? result[0] : null);
-              case 6:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-      function validate(_x11, _x12) {
-        return _validate.apply(this, arguments);
-      }
-      return validate;
-    }()
-  }, {
-    key: "validateAll",
-    value: function () {
-      var _validateAll = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context4.next = 5;
-                  break;
-                }
-                _context4.next = 4;
-                return this.invokeValidate(data, true, allData);
-              case 4:
-                result = _context4.sent;
-              case 5:
-                return _context4.abrupt("return", result);
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-      function validateAll(_x13, _x14) {
-        return _validateAll.apply(this, arguments);
-      }
-      return validateAll;
-    }()
-  }, {
-    key: "validateUpdate",
-    value: function () {
-      var _validateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context5.next = 5;
-                  break;
-                }
-                _context5.next = 4;
-                return this.invokeValidateUpdate(data, false, allData);
-              case 4:
-                result = _context5.sent;
-              case 5:
-                return _context5.abrupt("return", result.length ? result[0] : null);
-              case 6:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-      function validateUpdate(_x15, _x16) {
-        return _validateUpdate.apply(this, arguments);
-      }
-      return validateUpdate;
-    }()
-  }, {
-    key: "invokeValidate",
-    value: function () {
-      var _invokeValidate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(data, all, allData) {
-        var result, schema, key, value, errorMessage;
-        return _regenerator.default.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                result = [];
-                schema = this._schema;
-                _context6.t0 = _regenerator.default.keys(schema);
-              case 3:
-                if ((_context6.t1 = _context6.t0()).done) {
-                  _context6.next = 15;
-                  break;
-                }
-                key = _context6.t1.value;
-                value = schema[key];
-                _context6.next = 8;
-                return this.validateRule(key, value, data[key], data, allData);
-              case 8:
-                errorMessage = _context6.sent;
-                if (!(errorMessage != null)) {
-                  _context6.next = 13;
-                  break;
-                }
-                result.push({
-                  key: key,
-                  errorMessage: errorMessage
-                });
-                if (all) {
-                  _context6.next = 13;
-                  break;
-                }
-                return _context6.abrupt("break", 15);
-              case 13:
-                _context6.next = 3;
-                break;
-              case 15:
-                return _context6.abrupt("return", result);
-              case 16:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6, this);
-      }));
-      function invokeValidate(_x17, _x18, _x19) {
-        return _invokeValidate.apply(this, arguments);
-      }
-      return invokeValidate;
-    }()
-  }, {
-    key: "invokeValidateUpdate",
-    value: function () {
-      var _invokeValidateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee7(data, all, allData) {
-        var result, key, errorMessage;
-        return _regenerator.default.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                result = [];
-                _context7.t0 = _regenerator.default.keys(data);
-              case 2:
-                if ((_context7.t1 = _context7.t0()).done) {
-                  _context7.next = 13;
-                  break;
-                }
-                key = _context7.t1.value;
-                _context7.next = 6;
-                return this.validateRule(key, this._schema[key], data[key], data, allData);
-              case 6:
-                errorMessage = _context7.sent;
-                if (!(errorMessage != null)) {
-                  _context7.next = 11;
-                  break;
-                }
-                result.push({
-                  key: key,
-                  errorMessage: errorMessage
-                });
-                if (all) {
-                  _context7.next = 11;
-                  break;
-                }
-                return _context7.abrupt("break", 13);
-              case 11:
-                _context7.next = 2;
-                break;
-              case 13:
-                return _context7.abrupt("return", result);
-              case 14:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this);
-      }));
-      function invokeValidateUpdate(_x20, _x21, _x22) {
-        return _invokeValidateUpdate.apply(this, arguments);
-      }
-      return invokeValidateUpdate;
-    }()
-  }, {
-    key: "_checkFieldInSchema",
-    value: function _checkFieldInSchema(data) {
-      var keys = Object.keys(data);
-      var keys2 = Object.keys(this._schema);
-      if (new Set(keys.concat(keys2)).size === keys2.length) {
-        return '';
-      }
-      var noExistFields = keys.filter(function (key) {
-        return keys2.indexOf(key) < 0;
-      });
-      var errorMessage = formatMessage({
-        field: JSON.stringify(noExistFields)
-      }, SchemaValidator.message.TAG + SchemaValidator.message['defaultInvalid']);
-      return [{
-        key: 'invalid',
-        errorMessage: errorMessage
-      }];
-    }
-  }]);
-  return SchemaValidator;
-}(RuleValidator);
-function Message() {
-  return {
-    TAG: "",
-    default: '验证错误',
-    defaultInvalid: '提交的字段{field}在数据库中并不存在',
-    validateFunction: '验证无效',
-    required: '{label}必填',
-    'enum': '{label}超出范围',
-    timestamp: '{label}格式无效',
-    whitespace: '{label}不能为空',
-    typeError: '{label}类型无效',
-    date: {
-      format: '{label}日期{value}格式无效',
-      parse: '{label}日期无法解析,{value}无效',
-      invalid: '{label}日期{value}无效'
-    },
-    length: {
-      minLength: '{label}长度不能少于{minLength}',
-      maxLength: '{label}长度不能超过{maxLength}',
-      range: '{label}必须介于{minLength}和{maxLength}之间'
-    },
-    number: {
-      minimum: '{label}不能小于{minimum}',
-      maximum: '{label}不能大于{maximum}',
-      exclusiveMinimum: '{label}不能小于等于{minimum}',
-      exclusiveMaximum: '{label}不能大于等于{maximum}',
-      range: '{label}必须介于{minimum}and{maximum}之间'
-    },
-    pattern: {
-      mismatch: '{label}格式不匹配'
-    }
-  };
-}
-SchemaValidator.message = new Message();
-var _default = SchemaValidator;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 466:
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 467:
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 468);
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return assertThisInitialized(self);
-}
-module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 468:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 469:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _getPrototypeOf(o);
-}
-module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 470:
-/*!*************************************************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/uni_modules/uni-forms/components/uni-forms/utils.js ***!
-  \*************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.typeFilter = exports.type = exports.setDataValue = exports.realName = exports.rawData = exports.objSet = exports.objGet = exports.name2arr = exports.isRequiredField = exports.isRealName = exports.isNumber = exports.isEqual = exports.isBoolean = exports.getValue = exports.getDataValueType = exports.getDataValue = exports.deepCopy = void 0;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-/**
- * 简单处理对象拷贝
- * @param {Obejct} 被拷贝对象
- * @@return {Object} 拷贝对象
- */
-var deepCopy = function deepCopy(val) {
-  return JSON.parse(JSON.stringify(val));
-};
-/**
- * 过滤数字类型
- * @param {String} format 数字类型
- * @@return {Boolean} 返回是否为数字类型
- */
-exports.deepCopy = deepCopy;
-var typeFilter = function typeFilter(format) {
-  return format === 'int' || format === 'double' || format === 'number' || format === 'timestamp';
-};
-
-/**
- * 把 value 转换成指定的类型，用于处理初始值，原因是初始值需要入库不能为 undefined
- * @param {String} key 字段名
- * @param {any} value 字段值
- * @param {Object} rules 表单校验规则
- */
-exports.typeFilter = typeFilter;
-var getValue = function getValue(key, value, rules) {
-  var isRuleNumType = rules.find(function (val) {
-    return val.format && typeFilter(val.format);
-  });
-  var isRuleBoolType = rules.find(function (val) {
-    return val.format && val.format === 'boolean' || val.format === 'bool';
-  });
-  // 输入类型为 number
-  if (!!isRuleNumType) {
-    if (!value && value !== 0) {
-      value = null;
-    } else {
-      value = isNumber(Number(value)) ? Number(value) : value;
-    }
-  }
-
-  // 输入类型为 boolean
-  if (!!isRuleBoolType) {
-    value = isBoolean(value) ? value : false;
-  }
-  return value;
-};
-
-/**
- * 获取表单数据
- * @param {String|Array} name 真实名称，需要使用 realName 获取
- * @param {Object} data 原始数据
- * @param {any} value  需要设置的值
- */
-exports.getValue = getValue;
-var setDataValue = function setDataValue(field, formdata, value) {
-  formdata[field] = value;
-  return value || '';
-};
-
-/**
- * 获取表单数据
- * @param {String|Array} field 真实名称，需要使用 realName 获取
- * @param {Object} data 原始数据
- */
-exports.setDataValue = setDataValue;
-var getDataValue = function getDataValue(field, data) {
-  return objGet(data, field);
-};
-
-/**
- * 获取表单类型
- * @param {String|Array} field 真实名称，需要使用 realName 获取
- */
-exports.getDataValue = getDataValue;
-var getDataValueType = function getDataValueType(field, data) {
-  var value = getDataValue(field, data);
-  return {
-    type: type(value),
-    value: value
-  };
-};
-
-/**
- * 获取表单可用的真实name
- * @param {String|Array} name 表单name
- * @@return {String} 表单可用的真实name
- */
-exports.getDataValueType = getDataValueType;
-var realName = function realName(name) {
-  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var base_name = _basePath(name);
-  if ((0, _typeof2.default)(base_name) === 'object' && Array.isArray(base_name) && base_name.length > 1) {
-    var realname = base_name.reduce(function (a, b) {
-      return a += "#".concat(b);
-    }, '_formdata_');
-    return realname;
-  }
-  return base_name[0] || name;
-};
-
-/**
- * 判断是否表单可用的真实name
- * @param {String|Array} name 表单name
- * @@return {String} 表单可用的真实name
- */
-exports.realName = realName;
-var isRealName = function isRealName(name) {
-  var reg = /^_formdata_#*/;
-  return reg.test(name);
-};
-
-/**
- * 获取表单数据的原始格式
- * @@return {Object|Array} object 需要解析的数据
- */
-exports.isRealName = isRealName;
-var rawData = function rawData() {
-  var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var name = arguments.length > 1 ? arguments[1] : undefined;
-  var newData = JSON.parse(JSON.stringify(object));
-  var formData = {};
-  for (var i in newData) {
-    var path = name2arr(i);
-    objSet(formData, path, newData[i]);
-  }
-  return formData;
-};
-
-/**
- * 真实name还原为 array
- * @param {*} name 
- */
-exports.rawData = rawData;
-var name2arr = function name2arr(name) {
-  var field = name.replace('_formdata_#', '');
-  field = field.split('#').map(function (v) {
-    return isNumber(v) ? Number(v) : v;
-  });
-  return field;
-};
-
-/**
- * 对象中设置值
- * @param {Object|Array} object 源数据
- * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
- * @param {String} value 需要设置的值
- */
-exports.name2arr = name2arr;
-var objSet = function objSet(object, path, value) {
-  if ((0, _typeof2.default)(object) !== 'object') return object;
-  _basePath(path).reduce(function (o, k, i, _) {
-    if (i === _.length - 1) {
-      // 若遍历结束直接赋值
-      o[k] = value;
-      return null;
-    } else if (k in o) {
-      // 若存在对应路径，则返回找到的对象，进行下一次遍历
-      return o[k];
-    } else {
-      // 若不存在对应路径，则创建对应对象，若下一路径是数字，新对象赋值为空数组，否则赋值为空对象
-      o[k] = /^[0-9]{1,}$/.test(_[i + 1]) ? [] : {};
-      return o[k];
-    }
-  }, object);
-  // 返回object
-  return object;
-};
-
-// 处理 path， path有三种形式：'a[0].b.c'、'a.0.b.c' 和 ['a','0','b','c']，需要统一处理成数组，便于后续使用
-exports.objSet = objSet;
-function _basePath(path) {
-  // 若是数组，则直接返回
-  if (Array.isArray(path)) return path;
-  // 若有 '[',']'，则替换成将 '[' 替换成 '.',去掉 ']'
-  return path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
-}
-
-/**
- * 从对象中获取值
- * @param {Object|Array} object 源数据
- * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
- * @param {String} defaultVal 如果无法从调用链中获取值的默认值
- */
-var objGet = function objGet(object, path) {
-  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'undefined';
-  // 先将path处理成统一格式
-  var newPath = _basePath(path);
-  // 递归处理，返回最后结果
-  var val = newPath.reduce(function (o, k) {
-    return (o || {})[k];
-  }, object);
-  return !val || val !== undefined ? val : defaultVal;
-};
-
-/**
- * 是否为 number 类型 
- * @param {any} num 需要判断的值
- * @return {Boolean} 是否为 number
- */
-exports.objGet = objGet;
-var isNumber = function isNumber(num) {
-  return !isNaN(Number(num));
-};
-
-/**
- * 是否为 boolean 类型 
- * @param {any} bool 需要判断的值
- * @return {Boolean} 是否为 boolean
- */
-exports.isNumber = isNumber;
-var isBoolean = function isBoolean(bool) {
-  return typeof bool === 'boolean';
-};
-/**
- * 是否有必填字段
- * @param {Object} rules 规则
- * @return {Boolean} 是否有必填字段
- */
-exports.isBoolean = isBoolean;
-var isRequiredField = function isRequiredField(rules) {
-  var isNoField = false;
-  for (var i = 0; i < rules.length; i++) {
-    var ruleData = rules[i];
-    if (ruleData.required) {
-      isNoField = true;
-      break;
-    }
-  }
-  return isNoField;
-};
-
-/**
- * 获取数据类型
- * @param {Any} obj 需要获取数据类型的值
- */
-exports.isRequiredField = isRequiredField;
-var type = function type(obj) {
-  var class2type = {};
-
-  // 生成class2type映射
-  "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function (item, index) {
-    class2type["[object " + item + "]"] = item.toLowerCase();
-  });
-  if (obj == null) {
-    return obj + "";
-  }
-  return (0, _typeof2.default)(obj) === "object" || typeof obj === "function" ? class2type[Object.prototype.toString.call(obj)] || "object" : (0, _typeof2.default)(obj);
-};
-
-/**
- * 判断两个值是否相等
- * @param {any} a 值  
- * @param {any} b 值  
- * @return {Boolean} 是否相等
- */
-exports.type = type;
-var isEqual = function isEqual(a, b) {
-  //如果a和b本来就全等
-  if (a === b) {
-    //判断是否为0和-0
-    return a !== 0 || 1 / a === 1 / b;
-  }
-  //判断是否为null和undefined
-  if (a == null || b == null) {
-    return a === b;
-  }
-  //接下来判断a和b的数据类型
-  var classNameA = toString.call(a),
-    classNameB = toString.call(b);
-  //如果数据类型不相等，则返回false
-  if (classNameA !== classNameB) {
-    return false;
-  }
-  //如果数据类型相等，再根据不同数据类型分别判断
-  switch (classNameA) {
-    case '[object RegExp]':
-    case '[object String]':
-      //进行字符串转换比较
-      return '' + a === '' + b;
-    case '[object Number]':
-      //进行数字转换比较,判断是否为NaN
-      if (+a !== +a) {
-        return +b !== +b;
-      }
-      //判断是否为0或-0
-      return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-    case '[object Date]':
-    case '[object Boolean]':
-      return +a === +b;
-  }
-  //如果是对象类型
-  if (classNameA == '[object Object]') {
-    //获取a和b的属性长度
-    var propsA = Object.getOwnPropertyNames(a),
-      propsB = Object.getOwnPropertyNames(b);
-    if (propsA.length != propsB.length) {
-      return false;
-    }
-    for (var i = 0; i < propsA.length; i++) {
-      var propName = propsA[i];
-      //如果对应属性对应值不相等，则返回false
-      if (a[propName] !== b[propName]) {
-        return false;
-      }
-    }
-    return true;
-  }
-  //如果是数组类型
-  if (classNameA == '[object Array]') {
-    if (a.toString() == b.toString()) {
-      return true;
-    }
-    return false;
-  }
-};
-exports.isEqual = isEqual;
-
-/***/ }),
-
-/***/ 5:
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 52:
-/*!**************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/outStore.js ***!
-  \**************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  mso_iden: 'MSO2001020001',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 14:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  mso_iden: 'MSO2001020002',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库03',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 15:00:00',
-  mso_req_department: '合工大中心',
-  mso_remarks: '上音乐课借用器材',
-  mso_status: '已审批',
-  mso_creator: '钟小林',
-  mso_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  mso_iden: 'MSO2001020003',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库02',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 16:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上美术课借用器材',
-  mso_status: '已审批',
-  mso_creator: '董新宇',
-  mso_createDate: '2020-1-2 12:09:00'
-}, {
-  id: 4,
-  mso_iden: 'MSO2001020004',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库04',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 17:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '李浩',
-  mso_createDate: '2020-1-2 12:04:00'
-}, {
-  id: 5,
-  mso_iden: 'MSO2001020005',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 18:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上美术课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:05:00'
-}, {
-  id: 6,
-  mso_iden: 'MSO2001020006',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 19:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上音乐课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:06:00'
-}, {
-  id: 7,
-  mso_iden: 'MSO2001020007',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 20:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:07:00'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 53:
-/*!**************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/purchase.js ***!
-  \**************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  rp_iden: 'PR2001020001',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 14:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  rp_iden: 'PR2001020002',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 15:00:00',
-  rp_remarks: '上音乐课借用器材',
-  rp_status: '已审批',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  rp_iden: 'PR2001020003',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 16:00:00',
-  rp_remarks: '上美术课借用器材',
-  rp_status: '已关闭',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:09:00'
-}, {
-  id: 4,
-  rp_iden: 'PR2001020004',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 17:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:04:00'
-}, {
-  id: 5,
-  rp_iden: 'PR2001020005',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 18:00:00',
-  rp_remarks: '上美术课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:05:00'
-}, {
-  id: 6,
-  rp_iden: 'PR2001020006',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 19:00:00',
-  rp_remarks: '上音乐课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:06:00'
-}, {
-  id: 7,
-  rp_iden: 'PR2001020007',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 20:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:07:00'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 54:
-/*!**********************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/sell.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  so_iden: 'SO2001020001',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '董新宇',
-  so_date: '2020-1-2 14:00:00',
-  so_warehouse: '合工大中心仓库01',
-  so_remarks: '上体育课借用器材',
-  so_status: '草稿',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  so_iden: 'SO2001020002',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '董新宇',
-  so_date: '2020-1-2 15:00:00',
-  so_warehouse: '合工大中心仓库03',
-  so_remarks: '上音乐课借用器材',
-  so_status: '已审批',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  so_iden: 'SO2001020003',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '余钱',
-  so_date: '2020-1-2 16:00:00',
-  so_warehouse: '合工大中心仓库02',
-  so_remarks: '上美术课借用器材',
-  so_status: '草稿',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:09:00'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
 /***/ 55:
-/*!**************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/exchange.js ***!
-  \**************************************************************************************/
+/*!*********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/exchange.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -25310,6 +25408,19 @@ var data = [{
 module.exports = {
   data: data
 };
+
+/***/ }),
+
+/***/ 569:
+/*!************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/style/picker-item.scss ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
 
 /***/ }),
 
@@ -25367,17 +25478,6 @@ module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module
 
 /***/ }),
 
-/***/ 70:
-/*!******************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/static/img/allHL.png ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
 /***/ 8:
 /*!***************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
@@ -25413,46 +25513,6 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 90:
-/*!*************************************************************************************!*\
-  !*** /Users/edy/Downloads/vue-django-storeManage-master/uni-appWeb/data/English.js ***!
-  \*************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  total_iden: '001',
-  total_name: '合肥仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222111',
-  material_name: '新概念',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}, {
-  total_iden: '002',
-  total_name: '南京仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222112',
-  material_name: '视听说',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}];
-module.exports = {
-  data: data
-};
 
 /***/ })
 

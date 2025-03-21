@@ -1,6 +1,12 @@
 <template>
   <view class="container">
     <!-- 盘点列表 -->
+     <view>
+      <text>新盘点</text>
+      <text>选择物品</text>
+      <text>盘点</text>
+      <text>生成报表</text>
+     </view>
     <view class="list">
       <view class="item" v-for="(item, index) in inventoryList" :key="index">
         <view class="info">
@@ -42,34 +48,20 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  padding: 20rpx;
-  width: 100%;
-}
+@import '../../common/index.css';
 .list {
   margin-bottom: 100rpx;
 }
 
+.container {
+  background-color: #f5f5f5;
+}
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
-}
-.add-button {
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80rpx;
-  background-color: #007aff;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10rpx;
 }
 .icon {
   margin-left: 5rpx;

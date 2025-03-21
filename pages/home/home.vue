@@ -25,7 +25,7 @@
         <view class="function-button" @click="navigateTo('classification')"><img src="../../static/img/allHL.png"/><button class="btn">分类</button></view>
         <view class="function-button" @click="navigateTo('itemPage')"><img src="../../static/img/allHL.png"/><button class="btn">物品列表</button></view>
         <view class="function-button" @click="navigateTo('enter')"><img src="../../static/img/allHL.png"/><button class="btn">物品录入</button></view>
-        <view class="function-button" @click="navigateTo('newStocktaking')"><img src="../../static/img/allHL.png"/><button class="btn">盘点</button></view>
+        <view class="function-button" @click="navigateTo('stocktaking')"><img src="../../static/img/allHL.png"/><button class="btn">盘点</button></view>
         <view class="function-button" @click="navigateTo('export')"><img src="../../static/img/allHL.png"/><button class="btn">报表</button></view>
       </view>
     </view>

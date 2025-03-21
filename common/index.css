@@ -1,0 +1,18 @@
+.container {
+  padding: 20rpx;
+  width: 100%;
+}
+.add-button {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}

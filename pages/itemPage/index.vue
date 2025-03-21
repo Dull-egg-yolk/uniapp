@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <view>
+    <view class="section">
       <view class="filter-section">
         <picker mode="selector" :range="categories" @change="onCategoryChange">
           <view class="picker">物品分类：{{ selectedCategory }}</view>
@@ -9,7 +9,7 @@
       <uni-search-bar placeholder="关键字" @input="onSearchInput" />
     </view>
     <uni-list>
-      <uni-list-item v-for="(item, index) in filteredItems" :key="index" :title="item.name" :note="item.description" />
+      <uni-list-item v-for="(item, index) in filteredItems" :key="index" :title="item.name" @click="navigateToDetail(item)" link />
     </uni-list>
     <button class="add-button" @click="addItem">新增</button>
   </view>
@@ -35,6 +35,10 @@ export default {
     }
   },
   methods: {
+    navigateToDetail(item){
+      console.log(item);
+      uni.navigateTo({ url: `/pages/itemDetail/index?id=${item.name}`, })
+    },
     onCategoryChange(e) {
       this.selectedCategory = this.categories[e.detail.value];
     },
@@ -42,10 +46,7 @@ export default {
       this.searchKeyword = e.value;
     },
     addItem() {
-      uni.showToast({
-        title: '新增物品',
-        icon: 'none'
-      });
+      uni.navigateTo({ url: '/pages/enter/index' })
     },
     fetchItems() {
       // 模拟从服务器获取数据
@@ -66,10 +67,7 @@ export default {
 };
 </script>
 <style scoped>
-.container {
-  padding: 20rpx;
-  width: 100%;
-}
+@import '../../common/index.css';
 
 .filter-section {
   margin-bottom: 20rpx;
@@ -80,15 +78,8 @@ export default {
   background-color: #f5f5f5;
   border-radius: 10rpx;
 }
-
-.add-button {
-  margin-top: 20rpx;
-  width: 100%;
-  height: 80rpx;
-  background-color: #007aff;
-  color: #fff;
-  border-radius: 10rpx;
-  font-size: 32rpx;
+.section {
+  display: flex;
+  align-items: center;
 }
-</style>
 </style>

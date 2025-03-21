@@ -135,10 +135,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  padding: 20rpx;
-  width: 100%;
-}
+@import '../../common/index.css';
 
 .list {
   margin-bottom: 100rpx;
@@ -171,20 +168,6 @@ export default {
   color: #007aff;
 }
 
-.add-button {
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80rpx;
-  background-color: #007aff;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10rpx;
-}
 /deep/.uni-popup__wrapper{
   width: 90%;
 }

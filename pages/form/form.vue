@@ -83,8 +83,8 @@
 	}
 </script>
 <style scoped>
+@import '../../common/index.css';
 	.container {
-		width: 100%;
 		background-color: #f8f8f8;
 	}
 	.title {

@@ -58,7 +58,7 @@
     </view>
 
     <!-- 提交按钮 -->
-    <view class="submit-button" @click="submitForm">
+    <view class="add-button" @click="submitForm">
       <text>确定</text>
     </view>
   </view>
@@ -148,10 +148,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  padding: 20rpx;
-  width: 100%;
-}
+@import '../../common/index.css';
 
 .upload-section {
   margin-bottom: 40rpx;
@@ -194,36 +191,27 @@ export default {
 }
 
 .form-item {
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
 }
 
 .label {
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 10rpx;
+  margin-right: 10rpx;
+  width: 160rpx;
 }
 
 .input {
   height: 80rpx;
-  border: 1rpx solid #eee;
+  /* border: 1rpx solid #eee; */
   padding: 10rpx;
   border-radius: 10rpx;
   display: flex;
   align-items: center;
 }
 
-.submit-button {
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80rpx;
-  background-color: #007aff;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10rpx;
-}
 </style>

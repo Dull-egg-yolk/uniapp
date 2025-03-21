@@ -83,6 +83,7 @@ export default {
 </script>
 
 <style>
+@import '../../common/index.css';
 .container {
   padding: 20px;
 }

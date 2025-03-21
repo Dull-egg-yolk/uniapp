@@ -68,10 +68,7 @@ export default {
 </script>
 
 <style>
-.container {
-  padding: 20px;
-  width: 100%;
-}
+@import '../../common/index.css';
 .step-content {
   margin-top: 20px;
 }
@@ -85,19 +82,5 @@ export default {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-}
-.add-button {
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80rpx;
-  background-color: #007aff;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10rpx;
 }
 </style>

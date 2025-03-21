@@ -56,9 +56,14 @@
                 "navigationBarTitleText": "盘点"
             }
         },{
+            "path": "pages/itemDetail/index",
+            "style": {
+                "navigationBarTitleText": ""
+            }
+        },{
             "path": "pages/home/home",
             "style": {
-                "navigationBarTitleText": "home"
+                "navigationBarTitleText": "工作台"
             }
         },{
             "path": "pages/form/form",
@@ -174,7 +179,7 @@
         "backgroundColor": "#ffffff",
         "list": [{
             "pagePath": "pages/home/home",
-            "text": "home",
+            "text": "工作台",
             "iconPath": "static/img/all.png",
             "selectedIconPath": "static/img/all.png"
         },{
