@@ -1,0 +1,27 @@
+# Editor directories and files
+.idea
+.vscode
+
+# Package Manager
+node_modules
+logger
+uni_modules
+.pnpm-debug.log*
+.pnpm-store
+pnpm-lock.yaml
+
+# System
+.DS_Store
+unpackage
+
+# Bundle
+dist
+main/spa/dist
+main/spa/static
+
+# local env files
+*.local
+.history
+main/spa/npminstall-debug.log
+main/spa/.env.development
+main/spa/logger/app.log
