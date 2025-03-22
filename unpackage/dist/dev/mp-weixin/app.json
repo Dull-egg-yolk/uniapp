@@ -12,6 +12,7 @@
     "pages/inventoryDetails/index",
     "pages/realTimeInventoryDetails/index",
     "pages/newStocktaking/index",
+    "pages/changeItem/index",
     "pages/itemDetail/index",
     "pages/home/home",
     "pages/form/form",

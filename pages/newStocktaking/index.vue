@@ -11,21 +11,23 @@
      </view>
      <view class="form-content">
         <view class="form-item">
-          <text>盘点日期</text>
-          <input type="date" v-model="inventoryDate" />
-        </view>
+          <text class="form-title">盘点日期</text>
+          <picker mode="date" @change="onDateChange">
+            <view class="date-picker">时间{{ selectedDate }}</view>
+          </picker>
+        </view> 
         <view class="form-item">
-          <text>盘点部门</text>
+          <text class="form-title">盘点部门</text>
           <picker mode="selector" :range="departments" @change="onDepartmentChange">
             <view class="picker">{{ selectedDepartment }}</view>
           </picker>
         </view>
         <view class="form-item">
-          <text>盘点人</text>
+          <text class="form-title">盘点人</text>
           <input type="text" v-model="inventoryPerson" placeholder="请输入" />
         </view>
         <view class="form-item">
-          <text>备注</text>
+          <text class="form-title">备注</text>
           <input type="text" v-model="remarks" placeholder="请输入备注" />
         </view>
       </view>
@@ -47,14 +49,19 @@ export default {
       departments: ['财务', '客房'],
       selectedDepartment: '财务',
       inventoryPerson: '',
-      remarks: ''
+      remarks: '',
+      selectedDate: ''
     };
   },
   methods: {
     nextStep() {
-      if (this.activeStep < this.steps.length - 1) {
-        this.activeStep++;
-      }
+      uni.navigateTo({
+				url: '../changeItem/index'
+			});
+    },
+    onDateChange(e) {
+      this.selectedDate = e.detail.value;
+      // 这里可以添加根据日期筛选数据的逻辑
     },
     onDepartmentChange(e) {
       this.selectedDepartment = this.departments[e.detail.value];
@@ -74,6 +81,10 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.form-title {
+  margin-right: 20rpx;
+  width: 130rpx;
+}
 .tab {
   padding: 10rpx 20rpx;
   border: 1rpx solid #eee;
@@ -90,9 +101,14 @@ export default {
 }
 .form-content {
   margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
 }
 .form-item {
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 .picker {
   border: 1px solid #ccc;

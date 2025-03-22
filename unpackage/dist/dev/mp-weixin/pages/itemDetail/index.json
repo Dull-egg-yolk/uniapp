@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "",
-  "usingComponents": {}
+  "usingComponents": {
+    "drag-button": "/components/drag-button/drag-button"
+  }
 }

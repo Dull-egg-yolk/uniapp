@@ -59,10 +59,18 @@
         <text>删除</text>
       </view>
      </view>
+     <view>
+			<drag-button
+				:isDock="true"
+				:existTabBar="true"
+				@btnClick="newOrder(current)">
+			</drag-button>
+		</view>
   </view>
 </template>
 
 <script>
+import dragButton from '../../components/drag-button/drag-button.vue'
 export default {
   data() {
     return {
