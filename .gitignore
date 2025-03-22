@@ -13,6 +13,8 @@ pnpm-lock.yaml
 # System
 .DS_Store
 unpackage
+app-web
+uniapp
 
 # Bundle
 dist
