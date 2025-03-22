@@ -123,7 +123,7 @@
                 "navigationBarTitleText": "系统设置"
             }
         },{
-            "path": "pages/user/myinfo",
+            "path": "pages/user/myInfo",
             "style": {
                 "navigationBarTitleText": "我的信息"
             }
@@ -181,6 +181,30 @@
             "path": "pages/exchange/exchangeMaterials",
             "style": {
                 "navigationBarTitleText": "物料选择"
+            }
+        },
+        {
+            "path": "pages/user/userInfo",
+            "style": {
+                "navigationBarTitleText": "我的信息"
+            }
+        },
+        {
+            "path": "pages/user/renew",
+            "style": {
+                "navigationBarTitleText": "续费"
+            }
+        },
+        {
+            "path": "pages/user/feedback",
+            "style": {
+                "navigationBarTitleText": "需求反馈"
+            }
+        },
+        {
+            "path": "pages/user/feedback",
+            "style": {
+                "navigationBarTitleText": "需求反馈"
             }
         }
     ],
