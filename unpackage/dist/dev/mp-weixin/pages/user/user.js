@@ -98,10 +98,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    cmdAvatar: function () {
+      return __webpack_require__.e(/*! import() | components/cmd-avatar/cmd-avatar */ "components/cmd-avatar/cmd-avatar").then(__webpack_require__.bind(null, /*! @/components/cmd-avatar/cmd-avatar.vue */ 480))
+    },
+    cmdCellItem: function () {
+      return __webpack_require__.e(/*! import() | components/cmd-cell-item/cmd-cell-item */ "components/cmd-cell-item/cmd-cell-item").then(__webpack_require__.bind(null, /*! @/components/cmd-cell-item/cmd-cell-item.vue */ 487))
+    },
+    cmdIcon: function () {
+      return __webpack_require__.e(/*! import() | components/cmd-icon/cmd-icon */ "components/cmd-icon/cmd-icon").then(__webpack_require__.bind(null, /*! @/components/cmd-icon/cmd-icon.vue */ 386))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var a0 = {
+    "background-color": "#fff",
+    "margin-right": "10upx",
+  }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        a0: a0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -141,26 +182,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var loginPage = function loginPage() {
-  __webpack_require__.e(/*! require.ensure | pages/user/components/loginPage */ "pages/user/components/loginPage").then((function () {
-    return resolve(__webpack_require__(/*! ./components/loginPage.vue */ 232));
+var cmdAvatar = function cmdAvatar() {
+  __webpack_require__.e(/*! require.ensure | components/cmd-avatar/cmd-avatar */ "components/cmd-avatar/cmd-avatar").then((function () {
+    return resolve(__webpack_require__(/*! ../../components/cmd-avatar/cmd-avatar.vue */ 480));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
-var noLoginPage = function noLoginPage() {
-  __webpack_require__.e(/*! require.ensure | pages/user/components/noLoginPage */ "pages/user/components/noLoginPage").then((function () {
-    return resolve(__webpack_require__(/*! ./components/noLoginPage.vue */ 481));
+var cmdIcon = function cmdIcon() {
+  __webpack_require__.e(/*! require.ensure | components/cmd-icon/cmd-icon */ "components/cmd-icon/cmd-icon").then((function () {
+    return resolve(__webpack_require__(/*! ../../components/cmd-icon/cmd-icon.vue */ 386));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+var cmdCellItem = function cmdCellItem() {
+  __webpack_require__.e(/*! require.ensure | components/cmd-cell-item/cmd-cell-item */ "components/cmd-cell-item/cmd-cell-item").then((function () {
+    return resolve(__webpack_require__(/*! ../../components/cmd-cell-item/cmd-cell-item.vue */ 487));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _this;
 var _default = {
   components: {
-    loginPage: loginPage,
-    noLoginPage: noLoginPage
+    cmdAvatar: cmdAvatar,
+    cmdIcon: cmdIcon,
+    cmdCellItem: cmdCellItem
   },
   data: function data() {
     return {
       //将data文件夹中的数据读入
-      isLoginStatus: true
+      user_name: '',
+      user_id: ''
     };
   },
   mounted: function mounted() {
@@ -175,15 +223,6 @@ var _default = {
     mydetail: function mydetail() {
       uni.navigateTo({
         url: 'myinfo'
-      });
-    },
-    //登陆
-    loginFun: function loginFun() {
-      // uni.navigateTo({
-      // 	url: 'userLoginPage'
-      // })
-      uni.switchTab({
-        url: '../home/home'
       });
     },
     phone: function phone() {

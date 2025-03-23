@@ -1,5 +1,46 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/cmd-cell-item/cmd-cell-item"],{
 
+/***/ 487:
+/*!***********************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/cmd-cell-item/cmd-cell-item.vue ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=template&id=88bd7dc8& */ 488);
+/* harmony import */ var _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=script&lang=js& */ 490);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _cmd_cell_item_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=style&index=0&lang=css& */ 492);
+/* harmony import */ var _Applications_HBuilderX_app_Contents_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 32);
+
+var renderjs
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_Applications_HBuilderX_app_Contents_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null,
+  false,
+  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
+)
+
+component.options.__file = "components/cmd-cell-item/cmd-cell-item.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ 488:
 /*!******************************************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/cmd-cell-item/cmd-cell-item.vue?vue&type=template&id=88bd7dc8& ***!
@@ -284,47 +325,6 @@ __webpack_require__.r(__webpack_exports__);
     if(false) { var cssReload; }
   
 
-/***/ }),
-
-/***/ 702:
-/*!***********************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/cmd-cell-item/cmd-cell-item.vue ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=template&id=88bd7dc8& */ 488);
-/* harmony import */ var _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=script&lang=js& */ 490);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _cmd_cell_item_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cmd-cell-item.vue?vue&type=style&index=0&lang=css& */ 492);
-/* harmony import */ var _Applications_HBuilderX_app_Contents_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 32);
-
-var renderjs
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_Applications_HBuilderX_app_Contents_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _cmd_cell_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null,
-  false,
-  _cmd_cell_item_vue_vue_type_template_id_88bd7dc8___WEBPACK_IMPORTED_MODULE_0__["components"],
-  renderjs
-)
-
-component.options.__file = "components/cmd-cell-item/cmd-cell-item.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
 /***/ })
 
 }]);
@@ -333,7 +333,7 @@ component.options.__file = "components/cmd-cell-item/cmd-cell-item.vue"
     'components/cmd-cell-item/cmd-cell-item-create-component',
     {
         'components/cmd-cell-item/cmd-cell-item-create-component':(function(module, exports, __webpack_require__){
-            __webpack_require__('2')['createComponent'](__webpack_require__(702))
+            __webpack_require__('2')['createComponent'](__webpack_require__(487))
         })
     },
     [['components/cmd-cell-item/cmd-cell-item-create-component']]

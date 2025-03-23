@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "我的",
   "usingComponents": {
-    "login-page": "/pages/user/components/loginPage",
-    "no-login-page": "/pages/user/components/noLoginPage"
+    "cmd-avatar": "/components/cmd-avatar/cmd-avatar",
+    "cmd-cell-item": "/components/cmd-cell-item/cmd-cell-item",
+    "cmd-icon": "/components/cmd-icon/cmd-icon"
   }
 }
