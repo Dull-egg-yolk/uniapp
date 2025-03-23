@@ -196,6 +196,7 @@
                 "navigationBarTitleText": "需求反馈"
             }
         }
+      
     ],
     "tabBar": {//下方导航栏
         "color": "#7a7e83",
