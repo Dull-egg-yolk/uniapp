@@ -123,11 +123,6 @@
                 "navigationBarTitleText": "系统设置"
             }
         },{
-            "path": "pages/user/myInfo",
-            "style": {
-                "navigationBarTitleText": "我的信息"
-            }
-        },{
 		    "path": "pages/detail/detail",
 		    "style": {
 		        "navigationBarTitleText": "货物详情"
@@ -193,12 +188,6 @@
             "path": "pages/user/renew",
             "style": {
                 "navigationBarTitleText": "续费"
-            }
-        },
-        {
-            "path": "pages/user/feedback",
-            "style": {
-                "navigationBarTitleText": "需求反馈"
             }
         },
         {

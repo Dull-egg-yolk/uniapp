@@ -24,7 +24,6 @@
     "pages/purchase/purchase",
     "pages/user/phoneus",
     "pages/user/setting",
-    "pages/user/myInfo",
     "pages/detail/detail",
     "pages/detail/outDetails",
     "pages/detail/purchaseDetails",
@@ -38,7 +37,6 @@
     "pages/exchange/exchangeMaterials",
     "pages/user/userInfo",
     "pages/user/renew",
-    "pages/user/feedback",
     "pages/user/feedback"
   ],
   "subPackages": [],
