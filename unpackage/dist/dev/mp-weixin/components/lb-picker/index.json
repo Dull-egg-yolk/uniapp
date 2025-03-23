@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "selector-picker": "/components/lb-picker/pickers/selector-picker",
-    "multi-selector-picker": "/components/lb-picker/pickers/multi-selector-picker"
-  }
-}

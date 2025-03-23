@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/cmd-cell-item/cmd-cell-item"],{
 
 /***/ 487:
@@ -338,3 +339,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     [['components/cmd-cell-item/cmd-cell-item-create-component']]
 ]);
+=======
+Component({})
+>>>>>>> a5fdd37a7c343a23552bbe8e16a5911e3784ca36

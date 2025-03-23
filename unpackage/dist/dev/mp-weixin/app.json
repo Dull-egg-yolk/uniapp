@@ -24,7 +24,10 @@
     "pages/purchase/purchase",
     "pages/user/phoneus",
     "pages/user/setting",
+<<<<<<< HEAD
     "pages/user/myinfo",
+=======
+>>>>>>> a5fdd37a7c343a23552bbe8e16a5911e3784ca36
     "pages/detail/detail",
     "pages/detail/outDetails",
     "pages/detail/purchaseDetails",
@@ -35,7 +38,14 @@
     "pages/sell/sell",
     "pages/sell/sellMaterials",
     "pages/exchange/exchange",
+<<<<<<< HEAD
     "pages/exchange/exchangeMaterials"
+=======
+    "pages/exchange/exchangeMaterials",
+    "pages/user/userInfo",
+    "pages/user/renew",
+    "pages/user/feedback"
+>>>>>>> a5fdd37a7c343a23552bbe8e16a5911e3784ca36
   ],
   "subPackages": [],
   "window": {

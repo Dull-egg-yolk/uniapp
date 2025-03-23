@@ -123,11 +123,6 @@
                 "navigationBarTitleText": "系统设置"
             }
         },{
-            "path": "pages/user/myinfo",
-            "style": {
-                "navigationBarTitleText": "我的信息"
-            }
-        },{
 		    "path": "pages/detail/detail",
 		    "style": {
 		        "navigationBarTitleText": "货物详情"
@@ -182,7 +177,26 @@
             "style": {
                 "navigationBarTitleText": "物料选择"
             }
+        },
+        {
+            "path": "pages/user/userInfo",
+            "style": {
+                "navigationBarTitleText": "我的信息"
+            }
+        },
+        {
+            "path": "pages/user/renew",
+            "style": {
+                "navigationBarTitleText": "续费"
+            }
+        },
+        {
+            "path": "pages/user/feedback",
+            "style": {
+                "navigationBarTitleText": "需求反馈"
+            }
         }
+      
     ],
     "tabBar": {//下方导航栏
         "color": "#7a7e83",

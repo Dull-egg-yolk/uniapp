@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/cmd-avatar/cmd-avatar"],{
 
 /***/ 480:
@@ -318,3 +319,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     [['components/cmd-avatar/cmd-avatar-create-component']]
 ]);
+=======
+Component({})
+>>>>>>> a5fdd37a7c343a23552bbe8e16a5911e3784ca36
