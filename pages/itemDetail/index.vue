@@ -60,20 +60,51 @@
       </view>
      </view>
      <view>
-			<drag-button
-				:isDock="true"
-				:existTabBar="true"
-				@btnClick="newOrder(current)">
-			</drag-button>
-		</view>
+      <movable-area class="movable-area">
+        <movable-view
+          class="movable-view"
+          direction="all"
+          :x="buttonX"
+          :y="buttonY"
+          :disabled="isButtonDisabled"
+          @change="onMove"
+        >
+          <view
+            class="floating-button"
+            :class="{ 'floating-button-active': showAdditionalButtons }"
+            @click="toggleButtons"
+          >
+            <text>{{ showAdditionalButtons ? '×' : '+' }}</text>
+          </view>
+        </movable-view>
+      </movable-area>
+		 </view>
+     <view v-if="showAdditionalButtons">
+      <view
+        v-for="(button, index) in additionalButtons"
+        :key="index"
+        class="additional-button"
+        :style="{
+          left: button.x + 'px',
+          top: button.y + 'px',
+        }"
+        @click="handleButtonClick(button.text)"
+      >
+        <text>{{ button.text }}</text>
+      </view>
+    </view>
   </view>
 </template>
 
 <script>
-import dragButton from '../../components/drag-button/drag-button.vue'
 export default {
   data() {
     return {
+      buttonX: 140, // 悬浮按钮的 X 坐标
+      buttonY: 140, // 悬浮按钮的 Y 坐标
+      showAdditionalButtons: false, // 是否显示新增按钮
+      isButtonDisabled: false, // 是否禁用中间按钮的拖动
+      additionalButtons: [], // 动态生成的按钮
       headerTitle: '',
       // 上传的图片 URL
       imageUrl: "",
@@ -104,6 +135,43 @@ export default {
      });
   },
   methods: {
+    // 悬浮按钮移动事件
+    onMove(e) {
+      this.buttonX = e.detail.x;
+      this.buttonY = e.detail.y;
+      this.buttonX = Math.max(100, Math.min(this.screenWidth - 100, x));
+    },
+
+    // 切换新增按钮的显示和隐藏
+    toggleButtons() {
+      if (this.showAdditionalButtons) {
+        this.showAdditionalButtons = false; // 隐藏新增按钮
+        this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
+      } else {
+        const offset = 80; // 按钮之间的间距
+        const screenWidth = uni.getSystemInfoSync().windowWidth;
+        const screenHeight = uni.getSystemInfoSync().windowHeight;
+
+        // 计算新增按钮的位置，确保不超出屏幕
+        this.additionalButtons = [
+          { text: '明细', x: this.buttonX, y: Math.max(0, this.buttonY - offset) },
+          { text: '盘点', x: this.buttonX, y: Math.min(screenHeight - 60, this.buttonY + offset) },
+          { text: '入库', x: Math.max(0, this.buttonX - offset), y: this.buttonY },
+          { text: '出库', x: Math.min(screenWidth - 60, this.buttonX + offset), y: this.buttonY },
+        ];
+        this.showAdditionalButtons = true; // 显示新增按钮
+        this.isButtonDisabled = true; // 禁用中间按钮的拖动功能
+      }
+    },
+    // 处理动态按钮点击
+    handleButtonClick(text) {
+      uni.showToast({
+        title: `点击了：${text}`,
+        icon: 'none',
+      });
+      this.showAdditionalButtons = false; // 点击后隐藏新增按钮
+      this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
+    },
     // 选择图片
     chooseImage() {
       uni.chooseImage({
@@ -165,6 +233,52 @@ export default {
 
 <style scoped>
 @import '../../common/index.css';
+
+.movable-area {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.movable-view {
+  width: 60px;
+  height: 60px;
+}
+
+.floating-button {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.floating-button-active {
+  background-color: #ff3b30; /* 中间按钮激活时的背景色 */
+  transform: rotate(45deg); /* 中间按钮激活时的旋转效果 */
+}
+
+.additional-button {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+}
 .section {
   display: flex;
   justify-content: center;

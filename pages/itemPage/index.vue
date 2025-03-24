@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { getGoodsItme, upgateGoodsItem, addGoodsItem, deleteGoodsItem} from '@/api/work.js'
 export default {
   data() {
     return {
@@ -35,6 +36,11 @@ export default {
     }
   },
   methods: {
+    async getGoodsItmeList(){
+      const res = await getGoodsItme()
+      console.log(res);
+      
+    },
     navigateToDetail(item){
       console.log(item);
       uni.navigateTo({ url: `/pages/itemDetail/index?id=${item.name}`, })
@@ -63,6 +69,7 @@ export default {
   },
   mounted() {
     this.fetchItems();
+    this.getGoodsItmeList()
   }
 };
 </script>

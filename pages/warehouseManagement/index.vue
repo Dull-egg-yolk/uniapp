@@ -4,8 +4,8 @@
     <view class="list">
       <view class="item" v-for="(item, index) in warehouseList" :key="index">
         <view class="info">
-          <text class="name">{{ item.name }}</text>
-          <text class="description">{{ item.description }}</text>
+          <text class="name">{{ item.Name }}</text>
+          <text class="description">{{ item.Place }}</text>
         </view>
         <view class="actions">
           <text class="edit" @click="openEditPopup(index)">编辑 ></text>
@@ -31,7 +31,7 @@
         </view>
         <view class="popup-buttons">
           <button class="popup-button" @click="closeAddPopup">取消</button>
-          <button class="popup-button confirm" @click="addWarehouse">确认</button>
+          <button class="popup-button confirm" @click="confirmAddWarehouse">确认</button>
         </view>
       </view>
     </uni-popup>
@@ -49,7 +49,7 @@
         </view>
         <view class="popup-buttons">
           <button class="popup-button" @click="closeEditPopup">取消</button>
-          <button class="popup-button confirm" @click="updateWarehouse">确认</button>
+          <button class="popup-button confirm" @click="confirmWarehouse">确认</button>
         </view>
       </view>
     </uni-popup>
@@ -57,15 +57,13 @@
 </template>
 
 <script>
+import { getWarehouse, addWarehouse, updateWarehouse, deleteWarehouse } from "@/api/work.js";
 export default {
   data() {
     return {
       showAddPopup: false,
       // 库房列表数据
-      warehouseList: [
-        { name: "1 号库房", description: "底下 1 层大库房" },
-        { name: "2 号库房", description: "3 层小库房" }
-      ],
+      warehouseList: [],
       // 新增库房数据
       newWarehouse: {
         name: "",
@@ -80,6 +78,11 @@ export default {
     };
   },
   methods: {
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      console.log(res);
+      this.warehouseList = res.Data;
+    },
     // 打开新增弹窗
     openAddPopup() {
       // this.showAddPopup = true;
@@ -91,7 +94,7 @@ export default {
       this.$refs.addPopup.close();
     },
     // 提交新增库房
-    addWarehouse() {
+    async confirmAddWarehouse() {
       if (!this.newWarehouse.name || !this.newWarehouse.description) {
         uni.showToast({
           title: "请填写完整信息",
@@ -99,15 +102,28 @@ export default {
         });
         return;
       }
-      this.warehouseList.push({ ...this.newWarehouse });
-      this.closeAddPopup();
+      const params = {
+        Name: this.newWarehouse.name,
+        Place: this.newWarehouse.description
+      }
+      const res = await addWarehouse(params);
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.getWarehouseList();
+        this.closeAddPopup();
+      }
     },
     // 打开编辑弹窗
     openEditPopup(index) {
+      console.log(index);
       this.editWarehouse = {
-        index,
-        name: this.warehouseList[index].name,
-        description: this.warehouseList[index].description
+        index: this.warehouseList[index].ID,
+        name: this.warehouseList[index].Name,
+        description: this.warehouseList[index].Place
       };
       this.$refs.editPopup.open();
     },
@@ -116,7 +132,7 @@ export default {
       this.$refs.editPopup.close();
     },
     // 提交编辑库房
-    updateWarehouse() {
+    async confirmWarehouse() {
       if (!this.editWarehouse.name || !this.editWarehouse.description) {
         uni.showToast({
           title: "请填写完整信息",
@@ -124,19 +140,38 @@ export default {
         });
         return;
       }
-      this.warehouseList[this.editWarehouse.index] = {
-        name: this.editWarehouse.name,
-        description: this.editWarehouse.description
-      };
-      this.closeEditPopup();
+      const params = {
+        ID: this.editWarehouse.index,
+        Name: this.editWarehouse.name,
+        Place: this.editWarehouse.description
+      }
+      const res = await updateWarehouse(params);
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.getWarehouseList();
+        this.closeEditPopup();
+      }
     }
+  },
+  mounted(){
+    this.getWarehouseList();
+  },
+  created(){
+    // this.getWarehouseList();
   }
 };
 </script>
 
 <style scoped>
 @import '../../common/index.css';
-
+.container {
+  background-color: #f8f8f8;
+  color: rgba(108,108,108,1);
+}
 .list {
   margin-bottom: 100rpx;
 }
@@ -145,8 +180,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx;
+  padding: 20rpx 30rpx;
   border-bottom: 1rpx solid #eee;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
 }
 
 .info {
@@ -155,17 +193,19 @@ export default {
 }
 
 .name {
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: bold;
+  color: #000;
 }
 
 .description {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #666;
 }
 
 .actions {
-  color: #007aff;
+  /* color: #007aff; */
+  font-size: 24rpx;
 }
 
 /deep/.uni-popup__wrapper{

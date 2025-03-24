@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "盘点",
+  "navigationBarTitleText": "新盘点",
   "usingComponents": {
     "uni-icons": "/components/uni-icons/uni-icons"
   }

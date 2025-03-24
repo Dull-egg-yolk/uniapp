@@ -4,11 +4,11 @@
     <view class="list">
       <view class="item" v-for="(item, index) in classList" :key="index">
         <view class="info">
-          <text class="name">{{ item.name }}</text>
-          <!-- <text class="description">{{ item.description }}</text> -->
+          <text class="name">{{ item.Name }}</text>
         </view>
         <view class="actions">
           <text class="edit" @click="openEditPopup(index)">
+            <text>编辑</text>
             <uni-icons :size="16" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
           </text>
         </view>
@@ -18,12 +18,18 @@
     <view class="add-button" @click="openAddPopup">
       <text>新增</text>
     </view>
-     <!-- 新增库房弹窗 -->
+     <!-- 新增分类弹窗 -->
      <uni-popup ref="addPopup" type="dialog">
       <view class="popup-content">
         <view class="form-item">
           <text class="label">类别名称</text>
           <input class="input" v-model="newCategory.name" placeholder="请输入类别名称" />
+        </view>
+        <view class="form-item">
+          <text class="label">仓库</text>
+          <picker mode="selector" :range="categories" range-key="Name" @change="onCategoryChange" >
+            <input class="input" v-model="selectedCategory" placeholder="请选择仓库" />
+          </picker>
         </view>
         <view class="popup-buttons">
           <button class="popup-button" @click="closeAddPopup">取消</button>
@@ -31,25 +37,64 @@
         </view>
       </view>
     </uni-popup>
+     <!-- 编辑分类弹窗 -->
+     <uni-popup ref="editPopup" type="center">
+      <view class="popup-content">
+        <view class="form-item">
+          <text class="label">类别名称</text>
+          <input class="input" v-model="editWarehouse.name" placeholder="请输入库房名称" />
+        </view>
+        <view class="form-item">
+          <text class="label">仓库</text>
+          <picker mode="selector" :range="categories" range-key="Name" @change="onChange" >
+            <input class="input" v-model="editWarehouse.selectedCategory" placeholder="请选择仓库" />
+          </picker>
+        </view>
+        <view class="popup-buttons">
+          <button class="popup-button" @click="closeEditPopup">取消</button>
+          <button class="popup-button confirm" @click="confirmWarehouse">确认</button>
+        </view>
+      </view>
+    </uni-popup>
   </view>
 </template>
 
 <script>
+import { getWarehouse, getHotelClass, addHotelClass, updateHotelClass, deleteHotelClass} from '@/api/work.js'
 export default {
   data() {
     return {
-      classList: [
-        { name: '分类1' },
-        { name: '分类2' },
-        { name: '分类3' },
-      ],
+      classList: [],
       newCategory: {
         name: "",
-        description: ""
       },
+      selectedCategory: '',
+       // 编辑库房数据
+       editWarehouse: {
+        index: -1,
+        name: "",
+        selectedCategory: '',
+      },
+      categories: []
     }
   },
   methods: {
+    // 获取仓库
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      this.categories = res.Data;
+    },
+    // 选择仓库
+    onCategoryChange(e) {
+      this.selectedCategory = this.categories[e.detail.value].Name;
+    },
+    onChange(e){
+      this.editWarehouse.selectedCategory = this.categories[e.detail.value].Name;
+    },
+    async getHotelClassList(){
+      const res = await getHotelClass();
+      this.classList = res.Data;
+    },
     openAddPopup(index) {
       this.newCategory = { name: "" };
       this.$refs.addPopup.open();
@@ -59,7 +104,7 @@ export default {
       this.$refs.addPopup.close();
     },
     // 提交新增列表
-    addWarehouse() {
+    async addWarehouse() {
       if (!this.newCategory.name) {
         uni.showToast({
           title: "请填写完整信息",
@@ -67,10 +112,69 @@ export default {
         });
         return;
       }
-      this.warehouseList.push({ ...this.newCategory });
-      this.closeAddPopup();
+      const params = {
+        Name: this.newCategory.name,
+        WarehouseID: this.categories.find(item => item.Name === this.selectedCategory).ID
+      }
+      const res = await addHotelClass(params);
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.getHotelClassList();
+        this.closeAddPopup();
+      }
     },
-  }
+    closeEditPopup(){
+      this.$refs.editPopup.close();
+    },
+     // 打开编辑弹窗
+     openEditPopup(index) {
+      console.log(index);
+      console.log(this.classList[index].WarehouseID);
+      
+      console.log(this.categories);
+      console.log(this.categories.findIndex( item => item.ID == this.classList[index].WarehouseID), '000');
+      
+      this.editWarehouse = {
+        index: this.classList[index].ID,
+        name: this.classList[index].Name,
+        selectedCategory: this.categories[this.categories.findIndex( item => item.ID == this.classList[index].WarehouseID)].Name
+      };
+      this.$refs.editPopup.open();
+    },
+      // 提交编辑分类
+    async confirmWarehouse() {
+      if (!this.editWarehouse.name || !this.editWarehouse.selectedCategory) {
+        uni.showToast({
+          title: "请填写完整信息",
+          icon: "none"
+        });
+        return;
+      }
+      const params = {
+        ID: this.editWarehouse.index,
+        Name: this.editWarehouse.name,
+        WarehouseID: this.categories[this.categories.findIndex( item => item.Name == this.editWarehouse.selectedCategory)].ID
+      }
+      const res = await updateHotelClass(params);
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.getHotelClassList();
+        this.closeEditPopup();
+      }
+    }
+  },
+  mounted(){
+    this.getHotelClassList();
+    this.getWarehouseList();
+  },
 }
 </script>
 
@@ -87,6 +191,10 @@ export default {
   align-items: center;
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
+}
+.edit {
+  font-size: 24rpx;
+  color: #666;
 }
 /deep/.uni-popup__wrapper{
   width: 90%;
@@ -125,5 +233,9 @@ export default {
   margin: 0 10rpx;
   background-color: #f0f0f0;
   color: #333;
+}
+.popup-button.confirm {
+  background-color: #007aff;
+  color: #fff;
 }
 </style>

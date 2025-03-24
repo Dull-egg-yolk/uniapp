@@ -38,7 +38,7 @@
 </template>
 
 <script>
-
+import { addStockTaking, updateStockTaking} from '@/api/work.js'
 export default {
   components: {},
   data() {

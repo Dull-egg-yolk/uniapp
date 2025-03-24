@@ -59,6 +59,11 @@
         },{
             "path": "pages/newStocktaking/index",
             "style": {
+                "navigationBarTitleText": "新盘点"
+            }
+        },{
+            "path": "pages/checking/index",
+            "style": {
                 "navigationBarTitleText": "盘点"
             }
         },{
@@ -74,7 +79,8 @@
         },{
             "path": "pages/home/home",
             "style": {
-                "navigationBarTitleText": "工作台"
+                "navigationBarTitleText": "工作台",
+                "navigationStyle": "custom"
             }
         },{
             "path": "pages/form/form",
@@ -123,7 +129,7 @@
                 "navigationBarTitleText": "系统设置"
             }
         },{
-            "path": "pages/user/myInfo",
+            "path": "pages/user/myinfo",
             "style": {
                 "navigationBarTitleText": "我的信息"
             }
@@ -200,33 +206,23 @@
             "style": {
                 "navigationBarTitleText": "需求反馈"
             }
-        },
-        {
-            "path": "pages/user/feedback",
-            "style": {
-                "navigationBarTitleText": "需求反馈"
-            }
         }
     ],
     "tabBar": {//下方导航栏
         "color": "#7a7e83",
         "selectedColor": "#0faeff",
         "backgroundColor": "#ffffff",
-        "list": [{
+        "list": [
+            {
             "pagePath": "pages/home/home",
             "text": "工作台",
             "iconPath": "static/img/all.png",
             "selectedIconPath": "static/img/all.png"
-        },{
+        }, {
             "pagePath": "pages/main/main",
-            "text": "主页",
-            "iconPath": "static/img/home.png",
-            "selectedIconPath": "static/img/homeHL.png"
-        },{
-            "pagePath": "pages/index/index",
-            "text": "二维码",
+            "text": "扫码",
             "iconPath": "static/img/all.png",
-            "selectedIconPath": "static/img/allHL.png"
+            "selectedIconPath": "static/img/all.png"
         },{
             "pagePath": "pages/user/user",
             "text": "我的",

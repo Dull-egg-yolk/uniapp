@@ -101,22 +101,22 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 343))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 398))
     },
     uniIcons: function () {
-      return __webpack_require__.e(/*! import() | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 350))
+      return __webpack_require__.e(/*! import() | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 405))
     },
     uniSegmentedControl: function () {
-      return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 357))
+      return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 412))
     },
     uniCard: function () {
-      return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 364))
+      return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 419))
     },
     evanIcons: function () {
-      return Promise.all(/*! import() | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then(__webpack_require__.bind(null, /*! @/components/evan-icons/evan-icons.vue */ 371))
+      return Promise.all(/*! import() | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then(__webpack_require__.bind(null, /*! @/components/evan-icons/evan-icons.vue */ 426))
     },
     dragButton: function () {
-      return __webpack_require__.e(/*! import() | components/drag-button/drag-button */ "components/drag-button/drag-button").then(__webpack_require__.bind(null, /*! @/components/drag-button/drag-button.vue */ 379))
+      return __webpack_require__.e(/*! import() | components/drag-button/drag-button */ "components/drag-button/drag-button").then(__webpack_require__.bind(null, /*! @/components/drag-button/drag-button.vue */ 165))
     },
   }
 } catch (e) {
@@ -252,37 +252,37 @@ var _sell = _interopRequireDefault(__webpack_require__(/*! ../../data/sell.js */
 var _exchange = _interopRequireDefault(__webpack_require__(/*! ../../data/exchange.js */ 63));
 var uniSegmentedControl = function uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/uni-segmented-control/uni-segmented-control.vue */ 357));
+    return resolve(__webpack_require__(/*! ../../components/uni-segmented-control/uni-segmented-control.vue */ 412));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniCard = function uniCard() {
   __webpack_require__.e(/*! require.ensure | components/uni-card/uni-card */ "components/uni-card/uni-card").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/uni-card/uni-card.vue */ 364));
+    return resolve(__webpack_require__(/*! ../../components/uni-card/uni-card.vue */ 419));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniIcons = function uniIcons() {
   __webpack_require__.e(/*! require.ensure | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 350));
+    return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 405));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var dragButton = function dragButton() {
   __webpack_require__.e(/*! require.ensure | components/drag-button/drag-button */ "components/drag-button/drag-button").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/drag-button/drag-button.vue */ 379));
+    return resolve(__webpack_require__(/*! ../../components/drag-button/drag-button.vue */ 165));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var cmdIcon = function cmdIcon() {
   __webpack_require__.e(/*! require.ensure | components/cmd-icon/cmd-icon */ "components/cmd-icon/cmd-icon").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/cmd-icon/cmd-icon.vue */ 386));
+    return resolve(__webpack_require__(/*! ../../components/cmd-icon/cmd-icon.vue */ 434));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniNavBar = function uniNavBar() {
   __webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 343));
+    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 398));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var EvanIcons = function EvanIcons() {
   Promise.all(/*! require.ensure | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then((function () {
-    return resolve(__webpack_require__(/*! ../../components/evan-icons/evan-icons.vue */ 371));
+    return resolve(__webpack_require__(/*! ../../components/evan-icons/evan-icons.vue */ 426));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

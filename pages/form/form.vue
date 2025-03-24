@@ -73,28 +73,31 @@
 		methods: {
 			async	submit(ref) {
 				const valid = this.$refs[ref].validate();
-				if (valid) {
-					const res = await submitHotel(this.valiFormData);
-					console.log(res, '000');
-					if (res.Data) {
-						uni.showToast({
-							title: '提交成功',
-							icon: 'success'
-						});
-						setTimeout(() => {
-						  uni.switchTab({
+				uni.switchTab({
 								url: '../home/home'
 							})
-						}, 200)
-					} else {
-						uni.showToast({
-							title: '提交失败',
-							icon: 'none'
-						});
-					}
-				} else {
-					console.log('表单校验失败');
-				}
+				// if (valid) {
+				// 	const res = await submitHotel(this.valiFormData);
+				// 	console.log(res, '000');
+				// 	if (res.Data) {
+				// 		uni.showToast({
+				// 			title: '提交成功',
+				// 			icon: 'success'
+				// 		});
+				// 		setTimeout(() => {
+				// 		  uni.switchTab({
+				// 				url: '../home/home'
+				// 			})
+				// 		}, 200)
+				// 	} else {
+				// 		uni.showToast({
+				// 			title: '提交失败',
+				// 			icon: 'none'
+				// 		});
+				// 	}
+				// } else {
+				// 	console.log('表单校验失败');
+				// }
 			}
 	  }
 	}

@@ -93,9 +93,9 @@ export default {
   },
   methods: {
     nextStep() {
-      if (this.activeStep < this.steps.length - 1) {
-        this.activeStep++;
-      }
+      uni.navigateTo({
+				url: '../checking/index'
+			});
     },
     onDateChange(e) {
       this.selectedDate = e.detail.value;

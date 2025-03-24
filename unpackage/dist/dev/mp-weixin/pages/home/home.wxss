@@ -1,10 +1,81 @@
 
+.custom-tab-bar.data-v-8668dd8a {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+}
+.tab-item.data-v-8668dd8a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.tab-item.active .text.data-v-8668dd8a {
+  color: #007aff;
+}
+.icon.data-v-8668dd8a {
+  width: 40px;
+  height: 40px;
+}
+.text.data-v-8668dd8a {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 4px;
+}
+.scan-button.data-v-8668dd8a {
+  width: 80px;
+  height: 80px;
+  background-color: #007aff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 20px;
+}
+.scan-icon.data-v-8668dd8a {
+  width: 40px;
+  height: 40px;
+}
+
+
 .box.data-v-92bb8f34 {
   width: 100%;
   background: rgb(248 248 248);
 }
 .container.data-v-92bb8f34 {
   width: 100%;
+}
+.custom-navbar.data-v-92bb8f34 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* 导航栏高度 */
+  padding: 0 16px;
+}
+.custom-navbar-left.data-v-92bb8f34 {
+  display: flex;
+  align-items: center;
+}
+.avatar.data-v-92bb8f34 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.message.data-v-92bb8f34 {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
 }
 swiper.data-v-92bb8f34 {
   width: 100%;

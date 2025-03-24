@@ -172,17 +172,6 @@ module.exports = _construct, module.exports.__esModule = true, module.exports["d
 
 /***/ }),
 
-/***/ 150:
-/*!*************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/static/img/allHL.png ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
 /***/ 16:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
@@ -198,513 +187,6 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 161:
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// TODO(Babel 8): Remove this file.
-
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 162)();
-module.exports = runtime;
-
-/***/ }),
-
-/***/ 162:
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-function _regeneratorRuntime() {
-  "use strict";
-
-  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
-    return e;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  var t,
-    e = {},
-    r = Object.prototype,
-    n = r.hasOwnProperty,
-    o = Object.defineProperty || function (t, e, r) {
-      t[e] = r.value;
-    },
-    i = "function" == typeof Symbol ? Symbol : {},
-    a = i.iterator || "@@iterator",
-    c = i.asyncIterator || "@@asyncIterator",
-    u = i.toStringTag || "@@toStringTag";
-  function define(t, e, r) {
-    return Object.defineProperty(t, e, {
-      value: r,
-      enumerable: !0,
-      configurable: !0,
-      writable: !0
-    }), t[e];
-  }
-  try {
-    define({}, "");
-  } catch (t) {
-    define = function define(t, e, r) {
-      return t[e] = r;
-    };
-  }
-  function wrap(t, e, r, n) {
-    var i = e && e.prototype instanceof Generator ? e : Generator,
-      a = Object.create(i.prototype),
-      c = new Context(n || []);
-    return o(a, "_invoke", {
-      value: makeInvokeMethod(t, r, c)
-    }), a;
-  }
-  function tryCatch(t, e, r) {
-    try {
-      return {
-        type: "normal",
-        arg: t.call(e, r)
-      };
-    } catch (t) {
-      return {
-        type: "throw",
-        arg: t
-      };
-    }
-  }
-  e.wrap = wrap;
-  var h = "suspendedStart",
-    l = "suspendedYield",
-    f = "executing",
-    s = "completed",
-    y = {};
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-  var p = {};
-  define(p, a, function () {
-    return this;
-  });
-  var d = Object.getPrototypeOf,
-    v = d && d(d(values([])));
-  v && v !== r && n.call(v, a) && (p = v);
-  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
-  function defineIteratorMethods(t) {
-    ["next", "throw", "return"].forEach(function (e) {
-      define(t, e, function (t) {
-        return this._invoke(e, t);
-      });
-    });
-  }
-  function AsyncIterator(t, e) {
-    function invoke(r, o, i, a) {
-      var c = tryCatch(t[r], t, o);
-      if ("throw" !== c.type) {
-        var u = c.arg,
-          h = u.value;
-        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
-          invoke("next", t, i, a);
-        }, function (t) {
-          invoke("throw", t, i, a);
-        }) : e.resolve(h).then(function (t) {
-          u.value = t, i(u);
-        }, function (t) {
-          return invoke("throw", t, i, a);
-        });
-      }
-      a(c.arg);
-    }
-    var r;
-    o(this, "_invoke", {
-      value: function value(t, n) {
-        function callInvokeWithMethodAndArg() {
-          return new e(function (e, r) {
-            invoke(t, n, e, r);
-          });
-        }
-        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-      }
-    });
-  }
-  function makeInvokeMethod(e, r, n) {
-    var o = h;
-    return function (i, a) {
-      if (o === f) throw Error("Generator is already running");
-      if (o === s) {
-        if ("throw" === i) throw a;
-        return {
-          value: t,
-          done: !0
-        };
-      }
-      for (n.method = i, n.arg = a;;) {
-        var c = n.delegate;
-        if (c) {
-          var u = maybeInvokeDelegate(c, n);
-          if (u) {
-            if (u === y) continue;
-            return u;
-          }
-        }
-        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
-          if (o === h) throw o = s, n.arg;
-          n.dispatchException(n.arg);
-        } else "return" === n.method && n.abrupt("return", n.arg);
-        o = f;
-        var p = tryCatch(e, r, n);
-        if ("normal" === p.type) {
-          if (o = n.done ? s : l, p.arg === y) continue;
-          return {
-            value: p.arg,
-            done: n.done
-          };
-        }
-        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
-      }
-    };
-  }
-  function maybeInvokeDelegate(e, r) {
-    var n = r.method,
-      o = e.iterator[n];
-    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
-    var i = tryCatch(o, e.iterator, r.arg);
-    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
-    var a = i.arg;
-    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
-  }
-  function pushTryEntry(t) {
-    var e = {
-      tryLoc: t[0]
-    };
-    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
-  }
-  function resetTryEntry(t) {
-    var e = t.completion || {};
-    e.type = "normal", delete e.arg, t.completion = e;
-  }
-  function Context(t) {
-    this.tryEntries = [{
-      tryLoc: "root"
-    }], t.forEach(pushTryEntry, this), this.reset(!0);
-  }
-  function values(e) {
-    if (e || "" === e) {
-      var r = e[a];
-      if (r) return r.call(e);
-      if ("function" == typeof e.next) return e;
-      if (!isNaN(e.length)) {
-        var o = -1,
-          i = function next() {
-            for (; ++o < e.length;) {
-              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
-            }
-            return next.value = t, next.done = !0, next;
-          };
-        return i.next = i;
-      }
-    }
-    throw new TypeError(_typeof(e) + " is not iterable");
-  }
-  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
-    value: GeneratorFunctionPrototype,
-    configurable: !0
-  }), o(GeneratorFunctionPrototype, "constructor", {
-    value: GeneratorFunction,
-    configurable: !0
-  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
-    var e = "function" == typeof t && t.constructor;
-    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
-  }, e.mark = function (t) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
-  }, e.awrap = function (t) {
-    return {
-      __await: t
-    };
-  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
-    return this;
-  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
-    void 0 === i && (i = Promise);
-    var a = new AsyncIterator(wrap(t, r, n, o), i);
-    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
-      return t.done ? t.value : a.next();
-    });
-  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
-    return this;
-  }), define(g, "toString", function () {
-    return "[object Generator]";
-  }), e.keys = function (t) {
-    var e = Object(t),
-      r = [];
-    for (var n in e) {
-      r.push(n);
-    }
-    return r.reverse(), function next() {
-      for (; r.length;) {
-        var t = r.pop();
-        if (t in e) return next.value = t, next.done = !1, next;
-      }
-      return next.done = !0, next;
-    };
-  }, e.values = values, Context.prototype = {
-    constructor: Context,
-    reset: function reset(e) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
-        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
-      }
-    },
-    stop: function stop() {
-      this.done = !0;
-      var t = this.tryEntries[0].completion;
-      if ("throw" === t.type) throw t.arg;
-      return this.rval;
-    },
-    dispatchException: function dispatchException(e) {
-      if (this.done) throw e;
-      var r = this;
-      function handle(n, o) {
-        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
-      }
-      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
-        var i = this.tryEntries[o],
-          a = i.completion;
-        if ("root" === i.tryLoc) return handle("end");
-        if (i.tryLoc <= this.prev) {
-          var c = n.call(i, "catchLoc"),
-            u = n.call(i, "finallyLoc");
-          if (c && u) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          } else if (c) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-          } else {
-            if (!u) throw Error("try statement without catch or finally");
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          }
-        }
-      }
-    },
-    abrupt: function abrupt(t, e) {
-      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
-        var o = this.tryEntries[r];
-        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
-          var i = o;
-          break;
-        }
-      }
-      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
-      var a = i ? i.completion : {};
-      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
-    },
-    complete: function complete(t, e) {
-      if ("throw" === t.type) throw t.arg;
-      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
-    },
-    finish: function finish(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
-      }
-    },
-    "catch": function _catch(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.tryLoc === t) {
-          var n = r.completion;
-          if ("throw" === n.type) {
-            var o = n.arg;
-            resetTryEntry(r);
-          }
-          return o;
-        }
-      }
-      throw Error("illegal catch attempt");
-    },
-    delegateYield: function delegateYield(e, r, n) {
-      return this.delegate = {
-        iterator: values(e),
-        resultName: r,
-        nextLoc: n
-      }, "next" === this.method && (this.arg = t), y;
-    }
-  }, e;
-}
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 163:
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 164:
-/*!****************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/user.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.submitHotel = exports.getData = void 0;
-var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 165));
-var getData = function getData(params) {
-  return (0, _request.default)('/api/hotel/item', 'GET', params);
-};
-
-// 初始化提交
-exports.getData = getData;
-var submitHotel = function submitHotel(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/item',
-    method: 'POST',
-    data: data
-  });
-};
-exports.submitHotel = submitHotel;
-
-/***/ }),
-
-/***/ 165:
-/*!*******************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/request.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-// utils/request.js
-
-var baseUrl = 'http://101.43.59.126:30001'; // 替换为你的接口地址
-
-// 请求拦截器
-var requestInterceptor = function requestInterceptor(config) {
-  // 在请求发送之前做一些处理
-  var token = uni.getStorageSync('token'); // 从本地存储获取 token
-  if (token) {
-    config.header = _objectSpread(_objectSpread({}, config.header), {}, {
-      Authorization: "Bearer ".concat(token) // 添加 token 到请求头
-    });
-  }
-
-  return config;
-};
-
-// 响应拦截器
-var responseInterceptor = function responseInterceptor(response) {
-  // 对响应数据做一些处理
-  if (response.statusCode === 200) {
-    return response.data; // 返回响应数据
-  } else if (response.statusCode === 401) {
-    // Token 过期，跳转到登录页面
-    uni.showToast({
-      title: '登录已过期，请重新登录',
-      icon: 'none'
-    });
-    uni.navigateTo({
-      url: '/pages/login/login'
-    });
-    return Promise.reject(response.data);
-  } else {
-    // 处理其他错误状态码
-    uni.showToast({
-      title: "\u8BF7\u6C42\u5931\u8D25\uFF1A".concat(response.statusCode),
-      icon: 'none'
-    });
-    return Promise.reject(response.data);
-  }
-};
-
-// 封装 request 方法
-var request = function request(config) {
-  // 请求拦截
-  config = requestInterceptor(config);
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: baseUrl + config.url,
-      // 拼接完整 URL
-      method: config.method || 'GET',
-      // 默认 GET 请求
-      data: config.data || {},
-      // 请求参数
-      header: config.header || {},
-      // 请求头
-      success: function success(res) {
-        console.log(res, '8989');
-
-        // 响应拦截
-        resolve(responseInterceptor(res));
-      },
-      fail: function fail(err) {
-        // 请求失败处理
-        uni.showToast({
-          title: '网络请求失败',
-          icon: 'none'
-        });
-        reject(err);
-      }
-    });
-  });
-};
-var _default = request;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
@@ -727,43 +209,14 @@ module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, mo
 
 /***/ }),
 
-/***/ 174:
-/*!********************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/English.js ***!
-  \********************************************************/
+/***/ 178:
+/*!*************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/static/img/allHL.png ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var data = [{
-  total_iden: '001',
-  total_name: '合肥仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222111',
-  material_name: '新概念',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}, {
-  total_iden: '002',
-  total_name: '南京仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222112',
-  material_name: '视听说',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}];
-module.exports = {
-  data: data
-};
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -800,45 +253,36 @@ module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 191:
-/*!***************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/service.js ***!
-  \***************************************************/
+/***/ 196:
+/*!****************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/user.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
 
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-// 管理账号信息
-var USERS_KEY = 'USERS_KEY';
-var STATE_KEY = 'STATE_KEY';
-var getUsers = function getUsers() {
-  var ret = '';
-  ret = uni.getStorageSync(USERS_KEY);
-  if (!ret) {
-    ret = '[]';
-  }
-  return JSON.parse(ret);
+exports.submitHotel = exports.getData = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 76));
+var getData = function getData(params) {
+  return (0, _request.default)('/api/hotel/item', 'GET', params);
 };
-var addUser = function addUser(userInfo) {
-  var users = getUsers();
-  users.push({
-    account: userInfo.account,
-    password: userInfo.password
+
+// 初始化提交
+exports.getData = getData;
+var submitHotel = function submitHotel(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/item',
+    method: 'POST',
+    data: data
   });
-  uni.setStorageSync(USERS_KEY, JSON.stringify(users));
 };
-var _default = {
-  getUsers: getUsers,
-  addUser: addUser
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+exports.submitHotel = submitHotel;
 
 /***/ }),
 
@@ -3303,69 +2747,39 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 204:
-/*!******************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/purchaseMaterials.js ***!
-  \******************************************************************/
+/***/ 205:
+/*!********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/English.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 var data = [{
-  id: 1,
-  material_iden: '00100001',
-  material_name: '舞鞋',
-  material_specification: '31码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '208'
+  total_iden: '001',
+  total_name: '合肥仓',
+  orga_iden: '2020001',
+  orga_name: '合肥艺朝艺夕艺术有限公司',
+  material_iden: '222111',
+  material_name: '新概念',
+  material_specification: '1KG',
+  material_model: '书本',
+  material_meterage: '本',
+  ts_present_num: '200',
+  ts_present_price: '80',
+  ts_present_sum: '16000'
 }, {
-  id: 2,
-  material_iden: '00100002',
-  material_name: '舞鞋',
-  material_specification: '30码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
-}, {
-  id: 3,
-  material_iden: '00100003',
-  material_name: '毛笔',
-  material_specification: '狼毫',
-  material_model: '1234',
-  material_meterage: '支',
-  material_attr: '200'
-}, {
-  id: 4,
-  material_iden: '00100004',
-  material_name: '颜料',
-  material_specification: '水彩',
-  material_model: '1234',
-  material_meterage: '盒',
-  material_attr: '200'
-}, {
-  id: 5,
-  material_iden: '00100005',
-  material_name: '颜料',
-  material_specification: '油画棒',
-  material_model: '1234',
-  material_meterage: '盒',
-  material_attr: '200'
-}, {
-  id: 6,
-  material_iden: '00100006',
-  material_name: '演出服',
-  material_specification: 'x',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
-}, {
-  id: 7,
-  material_iden: '00100001',
-  material_name: '舞鞋',
-  material_specification: '29码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
+  total_iden: '002',
+  total_name: '南京仓',
+  orga_iden: '2020001',
+  orga_name: '合肥艺朝艺夕艺术有限公司',
+  material_iden: '222112',
+  material_name: '视听说',
+  material_specification: '1KG',
+  material_model: '书本',
+  material_meterage: '本',
+  ts_present_num: '200',
+  ts_present_price: '80',
+  ts_present_sum: '16000'
 }];
 module.exports = {
   data: data
@@ -3384,156 +2798,6 @@ function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 213:
-/*!**********************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/common/catUtil.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function formateDate(datetime, type) {
-  var year = datetime.getFullYear(),
-    month = ("0" + (datetime.getMonth() + 1)).slice(-2),
-    date = ("0" + datetime.getDate()).slice(-2),
-    hour = ("0" + datetime.getHours()).slice(-2),
-    minute = ("0" + datetime.getMinutes()).slice(-2),
-    second = ("0" + datetime.getSeconds()).slice(-2);
-  if (type === "Y-M-D h:min:s") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
-  } else if (type === "Y-M-D h:min") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute;
-  } else if (type === "Y-M-D") {
-    var result = year + "-" + month + "-" + date;
-  } else if (type === "Y") {
-    var result = year;
-  } else if (type === "Y-M") {
-    var result = year + "-" + month;
-  } else if (type === "M") {
-    var result = month;
-  } else if (type === "h:min:s") {
-    var result = hour + ":" + minute + ":" + second;
-  } else if (type === "h:min") {
-    var result = hour + ":" + minute;
-  } else if (type === "h") {
-    var result = hour;
-  } else if (type === "min") {
-    var result = minute;
-  } else if (type === "s") {
-    var result = second;
-  }
-  return result;
-}
-function formatNumber(value, pattern) {
-  if (value == null) return value;
-  var strarr = value ? value.toString().split('.') : ['0'];
-  var fmtarr = pattern ? pattern.split('.') : [''];
-  var retstr = '';
-  // 整数部分   
-  var str = strarr[0];
-  var fmt = fmtarr[0];
-  var i = str.length - 1;
-  var comma = false;
-  for (var f = fmt.length - 1; f >= 0; f--) {
-    switch (fmt.substr(f, 1)) {
-      case '#':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;
-        break;
-      case '0':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;else retstr = '0' + retstr;
-        break;
-      case ',':
-        comma = true;
-        retstr = ',' + retstr;
-        break;
-    }
-  }
-  if (i >= 0) {
-    if (comma) {
-      var l = str.length;
-      for (; i >= 0; i--) {
-        retstr = str.substr(i, 1) + retstr;
-        if (i > 0 && (l - i) % 3 == 0) retstr = ',' + retstr;
-      }
-    } else retstr = str.substr(0, i + 1) + retstr;
-  }
-  retstr = retstr + '.';
-  // 处理小数部分   
-  str = strarr.length > 1 ? strarr[1] : '';
-  fmt = fmtarr.length > 1 ? fmtarr[1] : '';
-  i = 0;
-  for (var _f = 0; _f < fmt.length; _f++) {
-    switch (fmt.substr(_f, 1)) {
-      case '#':
-        if (i < str.length) retstr += str.substr(i++, 1);
-        break;
-      case '0':
-        if (i < str.length) retstr += str.substr(i++, 1);else retstr += '0';
-        break;
-    }
-  }
-  return retstr.replace(/^,+/, '').replace(/\.$/, '');
-}
-//格式化金额
-function catformatMoney(value, pattern) {
-  if (!value || value == 0) return 0;
-  var sign = value < 0 ? '-' : '';
-  return sign + formatNumber(Math.abs(value), pattern || '#,##0.00');
-}
-function formatMoneyAuto(value) {
-  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '#,##0.00';
-  var unit = "元";
-  if (value) {
-    var unitNum = {
-      // '千': 1000.00,
-      '万': 10000.00,
-      '千万': 10000000.00,
-      '亿': 100000000.00,
-      '百亿': 10000000000.00
-    };
-    var unitCount = {
-      // "4": '千',
-      "5": '万',
-      "8": '千万',
-      "9": '亿',
-      "11": '百亿'
-    };
-    var count = 0;
-    var money = value;
-    while (money >= 1) {
-      money = money / 10;
-      count++;
-    }
-    var tmp = unitCount[count + ""];
-    while (count >= 4 && tmp === undefined) {
-      tmp = unitCount[--count + ""];
-    }
-    unit = tmp === undefined ? unit : tmp;
-    value = count >= 4 ? value / unitNum[unit] : value;
-  }
-  return formatMoney(value, pattern) + unit || "";
-}
-// 格式化文件大小
-function formatFileSize(value) {
-  if (null == value || value == '') {
-    return "0 Bytes";
-  }
-  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
-  var index = 0;
-  var srcsize = parseFloat(value);
-  index = Math.floor(Math.log(srcsize) / Math.log(1024));
-  var size = srcsize / Math.pow(1024, index);
-  size = size.toFixed(2);
-  return size + unitArr[index];
-}
-var emptyPatt = /(^$)|(^[\u4E00-\u9FA5a-zA-Z0-9,，,.,!,@,#,$,%,^,&,*,(,),-,+,/,\\,!,￥,……,*,（,）,~,·,]{1,250}$)/;
-var phonePatt = /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-8])|(9[1,8,9]))\d{8}$/;
-var cardPatt = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-module.exports = {
-  formateDate: formateDate
-};
 
 /***/ }),
 
@@ -4074,6 +3338,48 @@ function resolveLocaleChain(locale) {
 
 /***/ }),
 
+/***/ 222:
+/*!***************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/service.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 管理账号信息
+var USERS_KEY = 'USERS_KEY';
+var STATE_KEY = 'STATE_KEY';
+var getUsers = function getUsers() {
+  var ret = '';
+  ret = uni.getStorageSync(USERS_KEY);
+  if (!ret) {
+    ret = '[]';
+  }
+  return JSON.parse(ret);
+};
+var addUser = function addUser(userInfo) {
+  var users = getUsers();
+  users.push({
+    account: userInfo.account,
+    password: userInfo.password
+  });
+  uni.setStorageSync(USERS_KEY, JSON.stringify(users));
+};
+var _default = {
+  getUsers: getUsers,
+  addUser: addUser
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
 /***/ 23:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -4087,6 +3393,76 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 235:
+/*!******************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/purchaseMaterials.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  material_iden: '00100001',
+  material_name: '舞鞋',
+  material_specification: '31码',
+  material_model: '1234',
+  material_meterage: '双',
+  material_attr: '208'
+}, {
+  id: 2,
+  material_iden: '00100002',
+  material_name: '舞鞋',
+  material_specification: '30码',
+  material_model: '1234',
+  material_meterage: '双',
+  material_attr: '200'
+}, {
+  id: 3,
+  material_iden: '00100003',
+  material_name: '毛笔',
+  material_specification: '狼毫',
+  material_model: '1234',
+  material_meterage: '支',
+  material_attr: '200'
+}, {
+  id: 4,
+  material_iden: '00100004',
+  material_name: '颜料',
+  material_specification: '水彩',
+  material_model: '1234',
+  material_meterage: '盒',
+  material_attr: '200'
+}, {
+  id: 5,
+  material_iden: '00100005',
+  material_name: '颜料',
+  material_specification: '油画棒',
+  material_model: '1234',
+  material_meterage: '盒',
+  material_attr: '200'
+}, {
+  id: 6,
+  material_iden: '00100006',
+  material_name: '演出服',
+  material_specification: 'x',
+  material_model: '1234',
+  material_meterage: '双',
+  material_attr: '200'
+}, {
+  id: 7,
+  material_iden: '00100001',
+  material_name: '舞鞋',
+  material_specification: '29码',
+  material_model: '1234',
+  material_meterage: '双',
+  material_attr: '200'
+}];
+module.exports = {
+  data: data
+};
 
 /***/ }),
 
@@ -4116,6 +3492,156 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 244:
+/*!**********************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/common/catUtil.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function formateDate(datetime, type) {
+  var year = datetime.getFullYear(),
+    month = ("0" + (datetime.getMonth() + 1)).slice(-2),
+    date = ("0" + datetime.getDate()).slice(-2),
+    hour = ("0" + datetime.getHours()).slice(-2),
+    minute = ("0" + datetime.getMinutes()).slice(-2),
+    second = ("0" + datetime.getSeconds()).slice(-2);
+  if (type === "Y-M-D h:min:s") {
+    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  } else if (type === "Y-M-D h:min") {
+    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute;
+  } else if (type === "Y-M-D") {
+    var result = year + "-" + month + "-" + date;
+  } else if (type === "Y") {
+    var result = year;
+  } else if (type === "Y-M") {
+    var result = year + "-" + month;
+  } else if (type === "M") {
+    var result = month;
+  } else if (type === "h:min:s") {
+    var result = hour + ":" + minute + ":" + second;
+  } else if (type === "h:min") {
+    var result = hour + ":" + minute;
+  } else if (type === "h") {
+    var result = hour;
+  } else if (type === "min") {
+    var result = minute;
+  } else if (type === "s") {
+    var result = second;
+  }
+  return result;
+}
+function formatNumber(value, pattern) {
+  if (value == null) return value;
+  var strarr = value ? value.toString().split('.') : ['0'];
+  var fmtarr = pattern ? pattern.split('.') : [''];
+  var retstr = '';
+  // 整数部分   
+  var str = strarr[0];
+  var fmt = fmtarr[0];
+  var i = str.length - 1;
+  var comma = false;
+  for (var f = fmt.length - 1; f >= 0; f--) {
+    switch (fmt.substr(f, 1)) {
+      case '#':
+        if (i >= 0) retstr = str.substr(i--, 1) + retstr;
+        break;
+      case '0':
+        if (i >= 0) retstr = str.substr(i--, 1) + retstr;else retstr = '0' + retstr;
+        break;
+      case ',':
+        comma = true;
+        retstr = ',' + retstr;
+        break;
+    }
+  }
+  if (i >= 0) {
+    if (comma) {
+      var l = str.length;
+      for (; i >= 0; i--) {
+        retstr = str.substr(i, 1) + retstr;
+        if (i > 0 && (l - i) % 3 == 0) retstr = ',' + retstr;
+      }
+    } else retstr = str.substr(0, i + 1) + retstr;
+  }
+  retstr = retstr + '.';
+  // 处理小数部分   
+  str = strarr.length > 1 ? strarr[1] : '';
+  fmt = fmtarr.length > 1 ? fmtarr[1] : '';
+  i = 0;
+  for (var _f = 0; _f < fmt.length; _f++) {
+    switch (fmt.substr(_f, 1)) {
+      case '#':
+        if (i < str.length) retstr += str.substr(i++, 1);
+        break;
+      case '0':
+        if (i < str.length) retstr += str.substr(i++, 1);else retstr += '0';
+        break;
+    }
+  }
+  return retstr.replace(/^,+/, '').replace(/\.$/, '');
+}
+//格式化金额
+function catformatMoney(value, pattern) {
+  if (!value || value == 0) return 0;
+  var sign = value < 0 ? '-' : '';
+  return sign + formatNumber(Math.abs(value), pattern || '#,##0.00');
+}
+function formatMoneyAuto(value) {
+  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '#,##0.00';
+  var unit = "元";
+  if (value) {
+    var unitNum = {
+      // '千': 1000.00,
+      '万': 10000.00,
+      '千万': 10000000.00,
+      '亿': 100000000.00,
+      '百亿': 10000000000.00
+    };
+    var unitCount = {
+      // "4": '千',
+      "5": '万',
+      "8": '千万',
+      "9": '亿',
+      "11": '百亿'
+    };
+    var count = 0;
+    var money = value;
+    while (money >= 1) {
+      money = money / 10;
+      count++;
+    }
+    var tmp = unitCount[count + ""];
+    while (count >= 4 && tmp === undefined) {
+      tmp = unitCount[--count + ""];
+    }
+    unit = tmp === undefined ? unit : tmp;
+    value = count >= 4 ? value / unitNum[unit] : value;
+  }
+  return formatMoney(value, pattern) + unit || "";
+}
+// 格式化文件大小
+function formatFileSize(value) {
+  if (null == value || value == '') {
+    return "0 Bytes";
+  }
+  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
+  var index = 0;
+  var srcsize = parseFloat(value);
+  index = Math.floor(Math.log(srcsize) / Math.log(1024));
+  var size = srcsize / Math.pow(1024, index);
+  size = size.toFixed(2);
+  return size + unitArr[index];
+}
+var emptyPatt = /(^$)|(^[\u4E00-\u9FA5a-zA-Z0-9,，,.,!,@,#,$,%,^,&,*,(,),-,+,/,\\,!,￥,……,*,（,）,~,·,]{1,250}$)/;
+var phonePatt = /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-8])|(9[1,8,9]))\d{8}$/;
+var cardPatt = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
+module.exports = {
+  formateDate: formateDate
+};
 
 /***/ }),
 
@@ -10201,7 +9727,18 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 252:
+/***/ 26:
+/*!***************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages.json ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 283:
 /*!***********************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/outDetails.js ***!
   \***********************************************************/
@@ -10245,18 +9782,38 @@ module.exports = {
 
 /***/ }),
 
-/***/ 26:
-/*!***************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages.json ***!
-  \***************************************************/
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
 
-/***/ 269:
+/***/ 300:
 /*!************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/sellDetails.js ***!
   \************************************************************/
@@ -10303,7 +9860,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 278:
+/***/ 309:
 /*!****************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/exchangeDetails.js ***!
   \****************************************************************/
@@ -10344,37 +9901,6 @@ var data = [{
 module.exports = {
   data: data
 };
-
-/***/ }),
-
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
 
 /***/ }),
 
@@ -11896,7 +11422,23 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 376:
+/***/ 4:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 431:
 /*!***********************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/evan-icons/icons.js ***!
   \***********************************************************************/
@@ -12702,23 +12244,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 4:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 405:
+/***/ 453:
 /*!***********************************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
   \***********************************************************************************************************/
@@ -12733,9 +12259,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 406));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 407));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 408));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 454));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 455));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 456));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -12745,7 +12271,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 406:
+/***/ 454:
 /*!**********************************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
   \**********************************************************************************************************/
@@ -12756,7 +12282,7 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-
 
 /***/ }),
 
-/***/ 407:
+/***/ 455:
 /*!***************************************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
   \***************************************************************************************************************/
@@ -12767,7 +12293,7 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-
 
 /***/ }),
 
-/***/ 408:
+/***/ 456:
 /*!***************************************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
   \***************************************************************************************************************/
@@ -12778,7 +12304,129 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-
 
 /***/ }),
 
-/***/ 458:
+/***/ 478:
+/*!***********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 479));
+var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 480));
+var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 481));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 482));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 483));
+var _default = {
+  en: _en.default,
+  es: _es.default,
+  fr: _fr.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 479:
+/*!**********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
+  \**********************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-pagination.nextText\":\"next\",\"uni-pagination.piecePerPage\":\"piece/page\"}");
+
+/***/ }),
+
+/***/ 480:
+/*!**********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
+  \**********************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pagination.nextText\":\"prxima\",\"uni-pagination.piecePerPage\":\"Art��culo/P��gina\"}");
+
+/***/ }),
+
+/***/ 481:
+/*!**********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
+  \**********************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni-pagination.nextText\":\"suivante\",\"uni-pagination.piecePerPage\":\"Articles/Pages\"}");
+
+/***/ }),
+
+/***/ 482:
+/*!***************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
+  \***************************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pagination.nextText\":\"下一页\",\"uni-pagination.piecePerPage\":\"条/页\"}");
+
+/***/ }),
+
+/***/ 483:
+/*!***************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
+  \***************************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pagination.nextText\":\"下一頁\",\"uni-pagination.piecePerPage\":\"條/頁\"}");
+
+/***/ }),
+
+/***/ 5:
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 51:
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/accunt.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = [{
+  id: 1,
+  user_id: '2017214879',
+  user_pwd: '2017214879'
+}];
+module.exports = {
+  data: data
+};
+
+/***/ }),
+
+/***/ 519:
 /*!***********************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \***********************************************************************************************/
@@ -12793,11 +12441,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 161));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 459));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 460));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 462));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 163));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 72));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 520));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 521));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 523));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 74));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -13470,7 +13118,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 459:
+/***/ 520:
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -13498,7 +13146,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 
 /***/ }),
 
-/***/ 460:
+/***/ 521:
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -13506,7 +13154,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 461);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 522);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -13519,7 +13167,7 @@ module.exports = _possibleConstructorReturn, module.exports.__esModule = true, m
 
 /***/ }),
 
-/***/ 461:
+/***/ 522:
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -13536,7 +13184,7 @@ module.exports = _assertThisInitialized, module.exports.__esModule = true, modul
 
 /***/ }),
 
-/***/ 462:
+/***/ 523:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -13553,7 +13201,7 @@ module.exports = _getPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 463:
+/***/ 524:
 /*!********************************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \********************************************************************************************/
@@ -13889,43 +13537,7 @@ exports.isEqual = isEqual;
 
 /***/ }),
 
-/***/ 5:
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 51:
-/*!*******************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/accunt.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  user_id: '2017214879',
-  user_pwd: '2017214879'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 520:
+/***/ 581:
 /*!**********************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/province.js ***!
   \**********************************************************************************/
@@ -14048,7 +13660,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 521:
+/***/ 582:
 /*!******************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/city.js ***!
   \******************************************************************************/
@@ -15170,7 +14782,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 522:
+/***/ 583:
 /*!******************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/city-data/area.js ***!
   \******************************************************************************/
@@ -24290,7 +23902,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 523:
+/***/ 584:
 /*!************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/w-picker/w-picker.js ***!
   \************************************************************************/
@@ -25082,7 +24694,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 531:
+/***/ 592:
 /*!*******************************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/style/picker.scss ***!
   \*******************************************************************************/
@@ -25095,7 +24707,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 532:
+/***/ 593:
 /*!**********************************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/utils.js ***!
   \**********************************************************************/
@@ -25117,154 +24729,6 @@ function getIndicatorHeight() {
   return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100));
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
-/***/ 545:
-/*!****************************************************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
-  \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createAnimation = createAnimation;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-// const defaultOption = {
-// 	duration: 300,
-// 	timingFunction: 'linear',
-// 	delay: 0,
-// 	transformOrigin: '50% 50% 0'
-// }
-var MPAnimation = /*#__PURE__*/function () {
-  function MPAnimation(options, _this) {
-    (0, _classCallCheck2.default)(this, MPAnimation);
-    this.options = options;
-    // 在iOS10+QQ小程序平台下，传给原生的对象一定是个普通对象而不是Proxy对象，否则会报parameter should be Object instead of ProxyObject的错误
-    this.animation = uni.createAnimation(_objectSpread({}, options));
-    this.currentStepAnimates = {};
-    this.next = 0;
-    this.$ = _this;
-  }
-  (0, _createClass2.default)(MPAnimation, [{
-    key: "_nvuePushAnimates",
-    value: function _nvuePushAnimates(type, args) {
-      var aniObj = this.currentStepAnimates[this.next];
-      var styles = {};
-      if (!aniObj) {
-        styles = {
-          styles: {},
-          config: {}
-        };
-      } else {
-        styles = aniObj;
-      }
-      if (animateTypes1.includes(type)) {
-        if (!styles.styles.transform) {
-          styles.styles.transform = '';
-        }
-        var unit = '';
-        if (type === 'rotate') {
-          unit = 'deg';
-        }
-        styles.styles.transform += "".concat(type, "(").concat(args + unit, ") ");
-      } else {
-        styles.styles[type] = "".concat(args);
-      }
-      this.currentStepAnimates[this.next] = styles;
-    }
-  }, {
-    key: "_animateRun",
-    value: function _animateRun() {
-      var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var ref = this.$.$refs['ani'].ref;
-      if (!ref) return;
-      return new Promise(function (resolve, reject) {
-        nvueAnimation.transition(ref, _objectSpread({
-          styles: styles
-        }, config), function (res) {
-          resolve();
-        });
-      });
-    }
-  }, {
-    key: "_nvueNextAnimate",
-    value: function _nvueNextAnimate(animates) {
-      var _this2 = this;
-      var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      var fn = arguments.length > 2 ? arguments[2] : undefined;
-      var obj = animates[step];
-      if (obj) {
-        var styles = obj.styles,
-          config = obj.config;
-        this._animateRun(styles, config).then(function () {
-          step += 1;
-          _this2._nvueNextAnimate(animates, step, fn);
-        });
-      } else {
-        this.currentStepAnimates = {};
-        typeof fn === 'function' && fn();
-        this.isEnd = true;
-      }
-    }
-  }, {
-    key: "step",
-    value: function step() {
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      this.animation.step(config);
-      return this;
-    }
-  }, {
-    key: "run",
-    value: function run(fn) {
-      this.$.animationData = this.animation.export();
-      this.$.timer = setTimeout(function () {
-        typeof fn === 'function' && fn();
-      }, this.$.durationTime);
-    }
-  }]);
-  return MPAnimation;
-}();
-var animateTypes1 = ['matrix', 'matrix3d', 'rotate', 'rotate3d', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scale3d', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'translate', 'translate3d', 'translateX', 'translateY', 'translateZ'];
-var animateTypes2 = ['opacity', 'backgroundColor'];
-var animateTypes3 = ['width', 'height', 'left', 'right', 'top', 'bottom'];
-animateTypes1.concat(animateTypes2, animateTypes3).forEach(function (type) {
-  MPAnimation.prototype[type] = function () {
-    var _this$animation;
-    (_this$animation = this.animation)[type].apply(_this$animation, arguments);
-    return this;
-  };
-});
-function createAnimation(option, _this) {
-  if (!_this) return;
-  clearTimeout(_this.timer);
-  return new MPAnimation(option, _this);
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
-/***/ 572:
-/*!************************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/style/picker-item.scss ***!
-  \************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
 
 /***/ }),
 
@@ -25521,6 +24985,141 @@ module.exports = {
 
 /***/ }),
 
+/***/ 627:
+/*!****************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createAnimation = createAnimation;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+// const defaultOption = {
+// 	duration: 300,
+// 	timingFunction: 'linear',
+// 	delay: 0,
+// 	transformOrigin: '50% 50% 0'
+// }
+var MPAnimation = /*#__PURE__*/function () {
+  function MPAnimation(options, _this) {
+    (0, _classCallCheck2.default)(this, MPAnimation);
+    this.options = options;
+    // 在iOS10+QQ小程序平台下，传给原生的对象一定是个普通对象而不是Proxy对象，否则会报parameter should be Object instead of ProxyObject的错误
+    this.animation = uni.createAnimation(_objectSpread({}, options));
+    this.currentStepAnimates = {};
+    this.next = 0;
+    this.$ = _this;
+  }
+  (0, _createClass2.default)(MPAnimation, [{
+    key: "_nvuePushAnimates",
+    value: function _nvuePushAnimates(type, args) {
+      var aniObj = this.currentStepAnimates[this.next];
+      var styles = {};
+      if (!aniObj) {
+        styles = {
+          styles: {},
+          config: {}
+        };
+      } else {
+        styles = aniObj;
+      }
+      if (animateTypes1.includes(type)) {
+        if (!styles.styles.transform) {
+          styles.styles.transform = '';
+        }
+        var unit = '';
+        if (type === 'rotate') {
+          unit = 'deg';
+        }
+        styles.styles.transform += "".concat(type, "(").concat(args + unit, ") ");
+      } else {
+        styles.styles[type] = "".concat(args);
+      }
+      this.currentStepAnimates[this.next] = styles;
+    }
+  }, {
+    key: "_animateRun",
+    value: function _animateRun() {
+      var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var ref = this.$.$refs['ani'].ref;
+      if (!ref) return;
+      return new Promise(function (resolve, reject) {
+        nvueAnimation.transition(ref, _objectSpread({
+          styles: styles
+        }, config), function (res) {
+          resolve();
+        });
+      });
+    }
+  }, {
+    key: "_nvueNextAnimate",
+    value: function _nvueNextAnimate(animates) {
+      var _this2 = this;
+      var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var fn = arguments.length > 2 ? arguments[2] : undefined;
+      var obj = animates[step];
+      if (obj) {
+        var styles = obj.styles,
+          config = obj.config;
+        this._animateRun(styles, config).then(function () {
+          step += 1;
+          _this2._nvueNextAnimate(animates, step, fn);
+        });
+      } else {
+        this.currentStepAnimates = {};
+        typeof fn === 'function' && fn();
+        this.isEnd = true;
+      }
+    }
+  }, {
+    key: "step",
+    value: function step() {
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      this.animation.step(config);
+      return this;
+    }
+  }, {
+    key: "run",
+    value: function run(fn) {
+      this.$.animationData = this.animation.export();
+      this.$.timer = setTimeout(function () {
+        typeof fn === 'function' && fn();
+      }, this.$.durationTime);
+    }
+  }]);
+  return MPAnimation;
+}();
+var animateTypes1 = ['matrix', 'matrix3d', 'rotate', 'rotate3d', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scale3d', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'translate', 'translate3d', 'translateX', 'translateY', 'translateZ'];
+var animateTypes2 = ['opacity', 'backgroundColor'];
+var animateTypes3 = ['width', 'height', 'left', 'right', 'top', 'bottom'];
+animateTypes1.concat(animateTypes2, animateTypes3).forEach(function (type) {
+  MPAnimation.prototype[type] = function () {
+    var _this$animation;
+    (_this$animation = this.animation)[type].apply(_this$animation, arguments);
+    return this;
+  };
+});
+function createAnimation(option, _this) {
+  if (!_this) return;
+  clearTimeout(_this.timer);
+  return new MPAnimation(option, _this);
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
 /***/ 63:
 /*!*********************************************************!*\
   !*** /Users/edy/Desktop/未命名文件夹/uniapp/data/exchange.js ***!
@@ -25568,6 +25167,19 @@ module.exports = {
 
 /***/ }),
 
+/***/ 661:
+/*!************************************************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/components/lb-picker/style/picker-item.scss ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
 /***/ 7:
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
@@ -25605,6 +25217,644 @@ function _iterableToArrayLimit(r, l) {
   }
 }
 module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 72:
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// TODO(Babel 8): Remove this file.
+
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 73)();
+module.exports = runtime;
+
+/***/ }),
+
+/***/ 73:
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+    return e;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  var t,
+    e = {},
+    r = Object.prototype,
+    n = r.hasOwnProperty,
+    o = Object.defineProperty || function (t, e, r) {
+      t[e] = r.value;
+    },
+    i = "function" == typeof Symbol ? Symbol : {},
+    a = i.iterator || "@@iterator",
+    c = i.asyncIterator || "@@asyncIterator",
+    u = i.toStringTag || "@@toStringTag";
+  function define(t, e, r) {
+    return Object.defineProperty(t, e, {
+      value: r,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), t[e];
+  }
+  try {
+    define({}, "");
+  } catch (t) {
+    define = function define(t, e, r) {
+      return t[e] = r;
+    };
+  }
+  function wrap(t, e, r, n) {
+    var i = e && e.prototype instanceof Generator ? e : Generator,
+      a = Object.create(i.prototype),
+      c = new Context(n || []);
+    return o(a, "_invoke", {
+      value: makeInvokeMethod(t, r, c)
+    }), a;
+  }
+  function tryCatch(t, e, r) {
+    try {
+      return {
+        type: "normal",
+        arg: t.call(e, r)
+      };
+    } catch (t) {
+      return {
+        type: "throw",
+        arg: t
+      };
+    }
+  }
+  e.wrap = wrap;
+  var h = "suspendedStart",
+    l = "suspendedYield",
+    f = "executing",
+    s = "completed",
+    y = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var p = {};
+  define(p, a, function () {
+    return this;
+  });
+  var d = Object.getPrototypeOf,
+    v = d && d(d(values([])));
+  v && v !== r && n.call(v, a) && (p = v);
+  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+  function defineIteratorMethods(t) {
+    ["next", "throw", "return"].forEach(function (e) {
+      define(t, e, function (t) {
+        return this._invoke(e, t);
+      });
+    });
+  }
+  function AsyncIterator(t, e) {
+    function invoke(r, o, i, a) {
+      var c = tryCatch(t[r], t, o);
+      if ("throw" !== c.type) {
+        var u = c.arg,
+          h = u.value;
+        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
+          invoke("next", t, i, a);
+        }, function (t) {
+          invoke("throw", t, i, a);
+        }) : e.resolve(h).then(function (t) {
+          u.value = t, i(u);
+        }, function (t) {
+          return invoke("throw", t, i, a);
+        });
+      }
+      a(c.arg);
+    }
+    var r;
+    o(this, "_invoke", {
+      value: function value(t, n) {
+        function callInvokeWithMethodAndArg() {
+          return new e(function (e, r) {
+            invoke(t, n, e, r);
+          });
+        }
+        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(e, r, n) {
+    var o = h;
+    return function (i, a) {
+      if (o === f) throw Error("Generator is already running");
+      if (o === s) {
+        if ("throw" === i) throw a;
+        return {
+          value: t,
+          done: !0
+        };
+      }
+      for (n.method = i, n.arg = a;;) {
+        var c = n.delegate;
+        if (c) {
+          var u = maybeInvokeDelegate(c, n);
+          if (u) {
+            if (u === y) continue;
+            return u;
+          }
+        }
+        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
+          if (o === h) throw o = s, n.arg;
+          n.dispatchException(n.arg);
+        } else "return" === n.method && n.abrupt("return", n.arg);
+        o = f;
+        var p = tryCatch(e, r, n);
+        if ("normal" === p.type) {
+          if (o = n.done ? s : l, p.arg === y) continue;
+          return {
+            value: p.arg,
+            done: n.done
+          };
+        }
+        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(e, r) {
+    var n = r.method,
+      o = e.iterator[n];
+    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
+    var i = tryCatch(o, e.iterator, r.arg);
+    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
+    var a = i.arg;
+    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
+  }
+  function pushTryEntry(t) {
+    var e = {
+      tryLoc: t[0]
+    };
+    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
+  }
+  function resetTryEntry(t) {
+    var e = t.completion || {};
+    e.type = "normal", delete e.arg, t.completion = e;
+  }
+  function Context(t) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], t.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(e) {
+    if (e || "" === e) {
+      var r = e[a];
+      if (r) return r.call(e);
+      if ("function" == typeof e.next) return e;
+      if (!isNaN(e.length)) {
+        var o = -1,
+          i = function next() {
+            for (; ++o < e.length;) {
+              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
+            }
+            return next.value = t, next.done = !0, next;
+          };
+        return i.next = i;
+      }
+    }
+    throw new TypeError(_typeof(e) + " is not iterable");
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), o(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
+    var e = "function" == typeof t && t.constructor;
+    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
+  }, e.mark = function (t) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
+  }, e.awrap = function (t) {
+    return {
+      __await: t
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
+    return this;
+  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
+    void 0 === i && (i = Promise);
+    var a = new AsyncIterator(wrap(t, r, n, o), i);
+    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
+      return t.done ? t.value : a.next();
+    });
+  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
+    return this;
+  }), define(g, "toString", function () {
+    return "[object Generator]";
+  }), e.keys = function (t) {
+    var e = Object(t),
+      r = [];
+    for (var n in e) {
+      r.push(n);
+    }
+    return r.reverse(), function next() {
+      for (; r.length;) {
+        var t = r.pop();
+        if (t in e) return next.value = t, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, e.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function reset(e) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
+        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
+      }
+    },
+    stop: function stop() {
+      this.done = !0;
+      var t = this.tryEntries[0].completion;
+      if ("throw" === t.type) throw t.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(e) {
+      if (this.done) throw e;
+      var r = this;
+      function handle(n, o) {
+        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
+      }
+      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
+        var i = this.tryEntries[o],
+          a = i.completion;
+        if ("root" === i.tryLoc) return handle("end");
+        if (i.tryLoc <= this.prev) {
+          var c = n.call(i, "catchLoc"),
+            u = n.call(i, "finallyLoc");
+          if (c && u) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          } else if (c) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+          } else {
+            if (!u) throw Error("try statement without catch or finally");
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function abrupt(t, e) {
+      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+        var o = this.tryEntries[r];
+        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
+          var i = o;
+          break;
+        }
+      }
+      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
+      var a = i ? i.completion : {};
+      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
+    },
+    complete: function complete(t, e) {
+      if ("throw" === t.type) throw t.arg;
+      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
+    },
+    finish: function finish(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
+      }
+    },
+    "catch": function _catch(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.tryLoc === t) {
+          var n = r.completion;
+          if ("throw" === n.type) {
+            var o = n.arg;
+            resetTryEntry(r);
+          }
+          return o;
+        }
+      }
+      throw Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(e, r, n) {
+      return this.delegate = {
+        iterator: values(e),
+        resultName: r,
+        nextLoc: n
+      }, "next" === this.method && (this.arg = t), y;
+    }
+  }, e;
+}
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 74:
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 75:
+/*!****************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/work.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.updateWarehouse = exports.updateStockTaking = exports.updateHotelClass = exports.updateGoodsItme = exports.submitHotel = exports.getWarehouse = exports.getStockTaking = exports.getHotelClass = exports.getGoodsItme = exports.deleteWarehouse = exports.deleteHotelClass = exports.deleteGoodsItme = exports.addWarehouse = exports.addStockTaking = exports.addHotelClass = exports.addGoodsItme = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 76));
+// 获取分类
+var getHotelClass = function getHotelClass(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/class',
+    method: 'GET',
+    data: data
+  });
+};
+// 新增分类
+exports.getHotelClass = getHotelClass;
+var addHotelClass = function addHotelClass(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/class',
+    method: 'POST',
+    data: data
+  });
+};
+// 修改分类
+exports.addHotelClass = addHotelClass;
+var updateHotelClass = function updateHotelClass(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/class',
+    method: 'PUT',
+    data: data
+  });
+};
+// 删除分类
+exports.updateHotelClass = updateHotelClass;
+var deleteHotelClass = function deleteHotelClass(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/class',
+    method: 'DELETE',
+    data: data
+  });
+};
+// 获取仓库列表
+exports.deleteHotelClass = deleteHotelClass;
+var getWarehouse = function getWarehouse(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/warehouse',
+    method: 'GET',
+    data: data
+  });
+};
+// 修改仓库
+exports.getWarehouse = getWarehouse;
+var updateWarehouse = function updateWarehouse(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/warehouse',
+    method: 'PUT',
+    data: data
+  });
+};
+// 新增仓库
+exports.updateWarehouse = updateWarehouse;
+var addWarehouse = function addWarehouse(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/warehouse',
+    method: 'POST',
+    data: data
+  });
+};
+// 删除仓库
+exports.addWarehouse = addWarehouse;
+var deleteWarehouse = function deleteWarehouse(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/warehouse',
+    method: 'DELETE',
+    data: data
+  });
+};
+// 删除商品
+exports.deleteWarehouse = deleteWarehouse;
+var deleteGoodsItme = function deleteGoodsItme(data) {
+  return (0, _request.default)({
+    url: '/api/goods/item',
+    method: 'DELETE',
+    data: data
+  });
+};
+// 获取商品列表
+exports.deleteGoodsItme = deleteGoodsItme;
+var getGoodsItme = function getGoodsItme(data) {
+  return (0, _request.default)({
+    url: '/api/goods/item',
+    method: 'GET',
+    data: data
+  });
+};
+// 修改商品
+exports.getGoodsItme = getGoodsItme;
+var updateGoodsItme = function updateGoodsItme(data) {
+  return (0, _request.default)({
+    url: '/api/goods/item',
+    method: 'PUT',
+    data: data
+  });
+};
+// 新增商品
+exports.updateGoodsItme = updateGoodsItme;
+var addGoodsItme = function addGoodsItme(data) {
+  return (0, _request.default)({
+    url: '/api/goods/item',
+    method: 'POST',
+    data: data
+  });
+};
+
+// 初始化提交
+exports.addGoodsItme = addGoodsItme;
+var submitHotel = function submitHotel(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/item',
+    method: 'POST',
+    data: data
+  });
+};
+// 新增盘点
+exports.submitHotel = submitHotel;
+var addStockTaking = function addStockTaking(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking',
+    method: 'POST',
+    data: data
+  });
+};
+// 修改盘点
+exports.addStockTaking = addStockTaking;
+var updateStockTaking = function updateStockTaking(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking',
+    method: 'PUT',
+    data: data
+  });
+};
+// 获取盘点
+exports.updateStockTaking = updateStockTaking;
+var getStockTaking = function getStockTaking(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking',
+    method: 'GET',
+    data: data
+  });
+};
+exports.getStockTaking = getStockTaking;
+
+/***/ }),
+
+/***/ 76:
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/未命名文件夹/uniapp/api/request.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+// utils/request.js
+
+var baseUrl = 'http://101.43.59.126:30001'; // 替换为你的接口地址
+
+// 请求拦截器
+var requestInterceptor = function requestInterceptor(config) {
+  // 在请求发送之前做一些处理
+  var token = uni.getStorageSync('token'); // 从本地存储获取 token
+  if (token) {
+    config.header = _objectSpread(_objectSpread({}, config.header), {}, {
+      Authorization: "Bearer ".concat(token) // 添加 token 到请求头
+    });
+  }
+
+  return config;
+};
+
+// 响应拦截器
+var responseInterceptor = function responseInterceptor(response) {
+  // 对响应数据做一些处理
+  if (response.statusCode === 200) {
+    return response.data; // 返回响应数据
+  } else if (response.statusCode === 401) {
+    // Token 过期，跳转到登录页面
+    uni.showToast({
+      title: '登录已过期，请重新登录',
+      icon: 'none'
+    });
+    uni.navigateTo({
+      url: '/pages/login/login'
+    });
+    return Promise.reject(response.data);
+  } else {
+    // 处理其他错误状态码
+    uni.showToast({
+      title: "\u8BF7\u6C42\u5931\u8D25\uFF1A".concat(response.statusCode),
+      icon: 'none'
+    });
+    return Promise.reject(response.data);
+  }
+};
+
+// 封装 request 方法
+var request = function request(config) {
+  // 请求拦截
+  config = requestInterceptor(config);
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: baseUrl + config.url,
+      // 拼接完整 URL
+      method: config.method || 'GET',
+      // 默认 GET 请求
+      data: config.data || {},
+      // 请求参数
+      header: config.header || {},
+      // 请求头
+      success: function success(res) {
+        console.log(res, '8989');
+
+        // 响应拦截
+        resolve(responseInterceptor(res));
+      },
+      fail: function fail(err) {
+        // 请求失败处理
+        uni.showToast({
+          title: '网络请求失败',
+          icon: 'none'
+        });
+        reject(err);
+      }
+    });
+  });
+};
+var _default = request;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

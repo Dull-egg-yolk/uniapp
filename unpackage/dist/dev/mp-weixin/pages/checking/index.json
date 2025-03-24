@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "盘点",
+  "usingComponents": {
+    "uni-icons": "/components/uni-icons/uni-icons"
+  }
+}

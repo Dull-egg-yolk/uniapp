@@ -27,6 +27,10 @@
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
 }
+.edit.data-v-00c3363c {
+  font-size: 24rpx;
+  color: #666;
+}
 .data-v-00c3363c .uni-popup__wrapper{
   width: 90%;
 }
@@ -59,5 +63,9 @@
   margin: 0 10rpx;
   background-color: #f0f0f0;
   color: #333;
+}
+.popup-button.confirm.data-v-00c3363c {
+  background-color: #007aff;
+  color: #fff;
 }
 

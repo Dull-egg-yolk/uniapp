@@ -12,6 +12,7 @@
     "pages/inventoryDetails/index",
     "pages/realTimeInventoryDetails/index",
     "pages/newStocktaking/index",
+    "pages/checking/index",
     "pages/changeItem/index",
     "pages/itemDetail/index",
     "pages/home/home",
@@ -24,7 +25,7 @@
     "pages/purchase/purchase",
     "pages/user/phoneus",
     "pages/user/setting",
-    "pages/user/myInfo",
+    "pages/user/myinfo",
     "pages/detail/detail",
     "pages/detail/outDetails",
     "pages/detail/purchaseDetails",
@@ -38,7 +39,6 @@
     "pages/exchange/exchangeMaterials",
     "pages/user/userInfo",
     "pages/user/renew",
-    "pages/user/feedback",
     "pages/user/feedback"
   ],
   "subPackages": [],
@@ -60,15 +60,9 @@
       },
       {
         "pagePath": "pages/main/main",
-        "text": "主页",
-        "iconPath": "static/img/home.png",
-        "selectedIconPath": "static/img/homeHL.png"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "二维码",
+        "text": "扫码",
         "iconPath": "static/img/all.png",
-        "selectedIconPath": "static/img/allHL.png"
+        "selectedIconPath": "static/img/all.png"
       },
       {
         "pagePath": "pages/user/user",

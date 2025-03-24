@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { addGoodsItme } from "@/api/work";
 export default {
   data() {
     return {
@@ -102,7 +103,7 @@ export default {
       this.form.category = this.categories[e.detail.value];
     },
     // 提交表单
-    submitForm() {
+    async submitForm() {
       // 表单校验
       if (!this.form.name) {
         uni.showToast({
@@ -118,7 +119,7 @@ export default {
         });
         return;
       }
-
+      const res = await addGoodsItme(this.form);
       // 打印表单数据（实际开发中可以提交到服务器）
       console.log("表单数据：", this.form);
       console.log("上传的图片：", this.imageUrl);

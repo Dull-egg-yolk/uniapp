@@ -19,6 +19,12 @@
 }
 .list.data-v-61cd9af4 {
   margin-bottom: 100rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.content.data-v-61cd9af4 {
+  background-color: #fff;
+  border-radius: 20rpx;
 }
 .title.data-v-61cd9af4 {
   margin: 20rpx 0;

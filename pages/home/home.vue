@@ -1,5 +1,17 @@
 <template>
   <view class="box">
+     <!-- 自定义导航栏 -->
+    <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
+      <view class="custom-navbar-left">
+        <image src="/static/img/logo.png" class="avatar" />
+        <view class="name">
+          <text>终湘玉</text>
+        </view>
+      </view>
+      <view class="message" :style="{ marginRight: menuButtonWidth + 'px' }">
+        <image src="/static/img/logo.png" class="avatar" />
+      </view>
+    </view>
     <view class="header">
       <text class="title">Welcome to My App</text>
     </view>
@@ -36,12 +48,24 @@
 export default {
   data() {
     return {
+      statusBarHeight: 0, // 状态栏高度
+      menuButtonWidth: 0, // 菜单按钮宽度
       swiperList: [
         { image: 'https://fanyiapp.cdn.bcebos.com/cms/image/251c4882ab58867d5795df104f3fcd9e.jpg' },
         { image: 'https://fanyiapp.cdn.bcebos.com/cms/image/251c4882ab58867d5795df104f3fcd9e.jpg' },
         { image: 'https://fanyiapp.cdn.bcebos.com/cms/image/251c4882ab58867d5795df104f3fcd9e.jpg' }
       ]
     };
+  },
+  onLoad() {
+    // 获取状态栏高度
+    const systemInfo = uni.getSystemInfoSync();
+    this.statusBarHeight = systemInfo.statusBarHeight || 0;
+    const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
+    this.menuButtonWidth = menuButtonInfo.width;
+  },
+  components: {
+    'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
   },
   methods: {
     navigateTo(page) {
@@ -60,6 +84,30 @@ export default {
 }
 .container {
   width: 100%;
+}
+.custom-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* 导航栏高度 */
+  padding: 0 16px;
+}
+.custom-navbar-left {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.message {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 swiper {
