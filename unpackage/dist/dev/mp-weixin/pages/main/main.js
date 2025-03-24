@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/main/main"],{
 
 /***/ 54:
-/*!*******************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/main.js?{"page":"pages%2Fmain%2Fmain"} ***!
-  \*******************************************************************************/
+/*!****************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/main.js?{"page":"pages%2Fmain%2Fmain"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_main.default);
 /***/ }),
 
 /***/ 55:
-/*!************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue ***!
-  \************************************************************/
+/*!*********************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/pages/main/main.vue ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "pages/main/main.vue"
 /***/ }),
 
 /***/ 56:
-/*!*******************************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=template&id=52f690a6& ***!
-  \*******************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=template&id=52f690a6& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 57:
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=template&id=52f690a6& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=template&id=52f690a6& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -101,22 +101,22 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 398))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 384))
     },
     uniIcons: function () {
-      return __webpack_require__.e(/*! import() | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 405))
+      return __webpack_require__.e(/*! import() | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 391))
     },
     uniSegmentedControl: function () {
-      return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 412))
+      return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 398))
     },
     uniCard: function () {
-      return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 419))
+      return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 405))
     },
     evanIcons: function () {
-      return Promise.all(/*! import() | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then(__webpack_require__.bind(null, /*! @/components/evan-icons/evan-icons.vue */ 426))
+      return Promise.all(/*! import() | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then(__webpack_require__.bind(null, /*! @/components/evan-icons/evan-icons.vue */ 412))
     },
     dragButton: function () {
-      return __webpack_require__.e(/*! import() | components/drag-button/drag-button */ "components/drag-button/drag-button").then(__webpack_require__.bind(null, /*! @/components/drag-button/drag-button.vue */ 165))
+      return __webpack_require__.e(/*! import() | components/drag-button/drag-button */ "components/drag-button/drag-button").then(__webpack_require__.bind(null, /*! @/components/drag-button/drag-button.vue */ 420))
     },
   }
 } catch (e) {
@@ -215,9 +215,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 58:
-/*!*************************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -231,9 +231,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 59:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -252,37 +252,37 @@ var _sell = _interopRequireDefault(__webpack_require__(/*! ../../data/sell.js */
 var _exchange = _interopRequireDefault(__webpack_require__(/*! ../../data/exchange.js */ 63));
 var uniSegmentedControl = function uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/uni-segmented-control/uni-segmented-control.vue */ 412));
+    return resolve(__webpack_require__(/*! ../../components/uni-segmented-control/uni-segmented-control.vue */ 398));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniCard = function uniCard() {
   __webpack_require__.e(/*! require.ensure | components/uni-card/uni-card */ "components/uni-card/uni-card").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/uni-card/uni-card.vue */ 419));
+    return resolve(__webpack_require__(/*! ../../components/uni-card/uni-card.vue */ 405));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniIcons = function uniIcons() {
   __webpack_require__.e(/*! require.ensure | components/uni-icons/uni-icons */ "components/uni-icons/uni-icons").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 405));
+    return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 391));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var dragButton = function dragButton() {
   __webpack_require__.e(/*! require.ensure | components/drag-button/drag-button */ "components/drag-button/drag-button").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/drag-button/drag-button.vue */ 165));
+    return resolve(__webpack_require__(/*! ../../components/drag-button/drag-button.vue */ 420));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var cmdIcon = function cmdIcon() {
   __webpack_require__.e(/*! require.ensure | components/cmd-icon/cmd-icon */ "components/cmd-icon/cmd-icon").then((function () {
-    return resolve(__webpack_require__(/*! ../../components/cmd-icon/cmd-icon.vue */ 434));
+    return resolve(__webpack_require__(/*! ../../components/cmd-icon/cmd-icon.vue */ 427));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniNavBar = function uniNavBar() {
   __webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 398));
+    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 384));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var EvanIcons = function EvanIcons() {
   Promise.all(/*! require.ensure | components/evan-icons/evan-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/evan-icons/evan-icons")]).then((function () {
-    return resolve(__webpack_require__(/*! ../../components/evan-icons/evan-icons.vue */ 426));
+    return resolve(__webpack_require__(/*! ../../components/evan-icons/evan-icons.vue */ 412));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -929,9 +929,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 64:
-/*!*********************************************************************************************!*\
-  !*** /Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=style&index=0&lang=css& ***!
-  \*********************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -945,9 +945,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 65:
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/未命名文件夹/uniapp/pages/main/main.vue?vue&type=style&index=0&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/edy/Desktop/jiu/uniapp/pages/main/main.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

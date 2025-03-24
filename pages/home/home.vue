@@ -65,7 +65,7 @@ export default {
     this.menuButtonWidth = menuButtonInfo.width;
   },
   components: {
-    'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
+    // 'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
   },
   methods: {
     navigateTo(page) {
