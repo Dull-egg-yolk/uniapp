@@ -124,7 +124,7 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 59));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 61));
 var _print = __webpack_require__(/*! @/util/print */ 161);
-//
+var _fq = __webpack_require__(/*! @/util/fq */ 451);
 //
 //
 //
@@ -210,16 +210,86 @@ var _default = {
     };
   },
   methods: {
+    draw: function draw() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var query;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // 获取Canvas节点
+                // 微信小程序使用 type="2d"
+                query = uni.createSelectorQuery().in(_this);
+                query.select('#myCanvas').fields({
+                  node: true
+                }).exec( /* ... */);
+
+                // const query = uni.createSelectorQuery().in(this);
+                query.select('#myCanvas').fields({
+                  node: true,
+                  size: true
+                }).exec( /*#__PURE__*/function () {
+                  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {
+                    var canvas, ctx, _res$, width, height, dpr, _yield$uni$downloadFi, tempFilePath, img;
+                    return _regenerator.default.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            canvas = res[0].node;
+                            ctx = canvas.getContext('2d');
+                            _res$ = res[0], width = _res$.width, height = _res$.height; // 高清适配
+                            dpr = uni.getSystemInfoSync().pixelRatio;
+                            canvas.width = width * dpr;
+                            canvas.height = height * dpr;
+                            ctx.scale(dpr, dpr);
+
+                            // 绘制背景
+                            ctx.fillStyle = '#fff';
+                            ctx.fillRect(0, 0, width, height);
+
+                            // 绘制网络图片
+                            _context.next = 11;
+                            return uni.downloadFile({
+                              url: _this.rqImg
+                            });
+                          case 11:
+                            _yield$uni$downloadFi = _context.sent;
+                            tempFilePath = _yield$uni$downloadFi.tempFilePath;
+                            img = canvas.createImage();
+                            img.src = tempFilePath;
+                            img.onload = function () {
+                              ctx.drawImage(img, 50, 30, 100, 100);
+                            };
+                          case 16:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee);
+                  }));
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     // 打印
     starPrint: function starPrint() {
-      var _this = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
         var labelWidth, labelHeight, multiple, canvasId, ctx;
-        return _regenerator.default.wrap(function _callee$(_context) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _this.printed += 1;
+                _this2.printed += 1;
                 //标签尺寸
                 labelWidth = 60;
                 labelHeight = 40;
@@ -231,99 +301,129 @@ var _default = {
                 console.log('canvasId', canvasId);
                 ctx = uni.createCanvasContext(canvasId);
                 console.log(' ctx', ctx);
-                _this.handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, 0);
+                _this2.handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, 0);
               case 12:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee);
+        }, _callee3);
       }))();
     },
     // 提取公共逻辑
     handleLabelDrawing: function handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
-      var _this2 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      var _this3 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
         var localPath;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+        return _regenerator.default.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context2.next = 2;
-                return _this2.drawCanvas();
+                _context4.next = 2;
+                return _this3.drawCanvas();
               case 2:
-                localPath = _context2.sent;
-                startDrawLabel(canvasId, _this2, labelWidth, labelHeight, rotation, ctx);
+                localPath = _context4.sent;
+                startDrawLabel(canvasId, _this3, labelWidth, labelHeight, rotation, ctx);
                 drawImage(localPath, 2, 2, 30, 30);
                 endDrawLabel(function () {
                   print(1, function () {
-                    if (_this2.quantity > _this2.printed) {
-                      _this2.starPrint();
+                    if (_this3.quantity > _this3.printed) {
+                      _this3.starPrint();
                     }
                   });
                 });
               case 6:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2);
+        }, _callee4);
       }))();
     },
     drawCanvas: function drawCanvas() {
-      var _this3 = this;
-      return new Promise(function (resolve) {
-        var ctx = uni.createCanvasContext('myCanvas', _this3);
-        console.log(_this3.rqImg, 'this.rqImg222222');
-
-        // 1. 绘制背景
-        ctx.setFillStyle('#fff');
-        ctx.fillRect(0, 0, 300, 300);
-        // 2. 绘制图片（需先下载）
-        uni.downloadFile({
-          url: _this3.rqImg,
-          success: function success(res) {
-            resolve(res.tempFilePath);
-            ctx.drawImage(res.tempFilePath, 40, 20, 220, 220);
-            var canvasWidth = 300;
-            var text = "居中文字示例";
-            var fontSize = 16;
-
-            // 1. 设置文字样式
-            ctx.setFontSize(fontSize);
-            ctx.setFillStyle('#000');
-
-            // 2. 测量文字宽度
-            var textWidth = ctx.measureText(text).width;
-
-            // 3. 计算居中坐标
-            var x = (canvasWidth - textWidth) / 2;
-            var y = 270;
-            // 3. 绘制文字
-            ctx.setFontSize(16);
-            ctx.setFillStyle('#333');
-            ;
-            ctx.fillText(text, x, y);
-
-            // 4. 执行绘制
-            // ctx.draw();
-            ctx.draw(false, function () {
-              uni.canvasToTempFilePath({
-                canvasId: 'myCanvas',
-                success: function success(res) {}
-              });
-            });
-          }
-        });
-      });
-    },
-    generateImage: function generateImage() {
       var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5() {
+        var imagePath;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return (0, _fq.base64ToTempPath)("data:image/png;base64,".concat(_this4.imageUrl));
+              case 2:
+                imagePath = _context5.sent;
+                return _context5.abrupt("return", new Promise(function (resolve) {
+                  var ctx = uni.createCanvasContext('myCanvas', _this4);
+                  ctx.drawImage(imagePath, 40, 20, 220, 220);
+                  ctx.draw();
+                  resolve(imagePath);
+                }));
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    // drawCanvas() {
+    //   console.log(1111);
+    //   return new Promise((resolve) => {
+    //     const ctx = uni.createCanvasContext('myCanvas', this);
+    //     console.log(2222);
+    //     // 1. 绘制背景
+    //     ctx.setFillStyle('#fff');
+    //     ctx.fillRect(0, 0, 300, 300);
+    //     // 2. 绘制图片（需先下载）
+    //     console.log(this.rqImgm, 'this.rqImg');
+    //     console.log(this.getBuffer(), 'this.getBuffer');
+    //     uni.downloadFile({
+    //       url: this.rqImg,
+    //       success: (res) => {
+    //         console.log(res, 'res');
+    //         resolve(res.tempFilePath);
+    //         const canvasWidth = 300;
+    //         const text = "居中文字示例";
+    //         const fontSize = 16;
+    //         // 1. 设置文字样式
+    //         ctx.setFontSize(fontSize);
+    //         ctx.setFillStyle('#000');
+    //         // 2. 测量文字宽度
+    //         const textWidth = ctx.measureText(text).width;
+    //         // 3. 计算居中坐标
+    //         const x = (canvasWidth - textWidth) / 2;
+    //         const y = 270
+    //         // 3. 绘制文字
+    //         ctx.setFontSize(16);
+    //         ctx.setFillStyle('#333');;
+    //         ctx.fillText(text, x, y);
+    //         console.log(res.tempFilePath, 'res.tempFilePath');
+    //         console.log(this.rqImg, 'this.rqImg');
+    //         ctx.drawImage(res.tempFilePath, 40, 20, 220, 220);
+    //         ctx.draw();
+    //         // 4. 执行绘制
+    //         // ctx.draw(false, () => {
+    //         //   uni.canvasToTempFilePath({
+    //         //     canvasId: 'myCanvas',
+    //         //     success: (res) => {
+    //         //       console.log('临时路径:', res.tempFilePath);
+    //         //     }
+    //         //   });
+    //         // });
+    //       },
+    //       fail: (err) =>{
+    //         console.log(err, 'err');
+    //       }
+    //     });
+    //   });
+    // },
+    generateImage: function generateImage() {
+      var _this5 = this;
       this.drawCanvas(); // 先绘制内容
       uni.canvasToTempFilePath({
         canvasId: 'myCanvas',
         success: function success(res) {
-          _this4.imageReady = true;
+          _this5.imageReady = true;
           uni.showToast({
             title: '内容已生成',
             icon: 'success'
@@ -332,37 +432,40 @@ var _default = {
       });
     },
     getBuffer: function getBuffer() {
-      var _this5 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+      var _this6 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6() {
         var imagePath;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
+        return _regenerator.default.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return _this5.base64ToTempPath("data:image/png;base64,".concat(_this5.imageUrl));
+                _context6.prev = 0;
+                _context6.next = 3;
+                return _this6.base64ToTempPath("data:image/png;base64,".concat(_this6.imageUrl));
               case 3:
-                imagePath = _context3.sent;
-                _this5.rqImg = imagePath;
-                return _context3.abrupt("return", imagePath);
+                imagePath = _context6.sent;
+                _this6.rqImg = imagePath;
+                return _context6.abrupt("return", imagePath);
               case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
+                _context6.prev = 8;
+                _context6.t0 = _context6["catch"](0);
               case 10:
               case "end":
-                return _context3.stop();
+                return _context6.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee6, null, [[0, 8]]);
       }))();
     },
     base64ToTempPath: function base64ToTempPath(base64Data) {
       return new Promise(function (resolve) {
-        resolve(base64Data);
+        // 小程序端写入临时文件
+        // 去除Base64头（如"data:image/png;base64,"）
         var base64 = base64Data.split(',')[1] || base64Data; // 去除可能的头部
         var fileManager = uni.getFileSystemManager();
         var tempFilePath = "".concat(wx.env.USER_DATA_PATH, "/qrcode_").concat(Date.now(), ".png");
+
+        // 写入临时文件
         fileManager.writeFile({
           filePath: tempFilePath,
           data: base64,
@@ -374,11 +477,15 @@ var _default = {
       });
     },
     open: function open() {
-      var _this6 = this;
+      var _this7 = this;
       this.visible = true;
       this.$nextTick(function () {
-        _this6.getBuffer().then(function (data) {
-          _this6.generateImage();
+        _this7.getBuffer().then(function (data) {
+          console.log(data, 'data');
+          _this7.rqImg = data;
+          setTimeout(function () {
+            _this7.generateImage();
+          }, 300);
         });
       });
     },
@@ -390,7 +497,7 @@ var _default = {
       if (this.closeOnClickMask) this.close();
     },
     handlePrint: function handlePrint() {
-      var _this7 = this;
+      var _this8 = this;
       // this.$emit('print')
       // this.close()
       var app = getApp();
@@ -417,7 +524,7 @@ var _default = {
             return;
           }
           console.log('code', '2');
-          _this7.printed = 0;
+          _this8.printed = 0;
           uni.showToast({
             title: '开始打印'
           });
@@ -431,8 +538,8 @@ var _default = {
           console.log('code', '4');
           // this.starPrint();
 
-          startJob(1, 3, _this7.quantity, function () {
-            _this7.starPrint();
+          startJob(1, 3, _this8.quantity, function () {
+            _this8.starPrint();
           });
         });
       }

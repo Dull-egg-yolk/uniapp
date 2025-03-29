@@ -22050,6 +22050,41 @@ module.exports = _interopRequireDefault, module.exports.__esModule = true, modul
 
 /***/ }),
 
+/***/ 451:
+/*!************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/fq.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, wx) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.base64ToTempPath = base64ToTempPath;
+// 将Base64转为临时文件路径（兼容所有平台）
+function base64ToTempPath(base64Data) {
+  return new Promise(function (resolve) {
+    // 小程序端写入临时文件
+    var base64 = base64Data.split(',')[1] || base64Data; // 去除可能的头部
+    var fileManager = uni.getFileSystemManager();
+    var tempFilePath = "".concat(wx.env.USER_DATA_PATH, "/qrcode_").concat(Date.now(), ".png");
+    fileManager.writeFile({
+      filePath: tempFilePath,
+      data: base64,
+      encoding: 'base64',
+      success: function success() {
+        return resolve(tempFilePath);
+      }
+    });
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 5:
 /*!**************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
@@ -22801,8 +22836,6 @@ var request = function request(config) {
       header: config.header || {},
       // 请求头
       success: function success(res) {
-        console.log(res, '8989');
-
         // 响应拦截
         resolve(responseInterceptor(res));
       },

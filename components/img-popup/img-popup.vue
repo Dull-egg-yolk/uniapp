@@ -20,7 +20,6 @@
           <text class="close-icon">×</text>
         </view>
       </view>
-
       <!-- 图片内容区域 -->
       <scroll-view class="popup-content" scroll-y>
         <!-- <image 
@@ -28,7 +27,7 @@
           mode="widthFix" 
           class="content-image"
         /> -->
-        <canvas 
+        <canvas
           canvas-id="myCanvas" 
           id="myCanvas" 
           class="content-image"
@@ -46,6 +45,7 @@
 
 <script>
 import { usePrint } from '@/util/print';
+import { base64ToTempPath } from '@/util/fq';
 
 const {
   startJob,
@@ -87,6 +87,48 @@ export default {
     }
   },
   methods: {
+    async draw() {
+      // 获取Canvas节点
+      // #ifdef MP-WEIXIN
+      // 微信小程序使用 type="2d"
+      const query = uni.createSelectorQuery().in(this);
+      query.select('#myCanvas').fields({ node: true }).exec(/* ... */);
+      // #endif
+
+      // #ifdef H5
+      // H5 使用标准DOM API
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
+      // #endif
+      // const query = uni.createSelectorQuery().in(this);
+      query.select('#myCanvas')
+        .fields({ node: true, size: true })
+        .exec(async (res) => {
+          const canvas = res[0].node;
+          const ctx = canvas.getContext('2d');
+          const { width, height } = res[0];
+          
+          // 高清适配
+          const dpr = uni.getSystemInfoSync().pixelRatio;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
+          
+          // 绘制背景
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, width, height);
+          
+          // 绘制网络图片
+          const { tempFilePath } = await uni.downloadFile({
+            url: this.rqImg
+          });
+          const img = canvas.createImage();
+          img.src = tempFilePath;
+          img.onload = () => {
+            ctx.drawImage(img, 50, 30, 100, 100);
+          };
+        });
+    },
     // 打印
     async starPrint() {
       this.printed += 1
@@ -120,52 +162,75 @@ export default {
         });
       });
     },
-    drawCanvas() {
+    async drawCanvas() {
+      const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
       return new Promise((resolve) => {
         const ctx = uni.createCanvasContext('myCanvas', this);
-        console.log(this.rqImg, 'this.rqImg222222');
-        
-        // 1. 绘制背景
-        ctx.setFillStyle('#fff');
-        ctx.fillRect(0, 0, 300, 300);
-        // 2. 绘制图片（需先下载）
-        uni.downloadFile({
-          url: this.rqImg,
-          success: (res) => {
-            resolve(res.tempFilePath);
-            ctx.drawImage(res.tempFilePath, 40, 20, 220, 220);
-            const canvasWidth = 300;
-            const text = "居中文字示例";
-            const fontSize = 16;
-
-            // 1. 设置文字样式
-            ctx.setFontSize(fontSize);
-            ctx.setFillStyle('#000');
-
-            // 2. 测量文字宽度
-            const textWidth = ctx.measureText(text).width;
-
-            // 3. 计算居中坐标
-            const x = (canvasWidth - textWidth) / 2;
-            const y = 270
-            // 3. 绘制文字
-            ctx.setFontSize(16);
-            ctx.setFillStyle('#333');;
-            ctx.fillText(text, x, y);
-
-            // 4. 执行绘制
-            // ctx.draw();
-            ctx.draw(false, () => {
-              uni.canvasToTempFilePath({
-                canvasId: 'myCanvas',
-                success: (res) => {
-                }
-              });
-            });
-          }
-        });
-      });
+        ctx.drawImage(imagePath, 40, 20, 220, 220);
+        ctx.draw();
+        resolve(imagePath);
+      })
+   
     },
+    // drawCanvas() {
+    //   console.log(1111);
+    //   return new Promise((resolve) => {
+    //     const ctx = uni.createCanvasContext('myCanvas', this);
+    //     console.log(2222);
+        
+    //     // 1. 绘制背景
+    //     ctx.setFillStyle('#fff');
+    //     ctx.fillRect(0, 0, 300, 300);
+    //     // 2. 绘制图片（需先下载）
+    //     console.log(this.rqImgm, 'this.rqImg');
+    //     console.log(this.getBuffer(), 'this.getBuffer');
+        
+    //     uni.downloadFile({
+    //       url: this.rqImg,
+    //       success: (res) => {
+    //         console.log(res, 'res');
+            
+    //         resolve(res.tempFilePath);
+    //         const canvasWidth = 300;
+    //         const text = "居中文字示例";
+    //         const fontSize = 16;
+
+    //         // 1. 设置文字样式
+    //         ctx.setFontSize(fontSize);
+    //         ctx.setFillStyle('#000');
+
+    //         // 2. 测量文字宽度
+    //         const textWidth = ctx.measureText(text).width;
+
+    //         // 3. 计算居中坐标
+    //         const x = (canvasWidth - textWidth) / 2;
+    //         const y = 270
+    //         // 3. 绘制文字
+    //         ctx.setFontSize(16);
+    //         ctx.setFillStyle('#333');;
+    //         ctx.fillText(text, x, y);
+    //         console.log(res.tempFilePath, 'res.tempFilePath');
+    //         console.log(this.rqImg, 'this.rqImg');
+            
+    //         ctx.drawImage(res.tempFilePath, 40, 20, 220, 220);
+    //         ctx.draw();
+    //         // 4. 执行绘制
+    //         // ctx.draw(false, () => {
+    //         //   uni.canvasToTempFilePath({
+    //         //     canvasId: 'myCanvas',
+    //         //     success: (res) => {
+    //         //       console.log('临时路径:', res.tempFilePath);
+    //         //     }
+    //         //   });
+    //         // });
+    //       },
+    //       fail: (err) =>{
+    //         console.log(err, 'err');
+            
+    //       }
+    //     });
+    //   });
+    // },
     generateImage() {
       this.drawCanvas(); // 先绘制内容
       uni.canvasToTempFilePath({
@@ -186,24 +251,38 @@ export default {
     },
     base64ToTempPath(base64Data) {
       return new Promise((resolve) => {
+        // #ifdef H5
+        // H5环境直接使用Base64
         resolve(base64Data);
+        // #endif
+
+        // #ifdef MP-WEIXIN || MP-ALIPAY
+        // 小程序端写入临时文件
+        // 去除Base64头（如"data:image/png;base64,"）
         const base64 = base64Data.split(',')[1] || base64Data; // 去除可能的头部
         const fileManager = uni.getFileSystemManager();
         const tempFilePath = `${wx.env.USER_DATA_PATH}/qrcode_${Date.now()}.png`;
         
+        // 写入临时文件
         fileManager.writeFile({
           filePath: tempFilePath,
           data: base64,
           encoding: 'base64',
-          success: () => resolve(tempFilePath),
+          success: () => resolve(tempFilePath)
         });
+        // #endif
       });
     },
     open() {
       this.visible = true
       this.$nextTick(() => {
         this.getBuffer().then(data => {
-          this.generateImage();
+          
+          console.log(data, 'data');
+          this.rqImg = data
+          setTimeout(() => {
+            this.generateImage();
+          }, 300)
         });
       });
       

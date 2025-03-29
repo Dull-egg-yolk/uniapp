@@ -52,7 +52,6 @@ const request = (config) => {
       data: config.data || {}, // 请求参数
       header: config.header || {}, // 请求头
       success: (res) => {
-        console.log(res, '8989');
         
         // 响应拦截
         resolve(responseInterceptor(res));
