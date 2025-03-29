@@ -12,8 +12,8 @@
         <image src="/static/img/logo.png" class="avatar" />
       </view>
     </view>
-    <view class="header">
-      <text class="title">Welcome to My App</text>
+    <view class="header" @click="showPopup">
+      <text class="title">点击查看新手指引，1 分钟快速掌握！ </text>
     </view>
     <view class="container">
       <!-- 无缝轮播图 -->
@@ -41,6 +41,13 @@
         <view class="function-button" @click="navigateTo('export')"><img src="../../static/img/allHL.png"/><button class="btn">报表</button></view>
       </view>
     </view>
+    <global-popup 
+      ref="globalPopup"
+      title="新手指引"
+      :content="popupContent"
+      confirmText="我已掌握，关闭并不在提示"
+      @confirm="onConfirm"
+    />
   </view>
 </template>
 
@@ -48,6 +55,11 @@
 export default {
   data() {
     return {
+      popupContent: `
+        <p>这里是详细的协议内容：</p>
+        <p>1. 第一条协议内容...</p>
+        <p>2. 第二条协议内容...</p>
+      `,
       statusBarHeight: 0, // 状态栏高度
       menuButtonWidth: 0, // 菜单按钮宽度
       swiperList: [
@@ -59,15 +71,23 @@ export default {
   },
   onLoad() {
     // 获取状态栏高度
-    const systemInfo = uni.getSystemInfoSync();
+    const systemInfo = uni.getWindowInfo();
+    console.log(systemInfo, '001');
     this.statusBarHeight = systemInfo.statusBarHeight || 0;
     const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
-    this.menuButtonWidth = menuButtonInfo.width;
+    console.log(menuButtonInfo, '000');
+  
+    // this.menuButtonWidth = menuButtonInfo.width;
   },
   components: {
     // 'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
   },
   methods: {
+    showPopup() {
+      this.$refs.globalPopup.open()
+    },
+    onConfirm() {
+    },
     navigateTo(page) {
       uni.navigateTo({
         url: `/pages/${page}/index`
@@ -78,6 +98,18 @@ export default {
 </script>
 
 <style scoped>
+.header {
+  height: 28px;
+  padding: 0 20rpx;
+  background-color: rgba(235,240,253,1);
+}
+.header .title {
+  line-height: 28px;
+  color: rgba(96,137,247,1);
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+}
 .box {
   width: 100%;
   background: rgb(248 248 248);

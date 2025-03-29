@@ -31,6 +31,12 @@ export default {
   components: {
     headerInfo,
   },
+  props: {
+    userInfoList: {
+      type: Object,
+      default: () => ({})
+    }
+  },
   data() {
     return {
       //将data文件夹中的数据读入
@@ -41,7 +47,7 @@ export default {
       expireDate: "2025-12-31",
       functionList: [
         { icon: "person-info", name: "用户信息",url:'pages/user/userInfo' },
-        { icon: "team-setting", name: "团队设置" ,url:'pages/user/userInfo'},
+        { icon: "team-setting", name: "团队设置" ,url:'pages/user/teamData'},
         { icon: "invite-gift", name: "邀请有礼" ,url:'pages/user/userInfo'},
         { icon: "help-doc", name: "帮助文档",url:'pages/user/helpDoc' },
         { icon: "online-service", name: "在线客服" ,url:'pages/user/userInfo' },

@@ -9,7 +9,7 @@
         <view class="actions">
           <text class="edit" @click="openEditPopup(index)">
             <text>编辑</text>
-            <uni-icons :size="16" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+            <uni-icons :size="16" color="#bbb" type="chatbubble-filled" />
           </text>
         </view>
       </view>

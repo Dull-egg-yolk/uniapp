@@ -23,6 +23,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 // @ts-ignore
 wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 _vue.default.prototype.config = _config.default;
+var GlobalPopup = function GlobalPopup() {
+  __webpack_require__.e(/*! require.ensure | components/global-popup/global-popup */ "components/global-popup/global-popup").then((function () {
+    return resolve(__webpack_require__(/*! @/components/global-popup/global-popup.vue */ 258));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+var TipsPopup = function TipsPopup() {
+  __webpack_require__.e(/*! require.ensure | components/tips-popup/tips-popup */ "components/tips-popup/tips-popup").then((function () {
+    return resolve(__webpack_require__(/*! @/components/tips-popup/tips-popup.vue */ 265));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+var ImgPopup = function ImgPopup() {
+  Promise.all(/*! require.ensure | components/img-popup/img-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/img-popup/img-popup")]).then((function () {
+    return resolve(__webpack_require__(/*! @/components/img-popup/img-popup.vue */ 272));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
 _vue.default.prototype.$http = _request.default;
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$store = _store.default;
@@ -39,6 +54,9 @@ _vue.default.prototype.checkLogin = function (backpage, backtype) {
   // }
 };
 
+_vue.default.component('GlobalPopup', GlobalPopup);
+_vue.default.component('TipsPopup', TipsPopup);
+_vue.default.component('ImgPopup', ImgPopup);
 _App.default.mpType = 'app';
 var app = new _vue.default(_objectSpread({
   store: _store.default
@@ -119,6 +137,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
+  globalData: {
+    bluetoothConnected: false
+  },
   onLaunch: function onLaunch() {
     console.log('App Launch');
   },

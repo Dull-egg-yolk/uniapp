@@ -2,18 +2,18 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image src="/images/avatar.png" mode="aspectFill" class="avatar"></image>
+      <image :src="userList.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ userName }} <text class="role">{{ userRole }}</text></view
+          >{{ userList.PrimeRight.Name }} <text class="role">{{ userList.UserHotelRole.Role }}</text></view
         >
         <view class="shop"
           >{{ storeName }}
           <view class="svg-bkg-diamond"></view>
         </view>
         <view class="member"
-          >年费会员，有效期至
-          <text class="expire-date"> {{ expireDate }}</text>
+          >年费会员，有效期至 
+          <text class="expire-date"> {{ userList.PrimeRight.ExpireAt | getData }}</text>
         </view>
       </view>
       <button class="renew-btn" @click="goRenewPage()">续费</button>
@@ -22,10 +22,7 @@
 </template>
 
 <script>
-// import cmdAvatar from "../../components/cmd-avatar/cmd-avatar.vue"
-// import cmdIcon from "../../components/cmd-icon/cmd-icon.vue"
-// import cmdCellItem from "../../components/cmd-cell-item/cmd-cell-item.vue"
-var _this;
+import { formatTime } from "../../../util/day";
 
 export default {
   components: {
@@ -33,8 +30,23 @@ export default {
     // cmdIcon,
     // cmdCellItem
   },
+  filters: {
+    getData (val) {
+      if (!val) return '';
+      return formatTime(val);
+    },
+  },
   data() {
     return {
+      userList: {
+        PrimeRight:{
+          Name: '',
+          ExpireAt: ''
+        },
+        UserHotelRole: {
+          Role: ''
+        }
+      },
       //将data文件夹中的数据读入
       userAvatar: "用户头像地址",
       userName: "佟湘玉",
@@ -44,12 +56,9 @@ export default {
     };
   },
   mounted() {
-    _this = this;
-  },
-  onLoad: function () {
-    // var myinfo = uni.getStorageSync("user_info");
-    // this.user_name = myinfo.data.user.user_name;
-    // this.user_id = myinfo.data.user.username;
+    if (uni.getStorageSync("user_info")) {
+      this.userList = uni.getStorageSync("user_info");
+    }
   },
   methods: {
     // 广告横幅点击跳转
@@ -107,6 +116,7 @@ export default {
 }
 .expire-date {
   color: #ff4444;
+  padding-left: 5rpx;
 }
 .renew-btn {
   background: #ff4444;

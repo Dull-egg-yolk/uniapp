@@ -1,5 +1,5 @@
 {
-    "pages": [ //pages数组中第一项表示应用启动页,
+    "pages": [
         {
             "path": "pages/initialization/index",
             "style": {
@@ -10,11 +10,6 @@
             "path": "pages/login/login",
             "style": {
                 "navigationBarTitleText": "登录"
-            }
-        },{
-            "path": "pages/main/main",
-            "style": {
-                "navigationBarTitleText": "主页"
             }
         },{
             "path": "pages/warehouseManagement/index",
@@ -62,14 +57,24 @@
                 "navigationBarTitleText": "新盘点"
             }
         },{
+            "path": "pages/changeItem/index",
+            "style": {
+                "navigationBarTitleText": "选择物品"
+            }
+        },{
             "path": "pages/checking/index",
             "style": {
                 "navigationBarTitleText": "盘点"
             }
         },{
-            "path": "pages/changeItem/index",
+            "path": "pages/inventoryReport/index",
             "style": {
-                "navigationBarTitleText": "选择物品"
+                "navigationBarTitleText": "盘点报表"
+            }
+        },{
+            "path": "pages/lian/lian",
+            "style": {
+                "navigationBarTitleText": "链接打印机"
             }
         },{
             "path": "pages/itemDetail/index",
@@ -87,106 +92,15 @@
             "style": {
                 "navigationBarTitleText": "初始化"
             }
-        },
-		{
-            "path": "pages/index/index",
-            "style": {
-                "navigationBarTitleText": "仓库"
-            }
         },{
             "path": "pages/user/user",
             "style": {
-                "navigationBarTitleText": "我的"
-            }
-        },{
-            "path": "pages/reg/reg",
-            "style": {
-                "navigationBarTitleText": "注册"
-            }
-        },{
-            "path": "pages/pwd/pwd",
-            "style": {
-                "navigationBarTitleText": "找回密码"
-            }
-        },{
-            "path": "pages/purchase/purchaseMaterials",
-            "style": {
-                "navigationBarTitleText": "选择物料"
-            }
-        },{
-            "path": "pages/purchase/purchase",
-            "style": {
-                "navigationBarTitleText": "新建请购单"
-            }
-        },{
-            "path": "pages/user/phoneus",
-            "style": {
-                "navigationBarTitleText": "联系我们"
+                "navigationBarTitleText": "个人中心"
             }
         },{
             "path": "pages/user/setting",
             "style": {
                 "navigationBarTitleText": "系统设置"
-            }
-        },{
-            "path": "pages/user/myinfo",
-            "style": {
-                "navigationBarTitleText": "我的信息"
-            }
-        },{
-		    "path": "pages/detail/detail",
-		    "style": {
-		        "navigationBarTitleText": "货物详情"
-		    }
-		},{
-		    "path": "pages/detail/outDetails",
-		    "style": {
-		        "navigationBarTitleText": "出库单详情"
-		    }
-		},{
-		    "path": "pages/detail/purchaseDetails",
-		    "style": {
-		        "navigationBarTitleText": "请购单详情"
-		    }
-		},{
-		    "path": "pages/detail/sellDetails",
-		    "style": {
-		        "navigationBarTitleText": "销售单详情"
-		    }
-		},{
-		    "path": "pages/detail/exchangeDetails",
-		    "style": {
-		        "navigationBarTitleText": "转库申请单详情"
-		    }
-		},{
-            "path": "pages/out/out",
-            "style": {
-                "navigationBarTitleText": "新建出库单"
-            }
-        },{
-            "path": "pages/out/outMaterials",
-            "style": {
-                "navigationBarTitleText": "选择物料"
-            }
-        },{
-            "path": "pages/sell/sell",
-            "style": {
-                "navigationBarTitleText": "新建销售单"
-            }
-        },{
-            "path": "pages/sell/sellMaterials",
-            "style": {
-                "navigationBarTitleText": "物料选择"
-            }
-        },{
-            "path": "pages/exchange/exchange",
-            "style": {
-                "navigationBarTitleText": "新建转库单"
-            }
-        },{
-            "path": "pages/exchange/exchangeMaterials",
-            "style": {
-                "navigationBarTitleText": "物料选择"
             }
         },
         {
@@ -206,9 +120,21 @@
             "style": {
                 "navigationBarTitleText": "需求反馈"
             }
+        },
+        {
+            "path": "pages/user/helpDoc",
+            "style": {
+                "navigationBarTitleText": "帮助文档"
+            }
+        },
+        {
+            "path": "pages/user/teamData",
+            "style": {
+                "navigationBarTitleText": "团队建设"
+            }
         }
     ],
-    "tabBar": {//下方导航栏
+    "tabBar": {
         "color": "#7a7e83",
         "selectedColor": "#0faeff",
         "backgroundColor": "#ffffff",
@@ -219,13 +145,13 @@
             "iconPath": "static/img/all.png",
             "selectedIconPath": "static/img/all.png"
         }, {
-            "pagePath": "pages/main/main",
+            "pagePath": "pages/user/teamData",
             "text": "扫码",
             "iconPath": "static/img/all.png",
             "selectedIconPath": "static/img/all.png"
         },{
             "pagePath": "pages/user/user",
-            "text": "我的",
+            "text": "个人中心",
             "iconPath": "static/img/user.png",
             "selectedIconPath": "static/img/userHL.png"
         }

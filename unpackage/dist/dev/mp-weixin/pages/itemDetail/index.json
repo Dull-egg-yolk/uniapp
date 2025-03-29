@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "",
-  "usingComponents": {}
+  "usingComponents": {
+    "img-popup": "/components/img-popup/img-popup"
+  }
 }

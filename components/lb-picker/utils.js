@@ -3,5 +3,5 @@ export function isArray(val) {
 }
 
 export function getIndicatorHeight() {
-	return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100))
+	return Math.round(uni.getWindowInfo().screenWidth / (750 / 100))
 }

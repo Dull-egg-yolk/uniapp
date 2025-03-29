@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "工作台",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "global-popup": "/components/global-popup/global-popup"
+  }
 }

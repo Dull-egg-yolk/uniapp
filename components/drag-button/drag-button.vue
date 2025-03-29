@@ -45,7 +45,7 @@
 			}
 		},
 		mounted() {
-			const sys = uni.getSystemInfoSync();
+			const sys = uni.getWindowInfo();
 			
 			this.windowWidth = sys.windowWidth;
 			this.windowHeight = sys.windowHeight;

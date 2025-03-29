@@ -1,121 +1,226 @@
 <template>
   <view class="container">
-    <view class="title">
-      <text class="tab">新盘点</text>
-      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-      <text class="tab">选择物品</text>
-      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-      <text class="tab active-tab">盘点</text>
-      <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-      <text class="tab">生成报表</text>
-     </view>
-     <view class="stats">
-      <view class="stat-item">
-        <text class="stat-label">应盘</text>
-        <text class="stat-value">5</text>
+    <div class="header">
+      <view class="title">
+        <text class="tab">新盘点</text>
+        <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+        <text class="tab">选择物品</text>
+        <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+        <text class="tab active-tab">盘点</text>
+        <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+        <text class="tab">生成报表</text>
       </view>
-      <view class="stat-item">
-        <text class="stat-label">已盘</text>
-        <text class="stat-value">3</text>
+      <view class="stats">
+        <view class="stat-item">
+          <text class="stat-label">应盘</text>
+          <text class="stat-value">{{ summaryList.Total }}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">已盘</text>
+          <text class="stat-value">{{ summaryList.Already }}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">正确</text>
+          <text class="stat-value">{{ summaryList.Correct }}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">盘盈</text>
+          <text class="stat-value">{{ summaryList.Wrong }}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">盘亏</text>
+          <text class="stat-value">{{ summaryList.Loss }}</text>
+        </view>
       </view>
-      <view class="stat-item">
-        <text class="stat-label">正确</text>
-        <text class="stat-value">1</text>
-      </view>
-      <view class="stat-item">
-        <text class="stat-label">盘盈</text>
-        <text class="stat-value">1</text>
-      </view>
-      <view class="stat-item">
-        <text class="stat-label">盘亏</text>
-        <text class="stat-value">1</text>
-      </view>
-    </view>
-    <view class="list">
+    </div>
+    <view class="list" v-if="inventoryList.length > 0">
       <view v-for="(item, index) in inventoryList" :key="index" class="list-item">
-        <text class="item-name">{{ item.name }}</text>
-        <text class="item-status">{{ item.status }}</text>
+        <text class="item-name">{{ item.Goods.Name }}</text>
+        <text class="item-status">{{ item.Status }}</text>
         <view class="item-detail">
           <view>
-            <text>账面数量：{{ item.bookQuantity }}</text>
+            <text>账面数量：{{ item.Expect }}</text>
           </view>
           <view class="item-quantity">
             <text>盘点数量：</text>
             <input
               lable="盘点数量"
-              v-model="item.actualQuantity"
+              v-model="item.Current"
               type="number"
-              placeholder="盘点数量"
+              placeholder="盘点数"
               class="input"
+              @input="handleInput(item, index, $event)"
             />
           </view>
         </view>
       </view>
     </view>
-    <view class="add-button" @click="nextStep">
+    <view class="sub-button" @click="nextStep">
       <text>盘点完成</text>
     </view>
+    <tips-popup
+      ref="tipsPopup"
+      title="盘点提示"
+      @print="onPrint"
+      @save="onSave"
+    />
   </view>
 </template>
 
 <script>
-import { addStockTaking, updateStockTaking} from '@/api/work.js'
+import { updateStockTaking, updateStockTakingString, getStockTakingStringSummary, getStockTakingString} from '@/api/work.js'
+import { debounce } from '../../util/debounce'
 export default {
   components: {},
   data() {
     return {
-      activeStep: 0,
-      steps: ['选择物品', '盘点', '生成报表'],
-      inventoryDate: '',
-      departments: ['财务', '客房'],
-      selectedDepartment: '财务',
-      inventoryPerson: '',
-      remarks: '',
-      selectedDate: '',
+      StockTakingRecordID: '',
       inventoryList: [
         {
-          name: '可口可乐 330ml',
-          status: '已盘点',
-          bookQuantity: 10,
-          actualQuantity: 10,
-        },
-        {
-          name: '雪碧 330ml',
-          status: '已盘点',
-          bookQuantity: 10,
-          actualQuantity: 9,
+          "Current": 0,
+          "Expect": 0,
+          "Goods": {
+            "Class": {
+              "ID": 0,
+              "Name": "string"
+            },
+            "ClassID": 0,
+            "Format": "string",
+            "Hotel": {
+              "Address": "string",
+              "BankAccount": "string",
+              "BankAddress": "string",
+              "Company": "string",
+              "ID": 0,
+              "InvitedBy": "string",
+              "Name": "string",
+              "SocialCode": "string",
+              "Telephone": "string"
+            },
+            "HotelID": 0,
+            "ID": 0,
+            "Image": "string",
+            "MaxStock": 0,
+            "MinStock": 0,
+            "Name": "string",
+            "Note": "string",
+            "Price": 0,
+            "Suppliers": "string",
+            "Uint": "string"
+          },
+          "GoodsID": 0,
+          "ID": 0,
+          "Status": "已盘点",
+          "StockTakingRecordID": 0,
+          "Warehouse": {
+            "ID": 0,
+            "Name": "string",
+            "Place": "string"
+          },
+          "WarehouseID": 0
         }
-      ]
+      ],
+      summaryList: {
+        Already: 0,
+        Correct: 0,
+        Loss: 0,
+        Total: 0,
+        Wrong: 0
+      }
     };
   },
+  onLoad(options) {
+    this.StockTakingRecordID = options.id;
+  },
   methods: {
-    nextStep() {
-      uni.navigateTo({
-				url: '../changeItem/index'
+    onSave() {
+      this.updateStockTaking();
+       uni.navigateTo({
+				url: '/pages/inventoryReport/index'
 			});
     },
-    handleSubmit() {
-      // 检查盘点数量是否填写完整
-      const isComplete = this.inventoryList.every(
-        (item) => item.actualQuantity !== null && item.actualQuantity !== ''
-      );
-
-      if (!isComplete) {
-        uni.showToast({
-          title: '请填写所有盘点数量',
-          icon: 'none',
-        });
-        return;
-      }
-
-      // 提交盘点数据
-      console.log('盘点数据:', this.inventoryList);
-      uni.showToast({
-        title: '提交成功',
-        icon: 'success',
-      });
+    // 盘点完成
+    async updateStockTaking(){
+      const params = this.inventoryList
+      const res = await updateStockTaking(params)
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+			} else {
+          
+			}
     },
-  }
+    // 单个输入盘点数量
+    handleInput: debounce(function(item, index, e) {
+      const value = e.detail.value;
+      this.$set(this.inventoryList, index, { 
+        ...this.inventoryList[index], 
+        value,
+        status: '保存中...'
+      });
+      
+      this.updateStockTakingString(item, value);
+    }, 500),
+    // 盘点完成按钮
+    nextStep(data) {
+      this.$refs.tipsPopup.open()
+    },
+    async updateStockTakingString(data, value){
+      const params = {
+        Current: parseInt(value), 
+        Status: 'Completed',
+        ID: data.ID,
+        StockTakingRecordID: data.StockTakingRecordID
+      }
+      const res = await updateStockTakingString(params)
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+			} else {
+          
+			}
+    },
+    // 获取头部数据
+    async getStockTakingStringSummary(){
+      const params = {
+        StockTakingRecordID: this.StockTakingRecordID
+      }
+      const res = await getStockTakingStringSummary(params)
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+			} else {
+          this.summaryList = res.Data;
+			}
+    },
+    // 获取盘点列表
+    async getStockTakingString(){
+      const params = {
+        StockTakingRecordID: this.StockTakingRecordID
+      }
+      const res = await getStockTakingString(params)
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+			} else {
+        // this.inventoryList = res.Data
+			}
+    }
+  },
+  mounted(){
+    if(this.StockTakingRecordID) {
+      this.getStockTakingStringSummary();
+      this.getStockTakingString();
+    }
+  },
 };
 </script>
 
@@ -123,12 +228,28 @@ export default {
 @import '../../common/index.css';
 .container {
   background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--status-bar-height));
 }
-
+.sub-button {
+  width: 40%;
+  height: 40px;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 20rpx auto;
+}
+.header {
+  height: 260rpx;
+}
 .stats {
   display: flex;
   justify-content: space-between;
-  margin: 40rpx 0 20rpx 0;
+  margin: 10rpx 0 20rpx 0;
   background-color: #fff;
   border-radius: 20rpx;
   padding: 20rpx;
@@ -151,6 +272,8 @@ export default {
 }
 
 .list {
+  flex: 1;
+  overflow-y: auto;
   background-color: #fff;
   padding: 30rpx;
   border-radius: 16rpx;

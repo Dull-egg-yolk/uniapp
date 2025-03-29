@@ -7,6 +7,9 @@ import config from './common/config.js'
 Vue.prototype.config = config
 
 import request from './common/request.js'
+import GlobalPopup from '@/components/global-popup/global-popup.vue'
+import TipsPopup from '@/components/tips-popup/tips-popup.vue'
+import ImgPopup from '@/components/img-popup/img-popup.vue'
 Vue.prototype.$http = request
 
 Vue.config.productionTip = false
@@ -24,7 +27,9 @@ Vue.prototype.checkLogin = function(backpage, backtype) {
 	// 	});
 	// }
 }
-
+Vue.component('GlobalPopup', GlobalPopup)
+Vue.component('TipsPopup', TipsPopup)
+Vue.component('ImgPopup', ImgPopup)
 App.mpType = 'app'
 
 const app = new Vue({

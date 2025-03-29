@@ -63,6 +63,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 /* 用户信息区 */
 .user-info {
   display: flex;
@@ -107,6 +116,7 @@
 }
 .expire-date {
   color: #ff4444;
+  padding-left: 5rpx;
 }
 .renew-btn {
   background: #ff4444;

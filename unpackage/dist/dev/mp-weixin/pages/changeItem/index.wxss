@@ -20,6 +20,16 @@
 .container.data-v-4b8fdc1f {
   background-color: #f5f5f5;
 }
+.product-list.data-v-4b8fdc1f {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+.product-item.data-v-4b8fdc1f {
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #eee;
+}
 .uni-checkbox .uni-checkbox-input.data-v-4b8fdc1f {
   width: 34rpx;
   height: 34rpx;

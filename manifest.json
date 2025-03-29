@@ -40,7 +40,13 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "UIBackgroundModes": ["bluetooth-central"],
+                "NSBluetoothAlwaysUsageDescription": "需要蓝牙权限连接打印机",
+                "NSBluetoothPeripheralUsageDescription": "需要蓝牙权限搜索设备",
+                "NSLocationAlwaysAndWhenInUseUsageDescription": "需要定位权限搜索蓝牙设备",
+                "NSLocationWhenInUseUsageDescription": "需要定位权限搜索蓝牙设备"
+            },
             /* SDK配置 */
             "sdkConfigs" : {}
         }

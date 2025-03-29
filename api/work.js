@@ -128,3 +128,95 @@ export const getStockTaking = (data) => {
     data: data,
   });
 };
+
+// 商品列表下拉
+export const getGoodsString = (data) => {
+  return request({
+    url: '/api/goods/string',
+    method: 'GET',
+    data: data,
+  });
+};
+// 获取当前盘点列表
+export const getStockTakingString = (data) => {
+  return request({
+    url: '/api/stock/taking/goods',
+    method: 'GET',
+    data: data,
+  });
+};
+// 盘点填写数量（个）
+export const updateStockTakingString = (data) => {
+  return request({
+    url: '/api/stock/taking/goods',
+    method: 'PUT',
+    data: data,
+  });
+};
+// 新增选择商品
+export const addStockTakingString = (data) => {
+  return request({
+    url: '/api/stock/taking/goods',
+    method: 'POST',
+    data: data,
+  });
+};
+// 获取盘点统计信息
+export const getStockTakingStringSummary = (data) => {
+  return request({
+    url: '/api/stock/taking/goods/summary',
+    method: 'GET',
+    data: data,
+  });
+};
+
+// 获取月度用户消耗表
+export const getReportConsumeMonth = (data) => {
+  return request({
+    url: '/api/report/consume/month',
+    method: 'GET',
+    data: data,
+  });
+};
+// 发送邮件
+export const reportEmail = (data) => {
+  return request({
+    url: '/api/report/email',
+    method: 'POST',
+    data: data,
+  });
+};
+
+// 获取实时库存明细
+export const getReportGoodsCurrent = (data) => {
+  return request({
+    url: '/api/report/goods/current',
+    method: 'GET',
+    data: data,
+  });
+};
+
+// 获取出入库明细
+export const getStockOperate = (data) => {
+  return request({
+    url: '/api/stock/operate',
+    method: 'GET',
+    data: data,
+  });
+};
+// 出入库
+export const addStockOperate = (data) => {
+  return request({
+    url: '/api/stock/operate',
+    method: 'POST',
+    data: data,
+  });
+};
+// 获取商品二维码
+export const getQrcode = (data) => {
+  return request({
+    url: '/api/goods/item/qrcode',
+    method: 'GET',
+    data: data,
+  });
+};

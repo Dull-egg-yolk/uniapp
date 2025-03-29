@@ -2,10 +2,10 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image src="/images/avatar.png" mode="aspectFill" class="avatar"></image>
+      <image :src="myinfo.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ userName }} <text class="role">{{ userRole }}</text></view
+          >{{ myinfo.PrimeRight.Name }} <text class="role">{{ myinfo.UserHotelRole.Role }}</text></view
         >
         <view class="shop"
           >{{ storeName }}
@@ -13,7 +13,7 @@
         </view>
         <view class="member"
           >年费会员，有效期至
-          <text class="expire-date"> {{ expireDate }}</text>
+          <text class="expire-date"> {{ myinfo.PrimeRight.ExpireAt | getData }}</text>
         </view>
       </view>
     </view>
@@ -23,8 +23,9 @@
 <script>
 // import cmdAvatar from "../../components/cmd-avatar/cmd-avatar.vue"
 // import cmdIcon from "../../components/cmd-icon/cmd-icon.vue"
+import { formatTime } from "../../../util/day";
+
 // import cmdCellItem from "../../components/cmd-cell-item/cmd-cell-item.vue"
-var _this;
 
 export default {
   components: {
@@ -32,8 +33,24 @@ export default {
     // cmdIcon,
     // cmdCellItem
   },
+  prop: {
+  },
+  filters: {
+    getData (val) {
+      if (!val) return '';
+      return formatTime(val);
+    },
+  },
   data() {
     return {
+      myinfo: {
+        PrimeRight:{
+          Name: ''
+        },
+        UserHotelRole: {
+          Role: ''
+        }
+      },
       //将data文件夹中的数据读入
       userAvatar: "用户头像地址",
       userName: "佟湘玉",
@@ -43,12 +60,14 @@ export default {
     };
   },
   mounted() {
-    _this = this;
+    const cachedUser = uni.getStorageSync('user_info');
+    if (cachedUser) {
+      this.myinfo = cachedUser; // 覆盖默认值
+    }else{
+      console.log('未找到用户缓存'); 
+    }
   },
-  onLoad: function () {
-    // var myinfo = uni.getStorageSync("user_info");
-    // this.user_name = myinfo.data.user.user_name;
-    // this.user_id = myinfo.data.user.username;
+  onLoad() {
   },
   methods: {},
 };
@@ -99,6 +118,7 @@ export default {
 }
 .expire-date {
   color: #ff4444;
+  padding-left: 5rpx;
 }
 .renew-btn {
   background: #ff4444;

@@ -1,0 +1,161 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 遮罩层（置灰禁用） */
+.popup-mask.data-v-9076fe78 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+/* 弹窗容器 */
+.popup-container.data-v-9076fe78 {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  transition: all 0.3s ease;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.popup-show.data-v-9076fe78 {
+  bottom: 0;
+}
+/* 标题栏 */
+.popup-header.data-v-9076fe78 {
+  padding: 28rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f5f5f5;
+  position: relative;
+}
+.popup-title.data-v-9076fe78 {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+}
+.close-btn.data-v-9076fe78 {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-icon.data-v-9076fe78 {
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+/* 内容区域 */
+.popup-content.data-v-9076fe78 {
+  flex: 1;
+  padding: 32rpx;
+  font-size: 30rpx;
+  color: #666;
+  line-height: 1.6;
+}
+/* 底部按钮 */
+.popup-footer.data-v-9076fe78 {
+  padding: 24rpx 32rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+.confirm-btn.data-v-9076fe78 {
+  background: #07C160;
+  color: #fff;
+  border-radius: 48rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+

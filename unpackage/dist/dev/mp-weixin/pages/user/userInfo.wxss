@@ -55,7 +55,7 @@
   margin-bottom: 15rpx;
 }
 .hotel-info .info-item .label.data-v-6bdb5298 {
-  width: 180rpx;
+  width: 200rpx;
   color: #333;
   font-size: 28rpx;
 }

@@ -2,51 +2,74 @@
   <view class="container">
     <view class="section">
       <view class="filter-section">
-        <picker mode="selector" :range="categories" @change="onCategoryChange">
+        <picker mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
           <view class="picker">物品分类：{{ selectedCategory }}</view>
         </picker>
       </view>
-      <uni-search-bar placeholder="关键字" @input="onSearchInput" />
+      <view>
+        <input type="text" placeholder="关键字" @input="onSearchInput" />
+      </view>
     </view>
-    <uni-list>
-      <uni-list-item v-for="(item, index) in filteredItems" :key="index" :title="item.name" @click="navigateToDetail(item)" link />
-    </uni-list>
+    <view class="item" v-for="(item, index) in categories" :key="index" @click="navigateToDetail(item)">
+        <view class="info">
+          <text class="name">{{ item.Name }}</text>
+          <text class="text">{{ item.Format + '/' + item.Uint }}</text>
+        </view>
+        <view class="actions">
+            <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+        </view>
+     </view>
     <button class="add-button" @click="addItem">新增</button>
   </view>
 </template>
 
 <script>
-import { getGoodsItme, upgateGoodsItem, addGoodsItem, deleteGoodsItem} from '@/api/work.js'
+import { getGoodsItme, getHotelClass, upgateGoodsItem, addGoodsItem, deleteGoodsItem} from '@/api/work.js'
 export default {
   data() {
     return {
-      categories: ['全部', '饮料', '消毒用品', '日用品'],
+      categories: [],
       selectedCategory: '全部',
       searchKeyword: '',
-      items: []
+      items: [],
+      classList: []
     };
   },
   computed: {
-    filteredItems() {
-      return this.items.filter(item => {
-        const matchesCategory = this.selectedCategory === '全部' || item.category === this.selectedCategory;
-        const matchesKeyword = item.name.includes(this.searchKeyword) || item.description.includes(this.searchKeyword);
-        return matchesCategory && matchesKeyword;
-      });
-    }
   },
   methods: {
+    async getHotelClassList(){
+      const res = await getHotelClass();
+      this.classList = res.Data;
+    },
     async getGoodsItmeList(){
       const res = await getGoodsItme()
       console.log(res);
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.categories = res.Data
+        console.log(this.categories, '000');
+        
+      }
       
     },
     navigateToDetail(item){
-      console.log(item);
-      uni.navigateTo({ url: `/pages/itemDetail/index?id=${item.name}`, })
+      uni.navigateTo({
+        url: `/pages/itemDetail/index?id=${item.Name}`,
+        success: () => {
+          // 跳转成功后触发事件（确保B页面已初始化）
+          setTimeout(() => {
+            uni.$emit('data-detail', { data: item });
+          }, 300); // 适当延迟
+        }
+      });
     },
     onCategoryChange(e) {
-      this.selectedCategory = this.categories[e.detail.value];
+      this.selectedCategory = this.classList[e.detail.value].Name;
     },
     onSearchInput(e) {
       this.searchKeyword = e.value;
@@ -54,22 +77,10 @@ export default {
     addItem() {
       uni.navigateTo({ url: '/pages/enter/index' })
     },
-    fetchItems() {
-      // 模拟从服务器获取数据
-      setTimeout(() => {
-        this.items = [
-          { name: '可口可乐 330ml / 听', description: '饮料', category: '饮料' },
-          { name: '雪碧 330ml / 听', description: '饮料', category: '饮料' },
-          { name: '燕京啤酒 330ml / 听', description: '饮料', category: '饮料' },
-          { name: '84 消毒 500ml / 瓶', description: '消毒用品', category: '消毒用品' },
-          { name: '一次性拖鞋', description: '日用品', category: '日用品' }
-        ];
-      }, 100);
-    }
   },
   mounted() {
-    this.fetchItems();
     this.getGoodsItmeList()
+    this.getHotelClassList()
   }
 };
 </script>
@@ -79,7 +90,20 @@ export default {
 .filter-section {
   margin-bottom: 20rpx;
 }
-
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0;
+}
+.text {
+  padding-left: 10rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+.name {
+  font-size: 36rpx;
+}
 .picker {
   padding: 10rpx;
   background-color: #f5f5f5;

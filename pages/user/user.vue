@@ -1,35 +1,45 @@
 <template>
     <view class="content">
 		<noLoginPage v-if="!isLoginStatus"></noLoginPage>
-		<loginPage v-else></loginPage>
+		<loginPage v-else :userInfo="userInfoList"></loginPage>
     </view>
 </template>
 
 <script>
 	import loginPage from "./components/loginPage.vue"
 	import  noLoginPage from "./components/noLoginPage.vue"
-	var _this;
+	import { getUserInfo } from '../../api/user.js';
 
-    export default {
-	components: {
-		loginPage,
-		noLoginPage,
-	},
+  export default {
+		components: {
+			loginPage,
+			noLoginPage,
+		},
 		data() {
 			return {
 				//将data文件夹中的数据读入
-				isLoginStatus:true
+				isLoginStatus: true,
+				userInfoList: []
 			}
 		},
 		mounted() {
-			_this = this;
+			this.getUserInfoList()
 		},
 		onLoad: function() {
-			var myinfo = uni.getStorageSync('user_info')
-			this.user_name = myinfo.data.user.user_name
-			this.user_id = myinfo.data.user.username
 		},
-        methods: {
+    methods: {
+			async getUserInfoList() {
+				const res = await getUserInfo();
+				if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+					this.userInfoList = res.Data.Hotel
+					uni.setStorageSync('user_info', res.Data);
+				}
+			},
 			mydetail() {
 				uni.navigateTo({
 				    url: 'myinfo',

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "新建销售单",
-  "usingComponents": {
-    "w-picker": "/components/w-picker/w-picker",
-    "uni-card": "/components/uni-card/uni-card",
-    "lb-picker": "/components/lb-picker/index"
-  }
-}

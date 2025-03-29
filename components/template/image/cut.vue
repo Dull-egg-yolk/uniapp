@@ -25,7 +25,7 @@
 
 <script>
     // import Storage from "../../common/yc_js/Storage.js";
-    let sysInfo = uni.getSystemInfoSync();
+    let sysInfo = uni.getWindowInfo();
     let SCREEN_WIDTH = sysInfo.screenWidth
     let PAGE_X, // 手按下的x位置
         PAGE_Y, // 手按下y的位置 

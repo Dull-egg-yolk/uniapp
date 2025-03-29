@@ -152,6 +152,37 @@ module.exports = toPrimitive, module.exports.__esModule = true, module.exports["
 
 /***/ }),
 
+/***/ 144:
+/*!******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/debounce.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.debounce = void 0;
+var debounce = function debounce(fn, delay) {
+  var timer = null;
+  return function () {
+    var _this = this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      return fn.apply(_this, args);
+    }, delay);
+  };
+};
+exports.debounce = debounce;
+
+/***/ }),
+
 /***/ 15:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
@@ -190,6 +221,6332 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
+/***/ 161:
+/*!***************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/print.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usePrint = usePrint;
+var _JCAPI = _interopRequireDefault(__webpack_require__(/*! ../static/img/JCAPI/JCAPI.js */ 162));
+/**
+ * @Description
+ * @Version
+ * @Author xuyi
+ * @date 2023/1/3 16:55
+ */
+// 引入打印类，CommonJs规范
+// const api = require('../static/JCAPI/JCAPI.js');
+
+function usePrint() {
+  return {
+    setPlatform: function setPlatform(platform) {
+      _JCAPI.default.setPlatform(platform);
+    },
+    setBuildPlatform: function setBuildPlatform(platform) {
+      _JCAPI.default.setBuildPlatform(platform);
+    },
+    startJob: function startJob(gapType, darkness, totalCount, callback) {
+      _JCAPI.default.startJob(gapType, darkness, totalCount, callback);
+    },
+    startDrawLabel: function startDrawLabel(canvasId, component, labelWidth, labelHeight) {
+      var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+      var canvas = arguments.length > 5 ? arguments[5] : undefined;
+      _JCAPI.default.startDrawLabel(canvasId, component, labelWidth, labelHeight, rotation, canvas);
+    },
+    drawText: function drawText(content, x, y, fontHeight) {
+      var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+      var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+      _JCAPI.default.drawText(content, x, y, fontHeight, rotation, options);
+    },
+    drawBarcode: function drawBarcode(content, x, y, width, height) {
+      var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      var fontSize = arguments.length > 6 ? arguments[6] : undefined;
+      var fontHeight = arguments.length > 7 ? arguments[7] : undefined;
+      var position = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 2;
+      _JCAPI.default.drawBarcode(content, x, y, width, height, rotation, fontSize, fontHeight, position);
+    },
+    drawQRCode: function drawQRCode(content, x, y, width, height) {
+      var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      var ecc = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 2;
+      _JCAPI.default.drawQRCode(content, x, y, width, height, rotation, ecc);
+    },
+    drawRectangle: function drawRectangle(x, y, width, height, lineWidth) {
+      var isFilled = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+      var rotation = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+      _JCAPI.default.drawRectangle(x, y, width, height, lineWidth, isFilled, rotation);
+    },
+    drawLine: function drawLine(x, y, width, height) {
+      var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+      _JCAPI.default.drawLine(x, y, width, height, rotation);
+    },
+    drawImage: function drawImage(path, x, y, width, height) {
+      var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      _JCAPI.default.drawImage(path, x, y, width, height, rotation);
+    },
+    endDrawLabel: function endDrawLabel(callback) {
+      _JCAPI.default.endDrawLabel(callback);
+    },
+    print: function print() {
+      var onePageCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var callback = arguments.length > 1 ? arguments[1] : undefined;
+      var optionPara = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      _JCAPI.default.print(onePageCount, callback, optionPara);
+    },
+    didReadPrintCountInfo: function didReadPrintCountInfo(callback) {
+      _JCAPI.default.didReadPrintCountInfo(callback);
+    },
+    didReadPrintErrorInfo: function didReadPrintErrorInfo(callback) {
+      _JCAPI.default.didReadPrintErrorInfo(callback);
+    },
+    scanedPrinters: function scanedPrinters(callback) {
+      _JCAPI.default.scanedPrinters(callback);
+    },
+    openPrinter: function openPrinter(name, successConnect, failConnect) {
+      _JCAPI.default.openPrinter(name, successConnect, failConnect);
+    },
+    getConnName: function getConnName() {
+      return _JCAPI.default.getConnName();
+    },
+    getSn: function getSn(callback) {
+      return _JCAPI.default.getSN(callback);
+    },
+    // 打印机断开连接
+    closePrinter: function closePrinter() {
+      _JCAPI.default.closePrinter();
+    }
+  };
+}
+
+// module.exports = { usePrint };
+
+/***/ }),
+
+/***/ 162:
+/*!***************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPI.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 163));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+/**
+ * 小程序SDK V3.0.0
+ */
+
+// 初始化JCSDKManager实例
+var manager = (0, _JCAPIManager.default)();
+var JCSDKPrintOptionParas = {
+  //仅B32R支持该参数
+  epc: '',
+  //仅H1S支持该参数
+  hasDash: false,
+  //部分机型支持, 0-高质量打印，缺省  1-高速度打印
+  speedOrQuality: 0
+};
+var JCSDKPrinterGetParas = {
+  code: 0,
+  //0:正常获取，-1:获取失败  -2:忙碌 -3:不支持 -4:打印机未连接/断开/未响应
+  res: Object
+};
+
+/**
+ * JCAPI对象
+ */
+var JCAPI = {
+  /**
+   * 设置编译目标平台类型
+   * @param {String} platform 平台类型,缺省微信
+   */
+  setPlatform: function setPlatform(platform) {
+    manager.setPlatform(platform);
+  },
+  /**
+   * 设置编译平台类型
+   * @param {String} platform 平台类型,缺省微信
+   */
+  setBuildPlatform: function setBuildPlatform(platform) {
+    console.log("setBuildPlatform", platform);
+    manager.setBuildPlatform(platform);
+  },
+  /**
+   * 设置是否使用第三方BLE监听。需要在连接（openPrinter）之前使用
+   * @param {boolean} use - 指定是否使用第三方BLE监听。默认为true。当程序多个使用蓝牙监听时，调用此方法，将监听外置出来供第三方调用
+   */
+  setUseThirdBleListen: function setUseThirdBleListen() {
+    var use = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    manager.setUseBleListen(use);
+  },
+  /**
+   * 当setUseThirdBleListen设置为true时有效，用于处理蓝牙特征值变化的事件。
+   * 需要先通过JCAPI.setUseThirdBleListen(true)启用第三方蓝牙监听。
+   * 示例
+   * JCAPI.setUseThirdBleListen(true)
+   *     wx.onBLECharacteristicValueChange((res) => {
+   *       JCAPI.bleValueChanged(res)
+   *     })
+   * @param {*} res - 蓝牙监听到的数据对象。
+   */
+  bleValueChanged: function bleValueChanged(res) {
+    manager.onBleValueChange(res);
+  },
+  /**
+   * 打开打印机
+   * @param {string} printerName - 打印机名称
+   * @param {function} didConnectedHandler - 连接成功回调函数
+   * @param {function} didDisconnectedHandler - 连接断开回调函数
+   */
+  openPrinter: function openPrinter(printerName, didConnectedHandler, didDisconnectedHandler) {
+    manager.openPrinter(printerName, didConnectedHandler, didDisconnectedHandler);
+  },
+  /**
+   * 关闭打印机
+   */
+  closePrinter: function closePrinter() {
+    manager.closePrinter();
+  },
+  /**
+   * 搜索蓝牙设备
+   * @param {function} didGetScanedPrinters - 搜索后的回调函数，用于处理搜索结果 function(list){}
+   */
+  scanedPrinters: function scanedPrinters(didGetScanedPrinters) {
+    manager.scanedPrinters(didGetScanedPrinters);
+  },
+  /**
+   * 开始打印任务
+   * @param {number} gapType - 纸张类型 1.间隙纸  2.黑标纸  3.连续纸  4.定孔纸  5.透明纸  6.标牌
+   * @param {number} darkness - 打印浓度B3S/B1/B203/B21/K3/K3W/M2 浓度范围1-5 建议3  B32/Z401 浓度范围1-15 建议8
+   * @param {number} totalCount - 总打印份数，表示所有页面的打印份数之和。例如，如果你有3页需要打印，第一页打印3份，第二页打印2份，第三页打印5份，那么count的值应为10（3+2+5）。
+   * @param {function} callback - 任务开启后的回调函数
+   */
+  startJob: function startJob(gapType, darkness, totalCount, callback) {
+    manager.startJob(gapType, darkness, totalCount, callback);
+  },
+  /**
+   * 打印前开始绘制
+   * @param {string} canvasId - 画布ID
+   * @param {object} component - 画布所在js对象
+   * @param {number} labelWidth - 标签画布宽（标签宽度，单位mm）
+   * @param {number} labelHeight - 标签画布高（标签高度，单位mm）
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270
+   * @param {Canvas} canvas - 画布对象，当使用原生小程序IDE时 canvas为null即可，但是uni编译时需要传入canvas对象，否则打印会失败
+   * @description
+   * 对应的canvas宽高建议使用变量
+   */
+  startDrawLabel: function startDrawLabel(canvasId, component, labelWidth, labelHeight) {
+    var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+    var canvas = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+    console.log("canvas", canvas);
+    manager.startDrawLabel(canvasId, component, labelWidth, labelHeight, rotation, canvas);
+  },
+  /**
+   * 绘制文本
+   * @param {string} content - 文本内容
+   * @param {number} x - 起点x，单位mm
+   * @param {number} y - 起点y，单位mm（左下角坐标）
+   * @param {number} fontHeight - 字体大小，单位mm
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左下角
+   * @param {object} options - 选项，如下：
+   *                         {
+   *                           bold: false,       // 是否加粗
+   *                           italic: false,     // 是否倾斜
+   *                           family: 'SimHei', // 字体设置
+   *                           align: 'left'/'right'/'center' // 对齐方式
+   *                         }
+   * @description
+   * 注意事项：
+   * 1. IOS斜体不支持中文，字体自定义不支持中文，仅支持小程序内置字体。
+   * 2. 0°对齐方式中心点为X坐标，即左对齐时文本左下角坐标为x，右对齐时文本右下角坐标为x，居中对齐时文本底部中心点坐标为x。
+   * 3. 90°对齐方式中心点为旋转后的Y坐标，即左对齐时文本左下角坐标为旋转后的Y坐标，右对齐时文本右下角坐标为旋转后的Y坐标，居中对齐时文本底部中心点坐标为旋转后的Y坐标。
+   * 4.180°和270°类似，可自行尝试
+   */
+  drawText: function drawText(content, x, y, fontHeight) {
+    var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+    var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+    manager.drawText(content, x, y, fontHeight, rotation, options);
+  },
+  /**
+   * 绘制条码
+   * @param {string} content - 条码内容
+   * @param {number} x - 起点x,单位mm
+   * @param {number} y - 起点y,单位mm
+   * @param {number} width - 宽,单位mm
+   * @param {number} height - 高,单位mm
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左上角
+   * @param {number} fontSize - 文本的字体大小,单位mm
+   * @param {number} fontHeight - 文本的高度,单位mm
+   * @param {number} position - 文本位置，0-条码下方 1-条码上方 2-不显示文体，此时fontSize/fontHeight无效
+   */
+  drawBarcode: function drawBarcode(content, x, y, width, height) {
+    var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+    var fontSize = arguments.length > 6 ? arguments[6] : undefined;
+    var fontHeight = arguments.length > 7 ? arguments[7] : undefined;
+    var position = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 2;
+    manager.drawBarcode(content, x, y, width, height, rotation, fontSize, fontHeight, position);
+  },
+  /**
+   * 绘制二维码
+   * @param {string} content - 二维码内容
+   * @param {number} x - 起点x,单位mm
+   * @param {number} y - 起点y,单位mm（左上角坐标）
+   * @param {number} width - 宽,单位mm
+   * @param {number} height - 高,单位mm
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左上角
+   * @param {number} ecc - 纠错等级 0-3
+   */
+  drawQRCode: function drawQRCode(content, x, y, width, height) {
+    var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+    var ecc = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 2;
+    manager.drawQRCode(content, x, y, width, height, rotation, ecc);
+  },
+  /**
+   * 绘制矩形
+   * @param {number} x - 起点x,单位mm
+   * @param {number} y - 起点y,单位mm
+   * @param {number} width - 宽,单位mm
+   * @param {number} height - 高,单位mm
+   * @param {number} lineWidth - 线条宽,单位mm
+   * @param {boolean} isFilled - 是否填充
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左上角
+   */
+  drawRectangle: function drawRectangle(x, y, width, height, lineWidth) {
+    var isFilled = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+    var rotation = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+    manager.drawRectangle(x, y, width, height, lineWidth, isFilled, rotation);
+  },
+  /**
+   * 绘制线条
+   * @param {number} x - 起点x，单位mm
+   * @param {number} y - 起点y，单位mm（左下角坐标）
+   * @param {number} width - 宽度，单位mm
+   * @param {number} height - 高度，单位mm
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左上角
+   *
+   * @description
+   * 计算线条的左上角为y坐标+线高
+   */
+  drawLine: function drawLine(x, y, width, height) {
+    var rotation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+    manager.drawLine(x, y, width, height, rotation);
+  },
+  /**
+   * 绘制图片
+   * @param {string} path - 本地图片路径（暂不支持网络图片）
+   * @param {number} x 起点x,单位mm
+   * @param {number} y 起点y,单位mm
+   * @param {number} width 宽,单位mm
+   * @param {number} height 高,单位mm
+   * @param {number} rotation - 旋转角度，默认为0，支持0/90/180/270，旋转中心点左上角
+   *
+   * @description
+   * 暂不支持网络图片，需要将图片缓存到本地后，传入本地路径进行绘制
+   * 图像背景不可以设置为透明色，否则会打印出黑块
+   */
+  drawImage: function drawImage(path, x, y, width, height) {
+    var rotation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+    manager.drawImage(path, x, y, width, height, rotation);
+  },
+  /**
+   * 结束绘制标签
+   * @param {function} callback - 绘制完之后的回调
+   */
+  endDrawLabel: function endDrawLabel(callback) {
+    manager.endDrawLabel(callback);
+  },
+  /**
+   * 打印图像数据。
+   *
+   * @param {number} onePageCount - 图像打印份数，默认为 1。
+   * @param {number} dataW - 图像数据的宽度，单位px
+   * @param {number} dataH - 图像数据的高度，单位px
+   * @param {Array} dataArray - 包含图像数据的数组，要求无符号整型，数组长度=宽*高*4
+   * @param {Function} callback - 打印完成后的回调函数。
+   * @param {Object|null} optionPara - 可选参数，用于配置打印选项。默认为 null。
+   */
+  printImageData: function printImageData() {
+    var onePageCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    var dataW = arguments.length > 1 ? arguments[1] : undefined;
+    var dataH = arguments.length > 2 ? arguments[2] : undefined;
+    var dataArray = arguments.length > 3 ? arguments[3] : undefined;
+    var callback = arguments.length > 4 ? arguments[4] : undefined;
+    var optionPara = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+    // 调用底层管理器的打印图像数据方法
+    manager.printImageData(onePageCount, {
+      width: dataW,
+      height: dataH,
+      data: dataArray
+    }, callback, optionPara);
+  },
+  /**
+   * 启动打印操作。
+   *
+   * @param {number} onePageCount - 一页中的打印份数，默认为 1。
+   * @param {Function} callback - 回调,表示可以发送下一页数据，不表示已打印完成，打印完成与否监听页码变化状态
+   * @param {Object|null} optionPara - 可选参数，用于配置打印选项。默认为 null。
+   */
+  print: function print() {
+    var onePageCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    var callback = arguments.length > 1 ? arguments[1] : undefined;
+    var optionPara = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    if (optionPara === null || optionPara === undefined) {
+      optionPara = JCSDKPrintOptionParas;
+    }
+    manager.startPrint(onePageCount, callback, optionPara);
+  },
+  /**
+   * 读取打印进度信息并触发回调函数
+   *
+   * @param {Function} callback - 回调函数，用于接收页码数据的对象：{'count': int（必需）， 'tid': string（非必需）}。
+   */
+  didReadPrintCountInfo: function didReadPrintCountInfo(callback) {
+    manager.didReadPrintCountInfo(callback);
+  },
+  /**
+   * 读取打印错误信息并触发回调函数。
+   *
+   * @param {Function} callback - 回调函数，用于接收打印错误信息的数据。
+   */
+  didReadPrintErrorInfo: function didReadPrintErrorInfo(callback) {
+    manager.didReadPrintErrorInfo(callback);
+  },
+  /**
+   * 取消打印
+   * @param {function} callback - 回调函数，用于处理打印取消操作的结果
+   */
+  cancelPrint: function cancelPrint(callback) {
+    manager.cancelPrint(callback);
+  },
+  /**
+   * 获取当前的连接名称
+   *
+   * 此函数通过调用manager对象的getConnName方法来获取连接名称
+   *
+   * @returns {string} 当前的连接名称
+   */
+  getConnName: function getConnName() {
+    // 获取连接名称
+    return manager.getConnName();
+  },
+  /**
+   * 获取设备序列号（SN）并通过回调函数返回。
+   *
+   * @param {JCSDKPrinterGetParas} callback - 回调函数，用于接收设备序列号（SN）信息。
+   */
+  getSN: function getSN(callback) {
+    manager.getSN(callback);
+  },
+  /**
+   * 获取软件版本信息并通过回调函数返回。
+   * @param {JCSDKPrinterGetParas} callback - 回调函数，用于接收软件版本信息
+   */
+  getSoftVersion: function getSoftVersion(callback) {
+    manager.getSoftVersion(callback);
+  },
+  /**
+   * 获取获取硬件版本信息并通过回调函数返回。
+   * @param {JCSDKPrinterGetParas} callback - 回调函数，用于接收硬件版本信息
+   */
+  getHardVersion: function getHardVersion(callback) {
+    manager.getHardVersion(callback);
+  },
+  /**
+   * 获取倍率
+   * @returns {*} - 返回打印倍率
+   */
+  getMultiple: function getMultiple() {
+    var dpi = manager.getMultiple();
+    return dpi >= 300 && dpi < 350 ? 11.81 : 8;
+  },
+  /**
+   * 获取打印机速度/质量模式
+   * @param {JCSDKPrinterGetParas} callback 可选参数
+   */
+  gePrintSpeedQualityWay: function gePrintSpeedQualityWay(callback) {
+    manager.getPrintWithSpeedOrQuality(callback);
+  },
+  /**
+   * 执行纸张校准操作。
+   *
+   * @param {number} paperType - 1.间隙纸  2.黑标纸  3.连续纸  4.定孔纸  5.透明纸  6.标牌
+   * @param {Function} callback - 校准完成后的回调。
+   */
+  paperCalibration: function paperCalibration(paperType, callback) {
+    manager.testPaperGap(paperType, callback);
+  }
+};
+var _default = JCAPI; // module.exports = JCAPI
+exports.default = _default;
+
+/***/ }),
+
+/***/ 163:
+/*!**********************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPIManager.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx, uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _JCCodeWriter = _interopRequireDefault(__webpack_require__(/*! ./JCCodeWriter */ 164));
+var _JCBle = _interopRequireDefault(__webpack_require__(/*! ./JCBle */ 167));
+var _JCPrinter = _interopRequireDefault(__webpack_require__(/*! ./JCPrinter */ 171));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
+(function (_0x2b0ee8, _0x19a313) {
+  var _0x55938b = a0_0x51ee,
+    _0x148ec2 = _0x2b0ee8();
+  while (!![]) {
+    try {
+      var _0x1b37cd = parseInt(_0x55938b(0x183)) / 0x1 * (-parseInt(_0x55938b(0x184)) / 0x2) + parseInt(_0x55938b(0xfe)) / 0x3 + parseInt(_0x55938b(0x109)) / 0x4 + -parseInt(_0x55938b(0x10c)) / 0x5 * (parseInt(_0x55938b(0x147)) / 0x6) + parseInt(_0x55938b(0x10f)) / 0x7 + -parseInt(_0x55938b(0x124)) / 0x8 * (-parseInt(_0x55938b(0x141)) / 0x9) + parseInt(_0x55938b(0x173)) / 0xa;
+      if (_0x1b37cd === _0x19a313) break;else _0x148ec2['push'](_0x148ec2['shift']());
+    } catch (_0x38927f) {
+      _0x148ec2['push'](_0x148ec2['shift']());
+    }
+  }
+})(a0_0x5528, 0x76d55);
+function a0_0x51ee(_0x49abf1, _0x5d8884) {
+  var _0x552887 = a0_0x5528();
+  return a0_0x51ee = function a0_0x51ee(_0x51eebb, _0x3508d5) {
+    _0x51eebb = _0x51eebb - 0xf8;
+    var _0x268df0 = _0x552887[_0x51eebb];
+    return _0x268df0;
+  }, a0_0x51ee(_0x49abf1, _0x5d8884);
+}
+var labelModel = /*#__PURE__*/(0, _createClass2.default)(function labelModel(_0xa7955c) {
+  (0, _classCallCheck2.default)(this, labelModel);
+  var _0x2c199e = a0_0x51ee;
+  this['id'] = _0xa7955c, this[_0x2c199e(0x174)] = null, this['path'] = null, this['roration'] = 0x0, this['x'] = 0x0, this['y'] = 0x0, this['width'] = 0x0, this[_0x2c199e(0x168)] = 0x0, this['lineWidth'] = 0x0, this[_0x2c199e(0x111)] = ![], this[_0x2c199e(0xfa)] = 0x0, this[_0x2c199e(0x103)] = null, this['debug'] = 0x0;
+});
+var ManagerSDK = function () {
+  var _0x39dc03 = a0_0x51ee;
+  var _0x3e3cc2 = null;
+  function _0x5d831a() {
+    var _0x54ea3e = a0_0x51ee;
+    this[_0x54ea3e(0x116)] = null, this[_0x54ea3e(0x133)] = null, this['protoVer'] = 0x0, this[_0x54ea3e(0x14b)] = 0x0, this[_0x54ea3e(0x108)] = 0x0, this['sendBleInterval'] = 0x0, this[_0x54ea3e(0x122)] = null, this[_0x54ea3e(0x12c)] = null, this[_0x54ea3e(0x152)] = {}, this[_0x54ea3e(0x185)] = null, this[_0x54ea3e(0x153)] = null, this[_0x54ea3e(0x110)] = null, this['deviceScale'] = null, this[_0x54ea3e(0x15c)] = null, this['maxOnceSendRows'] = 0x0, this[_0x54ea3e(0x13b)] = 0x0, this['labelModels'] = [], this[_0x54ea3e(0x116)] = 0x0, this[_0x54ea3e(0x162)] = ![], this[_0x54ea3e(0x135)] = null, this[_0x54ea3e(0x152)] = {}, this[_0x54ea3e(0x123)] = ![], this[_0x54ea3e(0x187)] = ![], this[_0x54ea3e(0x155)] = _JCAPIErrorCode.default[_0x54ea3e(0x145)], this[_0x54ea3e(0x169)]();
+  }
+  return _0x5d831a['prototype']['init'] = function () {
+    var _0xc0fcc4 = a0_0x51ee;
+    this['data'] = _0xc0fcc4(0x140);
+  }, _0x5d831a['prototype'][_0x39dc03(0x10a)] = function (_0x8838e1, _0x28ea6d, _0x48af70) {
+    var _this = this;
+    var _0x17261a = _0x39dc03;
+    this[_0x17261a(0x187)] == ![] && this[_0x17261a(0x12e)](_JCAPIErrorCode.default[_0x17261a(0x132)]), this[_0x17261a(0x122)] == null && (this[_0x17261a(0x122)] = new _JCBle.default(this)), this['ble'][_0x17261a(0x10a)](_0x8838e1, _0x28ea6d, function () {
+      var _0x12647e = _0x17261a;
+      _this['ble'][_0x12647e(0x115)] = ![], _0x48af70 && _0x48af70(), _this[_0x12647e(0x122)] != null && (_this[_0x12647e(0x122)] = null), _this[_0x12647e(0x133)] != null && (_this[_0x12647e(0x133)] = null), _this[_0x12647e(0x116)] = 0x0;
+    });
+  }, _0x5d831a['prototype']['scanedPrinters'] = function (_0x16c14b) {
+    var _0x18e7d7 = _0x39dc03;
+    this[_0x18e7d7(0x187)] == ![] && this[_0x18e7d7(0x12e)](_JCAPIErrorCode.default[_0x18e7d7(0x132)]), this[_0x18e7d7(0x122)] == null && (this[_0x18e7d7(0x122)] = new _JCBle.default(this)), this[_0x18e7d7(0x122)][_0x18e7d7(0x186)](_0x16c14b);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x18f)] = function (_0x720108) {
+    var _0x2af756 = _0x39dc03;
+    this[_0x2af756(0xff)] = _0x720108;
+  }, _0x5d831a['prototype'][_0x39dc03(0x17c)] = function (_0x4de661) {
+    this['useOutBleListen'] = _0x4de661;
+  }, _0x5d831a['prototype']['setBuildPlatform'] = function (_0x16ade1) {
+    var _0x3cb8db = _0x39dc03;
+    (this[_0x3cb8db(0x114)] & 0x100) == 0x100 && console[_0x3cb8db(0x11a)]('设置了编译平台' + _0x16ade1), this[_0x3cb8db(0x155)] = _0x16ade1;
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x12e)] = function (_0x1cfdf2) {
+    var _0x55c105 = _0x39dc03;
+    this[_0x55c105(0x187)] = !![], this[_0x55c105(0x19c)] = _0x1cfdf2;
+    if (this[_0x55c105(0x19c)] == _JCAPIErrorCode.default[_0x55c105(0x19f)]) {
+      var _0x895c7 = dd['getSystemInfoSync']();
+      this[_0x55c105(0x12c)] = _0x895c7[_0x55c105(0x12c)], this[_0x55c105(0x185)] = _0x895c7['SDKVersion'], this[_0x55c105(0x110)] = _0x895c7['screenHeight'], this[_0x55c105(0x153)] = _0x895c7[_0x55c105(0x199)], this[_0x55c105(0x150)] = _0x895c7[_0x55c105(0x139)];
+    } else {
+      if (this['sdkPlatform'] == _JCAPIErrorCode.default[_0x55c105(0x1a0)]) {
+        var _0x895c7 = tt[_0x55c105(0x101)]();
+        this[_0x55c105(0x12c)] = _0x895c7[_0x55c105(0x12c)], this['wxSDKVersion'] = _0x895c7['SDKVersion'], this[_0x55c105(0x110)] = _0x895c7[_0x55c105(0x14c)], this[_0x55c105(0x153)] = _0x895c7[_0x55c105(0x199)], this[_0x55c105(0x150)] = _0x895c7['devicePixelRatio'];
+      } else {
+        var _0x895c7 = wx[_0x55c105(0x101)]();
+        this[_0x55c105(0x12c)] = _0x895c7['platform'], this[_0x55c105(0x185)] = _0x895c7[_0x55c105(0x120)], this[_0x55c105(0x110)] = _0x895c7[_0x55c105(0x14c)], this[_0x55c105(0x153)] = _0x895c7[_0x55c105(0x199)], this[_0x55c105(0x150)] = _0x895c7[_0x55c105(0x13e)];
+      }
+    }
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x195)] = function (_0x6b7a1e) {
+    var _0x2757b8 = _0x39dc03;
+    this[_0x2757b8(0x122)] && this[_0x2757b8(0x122)][_0x2757b8(0x107)](_0x6b7a1e);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x18e)] = function (_0x2fa369) {
+    this['gapType'] = _0x2fa369;
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x128)] = function (_0x194f3b, _0x3d3ef8, _0x32f1fb, _0x549838, _0x16cddf, _0x29e3db) {
+    var _0xf52a09 = _0x39dc03;
+    this[_0xf52a09(0x100)] = !![], this[_0xf52a09(0x16d)] = _0x194f3b, this[_0xf52a09(0x18b)] = _0x32f1fb, this[_0xf52a09(0x197)] = _0x549838, this['compent'] = _0x3d3ef8, this[_0xf52a09(0x18d)] = this['getRotation'](_0x16cddf);
+    var _0x6b898b = null;
+    if (this['buildPlatform'] == _JCAPIErrorCode.default[_0xf52a09(0x164)]) {
+      _0x29e3db != null && _0x29e3db != undefined ? (console['log'](_0xf52a09(0x1a9)), _0x6b898b = _0x29e3db) : _0x6b898b = uni[_0xf52a09(0x196)](_0x194f3b, _0x3d3ef8);
+      this[_0xf52a09(0x13f)] = _0x6b898b;
+      var _0x32e18e = this[_0xf52a09(0x18b)] > this['canvasHeight'] ? this[_0xf52a09(0x18b)] : this[_0xf52a09(0x197)];
+      _0x32e18e = this['mm2px'](_0x32e18e);
+      _0x3d3ef8 && _0x3d3ef8[_0xf52a09(0x170)] != null ? _0x3d3ef8[_0xf52a09(0x170)]({
+        'canvasWidth': _0x32e18e,
+        'canvasHeight': _0x32e18e
+      }) : (_0x3d3ef8[_0xf52a09(0x18b)] = _0x32e18e, _0x3d3ef8[_0xf52a09(0x197)] = _0x32e18e, _0x3d3ef8[_0xf52a09(0x11b)](), (this['debug'] & 0x100) == 0x100 && console['log'](_0xf52a09(0x12f) + _0x32e18e));
+      _0x6b898b['setFillStyle'](_0xf52a09(0x157)), _0x6b898b[_0xf52a09(0x181)](0x0, 0x0, _0x32e18e, _0x32e18e);
+      return;
+    } else {
+      if (this[_0xf52a09(0x19c)] == _JCAPIErrorCode.default[_0xf52a09(0x19f)]) _0x6b898b = dd[_0xf52a09(0x196)](_0x194f3b);else {
+        if (this[_0xf52a09(0x19c)] == _JCAPIErrorCode.default[_0xf52a09(0x1a0)]) {
+          _0x6b898b = tt[_0xf52a09(0x196)](_0x194f3b, _0x3d3ef8), this[_0xf52a09(0x13f)] = _0x6b898b;
+          var _0x408b7e = this['mm2px'](this['canvasWidth']),
+            _0x1c0bf5 = this['mm2px'](this['canvasHeight']);
+          _0x3d3ef8 && _0x3d3ef8[_0xf52a09(0x170)] != null && _0x3d3ef8[_0xf52a09(0x170)]({
+            'canvasWidth': _0x408b7e,
+            'canvasHeight': _0x1c0bf5
+          });
+          _0x6b898b[_0xf52a09(0x12b)](), _0x6b898b[_0xf52a09(0x136)]('#fff'), _0x6b898b[_0xf52a09(0x181)](0x0, 0x0, _0x408b7e, _0x1c0bf5);
+          return;
+        } else _0x6b898b = wx[_0xf52a09(0x196)](_0x194f3b, _0x3d3ef8);
+      }
+    }
+    this[_0xf52a09(0x13f)] = _0x6b898b;
+    var _0x381a9b = this[_0xf52a09(0x18b)] > this[_0xf52a09(0x197)] ? this[_0xf52a09(0x18b)] : this[_0xf52a09(0x197)];
+    _0x381a9b = this[_0xf52a09(0x13c)](_0x381a9b), _0x3d3ef8 && _0x3d3ef8['setData'] != null && _0x3d3ef8[_0xf52a09(0x170)]({
+      'canvasWidth': _0x381a9b,
+      'canvasHeight': _0x381a9b
+    }), _0x6b898b[_0xf52a09(0x12b)](), _0x6b898b[_0xf52a09(0x136)]('#fff'), _0x6b898b['fillRect'](0x0, 0x0, _0x381a9b, _0x381a9b);
+  }, _0x5d831a[_0x39dc03(0x160)]['startJob'] = function (_0x2fcdd5, _0x3c9851, _0x102835, _0x37920a) {
+    var _0x2e3432 = _0x39dc03;
+    if (this[_0x2e3432(0x133)] == null || this[_0x2e3432(0x133)] === undefined || this[_0x2e3432(0x122)]['bleDevice'] == null) return;
+    if (this['startJobFlag'] != null && this[_0x2e3432(0x1a8)]) return;
+    this[_0x2e3432(0x1a8)] = !![];
+    _0x2fcdd5 != null ? this[_0x2e3432(0x171)] = _0x2fcdd5 : this[_0x2e3432(0x171)] = 0x1;
+    if (this[_0x2e3432(0x162)] || this[_0x2e3432(0x133)][_0x2e3432(0x13a)] == undefined || this[_0x2e3432(0x133)]['checkRFID'] == ![]) this[_0x2e3432(0x133)]['startJob'](_0x2fcdd5, _0x3c9851, _0x102835, _0x37920a);else {
+      var _0x197d8d = this;
+      this[_0x2e3432(0x133)]['getRFIDInfos'](function (_0x1c6b73) {
+        var _0x5898f2 = _0x2e3432;
+        var _0x91e378 = _0x3c9851;
+        _0x1c6b73['res'] != 0x0 ? ((_0x197d8d[_0x5898f2(0x114)] & 0x1) == 0x1 && console[_0x5898f2(0x11a)](_0x5898f2(0x149) + _0x1c6b73['res'] + _0x5898f2(0x127)), _0x91e378 = -0x2) : _0x1c6b73[_0x5898f2(0x17a)] && _0x1c6b73[_0x5898f2(0x17a)]['total'] <= _0x1c6b73[_0x5898f2(0x17a)][_0x5898f2(0x156)] && ((_0x197d8d[_0x5898f2(0x114)] & 0x1) == 0x1 && console[_0x5898f2(0x11a)](_0x5898f2(0x149) + _0x1c6b73['data'][_0x5898f2(0x11c)] + '--' + _0x1c6b73[_0x5898f2(0x17a)][_0x5898f2(0x156)] + '--low2'), _0x91e378 = -0x2), _0x197d8d['printer']['startJob'](_0x2fcdd5, _0x91e378, _0x102835, _0x37920a);
+      });
+    }
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x12d)] = function (_0x5959ac) {
+    var _0x11cad6 = _0x39dc03;
+    if (this[_0x11cad6(0x133)] == null || this[_0x11cad6(0x133)] === undefined || this[_0x11cad6(0x122)][_0x11cad6(0x10b)] == null) return;
+    this[_0x11cad6(0x133)][_0x11cad6(0x12d)](_0x5959ac);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x121)] = function (_0x59421e) {
+    var _0x5b6526 = _0x39dc03;
+    if (this[_0x5b6526(0x133)] == null || this[_0x5b6526(0x133)] === undefined || this[_0x5b6526(0x122)][_0x5b6526(0x10b)] == null) return;
+    this[_0x5b6526(0x133)]['didReadPrintErrorInfo'](_0x59421e);
+  }, _0x5d831a['prototype'][_0x39dc03(0x1a3)] = function (_0x5cc239) {
+    var _0x19fb03 = parseInt((_0x5cc239 % 0x168 + 0x168) % 0x168);
+    if (_0x19fb03 % 0x5a == 0x0) return _0x19fb03;
+    if (_0x19fb03 < 0x5a) return 0x0;else {
+      if (_0x19fb03 < 0xb4) return 0x5a;else return _0x19fb03 < 0x10e ? 0xb4 : 0x10e;
+    }
+  }, _0x5d831a['prototype'][_0x39dc03(0x13c)] = function (_0x11212a) {
+    var _0x328c63 = _0x39dc03;
+    return this[_0x328c63(0x133)] != null && this['printer'] != undefined ? this[_0x328c63(0x133)][_0x328c63(0x13c)](_0x11212a) : Math['ceil'](_0x11212a * 0x8);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x191)] = function (_0x54b479, _0x3ce9dc, _0x23fb31, _0x444eef, _0x3a8c0c, _0x5d8216) {
+    var _0x345a6d = _0x39dc03;
+    var _0x1add47 = this[_0x345a6d(0x13f)];
+    _0x1add47[_0x345a6d(0x15f)]();
+    var _0x17aaf0 = this['mm2px'](_0x444eef);
+    _0x3ce9dc = this[_0x345a6d(0x13c)](_0x3ce9dc), _0x23fb31 = this[_0x345a6d(0x13c)](_0x23fb31), _0x1add47['setFontSize'](_0x17aaf0);
+    this['sdkPlatform'] == _JCAPIErrorCode.default[_0x345a6d(0x1a0)] && _0x1add47['scale'](0x1 / this[_0x345a6d(0x150)], 0x1 / this['deviceScale']);
+    _0x1add47[_0x345a6d(0x19a)](_0x3ce9dc, _0x23fb31), _0x1add47[_0x345a6d(0x154)](this[_0x345a6d(0x1a3)](_0x3a8c0c) * Math['PI'] / 0xb4), _0x1add47['translate'](-_0x3ce9dc, -_0x23fb31), _0x1add47['setFillStyle'](_0x345a6d(0x126));
+    var _0x35cc78 = 'left';
+    if (_0x5d8216) {
+      var _0x35995b = '';
+      _0x5d8216[_0x345a6d(0x161)] ? _0x35995b += _0x345a6d(0xf8) : _0x35995b += 'normal\x20';
+      _0x5d8216['bold'] && (_0x35995b += 'bold\x20');
+      _0x35995b += _0x17aaf0, _0x35995b += 'px\x20';
+      _0x5d8216['family'] && _0x5d8216[_0x345a6d(0x194)] != '' ? _0x35995b += _0x5d8216[_0x345a6d(0x194)] : _0x35995b += _0x345a6d(0x1a7);
+      _0x1add47['font'] = _0x35995b;
+      if (_0x5d8216[_0x345a6d(0x16e)]) {
+        if (_0x5d8216['align'] == 'center') _0x35cc78 = _0x345a6d(0x15b);else _0x5d8216[_0x345a6d(0x16e)] == _0x345a6d(0x1a1) && (_0x35cc78 = _0x345a6d(0x1a1));
+      }
+    } else {
+      if (this[_0x345a6d(0x19c)] == _JCAPIErrorCode.default[_0x345a6d(0x19f)]) {
+        var _0x13fcb9 = _0x345a6d(0x104) + _0x17aaf0 + 'px\x20SimHei\x20SimHei';
+        _0x1add47['font'] = _0x13fcb9;
+      }
+    }
+    _0x1add47[_0x345a6d(0x166)](_0x35cc78), _0x1add47['fillText'](_0x54b479, _0x3ce9dc, _0x23fb31), _0x1add47[_0x345a6d(0x146)]();
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x148)] = function (_0x4ebb10, _0x271be0, _0x2a8824, _0x278b4c, _0x233031, _0x2eebb1, _0x596790, _0x27e7b0, _0x4917a1) {
+    var _0x3d6fc5 = _0x39dc03;
+    var _0x58ee5f = this[_0x3d6fc5(0x13f)];
+    _0x271be0 = this[_0x3d6fc5(0x13c)](_0x271be0), _0x2a8824 = this[_0x3d6fc5(0x13c)](_0x2a8824), _0x278b4c = this['mm2px'](_0x278b4c), _0x233031 = this[_0x3d6fc5(0x13c)](_0x233031);
+    var _0x19493f = this['mm2px'](_0x596790),
+      _0x4b9175 = this[_0x3d6fc5(0x13c)](_0x27e7b0);
+    if ((_0x19493f > _0x4b9175 || _0x4b9175 >= _0x233031) && _0x4917a1 != 0x2) {
+      (this[_0x3d6fc5(0x114)] & 0x1) == 0x1 && console[_0x3d6fc5(0x11a)](_0x3d6fc5(0x17e) + _0x233031 + '--fontH=' + _0x19493f + '---fontHeight=' + _0x4b9175);
+      this[_0x3d6fc5(0x103)] = _JCAPIErrorCode.default[_0x3d6fc5(0x190)];
+      return;
+    }
+    _0x58ee5f[_0x3d6fc5(0x15f)]();
+    this[_0x3d6fc5(0x19c)] == _JCAPIErrorCode.default[_0x3d6fc5(0x1a0)] && _0x58ee5f[_0x3d6fc5(0x142)](0x1 / this[_0x3d6fc5(0x150)], 0x1 / this['deviceScale']);
+    _0x58ee5f[_0x3d6fc5(0x19a)](_0x271be0, _0x2a8824), _0x58ee5f[_0x3d6fc5(0x154)](this[_0x3d6fc5(0x1a3)](_0x2eebb1) * Math['PI'] / 0xb4), _0x58ee5f[_0x3d6fc5(0x19a)](-_0x271be0, -_0x2a8824);
+    if (_0x4917a1 == 0x0) _JCCodeWriter.default[_0x3d6fc5(0x192)](_0x58ee5f, _0x4ebb10, _0x271be0, _0x2a8824, _0x278b4c, _0x233031 - _0x4b9175);else _0x4917a1 == 0x1 ? _JCCodeWriter.default[_0x3d6fc5(0x192)](_0x58ee5f, _0x4ebb10, _0x271be0, _0x4b9175 + _0x2a8824, _0x278b4c, _0x233031 - _0x4b9175) : _JCCodeWriter.default[_0x3d6fc5(0x192)](_0x58ee5f, _0x4ebb10, _0x271be0, _0x2a8824, _0x278b4c, _0x233031);
+    _0x58ee5f['restore']();
+    if (_0x4917a1 == 0x0) {
+      _0x58ee5f['save']();
+      var _0x5c3832 = 0x0;
+      if (this[_0x3d6fc5(0x19c)] == _JCAPIErrorCode.default[_0x3d6fc5(0x1a0)]) _0x58ee5f['scale'](0x1 / this[_0x3d6fc5(0x150)], 0x1 / this['deviceScale']), _0x58ee5f[_0x3d6fc5(0x118)](_0x19493f), _0x5c3832 = _0x271be0 + _0x278b4c / 0x2, _0x58ee5f['setTextAlign'](_0x3d6fc5(0x15b));else {
+        if (this[_0x3d6fc5(0x19c)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) _0x58ee5f[_0x3d6fc5(0x118)](_0x19493f), _0x5c3832 = _0x271be0 + _0x278b4c / 0x2, _0x58ee5f['setTextAlign'](_0x3d6fc5(0x15b));else {
+          _0x58ee5f[_0x3d6fc5(0x118)](_0x19493f);
+          var _0x3a2ed2 = _0x58ee5f[_0x3d6fc5(0x119)](_0x4ebb10);
+          _0x5c3832 = _0x271be0 + (_0x278b4c - _0x3a2ed2[_0x3d6fc5(0x167)]) / 0x2;
+        }
+      }
+      var _0x20b11a = _0x2a8824 + _0x233031;
+      _0x58ee5f[_0x3d6fc5(0x19a)](_0x271be0, _0x2a8824), _0x58ee5f['rotate'](this[_0x3d6fc5(0x1a3)](_0x2eebb1) * Math['PI'] / 0xb4), _0x58ee5f[_0x3d6fc5(0x19a)](-_0x271be0, -_0x2a8824), _0x58ee5f[_0x3d6fc5(0x136)]('#000'), _0x58ee5f[_0x3d6fc5(0x10d)]('bottom'), _0x58ee5f['fillText'](_0x4ebb10, _0x5c3832, _0x20b11a), _0x58ee5f[_0x3d6fc5(0x146)]();
+    } else {
+      if (_0x4917a1 == 0x1) {
+        _0x58ee5f['save']();
+        var _0x13ad09 = 0x0;
+        if (this[_0x3d6fc5(0x19c)] == _JCAPIErrorCode.default[_0x3d6fc5(0x1a0)]) _0x58ee5f[_0x3d6fc5(0x142)](0x1 / this[_0x3d6fc5(0x150)], 0x1 / this[_0x3d6fc5(0x150)]), _0x58ee5f[_0x3d6fc5(0x118)](_0x19493f), _0x13ad09 = _0x271be0 + _0x278b4c / 0x2, _0x58ee5f['setTextAlign'](_0x3d6fc5(0x15b));else {
+          if (this['sdkPlatform'] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) _0x58ee5f[_0x3d6fc5(0x118)](_0x19493f), _0x13ad09 = _0x271be0 + _0x278b4c / 0x2, _0x58ee5f['setTextAlign']('center');else {
+            _0x58ee5f['setFontSize'](_0x19493f);
+            var _0x463b53 = _0x58ee5f[_0x3d6fc5(0x119)](_0x4ebb10);
+            _0x13ad09 = _0x271be0 + (_0x278b4c - _0x463b53[_0x3d6fc5(0x167)]) / 0x2;
+          }
+        }
+        var _0x4a7ed5 = _0x2a8824 + _0x19493f;
+        _0x58ee5f[_0x3d6fc5(0x19a)](_0x271be0, _0x2a8824), _0x58ee5f[_0x3d6fc5(0x154)](this[_0x3d6fc5(0x1a3)](_0x2eebb1) * Math['PI'] / 0xb4), _0x58ee5f[_0x3d6fc5(0x19a)](-_0x271be0, -_0x2a8824), _0x58ee5f[_0x3d6fc5(0x136)](_0x3d6fc5(0x126)), _0x58ee5f[_0x3d6fc5(0x10d)]('bottom'), _0x58ee5f[_0x3d6fc5(0x151)](_0x4ebb10, _0x13ad09, _0x4a7ed5), _0x58ee5f[_0x3d6fc5(0x146)]();
+      }
+    }
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x106)] = function (_0x40d232, _0x63ffd2, _0x55ba80, _0x4f15f3, _0x247018, _0x3988e2, _0x56abf3) {
+    var _0x146c57 = _0x39dc03;
+    var _0x42f9ea = this[_0x146c57(0x13f)];
+    _0x63ffd2 = this['mm2px'](_0x63ffd2), _0x55ba80 = this['mm2px'](_0x55ba80), _0x4f15f3 = this[_0x146c57(0x13c)](_0x4f15f3), _0x247018 = this['mm2px'](_0x247018), _0x42f9ea[_0x146c57(0x15f)](), this['sdkPlatform'] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] && _0x42f9ea[_0x146c57(0x142)](0x1 / this[_0x146c57(0x150)], 0x1 / this[_0x146c57(0x150)]), _0x42f9ea['translate'](_0x63ffd2, _0x55ba80), _0x42f9ea['rotate'](this[_0x146c57(0x1a3)](_0x3988e2) * Math['PI'] / 0xb4), _0x42f9ea[_0x146c57(0x19a)](-_0x63ffd2, -_0x55ba80), _JCCodeWriter.default[_0x146c57(0x17d)](_0x42f9ea, _0x40d232, _0x63ffd2, _0x55ba80, _0x4f15f3, _0x247018, _0x56abf3), _0x42f9ea['restore']();
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x1ab)] = function (_0x356442, _0x2193b6, _0x3ffc57, _0xdfe76, _0x226624, _0xc84447, _0x12797c) {
+    var _0x2cf3f0 = _0x39dc03;
+    var _0x5445c9 = this[_0x2cf3f0(0x13f)];
+    _0x356442 = this[_0x2cf3f0(0x13c)](_0x356442), _0x2193b6 = this[_0x2cf3f0(0x13c)](_0x2193b6), _0x3ffc57 = this[_0x2cf3f0(0x13c)](_0x3ffc57), _0xdfe76 = this['mm2px'](_0xdfe76), _0x5445c9[_0x2cf3f0(0x15f)]();
+    this[_0x2cf3f0(0x19c)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] && _0x5445c9['scale'](0x1 / this[_0x2cf3f0(0x150)], 0x1 / this[_0x2cf3f0(0x150)]);
+    var _0x3fd069 = this[_0x2cf3f0(0x13c)](_0x226624);
+    _0x5445c9[_0x2cf3f0(0x19a)](_0x356442, _0x2193b6), _0x5445c9[_0x2cf3f0(0x154)](this['getRotation'](_0x12797c) * Math['PI'] / 0xb4), _0x5445c9['translate'](-_0x356442, -_0x2193b6), _0xc84447 ? (_0x5445c9[_0x2cf3f0(0x136)](_0x2cf3f0(0x126)), _0x5445c9['fillRect'](_0x356442, _0x2193b6, _0x3ffc57, _0xdfe76)) : (_0x5445c9[_0x2cf3f0(0x163)](_0x3fd069), _0x5445c9[_0x2cf3f0(0x14e)]('#000'), _0x5445c9['strokeRect'](_0x356442, _0x2193b6, _0x3ffc57, _0xdfe76)), _0x5445c9[_0x2cf3f0(0x146)]();
+  }, _0x5d831a['prototype']['drawLine'] = function (_0x1e3cfe, _0x141130, _0x5c467a, _0x41b9b1, _0x52ce66) {
+    var _0x219b90 = _0x39dc03;
+    var _0x4a29d5 = this[_0x219b90(0x13f)];
+    _0x1e3cfe = this[_0x219b90(0x13c)](_0x1e3cfe), _0x141130 = this[_0x219b90(0x13c)](_0x141130), _0x5c467a = this[_0x219b90(0x13c)](_0x5c467a), _0x41b9b1 = this['mm2px'](_0x41b9b1), _0x4a29d5[_0x219b90(0x15f)](), this[_0x219b90(0x19c)] == _JCAPIErrorCode.default[_0x219b90(0x1a0)] && _0x4a29d5[_0x219b90(0x142)](0x1 / this[_0x219b90(0x150)], 0x1 / this[_0x219b90(0x150)]), _0x4a29d5[_0x219b90(0x136)](_0x219b90(0x126)), _0x4a29d5[_0x219b90(0x19a)](_0x1e3cfe, _0x141130), _0x4a29d5[_0x219b90(0x154)](this[_0x219b90(0x1a3)](_0x52ce66) * Math['PI'] / 0xb4), _0x4a29d5['translate'](-_0x1e3cfe, -_0x141130), _0x4a29d5[_0x219b90(0x181)](_0x1e3cfe, _0x141130, _0x5c467a, _0x41b9b1), _0x4a29d5[_0x219b90(0x146)]();
+  }, _0x5d831a['prototype']['drawImage'] = function (_0x1efd08, _0x3c97d3, _0x45cca6, _0x4a0603, _0x5ae4fa, _0x23b2aa) {
+    var _0x1aacd8 = _0x39dc03;
+    var _0x833787 = this[_0x1aacd8(0x13f)];
+    _0x3c97d3 = this[_0x1aacd8(0x13c)](_0x3c97d3), _0x45cca6 = this[_0x1aacd8(0x13c)](_0x45cca6), _0x4a0603 = this[_0x1aacd8(0x13c)](_0x4a0603), _0x5ae4fa = this[_0x1aacd8(0x13c)](_0x5ae4fa), _0x833787['save'](), this[_0x1aacd8(0x19c)] == _JCAPIErrorCode.default[_0x1aacd8(0x1a0)] && _0x833787[_0x1aacd8(0x142)](0x1 / this[_0x1aacd8(0x150)], 0x1 / this[_0x1aacd8(0x150)]), _0x833787[_0x1aacd8(0x19a)](_0x3c97d3, _0x45cca6), _0x833787[_0x1aacd8(0x154)](this[_0x1aacd8(0x1a3)](_0x23b2aa) * Math['PI'] / 0xb4), _0x833787['translate'](-_0x3c97d3, -_0x45cca6), _0x833787[_0x1aacd8(0x159)](_0x1efd08, _0x3c97d3, _0x45cca6, _0x4a0603, _0x5ae4fa), _0x833787['restore']();
+  }, _0x5d831a['prototype'][_0x39dc03(0x131)] = function (_0x2922c9) {
+    var _0x4a1777 = _0x39dc03;
+    var _0x85abaf = this,
+      _0x401b16 = this['ctx'],
+      _0x367e84 = setTimeout(function () {
+        var _0x3690f7 = a0_0x51ee;
+        _0x85abaf[_0x3690f7(0x103)] = _JCAPIErrorCode.default[_0x3690f7(0x1ac)], _0x2922c9 && _0x2922c9();
+      }, 0x1388);
+    _0x401b16[_0x4a1777(0x12b)](![], function () {
+      clearTimeout(_0x367e84), _0x2922c9 && setTimeout(function () {
+        var _0x923fa2 = a0_0x51ee;
+        _0x85abaf[_0x923fa2(0x100)] = ![], _0x2922c9();
+      }, 0x96);
+    });
+  }, _0x5d831a[_0x39dc03(0x160)]['printImageData'] = function (_0x3ef63b, _0x22a125, _0x4c2c73, _0x3652be) {
+    var _0x3f6f68 = _0x39dc03;
+    if (this[_0x3f6f68(0x133)] == null || this[_0x3f6f68(0x133)] === undefined || this[_0x3f6f68(0x122)]['bleDevice'] == null) return;
+    if (!_0x22a125 || !_0x22a125['width'] || !_0x22a125[_0x3f6f68(0x168)] || !_0x22a125[_0x3f6f68(0x17a)]) return;
+    var _0x4cc412 = _0x22a125[_0x3f6f68(0x167)],
+      _0x431ac2 = _0x22a125['height'],
+      _0x3c5570 = this[_0x3f6f68(0x133)][_0x3f6f68(0x10e)](_0x4cc412, this[_0x3f6f68(0x171)]),
+      _0x2f52ca = _0x3c5570['left'],
+      _0x30e7a6 = _0x3c5570[_0x3f6f68(0x178)],
+      _0xb4a57e = _0x3c5570['width'],
+      _0x39f502 = _0x431ac2 - _0x3c5570['top'] - _0x3c5570[_0x3f6f68(0x13d)];
+    if (_0x2f52ca > 0x0 || _0x30e7a6 > 0x0 || _0xb4a57e < _0x4cc412 || _0x39f502 < _0x431ac2) {
+      var _0x1e1b1f = [];
+      for (var _0x5a5e9d = 0x0; _0x5a5e9d < _0x431ac2; _0x5a5e9d++) {
+        for (var _0x293ff5 = 0x0; _0x293ff5 < _0x4cc412; _0x293ff5++) {
+          if (_0x5a5e9d < _0x30e7a6) continue;
+          if (_0x293ff5 < _0x2f52ca) continue;
+          if (_0x293ff5 >= _0x2f52ca + _0xb4a57e) continue;
+          if (_0x5a5e9d >= _0x39f502) continue;
+          var _0x3bc42e = _0x22a125['data'][(_0x4cc412 * _0x5a5e9d + _0x293ff5) * 0x4 + 0x1];
+          _0x3bc42e > 0x0 ? (_0x1e1b1f[_0x3f6f68(0x1a4)](0xff), _0x1e1b1f[_0x3f6f68(0x1a4)](0xff), _0x1e1b1f['push'](0xff), _0x1e1b1f[_0x3f6f68(0x1a4)](0xff)) : (_0x1e1b1f['push'](0xff), _0x1e1b1f[_0x3f6f68(0x1a4)](0x0), _0x1e1b1f[_0x3f6f68(0x1a4)](0x0), _0x1e1b1f[_0x3f6f68(0x1a4)](0x0));
+        }
+      }
+      var _0x1a4571 = {
+        'width': _0x4cc412 < _0xb4a57e ? _0x4cc412 : _0xb4a57e,
+        'height': _0x39f502,
+        'data': _0x1e1b1f
+      };
+      this[_0x3f6f68(0x100)] = ![], this['printer'][_0x3f6f68(0x129)](_0x1a4571, _0x3ef63b, 0x0, _0x4c2c73, _0x3652be);
+    } else this['isDrawing'] = ![], this[_0x3f6f68(0x133)]['startPrint'](_0x22a125, _0x3ef63b, 0x0, _0x4c2c73, _0x3652be);
+  }, _0x5d831a[_0x39dc03(0x160)]['startPrint'] = function (_0x1534c3, _0x3dcd14, _0x267180) {
+    var _0x1f0c5b = _0x39dc03;
+    if (this[_0x1f0c5b(0x133)] == null || this[_0x1f0c5b(0x133)] === undefined || this['ble']['bleDevice'] == null) return;
+    if (this[_0x1f0c5b(0x103)] != null) {
+      var _0x1dbea2 = this['drawError'];
+      this[_0x1f0c5b(0x103)] = null, this[_0x1f0c5b(0x133)]['sendPrintError'](_0x1dbea2, this['printer']['printErrorInfoCallback']);
+      return;
+    }
+    var _0x338125 = this,
+      _0x1371e2 = this['canvasWidth'],
+      _0x719541 = this[_0x1f0c5b(0x197)],
+      _0x3e41d3 = this[_0x1f0c5b(0x133)][_0x1f0c5b(0x19d)](_0x1371e2, this[_0x1f0c5b(0x171)]),
+      _0x388fa9 = _0x3e41d3[_0x1f0c5b(0x182)],
+      _0xba1293 = _0x3e41d3[_0x1f0c5b(0x178)],
+      _0x2b533e = _0x3e41d3[_0x1f0c5b(0x167)],
+      _0x14de45 = this['printer'][_0x1f0c5b(0x13c)](_0x719541) - _0x3e41d3[_0x1f0c5b(0x178)];
+    _0x14de45 < 0x0 && (_0x14de45 = this[_0x1f0c5b(0x133)][_0x1f0c5b(0x13c)](_0x719541), _0xba1293 = 0x0);
+    _0x3e41d3['bottom'] && _0x3e41d3[_0x1f0c5b(0x13d)] > 0x0 && _0x3e41d3[_0x1f0c5b(0x13d)] < _0x14de45 && (_0x14de45 = _0x14de45 - _0x3e41d3[_0x1f0c5b(0x13d)]);
+    this[_0x1f0c5b(0x18d)] % 0xb4 != 0x0 && (_0x3e41d3 = this[_0x1f0c5b(0x133)][_0x1f0c5b(0x19d)](_0x719541, this[_0x1f0c5b(0x171)]), _0x388fa9 = _0x3e41d3[_0x1f0c5b(0x178)], _0xba1293 = _0x3e41d3['left'], _0x2b533e = this['printer'][_0x1f0c5b(0x13c)](_0x1371e2) - _0x3e41d3[_0x1f0c5b(0x178)], _0x2b533e < 0x0 && (_0x2b533e = this[_0x1f0c5b(0x133)][_0x1f0c5b(0x13c)](_0x1371e2), _0x388fa9 = 0x0), _0x14de45 = _0x3e41d3[_0x1f0c5b(0x167)], _0x3e41d3[_0x1f0c5b(0x13d)] && _0x3e41d3['bottom'] > 0x0 && _0x3e41d3['bottom'] < _0x2b533e && (_0x2b533e = _0x2b533e - _0x3e41d3[_0x1f0c5b(0x13d)]));
+    (this[_0x1f0c5b(0x114)] & 0x1) == 0x1 && console[_0x1f0c5b(0x11a)]('x=' + _0x388fa9 + _0x1f0c5b(0x16f) + _0x2b533e + _0x1f0c5b(0x176) + _0x14de45 + _0x1f0c5b(0x158) + _0xba1293);
+    var _0x30634b = function _0x30634b(_0x4f8944) {
+        var _0x135b7d = _0x1f0c5b;
+        (_0x338125['debug'] & 0x1) == 0x1 && console[_0x135b7d(0x11a)](_0x4f8944), _0x338125['printer'][_0x135b7d(0x129)](_0x4f8944, _0x1534c3, _0x338125[_0x135b7d(0x18d)], _0x3dcd14, _0x267180);
+      },
+      _0x4e3aa9 = function _0x4e3aa9(_0x29e8b0) {};
+    if (this[_0x1f0c5b(0x155)] == _JCAPIErrorCode.default[_0x1f0c5b(0x164)]) uni[_0x1f0c5b(0x144)]({
+      'canvasId': this[_0x1f0c5b(0x13f)][_0x1f0c5b(0x16d)],
+      'height': _0x14de45,
+      'width': _0x2b533e,
+      'x': _0x388fa9,
+      'y': _0xba1293,
+      'success': _0x30634b,
+      'fail': _0x4e3aa9
+    }, this[_0x1f0c5b(0x16c)]);else {
+      if (this[_0x1f0c5b(0x19c)] == _JCAPIErrorCode.default[_0x1f0c5b(0x19f)]) this[_0x1f0c5b(0x13f)]['getImageData']({
+        'x': _0x388fa9,
+        'y': _0xba1293,
+        'width': _0x2b533e,
+        'height': _0x14de45,
+        'success': _0x30634b,
+        'fail': _0x4e3aa9
+      });else this[_0x1f0c5b(0x19c)] == _JCAPIErrorCode.default[_0x1f0c5b(0x1a0)] ? tt[_0x1f0c5b(0x144)]({
+        'canvasId': this[_0x1f0c5b(0x13f)]['canvasId'],
+        'height': _0x14de45,
+        'width': _0x2b533e,
+        'x': _0x388fa9,
+        'y': _0xba1293,
+        'success': _0x30634b,
+        'fail': _0x4e3aa9
+      }, this['compent']) : wx[_0x1f0c5b(0x144)]({
+        'canvasId': this['ctx'][_0x1f0c5b(0x16d)],
+        'height': _0x14de45,
+        'width': _0x2b533e,
+        'x': _0x388fa9,
+        'y': _0xba1293,
+        'success': _0x30634b,
+        'fail': _0x4e3aa9
+      }, this[_0x1f0c5b(0x16c)]);
+    }
+  }, _0x5d831a['prototype']['cancelPrint'] = function (_0x31bbfc) {
+    var _0xb2908a = _0x39dc03;
+    if (this[_0xb2908a(0x133)] == null || this['printer'] == undefined) return;
+    this[_0xb2908a(0x133)][_0xb2908a(0x19e)] = _0x31bbfc, this[_0xb2908a(0x133)][_0xb2908a(0x1a5)] = !![];
+  }, _0x5d831a[_0x39dc03(0x160)]['testPaperGap'] = function (_0x422512, _0x30fa38) {
+    var _0x15fd35 = _0x39dc03;
+    if (this[_0x15fd35(0x133)] == null || this['printer'] == undefined) {
+      _0x30fa38 && _0x30fa38(_JCAPIErrorCode.default[_0x15fd35(0x134)]);
+      return;
+    }
+    if (this[_0x15fd35(0x11f)] < 0x300 || this[_0x15fd35(0x152)] == null || this['printerInfos'] == undefined) {
+      _0x30fa38 && _0x30fa38(_JCAPIErrorCode.default['JCSDK_PRINT_ERR_noSupport']);
+      return;
+    }
+    if (this['printerInfos'][0x16] == 0x0) {
+      _0x30fa38 && _0x30fa38(_JCAPIErrorCode.default[_0x15fd35(0x112)]);
+      return;
+    }
+    var _0x3322ec = this,
+      _0x4bc0fb = function _0x4bc0fb(_0x4fbbb9) {
+        var _0x5bcd64 = _0x15fd35;
+        if (_0x30fa38) {
+          if (_0x4fbbb9 == -0x4) _0x30fa38(_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT']);else _0x4fbbb9 == 0x1 ? _0x30fa38(_JCAPIErrorCode.default[_0x5bcd64(0x172)]) : _0x30fa38(_JCAPIErrorCode.default[_0x5bcd64(0x125)]);
+        }
+      },
+      _0x25dfd0 = function _0x25dfd0(_0x5df7ba) {
+        var _0x5e36f8 = _0x15fd35;
+        _0x3322ec[_0x5e36f8(0x133)]['getBiaoDingResult'](_0x4bc0fb);
+      };
+    this[_0x15fd35(0x133)][_0x15fd35(0x175)](_0x422512, _0x25dfd0);
+  }, _0x5d831a[_0x39dc03(0x160)]['closePrinter'] = function () {
+    var _0x4764e3 = _0x39dc03;
+    if (this[_0x4764e3(0x122)] == null || this[_0x4764e3(0x122)] == undefined) return;
+    this[_0x4764e3(0x122)][_0x4764e3(0x198)]();
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x1aa)] = function () {
+    var _0x82996 = _0x39dc03;
+    if (this[_0x82996(0x122)] == null || this[_0x82996(0x122)] == undefined || this[_0x82996(0x133)] == null || this[_0x82996(0x133)] == undefined || this['ble'][_0x82996(0x10b)] == null) return null;
+    return this['ble'][_0x82996(0x10b)];
+  }, _0x5d831a['prototype'][_0x39dc03(0x188)] = function (_0x5f2b4a) {
+    var _0x4e6646 = _0x39dc03;
+    if (this[_0x4e6646(0x133)] == null || this['printer'] == undefined) return _0x5f2b4a && _0x5f2b4a({
+      'code': -0x4
+    }), null;
+    return this[_0x4e6646(0x133)]['getSn'](_0x5f2b4a);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x180)] = function (_0x2e187e) {
+    var _0x191428 = _0x39dc03;
+    if (this[_0x191428(0x133)] == null || this[_0x191428(0x133)] == undefined) return _0x2e187e && _0x2e187e({
+      'code': -0x4
+    }), null;
+    return this[_0x191428(0x133)][_0x191428(0x1a2)](_0x2e187e);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0xfb)] = function (_0x5d159c) {
+    var _0x5e3806 = _0x39dc03;
+    if (this[_0x5e3806(0x133)] == null || this[_0x5e3806(0x133)] == undefined) return _0x5d159c && _0x5d159c({
+      'code': -0x4
+    }), null;
+    return this[_0x5e3806(0x133)]['getHversion'](_0x5d159c);
+  }, _0x5d831a[_0x39dc03(0x160)][_0x39dc03(0x12a)] = function (_0xf8d0c3) {
+    var _0x1666bf = _0x39dc03;
+    if (this[_0x1666bf(0x133)] == null || this[_0x1666bf(0x133)] == undefined) return _0xf8d0c3 && _0xf8d0c3({
+      'code': -0x4
+    }), null;
+    return this[_0x1666bf(0x133)][_0x1666bf(0x12a)](_0xf8d0c3);
+  }, _0x5d831a['prototype']['getPageInfos'] = function (_0x2b00ed) {
+    var _0x47b7d4 = _0x39dc03;
+    if (this[_0x47b7d4(0x133)] == null || this[_0x47b7d4(0x133)] == undefined) return _0x2b00ed && _0x2b00ed({
+      'code': -0x4
+    }), null;
+    return this[_0x47b7d4(0x133)][_0x47b7d4(0x193)](_0x2b00ed);
+  }, _0x5d831a['prototype'][_0x39dc03(0x14f)] = function () {
+    var _0x3c4c15 = _0x39dc03;
+    if (this[_0x3c4c15(0x133)] == null || this['printer'] == undefined) return 0xc8;
+    return this[_0x3c4c15(0x133)][_0x3c4c15(0x14f)]();
+  }, _0x5d831a[_0x39dc03(0x160)]['clear'] = function () {
+    var _0x4a83da = _0x39dc03;
+    this['startJobFlag'] = ![], this[_0x4a83da(0x133)] && this[_0x4a83da(0x133)][_0x4a83da(0x117)]();
+  }, _0x5d831a['prototype'][_0x39dc03(0x14d)] = function (_0x6ac156) {
+    var _0x309da3 = _0x39dc03;
+    this[_0x309da3(0x17b)] = _0x6ac156;
+    var _0xb7f56c = _JCDataUntil.default[_0x309da3(0xfc)](0xaf, 0x1);
+    this[_0x309da3(0x116)] = 0xbf;
+    var _0x3fd63a = this;
+    this['ble']['sendData'](_0xb7f56c, 0xa, function () {
+      var _0x4e4ec9 = _0x309da3;
+      _0x3fd63a[_0x4e4ec9(0x189)](_0x3fd63a[_0x4e4ec9(0x17b)], -0x4);
+    });
+  }, _0x5d831a[_0x39dc03(0x160)]['setPrinter'] = function (_0x203100) {
+    var _0x3b82d9 = _0x39dc03;
+    var _0x2f2502 = _0x203100 >> 0x8,
+      _0x211ae6 = _0x203100 & 0xff;
+    (this[_0x3b82d9(0x114)] & 0x1) == 0x1 && console[_0x3b82d9(0x11a)](_0x3b82d9(0x113) + _0x203100 + _0x3b82d9(0x1a6) + _0x2f2502 + _0x3b82d9(0x18a) + _0x211ae6);
+    this[_0x3b82d9(0x133)] = null;
+    if (this[_0x3b82d9(0x11f)] >= 0x300) {
+      this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x15d)](this);
+      (this[_0x3b82d9(0x152)][0x1d] > 0x0 || this[_0x3b82d9(0x152)][0x22] > 0x0) && (this[_0x3b82d9(0x133)] = new _JCPrinter.default['SAutoPrinter'](this));
+      this[_0x3b82d9(0x133)][_0x3b82d9(0x138)] = this[_0x3b82d9(0x152)][0x4];
+      var _0x2e61b1 = this['printerInfos'][0x4] == 0x12c ? 0xc : 0x8;
+      this[_0x3b82d9(0x133)][_0x3b82d9(0x143)] = this[_0x3b82d9(0x152)][0xa] / _0x2e61b1, this[_0x3b82d9(0x133)][_0x3b82d9(0x130)] = this['printerInfos'][0xa] / 0x8, this[_0x3b82d9(0x133)][_0x3b82d9(0x14a)] = this[_0x3b82d9(0x152)][0x5] > 0x0, this[_0x3b82d9(0x133)][_0x3b82d9(0x179)] = this[_0x3b82d9(0x152)][0xd] - 0x1;
+    } else {
+      if (_0x2f2502 == 0x1) this[_0x3b82d9(0x15c)] == 0x3 ? _0x211ae6 == 0x10 ? this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x15a)](this) : this[_0x3b82d9(0x133)] = new _JCPrinter.default['QB3SPrinter'](this) : this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x16a)](this);else {
+        if (_0x2f2502 == 0x2) this['agreement'] == 0x3 ? this['printer'] = new _JCPrinter.default[_0x3b82d9(0x137)](this) : this['printer'] = new _JCPrinter.default[_0x3b82d9(0x15e)](this);else {
+          if (_0x2f2502 == 0x6) this[_0x3b82d9(0x133)] = new _JCPrinter.default['B16Printer'](this);else {
+            if (_0x2f2502 == 0x3) this[_0x3b82d9(0x15c)] == 0x3 ? this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x19b)](this) : this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x177)](this);else {
+              if (_0x2f2502 == 0x7) this[_0x3b82d9(0x15c)] == 0x3 ? this['printer'] = new _JCPrinter.default[_0x3b82d9(0x137)](this) : this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x15e)](this);else {
+                if (_0x2f2502 == 0x4) {} else {
+                  if (_0x2f2502 == 0x8) _0x211ae6 == 0x2 ? this['printer'] = new _JCPrinter.default[_0x3b82d9(0x105)](this) : this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x16b)](this);else {
+                    if (_0x2f2502 == 0x9) this[_0x3b82d9(0x133)] = new _JCPrinter.default['B16Printer'](this);else {
+                      if (_0x2f2502 == 0xa) this['printer'] = new _JCPrinter.default['B101Printer'](this);else {
+                        if (_0x2f2502 == 0x10) this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x102)](this);else {
+                          if (_0x2f2502 == 0xb) this[_0x3b82d9(0x133)] = new _JCPrinter.default['QB203Printer'](this);else {
+                            if (_0x2f2502 == 0x13) this[_0x3b82d9(0x133)] = new _JCPrinter.default[_0x3b82d9(0x17f)](this);else {
+                              this['ble'][_0x3b82d9(0x18c)](![]);
+                              return;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    var _0x10498e = this;
+    this[_0x3b82d9(0x133)][_0x3b82d9(0x1a2)](function (_0x1f2851) {
+      var _0x4a579e = _0x3b82d9;
+      _0x10498e[_0x4a579e(0x133)][_0x4a579e(0xf9)](function (_0x1cdcdb) {
+        var _0x551bfe = _0x4a579e;
+        (0, _typeof2.default)(_0x1f2851) == _0x551bfe(0x11e) || typeof _0x1cdcdb == 'number' ? _0x10498e['ble'][_0x551bfe(0x18c)](![]) : _0x10498e[_0x551bfe(0x133)]['getBleInfos'](function (_0x520899) {
+          var _0x37df = _0x551bfe;
+          _0x10498e[_0x37df(0x133)][_0x37df(0x11d)] = _0x1f2851, _0x10498e[_0x37df(0x133)][_0x37df(0x165)] = _0x1cdcdb, _0x10498e[_0x37df(0x15c)] == 0x3 ? _0x10498e[_0x37df(0x133)][_0x37df(0xfd)](function (_0x2e00c4) {
+            var _0xfd4b09 = _0x37df;
+            _0x10498e['ble'][_0xfd4b09(0x18c)](!![]);
+          }) : _0x10498e['ble'][_0x37df(0x18c)](!![]);
+        });
+      });
+    });
+  }, function () {
+    return _0x3e3cc2 == null && (_0x3e3cc2 = new _0x5d831a()), _0x3e3cc2;
+  };
+}();
+var _default = ManagerSDK;
+exports.default = _default;
+function a0_0x5528() {
+  var _0x506f2a = ['ctx', 'ManagerSDK', '5711841ALWilA', 'scale', 'maxDeviceLength', 'canvasGetImageData', 'JCSDK_PLATFORM_Build_Origin', 'restore', '150MsOxMr', 'drawBarcode', '获取到的信息:', 'supportRFID', 'doubleColorPrintSupport', 'screenHeight', 'getInfos', 'setStrokeStyle', 'getMultiple', 'deviceScale', 'fillText', 'printerInfos', 'deviceWidth', 'rotate', 'buildPlatform', 'used', '#ffffff', '---y=', 'drawImage', 'QB3SPPrinter', 'center', 'agreement', 'QAutoPrinter', 'B16Printer', 'save', 'prototype', 'italic', 'isJCUser', 'setLineWidth', 'JCSDK_PLATFORM_Build_Uni', 'hVer', 'setTextAlign', 'width', 'height', 'init', 'B3SPrinter', 'QB32Printer', 'compent', 'canvasId', 'align', '----width=', 'setData', 'gapType', 'JCSDK_PRINT_ERR_none', '3606110qjbqcy', 'content', 'setBiaoDing', '----height=', 'B21Printer', 'top', 'printWay', 'data', 'getPrinterInfosCallback', 'setUseBleListen', 'qrcode', '条码输入参数有误：height=', 'QK1Printer', 'getSoftVersion', 'fillRect', 'left', '233xrGuqF', '8006SviMdW', 'wxSDKVersion', 'scanedPrinters', 'isSetPlatform', 'getSN', 'callbackOnce', '---subType=', 'canvasWidth', 'openStatus', 'canvasRotation', 'setPrintPageGapType', 'setPrintDarkness', 'JCSDK_PRINT_ERR_DATA', 'drawText', 'barcode', 'getBlackPaperSpaceBetween', 'family', 'onBleValueChange', 'createCanvasContext', 'canvasHeight', 'closePrinter', 'screenWidth', 'translate', 'QB21Printer', 'sdkPlatform', 'getDropSize', 'cancelCallback', 'JCSDK_PLATFORM_DD', 'JCSDK_PLATFORM_FS', 'right', 'getSversion', 'getRotation', 'push', 'wantCancel', '---type=', 'SimHei', 'startJobFlag', '----------传入了canvas', 'getConnName', 'drawRectangle', 'JCSDK_PRINT_ERR_Drawing_Timeout', 'italic\x20', 'getHversion', 'fontHeight', 'getHardVersion', 'createData', 'getCutDataInfos', '1971021ocRFYX', 'darkness', 'isDrawing', 'getSystemInfoSync', 'QB1Printer', 'drawError', 'normal\x20normal\x20', 'QB32RPrinter', 'drawQRCode', 'onOutValueChange', 'doublePrinterMaxCache', '531708rFNgcg', 'openPrinter', 'bleDevice', '100565FJQcSF', 'setTextBaseline', 'getDropByRealWidth', '959497kdVztH', 'deviceHeight', 'filled', 'JCSDK_PRINT_ERR_noSupport', '---printerType=', 'debug', 'bleConnectionState', 'needCMD', 'clear', 'setFontSize', 'measureText', 'log', '$forceUpdate', 'total', 'sVer', 'number', 'protoVer', 'SDKVersion', 'didReadPrintErrorInfo', 'ble', 'useOutBleListen', '8TKUfBO', 'JCSDK_PRINT_ERR_fail', '#000', '--low1', 'startDrawLabel', 'startPrint', 'getPrintWithSpeedOrQuality', 'draw', 'platform', 'didReadPrintCountInfo', 'setPlatform', 'Canvas\x20dimensions\x20updated2:', 'maxWordSizeLength', 'endDrawLabel', 'JCSDK_PLATFORM_WX', 'printer', 'JCSDK_PRINT_ERR_DISCONNECT', 'getInfosCallback', 'setFillStyle', 'QB16Printer', 'dpi', 'pixelRatio', 'checkRFID', 'maxCacheRows', 'mm2px', 'bottom', 'devicePixelRatio'];
+  a0_0x5528 = function a0_0x5528() {
+    return _0x506f2a;
+  };
+  return a0_0x5528();
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
+/***/ 164:
+/*!**********************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCCodeWriter.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _JCBarcode = _interopRequireDefault(__webpack_require__(/*! ./JCBarcode */ 165));
+var _JCQrcode = _interopRequireDefault(__webpack_require__(/*! ./JCQrcode */ 166));
+(function (_0x2eb4de, _0x497fa0) {
+  var _0x3b60dc = a0_0xf7bb,
+    _0x420fda = _0x2eb4de();
+  while (!![]) {
+    try {
+      var _0x560d66 = parseInt(_0x3b60dc(0x7a)) / 0x1 + parseInt(_0x3b60dc(0x7c)) / 0x2 + parseInt(_0x3b60dc(0x85)) / 0x3 * (-parseInt(_0x3b60dc(0x81)) / 0x4) + parseInt(_0x3b60dc(0x88)) / 0x5 * (parseInt(_0x3b60dc(0x87)) / 0x6) + -parseInt(_0x3b60dc(0x7e)) / 0x7 + -parseInt(_0x3b60dc(0x84)) / 0x8 * (parseInt(_0x3b60dc(0x86)) / 0x9) + -parseInt(_0x3b60dc(0x80)) / 0xa;
+      if (_0x560d66 === _0x497fa0) break;else _0x420fda['push'](_0x420fda['shift']());
+    } catch (_0x2114bb) {
+      _0x420fda['push'](_0x420fda['shift']());
+    }
+  }
+})(a0_0x4f5b, 0xf2687);
+function a0_0x4f5b() {
+  var _0x40a1c7 = ['54711HkWsKg', '27Rttfid', '3820962dJPGXd', '15Zebruc', '1153292HYjPMs', 'code128WithxAndY', '2315280yFGsMK', 'log', '3294158OYNDgI', '绘制出错', '1061800bkVDGf', '296PiFPeF', 'draw', 'api', '3472528tdEpve'];
+  a0_0x4f5b = function a0_0x4f5b() {
+    return _0x40a1c7;
+  };
+  return a0_0x4f5b();
+}
+function a0_0xf7bb(_0x241af9, _0xee4f50) {
+  var _0x4f5bcc = a0_0x4f5b();
+  return a0_0xf7bb = function a0_0xf7bb(_0xf7bb26, _0x5bb806) {
+    _0xf7bb26 = _0xf7bb26 - 0x7a;
+    var _0x4e0148 = _0x4f5bcc[_0xf7bb26];
+    return _0x4e0148;
+  }, a0_0xf7bb(_0x241af9, _0xee4f50);
+}
+function barCode(_0x41328, _0x13e379, _0x427bb9, _0x18dfae, _0x3cab7e, _0x1c397b) {
+  var _0x1aa339 = a0_0xf7bb;
+  try {
+    _JCBarcode.default[_0x1aa339(0x83)][_0x1aa339(0x7b)](_0x41328, _0x13e379, _0x427bb9, _0x18dfae, _0x3cab7e, _0x1c397b);
+  } catch (_0x469fed) {
+    console[_0x1aa339(0x7d)](_0x1aa339(0x7f));
+  }
+}
+function qrCode(_0x2c85f7, _0x4b9774, _0x4b4e44, _0x31176b, _0x123f99, _0x53ec23, _0x33c601) {
+  var _0x11b5a4 = a0_0xf7bb;
+  try {
+    _JCQrcode.default['api'][_0x11b5a4(0x82)](_0x4b9774, _0x2c85f7, _0x4b4e44, _0x31176b, _0x123f99, _0x53ec23, _0x33c601 % 0x4);
+  } catch (_0x568cd7) {
+    console[_0x11b5a4(0x7d)](_0x11b5a4(0x7f));
+  }
+}
+var _default = {
+  'barcode': barCode,
+  'qrcode': qrCode
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 165:
+/*!*******************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCBarcode.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var a0_0x2b9442 = a0_0x50f0;
+(function (_0x427466, _0x41e6c2) {
+  var _0x513d33 = a0_0x50f0,
+    _0x183a73 = _0x427466();
+  while (!![]) {
+    try {
+      var _0x3ae4ee = -parseInt(_0x513d33(0x8b)) / 0x1 + -parseInt(_0x513d33(0x9c)) / 0x2 + -parseInt(_0x513d33(0x8a)) / 0x3 * (-parseInt(_0x513d33(0x92)) / 0x4) + parseInt(_0x513d33(0x93)) / 0x5 + parseInt(_0x513d33(0x9d)) / 0x6 * (parseInt(_0x513d33(0x90)) / 0x7) + -parseInt(_0x513d33(0x9b)) / 0x8 + -parseInt(_0x513d33(0x91)) / 0x9 * (-parseInt(_0x513d33(0x99)) / 0xa);
+      if (_0x3ae4ee === _0x41e6c2) break;else _0x183a73['push'](_0x183a73['shift']());
+    } catch (_0x265abd) {
+      _0x183a73['push'](_0x183a73['shift']());
+    }
+  }
+})(a0_0x8f17, 0x49a51);
+var CHAR_TILDE = 0x7e,
+  CODE_FNC1 = 0x66,
+  SET_STARTA = 0x67,
+  SET_STARTB = 0x68,
+  SET_STARTC = 0x69,
+  SET_SHIFT = 0x62,
+  SET_CODEA = 0x65,
+  SET_CODEB = 0x64,
+  SET_STOP = 0x6a,
+  REPLACE_CODES = {
+    'CHAR_TILDE': CODE_FNC1
+  },
+  CODESET = {
+    'ANY': 0x1,
+    'AB': 0x2,
+    'A': 0x3,
+    'B': 0x4,
+    'C': 0x5
+  };
+function getBytes(_0x40e9ff) {
+  var _0x4778e8 = a0_0x50f0,
+    _0x2e8888 = [];
+  for (var _0x3a0028 = 0x0; _0x3a0028 < _0x40e9ff['length']; _0x3a0028++) {
+    _0x2e8888['push'](_0x40e9ff[_0x4778e8(0x94)](_0x3a0028));
+  }
+  return _0x2e8888;
+}
+function a0_0x50f0(_0x430cce, _0x5dcbe1) {
+  var _0x8f1758 = a0_0x8f17();
+  return a0_0x50f0 = function a0_0x50f0(_0x50f0eb, _0x112de5) {
+    _0x50f0eb = _0x50f0eb - 0x81;
+    var _0x4d9b6c = _0x8f1758[_0x50f0eb];
+    return _0x4d9b6c;
+  }, a0_0x50f0(_0x430cce, _0x5dcbe1);
+}
+var api = {
+  'code128': function code128(_0xd62992, _0x4b8c6e, _0x46fd6a, _0x15b675) {
+    var _0xdc84d5 = a0_0x50f0;
+    _0x46fd6a = parseInt(_0x46fd6a), _0x15b675 = parseInt(_0x15b675);
+    var _0x4e1cd6 = stringToCode128(_0x4b8c6e),
+      _0x1d7761 = new Graphics(_0xd62992, _0x46fd6a, _0x15b675),
+      _0x4bb9ef = _0x1d7761[_0xdc84d5(0x9e)]['width'] / ((_0x4e1cd6['length'] - 0x3) * 0xb + 0x23),
+      _0x253be6 = _0x1d7761[_0xdc84d5(0x9e)][_0xdc84d5(0x87)],
+      _0x24422a = _0x1d7761['area']['top'];
+    for (var _0x248da5 = 0x0; _0x248da5 < _0x4e1cd6[_0xdc84d5(0x98)]; _0x248da5++) {
+      var _0x112476 = _0x4e1cd6[_0x248da5];
+      for (var _0x261099 = 0x0; _0x261099 < 0x8; _0x261099 += 0x2) {
+        var _0x55dd52 = PATTERNS[_0x112476][_0x261099] * _0x4bb9ef,
+          _0x2ab21d = _0x15b675 - _0x24422a,
+          _0x714f26 = PATTERNS[_0x112476][_0x261099 + 0x1] * _0x4bb9ef;
+        _0x55dd52 > 0x0 && _0x1d7761[_0xdc84d5(0x83)](_0x253be6, _0x24422a, _0x55dd52, _0x2ab21d), _0x253be6 += _0x55dd52 + _0x714f26;
+      }
+    }
+    _0xd62992['draw']();
+  },
+  'code128WithxAndY': function code128WithxAndY(_0x4f4e3e, _0x26c083) {
+    var _0x2e28b5 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0x0;
+    var _0x24c151 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x0;
+    var _0x3a0f1f = arguments.length > 4 ? arguments[4] : undefined;
+    var _0x2aae7e = arguments.length > 5 ? arguments[5] : undefined;
+    var _0x2f487c = a0_0x50f0;
+    _0x3a0f1f = parseInt(_0x3a0f1f), _0x2aae7e = parseInt(_0x2aae7e);
+    var _0x357fd1 = stringToCode128(_0x26c083),
+      _0x5f87e1 = new Graphics(_0x4f4e3e, _0x3a0f1f, _0x2aae7e),
+      _0x5c6eb8 = _0x5f87e1['area'][_0x2f487c(0x81)] / ((_0x357fd1[_0x2f487c(0x98)] - 0x3) * 0xb + 0x23),
+      _0x36db6a = _0x5f87e1['area'][_0x2f487c(0x87)],
+      _0x4d355e = _0x5f87e1[_0x2f487c(0x9e)]['top'];
+    _0x36db6a += _0x2e28b5, _0x4d355e += _0x24c151, _0x36db6a = _0x2e28b5, _0x4d355e = _0x24c151;
+    for (var _0x107ffb = 0x0; _0x107ffb < _0x357fd1['length']; _0x107ffb++) {
+      var _0x1fb253 = _0x357fd1[_0x107ffb];
+      for (var _0x1e415b = 0x0; _0x1e415b < 0x8; _0x1e415b += 0x2) {
+        var _0x27623f = PATTERNS[_0x1fb253][_0x1e415b] * _0x5c6eb8,
+          _0x5ddb92 = _0x2aae7e - _0x4d355e,
+          _0xba9290 = PATTERNS[_0x1fb253][_0x1e415b + 0x1] * _0x5c6eb8;
+        _0x27623f > 0x0 && (_0x5ddb92 += _0x24c151, _0x5f87e1['fillFgRect'](_0x36db6a, _0x4d355e, _0x27623f, _0x5ddb92)), _0x36db6a += _0x27623f + _0xba9290;
+      }
+    }
+  }
+};
+function stringToCode128(_0x33519a) {
+  var _0x212d1e = a0_0x50f0,
+    _0xfc8647 = {
+      'currcs': CODESET['C']
+    },
+    _0x377300 = getBytes(_0x33519a),
+    _0x1a4b47 = _0x377300[0x0] == CHAR_TILDE ? 0x1 : 0x0,
+    _0x24e9a2 = _0x377300[_0x212d1e(0x98)] > 0x0 ? codeSetAllowedFor(_0x377300[_0x1a4b47++]) : CODESET['AB'],
+    _0x547c10 = _0x377300[_0x212d1e(0x98)] > 0x0 ? codeSetAllowedFor(_0x377300[_0x1a4b47++]) : CODESET['AB'];
+  _0xfc8647['currcs'] = _0xb40fa3(_0x24e9a2, _0x547c10), _0xfc8647['currcs'] = _0x79e5db(_0x377300, _0xfc8647[_0x212d1e(0x88)]);
+  var _0x25f4a4 = ![];
+  _0xfc8647[_0x212d1e(0x88)] == CODESET['C'] && _0x33519a['length'] % 0x2 == 0x1 && (_0x25f4a4 = !![]);
+  var _0x52bd79 = new Array();
+  switch (_0xfc8647[_0x212d1e(0x88)]) {
+    case CODESET['A']:
+      _0x52bd79['push'](SET_STARTA);
+      break;
+    case CODESET['B']:
+      _0x52bd79[_0x212d1e(0x85)](SET_STARTB);
+      break;
+    default:
+      _0x52bd79[_0x212d1e(0x85)](SET_STARTC);
+      break;
+  }
+  for (var _0x43956f = 0x0; _0x43956f < _0x377300[_0x212d1e(0x98)]; _0x43956f++) {
+    var _0x11c0aa = _0x377300[_0x43956f];
+    _0x11c0aa in REPLACE_CODES && (_0x52bd79[_0x212d1e(0x85)](REPLACE_CODES[_0x11c0aa]), _0x43956f++, _0x11c0aa = _0x377300[_0x43956f]);
+    var _0x4481b4 = _0x377300[_0x212d1e(0x98)] > _0x43956f + 0x1 ? _0x377300[_0x43956f + 0x1] : -0x1;
+    _0x52bd79 = _0x52bd79[_0x212d1e(0x95)](_0x2a2598(_0x11c0aa, _0x4481b4, _0xfc8647[_0x212d1e(0x88)]));
+    if (_0xfc8647[_0x212d1e(0x88)] == CODESET['C']) _0x43956f++;
+    _0x25f4a4 && _0x43956f == _0x377300[_0x212d1e(0x98)] - 0x2 && (_0x52bd79['push'](SET_CODEB), _0x11c0aa = _0x377300[_0x43956f + 0x1], _0x4481b4 = -0x1, _0x52bd79 = _0x52bd79[_0x212d1e(0x95)](_0x2a2598(_0x11c0aa, _0x4481b4, CODESET['B'])), _0x43956f++);
+  }
+  var _0x180686 = _0x52bd79[0x0];
+  for (var _0x216fc9 = 0x1; _0x216fc9 < _0x52bd79[_0x212d1e(0x98)]; _0x216fc9++) {
+    _0x180686 += _0x216fc9 * _0x52bd79[_0x216fc9];
+  }
+  _0x52bd79['push'](_0x180686 % 0x67), _0x52bd79[_0x212d1e(0x85)](SET_STOP);
+  return _0x52bd79;
+  function _0xb40fa3(_0x4126dd, _0x14c695) {
+    var _0x3cf80f = 0x0;
+    return _0x3cf80f += _0x4126dd == CODESET['A'] ? 0x1 : 0x0, _0x3cf80f += _0x4126dd == CODESET['B'] ? -0x1 : 0x0, _0x3cf80f += _0x14c695 == CODESET['A'] ? 0x1 : 0x0, _0x3cf80f += _0x14c695 == CODESET['B'] ? -0x1 : 0x0, _0x3cf80f > 0x0 ? CODESET['A'] : CODESET['B'];
+  }
+  function _0x79e5db(_0x22c94c, _0x1444a7) {
+    for (var _0x173892 = 0x0; _0x173892 < _0x22c94c['length']; _0x173892++) {
+      var _0xe45ffb = _0x22c94c[_0x173892];
+      if ((_0xe45ffb < 0x30 || _0xe45ffb > 0x39) && _0xe45ffb != CHAR_TILDE) return _0x1444a7;
+    }
+    return CODESET['C'];
+  }
+  function _0x2a2598(_0x6d1081, _0x4c0e00, _0x4766b7) {
+    var _0x3f7ceb = _0x212d1e,
+      _0x47a318 = [],
+      _0xecc6ab = -0x1;
+    if (charCompatible(_0x6d1081, _0x4766b7)) {
+      if (_0x4766b7 == CODESET['C']) {
+        if (_0x4c0e00 == -0x1) _0xecc6ab = SET_CODEB, _0x4766b7 = CODESET['B'];else _0x4c0e00 != -0x1 && !charCompatible(_0x4c0e00, _0x4766b7) && (charCompatible(_0x4c0e00, CODESET['A']) ? (_0xecc6ab = SET_CODEA, _0x4766b7 = CODESET['A']) : (_0xecc6ab = SET_CODEB, _0x4766b7 = CODESET['B']));
+      }
+    } else {
+      if (_0x4c0e00 != -0x1 && !charCompatible(_0x4c0e00, _0x4766b7)) switch (_0x4766b7) {
+        case CODESET['A']:
+          _0xecc6ab = SET_CODEB, _0x4766b7 = CODESET['B'];
+          break;
+        case CODESET['B']:
+          _0xecc6ab = SET_CODEA, _0x4766b7 = CODESET['A'];
+          break;
+      } else _0xecc6ab = SET_SHIFT;
+    }
+    return _0xecc6ab != -0x1 ? (_0x47a318[_0x3f7ceb(0x85)](_0xecc6ab), _0x47a318[_0x3f7ceb(0x85)](codeValue(_0x4c0e00))) : _0x4766b7 == CODESET['C'] ? _0x47a318[_0x3f7ceb(0x85)](codeValue(_0x6d1081, _0x4c0e00)) : _0x47a318[_0x3f7ceb(0x85)](codeValue(_0x6d1081)), _0xfc8647[_0x3f7ceb(0x88)] = _0x4766b7, _0x47a318;
+  }
+}
+function codeValue(_0x1b9feb, _0x5bc380) {
+  var _0x244bb5 = a0_0x50f0;
+  return (0, _typeof2.default)(_0x5bc380) == _0x244bb5(0x97) ? _0x1b9feb >= 0x20 ? _0x1b9feb - 0x20 : _0x1b9feb + 0x40 : parseInt(String['fromCharCode'](_0x1b9feb) + String[_0x244bb5(0x9a)](_0x5bc380));
+}
+function charCompatible(_0x1153ce, _0x24c1b1) {
+  var _0xcd1ea6 = codeSetAllowedFor(_0x1153ce);
+  if (_0xcd1ea6 == CODESET['ANY']) return !![];
+  if (_0xcd1ea6 == CODESET['AB']) return !![];
+  if (_0xcd1ea6 == CODESET['A'] && _0x24c1b1 == CODESET['A']) return !![];
+  if (_0xcd1ea6 == CODESET['B'] && _0x24c1b1 == CODESET['B']) return !![];
+  return ![];
+}
+function a0_0x8f17() {
+  var _0x3219ef = ['4638456HKgGYd', '757380PHRrHm', '870JWgASQ', 'area', '_fillRect', 'fillRect', 'width', '#ffffff', 'fillFgRect', 'ANY', 'push', 'height', 'left', 'currcs', 'padding_width', '6QPpUIl', '383248FGxCFn', 'ctx', 'quiet', 'round', 'prototype', '18417GHXCbY', '37521wqmuRP', '907292EmryqN', '2978170aMjrKU', 'charCodeAt', 'concat', 'border_size', 'undefined', 'length', '510VgGXJd', 'fromCharCode'];
+  a0_0x8f17 = function a0_0x8f17() {
+    return _0x3219ef;
+  };
+  return a0_0x8f17();
+}
+function codeSetAllowedFor(_0x76f819) {
+  var _0x18ac4c = a0_0x50f0;
+  if (_0x76f819 >= 0x30 && _0x76f819 <= 0x39) return CODESET[_0x18ac4c(0x84)];else return _0x76f819 >= 0x20 && _0x76f819 <= 0x5f ? CODESET['AB'] : _0x76f819 < 0x20 ? CODESET['A'] : CODESET['B'];
+}
+var Graphics = function Graphics(_0x476a18, _0x3724d5, _0x17d709) {
+  var _0x4ffaba = a0_0x50f0;
+  this[_0x4ffaba(0x81)] = _0x3724d5, this[_0x4ffaba(0x86)] = _0x17d709, this[_0x4ffaba(0x8d)] = Math[_0x4ffaba(0x8e)](this[_0x4ffaba(0x81)] / 0x28), this[_0x4ffaba(0x96)] = 0x0, this['padding_width'] = 0x0, this['area'] = {
+    'width': _0x3724d5 - this[_0x4ffaba(0x89)] * 0x2 - this['quiet'] * 0x2,
+    'height': _0x17d709 - this[_0x4ffaba(0x96)] * 0x2,
+    'top': this[_0x4ffaba(0x96)] - 0x4,
+    'left': this[_0x4ffaba(0x89)] + this['quiet']
+  }, this[_0x4ffaba(0x8c)] = _0x476a18, this['fg'] = '#000000', this['bg'] = _0x4ffaba(0x82);
+};
+Graphics[a0_0x2b9442(0x8f)][a0_0x2b9442(0x9f)] = function (_0x4b8cd3, _0x361b9a, _0x3c0d46, _0x42a991, _0x16fcdd) {
+  var _0x4ae2f7 = a0_0x2b9442;
+  this[_0x4ae2f7(0x8c)]['setFillStyle'](_0x16fcdd), this[_0x4ae2f7(0x8c)][_0x4ae2f7(0xa0)](_0x4b8cd3, _0x361b9a, _0x3c0d46, _0x42a991);
+}, Graphics[a0_0x2b9442(0x8f)][a0_0x2b9442(0x83)] = function (_0x5acc26, _0x433eb4, _0x398117, _0x18d2db) {
+  var _0x173ec6 = a0_0x2b9442;
+  this[_0x173ec6(0x9f)](_0x5acc26, _0x433eb4, _0x398117, _0x18d2db, this['fg']);
+}, Graphics[a0_0x2b9442(0x8f)]['fillBgRect'] = function (_0x1d2f34, _0x3a0927, _0x37ea0f, _0x5be840) {
+  var _0x57743b = a0_0x2b9442;
+  this[_0x57743b(0x9f)](_0x1d2f34, _0x3a0927, _0x37ea0f, _0x5be840, this['bg']);
+};
+var PATTERNS = [[0x2, 0x1, 0x2, 0x2, 0x2, 0x2, 0x0, 0x0], [0x2, 0x2, 0x2, 0x1, 0x2, 0x2, 0x0, 0x0], [0x2, 0x2, 0x2, 0x2, 0x2, 0x1, 0x0, 0x0], [0x1, 0x2, 0x1, 0x2, 0x2, 0x3, 0x0, 0x0], [0x1, 0x2, 0x1, 0x3, 0x2, 0x2, 0x0, 0x0], [0x1, 0x3, 0x1, 0x2, 0x2, 0x2, 0x0, 0x0], [0x1, 0x2, 0x2, 0x2, 0x1, 0x3, 0x0, 0x0], [0x1, 0x2, 0x2, 0x3, 0x1, 0x2, 0x0, 0x0], [0x1, 0x3, 0x2, 0x2, 0x1, 0x2, 0x0, 0x0], [0x2, 0x2, 0x1, 0x2, 0x1, 0x3, 0x0, 0x0], [0x2, 0x2, 0x1, 0x3, 0x1, 0x2, 0x0, 0x0], [0x2, 0x3, 0x1, 0x2, 0x1, 0x2, 0x0, 0x0], [0x1, 0x1, 0x2, 0x2, 0x3, 0x2, 0x0, 0x0], [0x1, 0x2, 0x2, 0x1, 0x3, 0x2, 0x0, 0x0], [0x1, 0x2, 0x2, 0x2, 0x3, 0x1, 0x0, 0x0], [0x1, 0x1, 0x3, 0x2, 0x2, 0x2, 0x0, 0x0], [0x1, 0x2, 0x3, 0x1, 0x2, 0x2, 0x0, 0x0], [0x1, 0x2, 0x3, 0x2, 0x2, 0x1, 0x0, 0x0], [0x2, 0x2, 0x3, 0x2, 0x1, 0x1, 0x0, 0x0], [0x2, 0x2, 0x1, 0x1, 0x3, 0x2, 0x0, 0x0], [0x2, 0x2, 0x1, 0x2, 0x3, 0x1, 0x0, 0x0], [0x2, 0x1, 0x3, 0x2, 0x1, 0x2, 0x0, 0x0], [0x2, 0x2, 0x3, 0x1, 0x1, 0x2, 0x0, 0x0], [0x3, 0x1, 0x2, 0x1, 0x3, 0x1, 0x0, 0x0], [0x3, 0x1, 0x1, 0x2, 0x2, 0x2, 0x0, 0x0], [0x3, 0x2, 0x1, 0x1, 0x2, 0x2, 0x0, 0x0], [0x3, 0x2, 0x1, 0x2, 0x2, 0x1, 0x0, 0x0], [0x3, 0x1, 0x2, 0x2, 0x1, 0x2, 0x0, 0x0], [0x3, 0x2, 0x2, 0x1, 0x1, 0x2, 0x0, 0x0], [0x3, 0x2, 0x2, 0x2, 0x1, 0x1, 0x0, 0x0], [0x2, 0x1, 0x2, 0x1, 0x2, 0x3, 0x0, 0x0], [0x2, 0x1, 0x2, 0x3, 0x2, 0x1, 0x0, 0x0], [0x2, 0x3, 0x2, 0x1, 0x2, 0x1, 0x0, 0x0], [0x1, 0x1, 0x1, 0x3, 0x2, 0x3, 0x0, 0x0], [0x1, 0x3, 0x1, 0x1, 0x2, 0x3, 0x0, 0x0], [0x1, 0x3, 0x1, 0x3, 0x2, 0x1, 0x0, 0x0], [0x1, 0x1, 0x2, 0x3, 0x1, 0x3, 0x0, 0x0], [0x1, 0x3, 0x2, 0x1, 0x1, 0x3, 0x0, 0x0], [0x1, 0x3, 0x2, 0x3, 0x1, 0x1, 0x0, 0x0], [0x2, 0x1, 0x1, 0x3, 0x1, 0x3, 0x0, 0x0], [0x2, 0x3, 0x1, 0x1, 0x1, 0x3, 0x0, 0x0], [0x2, 0x3, 0x1, 0x3, 0x1, 0x1, 0x0, 0x0], [0x1, 0x1, 0x2, 0x1, 0x3, 0x3, 0x0, 0x0], [0x1, 0x1, 0x2, 0x3, 0x3, 0x1, 0x0, 0x0], [0x1, 0x3, 0x2, 0x1, 0x3, 0x1, 0x0, 0x0], [0x1, 0x1, 0x3, 0x1, 0x2, 0x3, 0x0, 0x0], [0x1, 0x1, 0x3, 0x3, 0x2, 0x1, 0x0, 0x0], [0x1, 0x3, 0x3, 0x1, 0x2, 0x1, 0x0, 0x0], [0x3, 0x1, 0x3, 0x1, 0x2, 0x1, 0x0, 0x0], [0x2, 0x1, 0x1, 0x3, 0x3, 0x1, 0x0, 0x0], [0x2, 0x3, 0x1, 0x1, 0x3, 0x1, 0x0, 0x0], [0x2, 0x1, 0x3, 0x1, 0x1, 0x3, 0x0, 0x0], [0x2, 0x1, 0x3, 0x3, 0x1, 0x1, 0x0, 0x0], [0x2, 0x1, 0x3, 0x1, 0x3, 0x1, 0x0, 0x0], [0x3, 0x1, 0x1, 0x1, 0x2, 0x3, 0x0, 0x0], [0x3, 0x1, 0x1, 0x3, 0x2, 0x1, 0x0, 0x0], [0x3, 0x3, 0x1, 0x1, 0x2, 0x1, 0x0, 0x0], [0x3, 0x1, 0x2, 0x1, 0x1, 0x3, 0x0, 0x0], [0x3, 0x1, 0x2, 0x3, 0x1, 0x1, 0x0, 0x0], [0x3, 0x3, 0x2, 0x1, 0x1, 0x1, 0x0, 0x0], [0x3, 0x1, 0x4, 0x1, 0x1, 0x1, 0x0, 0x0], [0x2, 0x2, 0x1, 0x4, 0x1, 0x1, 0x0, 0x0], [0x4, 0x3, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0], [0x1, 0x1, 0x1, 0x2, 0x2, 0x4, 0x0, 0x0], [0x1, 0x1, 0x1, 0x4, 0x2, 0x2, 0x0, 0x0], [0x1, 0x2, 0x1, 0x1, 0x2, 0x4, 0x0, 0x0], [0x1, 0x2, 0x1, 0x4, 0x2, 0x1, 0x0, 0x0], [0x1, 0x4, 0x1, 0x1, 0x2, 0x2, 0x0, 0x0], [0x1, 0x4, 0x1, 0x2, 0x2, 0x1, 0x0, 0x0], [0x1, 0x1, 0x2, 0x2, 0x1, 0x4, 0x0, 0x0], [0x1, 0x1, 0x2, 0x4, 0x1, 0x2, 0x0, 0x0], [0x1, 0x2, 0x2, 0x1, 0x1, 0x4, 0x0, 0x0], [0x1, 0x2, 0x2, 0x4, 0x1, 0x1, 0x0, 0x0], [0x1, 0x4, 0x2, 0x1, 0x1, 0x2, 0x0, 0x0], [0x1, 0x4, 0x2, 0x2, 0x1, 0x1, 0x0, 0x0], [0x2, 0x4, 0x1, 0x2, 0x1, 0x1, 0x0, 0x0], [0x2, 0x2, 0x1, 0x1, 0x1, 0x4, 0x0, 0x0], [0x4, 0x1, 0x3, 0x1, 0x1, 0x1, 0x0, 0x0], [0x2, 0x4, 0x1, 0x1, 0x1, 0x2, 0x0, 0x0], [0x1, 0x3, 0x4, 0x1, 0x1, 0x1, 0x0, 0x0], [0x1, 0x1, 0x1, 0x2, 0x4, 0x2, 0x0, 0x0], [0x1, 0x2, 0x1, 0x1, 0x4, 0x2, 0x0, 0x0], [0x1, 0x2, 0x1, 0x2, 0x4, 0x1, 0x0, 0x0], [0x1, 0x1, 0x4, 0x2, 0x1, 0x2, 0x0, 0x0], [0x1, 0x2, 0x4, 0x1, 0x1, 0x2, 0x0, 0x0], [0x1, 0x2, 0x4, 0x2, 0x1, 0x1, 0x0, 0x0], [0x4, 0x1, 0x1, 0x2, 0x1, 0x2, 0x0, 0x0], [0x4, 0x2, 0x1, 0x1, 0x1, 0x2, 0x0, 0x0], [0x4, 0x2, 0x1, 0x2, 0x1, 0x1, 0x0, 0x0], [0x2, 0x1, 0x2, 0x1, 0x4, 0x1, 0x0, 0x0], [0x2, 0x1, 0x4, 0x1, 0x2, 0x1, 0x0, 0x0], [0x4, 0x1, 0x2, 0x1, 0x2, 0x1, 0x0, 0x0], [0x1, 0x1, 0x1, 0x1, 0x4, 0x3, 0x0, 0x0], [0x1, 0x1, 0x1, 0x3, 0x4, 0x1, 0x0, 0x0], [0x1, 0x3, 0x1, 0x1, 0x4, 0x1, 0x0, 0x0], [0x1, 0x1, 0x4, 0x1, 0x1, 0x3, 0x0, 0x0], [0x1, 0x1, 0x4, 0x3, 0x1, 0x1, 0x0, 0x0], [0x4, 0x1, 0x1, 0x1, 0x1, 0x3, 0x0, 0x0], [0x4, 0x1, 0x1, 0x3, 0x1, 0x1, 0x0, 0x0], [0x1, 0x1, 0x3, 0x1, 0x4, 0x1, 0x0, 0x0], [0x1, 0x1, 0x4, 0x1, 0x3, 0x1, 0x0, 0x0], [0x3, 0x1, 0x1, 0x1, 0x4, 0x1, 0x0, 0x0], [0x4, 0x1, 0x1, 0x1, 0x3, 0x1, 0x0, 0x0], [0x2, 0x1, 0x1, 0x4, 0x1, 0x2, 0x0, 0x0], [0x2, 0x1, 0x1, 0x2, 0x1, 0x4, 0x0, 0x0], [0x2, 0x1, 0x1, 0x2, 0x3, 0x2, 0x0, 0x0], [0x2, 0x3, 0x3, 0x1, 0x1, 0x1, 0x2, 0x0]];
+var _default = {
+  'api': api
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 166:
+/*!******************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCQrcode.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var a0_0x509e70 = a0_0x475b;
+(function (_0x17380c, _0xc2dea1) {
+  var _0x1cc832 = a0_0x475b,
+    _0x6a0fa3 = _0x17380c();
+  while (!![]) {
+    try {
+      var _0x448b24 = parseInt(_0x1cc832(0x13a)) / 0x1 + parseInt(_0x1cc832(0x160)) / 0x2 + -parseInt(_0x1cc832(0x18c)) / 0x3 + parseInt(_0x1cc832(0x185)) / 0x4 * (-parseInt(_0x1cc832(0x183)) / 0x5) + -parseInt(_0x1cc832(0x141)) / 0x6 + parseInt(_0x1cc832(0x189)) / 0x7 + -parseInt(_0x1cc832(0x170)) / 0x8 * (-parseInt(_0x1cc832(0x186)) / 0x9);
+      if (_0x448b24 === _0xc2dea1) break;else _0x6a0fa3['push'](_0x6a0fa3['shift']());
+    } catch (_0x1d2761) {
+      _0x6a0fa3['push'](_0x6a0fa3['shift']());
+    }
+  }
+})(a0_0x20e7, 0xd9384);
+var QRCode;
+function QR8bitByte(_0x9d1bed) {
+  var _0x572bfe = a0_0x475b;
+  this['mode'] = QRMode[_0x572bfe(0x184)], this[_0x572bfe(0x192)] = _0x9d1bed, this[_0x572bfe(0x15f)] = [];
+  for (var _0x4bae7e = 0x0, _0x30cbb8 = this[_0x572bfe(0x192)][_0x572bfe(0x151)]; _0x4bae7e < _0x30cbb8; _0x4bae7e++) {
+    var _0x2a4767 = [],
+      _0x28b3c6 = this['data'][_0x572bfe(0x150)](_0x4bae7e);
+    if (_0x28b3c6 > 0x10000) _0x2a4767[0x0] = 0xf0 | (_0x28b3c6 & 0x1c0000) >>> 0x12, _0x2a4767[0x1] = 0x80 | (_0x28b3c6 & 0x3f000) >>> 0xc, _0x2a4767[0x2] = 0x80 | (_0x28b3c6 & 0xfc0) >>> 0x6, _0x2a4767[0x3] = 0x80 | _0x28b3c6 & 0x3f;else {
+      if (_0x28b3c6 > 0x800) _0x2a4767[0x0] = 0xe0 | (_0x28b3c6 & 0xf000) >>> 0xc, _0x2a4767[0x1] = 0x80 | (_0x28b3c6 & 0xfc0) >>> 0x6, _0x2a4767[0x2] = 0x80 | _0x28b3c6 & 0x3f;else _0x28b3c6 > 0x80 ? (_0x2a4767[0x0] = 0xc0 | (_0x28b3c6 & 0x7c0) >>> 0x6, _0x2a4767[0x1] = 0x80 | _0x28b3c6 & 0x3f) : _0x2a4767[0x0] = _0x28b3c6;
+    }
+    this[_0x572bfe(0x15f)][_0x572bfe(0x179)](_0x2a4767);
+  }
+  this[_0x572bfe(0x15f)] = Array[_0x572bfe(0x167)][_0x572bfe(0x161)][_0x572bfe(0x17c)]([], this[_0x572bfe(0x15f)]), this[_0x572bfe(0x15f)][_0x572bfe(0x151)] != this[_0x572bfe(0x192)][_0x572bfe(0x151)] && (this[_0x572bfe(0x15f)][_0x572bfe(0x143)](0xbf), this['parsedData'][_0x572bfe(0x143)](0xbb), this[_0x572bfe(0x15f)][_0x572bfe(0x143)](0xef));
+}
+QR8bitByte[a0_0x509e70(0x167)] = {
+  'getLength': function getLength(_0xa87110) {
+    var _0x2cb22f = a0_0x509e70;
+    return this[_0x2cb22f(0x15f)][_0x2cb22f(0x151)];
+  },
+  'write': function write(_0x2723ac) {
+    var _0x182ca4 = a0_0x509e70;
+    for (var _0x212f25 = 0x0, _0x4cde23 = this['parsedData'][_0x182ca4(0x151)]; _0x212f25 < _0x4cde23; _0x212f25++) {
+      _0x2723ac[_0x182ca4(0x13b)](this[_0x182ca4(0x15f)][_0x212f25], 0x8);
+    }
+  }
+};
+function a0_0x20e7() {
+  var _0x4d9609 = ['PATTERN001', 'glog(', 'apply', 'addData', '/errorCorrectLevel:', 'lineTo', 'EXP_TABLE', 'setupPositionAdjustPattern', 'No\x20canvas\x20provided\x20to\x20draw\x20QR\x20code\x20in!', '16865AzStjk', 'MODE_8BIT_BYTE', '316VnjJzb', '909ebwASE', 'G15', 'write', '9865198hCkfFI', 'type:', 'mode', '1941234Xffdqu', 'dataCache', 'dataCount', 'setupPositionProbePattern', 'glog', 'multiply', 'data', 'RS_BLOCK_TABLE', 'PAD1', 'setupTypeNumber', 'isDark', 'bad\x20rs\x20block\x20@\x20typeNumber:', 'getLostPoint', 'abs', 'typeNumber', 'LOG_TABLE', 'createEmptyMovieClip', '589578wMTfAx', 'put', 'getModuleCount', 'code\x20length\x20overflow.\x20(', 'getBestMaskPattern', 'get', 'G18', '6211644BCfBSE', 'endFill', 'unshift', 'PATTERN010', 'putBit', 'PATTERN100', 'getRSBlocks', 'getPatternPosition', 'PATTERN111', 'setupTypeInfo', 'createData', 'MODE_ALPHA_NUM', '#000000', 'PATTERN011', 'getLength', 'charCodeAt', 'length', 'getBCHDigit', '_oQRCode', 'floor', 'G15_MASK', 'getRsBlockTable', 'createBytes', 'dataList', 'gexp', 'PATTERN110', 'moveTo', 'replace', 'PATTERN_POSITION_TABLE', 'Nothing\x20provided\x20to\x20draw\x20QR\x20code\x20in!', 'parsedData', '1675278vLnaFn', 'concat', 'errorCorrectLevel', 'num', 'totalCount', 'PATTERN000', 'setFillStyle', 'prototype', 'mapData', 'MODE_NUMBER', 'mod', 'moduleCount', 'getLengthInBits', 'fillRect', 'mode:', 'makeImpl', '160mVRwPd', 'getBCHTypeInfo', 'buffer', 'modules', 'MODE_KANJI', 'bad\x20maskPattern:', 'getBCHTypeNumber', 'PATTERN101', 'PAD0', 'push'];
+  a0_0x20e7 = function a0_0x20e7() {
+    return _0x4d9609;
+  };
+  return a0_0x20e7();
+}
+function QRCodeModel(_0x305c3f, _0xe5d56c) {
+  var _0x4eecb5 = a0_0x509e70;
+  this[_0x4eecb5(0x137)] = _0x305c3f, this['errorCorrectLevel'] = _0xe5d56c, this[_0x4eecb5(0x173)] = null, this[_0x4eecb5(0x16b)] = 0x0, this[_0x4eecb5(0x18d)] = null, this[_0x4eecb5(0x158)] = [];
+}
+QRCodeModel[a0_0x509e70(0x167)] = {
+  'addData': function addData(_0xf82f0f) {
+    var _0x395f48 = a0_0x509e70,
+      _0x586666 = new QR8bitByte(_0xf82f0f);
+    this[_0x395f48(0x158)][_0x395f48(0x179)](_0x586666), this[_0x395f48(0x18d)] = null;
+  },
+  'isDark': function isDark(_0x570500, _0x37f1ff) {
+    var _0x196f32 = a0_0x509e70;
+    if (_0x570500 < 0x0 || this[_0x196f32(0x16b)] <= _0x570500 || _0x37f1ff < 0x0 || this[_0x196f32(0x16b)] <= _0x37f1ff) throw new Error(_0x570500 + ',' + _0x37f1ff);
+    return this[_0x196f32(0x173)][_0x570500][_0x37f1ff];
+  },
+  'getModuleCount': function getModuleCount() {
+    var _0x378ab9 = a0_0x509e70;
+    return this[_0x378ab9(0x16b)];
+  },
+  'make': function make() {
+    var _0x3da870 = a0_0x509e70;
+    this[_0x3da870(0x16f)](![], this[_0x3da870(0x13e)]());
+  },
+  'makeImpl': function makeImpl(_0x5549a7, _0x594113) {
+    var _0x51cdf4 = a0_0x509e70;
+    this[_0x51cdf4(0x16b)] = this[_0x51cdf4(0x137)] * 0x4 + 0x11, this['modules'] = new Array(this['moduleCount']);
+    for (var _0x5407e1 = 0x0; _0x5407e1 < this[_0x51cdf4(0x16b)]; _0x5407e1++) {
+      this[_0x51cdf4(0x173)][_0x5407e1] = new Array(this[_0x51cdf4(0x16b)]);
+      for (var _0x3de9d4 = 0x0; _0x3de9d4 < this[_0x51cdf4(0x16b)]; _0x3de9d4++) {
+        this[_0x51cdf4(0x173)][_0x5407e1][_0x3de9d4] = null;
+      }
+    }
+    this[_0x51cdf4(0x18f)](0x0, 0x0), this[_0x51cdf4(0x18f)](this[_0x51cdf4(0x16b)] - 0x7, 0x0), this[_0x51cdf4(0x18f)](0x0, this[_0x51cdf4(0x16b)] - 0x7), this[_0x51cdf4(0x181)](), this['setupTimingPattern'](), this[_0x51cdf4(0x14a)](_0x5549a7, _0x594113), this[_0x51cdf4(0x137)] >= 0x7 && this[_0x51cdf4(0x195)](_0x5549a7), this[_0x51cdf4(0x18d)] == null && (this[_0x51cdf4(0x18d)] = QRCodeModel[_0x51cdf4(0x14b)](this[_0x51cdf4(0x137)], this['errorCorrectLevel'], this['dataList'])), this[_0x51cdf4(0x168)](this[_0x51cdf4(0x18d)], _0x594113);
+  },
+  'setupPositionProbePattern': function setupPositionProbePattern(_0x27210c, _0x2a97f7) {
+    var _0x2e6bc4 = a0_0x509e70;
+    for (var _0x369289 = -0x1; _0x369289 <= 0x7; _0x369289++) {
+      if (_0x27210c + _0x369289 <= -0x1 || this[_0x2e6bc4(0x16b)] <= _0x27210c + _0x369289) continue;
+      for (var _0x5e868e = -0x1; _0x5e868e <= 0x7; _0x5e868e++) {
+        if (_0x2a97f7 + _0x5e868e <= -0x1 || this['moduleCount'] <= _0x2a97f7 + _0x5e868e) continue;
+        0x0 <= _0x369289 && _0x369289 <= 0x6 && (_0x5e868e == 0x0 || _0x5e868e == 0x6) || 0x0 <= _0x5e868e && _0x5e868e <= 0x6 && (_0x369289 == 0x0 || _0x369289 == 0x6) || 0x2 <= _0x369289 && _0x369289 <= 0x4 && 0x2 <= _0x5e868e && _0x5e868e <= 0x4 ? this[_0x2e6bc4(0x173)][_0x27210c + _0x369289][_0x2a97f7 + _0x5e868e] = !![] : this[_0x2e6bc4(0x173)][_0x27210c + _0x369289][_0x2a97f7 + _0x5e868e] = ![];
+      }
+    }
+  },
+  'getBestMaskPattern': function getBestMaskPattern() {
+    var _0x564867 = a0_0x509e70,
+      _0x109436 = 0x0,
+      _0xd700e0 = 0x0;
+    for (var _0x3fe812 = 0x0; _0x3fe812 < 0x8; _0x3fe812++) {
+      this[_0x564867(0x16f)](!![], _0x3fe812);
+      var _0x4ecf69 = QRUtil[_0x564867(0x198)](this);
+      (_0x3fe812 == 0x0 || _0x109436 > _0x4ecf69) && (_0x109436 = _0x4ecf69, _0xd700e0 = _0x3fe812);
+    }
+    return _0xd700e0;
+  },
+  'createMovieClip': function createMovieClip(_0x27214e, _0x2ab816, _0x30b58a) {
+    var _0x452fd5 = a0_0x509e70,
+      _0x13fd51 = _0x27214e[_0x452fd5(0x139)](_0x2ab816, _0x30b58a),
+      _0x1cfc88 = 0x1;
+    this['make']();
+    for (var _0xfe7dea = 0x0; _0xfe7dea < this[_0x452fd5(0x173)][_0x452fd5(0x151)]; _0xfe7dea++) {
+      var _0x120b3c = _0xfe7dea * _0x1cfc88;
+      for (var _0x411645 = 0x0; _0x411645 < this[_0x452fd5(0x173)][_0xfe7dea]['length']; _0x411645++) {
+        var _0x5567d2 = _0x411645 * _0x1cfc88,
+          _0x4e29d6 = this[_0x452fd5(0x173)][_0xfe7dea][_0x411645];
+        _0x4e29d6 && (_0x13fd51['beginFill'](0x0, 0x64), _0x13fd51[_0x452fd5(0x15b)](_0x5567d2, _0x120b3c), _0x13fd51[_0x452fd5(0x17f)](_0x5567d2 + _0x1cfc88, _0x120b3c), _0x13fd51[_0x452fd5(0x17f)](_0x5567d2 + _0x1cfc88, _0x120b3c + _0x1cfc88), _0x13fd51[_0x452fd5(0x17f)](_0x5567d2, _0x120b3c + _0x1cfc88), _0x13fd51[_0x452fd5(0x142)]());
+      }
+    }
+    return _0x13fd51;
+  },
+  'setupTimingPattern': function setupTimingPattern() {
+    var _0x28e8d9 = a0_0x509e70;
+    for (var _0x54752c = 0x8; _0x54752c < this[_0x28e8d9(0x16b)] - 0x8; _0x54752c++) {
+      if (this[_0x28e8d9(0x173)][_0x54752c][0x6] != null) continue;
+      this[_0x28e8d9(0x173)][_0x54752c][0x6] = _0x54752c % 0x2 == 0x0;
+    }
+    for (var _0x9a4df1 = 0x8; _0x9a4df1 < this[_0x28e8d9(0x16b)] - 0x8; _0x9a4df1++) {
+      if (this[_0x28e8d9(0x173)][0x6][_0x9a4df1] != null) continue;
+      this[_0x28e8d9(0x173)][0x6][_0x9a4df1] = _0x9a4df1 % 0x2 == 0x0;
+    }
+  },
+  'setupPositionAdjustPattern': function setupPositionAdjustPattern() {
+    var _0x9d23c4 = a0_0x509e70,
+      _0xcb89da = QRUtil[_0x9d23c4(0x148)](this[_0x9d23c4(0x137)]);
+    for (var _0x11f886 = 0x0; _0x11f886 < _0xcb89da[_0x9d23c4(0x151)]; _0x11f886++) {
+      for (var _0x10b004 = 0x0; _0x10b004 < _0xcb89da[_0x9d23c4(0x151)]; _0x10b004++) {
+        var _0x5186b3 = _0xcb89da[_0x11f886],
+          _0x390a45 = _0xcb89da[_0x10b004];
+        if (this['modules'][_0x5186b3][_0x390a45] != null) continue;
+        for (var _0x161875 = -0x2; _0x161875 <= 0x2; _0x161875++) {
+          for (var _0x282f4b = -0x2; _0x282f4b <= 0x2; _0x282f4b++) {
+            _0x161875 == -0x2 || _0x161875 == 0x2 || _0x282f4b == -0x2 || _0x282f4b == 0x2 || _0x161875 == 0x0 && _0x282f4b == 0x0 ? this[_0x9d23c4(0x173)][_0x5186b3 + _0x161875][_0x390a45 + _0x282f4b] = !![] : this[_0x9d23c4(0x173)][_0x5186b3 + _0x161875][_0x390a45 + _0x282f4b] = ![];
+          }
+        }
+      }
+    }
+  },
+  'setupTypeNumber': function setupTypeNumber(_0x3573d7) {
+    var _0x91aaef = a0_0x509e70,
+      _0x120747 = QRUtil[_0x91aaef(0x176)](this[_0x91aaef(0x137)]);
+    for (var _0x529d01 = 0x0; _0x529d01 < 0x12; _0x529d01++) {
+      var _0x4c6f78 = !_0x3573d7 && (_0x120747 >> _0x529d01 & 0x1) == 0x1;
+      this[_0x91aaef(0x173)][Math[_0x91aaef(0x154)](_0x529d01 / 0x3)][_0x529d01 % 0x3 + this[_0x91aaef(0x16b)] - 0x8 - 0x3] = _0x4c6f78;
+    }
+    for (var _0x529d01 = 0x0; _0x529d01 < 0x12; _0x529d01++) {
+      var _0x4c6f78 = !_0x3573d7 && (_0x120747 >> _0x529d01 & 0x1) == 0x1;
+      this[_0x91aaef(0x173)][_0x529d01 % 0x3 + this[_0x91aaef(0x16b)] - 0x8 - 0x3][Math[_0x91aaef(0x154)](_0x529d01 / 0x3)] = _0x4c6f78;
+    }
+  },
+  'setupTypeInfo': function setupTypeInfo(_0x31abb1, _0x161abe) {
+    var _0x1c51e2 = a0_0x509e70,
+      _0x110d93 = this[_0x1c51e2(0x162)] << 0x3 | _0x161abe,
+      _0x7ac91b = QRUtil[_0x1c51e2(0x171)](_0x110d93);
+    for (var _0x9e23a0 = 0x0; _0x9e23a0 < 0xf; _0x9e23a0++) {
+      var _0x93ceb1 = !_0x31abb1 && (_0x7ac91b >> _0x9e23a0 & 0x1) == 0x1;
+      if (_0x9e23a0 < 0x6) this[_0x1c51e2(0x173)][_0x9e23a0][0x8] = _0x93ceb1;else _0x9e23a0 < 0x8 ? this[_0x1c51e2(0x173)][_0x9e23a0 + 0x1][0x8] = _0x93ceb1 : this['modules'][this['moduleCount'] - 0xf + _0x9e23a0][0x8] = _0x93ceb1;
+    }
+    for (var _0x9e23a0 = 0x0; _0x9e23a0 < 0xf; _0x9e23a0++) {
+      var _0x93ceb1 = !_0x31abb1 && (_0x7ac91b >> _0x9e23a0 & 0x1) == 0x1;
+      if (_0x9e23a0 < 0x8) this[_0x1c51e2(0x173)][0x8][this['moduleCount'] - _0x9e23a0 - 0x1] = _0x93ceb1;else _0x9e23a0 < 0x9 ? this[_0x1c51e2(0x173)][0x8][0xf - _0x9e23a0 - 0x1 + 0x1] = _0x93ceb1 : this['modules'][0x8][0xf - _0x9e23a0 - 0x1] = _0x93ceb1;
+    }
+    this[_0x1c51e2(0x173)][this['moduleCount'] - 0x8][0x8] = !_0x31abb1;
+  },
+  'mapData': function mapData(_0x122d58, _0x5820eb) {
+    var _0x5a8a13 = a0_0x509e70,
+      _0xc5cf1f = -0x1,
+      _0x2424f0 = this['moduleCount'] - 0x1,
+      _0x537987 = 0x7,
+      _0x2369be = 0x0;
+    for (var _0x225292 = this['moduleCount'] - 0x1; _0x225292 > 0x0; _0x225292 -= 0x2) {
+      if (_0x225292 == 0x6) _0x225292--;
+      while (!![]) {
+        for (var _0x548467 = 0x0; _0x548467 < 0x2; _0x548467++) {
+          if (this[_0x5a8a13(0x173)][_0x2424f0][_0x225292 - _0x548467] == null) {
+            var _0x1eded7 = ![];
+            _0x2369be < _0x122d58[_0x5a8a13(0x151)] && (_0x1eded7 = (_0x122d58[_0x2369be] >>> _0x537987 & 0x1) == 0x1);
+            var _0x2420dd = QRUtil['getMask'](_0x5820eb, _0x2424f0, _0x225292 - _0x548467);
+            _0x2420dd && (_0x1eded7 = !_0x1eded7), this['modules'][_0x2424f0][_0x225292 - _0x548467] = _0x1eded7, _0x537987--, _0x537987 == -0x1 && (_0x2369be++, _0x537987 = 0x7);
+          }
+        }
+        _0x2424f0 += _0xc5cf1f;
+        if (_0x2424f0 < 0x0 || this['moduleCount'] <= _0x2424f0) {
+          _0x2424f0 -= _0xc5cf1f, _0xc5cf1f = -_0xc5cf1f;
+          break;
+        }
+      }
+    }
+  }
+}, QRCodeModel[a0_0x509e70(0x178)] = 0xec, QRCodeModel['PAD1'] = 0x11, QRCodeModel[a0_0x509e70(0x14b)] = function (_0x232d13, _0x214055, _0x31168f) {
+  var _0x484783 = a0_0x509e70,
+    _0x5698d4 = QRRSBlock['getRSBlocks'](_0x232d13, _0x214055),
+    _0x41add5 = new QRBitBuffer();
+  for (var _0x4cbd02 = 0x0; _0x4cbd02 < _0x31168f[_0x484783(0x151)]; _0x4cbd02++) {
+    var _0x4eb0ca = _0x31168f[_0x4cbd02];
+    _0x41add5[_0x484783(0x13b)](_0x4eb0ca[_0x484783(0x18b)], 0x4), _0x41add5[_0x484783(0x13b)](_0x4eb0ca['getLength'](), QRUtil['getLengthInBits'](_0x4eb0ca[_0x484783(0x18b)], _0x232d13)), _0x4eb0ca[_0x484783(0x188)](_0x41add5);
+  }
+  var _0x1461ce = 0x0;
+  for (var _0x4cbd02 = 0x0; _0x4cbd02 < _0x5698d4['length']; _0x4cbd02++) {
+    _0x1461ce += _0x5698d4[_0x4cbd02][_0x484783(0x18e)];
+  }
+  if (_0x41add5[_0x484783(0x16c)]() > _0x1461ce * 0x8) throw new Error(_0x484783(0x13d) + _0x41add5['getLengthInBits']() + '>' + _0x1461ce * 0x8 + ')');
+  _0x41add5['getLengthInBits']() + 0x4 <= _0x1461ce * 0x8 && _0x41add5[_0x484783(0x13b)](0x0, 0x4);
+  while (_0x41add5[_0x484783(0x16c)]() % 0x8 != 0x0) {
+    _0x41add5[_0x484783(0x145)](![]);
+  }
+  while (!![]) {
+    if (_0x41add5[_0x484783(0x16c)]() >= _0x1461ce * 0x8) break;
+    _0x41add5[_0x484783(0x13b)](QRCodeModel[_0x484783(0x178)], 0x8);
+    if (_0x41add5[_0x484783(0x16c)]() >= _0x1461ce * 0x8) break;
+    _0x41add5['put'](QRCodeModel[_0x484783(0x194)], 0x8);
+  }
+  return QRCodeModel[_0x484783(0x157)](_0x41add5, _0x5698d4);
+}, QRCodeModel[a0_0x509e70(0x157)] = function (_0x890f, _0x5bf577) {
+  var _0x451231 = a0_0x509e70,
+    _0x4ccdb2 = 0x0,
+    _0x5b2265 = 0x0,
+    _0x29de07 = 0x0,
+    _0x1f0a6b = new Array(_0x5bf577[_0x451231(0x151)]),
+    _0x3f9f01 = new Array(_0x5bf577['length']);
+  for (var _0x51a696 = 0x0; _0x51a696 < _0x5bf577[_0x451231(0x151)]; _0x51a696++) {
+    var _0x1bbb26 = _0x5bf577[_0x51a696][_0x451231(0x18e)],
+      _0x40f999 = _0x5bf577[_0x51a696]['totalCount'] - _0x1bbb26;
+    _0x5b2265 = Math['max'](_0x5b2265, _0x1bbb26), _0x29de07 = Math['max'](_0x29de07, _0x40f999), _0x1f0a6b[_0x51a696] = new Array(_0x1bbb26);
+    for (var _0x51d325 = 0x0; _0x51d325 < _0x1f0a6b[_0x51a696][_0x451231(0x151)]; _0x51d325++) {
+      _0x1f0a6b[_0x51a696][_0x51d325] = 0xff & _0x890f[_0x451231(0x172)][_0x51d325 + _0x4ccdb2];
+    }
+    _0x4ccdb2 += _0x1bbb26;
+    var _0x552674 = QRUtil['getErrorCorrectPolynomial'](_0x40f999),
+      _0x1b35e3 = new QRPolynomial(_0x1f0a6b[_0x51a696], _0x552674['getLength']() - 0x1),
+      _0x432d90 = _0x1b35e3[_0x451231(0x16a)](_0x552674);
+    _0x3f9f01[_0x51a696] = new Array(_0x552674[_0x451231(0x14f)]() - 0x1);
+    for (var _0x51d325 = 0x0; _0x51d325 < _0x3f9f01[_0x51a696][_0x451231(0x151)]; _0x51d325++) {
+      var _0x23803e = _0x51d325 + _0x432d90['getLength']() - _0x3f9f01[_0x51a696][_0x451231(0x151)];
+      _0x3f9f01[_0x51a696][_0x51d325] = _0x23803e >= 0x0 ? _0x432d90[_0x451231(0x13f)](_0x23803e) : 0x0;
+    }
+  }
+  var _0x2d6127 = 0x0;
+  for (var _0x51d325 = 0x0; _0x51d325 < _0x5bf577[_0x451231(0x151)]; _0x51d325++) {
+    _0x2d6127 += _0x5bf577[_0x51d325][_0x451231(0x164)];
+  }
+  var _0x16670c = new Array(_0x2d6127),
+    _0xb1ef82 = 0x0;
+  for (var _0x51d325 = 0x0; _0x51d325 < _0x5b2265; _0x51d325++) {
+    for (var _0x51a696 = 0x0; _0x51a696 < _0x5bf577[_0x451231(0x151)]; _0x51a696++) {
+      _0x51d325 < _0x1f0a6b[_0x51a696]['length'] && (_0x16670c[_0xb1ef82++] = _0x1f0a6b[_0x51a696][_0x51d325]);
+    }
+  }
+  for (var _0x51d325 = 0x0; _0x51d325 < _0x29de07; _0x51d325++) {
+    for (var _0x51a696 = 0x0; _0x51a696 < _0x5bf577[_0x451231(0x151)]; _0x51a696++) {
+      _0x51d325 < _0x3f9f01[_0x51a696][_0x451231(0x151)] && (_0x16670c[_0xb1ef82++] = _0x3f9f01[_0x51a696][_0x51d325]);
+    }
+  }
+  return _0x16670c;
+};
+var QRMode = {
+    'MODE_NUMBER': 0x1 << 0x0,
+    'MODE_ALPHA_NUM': 0x1 << 0x1,
+    'MODE_8BIT_BYTE': 0x1 << 0x2,
+    'MODE_KANJI': 0x1 << 0x3
+  },
+  QRErrorCorrectLevel = {
+    'L': 0x1,
+    'M': 0x0,
+    'Q': 0x3,
+    'H': 0x2
+  },
+  QRMaskPattern = {
+    'PATTERN000': 0x0,
+    'PATTERN001': 0x1,
+    'PATTERN010': 0x2,
+    'PATTERN011': 0x3,
+    'PATTERN100': 0x4,
+    'PATTERN101': 0x5,
+    'PATTERN110': 0x6,
+    'PATTERN111': 0x7
+  },
+  QRUtil = {
+    'PATTERN_POSITION_TABLE': [[], [0x6, 0x12], [0x6, 0x16], [0x6, 0x1a], [0x6, 0x1e], [0x6, 0x22], [0x6, 0x16, 0x26], [0x6, 0x18, 0x2a], [0x6, 0x1a, 0x2e], [0x6, 0x1c, 0x32], [0x6, 0x1e, 0x36], [0x6, 0x20, 0x3a], [0x6, 0x22, 0x3e], [0x6, 0x1a, 0x2e, 0x42], [0x6, 0x1a, 0x30, 0x46], [0x6, 0x1a, 0x32, 0x4a], [0x6, 0x1e, 0x36, 0x4e], [0x6, 0x1e, 0x38, 0x52], [0x6, 0x1e, 0x3a, 0x56], [0x6, 0x22, 0x3e, 0x5a], [0x6, 0x1c, 0x32, 0x48, 0x5e], [0x6, 0x1a, 0x32, 0x4a, 0x62], [0x6, 0x1e, 0x36, 0x4e, 0x66], [0x6, 0x1c, 0x36, 0x50, 0x6a], [0x6, 0x20, 0x3a, 0x54, 0x6e], [0x6, 0x1e, 0x3a, 0x56, 0x72], [0x6, 0x22, 0x3e, 0x5a, 0x76], [0x6, 0x1a, 0x32, 0x4a, 0x62, 0x7a], [0x6, 0x1e, 0x36, 0x4e, 0x66, 0x7e], [0x6, 0x1a, 0x34, 0x4e, 0x68, 0x82], [0x6, 0x1e, 0x38, 0x52, 0x6c, 0x86], [0x6, 0x22, 0x3c, 0x56, 0x70, 0x8a], [0x6, 0x1e, 0x3a, 0x56, 0x72, 0x8e], [0x6, 0x22, 0x3e, 0x5a, 0x76, 0x92], [0x6, 0x1e, 0x36, 0x4e, 0x66, 0x7e, 0x96], [0x6, 0x18, 0x32, 0x4c, 0x66, 0x80, 0x9a], [0x6, 0x1c, 0x36, 0x50, 0x6a, 0x84, 0x9e], [0x6, 0x20, 0x3a, 0x54, 0x6e, 0x88, 0xa2], [0x6, 0x1a, 0x36, 0x52, 0x6e, 0x8a, 0xa6], [0x6, 0x1e, 0x3a, 0x56, 0x72, 0x8e, 0xaa]],
+    'G15': 0x1 << 0xa | 0x1 << 0x8 | 0x1 << 0x5 | 0x1 << 0x4 | 0x1 << 0x2 | 0x1 << 0x1 | 0x1 << 0x0,
+    'G18': 0x1 << 0xc | 0x1 << 0xb | 0x1 << 0xa | 0x1 << 0x9 | 0x1 << 0x8 | 0x1 << 0x5 | 0x1 << 0x2 | 0x1 << 0x0,
+    'G15_MASK': 0x1 << 0xe | 0x1 << 0xc | 0x1 << 0xa | 0x1 << 0x4 | 0x1 << 0x1,
+    'getBCHTypeInfo': function getBCHTypeInfo(_0x1db910) {
+      var _0x4a3a35 = a0_0x509e70,
+        _0x498647 = _0x1db910 << 0xa;
+      while (QRUtil[_0x4a3a35(0x152)](_0x498647) - QRUtil[_0x4a3a35(0x152)](QRUtil[_0x4a3a35(0x187)]) >= 0x0) {
+        _0x498647 ^= QRUtil[_0x4a3a35(0x187)] << QRUtil['getBCHDigit'](_0x498647) - QRUtil['getBCHDigit'](QRUtil['G15']);
+      }
+      return (_0x1db910 << 0xa | _0x498647) ^ QRUtil[_0x4a3a35(0x155)];
+    },
+    'getBCHTypeNumber': function getBCHTypeNumber(_0x3a7f03) {
+      var _0x30b2ba = a0_0x509e70,
+        _0x104ef8 = _0x3a7f03 << 0xc;
+      while (QRUtil['getBCHDigit'](_0x104ef8) - QRUtil[_0x30b2ba(0x152)](QRUtil[_0x30b2ba(0x140)]) >= 0x0) {
+        _0x104ef8 ^= QRUtil['G18'] << QRUtil[_0x30b2ba(0x152)](_0x104ef8) - QRUtil['getBCHDigit'](QRUtil[_0x30b2ba(0x140)]);
+      }
+      return _0x3a7f03 << 0xc | _0x104ef8;
+    },
+    'getBCHDigit': function getBCHDigit(_0x240f41) {
+      var _0x521e8e = 0x0;
+      while (_0x240f41 != 0x0) {
+        _0x521e8e++, _0x240f41 >>>= 0x1;
+      }
+      return _0x521e8e;
+    },
+    'getPatternPosition': function getPatternPosition(_0x4906c1) {
+      var _0x26ab93 = a0_0x509e70;
+      return QRUtil[_0x26ab93(0x15d)][_0x4906c1 - 0x1];
+    },
+    'getMask': function getMask(_0x13b0a1, _0x541111, _0x2c3281) {
+      var _0x52bebc = a0_0x509e70;
+      switch (_0x13b0a1) {
+        case QRMaskPattern[_0x52bebc(0x165)]:
+          return (_0x541111 + _0x2c3281) % 0x2 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x17a)]:
+          return _0x541111 % 0x2 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x144)]:
+          return _0x2c3281 % 0x3 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x14e)]:
+          return (_0x541111 + _0x2c3281) % 0x3 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x146)]:
+          return (Math[_0x52bebc(0x154)](_0x541111 / 0x2) + Math['floor'](_0x2c3281 / 0x3)) % 0x2 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x177)]:
+          return _0x541111 * _0x2c3281 % 0x2 + _0x541111 * _0x2c3281 % 0x3 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x15a)]:
+          return (_0x541111 * _0x2c3281 % 0x2 + _0x541111 * _0x2c3281 % 0x3) % 0x2 == 0x0;
+        case QRMaskPattern[_0x52bebc(0x149)]:
+          return (_0x541111 * _0x2c3281 % 0x3 + (_0x541111 + _0x2c3281) % 0x2) % 0x2 == 0x0;
+        default:
+          throw new Error(_0x52bebc(0x175) + _0x13b0a1);
+      }
+    },
+    'getErrorCorrectPolynomial': function getErrorCorrectPolynomial(_0x1f1f65) {
+      var _0x5005dd = a0_0x509e70,
+        _0x44324b = new QRPolynomial([0x1], 0x0);
+      for (var _0x34cf11 = 0x0; _0x34cf11 < _0x1f1f65; _0x34cf11++) {
+        _0x44324b = _0x44324b[_0x5005dd(0x191)](new QRPolynomial([0x1, QRMath[_0x5005dd(0x159)](_0x34cf11)], 0x0));
+      }
+      return _0x44324b;
+    },
+    'getLengthInBits': function getLengthInBits(_0xd6bc67, _0x442932) {
+      var _0x4af454 = a0_0x509e70;
+      if (0x1 <= _0x442932 && _0x442932 < 0xa) switch (_0xd6bc67) {
+        case QRMode['MODE_NUMBER']:
+          return 0xa;
+        case QRMode[_0x4af454(0x14c)]:
+          return 0x9;
+        case QRMode[_0x4af454(0x184)]:
+          return 0x8;
+        case QRMode[_0x4af454(0x174)]:
+          return 0x8;
+        default:
+          throw new Error(_0x4af454(0x16e) + _0xd6bc67);
+      } else {
+        if (_0x442932 < 0x1b) switch (_0xd6bc67) {
+          case QRMode[_0x4af454(0x169)]:
+            return 0xc;
+          case QRMode['MODE_ALPHA_NUM']:
+            return 0xb;
+          case QRMode[_0x4af454(0x184)]:
+            return 0x10;
+          case QRMode['MODE_KANJI']:
+            return 0xa;
+          default:
+            throw new Error('mode:' + _0xd6bc67);
+        } else {
+          if (_0x442932 < 0x29) switch (_0xd6bc67) {
+            case QRMode['MODE_NUMBER']:
+              return 0xe;
+            case QRMode['MODE_ALPHA_NUM']:
+              return 0xd;
+            case QRMode['MODE_8BIT_BYTE']:
+              return 0x10;
+            case QRMode[_0x4af454(0x174)]:
+              return 0xc;
+            default:
+              throw new Error('mode:' + _0xd6bc67);
+          } else throw new Error(_0x4af454(0x18a) + _0x442932);
+        }
+      }
+    },
+    'getLostPoint': function getLostPoint(_0x440169) {
+      var _0xa781b = a0_0x509e70,
+        _0x35b11f = _0x440169['getModuleCount'](),
+        _0x420438 = 0x0;
+      for (var _0x5735cb = 0x0; _0x5735cb < _0x35b11f; _0x5735cb++) {
+        for (var _0x3b4254 = 0x0; _0x3b4254 < _0x35b11f; _0x3b4254++) {
+          var _0x52c91c = 0x0,
+            _0x5b7b70 = _0x440169['isDark'](_0x5735cb, _0x3b4254);
+          for (var _0x3f6502 = -0x1; _0x3f6502 <= 0x1; _0x3f6502++) {
+            if (_0x5735cb + _0x3f6502 < 0x0 || _0x35b11f <= _0x5735cb + _0x3f6502) continue;
+            for (var _0x59f4c2 = -0x1; _0x59f4c2 <= 0x1; _0x59f4c2++) {
+              if (_0x3b4254 + _0x59f4c2 < 0x0 || _0x35b11f <= _0x3b4254 + _0x59f4c2) continue;
+              if (_0x3f6502 == 0x0 && _0x59f4c2 == 0x0) continue;
+              _0x5b7b70 == _0x440169[_0xa781b(0x196)](_0x5735cb + _0x3f6502, _0x3b4254 + _0x59f4c2) && _0x52c91c++;
+            }
+          }
+          _0x52c91c > 0x5 && (_0x420438 += 0x3 + _0x52c91c - 0x5);
+        }
+      }
+      for (var _0x5735cb = 0x0; _0x5735cb < _0x35b11f - 0x1; _0x5735cb++) {
+        for (var _0x3b4254 = 0x0; _0x3b4254 < _0x35b11f - 0x1; _0x3b4254++) {
+          var _0x19ed58 = 0x0;
+          if (_0x440169['isDark'](_0x5735cb, _0x3b4254)) _0x19ed58++;
+          if (_0x440169['isDark'](_0x5735cb + 0x1, _0x3b4254)) _0x19ed58++;
+          if (_0x440169['isDark'](_0x5735cb, _0x3b4254 + 0x1)) _0x19ed58++;
+          if (_0x440169[_0xa781b(0x196)](_0x5735cb + 0x1, _0x3b4254 + 0x1)) _0x19ed58++;
+          (_0x19ed58 == 0x0 || _0x19ed58 == 0x4) && (_0x420438 += 0x3);
+        }
+      }
+      for (var _0x5735cb = 0x0; _0x5735cb < _0x35b11f; _0x5735cb++) {
+        for (var _0x3b4254 = 0x0; _0x3b4254 < _0x35b11f - 0x6; _0x3b4254++) {
+          _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254) && !_0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254 + 0x1) && _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254 + 0x2) && _0x440169['isDark'](_0x5735cb, _0x3b4254 + 0x3) && _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254 + 0x4) && !_0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254 + 0x5) && _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254 + 0x6) && (_0x420438 += 0x28);
+        }
+      }
+      for (var _0x3b4254 = 0x0; _0x3b4254 < _0x35b11f; _0x3b4254++) {
+        for (var _0x5735cb = 0x0; _0x5735cb < _0x35b11f - 0x6; _0x5735cb++) {
+          _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254) && !_0x440169[_0xa781b(0x196)](_0x5735cb + 0x1, _0x3b4254) && _0x440169['isDark'](_0x5735cb + 0x2, _0x3b4254) && _0x440169[_0xa781b(0x196)](_0x5735cb + 0x3, _0x3b4254) && _0x440169['isDark'](_0x5735cb + 0x4, _0x3b4254) && !_0x440169[_0xa781b(0x196)](_0x5735cb + 0x5, _0x3b4254) && _0x440169[_0xa781b(0x196)](_0x5735cb + 0x6, _0x3b4254) && (_0x420438 += 0x28);
+        }
+      }
+      var _0x1921e4 = 0x0;
+      for (var _0x3b4254 = 0x0; _0x3b4254 < _0x35b11f; _0x3b4254++) {
+        for (var _0x5735cb = 0x0; _0x5735cb < _0x35b11f; _0x5735cb++) {
+          _0x440169[_0xa781b(0x196)](_0x5735cb, _0x3b4254) && _0x1921e4++;
+        }
+      }
+      var _0x654bb2 = Math[_0xa781b(0x199)](0x64 * _0x1921e4 / _0x35b11f / _0x35b11f - 0x32) / 0x5;
+      return _0x420438 += _0x654bb2 * 0xa, _0x420438;
+    }
+  },
+  QRMath = {
+    'glog': function glog(_0x30163b) {
+      var _0x41e310 = a0_0x509e70;
+      if (_0x30163b < 0x1) throw new Error(_0x41e310(0x17b) + _0x30163b + ')');
+      return QRMath[_0x41e310(0x138)][_0x30163b];
+    },
+    'gexp': function gexp(_0x45c131) {
+      var _0xa4d782 = a0_0x509e70;
+      while (_0x45c131 < 0x0) {
+        _0x45c131 += 0xff;
+      }
+      while (_0x45c131 >= 0x100) {
+        _0x45c131 -= 0xff;
+      }
+      return QRMath[_0xa4d782(0x180)][_0x45c131];
+    },
+    'EXP_TABLE': new Array(0x100),
+    'LOG_TABLE': new Array(0x100)
+  };
+for (var i = 0x0; i < 0x8; i++) {
+  QRMath[a0_0x509e70(0x180)][i] = 0x1 << i;
+}
+for (var i = 0x8; i < 0x100; i++) {
+  QRMath['EXP_TABLE'][i] = QRMath['EXP_TABLE'][i - 0x4] ^ QRMath[a0_0x509e70(0x180)][i - 0x5] ^ QRMath[a0_0x509e70(0x180)][i - 0x6] ^ QRMath[a0_0x509e70(0x180)][i - 0x8];
+}
+for (var i = 0x0; i < 0xff; i++) {
+  QRMath['LOG_TABLE'][QRMath[a0_0x509e70(0x180)][i]] = i;
+}
+function QRPolynomial(_0x460679, _0x13b5e0) {
+  var _0x181b93 = a0_0x509e70;
+  if (_0x460679['length'] == undefined) throw new Error(_0x460679[_0x181b93(0x151)] + '/' + _0x13b5e0);
+  var _0x2f1aff = 0x0;
+  while (_0x2f1aff < _0x460679[_0x181b93(0x151)] && _0x460679[_0x2f1aff] == 0x0) {
+    _0x2f1aff++;
+  }
+  this['num'] = new Array(_0x460679[_0x181b93(0x151)] - _0x2f1aff + _0x13b5e0);
+  for (var _0x54d857 = 0x0; _0x54d857 < _0x460679[_0x181b93(0x151)] - _0x2f1aff; _0x54d857++) {
+    this[_0x181b93(0x163)][_0x54d857] = _0x460679[_0x54d857 + _0x2f1aff];
+  }
+}
+QRPolynomial['prototype'] = {
+  'get': function get(_0x583e14) {
+    var _0x4b9710 = a0_0x509e70;
+    return this[_0x4b9710(0x163)][_0x583e14];
+  },
+  'getLength': function getLength() {
+    var _0x4e40f9 = a0_0x509e70;
+    return this['num'][_0x4e40f9(0x151)];
+  },
+  'multiply': function multiply(_0xa63b06) {
+    var _0x5431cb = a0_0x509e70,
+      _0x3c5648 = new Array(this['getLength']() + _0xa63b06[_0x5431cb(0x14f)]() - 0x1);
+    for (var _0x140389 = 0x0; _0x140389 < this['getLength'](); _0x140389++) {
+      for (var _0x579e14 = 0x0; _0x579e14 < _0xa63b06['getLength'](); _0x579e14++) {
+        _0x3c5648[_0x140389 + _0x579e14] ^= QRMath[_0x5431cb(0x159)](QRMath[_0x5431cb(0x190)](this[_0x5431cb(0x13f)](_0x140389)) + QRMath[_0x5431cb(0x190)](_0xa63b06[_0x5431cb(0x13f)](_0x579e14)));
+      }
+    }
+    return new QRPolynomial(_0x3c5648, 0x0);
+  },
+  'mod': function mod(_0x22194a) {
+    var _0x1b7081 = a0_0x509e70;
+    if (this['getLength']() - _0x22194a[_0x1b7081(0x14f)]() < 0x0) return this;
+    var _0x27befb = QRMath[_0x1b7081(0x190)](this[_0x1b7081(0x13f)](0x0)) - QRMath[_0x1b7081(0x190)](_0x22194a[_0x1b7081(0x13f)](0x0)),
+      _0x41b5e3 = new Array(this[_0x1b7081(0x14f)]());
+    for (var _0x4a6ff1 = 0x0; _0x4a6ff1 < this[_0x1b7081(0x14f)](); _0x4a6ff1++) {
+      _0x41b5e3[_0x4a6ff1] = this['get'](_0x4a6ff1);
+    }
+    for (var _0x4a6ff1 = 0x0; _0x4a6ff1 < _0x22194a[_0x1b7081(0x14f)](); _0x4a6ff1++) {
+      _0x41b5e3[_0x4a6ff1] ^= QRMath[_0x1b7081(0x159)](QRMath[_0x1b7081(0x190)](_0x22194a[_0x1b7081(0x13f)](_0x4a6ff1)) + _0x27befb);
+    }
+    return new QRPolynomial(_0x41b5e3, 0x0)[_0x1b7081(0x16a)](_0x22194a);
+  }
+};
+function QRRSBlock(_0x3c850c, _0x3c3487) {
+  var _0x41d337 = a0_0x509e70;
+  this['totalCount'] = _0x3c850c, this[_0x41d337(0x18e)] = _0x3c3487;
+}
+QRRSBlock['RS_BLOCK_TABLE'] = [[0x1, 0x1a, 0x13], [0x1, 0x1a, 0x10], [0x1, 0x1a, 0xd], [0x1, 0x1a, 0x9], [0x1, 0x2c, 0x22], [0x1, 0x2c, 0x1c], [0x1, 0x2c, 0x16], [0x1, 0x2c, 0x10], [0x1, 0x46, 0x37], [0x1, 0x46, 0x2c], [0x2, 0x23, 0x11], [0x2, 0x23, 0xd], [0x1, 0x64, 0x50], [0x2, 0x32, 0x20], [0x2, 0x32, 0x18], [0x4, 0x19, 0x9], [0x1, 0x86, 0x6c], [0x2, 0x43, 0x2b], [0x2, 0x21, 0xf, 0x2, 0x22, 0x10], [0x2, 0x21, 0xb, 0x2, 0x22, 0xc], [0x2, 0x56, 0x44], [0x4, 0x2b, 0x1b], [0x4, 0x2b, 0x13], [0x4, 0x2b, 0xf], [0x2, 0x62, 0x4e], [0x4, 0x31, 0x1f], [0x2, 0x20, 0xe, 0x4, 0x21, 0xf], [0x4, 0x27, 0xd, 0x1, 0x28, 0xe], [0x2, 0x79, 0x61], [0x2, 0x3c, 0x26, 0x2, 0x3d, 0x27], [0x4, 0x28, 0x12, 0x2, 0x29, 0x13], [0x4, 0x28, 0xe, 0x2, 0x29, 0xf], [0x2, 0x92, 0x74], [0x3, 0x3a, 0x24, 0x2, 0x3b, 0x25], [0x4, 0x24, 0x10, 0x4, 0x25, 0x11], [0x4, 0x24, 0xc, 0x4, 0x25, 0xd], [0x2, 0x56, 0x44, 0x2, 0x57, 0x45], [0x4, 0x45, 0x2b, 0x1, 0x46, 0x2c], [0x6, 0x2b, 0x13, 0x2, 0x2c, 0x14], [0x6, 0x2b, 0xf, 0x2, 0x2c, 0x10], [0x4, 0x65, 0x51], [0x1, 0x50, 0x32, 0x4, 0x51, 0x33], [0x4, 0x32, 0x16, 0x4, 0x33, 0x17], [0x3, 0x24, 0xc, 0x8, 0x25, 0xd], [0x2, 0x74, 0x5c, 0x2, 0x75, 0x5d], [0x6, 0x3a, 0x24, 0x2, 0x3b, 0x25], [0x4, 0x2e, 0x14, 0x6, 0x2f, 0x15], [0x7, 0x2a, 0xe, 0x4, 0x2b, 0xf], [0x4, 0x85, 0x6b], [0x8, 0x3b, 0x25, 0x1, 0x3c, 0x26], [0x8, 0x2c, 0x14, 0x4, 0x2d, 0x15], [0xc, 0x21, 0xb, 0x4, 0x22, 0xc], [0x3, 0x91, 0x73, 0x1, 0x92, 0x74], [0x4, 0x40, 0x28, 0x5, 0x41, 0x29], [0xb, 0x24, 0x10, 0x5, 0x25, 0x11], [0xb, 0x24, 0xc, 0x5, 0x25, 0xd], [0x5, 0x6d, 0x57, 0x1, 0x6e, 0x58], [0x5, 0x41, 0x29, 0x5, 0x42, 0x2a], [0x5, 0x36, 0x18, 0x7, 0x37, 0x19], [0xb, 0x24, 0xc], [0x5, 0x7a, 0x62, 0x1, 0x7b, 0x63], [0x7, 0x49, 0x2d, 0x3, 0x4a, 0x2e], [0xf, 0x2b, 0x13, 0x2, 0x2c, 0x14], [0x3, 0x2d, 0xf, 0xd, 0x2e, 0x10], [0x1, 0x87, 0x6b, 0x5, 0x88, 0x6c], [0xa, 0x4a, 0x2e, 0x1, 0x4b, 0x2f], [0x1, 0x32, 0x16, 0xf, 0x33, 0x17], [0x2, 0x2a, 0xe, 0x11, 0x2b, 0xf], [0x5, 0x96, 0x78, 0x1, 0x97, 0x79], [0x9, 0x45, 0x2b, 0x4, 0x46, 0x2c], [0x11, 0x32, 0x16, 0x1, 0x33, 0x17], [0x2, 0x2a, 0xe, 0x13, 0x2b, 0xf], [0x3, 0x8d, 0x71, 0x4, 0x8e, 0x72], [0x3, 0x46, 0x2c, 0xb, 0x47, 0x2d], [0x11, 0x2f, 0x15, 0x4, 0x30, 0x16], [0x9, 0x27, 0xd, 0x10, 0x28, 0xe], [0x3, 0x87, 0x6b, 0x5, 0x88, 0x6c], [0x3, 0x43, 0x29, 0xd, 0x44, 0x2a], [0xf, 0x36, 0x18, 0x5, 0x37, 0x19], [0xf, 0x2b, 0xf, 0xa, 0x2c, 0x10], [0x4, 0x90, 0x74, 0x4, 0x91, 0x75], [0x11, 0x44, 0x2a], [0x11, 0x32, 0x16, 0x6, 0x33, 0x17], [0x13, 0x2e, 0x10, 0x6, 0x2f, 0x11], [0x2, 0x8b, 0x6f, 0x7, 0x8c, 0x70], [0x11, 0x4a, 0x2e], [0x7, 0x36, 0x18, 0x10, 0x37, 0x19], [0x22, 0x25, 0xd], [0x4, 0x97, 0x79, 0x5, 0x98, 0x7a], [0x4, 0x4b, 0x2f, 0xe, 0x4c, 0x30], [0xb, 0x36, 0x18, 0xe, 0x37, 0x19], [0x10, 0x2d, 0xf, 0xe, 0x2e, 0x10], [0x6, 0x93, 0x75, 0x4, 0x94, 0x76], [0x6, 0x49, 0x2d, 0xe, 0x4a, 0x2e], [0xb, 0x36, 0x18, 0x10, 0x37, 0x19], [0x1e, 0x2e, 0x10, 0x2, 0x2f, 0x11], [0x8, 0x84, 0x6a, 0x4, 0x85, 0x6b], [0x8, 0x4b, 0x2f, 0xd, 0x4c, 0x30], [0x7, 0x36, 0x18, 0x16, 0x37, 0x19], [0x16, 0x2d, 0xf, 0xd, 0x2e, 0x10], [0xa, 0x8e, 0x72, 0x2, 0x8f, 0x73], [0x13, 0x4a, 0x2e, 0x4, 0x4b, 0x2f], [0x1c, 0x32, 0x16, 0x6, 0x33, 0x17], [0x21, 0x2e, 0x10, 0x4, 0x2f, 0x11], [0x8, 0x98, 0x7a, 0x4, 0x99, 0x7b], [0x16, 0x49, 0x2d, 0x3, 0x4a, 0x2e], [0x8, 0x35, 0x17, 0x1a, 0x36, 0x18], [0xc, 0x2d, 0xf, 0x1c, 0x2e, 0x10], [0x3, 0x93, 0x75, 0xa, 0x94, 0x76], [0x3, 0x49, 0x2d, 0x17, 0x4a, 0x2e], [0x4, 0x36, 0x18, 0x1f, 0x37, 0x19], [0xb, 0x2d, 0xf, 0x1f, 0x2e, 0x10], [0x7, 0x92, 0x74, 0x7, 0x93, 0x75], [0x15, 0x49, 0x2d, 0x7, 0x4a, 0x2e], [0x1, 0x35, 0x17, 0x25, 0x36, 0x18], [0x13, 0x2d, 0xf, 0x1a, 0x2e, 0x10], [0x5, 0x91, 0x73, 0xa, 0x92, 0x74], [0x13, 0x4b, 0x2f, 0xa, 0x4c, 0x30], [0xf, 0x36, 0x18, 0x19, 0x37, 0x19], [0x17, 0x2d, 0xf, 0x19, 0x2e, 0x10], [0xd, 0x91, 0x73, 0x3, 0x92, 0x74], [0x2, 0x4a, 0x2e, 0x1d, 0x4b, 0x2f], [0x2a, 0x36, 0x18, 0x1, 0x37, 0x19], [0x17, 0x2d, 0xf, 0x1c, 0x2e, 0x10], [0x11, 0x91, 0x73], [0xa, 0x4a, 0x2e, 0x17, 0x4b, 0x2f], [0xa, 0x36, 0x18, 0x23, 0x37, 0x19], [0x13, 0x2d, 0xf, 0x23, 0x2e, 0x10], [0x11, 0x91, 0x73, 0x1, 0x92, 0x74], [0xe, 0x4a, 0x2e, 0x15, 0x4b, 0x2f], [0x1d, 0x36, 0x18, 0x13, 0x37, 0x19], [0xb, 0x2d, 0xf, 0x2e, 0x2e, 0x10], [0xd, 0x91, 0x73, 0x6, 0x92, 0x74], [0xe, 0x4a, 0x2e, 0x17, 0x4b, 0x2f], [0x2c, 0x36, 0x18, 0x7, 0x37, 0x19], [0x3b, 0x2e, 0x10, 0x1, 0x2f, 0x11], [0xc, 0x97, 0x79, 0x7, 0x98, 0x7a], [0xc, 0x4b, 0x2f, 0x1a, 0x4c, 0x30], [0x27, 0x36, 0x18, 0xe, 0x37, 0x19], [0x16, 0x2d, 0xf, 0x29, 0x2e, 0x10], [0x6, 0x97, 0x79, 0xe, 0x98, 0x7a], [0x6, 0x4b, 0x2f, 0x22, 0x4c, 0x30], [0x2e, 0x36, 0x18, 0xa, 0x37, 0x19], [0x2, 0x2d, 0xf, 0x40, 0x2e, 0x10], [0x11, 0x98, 0x7a, 0x4, 0x99, 0x7b], [0x1d, 0x4a, 0x2e, 0xe, 0x4b, 0x2f], [0x31, 0x36, 0x18, 0xa, 0x37, 0x19], [0x18, 0x2d, 0xf, 0x2e, 0x2e, 0x10], [0x4, 0x98, 0x7a, 0x12, 0x99, 0x7b], [0xd, 0x4a, 0x2e, 0x20, 0x4b, 0x2f], [0x30, 0x36, 0x18, 0xe, 0x37, 0x19], [0x2a, 0x2d, 0xf, 0x20, 0x2e, 0x10], [0x14, 0x93, 0x75, 0x4, 0x94, 0x76], [0x28, 0x4b, 0x2f, 0x7, 0x4c, 0x30], [0x2b, 0x36, 0x18, 0x16, 0x37, 0x19], [0xa, 0x2d, 0xf, 0x43, 0x2e, 0x10], [0x13, 0x94, 0x76, 0x6, 0x95, 0x77], [0x12, 0x4b, 0x2f, 0x1f, 0x4c, 0x30], [0x22, 0x36, 0x18, 0x22, 0x37, 0x19], [0x14, 0x2d, 0xf, 0x3d, 0x2e, 0x10]], QRRSBlock[a0_0x509e70(0x147)] = function (_0xdd9a2c, _0x344435) {
+  var _0x5e1b30 = a0_0x509e70,
+    _0x3d18b1 = QRRSBlock[_0x5e1b30(0x156)](_0xdd9a2c, _0x344435);
+  if (_0x3d18b1 == undefined) throw new Error(_0x5e1b30(0x197) + _0xdd9a2c + _0x5e1b30(0x17e) + _0x344435);
+  var _0x2bc72d = _0x3d18b1['length'] / 0x3,
+    _0x141128 = [];
+  for (var _0x5bceba = 0x0; _0x5bceba < _0x2bc72d; _0x5bceba++) {
+    var _0x52d47a = _0x3d18b1[_0x5bceba * 0x3 + 0x0],
+      _0x18902a = _0x3d18b1[_0x5bceba * 0x3 + 0x1],
+      _0x59adc = _0x3d18b1[_0x5bceba * 0x3 + 0x2];
+    for (var _0x4eb51d = 0x0; _0x4eb51d < _0x52d47a; _0x4eb51d++) {
+      _0x141128[_0x5e1b30(0x179)](new QRRSBlock(_0x18902a, _0x59adc));
+    }
+  }
+  return _0x141128;
+}, QRRSBlock['getRsBlockTable'] = function (_0x1d5d16, _0x37681e) {
+  var _0x3b988d = a0_0x509e70;
+  switch (_0x37681e) {
+    case QRErrorCorrectLevel['L']:
+      return QRRSBlock[_0x3b988d(0x193)][(_0x1d5d16 - 0x1) * 0x4 + 0x0];
+    case QRErrorCorrectLevel['M']:
+      return QRRSBlock[_0x3b988d(0x193)][(_0x1d5d16 - 0x1) * 0x4 + 0x1];
+    case QRErrorCorrectLevel['Q']:
+      return QRRSBlock[_0x3b988d(0x193)][(_0x1d5d16 - 0x1) * 0x4 + 0x2];
+    case QRErrorCorrectLevel['H']:
+      return QRRSBlock['RS_BLOCK_TABLE'][(_0x1d5d16 - 0x1) * 0x4 + 0x3];
+    default:
+      return undefined;
+  }
+};
+function QRBitBuffer() {
+  var _0x2e56e9 = a0_0x509e70;
+  this['buffer'] = [], this[_0x2e56e9(0x151)] = 0x0;
+}
+QRBitBuffer[a0_0x509e70(0x167)] = {
+  'get': function get(_0x5721e7) {
+    var _0x431e8c = a0_0x509e70,
+      _0x3091cc = Math[_0x431e8c(0x154)](_0x5721e7 / 0x8);
+    return (this['buffer'][_0x3091cc] >>> 0x7 - _0x5721e7 % 0x8 & 0x1) == 0x1;
+  },
+  'put': function put(_0x1ad9fd, _0x3e26a4) {
+    var _0x3a8e66 = a0_0x509e70;
+    for (var _0x4f1dae = 0x0; _0x4f1dae < _0x3e26a4; _0x4f1dae++) {
+      this[_0x3a8e66(0x145)]((_0x1ad9fd >>> _0x3e26a4 - _0x4f1dae - 0x1 & 0x1) == 0x1);
+    }
+  },
+  'getLengthInBits': function getLengthInBits() {
+    var _0x14cfa4 = a0_0x509e70;
+    return this[_0x14cfa4(0x151)];
+  },
+  'putBit': function putBit(_0x1677b6) {
+    var _0x2e117f = a0_0x509e70,
+      _0x56c685 = Math[_0x2e117f(0x154)](this[_0x2e117f(0x151)] / 0x8);
+    this[_0x2e117f(0x172)][_0x2e117f(0x151)] <= _0x56c685 && this[_0x2e117f(0x172)][_0x2e117f(0x179)](0x0), _0x1677b6 && (this[_0x2e117f(0x172)][_0x56c685] |= 0x80 >>> this[_0x2e117f(0x151)] % 0x8), this[_0x2e117f(0x151)]++;
+  }
+};
+var QRCodeLimitLength = [[0x11, 0xe, 0xb, 0x7], [0x20, 0x1a, 0x14, 0xe], [0x35, 0x2a, 0x20, 0x18], [0x4e, 0x3e, 0x2e, 0x22], [0x6a, 0x54, 0x3c, 0x2c], [0x86, 0x6a, 0x4a, 0x3a], [0x9a, 0x7a, 0x56, 0x40], [0xc0, 0x98, 0x6c, 0x54], [0xe6, 0xb4, 0x82, 0x62], [0x10f, 0xd5, 0x97, 0x77], [0x141, 0xfb, 0xb1, 0x89], [0x16f, 0x11f, 0xcb, 0x9b], [0x1a9, 0x14b, 0xf1, 0xb1], [0x1ca, 0x16a, 0x102, 0xc2], [0x208, 0x19c, 0x124, 0xdc], [0x24a, 0x1c2, 0x142, 0xfa], [0x284, 0x1f8, 0x16c, 0x118], [0x2ce, 0x230, 0x18a, 0x136], [0x318, 0x270, 0x1ba, 0x152], [0x35a, 0x29a, 0x1e2, 0x17e], [0x3a1, 0x2c7, 0x1fd, 0x193], [0x3eb, 0x30b, 0x235, 0x1b7], [0x443, 0x359, 0x263, 0x1cd], [0x493, 0x38f, 0x295, 0x1ff], [0x4f9, 0x3e5, 0x2cb, 0x217], [0x557, 0x423, 0x2ef, 0x251], [0x5b9, 0x465, 0x325, 0x271], [0x5f8, 0x4a6, 0x364, 0x292], [0x65c, 0x4f0, 0x38c, 0x2ba], [0x6c4, 0x55a, 0x3d6, 0x2e6], [0x730, 0x5ac, 0x406, 0x316], [0x7a0, 0x602, 0x458, 0x34a], [0x814, 0x65c, 0x490, 0x382], [0x88c, 0x6ba, 0x4cc, 0x3be], [0x8ff, 0x711, 0x503, 0x3d7], [0x97f, 0x777, 0x547, 0x41b], [0xa03, 0x7c5, 0x58f, 0x445], [0xa8b, 0x833, 0x5db, 0x473], [0xaf9, 0x8a5, 0x62b, 0x4c3], [0xb89, 0x91b, 0x67f, 0x4f9]];
+function _getTypeNumber(_0x18d8b0, _0x1bae79) {
+  var _0x57b10a = a0_0x509e70,
+    _0x525489 = 0x1,
+    _0x384089 = _getUTF8Length(_0x18d8b0);
+  for (var _0x463239 = 0x0, _0x3525e6 = QRCodeLimitLength[_0x57b10a(0x151)]; _0x463239 <= _0x3525e6; _0x463239++) {
+    var _0x321e99 = 0x0;
+    switch (_0x1bae79) {
+      case QRErrorCorrectLevel['L']:
+        _0x321e99 = QRCodeLimitLength[_0x463239][0x0];
+        break;
+      case QRErrorCorrectLevel['M']:
+        _0x321e99 = QRCodeLimitLength[_0x463239][0x1];
+        break;
+      case QRErrorCorrectLevel['Q']:
+        _0x321e99 = QRCodeLimitLength[_0x463239][0x2];
+        break;
+      case QRErrorCorrectLevel['H']:
+        _0x321e99 = QRCodeLimitLength[_0x463239][0x3];
+        break;
+    }
+    if (_0x384089 <= _0x321e99) break;else _0x525489++;
+  }
+  if (_0x525489 > QRCodeLimitLength[_0x57b10a(0x151)]) throw new Error('Too\x20long\x20data');
+  return _0x525489;
+}
+function a0_0x475b(_0x2cd49a, _0x2095fb) {
+  var _0x20e7c8 = a0_0x20e7();
+  return a0_0x475b = function a0_0x475b(_0x475b3d, _0x388b83) {
+    _0x475b3d = _0x475b3d - 0x137;
+    var _0x3fab7e = _0x20e7c8[_0x475b3d];
+    return _0x3fab7e;
+  }, a0_0x475b(_0x2cd49a, _0x2095fb);
+}
+function _getUTF8Length(_0x49bae3) {
+  var _0x513432 = a0_0x509e70,
+    _0x5d6bbf = encodeURI(_0x49bae3)['toString']()[_0x513432(0x15c)](/\%[0-9a-fA-F]{2}/g, 'a');
+  return _0x5d6bbf[_0x513432(0x151)] + (_0x5d6bbf[_0x513432(0x151)] != _0x49bae3 ? 0x3 : 0x0);
+}
+var api = {
+  'draw': function draw(_0x22baca, _0x3c370c, _0x563937, _0x1414e3, _0x53fcd4, _0xd61892, _0xb11fd2) {
+    var _0x2bdcd2 = a0_0x509e70;
+    if (!_0x22baca) {
+      console['warn'](_0x2bdcd2(0x15e));
+      return;
+    }
+    if (!_0x3c370c) {
+      console['warn'](_0x2bdcd2(0x182));
+      return;
+    }
+    _0xb11fd2 = _0xb11fd2 ? _0xb11fd2 % 0x4 : QRErrorCorrectLevel['H'];
+    var _0x58a6b6 = Math['min'](_0x53fcd4, _0xd61892);
+    this[_0x2bdcd2(0x153)] = new QRCodeModel(_getTypeNumber(_0x22baca, _0xb11fd2), _0xb11fd2), this[_0x2bdcd2(0x153)][_0x2bdcd2(0x17d)](_0x22baca), this[_0x2bdcd2(0x153)]['make']();
+    var _0xd0aaae = this[_0x2bdcd2(0x153)][_0x2bdcd2(0x13c)](),
+      _0x29cdc3 = _0x58a6b6 / _0xd0aaae,
+      _0x283710 = _0x29cdc3;
+    _0x3c370c[_0x2bdcd2(0x166)](_0x2bdcd2(0x14d));
+    for (var _0x3f829d = 0x0; _0x3f829d < _0xd0aaae; _0x3f829d++) {
+      for (var _0x53feb1 = 0x0; _0x53feb1 < _0xd0aaae; _0x53feb1++) {
+        var _0x58533e = this[_0x2bdcd2(0x153)][_0x2bdcd2(0x196)](_0x3f829d, _0x53feb1),
+          _0x4230ec = _0x53feb1 * _0x29cdc3,
+          _0x28ae88 = _0x3f829d * _0x283710;
+        _0x58533e && _0x3c370c[_0x2bdcd2(0x16d)](_0x563937 + _0x4230ec, _0x1414e3 + _0x28ae88, _0x29cdc3, _0x283710);
+      }
+    }
+  }
+};
+var _default = {
+  'api': api
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 167:
+/*!***************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCBle.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+var a0_0x4ebaee = a0_0x1c78;
+(function (_0x2f54b6, _0x1a3ac0) {
+  var _0x2da02d = a0_0x1c78,
+    _0x55046b = _0x2f54b6();
+  while (!![]) {
+    try {
+      var _0x4bb382 = -parseInt(_0x2da02d(0x1a9)) / 0x1 + -parseInt(_0x2da02d(0x16e)) / 0x2 * (parseInt(_0x2da02d(0x169)) / 0x3) + -parseInt(_0x2da02d(0x1bd)) / 0x4 * (parseInt(_0x2da02d(0x197)) / 0x5) + parseInt(_0x2da02d(0x1ad)) / 0x6 + -parseInt(_0x2da02d(0x1b5)) / 0x7 * (-parseInt(_0x2da02d(0x160)) / 0x8) + -parseInt(_0x2da02d(0x183)) / 0x9 * (-parseInt(_0x2da02d(0x1c6)) / 0xa) + parseInt(_0x2da02d(0x1b9)) / 0xb;
+      if (_0x4bb382 === _0x1a3ac0) break;else _0x55046b['push'](_0x55046b['shift']());
+    } catch (_0x52e381) {
+      _0x55046b['push'](_0x55046b['shift']());
+    }
+  }
+})(a0_0x8223, 0x7c3ca);
+function Ble(_0x4d2776) {
+  var _0x5d9cc8 = a0_0x1c78;
+  this[_0x5d9cc8(0x1bb)] = ![], this[_0x5d9cc8(0x1c8)] = ![], this[_0x5d9cc8(0x1bf)] = null, this[_0x5d9cc8(0x177)] = [], this[_0x5d9cc8(0x187)] = _0x4d2776, this[_0x5d9cc8(0x17c)] = '', this['_onBleAdapterStateChange']();
+}
+function a0_0x1c78(_0x1ce691, _0x545e4f) {
+  var _0x82237b = a0_0x8223();
+  return a0_0x1c78 = function a0_0x1c78(_0x1c78d7, _0x501de8) {
+    _0x1c78d7 = _0x1c78d7 - 0x154;
+    var _0xd1ac36 = _0x82237b[_0x1c78d7];
+    return _0xd1ac36;
+  }, a0_0x1c78(_0x1ce691, _0x545e4f);
+}
+function a0_0x8223() {
+  var _0x41245f = ['offBLECharacteristicValueChange', 'getBluetoothDevices', 'android', '0000E0FF-3C17-D293-8E48-14FE2E4DA212', 'printer', 'openPrinterCallbackFaill', 'needCMD', 'bleConnectionState', 'connected', 'connectBLEDevice', 'setPrinter', 'hexToBytes', 'name', 'closeBluetoothAdapter', '970232baYnRv', 'forEach', '_getFoundDevices', '_openBleAdapter', '414408LtHaLY', 'notifyBLECharacteristicValueChange', 'setBLEMTU', 'writeC', '0000E3E5-0000-1000-8000-00805F9B34FB', '_getDeviceServices', 'isSendPictureDataing', 'printErrorInfoCallback', '91bRpTAv', 'offBLEConnectionStateChanged', '_getBleAdapterState', '5555BF', '20343026rriJdd', '_createBleConnection', 'bleAdapterStateReady', 'byteLength', '52plZHbO', 'insertAtHeadOfBuffer', 'scanDevicesCallback', 'prototype', '重复发送了-----2---command=', 'onBluetoothAdapterStateChange', 'sendData', '----走了失败', '_getFoundPrinterByName', '5240fMVttf', 'getUint8', 'bleAdapterSearchState', '--------timeout', 'dealData', 'createData', '---收到数据:', 'openPrinterCallback', 'clear', 'deviceId', '_onValueChange', 'openBluetoothAdapter', 'discovering', 'characteristics', 'stopBluetoothDevicesDiscovery', '_stopBleDiscovery', 'devices', 'onBLECharacteristicValueChange', 'onBluetoothDeviceFound', 'FFE1', 'endsWith', 'offBLEConnectionStateChange', 'writeBLECharacteristicValue', '242264ZJEzEJ', 'BEF8D6C9-9C21-4C9E-B632-BD58C1009F9F', 'value', '_notiCharacteristic', 'closeBLEConnection', '---bytelength=', '0000FFE1-0000-1000-8000-00805F9B34FB', 'disconnectBLEDevice', 'getBluetoothAdapterState', '366RoFCkT', 'platform', 'offBluetoothAdapterStateChange', 'JCSDK_PLATFORM_DD', 'available', '14776VDgYNu', 'ab2hex', 'bleDevice', 'push', 'setMtuSucc', 'repeatTimeoutId', 'openPrinter', 'getBLEDeviceCharacteristics', 'toUpperCase', 'scanDevice', 'curSendData', '-------搜索到设备', 'offBluetoothDeviceFound', 'getBLEDeviceServices', 'reciveDatas', 'startsWith', 'connectDeviceFound', '对象不存在', 'central', 'readC', 'length', '1377XOKsSJ', '_startBleDiscovery', 'log', 'debug', 'manager', 'startBluetoothDevicesDiscovery', 'ios', 'serviceId', 'useOutBleListen', '发送了：', 'services', 'BleAdapterState:--------------------succ', 'sendPrintError', 'onBLEConnectionStateChange', 'uuid', 'onBLEConnectionStateChanged', 'sdkPlatform', 'readBLECharacteristicValue', '适配器状态发送变化:', 'E7810A71-73AE-499D-8C15-FAA9AEF0C3F2', '4555HknQSr', 'characteristicId', 'JCSDK_PLATFORM_FS', 'JCSDK_PRINT_ERR_DISCONNECT'];
+  a0_0x8223 = function a0_0x8223() {
+    return _0x41245f;
+  };
+  return a0_0x8223();
+}
+Ble[a0_0x4ebaee(0x1c0)] = {
+  'constructor': Ble,
+  'scanedPrinters': function scanedPrinters(_0x4e98aa) {
+    var _0x3ef498 = this;
+    var _0x351e1a = function _0x351e1a() {
+        _0x4e98aa != null && _0x4e98aa([]);
+      },
+      _0x2cc5e4 = function _0x2cc5e4() {
+        var _0xa3c30a = a0_0x1c78;
+        var _0x31a95d = function _0x31a95d() {
+          var _0x5cf520 = a0_0x1c78;
+          _0x3ef498[_0x5cf520(0x184)](), setTimeout(function () {
+            var _0x1323dc = _0x5cf520;
+            _0x3ef498[_0x1323dc(0x158)]();
+            var _0x4aca01 = function _0x4aca01() {
+              var _0x222cd1 = _0x1323dc;
+              _0x4e98aa && _0x4e98aa(_0x3ef498[_0x222cd1(0x177)]);
+            };
+            _0x3ef498[_0x1323dc(0x177)] = [], _0x3ef498[_0x1323dc(0x1ab)](_0x4aca01);
+          }, 0xbb8);
+        };
+        _0x3ef498[_0xa3c30a(0x1b7)](_0x31a95d, _0x351e1a);
+      };
+    this['_openBleAdapter'](_0x2cc5e4, _0x351e1a);
+  },
+  'closePrinter': function closePrinter() {
+    var _0x27d793 = a0_0x4ebaee;
+    if (this[_0x27d793(0x170)] != null && this[_0x27d793(0x170)]['deviceId'] != null) {
+      var _0x2f4e37 = this;
+      var _0x2dde98 = {
+        'deviceId': _0x2f4e37[_0x27d793(0x170)][_0x27d793(0x1cf)],
+        'complete': function complete() {
+          var _0x225128 = _0x27d793;
+          _0x2f4e37[_0x225128(0x187)][_0x225128(0x19f)] = null;
+        }
+      };
+      if (this[_0x27d793(0x187)][_0x27d793(0x193)] == _JCAPIErrorCode.default[_0x27d793(0x16c)]) dd[_0x27d793(0x167)](_0x2dde98);else this['manager'][_0x27d793(0x193)] == _JCAPIErrorCode.default[_0x27d793(0x199)] ? tt[_0x27d793(0x167)](_0x2dde98) : wx[_0x27d793(0x164)](_0x2dde98);
+    }
+  },
+  'openPrinter': function openPrinter(_0x5e6988, _0x28f3cc, _0x53a79d) {
+    var _0x15d109 = a0_0x4ebaee;
+    var _0x497572 = this;
+    if (this[_0x15d109(0x1a2)]) {
+      this[_0x15d109(0x1a0)] && (this[_0x15d109(0x1a0)] = function () {
+        var _0x1fede8 = _0x15d109;
+        _0x497572['bleDevice'] = null, _0x497572[_0x1fede8(0x187)][_0x1fede8(0x19f)] = null, setTimeout(function () {
+          var _0x126268 = _0x1fede8;
+          _0x497572[_0x126268(0x174)](_0x5e6988, _0x28f3cc, _0x53a79d);
+        }, 0x1f4);
+      });
+      if (this[_0x15d109(0x170)] != null && this[_0x15d109(0x170)][_0x15d109(0x1cf)] != null) {
+        if (_0x497572[_0x15d109(0x187)][_0x15d109(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd['disconnectBLEDevice']({
+          'deviceId': _0x497572['bleDevice'][_0x15d109(0x1cf)]
+        });else _0x497572[_0x15d109(0x187)]['sdkPlatform'] == _JCAPIErrorCode.default[_0x15d109(0x199)] ? tt[_0x15d109(0x167)]({
+          'deviceId': _0x497572['bleDevice'][_0x15d109(0x1cf)]
+        }) : wx[_0x15d109(0x164)]({
+          'deviceId': _0x497572[_0x15d109(0x170)]['deviceId']
+        });
+      }
+      return;
+    }
+    var _0x2f2068 = _0x53a79d,
+      _0x4269d1 = function _0x4269d1() {
+        var _0x54f31c = _0x15d109;
+        (_0x497572['manager'][_0x54f31c(0x186)] & 0x1) == 0x1 && console['log'](_0x54f31c(0x1c4));
+        if (_0x2f2068 != null) {
+          var _0x2f997e = _0x2f2068;
+          _0x2f2068 = null, _0x2f997e();
+        }
+      },
+      _0x55518a = ![],
+      _0x2c5547 = ![],
+      _0x21f971 = function _0x21f971() {
+        var _0x41572e = _0x15d109;
+        if (_0x55518a) return;
+        _0x55518a = !![];
+        var _0x4c98a8 = function _0x4c98a8() {
+          var _0x51d5fe = a0_0x1c78;
+          _0x2c5547 = !![], _0x497572[_0x51d5fe(0x184)]();
+          var _0xc33330 = setTimeout(function () {
+            var _0xe7a1ef = _0x51d5fe;
+            (_0x497572[_0xe7a1ef(0x187)][_0xe7a1ef(0x186)] & 0x1) == 0x1 && console[_0xe7a1ef(0x185)](_0xe7a1ef(0x1c9));
+            _0x497572[_0xe7a1ef(0x158)]();
+            if (_0x497572['connectDeviceFound'] == ![]) {
+              _0x4269d1();
+              return;
+            }
+            if (_0x2c5547) return;
+            _0x4269d1();
+          }, 0x3a98);
+          var _0x546a02 = function _0x546a02(_0x62edcf) {
+            var _0x159f19 = _0x51d5fe;
+            clearTimeout(_0xc33330);
+            var _0x46f920 = _0x62edcf['deviceId'];
+            if (_0x46f920 != null) {
+              var _0x2ade92 = ![],
+                _0x51289e = function _0x51289e(_0x203436) {
+                  var _0x4a1a16 = a0_0x1c78;
+                  if (_0x2ade92) return;
+                  _0x2ade92 = !![];
+                  var _0x206307 = function _0x206307(_0x44dca3) {
+                    var _0x1dde33 = function _0x1dde33(_0x4bb318) {
+                      var _0x4240cc = function _0x4240cc() {
+                        var _0x202235 = a0_0x1c78;
+                        var _0x2998a4 = function _0x2998a4() {
+                          var _0x1575cf = a0_0x1c78;
+                          _0x497572['openPrinterCallback'] = _0x28f3cc, _0x497572[_0x1575cf(0x1a0)] = _0x53a79d, _0x497572[_0x1575cf(0x170)] = {}, _0x497572['bleDevice'][_0x1575cf(0x1cf)] = _0x203436, _0x497572[_0x1575cf(0x170)]['serviceId'] = _0x44dca3, _0x497572[_0x1575cf(0x170)][_0x1575cf(0x1b0)] = _0x4bb318, _0x497572[_0x1575cf(0x170)][_0x1575cf(0x181)] = _0x4bb318, _0x497572[_0x1575cf(0x170)][_0x1575cf(0x1a7)] = _0x5e6988;
+                          if (_0x497572[_0x1575cf(0x187)][_0x1575cf(0x18b)]) {} else _0x497572[_0x1575cf(0x1d0)]();
+                          var _0x587684 = _JCDataUntil.default[_0x1575cf(0x1cb)](0xc1, 0x1);
+                          _0x587684 = _JCDataUntil.default[_0x1575cf(0x1be)](0x3, _0x587684), _0x497572[_0x1575cf(0x187)][_0x1575cf(0x1a1)] = 0xc2, _0x497572[_0x1575cf(0x1c3)](_0x587684, 0x9, function () {
+                            var _0x19b57f = _0x1575cf;
+                            _0x497572[_0x19b57f(0x1a0)] && (_0x497572['openPrinterCallbackFaill'] = function () {
+                              var _0x328a42 = _0x19b57f;
+                              _0x497572[_0x328a42(0x170)] = null, _0x497572[_0x328a42(0x187)][_0x328a42(0x19f)] = null, _0x4269d1();
+                            });
+                            if (_0x497572['manager'][_0x19b57f(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd[_0x19b57f(0x164)]({
+                              'deviceId': _0x497572[_0x19b57f(0x170)][_0x19b57f(0x1cf)]
+                            });else _0x497572['manager'][_0x19b57f(0x193)] == _JCAPIErrorCode.default[_0x19b57f(0x199)] ? tt[_0x19b57f(0x167)]({
+                              'deviceId': _0x497572[_0x19b57f(0x170)][_0x19b57f(0x1cf)]
+                            }) : wx['closeBLEConnection']({
+                              'deviceId': _0x497572[_0x19b57f(0x170)][_0x19b57f(0x1cf)]
+                            });
+                          });
+                        };
+                        _0x497572[_0x202235(0x163)](_0x203436, _0x44dca3, _0x4bb318, _0x2998a4, _0x4269d1);
+                      };
+                      _0x4240cc();
+                    };
+                    _0x497572['_getDeviceCharacteristics'](_0x203436, _0x44dca3, _0x1dde33, _0x4269d1);
+                  };
+                  _0x497572[_0x4a1a16(0x1b2)](_0x203436, _0x206307, _0x4269d1);
+                };
+              _0x497572['_onConnectionStateChange'](_0x51289e);
+              if (_0x497572[_0x159f19(0x187)][_0x159f19(0x16a)] == _0x159f19(0x189)) _0x497572[_0x159f19(0x1ba)](_0x46f920, _0x4269d1);else {
+                var _0xc00864 = 0x0;
+                var _0x4ee063 = function _0x4ee063() {
+                  _0xc00864++, setTimeout(function () {
+                    var _0x4950ba = a0_0x1c78;
+                    _0xc00864 < 0x3 ? _0x497572['_createBleConnection'](_0x46f920, _0x4ee063) : _0x497572[_0x4950ba(0x1ba)](_0x46f920, _0x4269d1);
+                  }, 0x3e8);
+                };
+                _0x4ee063();
+              }
+            } else _0x4269d1();
+          };
+          _0x497572[_0x51d5fe(0x1c5)](_0x5e6988, _0x546a02);
+        };
+        _0x497572[_0x41572e(0x1b7)](_0x4c98a8, _0x4269d1);
+      };
+    this[_0x15d109(0x1ac)](_0x21f971, _0x4269d1);
+  },
+  'sendData': function sendData(_0x434e86) {
+    var _0x2f22f4 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0xa;
+    var _0x4c1e43 = arguments.length > 2 ? arguments[2] : undefined;
+    var _0x245274 = a0_0x4ebaee;
+    if (this[_0x245274(0x170)] == null || this[_0x245274(0x170)] === undefined || this[_0x245274(0x170)]['deviceId'] === undefined) {
+      (this[_0x245274(0x187)]['debug'] & 0x1) == 0x1 && console[_0x245274(0x185)](_0x245274(0x17f));
+      this[_0x245274(0x173)] && this['repeatTimeoutId'] > 0x0 && (clearTimeout(this[_0x245274(0x173)]), this[_0x245274(0x173)] = 0x0);
+      return;
+    }
+    var _0x4a616a = this;
+    function _0x2e3976() {
+      var _0x168fd0 = _0x245274;
+      _0x2f22f4 > 0x0 ? _0x4a616a['repeatTimeoutId'] = setTimeout(function () {
+        var _0x388e4b = a0_0x1c78;
+        if (_0x4a616a['manager']['printer'] && _0x4a616a['manager'][_0x388e4b(0x19f)][_0x388e4b(0x1b3)]) return;
+        if (_0x4a616a[_0x388e4b(0x187)]['curSendData'] == null) return;
+        var _0x2d093f = new DataView(_0x4a616a['manager'][_0x388e4b(0x178)]);
+        if (_0x4a616a[_0x388e4b(0x187)]['curSendData'] && _0x4a616a[_0x388e4b(0x187)]['curSendData'][_0x388e4b(0x1bc)] > 0x5) {
+          var _0x450c7e = _0x2d093f[_0x388e4b(0x1c7)](0x2);
+          (_0x4a616a[_0x388e4b(0x187)]['debug'] & 0x100) == 0x100 && console[_0x388e4b(0x185)](_0x388e4b(0x1c1) + _0x450c7e + _0x388e4b(0x165) + _0x4a616a['manager'][_0x388e4b(0x178)][_0x388e4b(0x1bc)] + '---needCmd\x20=\x20' + _0x4a616a[_0x388e4b(0x187)]['needCMD']);
+          if (_0x450c7e == 0x86 && _0x4a616a['manager']['needCMD'] != 0xd3) return;else {
+            if (_0x450c7e == 0x13 && _0x4a616a[_0x388e4b(0x187)]['needCMD'] != 0x14) return;else {
+              if (_0x450c7e == 0xf3 && _0x4a616a[_0x388e4b(0x187)][_0x388e4b(0x1a1)] != 0xf4) return;else {
+                if (_0x450c7e == 0xa3 && _0x4a616a['manager'][_0x388e4b(0x1a1)] != 0xb3) return;
+              }
+            }
+          }
+        }
+        _0x4a616a['sendData'](_0x4a616a[_0x388e4b(0x187)][_0x388e4b(0x178)], --_0x2f22f4, _0x4c1e43);
+      }, 0x1f4) : (_0x4a616a[_0x168fd0(0x187)][_0x168fd0(0x178)] = null, _0x4c1e43 && _0x4c1e43());
+    }
+    if (_0x4a616a['manager'][_0x245274(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) (this[_0x245274(0x187)]['debug'] & 0x100) == 0x100 && console[_0x245274(0x185)](_0x245274(0x18c) + _JCDataUntil.default[_0x245274(0x16f)](_0x434e86)), this[_0x245274(0x187)][_0x245274(0x178)] = _0x434e86, dd[_0x245274(0x15f)]({
+      'characteristicId': this[_0x245274(0x170)]['writeC'],
+      'deviceId': this[_0x245274(0x170)][_0x245274(0x1cf)],
+      'serviceId': this['bleDevice']['serviceId'],
+      'value': _0x434e86,
+      'success': function success(_0x4df7d8) {},
+      'fail': function fail(_0xf180d) {},
+      'complete': function complete() {
+        _0x2e3976();
+      }
+    });else {
+      if (_0x4a616a['manager']['sdkPlatform'] == _JCAPIErrorCode.default[_0x245274(0x199)]) {
+        var _0xdb8566 = _JCDataUntil.default[_0x245274(0x16f)](_0x434e86);
+        (this[_0x245274(0x187)][_0x245274(0x186)] & 0x100) == 0x100 && console[_0x245274(0x185)](_0xdb8566), this['manager']['curSendData'] = _0x434e86, tt['writeBLECharacteristicValue']({
+          'characteristicId': this[_0x245274(0x170)][_0x245274(0x1b0)],
+          'deviceId': this['bleDevice'][_0x245274(0x1cf)],
+          'serviceId': this['bleDevice'][_0x245274(0x18a)],
+          'value': _0xdb8566,
+          'success': function success(_0x1c15e4) {
+            _0x2e3976();
+          },
+          'fail': function fail(_0x1925e5) {}
+        });
+      } else (this[_0x245274(0x187)]['debug'] & 0x100) == 0x100 && console[_0x245274(0x185)]('发送了：' + _JCDataUntil.default[_0x245274(0x16f)](_0x434e86)), this[_0x245274(0x187)][_0x245274(0x178)] = _0x434e86, wx['writeBLECharacteristicValue']({
+        'characteristicId': this[_0x245274(0x170)][_0x245274(0x1b0)],
+        'deviceId': this[_0x245274(0x170)][_0x245274(0x1cf)],
+        'serviceId': this[_0x245274(0x170)][_0x245274(0x18a)],
+        'value': _0x434e86,
+        'success': function success(_0x5e6b0b) {},
+        'fail': function fail(_0x47579c) {},
+        'complete': function complete() {
+          _0x2e3976();
+        }
+      });
+    }
+  },
+  'clearRepeatAction': function clearRepeatAction() {
+    var _0x43d80a = a0_0x4ebaee;
+    this[_0x43d80a(0x173)] > 0x0 && (clearTimeout(this[_0x43d80a(0x173)]), this[_0x43d80a(0x173)] = 0x0);
+  },
+  '_getFoundPrinterByName': function _getFoundPrinterByName(_0x400f3e, _0xdcf738) {
+    var _0x4f94ba = a0_0x4ebaee;
+    var _0x417feb = this;
+    var _0x7a52f4 = ![];
+    this[_0x4f94ba(0x17e)] = ![];
+    var _0x546afc = function _0x546afc(_0x10ddf0) {
+      var _0x48f483 = _0x4f94ba;
+      if (_0x7a52f4) return;
+      if (_0x10ddf0[_0x48f483(0x159)][_0x48f483(0x182)] > 0x0) {
+        var _0x323734 = _0x10ddf0[_0x48f483(0x159)][0x0];
+        _0x323734[_0x48f483(0x1a7)] == _0x400f3e && (_0x7a52f4 = !![], _0x417feb[_0x48f483(0x17e)] = !![], _0xdcf738 && (_0x417feb[_0x48f483(0x158)](), (_0x417feb[_0x48f483(0x187)]['debug'] & 0x1) == 0x1 && console[_0x48f483(0x185)](_0x48f483(0x179)), _0xdcf738(_0x323734)));
+      }
+    };
+    if (_0x417feb[_0x4f94ba(0x187)][_0x4f94ba(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd[_0x4f94ba(0x17a)](), dd['onBluetoothDeviceFound'](_0x546afc);else _0x417feb['manager']['sdkPlatform'] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] ? (tt['offBluetoothDeviceFound'](), tt[_0x4f94ba(0x15b)](_0x546afc)) : (wx['offBluetoothDeviceFound'](), wx[_0x4f94ba(0x15b)](_0x546afc));
+  },
+  '_onValueChange': function _onValueChange() {
+    var _0x5d2f55 = a0_0x4ebaee;
+    var _0x12dd58 = this;
+    var _0x51de29 = function _0x51de29(_0x543f28) {
+      var _0x554388 = a0_0x1c78;
+      (_0x12dd58['manager'][_0x554388(0x186)] & 0x1000) == 0x1000 && console[_0x554388(0x185)](_0x543f28['value']);
+      if (_0x12dd58[_0x554388(0x17c)][_0x554388(0x182)] > 0x0) {
+        if (_0x543f28[_0x554388(0x162)][_0x554388(0x176)]()[_0x554388(0x15d)]('AAAA')) {
+          var _0x4ecf7e = _0x12dd58['reciveDatas'] + _0x543f28[_0x554388(0x162)];
+          _0x12dd58[_0x554388(0x17c)] = '', _JCDataUntil.default[_0x554388(0x1ca)](_JCDataUntil.default[_0x554388(0x1a6)](_0x4ecf7e), _0x12dd58[_0x554388(0x187)]);
+        } else _0x12dd58[_0x554388(0x17c)] = _0x12dd58['reciveDatas'] + _0x543f28['value'];
+      } else _0x543f28[_0x554388(0x162)][_0x554388(0x17d)]('5555') && _0x543f28[_0x554388(0x162)][_0x554388(0x176)]()[_0x554388(0x15d)]('AAAA') ? (_0x12dd58[_0x554388(0x187)][_0x554388(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] && _0x12dd58[_0x554388(0x187)]['setMtuSucc'] == ![] && _0x543f28[_0x554388(0x162)]['startsWith'](_0x554388(0x1b8)) && _0x543f28['value'][_0x554388(0x176)]()[_0x554388(0x15d)]('AAAA') && _0x543f28[_0x554388(0x162)][_0x554388(0x182)] > 0x32 && (_0x12dd58[_0x554388(0x187)][_0x554388(0x172)] = !![]), _0x12dd58[_0x554388(0x17c)] = '', _JCDataUntil.default['dealData'](_JCDataUntil.default['hexToBytes'](_0x543f28[_0x554388(0x162)]), _0x12dd58['manager'])) : _0x12dd58[_0x554388(0x17c)] = _0x543f28['value'];
+    };
+    if (_0x12dd58['manager'][_0x5d2f55(0x193)] == _JCAPIErrorCode.default[_0x5d2f55(0x16c)]) dd[_0x5d2f55(0x19b)](), dd[_0x5d2f55(0x15a)](_0x51de29);else _0x12dd58[_0x5d2f55(0x187)][_0x5d2f55(0x193)] == _JCAPIErrorCode.default[_0x5d2f55(0x199)] ? (tt['offBLECharacteristicValueChange'](), tt[_0x5d2f55(0x15a)](_0x51de29)) : wx['onBLECharacteristicValueChange'](function (_0xf0d722) {
+      var _0x28910f = _0x5d2f55;
+      (_0x12dd58[_0x28910f(0x187)][_0x28910f(0x186)] & 0x1000) == 0x1000 && console[_0x28910f(0x185)](_0x28910f(0x1cc) + _JCDataUntil.default['ab2hex'](_0xf0d722[_0x28910f(0x162)])), _JCDataUntil.default[_0x28910f(0x1ca)](_0xf0d722['value'], _0x12dd58['manager']);
+    });
+  },
+  'onOutValueChange': function onOutValueChange(_0x578ddc) {
+    var _0x24a4c2 = a0_0x4ebaee;
+    (_0x578ddc[_0x24a4c2(0x198)][_0x24a4c2(0x176)]() == _0x24a4c2(0x161) || _0x578ddc[_0x24a4c2(0x198)]['toUpperCase']() == 'FFE1' || _0x578ddc[_0x24a4c2(0x198)]['toUpperCase']() == _0x24a4c2(0x166)) && ((this['manager'][_0x24a4c2(0x186)] & 0x1000) == 0x1000 && console[_0x24a4c2(0x185)](_0x24a4c2(0x1cc) + _JCDataUntil.default[_0x24a4c2(0x16f)](_0x578ddc['value'])), _JCDataUntil.default[_0x24a4c2(0x1ca)](_0x578ddc['value'], this['manager']));
+  },
+  '_notiCharacteristic': function _notiCharacteristic(_0x1104b3, _0x24c439, _0x207ab5, _0x2cdbfc, _0x1946ad) {
+    var _0x565cbd = a0_0x4ebaee;
+    var _0x4f622c = this;
+    var _0x5ebf3a = {
+      'deviceId': _0x1104b3,
+      'serviceId': _0x24c439,
+      'characteristicId': _0x207ab5,
+      'state': !![],
+      'success': function success(_0x36f20b) {
+        _0x2cdbfc && _0x2cdbfc();
+      },
+      'fail': function fail(_0x5165f5) {
+        _0x1946ad && _0x1946ad();
+      }
+    };
+    if (_0x4f622c[_0x565cbd(0x187)][_0x565cbd(0x193)] == _JCAPIErrorCode.default[_0x565cbd(0x16c)]) dd[_0x565cbd(0x1ae)](_0x5ebf3a);else _0x4f622c['manager'][_0x565cbd(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] ? tt['notifyBLECharacteristicValueChange'](_0x5ebf3a) : wx[_0x565cbd(0x1ae)](_0x5ebf3a);
+  },
+  '_readCharacteristic': function _readCharacteristic(_0x19336a, _0x422308, _0x40310b, _0x378310, _0x4f2833) {
+    var _0x5b0bbf = a0_0x4ebaee;
+    var _0x4ff36e = {
+      'characteristicId': _0x40310b,
+      'deviceId': _0x19336a,
+      'serviceId': _0x422308,
+      'success': function success(_0x136e44) {
+        _0x378310 && _0x378310();
+      },
+      'fail': function fail(_0x5322a5) {
+        _0x4f2833 && _0x4f2833();
+      }
+    };
+    if (self[_0x5b0bbf(0x187)][_0x5b0bbf(0x193)] == _JCAPIErrorCode.default[_0x5b0bbf(0x16c)]) dd[_0x5b0bbf(0x194)](_0x4ff36e);else self[_0x5b0bbf(0x187)][_0x5b0bbf(0x193)] == _JCAPIErrorCode.default[_0x5b0bbf(0x199)] ? tt['readBLECharacteristicValue'](_0x4ff36e) : wx[_0x5b0bbf(0x194)](_0x4ff36e);
+  },
+  '_getDeviceCharacteristics': function _getDeviceCharacteristics(_0x21952e, _0x306369, _0x5c3304, _0x4c9419) {
+    var _0x5c7bdf = a0_0x4ebaee;
+    var _0x58144a = this;
+    var _0x3dfadd = function _0x3dfadd(_0x5d1dc5) {
+      var _0x3ca343 = a0_0x1c78;
+      var _0x4932f2 = ![];
+      for (var _0xfd6e73 in _0x5d1dc5['characteristics']) {
+        var _0x453d14 = _0x5d1dc5[_0x3ca343(0x156)][_0xfd6e73];
+        if (_0x453d14['uuid'][_0x3ca343(0x176)]() == _0x3ca343(0x161) || _0x453d14[_0x3ca343(0x191)][_0x3ca343(0x176)]() == 'FFE1' || _0x453d14[_0x3ca343(0x191)][_0x3ca343(0x176)]() == _0x3ca343(0x166)) {
+          _0x4932f2 = !![];
+          _0x5c3304 && _0x5c3304(_0x453d14[_0x3ca343(0x191)]);
+          break;
+        }
+      }
+      !_0x4932f2 && _0x4c9419 && _0x4c9419();
+    };
+    if (_0x58144a['manager'][_0x5c7bdf(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) _0x3dfadd = function _0x3dfadd(_0x2a0c5c) {
+      var _0x2386d7 = _0x5c7bdf;
+      var _0x7e5d3 = ![];
+      for (var _0x22f290 in _0x2a0c5c[_0x2386d7(0x156)]) {
+        var _0x11ae3e = _0x2a0c5c[_0x2386d7(0x156)][_0x22f290];
+        if (_0x11ae3e[_0x2386d7(0x198)][_0x2386d7(0x176)]() == _0x2386d7(0x161) || _0x11ae3e[_0x2386d7(0x198)][_0x2386d7(0x176)]() == _0x2386d7(0x15c) || _0x11ae3e[_0x2386d7(0x198)][_0x2386d7(0x176)]() == '0000FFE1-0000-1000-8000-00805F9B34FB') {
+          _0x7e5d3 = !![];
+          _0x5c3304 && _0x5c3304(_0x11ae3e['characteristicId']);
+          break;
+        }
+      }
+      !_0x7e5d3 && _0x4c9419 && _0x4c9419();
+    }, dd['getBLEDeviceCharacteristics']({
+      'deviceId': _0x21952e,
+      'serviceId': _0x306369,
+      'success': _0x3dfadd,
+      'fail': function fail(_0x4d6946) {
+        _0x4c9419 && _0x4c9419();
+      }
+    });else _0x58144a['manager'][_0x5c7bdf(0x193)] == _JCAPIErrorCode.default[_0x5c7bdf(0x199)] ? (_0x3dfadd = function _0x3dfadd(_0x3ded9e) {
+      var _0x258c0a = _0x5c7bdf;
+      var _0x476828 = ![];
+      for (var _0x550d39 in _0x3ded9e[_0x258c0a(0x156)]) {
+        var _0x4c8b1b = _0x3ded9e[_0x258c0a(0x156)][_0x550d39];
+        if (_0x4c8b1b[_0x258c0a(0x198)][_0x258c0a(0x176)]() == 'BEF8D6C9-9C21-4C9E-B632-BD58C1009F9F' || _0x4c8b1b[_0x258c0a(0x198)][_0x258c0a(0x176)]() == _0x258c0a(0x15c) || _0x4c8b1b['characteristicId'][_0x258c0a(0x176)]() == _0x258c0a(0x166)) {
+          _0x476828 = !![];
+          _0x5c3304 && _0x5c3304(_0x4c8b1b[_0x258c0a(0x198)]);
+          break;
+        }
+      }
+      !_0x476828 && _0x4c9419 && _0x4c9419();
+    }, tt[_0x5c7bdf(0x175)]({
+      'deviceId': _0x21952e,
+      'serviceId': _0x306369,
+      'success': _0x3dfadd,
+      'fail': function fail(_0x4d089c) {
+        _0x4c9419 && _0x4c9419();
+      }
+    })) : wx[_0x5c7bdf(0x175)]({
+      'deviceId': _0x21952e,
+      'serviceId': _0x306369,
+      'success': _0x3dfadd,
+      'fail': function fail(_0x4c89b9) {
+        _0x4c9419 && _0x4c9419();
+      }
+    });
+  },
+  '_getDeviceServices': function _getDeviceServices(_0x7117e3, _0x4c88f9, _0x25c2e4) {
+    var _0x140611 = a0_0x4ebaee;
+    var _0x4c552a = this;
+    var _0x5d654e = function _0x5d654e(_0x1b6aba) {
+        var _0x1f2f3b = a0_0x1c78;
+        var _0x34e032 = ![];
+        for (var _0x499811 in _0x1b6aba[_0x1f2f3b(0x18d)]) {
+          var _0x415806 = _0x1b6aba['services'][_0x499811];
+          if (_0x415806[_0x1f2f3b(0x191)][_0x1f2f3b(0x176)]() == _0x1f2f3b(0x196) || _0x415806['uuid'][_0x1f2f3b(0x176)]() == _0x1f2f3b(0x19e) || _0x415806['uuid'][_0x1f2f3b(0x176)]() == _0x1f2f3b(0x1b1)) {
+            _0x4c88f9 && _0x4c88f9(_0x415806[_0x1f2f3b(0x191)]);
+            _0x34e032 = !![];
+            break;
+          }
+        }
+        !_0x34e032 && _0x25c2e4 && _0x25c2e4();
+      },
+      _0x54f552 = function _0x54f552(_0xd7b740) {
+        _0x25c2e4 && _0x25c2e4();
+      };
+    if (_0x4c552a[_0x140611(0x187)]['sdkPlatform'] == _JCAPIErrorCode.default[_0x140611(0x16c)]) _0x5d654e = function _0x5d654e(_0x15ce53) {
+      var _0x363b81 = _0x140611;
+      var _0x4c1e7d = ![];
+      for (var _0x133e71 in _0x15ce53[_0x363b81(0x18d)]) {
+        var _0x5c65e1 = _0x15ce53[_0x363b81(0x18d)][_0x133e71];
+        console['log'](_0x5c65e1[_0x363b81(0x18a)]);
+        if (_0x5c65e1[_0x363b81(0x18a)][_0x363b81(0x176)]() == _0x363b81(0x196) || _0x5c65e1[_0x363b81(0x18a)][_0x363b81(0x176)]() == _0x363b81(0x19e) || _0x5c65e1[_0x363b81(0x18a)][_0x363b81(0x176)]() == _0x363b81(0x1b1)) {
+          _0x4c88f9 && _0x4c88f9(_0x5c65e1[_0x363b81(0x18a)]);
+          _0x4c1e7d = !![];
+          break;
+        }
+      }
+      !_0x4c1e7d && _0x25c2e4 && _0x25c2e4();
+    }, dd[_0x140611(0x17b)]({
+      'deviceId': _0x7117e3,
+      'success': _0x5d654e,
+      'fail': _0x54f552
+    });else _0x4c552a[_0x140611(0x187)][_0x140611(0x193)] == _JCAPIErrorCode.default[_0x140611(0x199)] ? (_0x5d654e = function _0x5d654e(_0x1141b5) {
+      var _0x2b79b0 = _0x140611;
+      var _0x1f9510 = ![];
+      for (var _0x1d634b in _0x1141b5[_0x2b79b0(0x18d)]) {
+        var _0x2cffeb = _0x1141b5[_0x2b79b0(0x18d)][_0x1d634b];
+        if (_0x2cffeb[_0x2b79b0(0x18a)][_0x2b79b0(0x176)]() == _0x2b79b0(0x196) || _0x2cffeb[_0x2b79b0(0x18a)]['toUpperCase']() == '0000E0FF-3C17-D293-8E48-14FE2E4DA212' || _0x2cffeb[_0x2b79b0(0x18a)]['toUpperCase']() == _0x2b79b0(0x1b1)) {
+          _0x4c88f9 && _0x4c88f9(_0x2cffeb[_0x2b79b0(0x18a)]);
+          _0x1f9510 = !![];
+          break;
+        }
+      }
+      !_0x1f9510 && _0x25c2e4 && _0x25c2e4();
+    }, tt[_0x140611(0x17b)]({
+      'deviceId': _0x7117e3,
+      'success': _0x5d654e,
+      'fail': _0x54f552
+    })) : wx[_0x140611(0x17b)]({
+      'deviceId': _0x7117e3,
+      'success': _0x5d654e,
+      'fail': _0x54f552
+    });
+  },
+  '_onConnectionStateChange': function _onConnectionStateChange(_0x4ed781, _0x2505bc) {
+    var _0x31e2b4 = a0_0x4ebaee;
+    var _0x29b86f = this;
+    if (_0x29b86f['manager']['sdkPlatform'] == _JCAPIErrorCode.default[_0x31e2b4(0x16c)]) dd[_0x31e2b4(0x192)](function (_0x4766f2) {
+      var _0x976bd0 = _0x31e2b4;
+      (_0x29b86f[_0x976bd0(0x187)][_0x976bd0(0x186)] & 0x1) == 0x1 && console[_0x976bd0(0x185)](_0x4766f2), _0x29b86f['bleConnectionState'] = _0x4766f2['connected'], _0x4766f2[_0x976bd0(0x1a3)] ? _0x4ed781 && _0x4ed781(_0x4766f2[_0x976bd0(0x1cf)]) : (dd['offBLECharacteristicValueChange'](), dd[_0x976bd0(0x1b6)](), _0x29b86f[_0x976bd0(0x187)] && _0x29b86f[_0x976bd0(0x187)]['clear'](), _0x29b86f['repeatTimeoutId'] > 0x0 && clearTimeout(_0x29b86f[_0x976bd0(0x173)]), _0x29b86f[_0x976bd0(0x170)] != null && _0x29b86f[_0x976bd0(0x170)][_0x976bd0(0x1cf)] != null && (_0x29b86f[_0x976bd0(0x170)][_0x976bd0(0x1cf)] = null, _0x29b86f[_0x976bd0(0x170)] = null, _0x29b86f['openPrinterCallbackFaill'] && _0x29b86f[_0x976bd0(0x1a0)](), dd[_0x976bd0(0x1b6)]()), _0x2505bc && _0x2505bc());
+    }, function (_0x329734) {
+      var _0x531034 = _0x31e2b4;
+      (_0x29b86f[_0x531034(0x187)][_0x531034(0x186)] & 0x1) == 0x1 && console['log'](_0x329734);
+    });else _0x29b86f['manager']['sdkPlatform'] == _JCAPIErrorCode.default[_0x31e2b4(0x199)] ? (tt['offBLEConnectionStateChange'](), tt[_0x31e2b4(0x190)](function (_0x362e56) {
+      var _0x17fcb3 = _0x31e2b4;
+      (_0x29b86f['manager'][_0x17fcb3(0x186)] & 0x1) == 0x1 && console[_0x17fcb3(0x185)](_0x362e56), _0x29b86f[_0x17fcb3(0x1a2)] = _0x362e56[_0x17fcb3(0x1a3)], _0x362e56[_0x17fcb3(0x1a3)] ? _0x4ed781 && _0x4ed781(_0x362e56[_0x17fcb3(0x1cf)]) : (_0x29b86f[_0x17fcb3(0x187)] && _0x29b86f[_0x17fcb3(0x187)][_0x17fcb3(0x1ce)](), _0x29b86f['repeatTimeoutId'] > 0x0 && clearTimeout(_0x29b86f['repeatTimeoutId']), _0x29b86f['bleDevice'] != null && _0x29b86f[_0x17fcb3(0x170)][_0x17fcb3(0x1cf)] != null && (_0x29b86f[_0x17fcb3(0x170)][_0x17fcb3(0x1cf)] = null, _0x29b86f[_0x17fcb3(0x170)] = null, _0x29b86f['openPrinterCallbackFaill'] && _0x29b86f['openPrinterCallbackFaill'](), tt[_0x17fcb3(0x15e)](), tt[_0x17fcb3(0x17a)](), tt[_0x17fcb3(0x16b)](), tt[_0x17fcb3(0x1a8)]()), _0x2505bc && _0x2505bc());
+    }, function (_0x4ece67) {
+      var _0x18226e = _0x31e2b4;
+      (_0x29b86f['manager'][_0x18226e(0x186)] & 0x1) == 0x1 && console['log'](_0x4ece67);
+    })) : (wx[_0x31e2b4(0x15e)](), wx[_0x31e2b4(0x190)](function (_0x412088) {
+      var _0x3bcff1 = _0x31e2b4;
+      (_0x29b86f[_0x3bcff1(0x187)]['debug'] & 0x1) == 0x1 && console[_0x3bcff1(0x185)](_0x412088), _0x29b86f[_0x3bcff1(0x1a2)] = _0x412088[_0x3bcff1(0x1a3)], _0x412088[_0x3bcff1(0x1a3)] ? _0x4ed781 && _0x4ed781(_0x412088[_0x3bcff1(0x1cf)]) : (_0x29b86f[_0x3bcff1(0x187)] && _0x29b86f[_0x3bcff1(0x187)][_0x3bcff1(0x1ce)](), _0x29b86f['repeatTimeoutId'] > 0x0 && clearTimeout(_0x29b86f[_0x3bcff1(0x173)]), _0x29b86f[_0x3bcff1(0x170)] != null && _0x29b86f['bleDevice'][_0x3bcff1(0x1cf)] != null && (_0x29b86f[_0x3bcff1(0x170)]['deviceId'] = null, _0x29b86f['bleDevice'] = null, _0x29b86f[_0x3bcff1(0x1a0)] && _0x29b86f[_0x3bcff1(0x1a0)](), wx[_0x3bcff1(0x15e)](), wx[_0x3bcff1(0x17a)](), wx[_0x3bcff1(0x16b)](), wx[_0x3bcff1(0x1a8)]()), _0x2505bc && _0x2505bc());
+    }, function (_0x4a75f9) {
+      var _0x1a0332 = _0x31e2b4;
+      (_0x29b86f[_0x1a0332(0x187)][_0x1a0332(0x186)] & 0x1) == 0x1 && console[_0x1a0332(0x185)](_0x4a75f9);
+    }));
+  },
+  '_createBleConnection': function _createBleConnection(_0xf50fa8, _0x10ad2c) {
+    var _0x5bb4d2 = a0_0x4ebaee;
+    var _0x5b548f = this;
+    var _0x3a51ee = function _0x3a51ee(_0x30548f) {
+      var _0x192f57 = a0_0x1c78;
+      (_0x5b548f[_0x192f57(0x187)][_0x192f57(0x186)] & 0x1) == 0x1 && console[_0x192f57(0x185)](error), _0x10ad2c && _0x10ad2c();
+    };
+    if (_0x5b548f[_0x5bb4d2(0x187)][_0x5bb4d2(0x193)] == _JCAPIErrorCode.default[_0x5bb4d2(0x16c)]) dd[_0x5bb4d2(0x1a4)]({
+      'deviceId': _0xf50fa8,
+      'success': function success(_0x2bdcbc) {
+        var _0x4ac8c4 = _0x5bb4d2;
+        if (_0x5b548f['manager'][_0x4ac8c4(0x16a)] == _0x4ac8c4(0x19d)) {}
+      },
+      'fail': _0x3a51ee,
+      'complete': function complete() {}
+    });else _0x5b548f[_0x5bb4d2(0x187)]['sdkPlatform'] == _JCAPIErrorCode.default[_0x5bb4d2(0x199)] ? tt[_0x5bb4d2(0x1a4)]({
+      'deviceId': _0xf50fa8,
+      'success': function success(_0x5d61f8) {
+        var _0xec3b90 = _0x5bb4d2;
+        _0x5b548f[_0xec3b90(0x187)][_0xec3b90(0x16a)] == 'android' && (_0x5b548f[_0xec3b90(0x187)][_0xec3b90(0x172)] = ![], tt[_0xec3b90(0x1af)]({
+          'deviceId': _0xf50fa8,
+          'mtu': 0xdf,
+          'success': function success(_0x3a451c) {
+            var _0x188e7a = _0xec3b90;
+            _0x5b548f[_0x188e7a(0x187)][_0x188e7a(0x172)] = !![];
+          },
+          'fail': function fail(_0x4c27e3) {
+            _0x5b548f['manager']['setMtuSucc'] = ![];
+          }
+        }));
+      },
+      'fail': _0x3a51ee,
+      'complete': function complete() {}
+    }) : wx['createBLEConnection']({
+      'deviceId': _0xf50fa8,
+      'success': function success(_0x3f31c6) {
+        var _0x729297 = _0x5bb4d2;
+        _0x5b548f[_0x729297(0x187)][_0x729297(0x16a)] == _0x729297(0x19d) && wx[_0x729297(0x1af)]({
+          'deviceId': _0xf50fa8,
+          'mtu': 0xdf
+        });
+      },
+      'fail': _0x3a51ee,
+      'complete': function complete() {}
+    });
+  },
+  '_containDevice': function _containDevice(_0x47ed15) {
+    var _0x5b35da = a0_0x4ebaee;
+    var _0x366dc9 = null;
+    (this[_0x5b35da(0x187)][_0x5b35da(0x186)] & 0x1) == 0x1 && console[_0x5b35da(0x185)](this[_0x5b35da(0x177)]);
+    for (var _0x29de53 = 0x0; _0x29de53 < this[_0x5b35da(0x177)]['length']; _0x29de53++) {
+      var _0x5e371a = this[_0x5b35da(0x177)][_0x29de53];
+      if (_0x5e371a['name'] == _0x47ed15) {
+        _0x366dc9 = _0x5e371a[_0x5b35da(0x1cf)];
+        break;
+      }
+    }
+    return _0x366dc9;
+  },
+  '_getFoundDevices': function _getFoundDevices(_0x5372a5) {
+    var _0x41e67d = a0_0x4ebaee;
+    var _0x2014ba = this;
+    var _0x4f7c3e = function _0x4f7c3e(_0x6e4d4d) {
+      var _0x471bda = a0_0x1c78;
+      var _0x14f475 = _0x6e4d4d[_0x471bda(0x159)];
+      _0x14f475[_0x471bda(0x1aa)](function (_0x22674c) {
+        var _0x1f57c5 = _0x471bda;
+        _0x2014ba[_0x1f57c5(0x177)][_0x1f57c5(0x171)](_0x22674c);
+      }), _0x5372a5 && _0x5372a5();
+    };
+    if (_0x2014ba[_0x41e67d(0x187)][_0x41e67d(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd[_0x41e67d(0x19c)]({
+      'success': _0x4f7c3e
+    });else _0x2014ba[_0x41e67d(0x187)][_0x41e67d(0x193)] == _JCAPIErrorCode.default[_0x41e67d(0x199)] ? tt[_0x41e67d(0x19c)]({
+      'success': _0x4f7c3e
+    }) : wx[_0x41e67d(0x19c)]({
+      'success': _0x4f7c3e
+    });
+  },
+  '_stopBleDiscovery': function _stopBleDiscovery() {
+    var _0x3784ed = a0_0x4ebaee;
+    var _0x12ae03 = this;
+    if (_0x12ae03['manager'][_0x3784ed(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd[_0x3784ed(0x157)]({
+      'success': function success() {},
+      'fail': function fail() {},
+      'complete': function complete() {}
+    });else _0x12ae03[_0x3784ed(0x187)][_0x3784ed(0x193)] == _JCAPIErrorCode.default[_0x3784ed(0x199)] ? tt['stopBluetoothDevicesDiscovery']({
+      'complete': function complete() {}
+    }) : wx['stopBluetoothDevicesDiscovery']({
+      'complete': function complete() {}
+    });
+  },
+  '_startBleDiscovery': function _startBleDiscovery() {
+    var _0x23b449 = a0_0x4ebaee;
+    var _0x39cf75 = this;
+    if (_0x39cf75[_0x23b449(0x187)]['sdkPlatform'] == _JCAPIErrorCode.default[_0x23b449(0x16c)]) dd[_0x23b449(0x188)]({
+      'allowDuplicatesKey': !![]
+    });else _0x39cf75[_0x23b449(0x187)][_0x23b449(0x193)] == _JCAPIErrorCode.default[_0x23b449(0x199)] ? tt['startBluetoothDevicesDiscovery']({
+      'allowDuplicatesKey': !![]
+    }) : wx['startBluetoothDevicesDiscovery']({
+      'allowDuplicatesKey': !![]
+    });
+  },
+  '_getBleAdapterState': function _getBleAdapterState(_0x323763, _0x15b99f) {
+    var _0x4265c9 = a0_0x4ebaee;
+    var _0x2adeb3 = this;
+    (this[_0x4265c9(0x187)]['debug'] & 0x1) == 0x1 && console[_0x4265c9(0x185)]('BleAdapterState:--------------------1');
+    var _0x7f485 = function _0x7f485(_0x585c8a) {
+        var _0x230358 = _0x4265c9;
+        (_0x2adeb3[_0x230358(0x187)][_0x230358(0x186)] & 0x1) == 0x1 && console[_0x230358(0x185)](_0x230358(0x18e)), _0x323763 && _0x323763();
+      },
+      _0x130864 = function _0x130864() {
+        _0x15b99f && _0x15b99f();
+      };
+    if (_0x2adeb3[_0x4265c9(0x187)][_0x4265c9(0x193)] == _JCAPIErrorCode.default[_0x4265c9(0x16c)]) dd[_0x4265c9(0x168)]({
+      'success': _0x7f485,
+      'fail': _0x130864
+    });else _0x2adeb3[_0x4265c9(0x187)][_0x4265c9(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] ? tt['getBluetoothAdapterState']({
+      'success': _0x7f485,
+      'fail': _0x130864
+    }) : wx[_0x4265c9(0x168)]({
+      'success': _0x7f485,
+      'fail': _0x130864
+    });
+  },
+  '_openBleAdapter': function _openBleAdapter(_0x565296, _0x38fd6f) {
+    var _0x2400c1 = a0_0x4ebaee;
+    var _0x2b0c9e = this;
+    var _0x20b471 = function _0x20b471() {
+        _0x565296 && _0x565296();
+      },
+      _0x18b7bf = function _0x18b7bf() {
+        _0x38fd6f && _0x38fd6f();
+      };
+    if (_0x2b0c9e[_0x2400c1(0x187)][_0x2400c1(0x193)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) dd[_0x2400c1(0x154)]({
+      'autoClose': ![],
+      'mode': 'central',
+      'success': _0x20b471,
+      'fail': _0x18b7bf
+    });else _0x2b0c9e[_0x2400c1(0x187)][_0x2400c1(0x193)] == _JCAPIErrorCode.default[_0x2400c1(0x199)] ? tt[_0x2400c1(0x154)]({
+      'mode': _0x2400c1(0x180),
+      'success': _0x20b471,
+      'fail': _0x18b7bf
+    }) : wx[_0x2400c1(0x154)]({
+      'mode': _0x2400c1(0x180),
+      'success': _0x20b471,
+      'fail': _0x18b7bf
+    });
+  },
+  '_onBleAdapterStateChange': function _onBleAdapterStateChange() {
+    var _0xc51fc8 = a0_0x4ebaee;
+    var _0x2a40bb = this;
+    if (_0x2a40bb[_0xc51fc8(0x187)][_0xc51fc8(0x193)] == _JCAPIErrorCode.default[_0xc51fc8(0x16c)]) dd[_0xc51fc8(0x1c2)](function (_0x505689) {
+      var _0x4abf8d = _0xc51fc8;
+      _0x2a40bb[_0x4abf8d(0x1bb)] = _0x505689[_0x4abf8d(0x16d)], _0x2a40bb[_0x4abf8d(0x1c8)] = _0x505689[_0x4abf8d(0x155)], _0x505689[_0x4abf8d(0x16d)] == ![] && (_0x2a40bb[_0x4abf8d(0x187)] && _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x19f)] && (_0x2a40bb['manager']['needCMD'] == 0xb3 || _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x1a1)] == 0x2 || _0x2a40bb[_0x4abf8d(0x187)]['needCMD'] == 0xd3 || _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x1a1)] == 0x14 || _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x1a1)] == 0xe4 || _0x2a40bb[_0x4abf8d(0x187)]['needCMD'] == 0xf4 || _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x1a1)] == 0x71) && _0x2a40bb['manager']['printer'][_0x4abf8d(0x18f)](_JCAPIErrorCode.default[_0x4abf8d(0x19a)], _0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x19f)]['printErrorInfoCallback']), _0x2a40bb['bleDevice'] != null && _0x2a40bb[_0x4abf8d(0x170)]['deviceId'] != null && (_0x2a40bb[_0x4abf8d(0x170)]['deviceId'] = null, _0x2a40bb['bleDevice'] = null, _0x2a40bb[_0x4abf8d(0x1a0)] && _0x2a40bb[_0x4abf8d(0x1a0)]())), (_0x2a40bb[_0x4abf8d(0x187)][_0x4abf8d(0x186)] & 0x1) == 0x1 && (console[_0x4abf8d(0x185)](_0x4abf8d(0x195)), console['log'](_0x505689));
+    });else _0x2a40bb['manager']['sdkPlatform'] == _JCAPIErrorCode.default[_0xc51fc8(0x199)] ? (tt[_0xc51fc8(0x16b)](), tt[_0xc51fc8(0x1c2)](function (_0x4b3a45) {
+      var _0x42d2e4 = _0xc51fc8;
+      _0x2a40bb['bleAdapterStateReady'] = _0x4b3a45[_0x42d2e4(0x16d)], _0x2a40bb['bleAdapterSearchState'] = _0x4b3a45[_0x42d2e4(0x155)], _0x4b3a45[_0x42d2e4(0x16d)] == ![] && (tt[_0x42d2e4(0x15e)](), tt[_0x42d2e4(0x17a)](), tt[_0x42d2e4(0x16b)](), tt['closeBluetoothAdapter'](), _0x2a40bb[_0x42d2e4(0x187)] && _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x19f)] && (_0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0xb3 || _0x2a40bb[_0x42d2e4(0x187)]['needCMD'] == 0x2 || _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0xd3 || _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0x14 || _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0xe4 || _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0xf4 || _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x1a1)] == 0x71) && _0x2a40bb[_0x42d2e4(0x187)]['printer'][_0x42d2e4(0x18f)](_JCAPIErrorCode.default[_0x42d2e4(0x19a)], _0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x19f)][_0x42d2e4(0x1b4)]), _0x2a40bb[_0x42d2e4(0x170)] != null && _0x2a40bb[_0x42d2e4(0x170)][_0x42d2e4(0x1cf)] != null && (_0x2a40bb[_0x42d2e4(0x170)][_0x42d2e4(0x1cf)] = null, _0x2a40bb[_0x42d2e4(0x170)] = null, _0x2a40bb[_0x42d2e4(0x1a0)] && _0x2a40bb['openPrinterCallbackFaill']())), (_0x2a40bb[_0x42d2e4(0x187)][_0x42d2e4(0x186)] & 0x1) == 0x1 && (console[_0x42d2e4(0x185)](_0x42d2e4(0x195)), console[_0x42d2e4(0x185)](_0x4b3a45));
+    })) : (wx[_0xc51fc8(0x16b)](), wx[_0xc51fc8(0x1c2)](function (_0xa71a76) {
+      var _0x356576 = _0xc51fc8;
+      _0x2a40bb['bleAdapterStateReady'] = _0xa71a76[_0x356576(0x16d)], _0x2a40bb['bleAdapterSearchState'] = _0xa71a76['discovering'], _0xa71a76['available'] == ![] && (wx['offBLEConnectionStateChange'](), wx[_0x356576(0x17a)](), wx['offBluetoothAdapterStateChange'](), wx['closeBluetoothAdapter'](), _0x2a40bb[_0x356576(0x187)] && _0x2a40bb[_0x356576(0x187)][_0x356576(0x19f)] && (_0x2a40bb[_0x356576(0x187)][_0x356576(0x1a1)] == 0xb3 || _0x2a40bb[_0x356576(0x187)]['needCMD'] == 0x2 || _0x2a40bb[_0x356576(0x187)][_0x356576(0x1a1)] == 0xd3 || _0x2a40bb[_0x356576(0x187)][_0x356576(0x1a1)] == 0x14 || _0x2a40bb['manager']['needCMD'] == 0xe4 || _0x2a40bb[_0x356576(0x187)][_0x356576(0x1a1)] == 0xf4 || _0x2a40bb[_0x356576(0x187)][_0x356576(0x1a1)] == 0x71) && _0x2a40bb[_0x356576(0x187)]['printer']['sendPrintError'](_JCAPIErrorCode.default[_0x356576(0x19a)], _0x2a40bb[_0x356576(0x187)][_0x356576(0x19f)][_0x356576(0x1b4)]), _0x2a40bb['bleDevice'] != null && _0x2a40bb[_0x356576(0x170)][_0x356576(0x1cf)] != null && (_0x2a40bb['bleDevice'][_0x356576(0x1cf)] = null, _0x2a40bb[_0x356576(0x170)] = null, _0x2a40bb[_0x356576(0x1a0)] && _0x2a40bb['openPrinterCallbackFaill']())), (_0x2a40bb[_0x356576(0x187)][_0x356576(0x186)] & 0x1) == 0x1 && (console['log'](_0x356576(0x195)), console['log'](_0xa71a76));
+    }));
+  },
+  'reciveCmd': function reciveCmd(_0x427de9, _0xdf7b8d) {
+    var _0x4bc677 = a0_0x4ebaee;
+    var _0x4b2691 = this;
+    switch (_0x427de9) {
+      case 0xc2:
+        {
+          var _0x261564 = function _0x261564() {
+            var _0x1d3e33 = a0_0x1c78;
+            if (_0x4b2691[_0x1d3e33(0x187)]['sdkPlatform'] == _JCAPIErrorCode.default[_0x1d3e33(0x16c)]) dd[_0x1d3e33(0x167)]({
+              'deviceId': this['bleDevice'][_0x1d3e33(0x1cf)],
+              'success': function success() {},
+              'fail': function fail() {},
+              'complete': function complete() {}
+            });else _0x4b2691[_0x1d3e33(0x187)][_0x1d3e33(0x193)] == _JCAPIErrorCode.default[_0x1d3e33(0x199)] ? tt['disconnectBLEDevice']({
+              'deviceId': this[_0x1d3e33(0x170)][_0x1d3e33(0x1cf)]
+            }) : wx['closeBLEConnection']({
+              'deviceId': this[_0x1d3e33(0x170)][_0x1d3e33(0x1cf)]
+            });
+          };
+          if (this[_0x4bc677(0x187)][_0x4bc677(0x1a1)] == 0xc2) {
+            if (_0xdf7b8d == 0x2 || _0xdf7b8d == 0x1 || _0xdf7b8d == 0x3) {
+              this['repeatTimeoutId'] && clearTimeout(this[_0x4bc677(0x173)]);
+              if (_0xdf7b8d == 0x1) {
+                if (this[_0x4bc677(0x1a0)]) {
+                  var _0x2f24d2 = this;
+                  var _0x82a5c7 = this[_0x4bc677(0x1a0)];
+                  this[_0x4bc677(0x1a0)] = function () {
+                    var _0x1e3a1a = _0x4bc677;
+                    _0x2f24d2[_0x1e3a1a(0x170)] = null, _0x2f24d2[_0x1e3a1a(0x187)][_0x1e3a1a(0x19f)] = null, _0x82a5c7();
+                  };
+                }
+                _0x261564();
+                return;
+              }
+              this['manager']['agreement'] = _0xdf7b8d;
+              var _0x14cb20 = this;
+              this['manager']['getInfosCallback'] = function () {
+                var _0x38c681 = _0x4bc677;
+                _0x14cb20[_0x38c681(0x173)] > 0x0 && (clearTimeout(_0x14cb20[_0x38c681(0x173)]), _0x14cb20[_0x38c681(0x173)] = null);
+                var _0xd2482 = _JCDataUntil.default[_0x38c681(0x1cb)](0x40, 0x8);
+                _0x14cb20[_0x38c681(0x187)][_0x38c681(0x1a1)] = 0x48, _0x14cb20['sendData'](_0xd2482, 0x9, function () {
+                  var _0x553020 = _0x38c681;
+                  if (_0x14cb20[_0x553020(0x1a0)]) {
+                    var _0x2ddcd9 = _0x14cb20[_0x553020(0x1a0)];
+                    _0x14cb20[_0x553020(0x1a0)] = function () {
+                      var _0x4e61c5 = _0x553020;
+                      _0x14cb20[_0x4e61c5(0x170)] = null, _0x14cb20[_0x4e61c5(0x187)][_0x4e61c5(0x19f)] = null, _0x2ddcd9();
+                    };
+                  }
+                  _0x261564();
+                });
+              }, this[_0x4bc677(0x187)][_0x4bc677(0x1a1)] = 0xb5;
+              var _0x4fd5b1 = _JCDataUntil.default[_0x4bc677(0x1cb)](0xa5, 0x1);
+              this[_0x4bc677(0x1c3)](_0x4fd5b1, 0x9, function () {
+                var _0x46cc1f = _0x4bc677;
+                if (_0x14cb20[_0x46cc1f(0x1a0)]) {
+                  var _0xe5aaa5 = _0x14cb20[_0x46cc1f(0x1a0)];
+                  _0x14cb20[_0x46cc1f(0x1a0)] = function () {
+                    var _0x144d7a = _0x46cc1f;
+                    _0x14cb20['bleDevice'] = null, _0x14cb20[_0x144d7a(0x187)]['printer'] = null, _0xe5aaa5();
+                  };
+                }
+                _0x261564();
+              });
+            }
+          }
+        }
+        break;
+      case 0x48:
+        {
+          this[_0x4bc677(0x187)][_0x4bc677(0x1a1)] == 0x48 && (this[_0x4bc677(0x173)] && clearTimeout(this[_0x4bc677(0x173)]), this[_0x4bc677(0x187)][_0x4bc677(0x1a5)](_0xdf7b8d));
+        }
+        break;
+      default:
+        break;
+    }
+  },
+  'openStatus': function openStatus(_0x4daa45) {
+    var _0xa3d483 = a0_0x4ebaee;
+    var _0x171feb = this;
+    if (_0x4daa45) this[_0xa3d483(0x1cd)] && this['openPrinterCallback']();else {
+      if (this['bleDevice'] && this[_0xa3d483(0x170)][_0xa3d483(0x1cf)]) {
+        if (_0x171feb['manager'][_0xa3d483(0x193)] == _JCAPIErrorCode.default[_0xa3d483(0x16c)]) dd[_0xa3d483(0x167)]({
+          'deviceId': this[_0xa3d483(0x170)]['deviceId'],
+          'success': function success() {},
+          'fail': function fail() {},
+          'complete': function complete() {}
+        });else _0x171feb[_0xa3d483(0x187)][_0xa3d483(0x193)] == _JCAPIErrorCode.default[_0xa3d483(0x199)] ? tt['disconnectBLEDevice']({
+          'deviceId': this[_0xa3d483(0x170)]['deviceId'],
+          'succ': function succ(_0x3904cd) {},
+          'fail': function fail(_0x509e49) {},
+          'complete': function complete() {}
+        }) : wx['closeBLEConnection']({
+          'deviceId': this[_0xa3d483(0x170)]['deviceId']
+        });
+      }
+      if (this[_0xa3d483(0x1a0)]) {
+        var _0x207e66 = this[_0xa3d483(0x1a0)];
+        this[_0xa3d483(0x1a0)] = null, _0x207e66();
+      }
+    }
+  }
+};
+var _default = Ble;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 168:
+/*!*********************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCDataUntil.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 163));
+var _lzo1x = _interopRequireDefault(__webpack_require__(/*! ./lzo1x */ 169));
+var a0_0x268a7d = a0_0x506b;
+function a0_0x506b(_0xce1b7b, _0x58651b) {
+  var _0x2089d7 = a0_0x2089();
+  return a0_0x506b = function a0_0x506b(_0x506b99, _0x4f1d26) {
+    _0x506b99 = _0x506b99 - 0x1d3;
+    var _0x468808 = _0x2089d7[_0x506b99];
+    return _0x468808;
+  }, a0_0x506b(_0xce1b7b, _0x58651b);
+}
+(function (_0x2db3e7, _0x5a1443) {
+  var _0xfd25a0 = a0_0x506b,
+    _0x347395 = _0x2db3e7();
+  while (!![]) {
+    try {
+      var _0x315e60 = parseInt(_0xfd25a0(0x1ea)) / 0x1 * (-parseInt(_0xfd25a0(0x1ed)) / 0x2) + parseInt(_0xfd25a0(0x1f3)) / 0x3 + parseInt(_0xfd25a0(0x209)) / 0x4 * (-parseInt(_0xfd25a0(0x1d5)) / 0x5) + parseInt(_0xfd25a0(0x1e4)) / 0x6 + parseInt(_0xfd25a0(0x1e3)) / 0x7 + -parseInt(_0xfd25a0(0x1fd)) / 0x8 * (parseInt(_0xfd25a0(0x1dd)) / 0x9) + -parseInt(_0xfd25a0(0x205)) / 0xa * (-parseInt(_0xfd25a0(0x206)) / 0xb);
+      if (_0x315e60 === _0x5a1443) break;else _0x347395['push'](_0x347395['shift']());
+    } catch (_0x1aaf2e) {
+      _0x347395['push'](_0x347395['shift']());
+    }
+  }
+})(a0_0x2089, 0x2ecb9);
+function DataUntils() {}
+DataUntils[a0_0x268a7d(0x1f9)] = function (_0x6a280a) {
+  var _0x14d8dc = a0_0x268a7d,
+    _0x41d661 = Array['prototype'][_0x14d8dc(0x1fe)][_0x14d8dc(0x1d4)](new Uint8Array(_0x6a280a), function (_0xe4e17e) {
+      var _0x5732bd = _0x14d8dc;
+      return ('00' + _0xe4e17e[_0x5732bd(0x203)](0x10))[_0x5732bd(0x1df)](-0x2);
+    });
+  return _0x41d661[_0x14d8dc(0x1de)]('');
+}, DataUntils['hexToBytes'] = function (_0x55ec11) {
+  var _0x2dc571 = a0_0x268a7d;
+  for (var _0x59f026 = [], _0x56b6dc = 0x0; _0x56b6dc < _0x55ec11[_0x2dc571(0x1da)]; _0x56b6dc += 0x2) {
+    _0x59f026[_0x2dc571(0x1fb)](parseInt(_0x55ec11[_0x2dc571(0x1f0)](_0x56b6dc, 0x2), 0x10));
+  }
+  var _0x2dff14 = new ArrayBuffer(_0x59f026[_0x2dc571(0x1da)]),
+    _0x4c5463 = new DataView(_0x2dff14);
+  for (var _0x204ba4 = 0x0; _0x204ba4 < _0x59f026[_0x2dc571(0x1da)]; _0x204ba4++) {
+    var _0x1f1076 = _0x59f026[_0x204ba4];
+    _0x4c5463['setInt8'](_0x204ba4, _0x1f1076);
+  }
+  return _0x2dff14;
+}, DataUntils[a0_0x268a7d(0x204)] = function (_0x53bb08, _0x4fa746) {
+  var _0x245f85 = a0_0x268a7d;
+  var _0x2bd91e = _0x4fa746[_0x245f85(0x1da)];
+  var _0x37de3a = new ArrayBuffer(0x7 + _0x2bd91e),
+    _0x23ff5d = new DataView(_0x37de3a);
+  _0x23ff5d[_0x245f85(0x1e6)](0x0, 0x55), _0x23ff5d[_0x245f85(0x1e6)](0x1, 0x55), _0x23ff5d['setInt8'](0x2, _0x53bb08), _0x23ff5d[_0x245f85(0x1e6)](0x3, _0x2bd91e);
+  var _0x434c95 = _0x53bb08 ^ _0x2bd91e;
+  for (var _0x5b2555 = 0x0; _0x5b2555 <= _0x4fa746['length']; _0x5b2555++) {
+    var _0x42962b = _0x4fa746[_0x5b2555];
+    _0x23ff5d[_0x245f85(0x1e6)](0x4 + _0x5b2555, _0x42962b), _0x434c95 ^= _0x42962b;
+  }
+  return _0x23ff5d['setInt8'](0x4 + _0x2bd91e, _0x434c95), _0x23ff5d[_0x245f85(0x1e6)](0x5 + _0x2bd91e, 0xaa), _0x23ff5d[_0x245f85(0x1e6)](0x6 + _0x2bd91e, 0xaa), _0x37de3a;
+}, DataUntils[a0_0x268a7d(0x1f2)] = function (_0x5eec71) {
+  var _0x33f6d1 = a0_0x268a7d;
+  var _0x10f751 = arguments[_0x33f6d1(0x1da)];
+  _0x10f751--;
+  var _0x930364 = new ArrayBuffer(0x7 + _0x10f751),
+    _0x2b1395 = new DataView(_0x930364);
+  _0x2b1395[_0x33f6d1(0x1e6)](0x0, 0x55), _0x2b1395[_0x33f6d1(0x1e6)](0x1, 0x55), _0x2b1395[_0x33f6d1(0x1e6)](0x2, _0x5eec71), _0x2b1395[_0x33f6d1(0x1e6)](0x3, _0x10f751);
+  var _0xf12d36 = _0x5eec71 ^ _0x10f751;
+  for (var _0x3f8093 = 0x1; _0x3f8093 <= _0x10f751; _0x3f8093++) {
+    var _0x1bb9c3 = arguments[_0x3f8093];
+    _0x2b1395[_0x33f6d1(0x1e6)](0x3 + _0x3f8093, _0x1bb9c3), _0xf12d36 ^= _0x1bb9c3;
+  }
+  return _0x2b1395[_0x33f6d1(0x1e6)](0x4 + _0x10f751, _0xf12d36), _0x2b1395[_0x33f6d1(0x1e6)](0x5 + _0x10f751, 0xaa), _0x2b1395[_0x33f6d1(0x1e6)](0x6 + _0x10f751, 0xaa), _0x930364;
+}, DataUntils[a0_0x268a7d(0x210)] = function (_0x519dff, _0x268c45) {
+  var _0x17fc4b = a0_0x268a7d;
+  var _0x3a5d3c = new ArrayBuffer(0x1 + _0x268c45[_0x17fc4b(0x1f5)]),
+    _0x2117e4 = new DataView(_0x3a5d3c),
+    _0x40b4df = new DataView(_0x268c45);
+  var _0x2c9764 = 0x0;
+  _0x2117e4['setInt8'](_0x2c9764, _0x519dff), _0x2c9764++;
+  for (var _0x36db44 = 0x0; _0x36db44 < _0x268c45[_0x17fc4b(0x1f5)]; _0x36db44++) {
+    _0x2117e4[_0x17fc4b(0x1e6)](_0x2c9764, _0x40b4df[_0x17fc4b(0x1e7)](_0x36db44)), _0x2c9764++;
+  }
+  return _0x3a5d3c;
+}, DataUntils[a0_0x268a7d(0x1ec)] = function (_0x145da0, _0x1bda02, _0x57bf3a) {
+  var _0x58c5fa = a0_0x268a7d;
+  var _0x2bdbe1 = new ArrayBuffer(0xa),
+    _0x4998de = new DataView(_0x2bdbe1);
+  _0x4998de[_0x58c5fa(0x1d7)](0x0, 0x55), _0x4998de['setUint8'](0x1, 0x55), _0x4998de[_0x58c5fa(0x1d7)](0x2, 0x84), _0x4998de[_0x58c5fa(0x1d7)](0x3, 0x3);
+  var _0x573996 = _0x1bda02 / 0x100,
+    _0x474dcd = _0x1bda02 % 0x100;
+  return _0x4998de[_0x58c5fa(0x1d7)](0x4, _0x573996), _0x4998de[_0x58c5fa(0x1d7)](0x5, _0x474dcd), _0x4998de[_0x58c5fa(0x1d7)](0x6, _0x57bf3a), _0x4998de[_0x58c5fa(0x1d7)](0x7, 0x84 ^ 0x3 ^ _0x573996 ^ _0x474dcd ^ _0x57bf3a), _0x4998de[_0x58c5fa(0x1d7)](0x8, 0xaa), _0x4998de[_0x58c5fa(0x1d7)](0x9, 0xaa), _0x2bdbe1;
+}, DataUntils[a0_0x268a7d(0x1f8)] = function (_0x42529c, _0x733437, _0x523973, _0x1fce4d) {
+  var _0x253b89 = a0_0x268a7d;
+  var _0x39d32d = 0x83,
+    _0xadcebb = 0x0,
+    _0x4a4c63 = 0x0;
+  var _0x48a60a = _0x733437 / 0x100,
+    _0x48e1a7 = _0x733437 % 0x100;
+  _0x4a4c63 = _0x48a60a ^ _0x48e1a7;
+  var _0x516eed = new DataView(_0x42529c),
+    _0x5af847 = 0x48;
+  _0x1fce4d != null && _0x1fce4d > 0x0 && (_0x5af847 = _0x1fce4d);
+  var _0x533fa8 = _0x5af847 / 0x3,
+    _0x2286ce = _0x5af847 * 0x2 / 0x3;
+  var _0x2e7fb7 = 0x0,
+    _0x530270 = 0x0,
+    _0x4a2027 = 0x0,
+    _0x94fd41 = 0x0;
+  var _0x27432e = new ArrayBuffer(_0x42529c[_0x253b89(0x1f5)] * 0x10),
+    _0x26e085 = new DataView(_0x27432e);
+  var _0x4bab8e = _0x4a4c63;
+  var _0x28794e = new ArrayBuffer(_0x42529c['byteLength'] * 0x10 + 0xe),
+    _0x2a4d14 = new ArrayBuffer(_0x42529c[_0x253b89(0x1f5)] * 0x10 + 0xe),
+    _0x4a5db8 = new DataView(_0x28794e),
+    _0x4d3aa5 = new DataView(_0x2a4d14);
+  _0x4a5db8[_0x253b89(0x1d7)](0x0, 0x55), _0x4a5db8[_0x253b89(0x1d7)](0x1, 0x55), _0x4a5db8[_0x253b89(0x1d7)](0x2, 0x85), _0x4d3aa5[_0x253b89(0x1d7)](0x0, 0x55), _0x4d3aa5['setUint8'](0x1, 0x55), _0x4d3aa5[_0x253b89(0x1d7)](0x2, 0x83);
+  for (var _0x3cef1c = 0x0; _0x3cef1c < _0x42529c[_0x253b89(0x1f5)]; _0x3cef1c++) {
+    var _0x11d00a = _0x516eed['getUint8'](_0x3cef1c);
+    _0x4a5db8[_0x253b89(0x1d7)](0xa + _0x3cef1c, _0x11d00a), _0x4a4c63 ^= _0x11d00a;
+    if (_0x3cef1c < _0x533fa8) {
+      if ((_0x11d00a & 0x80) == 0x80) {
+        _0x2e7fb7++;
+        var _0x377baa = _0x3cef1c * 0x8,
+          _0x1815b1 = _0x377baa / 0x100,
+          _0x142e29 = _0x377baa % 0x100;
+        _0x4bab8e ^= _0x1815b1, _0x4bab8e ^= _0x142e29, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x1815b1), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x142e29), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x1815b1), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x142e29), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x40) == 0x40) {
+        _0x2e7fb7++;
+        var _0x239b71 = _0x3cef1c * 0x8 + 0x1,
+          _0x56e1db = _0x239b71 / 0x100,
+          _0x1b224f = _0x239b71 % 0x100;
+        _0x4bab8e ^= _0x56e1db, _0x4bab8e ^= _0x1b224f, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x56e1db), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x1b224f), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x56e1db), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x1b224f), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x20) == 0x20) {
+        _0x2e7fb7++;
+        var _0x4b0a9c = _0x3cef1c * 0x8 + 0x2,
+          _0x5681db = _0x4b0a9c / 0x100,
+          _0x211c74 = _0x4b0a9c % 0x100;
+        _0x4bab8e ^= _0x5681db, _0x4bab8e ^= _0x211c74, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x5681db), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x211c74), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x5681db), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x211c74), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x10) == 0x10) {
+        _0x2e7fb7++;
+        var _0x59b130 = _0x3cef1c * 0x8 + 0x3,
+          _0x396dd2 = _0x59b130 / 0x100,
+          _0x1ba8b = _0x59b130 % 0x100;
+        _0x4bab8e ^= _0x396dd2, _0x4bab8e ^= _0x1ba8b, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x396dd2), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x1ba8b), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x396dd2), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x1ba8b), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x8) == 0x8) {
+        _0x2e7fb7++;
+        var _0x49acda = _0x3cef1c * 0x8 + 0x4,
+          _0x2f8145 = _0x49acda / 0x100,
+          _0x3f3a48 = _0x49acda % 0x100;
+        _0x4bab8e ^= _0x2f8145, _0x4bab8e ^= _0x3f3a48, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x2f8145), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x3f3a48), _0x4d3aa5['setUint8'](0xa + _0x94fd41 * 0x2, _0x2f8145), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x3f3a48), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x4) == 0x4) {
+        _0x2e7fb7++;
+        var _0x2b1a2f = _0x3cef1c * 0x8 + 0x5,
+          _0x153db8 = _0x2b1a2f / 0x100,
+          _0x41d424 = _0x2b1a2f % 0x100;
+        _0x4bab8e ^= _0x153db8, _0x4bab8e ^= _0x41d424, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x153db8), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x41d424), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x153db8), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x41d424), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x2) == 0x2) {
+        _0x2e7fb7++;
+        var _0x150a12 = _0x3cef1c * 0x8 + 0x6,
+          _0x55f680 = _0x150a12 / 0x100,
+          _0x56fe22 = _0x150a12 % 0x100;
+        _0x4bab8e ^= _0x55f680, _0x4bab8e ^= _0x56fe22, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x55f680), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x56fe22), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x55f680), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x56fe22), _0x94fd41++;
+      }
+      if ((_0x11d00a & 0x1) == 0x1) {
+        _0x2e7fb7++;
+        var _0x3efe3c = _0x3cef1c * 0x8 + 0x7,
+          _0x57ad19 = _0x3efe3c / 0x100,
+          _0x106cbd = _0x3efe3c % 0x100;
+        _0x4bab8e ^= _0x57ad19, _0x4bab8e ^= _0x106cbd, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x57ad19), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x106cbd), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x57ad19), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x106cbd), _0x94fd41++;
+      }
+    } else {
+      if (_0x3cef1c < _0x2286ce) {
+        if ((_0x11d00a & 0x80) == 0x80) {
+          _0x530270++;
+          var _0x4dd514 = _0x3cef1c * 0x8,
+            _0x3a9f96 = _0x4dd514 / 0x100,
+            _0x184fb7 = _0x4dd514 % 0x100;
+          _0x4bab8e ^= _0x3a9f96, _0x4bab8e ^= _0x184fb7, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x3a9f96), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x184fb7), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x3a9f96), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x184fb7), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x40) == 0x40) {
+          _0x530270++;
+          var _0x4787b0 = _0x3cef1c * 0x8 + 0x1,
+            _0x517712 = _0x4787b0 / 0x100,
+            _0xe60b95 = _0x4787b0 % 0x100;
+          _0x4bab8e ^= _0x517712, _0x4bab8e ^= _0xe60b95, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x517712), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0xe60b95), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x517712), _0x4d3aa5['setUint8'](0xb + _0x94fd41 * 0x2, _0xe60b95), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x20) == 0x20) {
+          _0x530270++;
+          var _0x24e0a7 = _0x3cef1c * 0x8 + 0x2,
+            _0x1c44e3 = _0x24e0a7 / 0x100,
+            _0x489402 = _0x24e0a7 % 0x100;
+          _0x4bab8e ^= _0x1c44e3, _0x4bab8e ^= _0x489402, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x1c44e3), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x489402), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x1c44e3), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x489402), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x10) == 0x10) {
+          _0x530270++;
+          var _0x57e6d8 = _0x3cef1c * 0x8 + 0x3,
+            _0x226b45 = parseInt(_0x57e6d8 / 0x100),
+            _0x1f49f4 = _0x57e6d8 % 0x100;
+          _0x4bab8e ^= _0x226b45, _0x4bab8e ^= _0x1f49f4, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x226b45), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x1f49f4), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x226b45), _0x4d3aa5['setUint8'](0xb + _0x94fd41 * 0x2, _0x1f49f4), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x8) == 0x8) {
+          _0x530270++;
+          var _0x25a247 = _0x3cef1c * 0x8 + 0x4,
+            _0x4ccccf = _0x25a247 / 0x100,
+            _0x2f9648 = _0x25a247 % 0x100;
+          _0x4bab8e ^= _0x4ccccf, _0x4bab8e ^= _0x2f9648, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x4ccccf), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x2f9648), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x4ccccf), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x2f9648), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x4) == 0x4) {
+          _0x530270++;
+          var _0x1bba4b = _0x3cef1c * 0x8 + 0x5,
+            _0x398d61 = _0x1bba4b / 0x100,
+            _0x4f3663 = _0x1bba4b % 0x100;
+          _0x4bab8e ^= _0x398d61, _0x4bab8e ^= _0x4f3663, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x398d61), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x4f3663), _0x4d3aa5['setUint8'](0xa + _0x94fd41 * 0x2, _0x398d61), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x4f3663), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x2) == 0x2) {
+          _0x530270++;
+          var _0x15516a = _0x3cef1c * 0x8 + 0x6,
+            _0x44a7a4 = _0x15516a / 0x100,
+            _0x3e77d6 = _0x15516a % 0x100;
+          _0x4bab8e ^= _0x44a7a4, _0x4bab8e ^= _0x3e77d6, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x44a7a4), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x3e77d6), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x44a7a4), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x3e77d6), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x1) == 0x1) {
+          _0x530270++;
+          var _0x1e2566 = _0x3cef1c * 0x8 + 0x7,
+            _0x2a9b8d = _0x1e2566 / 0x100,
+            _0x4bedfd = _0x1e2566 % 0x100;
+          _0x4bab8e ^= _0x2a9b8d, _0x4bab8e ^= _0x4bedfd, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x2a9b8d), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x4bedfd), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x2a9b8d), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x4bedfd), _0x94fd41++;
+        }
+      } else {
+        if ((_0x11d00a & 0x80) == 0x80) {
+          _0x4a2027++;
+          var _0x10b919 = _0x3cef1c * 0x8,
+            _0x4cf5d5 = _0x10b919 / 0x100,
+            _0x563546 = _0x10b919 % 0x100;
+          _0x4bab8e ^= _0x4cf5d5, _0x4bab8e ^= _0x563546, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x4cf5d5), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x563546), _0x4d3aa5['setUint8'](0xa + _0x94fd41 * 0x2, _0x4cf5d5), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x563546), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x40) == 0x40) {
+          _0x4a2027++;
+          var _0x41c682 = _0x3cef1c * 0x8 + 0x1,
+            _0x4546de = _0x41c682 / 0x100,
+            _0x396a38 = _0x41c682 % 0x100;
+          _0x4bab8e ^= _0x4546de, _0x4bab8e ^= _0x396a38, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x4546de), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x396a38), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x4546de), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x396a38), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x20) == 0x20) {
+          _0x4a2027++;
+          var _0x5837af = _0x3cef1c * 0x8 + 0x2,
+            _0x983b45 = _0x5837af / 0x100,
+            _0x48df4a = _0x5837af % 0x100;
+          _0x4bab8e ^= _0x983b45, _0x4bab8e ^= _0x48df4a, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x983b45), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x48df4a), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x983b45), _0x4d3aa5['setUint8'](0xb + _0x94fd41 * 0x2, _0x48df4a), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x10) == 0x10) {
+          _0x4a2027++;
+          var _0x42b968 = _0x3cef1c * 0x8 + 0x3,
+            _0x2bb5f3 = _0x42b968 / 0x100,
+            _0x4e00f3 = _0x42b968 % 0x100;
+          _0x4bab8e ^= _0x2bb5f3, _0x4bab8e ^= _0x4e00f3, _0x26e085['setUint8'](_0x94fd41 * 0x2, _0x2bb5f3), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x4e00f3), _0x4d3aa5['setUint8'](0xa + _0x94fd41 * 0x2, _0x2bb5f3), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x4e00f3), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x8) == 0x8) {
+          _0x4a2027++;
+          var _0x232cf4 = _0x3cef1c * 0x8 + 0x4,
+            _0x4d8b5b = _0x232cf4 / 0x100,
+            _0x207254 = _0x232cf4 % 0x100;
+          _0x4bab8e ^= _0x4d8b5b, _0x4bab8e ^= _0x207254, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x4d8b5b), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x207254), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x4d8b5b), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x207254), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x4) == 0x4) {
+          _0x4a2027++;
+          var _0x54a509 = _0x3cef1c * 0x8 + 0x5,
+            _0x3680cc = _0x54a509 / 0x100,
+            _0x3878af = _0x54a509 % 0x100;
+          _0x4bab8e ^= _0x3680cc, _0x4bab8e ^= _0x3878af, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x3680cc), _0x26e085['setUint8'](_0x94fd41 * 0x2 + 0x1, _0x3878af), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0x3680cc), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x3878af), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x2) == 0x2) {
+          _0x4a2027++;
+          var _0x1f4bb = _0x3cef1c * 0x8 + 0x6,
+            _0xb8699e = _0x1f4bb / 0x100,
+            _0x41f812 = _0x1f4bb % 0x100;
+          _0x4bab8e ^= _0xb8699e, _0x4bab8e ^= _0x41f812, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0xb8699e), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x41f812), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x94fd41 * 0x2, _0xb8699e), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x41f812), _0x94fd41++;
+        }
+        if ((_0x11d00a & 0x1) == 0x1) {
+          _0x4a2027++;
+          var _0x561afa = _0x3cef1c * 0x8 + 0x7,
+            _0x154c56 = _0x561afa / 0x100,
+            _0x36afa8 = _0x561afa % 0x100;
+          _0x4bab8e ^= _0x154c56, _0x4bab8e ^= _0x36afa8, _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2, _0x154c56), _0x26e085[_0x253b89(0x1d7)](_0x94fd41 * 0x2 + 0x1, _0x36afa8), _0x4d3aa5['setUint8'](0xa + _0x94fd41 * 0x2, _0x154c56), _0x4d3aa5[_0x253b89(0x1d7)](0xb + _0x94fd41 * 0x2, _0x36afa8), _0x94fd41++;
+        }
+      }
+    }
+  }
+  _0x4a5db8[_0x253b89(0x1d7)](0x4, _0x48a60a), _0x4a5db8[_0x253b89(0x1d7)](0x5, _0x48e1a7), _0x4a5db8[_0x253b89(0x1d7)](0x6, _0x2e7fb7), _0x4a5db8[_0x253b89(0x1d7)](0x7, _0x530270), _0x4a5db8[_0x253b89(0x1d7)](0x8, _0x4a2027), _0x4a5db8[_0x253b89(0x1d7)](0x9, _0x523973), _0x4d3aa5[_0x253b89(0x1d7)](0x4, _0x48a60a), _0x4d3aa5[_0x253b89(0x1d7)](0x5, _0x48e1a7), _0x4d3aa5[_0x253b89(0x1d7)](0x6, _0x2e7fb7), _0x4d3aa5[_0x253b89(0x1d7)](0x7, _0x530270), _0x4d3aa5[_0x253b89(0x1d7)](0x8, _0x4a2027), _0x4d3aa5[_0x253b89(0x1d7)](0x9, _0x523973);
+  var _0x114bbd = _0x27432e['slice'](0x0, _0x94fd41 * 0x2);
+  return _0x114bbd[_0x253b89(0x1f5)] > _0x42529c[_0x253b89(0x1f5)] ? (_0x39d32d = 0x85, _0xadcebb = _0x42529c[_0x253b89(0x1f5)] + 0x2 + 0x1 + 0x1 + 0x2 + 0x3 + 0x1 + 0x1 + 0x2) : (_0xadcebb = _0x114bbd['byteLength'] + 0x2 + 0x1 + 0x1 + 0x2 + 0x3 + 0x1 + 0x1 + 0x2, _0x4a4c63 = _0x4bab8e), _0x4a4c63 ^= _0x39d32d, _0x4a4c63 ^= _0xadcebb - 0x7, _0x4a4c63 ^= _0x2e7fb7, _0x4a4c63 ^= _0x530270, _0x4a4c63 ^= _0x4a2027, _0x4a4c63 ^= _0x523973, _0x39d32d == 0x85 ? (_0x4a5db8[_0x253b89(0x1d7)](0x3, _0xadcebb - 0x7), _0x4a5db8[_0x253b89(0x1d7)](0xa + _0x42529c[_0x253b89(0x1f5)], _0x4a4c63), _0x4a5db8['setUint8'](0xb + _0x42529c[_0x253b89(0x1f5)], 0xaa), _0x4a5db8[_0x253b89(0x1d7)](0xc + _0x42529c[_0x253b89(0x1f5)], 0xaa), _0x28794e[_0x253b89(0x1df)](0x0, _0xadcebb)) : (_0x4d3aa5['setUint8'](0x3, _0xadcebb - 0x7), _0x4d3aa5[_0x253b89(0x1d7)](0xa + _0x114bbd[_0x253b89(0x1f5)], _0x4a4c63), _0x4d3aa5['setUint8'](0xb + _0x114bbd[_0x253b89(0x1f5)], 0xaa), _0x4d3aa5[_0x253b89(0x1d7)](0xc + _0x114bbd[_0x253b89(0x1f5)], 0xaa), _0x2a4d14[_0x253b89(0x1df)](0x0, _0xadcebb));
+}, DataUntils['dealImageData'] = function (_0x35acaa, _0x4f2719, _0x14731a) {
+  var _0xf70a7e = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x64;
+  var _0x5d4952 = arguments.length > 4 ? arguments[4] : undefined;
+  var _0x5238b4 = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0xc8;
+  var _0x559992 = a0_0x268a7d;
+  var _0x435f5d = _0x35acaa[_0x559992(0x1e1)],
+    _0x374cc5 = _0x35acaa['height'],
+    _0x27152c = _0x35acaa['data'];
+  var _0x48ec53 = 0xff;
+  var _0x304c8f = 0x8;
+  var _0x36a235 = parseInt((_0x435f5d - 0x1) / _0x304c8f + 0x1);
+  _0x5d4952 % 0xb4 == 0x5a && (_0x36a235 = parseInt((_0x374cc5 - 0x1) / _0x304c8f + 0x1));
+  var _0x5891ff = new ArrayBuffer(_0x36a235),
+    _0x59b27f = new DataView(_0x5891ff);
+  var _0x3b4397 = null,
+    _0x137530 = 0x0,
+    _0x272309 = 0x0,
+    _0x2c97b7 = !![],
+    _0x3b530d = ![],
+    _0x26dd12 = 0x0,
+    _0x59488b = [],
+    _0x1c657d = [];
+  if (_0x5d4952 == 0x5a) {
+    var _0x1af754 = (_0x374cc5 - 0x1) % 0x8;
+    for (var _0x30ee53 = 0x0; _0x30ee53 < _0x435f5d; _0x30ee53++) {
+      _0x26dd12 = 0x0;
+      for (var _0x4df994 = _0x374cc5 - 0x1; _0x4df994 >= 0x0; _0x4df994--) {
+        var _0x1854b7 = _0x4df994 * _0x435f5d + _0x30ee53,
+          _0x5b5ff9 = _0x1854b7 * 0x4;
+        var _0x1947e8 = _0x27152c[_0x5b5ff9] * 0.299 + _0x27152c[_0x5b5ff9 + 0x1] * 0.587 + _0x27152c[_0x5b5ff9 + 0x2] * 0.114;
+        var _0x2795ed = 0x80;
+        if (_0x4df994 % 0x8 == _0x1af754) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0x7f;else {
+          if (_0x4df994 % 0x8 == (_0x1af754 - 0x1 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xbf;else {
+            if (_0x4df994 % 0x8 == (_0x1af754 - 0x2 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xdf;else {
+              if (_0x4df994 % 0x8 == (_0x1af754 - 0x3 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xef;else {
+                if (_0x4df994 % 0x8 == (_0x1af754 - 0x4 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xf7;else {
+                  if (_0x4df994 % 0x8 == (_0x1af754 - 0x5 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xfb;else {
+                    if (_0x4df994 % 0x8 == (_0x1af754 - 0x6 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xfd;else _0x4df994 % 0x8 == (_0x1af754 - 0x7 + 0x8) % 0x8 && (_0x48ec53 &= _0x1947e8 < _0x2795ed ? 0xff : 0xfe, _0x59b27f['setUint8'](_0x26dd12, _0x48ec53), _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0), _0x48ec53 = 0xff, _0x26dd12++);
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (_0x4df994 == 0x0) {
+          if (_0x4df994 % 0x8 != (_0x1af754 - 0x7 + 0x8) % 0x8) {
+            var _0x459f21 = 0x8 - _0x374cc5 % 0x8;
+            _0x48ec53 = _0x48ec53 >> _0x459f21 << _0x459f21, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x26dd12 = 0x0, _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0);
+          }
+          var _0x4eedb4 = _0x5891ff[_0x559992(0x1df)](0x0, _0x36a235);
+          if (_0x3b4397 == null) _0x3b4397 = _0x4eedb4[_0x559992(0x1df)](0x0, _0x36a235), _0x272309++, _0x3b530d = _0x2c97b7;else {
+            var _0x137042 = DataUntils[_0x559992(0x1f9)](_0x3b4397),
+              _0x1ae3ce = DataUntils[_0x559992(0x1f9)](_0x4eedb4);
+            var _0x2adbfe = ![],
+              _0x3c7d1f = ![];
+            if ((_0x272309 + _0x137530) % _0x5238b4 == 0x0 && _0x272309 > 0x0) {
+              _0x3c7d1f = !![];
+              var _0xc70ae8 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3b4397, _0x137530, _0x272309);
+              _0x1c657d['push'](_0xc70ae8);
+              var _0x3597f6 = _0x1c657d[_0x559992(0x1df)](0x0, _0x1c657d[_0x559992(0x1da)]),
+                _0xe7f415 = DataUntils[_0x559992(0x1e5)](_0x3597f6, _0xf70a7e);
+              _0x1c657d[_0x559992(0x1d9)](0x0, _0x1c657d[_0x559992(0x1da)]), _0x59488b[_0x559992(0x1fb)](_0xe7f415), _0x137530 += _0x272309, _0x272309 = 0x0;
+            }
+            _0x137042 == _0x1ae3ce && (_0x272309++, _0x2adbfe = !![]);
+            if (!_0x2adbfe) {
+              var _0x575e67 = null;
+              if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                var _0x191470 = parseInt(_0x14731a['left'] / 0x8);
+                _0x575e67 = _0x3b4397['slice'](_0x191470, _0x3b4397[_0x559992(0x1f5)] - _0x191470);
+              }
+              if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                var _0x6aa6ec = parseInt(_0x14731a[_0x559992(0x1d6)] / 0x8);
+                _0x575e67 != null ? _0x575e67 = _0x575e67['slice'](0x0, _0x575e67[_0x559992(0x1f5)] - _0x6aa6ec) : _0x575e67 = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397['byteLength'] - _0x6aa6ec);
+              }
+              _0x575e67 == null && (_0x575e67 = _0x3b4397);
+              if (_0x272309 > 0x0) {
+                var _0x51f4bb = DataUntils[_0x559992(0x213)](_0x3b530d, _0x575e67, _0x137530, _0x272309, _0x4f2719);
+                _0x1c657d[_0x559992(0x1fb)](_0x51f4bb);
+              }
+              _0x3b4397 = _0x4eedb4['slice'](0x0, _0x36a235), _0x3b530d = _0x2c97b7, _0x137530 += _0x272309, _0x272309 = 0x1;
+            }
+            if (_0x30ee53 == _0x435f5d - 0x1) {
+              if (!_0x3c7d1f) {
+                var _0x448868 = null;
+                if (_0x14731a['left'] > 0x0) {
+                  var _0x368387 = parseInt(_0x14731a['left'] / 0x8);
+                  _0x448868 = _0x3b4397[_0x559992(0x1df)](_0x368387, _0x3b4397[_0x559992(0x1f5)] - _0x368387);
+                }
+                if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                  var _0x50e328 = parseInt(_0x14731a[_0x559992(0x1d6)] / 0x8);
+                  _0x448868 != null ? _0x448868 = _0x448868['slice'](0x0, _0x448868[_0x559992(0x1f5)] - _0x50e328) : _0x448868 = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x50e328);
+                }
+                _0x448868 == null && (_0x448868 = _0x3b4397);
+                var _0x1d0568 = DataUntils['doCreateBuffer'](_0x3b530d, _0x448868, _0x137530, _0x272309, _0x4f2719);
+                _0x1c657d[_0x559992(0x1fb)](_0x1d0568);
+                var _0x129be8 = DataUntils['deal120ByteArray'](_0x1c657d, _0xf70a7e);
+                _0x59488b[_0x559992(0x1fb)](_0x129be8);
+              }
+            }
+          }
+          _0x2c97b7 = !![], _0x48ec53 = 0xff;
+        }
+      }
+    }
+    return _0x59488b;
+  } else {
+    if (_0x5d4952 == 0xb4) {
+      var _0x5c2b65 = (_0x435f5d - 0x1) % 0x8;
+      for (var _0x30ee53 = _0x374cc5 - 0x1; _0x30ee53 >= 0x0; _0x30ee53--) {
+        _0x26dd12 = 0x0;
+        for (var _0x4df994 = _0x435f5d - 0x1; _0x4df994 >= 0x0; _0x4df994--) {
+          var _0x494ac9 = _0x4df994 + _0x30ee53 * _0x435f5d,
+            _0x4c3a13 = _0x494ac9 * 0x4;
+          var _0x1947e8 = _0x27152c[_0x4c3a13] * 0.299 + _0x27152c[_0x4c3a13 + 0x1] * 0.587 + _0x27152c[_0x4c3a13 + 0x2] * 0.114;
+          var _0xbaf1a = 0x80;
+          if (_0x4df994 % 0x8 == _0x5c2b65) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0x7f;else {
+            if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x1 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xbf;else {
+              if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x2 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xdf;else {
+                if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x3 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xef;else {
+                  if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x4 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xf7;else {
+                    if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x5 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xfb;else {
+                      if (_0x4df994 % 0x8 == (_0x5c2b65 - 0x6 + 0x8) % 0x8) _0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xfd;else _0x4df994 % 0x8 == (_0x5c2b65 - 0x7 + 0x8) % 0x8 && (_0x48ec53 &= _0x1947e8 < _0xbaf1a ? 0xff : 0xfe, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0), _0x48ec53 = 0xff, _0x26dd12++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x4df994 == 0x0) {
+            if (_0x4df994 % 0x8 != (_0x5c2b65 - 0x7 + 0x8) % 0x8) {
+              var _0x63573f = 0x8 - _0x435f5d % 0x8;
+              _0x48ec53 = _0x48ec53 >> _0x63573f << _0x63573f, _0x59b27f['setUint8'](_0x26dd12, _0x48ec53), _0x26dd12 = 0x0, _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0);
+            }
+            var _0x28cd30 = _0x5891ff[_0x559992(0x1df)](0x0, _0x36a235);
+            if (_0x3b4397 == null) _0x3b4397 = _0x28cd30[_0x559992(0x1df)](0x0, _0x36a235), _0x272309++, _0x3b530d = _0x2c97b7;else {
+              var _0x8cf868 = DataUntils[_0x559992(0x1f9)](_0x3b4397),
+                _0x36c0e1 = DataUntils[_0x559992(0x1f9)](_0x28cd30);
+              var _0x2adbfe = ![],
+                _0x3c7d1f = ![];
+              if ((_0x272309 + _0x137530) % _0x5238b4 == 0x0 && _0x272309 > 0x0) {
+                _0x3c7d1f = !![];
+                var _0x428919 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3b4397, _0x137530, _0x272309);
+                _0x1c657d[_0x559992(0x1fb)](_0x428919);
+                var _0xb3f46d = _0x1c657d[_0x559992(0x1df)](0x0, _0x1c657d[_0x559992(0x1da)]),
+                  _0x3a91c = DataUntils[_0x559992(0x1e5)](_0xb3f46d, _0xf70a7e);
+                _0x1c657d[_0x559992(0x1d9)](0x0, _0x1c657d[_0x559992(0x1da)]), _0x59488b[_0x559992(0x1fb)](_0x3a91c), _0x137530 += _0x272309, _0x272309 = 0x0;
+              }
+              _0x8cf868 == _0x36c0e1 && (_0x272309++, _0x2adbfe = !![]);
+              if (!_0x2adbfe) {
+                var _0x5cac9d = null;
+                if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                  var _0x312251 = parseInt(_0x14731a['left'] / 0x8);
+                  _0x5cac9d = _0x3b4397[_0x559992(0x1df)](_0x312251, _0x3b4397[_0x559992(0x1f5)] - _0x312251);
+                }
+                if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                  var _0x5e341f = parseInt(_0x14731a['right'] / 0x8);
+                  _0x5cac9d != null ? _0x5cac9d = _0x5cac9d[_0x559992(0x1df)](0x0, _0x5cac9d[_0x559992(0x1f5)] - _0x5e341f) : _0x5cac9d = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397['byteLength'] - _0x5e341f);
+                }
+                _0x5cac9d == null && (_0x5cac9d = _0x3b4397);
+                if (_0x272309 > 0x0) {
+                  var _0x598b06 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x5cac9d, _0x137530, _0x272309, _0x4f2719);
+                  _0x1c657d[_0x559992(0x1fb)](_0x598b06);
+                }
+                _0x3b4397 = _0x28cd30[_0x559992(0x1df)](0x0, _0x36a235), _0x3b530d = _0x2c97b7, _0x137530 += _0x272309, _0x272309 = 0x1;
+              }
+              if (_0x30ee53 == 0x0) {
+                if (!_0x3c7d1f) {
+                  var _0x72a0d = null;
+                  if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                    var _0x5a5210 = parseInt(_0x14731a[_0x559992(0x20b)] / 0x8);
+                    _0x72a0d = _0x3b4397[_0x559992(0x1df)](_0x5a5210, _0x3b4397['byteLength'] - _0x5a5210);
+                  }
+                  if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                    var _0x2bfba1 = parseInt(_0x14731a[_0x559992(0x1d6)] / 0x8);
+                    _0x72a0d != null ? _0x72a0d = _0x72a0d[_0x559992(0x1df)](0x0, _0x72a0d[_0x559992(0x1f5)] - _0x2bfba1) : _0x72a0d = _0x3b4397['slice'](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x2bfba1);
+                  }
+                  _0x72a0d == null && (_0x72a0d = _0x3b4397);
+                  var _0x38fe51 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x72a0d, _0x137530, _0x272309, _0x4f2719);
+                  _0x1c657d[_0x559992(0x1fb)](_0x38fe51);
+                  var _0x5234d7 = DataUntils[_0x559992(0x1e5)](_0x1c657d, _0xf70a7e);
+                  _0x59488b[_0x559992(0x1fb)](_0x5234d7);
+                }
+              }
+            }
+            _0x2c97b7 = !![], _0x48ec53 = 0xff;
+          }
+        }
+      }
+      return _0x59488b;
+    } else {
+      if (_0x5d4952 == 0x10e) {
+        for (var _0x30ee53 = _0x435f5d - 0x1; _0x30ee53 >= 0x0; _0x30ee53--) {
+          _0x26dd12 = 0x0;
+          for (var _0x4df994 = 0x0; _0x4df994 < _0x374cc5; _0x4df994++) {
+            var _0x2582a2 = _0x4df994 * _0x435f5d + _0x30ee53,
+              _0x37a21c = _0x2582a2 * 0x4;
+            var _0x1947e8 = _0x27152c[_0x37a21c] * 0.299 + _0x27152c[_0x37a21c + 0x1] * 0.587 + _0x27152c[_0x37a21c + 0x2] * 0.114;
+            var _0x43f2c2 = 0x80;
+            if (_0x4df994 % 0x8 == 0x0) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0x7f;else {
+              if (_0x4df994 % 0x8 == 0x1) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xbf;else {
+                if (_0x4df994 % 0x8 == 0x2) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xdf;else {
+                  if (_0x4df994 % 0x8 == 0x3) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xef;else {
+                    if (_0x4df994 % 0x8 == 0x4) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xf7;else {
+                      if (_0x4df994 % 0x8 == 0x5) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xfb;else {
+                        if (_0x4df994 % 0x8 == 0x6) _0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xfd;else _0x4df994 % 0x8 == 0x7 && (_0x48ec53 &= _0x1947e8 < _0x43f2c2 ? 0xff : 0xfe, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0), _0x48ec53 = 0xff, _0x26dd12++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x4df994 == _0x374cc5 - 0x1) {
+              if (_0x4df994 % 0x8 != 0x7) {
+                var _0x27288c = 0x8 - _0x374cc5 % 0x8;
+                _0x48ec53 = _0x48ec53 >> _0x27288c << _0x27288c, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x26dd12 = 0x0, _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0);
+              }
+              var _0x88bada = _0x5891ff[_0x559992(0x1df)](0x0, _0x36a235);
+              if (_0x3b4397 == null) _0x3b4397 = _0x88bada[_0x559992(0x1df)](0x0, _0x36a235), _0x272309++, _0x3b530d = _0x2c97b7;else {
+                var _0x54a800 = DataUntils[_0x559992(0x1f9)](_0x3b4397),
+                  _0x514b36 = DataUntils['ab2hex'](_0x88bada);
+                var _0x2adbfe = ![],
+                  _0x3c7d1f = ![];
+                if ((_0x272309 + _0x137530) % _0x5238b4 == 0x0 && _0x272309 > 0x0) {
+                  _0x3c7d1f = !![];
+                  var _0x133830 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3b4397, _0x137530, _0x272309);
+                  _0x1c657d[_0x559992(0x1fb)](_0x133830);
+                  var _0x4efc3c = _0x1c657d['slice'](0x0, _0x1c657d['length']),
+                    _0x52cbaa = DataUntils[_0x559992(0x1e5)](_0x4efc3c, _0xf70a7e);
+                  _0x1c657d[_0x559992(0x1d9)](0x0, _0x1c657d['length']), _0x59488b[_0x559992(0x1fb)](_0x52cbaa), _0x137530 += _0x272309, _0x272309 = 0x0;
+                }
+                _0x54a800 == _0x514b36 && (_0x272309++, _0x2adbfe = !![]);
+                if (!_0x2adbfe) {
+                  var _0xd632d = null;
+                  if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                    var _0x2f2515 = parseInt(_0x14731a['left'] / 0x8);
+                    _0xd632d = _0x3b4397[_0x559992(0x1df)](_0x2f2515, _0x3b4397[_0x559992(0x1f5)] - _0x2f2515);
+                  }
+                  if (_0x14731a['right'] > 0x0) {
+                    var _0x2e8234 = parseInt(_0x14731a['right'] / 0x8);
+                    _0xd632d != null ? _0xd632d = _0xd632d['slice'](0x0, _0xd632d[_0x559992(0x1f5)] - _0x2e8234) : _0xd632d = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x2e8234);
+                  }
+                  _0xd632d == null && (_0xd632d = _0x3b4397);
+                  if (_0x272309 > 0x0) {
+                    var _0x4098b0 = DataUntils['doCreateBuffer'](_0x3b530d, _0xd632d, _0x137530, _0x272309, _0x4f2719);
+                    _0x1c657d[_0x559992(0x1fb)](_0x4098b0);
+                  }
+                  _0x3b4397 = _0x88bada['slice'](0x0, _0x36a235), _0x3b530d = _0x2c97b7, _0x137530 += _0x272309, _0x272309 = 0x1;
+                }
+                if (_0x30ee53 == 0x0) {
+                  if (!_0x3c7d1f) {
+                    var _0x25c31e = null;
+                    if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                      var _0x3e9e68 = parseInt(_0x14731a[_0x559992(0x20b)] / 0x8);
+                      _0x25c31e = _0x3b4397[_0x559992(0x1df)](_0x3e9e68, _0x3b4397[_0x559992(0x1f5)] - _0x3e9e68);
+                    }
+                    if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                      var _0x2bc6e8 = parseInt(_0x14731a['right'] / 0x8);
+                      _0x25c31e != null ? _0x25c31e = _0x25c31e[_0x559992(0x1df)](0x0, _0x25c31e[_0x559992(0x1f5)] - _0x2bc6e8) : _0x25c31e = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x2bc6e8);
+                    }
+                    _0x25c31e == null && (_0x25c31e = _0x3b4397);
+                    var _0x3869ef = DataUntils[_0x559992(0x213)](_0x3b530d, _0x25c31e, _0x137530, _0x272309, _0x4f2719);
+                    _0x1c657d[_0x559992(0x1fb)](_0x3869ef);
+                    var _0x1ccca1 = DataUntils[_0x559992(0x1e5)](_0x1c657d, _0xf70a7e);
+                    _0x59488b[_0x559992(0x1fb)](_0x1ccca1);
+                  }
+                }
+              }
+              _0x2c97b7 = !![], _0x48ec53 = 0xff;
+            }
+          }
+        }
+        return _0x59488b;
+      } else {
+        if (_0x5d4952 == 0x0) {
+          for (var _0x30ee53 = 0x0; _0x30ee53 < _0x374cc5; _0x30ee53++) {
+            _0x26dd12 = 0x0;
+            for (var _0x4df994 = 0x0; _0x4df994 < _0x435f5d; _0x4df994++) {
+              var _0x70eea4 = _0x4df994 + _0x30ee53 * _0x435f5d,
+                _0x1299f8 = _0x70eea4 * 0x4;
+              var _0x1947e8 = _0x27152c[_0x1299f8] * 0.299 + _0x27152c[_0x1299f8 + 0x1] * 0.587 + _0x27152c[_0x1299f8 + 0x2] * 0.114;
+              var _0x482a0c = 0x80;
+              if (_0x4df994 % 0x8 == 0x0) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0x7f;else {
+                if (_0x4df994 % 0x8 == 0x1) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xbf;else {
+                  if (_0x4df994 % 0x8 == 0x2) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xdf;else {
+                    if (_0x4df994 % 0x8 == 0x3) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xef;else {
+                      if (_0x4df994 % 0x8 == 0x4) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xf7;else {
+                        if (_0x4df994 % 0x8 == 0x5) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xfb;else {
+                          if (_0x4df994 % 0x8 == 0x6) _0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xfd;else _0x4df994 % 0x8 == 0x7 && (_0x48ec53 &= _0x1947e8 < _0x482a0c ? 0xff : 0xfe, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0), _0x48ec53 = 0xff, _0x26dd12++);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              if (_0x4df994 == _0x435f5d - 0x1) {
+                if (_0x4df994 % 0x8 != 0x7) {
+                  var _0x360651 = 0x8 - _0x435f5d % 0x8;
+                  _0x48ec53 = _0x48ec53 >> _0x360651 << _0x360651, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x26dd12 = 0x0, _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0);
+                }
+                var _0x524aae = _0x5891ff[_0x559992(0x1df)](0x0, _0x36a235);
+                if (_0x3b4397 == null) _0x3b4397 = _0x524aae['slice'](0x0, _0x36a235), _0x272309++, _0x3b530d = _0x2c97b7;else {
+                  var _0x362bb2 = DataUntils[_0x559992(0x1f9)](_0x3b4397),
+                    _0x225bff = DataUntils[_0x559992(0x1f9)](_0x524aae);
+                  var _0x2adbfe = ![],
+                    _0x3c7d1f = ![];
+                  if ((_0x272309 + _0x137530) % _0x5238b4 == 0x0 && _0x272309 > 0x0) {
+                    _0x3c7d1f = !![];
+                    var _0x6efb33 = DataUntils['doCreateBuffer'](_0x3b530d, _0x3b4397, _0x137530, _0x272309);
+                    _0x1c657d[_0x559992(0x1fb)](_0x6efb33);
+                    var _0x5a7b7b = _0x1c657d[_0x559992(0x1df)](0x0, _0x1c657d[_0x559992(0x1da)]),
+                      _0x330dde = DataUntils[_0x559992(0x1e5)](_0x5a7b7b, _0xf70a7e);
+                    _0x1c657d['splice'](0x0, _0x1c657d['length']), _0x59488b[_0x559992(0x1fb)](_0x330dde), _0x137530 += _0x272309, _0x272309 = 0x0;
+                  }
+                  _0x362bb2 == _0x225bff && (_0x272309++, _0x2adbfe = !![]);
+                  if (!_0x2adbfe) {
+                    var _0x21bf00 = null;
+                    if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                      var _0x410059 = parseInt(_0x14731a[_0x559992(0x20b)] / 0x8);
+                      _0x21bf00 = _0x3b4397[_0x559992(0x1df)](_0x410059, _0x3b4397[_0x559992(0x1f5)] - _0x410059);
+                    }
+                    if (_0x14731a['right'] > 0x0) {
+                      var _0x4c92d1 = parseInt(_0x14731a['right'] / 0x8);
+                      _0x21bf00 != null ? _0x21bf00 = _0x21bf00[_0x559992(0x1df)](0x0, _0x21bf00['byteLength'] - _0x4c92d1) : _0x21bf00 = _0x3b4397['slice'](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x4c92d1);
+                    }
+                    _0x21bf00 == null && (_0x21bf00 = _0x3b4397);
+                    if (_0x272309 > 0x0) {
+                      var _0x51b144 = DataUntils['doCreateBuffer'](_0x3b530d, _0x21bf00, _0x137530, _0x272309, _0x4f2719);
+                      _0x1c657d[_0x559992(0x1fb)](_0x51b144);
+                    }
+                    _0x3b4397 = _0x524aae['slice'](0x0, _0x36a235), _0x3b530d = _0x2c97b7, _0x137530 += _0x272309, _0x272309 = 0x1;
+                  }
+                  if (_0x30ee53 == _0x374cc5 - 0x1) {
+                    if (!_0x3c7d1f) {
+                      var _0x3882d8 = null;
+                      if (_0x14731a['left'] > 0x0) {
+                        var _0x229291 = parseInt(_0x14731a['left'] / 0x8);
+                        _0x3882d8 = _0x3b4397[_0x559992(0x1df)](_0x229291, _0x3b4397[_0x559992(0x1f5)] - _0x229291);
+                      }
+                      if (_0x14731a['right'] > 0x0) {
+                        var _0x5db01e = parseInt(_0x14731a[_0x559992(0x1d6)] / 0x8);
+                        _0x3882d8 != null ? _0x3882d8 = _0x3882d8[_0x559992(0x1df)](0x0, _0x3882d8[_0x559992(0x1f5)] - _0x5db01e) : _0x3882d8 = _0x3b4397['slice'](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x5db01e);
+                      }
+                      _0x3882d8 == null && (_0x3882d8 = _0x3b4397);
+                      var _0x54ab64 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3882d8, _0x137530, _0x272309, _0x4f2719);
+                      _0x1c657d[_0x559992(0x1fb)](_0x54ab64);
+                      var _0x4cc015 = DataUntils['deal120ByteArray'](_0x1c657d, _0xf70a7e);
+                      _0x59488b[_0x559992(0x1fb)](_0x4cc015);
+                    }
+                  }
+                }
+                _0x2c97b7 = !![], _0x48ec53 = 0xff;
+              }
+            }
+          }
+          return _0x59488b;
+        }
+      }
+    }
+  }
+  for (var _0x30ee53 = 0x0; _0x30ee53 < _0x27152c[_0x559992(0x1da)] - 0x3; _0x30ee53 += 0x4) {
+    var _0x1947e8 = _0x27152c[_0x30ee53] * 0.299 + _0x27152c[_0x30ee53 + 0x1] * 0.587 + _0x27152c[_0x30ee53 + 0x2] * 0.114;
+    var _0x85ebba = 0x80;
+    if (_0x30ee53 % 0x20 == 0x0) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0x7f;else {
+      if (_0x30ee53 % 0x20 == 0x4) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xbf;else {
+        if (_0x30ee53 % 0x20 == 0x8) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xdf;else {
+          if (_0x30ee53 % 0x20 == 0xc) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xef;else {
+            if (_0x30ee53 % 0x20 == 0x10) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xf7;else {
+              if (_0x30ee53 % 0x20 == 0x14) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xfb;else {
+                if (_0x30ee53 % 0x20 == 0x18) _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xfd;else {
+                  if (_0x30ee53 % 0x20 == 0x1c) {
+                    _0x48ec53 &= _0x1947e8 < _0x85ebba ? 0xff : 0xfe, _0x59b27f[_0x559992(0x1d7)](_0x26dd12, _0x48ec53), _0x26dd12++;
+                    _0x2c97b7 && (_0x2c97b7 = _0x48ec53 == 0x0);
+                    if ((_0x30ee53 + 0x4) % (_0x435f5d * 0x4) == 0x0) {
+                      _0x26dd12 = 0x0;
+                      _0x435f5d % _0x304c8f > 0x0 && _0x59b27f[_0x559992(0x1d7)](_0x36a235 - 0x1, 0x0);
+                      var _0x949945 = _0x5891ff[_0x559992(0x1df)](0x0, _0x36a235);
+                      if (_0x3b4397 == null) _0x3b4397 = _0x949945[_0x559992(0x1df)](0x0, _0x36a235), _0x272309++, _0x3b530d = _0x2c97b7;else {
+                        var _0x33516a = DataUntils['ab2hex'](_0x3b4397),
+                          _0x278655 = DataUntils[_0x559992(0x1f9)](_0x949945);
+                        var _0x2adbfe = ![];
+                        _0x33516a == _0x278655 && (_0x272309++, _0x2adbfe = !![]);
+                        var _0x3c7d1f = ![];
+                        if ((_0x272309 + _0x137530) % _0x5238b4 == 0x0 && _0x272309 > 0x0) {
+                          _0x3c7d1f = !![];
+                          var _0x1d2d36 = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3b4397, _0x137530, _0x272309);
+                          _0x1c657d['push'](_0x1d2d36);
+                          var _0x16826a = _0x1c657d[_0x559992(0x1df)](0x0, _0x1c657d[_0x559992(0x1da)]),
+                            _0x5b68c6 = DataUntils[_0x559992(0x1e5)](_0x16826a, _0xf70a7e);
+                          _0x1c657d[_0x559992(0x1d9)](0x0, _0x1c657d['length']), _0x59488b[_0x559992(0x1fb)](_0x5b68c6), _0x137530 += _0x272309, _0x272309 = 0x0;
+                        }
+                        if (!_0x2adbfe) {
+                          var _0x3a64c7 = null;
+                          if (_0x14731a['left'] > 0x0) {
+                            var _0x172b21 = parseInt(_0x14731a[_0x559992(0x20b)] / 0x8);
+                            _0x3a64c7 = _0x3b4397['slice'](_0x172b21, _0x3b4397[_0x559992(0x1f5)] - _0x172b21);
+                          }
+                          if (_0x14731a[_0x559992(0x1d6)] > 0x0) {
+                            var _0x59a07a = parseInt(_0x14731a[_0x559992(0x1d6)] / 0x8);
+                            _0x3a64c7 != null ? _0x3a64c7 = _0x3a64c7[_0x559992(0x1df)](0x0, _0x3a64c7[_0x559992(0x1f5)] - _0x59a07a) : _0x3a64c7 = _0x3b4397['slice'](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x59a07a);
+                          }
+                          _0x3a64c7 == null && (_0x3a64c7 = _0x3b4397);
+                          if (_0x272309 > 0x0) {
+                            var _0x461d3f = DataUntils['doCreateBuffer'](_0x3b530d, _0x3a64c7, _0x137530, _0x272309, _0x4f2719);
+                            _0x1c657d['push'](_0x461d3f);
+                          }
+                          _0x3b4397 = _0x949945[_0x559992(0x1df)](0x0, _0x36a235), _0x3b530d = _0x2c97b7, _0x137530 += _0x272309, _0x272309 = 0x1;
+                        }
+                        if (_0x30ee53 + 0x4 == _0x27152c['length']) {
+                          if (!_0x3c7d1f) {
+                            var _0x3f4174 = null;
+                            if (_0x14731a[_0x559992(0x20b)] > 0x0) {
+                              var _0x1800d7 = parseInt(_0x14731a[_0x559992(0x20b)] / 0x8);
+                              _0x3f4174 = _0x3b4397[_0x559992(0x1df)](_0x1800d7, _0x3b4397[_0x559992(0x1f5)] - _0x1800d7);
+                            }
+                            if (_0x14731a['right'] > 0x0) {
+                              var _0x5bf09e = parseInt(_0x14731a['right'] / 0x8);
+                              _0x3f4174 != null ? _0x3f4174 = _0x3f4174[_0x559992(0x1df)](0x0, _0x3f4174[_0x559992(0x1f5)] - _0x5bf09e) : _0x3f4174 = _0x3b4397[_0x559992(0x1df)](0x0, _0x3b4397[_0x559992(0x1f5)] - _0x5bf09e);
+                            }
+                            _0x3f4174 == null && (_0x3f4174 = _0x3b4397);
+                            var _0x183c6e = DataUntils[_0x559992(0x213)](_0x3b530d, _0x3f4174, _0x137530, _0x272309, _0x4f2719);
+                            _0x1c657d[_0x559992(0x1fb)](_0x183c6e);
+                            var _0x3ce97f = DataUntils[_0x559992(0x1e5)](_0x1c657d, _0xf70a7e);
+                            _0x59488b['push'](_0x3ce97f);
+                          }
+                        }
+                      }
+                      _0x2c97b7 = !![];
+                    }
+                    _0x48ec53 = 0xff;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return _0x59488b;
+}, DataUntils[a0_0x268a7d(0x1e5)] = function (_0x46a080, _0xa593d7) {
+  var _0x166262 = a0_0x268a7d;
+  var _0x3311a8 = [];
+  var _0x236860 = _0xa593d7,
+    _0x549b77 = new ArrayBuffer(_0x236860),
+    _0x29802e = new DataView(_0x549b77),
+    _0x14e4a1 = 0x0;
+  for (var _0x281e6c = 0x0; _0x281e6c < _0x46a080[_0x166262(0x1da)]; _0x281e6c++) {
+    var _0x335f25 = _0x46a080[_0x281e6c],
+      _0x558317 = new DataView(_0x335f25);
+    for (var _0x128edf = 0x0; _0x128edf < _0x335f25[_0x166262(0x1f5)]; _0x128edf++) {
+      _0x29802e[_0x166262(0x1d7)](_0x14e4a1, _0x558317[_0x166262(0x1e7)](_0x128edf));
+      var _0xa4b8a6 = ![];
+      _0x14e4a1 % _0x236860 == _0x236860 - 0x1 && _0x14e4a1 > 0x0 ? (_0x14e4a1 = 0x0, _0xa4b8a6 = !![], _0x3311a8[_0x166262(0x1fb)](_0x549b77[_0x166262(0x1df)](0x0, _0x236860))) : _0x14e4a1++, _0x281e6c == _0x46a080[_0x166262(0x1da)] - 0x1 && _0x128edf == _0x335f25['byteLength'] - 0x1 && !_0xa4b8a6 && _0x3311a8['push'](_0x549b77[_0x166262(0x1df)](0x0, _0x14e4a1));
+    }
+  }
+  return _0x3311a8;
+}, DataUntils[a0_0x268a7d(0x213)] = function (_0x49ce10, _0x47960e, _0x42b8cd, _0x5dddb4, _0x67e3fb) {
+  var _0x34b39c = a0_0x268a7d;
+  return _0x49ce10 ? DataUntils[_0x34b39c(0x1ec)](_0x47960e, _0x42b8cd, _0x5dddb4) : DataUntils['createRowData'](_0x47960e, _0x42b8cd, _0x5dddb4, _0x67e3fb);
+}, DataUntils['compareImageData'] = function (_0x25d2c8, _0x4efdf2, _0x19ca02) {
+  var _0x5eb54c = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x64;
+  var _0x4f667a = arguments.length > 4 ? arguments[4] : undefined;
+  var _0x157c69 = arguments.length > 5 ? arguments[5] : undefined;
+  var _0x3e4c3d = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0xc8;
+  var _0x32b5ef = a0_0x268a7d;
+  if (_0x157c69 == null) {
+    var _0x1a549b = DataUntils[_0x32b5ef(0x1d8)](_0x25d2c8, _0x4efdf2, _0x19ca02, _0x5eb54c, _0x4f667a, _0x3e4c3d);
+    return {
+      '0': _0x1a549b
+    };
+  }
+  var _0x33c35f = _0x25d2c8[_0x32b5ef(0x1e1)],
+    _0x44a86e = _0x25d2c8[_0x32b5ef(0x1f7)],
+    _0x409225 = _0x25d2c8['data'];
+  var _0x348852 = 0xff;
+  var _0x3f57b8 = 0x8;
+  var _0x422f63 = parseInt((_0x33c35f - 0x1) / _0x3f57b8 + 0x1);
+  _0x4f667a % 0xb4 == 0x5a && (_0x422f63 = parseInt((_0x44a86e - 0x1) / _0x3f57b8 + 0x1));
+  var _0x339970 = new ArrayBuffer(_0x422f63),
+    _0x3d9184 = new DataView(_0x339970);
+  var _0x4463e1 = null,
+    _0x4ece71 = 0x0,
+    _0x1d9c84 = 0x0,
+    _0x421cdb = !![],
+    _0x446319 = ![],
+    _0x59a8b8 = 0x0,
+    _0x1731df = [],
+    _0x4667a6 = [],
+    _0x8ec8b7 = 0x0,
+    _0x4d04c1 = ![],
+    _0x2904a7 = null,
+    _0x2dc54c = 0x0,
+    _0x39056c = 0x0,
+    _0x2b510f = 0x0;
+  var _0x1dca04 = _0x157c69[_0x32b5ef(0x212)];
+  var _0x3cfd48 = [],
+    _0x43489e = [],
+    _0x4906d4 = 0xff;
+  if (_0x4f667a == 0x5a) {
+    var _0x23d5e8 = (_0x44a86e - 0x1) % 0x8;
+    for (var _0xca2525 = 0x0; _0xca2525 < _0x33c35f; _0xca2525++) {
+      _0x59a8b8 = 0x0;
+      var _0xb317a8 = !![];
+      for (var _0x4148c2 = _0x44a86e - 0x1; _0x4148c2 >= 0x0; _0x4148c2--) {
+        var _0x399ce8 = _0x4148c2 * _0x33c35f + _0xca2525,
+          _0x68928d = _0x399ce8 * 0x4;
+        var _0x49ad50 = _0x409225[_0x68928d] * 0.299 + _0x409225[_0x68928d + 0x1] * 0.587 + _0x409225[_0x68928d + 0x2] * 0.114,
+          _0x10ecfa = _0x1dca04[_0x68928d] * 0.299 + _0x1dca04[_0x68928d + 0x1] * 0.587 + _0x1dca04[_0x68928d + 0x2] * 0.114;
+        var _0x1787d4 = 0x80;
+        if (_0x4148c2 % 0x8 == _0x23d5e8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0x7f, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0x7f;else {
+          if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x1 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xbf, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xbf;else {
+            if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x2 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xdf, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xdf;else {
+              if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x3 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xef, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xef;else {
+                if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x4 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xf7, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xf7;else {
+                  if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x5 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xfb, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xfb;else {
+                    if (_0x4148c2 % 0x8 == (_0x23d5e8 - 0x6 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xfd, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xfd;else _0x4148c2 % 0x8 == (_0x23d5e8 - 0x7 + 0x8) % 0x8 && (_0x348852 &= _0x49ad50 < _0x1787d4 ? 0xff : 0xfe, _0x4906d4 &= _0x10ecfa < _0x1787d4 ? 0xff : 0xfe, _0x3d9184['setUint8'](_0x59a8b8, _0x348852), _0x421cdb && (_0x421cdb = _0x348852 == 0x0), _0xb317a8 && (_0xb317a8 = _0x348852 == _0x4906d4), _0x4906d4 = 0xff, _0x348852 = 0xff, _0x59a8b8++);
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (_0x4148c2 == 0x0) {
+          if (_0x4148c2 % 0x8 != (_0x23d5e8 - 0x7 + 0x8) % 0x8) {
+            var _0x446914 = 0x8 - _0x44a86e % 0x8;
+            _0x348852 = _0x348852 >> _0x446914 << _0x446914, _0x3d9184['setUint8'](_0x59a8b8, _0x348852), _0x59a8b8 = 0x0, _0x421cdb && (_0x421cdb = _0x348852 == 0x0);
+          }
+          if (_0xb317a8) {
+            if (_0xca2525 == _0x33c35f - 0x1) {
+              if (_0x2904a7 != null) {
+                var _0x3a4000 = DataUntils['doCreateBuffer'](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                _0x3cfd48['push'](_0x3a4000);
+              }
+              var _0x19e986 = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+              _0x3cfd48 = [], _0x19e986[_0x32b5ef(0x1da)] > 0x0 && _0x43489e['push'](_0x19e986), _0x2904a7 = null;
+            }
+          } else {
+            if (_0x8ec8b7 == 0x0) {
+              _0x2dc54c = _0xca2525, _0x8ec8b7++, _0x39056c++, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+              ;
+              _0x4d04c1 = _0x421cdb;
+            } else {
+              _0x8ec8b7++;
+              if (_0x2dc54c + _0x39056c == _0xca2525) {
+                if (_0x2904a7 == null) {
+                  _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                  ;
+                  _0x4d04c1 = _0x421cdb, _0x2dc54c = _0xca2525, _0x39056c = 0x1;
+                } else {
+                  var _0x5e38fb = DataUntils[_0x32b5ef(0x1f9)](_0x2904a7),
+                    _0x262848 = DataUntils[_0x32b5ef(0x1f9)](_0x339970);
+                  if (_0x5e38fb == _0x262848) _0x39056c++;else {
+                    var _0x5f047f = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                    _0x3cfd48[_0x32b5ef(0x1fb)](_0x5f047f), _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                    ;
+                    _0x4d04c1 = _0x421cdb;
+                  }
+                }
+              } else {
+                if (_0x2904a7 == null) {
+                  _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970['slice'](0x0, _0x422f63);
+                  ;
+                  _0x4d04c1 = _0x421cdb;
+                } else {
+                  var _0x3e1946 = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                  _0x3cfd48[_0x32b5ef(0x1fb)](_0x3e1946), _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                  ;
+                  _0x4d04c1 = _0x421cdb;
+                }
+              }
+              if (_0x39056c > 0x0 && _0x39056c % _0x3e4c3d == 0x0 || _0xca2525 == _0x33c35f - 0x1 || _0x8ec8b7 % _0x3e4c3d == 0x0) {
+                if (_0x2904a7 != null) {
+                  var _0x57afd1 = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                  _0x3cfd48[_0x32b5ef(0x1fb)](_0x57afd1);
+                }
+                var _0x2912ea = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                _0x3cfd48 = [], _0x2912ea[_0x32b5ef(0x1da)] > 0x0 && _0x43489e[_0x32b5ef(0x1fb)](_0x2912ea), _0x2904a7 = null;
+              }
+            }
+          }
+          var _0x1b9100 = _0x339970['slice'](0x0, _0x422f63);
+          if (_0x4463e1 == null) _0x4463e1 = _0x1b9100[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x1d9c84++, _0x446319 = _0x421cdb;else {
+            var _0x270d69 = DataUntils[_0x32b5ef(0x1f9)](_0x4463e1),
+              _0x40285a = DataUntils['ab2hex'](_0x1b9100);
+            var _0x2fa68d = ![],
+              _0x51cc28 = ![];
+            if ((_0x1d9c84 + _0x4ece71) % _0x3e4c3d == 0x0 && _0x1d9c84 > 0x0) {
+              _0x51cc28 = !![];
+              var _0x113785 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x4463e1, _0x4ece71, _0x1d9c84);
+              _0x4667a6['push'](_0x113785);
+              var _0x49ee80 = _0x4667a6[_0x32b5ef(0x1df)](0x0, _0x4667a6[_0x32b5ef(0x1da)]),
+                _0x32e85c = DataUntils[_0x32b5ef(0x1e5)](_0x49ee80, _0x5eb54c);
+              _0x4667a6['splice'](0x0, _0x4667a6[_0x32b5ef(0x1da)]), _0x1731df[_0x32b5ef(0x1fb)](_0x32e85c), _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x0;
+            }
+            _0x270d69 == _0x40285a && (_0x1d9c84++, _0x2fa68d = !![]);
+            if (!_0x2fa68d) {
+              var _0x91aa6f = null;
+              if (_0x19ca02['left'] > 0x0) {
+                var _0x5d24d4 = parseInt(_0x19ca02[_0x32b5ef(0x20b)] / 0x8);
+                _0x91aa6f = _0x4463e1[_0x32b5ef(0x1df)](_0x5d24d4, _0x4463e1[_0x32b5ef(0x1f5)] - _0x5d24d4);
+              }
+              if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                var _0x144167 = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                _0x91aa6f != null ? _0x91aa6f = _0x91aa6f[_0x32b5ef(0x1df)](0x0, _0x91aa6f['byteLength'] - _0x144167) : _0x91aa6f = _0x4463e1['slice'](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x144167);
+              }
+              _0x91aa6f == null && (_0x91aa6f = _0x4463e1);
+              if (_0x1d9c84 > 0x0) {
+                var _0x5322ee = DataUntils['doCreateBuffer'](_0x446319, _0x91aa6f, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                _0x4667a6['push'](_0x5322ee);
+              }
+              _0x4463e1 = _0x1b9100[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x446319 = _0x421cdb, _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x1;
+            }
+            if (_0xca2525 == _0x33c35f - 0x1) {
+              if (!_0x51cc28) {
+                var _0x3381ac = null;
+                if (_0x19ca02[_0x32b5ef(0x20b)] > 0x0) {
+                  var _0xe25f07 = parseInt(_0x19ca02['left'] / 0x8);
+                  _0x3381ac = _0x4463e1[_0x32b5ef(0x1df)](_0xe25f07, _0x4463e1[_0x32b5ef(0x1f5)] - _0xe25f07);
+                }
+                if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                  var _0x45b47b = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                  _0x3381ac != null ? _0x3381ac = _0x3381ac[_0x32b5ef(0x1df)](0x0, _0x3381ac['byteLength'] - _0x45b47b) : _0x3381ac = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x45b47b);
+                }
+                _0x3381ac == null && (_0x3381ac = _0x4463e1);
+                var _0x449868 = DataUntils['doCreateBuffer'](_0x446319, _0x3381ac, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                _0x4667a6[_0x32b5ef(0x1fb)](_0x449868);
+                var _0x53125f = DataUntils[_0x32b5ef(0x1e5)](_0x4667a6, _0x5eb54c);
+                _0x1731df['push'](_0x53125f);
+              }
+            }
+          }
+          _0x421cdb = !![], _0x348852 = 0xff;
+        }
+      }
+    }
+    var _0x472a24 = {
+      '0': _0x1731df,
+      '1': _0x43489e,
+      '2': _0x8ec8b7
+    };
+    return _0x472a24;
+  } else {
+    if (_0x4f667a == 0xb4) {
+      var _0xe41874 = (_0x33c35f - 0x1) % 0x8;
+      for (var _0xca2525 = _0x44a86e - 0x1; _0xca2525 >= 0x0; _0xca2525--) {
+        _0x59a8b8 = 0x0;
+        var _0xb317a8 = !![];
+        for (var _0x4148c2 = _0x33c35f - 0x1; _0x4148c2 >= 0x0; _0x4148c2--) {
+          var _0x4711d7 = _0x4148c2 + _0xca2525 * _0x33c35f,
+            _0x24da29 = _0x4711d7 * 0x4;
+          var _0x49ad50 = _0x409225[_0x24da29] * 0.299 + _0x409225[_0x24da29 + 0x1] * 0.587 + _0x409225[_0x24da29 + 0x2] * 0.114,
+            _0x10ecfa = _0x1dca04[_0x24da29] * 0.299 + _0x1dca04[_0x24da29 + 0x1] * 0.587 + _0x1dca04[_0x24da29 + 0x2] * 0.114;
+          var _0x18b162 = 0x80;
+          if (_0x4148c2 % 0x8 == _0xe41874) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0x7f, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0x7f;else {
+            if (_0x4148c2 % 0x8 == (_0xe41874 - 0x1 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xbf, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xbf;else {
+              if (_0x4148c2 % 0x8 == (_0xe41874 - 0x2 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xdf, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xdf;else {
+                if (_0x4148c2 % 0x8 == (_0xe41874 - 0x3 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xef, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xef;else {
+                  if (_0x4148c2 % 0x8 == (_0xe41874 - 0x4 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xf7, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xf7;else {
+                    if (_0x4148c2 % 0x8 == (_0xe41874 - 0x5 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xfb, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xfb;else {
+                      if (_0x4148c2 % 0x8 == (_0xe41874 - 0x6 + 0x8) % 0x8) _0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xfd, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xfd;else _0x4148c2 % 0x8 == (_0xe41874 - 0x7 + 0x8) % 0x8 && (_0x348852 &= _0x49ad50 < _0x18b162 ? 0xff : 0xfe, _0x4906d4 &= _0x10ecfa < _0x18b162 ? 0xff : 0xfe, _0x3d9184[_0x32b5ef(0x1d7)](_0x59a8b8, _0x348852), _0x421cdb && (_0x421cdb = _0x348852 == 0x0), _0xb317a8 && (_0xb317a8 = _0x348852 == _0x4906d4), _0x4906d4 = 0xff, _0x348852 = 0xff, _0x59a8b8++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x4148c2 == 0x0) {
+            if (_0x4148c2 % 0x8 != (_0xe41874 - 0x7 + 0x8) % 0x8) {
+              var _0x2c0241 = 0x8 - _0x33c35f % 0x8;
+              _0x348852 = _0x348852 >> _0x2c0241 << _0x2c0241, _0x3d9184['setUint8'](_0x59a8b8, _0x348852), _0x59a8b8 = 0x0, _0x421cdb && (_0x421cdb = _0x348852 == 0x0);
+            }
+            if (_0xb317a8) {
+              if (_0xca2525 == 0x0) {
+                if (_0x2904a7 != null) {
+                  var _0x35bb44 = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                  _0x3cfd48[_0x32b5ef(0x1fb)](_0x35bb44);
+                }
+                var _0x33e93a = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                _0x3cfd48 = [], _0x33e93a[_0x32b5ef(0x1da)] > 0x0 && _0x43489e['push'](_0x33e93a), _0x2904a7 = null;
+              }
+            } else {
+              if (_0x8ec8b7 == 0x0) {
+                _0x2dc54c = _0x2b510f, _0x8ec8b7++, _0x39056c++, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                ;
+                _0x4d04c1 = _0x421cdb;
+              } else {
+                _0x8ec8b7++;
+                if (_0x2dc54c + _0x39056c == _0x2b510f) {
+                  if (_0x2904a7 == null) {
+                    _0x2904a7 = _0x339970['slice'](0x0, _0x422f63);
+                    ;
+                    _0x4d04c1 = _0x421cdb, _0x2dc54c = _0x2b510f, _0x39056c = 0x1;
+                  } else {
+                    var _0x349bc2 = DataUntils[_0x32b5ef(0x1f9)](_0x2904a7),
+                      _0x190fd2 = DataUntils[_0x32b5ef(0x1f9)](_0x339970);
+                    if (_0x349bc2 == _0x190fd2) _0x39056c++;else {
+                      var _0x234577 = DataUntils['doCreateBuffer'](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                      _0x3cfd48[_0x32b5ef(0x1fb)](_0x234577), _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb;
+                    }
+                  }
+                } else {
+                  if (_0x2904a7 == null) {
+                    _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970['slice'](0x0, _0x422f63);
+                    ;
+                    _0x4d04c1 = _0x421cdb;
+                  } else {
+                    var _0x2169ec = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                    _0x3cfd48[_0x32b5ef(0x1fb)](_0x2169ec), _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                    ;
+                    _0x4d04c1 = _0x421cdb;
+                  }
+                }
+                if (_0x39056c > 0x0 && _0x39056c % _0x3e4c3d == 0x0 || _0xca2525 == 0x0 || _0x8ec8b7 % _0x3e4c3d == 0x0) {
+                  if (_0x2904a7 != null) {
+                    var _0xdb8b39 = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                    _0x3cfd48['push'](_0xdb8b39);
+                  }
+                  var _0x5ae341 = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                  _0x3cfd48 = [], _0x5ae341[_0x32b5ef(0x1da)] > 0x0 && _0x43489e[_0x32b5ef(0x1fb)](_0x5ae341), _0x2904a7 = null;
+                }
+              }
+            }
+            _0x2b510f++;
+            var _0x10d688 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+            if (_0x4463e1 == null) _0x4463e1 = _0x10d688[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x1d9c84++, _0x446319 = _0x421cdb;else {
+              var _0x46fb93 = DataUntils[_0x32b5ef(0x1f9)](_0x4463e1),
+                _0x22b974 = DataUntils[_0x32b5ef(0x1f9)](_0x10d688);
+              var _0x2fa68d = ![],
+                _0x51cc28 = ![];
+              if ((_0x1d9c84 + _0x4ece71) % _0x3e4c3d == 0x0 && _0x1d9c84 > 0x0) {
+                _0x51cc28 = !![];
+                var _0x136cf9 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x4463e1, _0x4ece71, _0x1d9c84);
+                _0x4667a6['push'](_0x136cf9);
+                var _0x4ddf91 = _0x4667a6[_0x32b5ef(0x1df)](0x0, _0x4667a6[_0x32b5ef(0x1da)]),
+                  _0xbe0f4a = DataUntils[_0x32b5ef(0x1e5)](_0x4ddf91, _0x5eb54c);
+                _0x4667a6[_0x32b5ef(0x1d9)](0x0, _0x4667a6[_0x32b5ef(0x1da)]), _0x1731df[_0x32b5ef(0x1fb)](_0xbe0f4a), _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x0;
+              }
+              _0x46fb93 == _0x22b974 && (_0x1d9c84++, _0x2fa68d = !![]);
+              if (!_0x2fa68d) {
+                var _0x39a037 = null;
+                if (_0x19ca02['left'] > 0x0) {
+                  var _0xf77e81 = parseInt(_0x19ca02[_0x32b5ef(0x20b)] / 0x8);
+                  _0x39a037 = _0x4463e1[_0x32b5ef(0x1df)](_0xf77e81, _0x4463e1[_0x32b5ef(0x1f5)] - _0xf77e81);
+                }
+                if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                  var _0x30f95e = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                  _0x39a037 != null ? _0x39a037 = _0x39a037['slice'](0x0, _0x39a037['byteLength'] - _0x30f95e) : _0x39a037 = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x30f95e);
+                }
+                _0x39a037 == null && (_0x39a037 = _0x4463e1);
+                if (_0x1d9c84 > 0x0) {
+                  var _0xcbbc4b = DataUntils['doCreateBuffer'](_0x446319, _0x39a037, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                  _0x4667a6[_0x32b5ef(0x1fb)](_0xcbbc4b);
+                }
+                _0x4463e1 = _0x10d688[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x446319 = _0x421cdb, _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x1;
+              }
+              if (_0xca2525 == 0x0) {
+                if (!_0x51cc28) {
+                  var _0x351754 = null;
+                  if (_0x19ca02[_0x32b5ef(0x20b)] > 0x0) {
+                    var _0xd00644 = parseInt(_0x19ca02['left'] / 0x8);
+                    _0x351754 = _0x4463e1['slice'](_0xd00644, _0x4463e1[_0x32b5ef(0x1f5)] - _0xd00644);
+                  }
+                  if (_0x19ca02['right'] > 0x0) {
+                    var _0x5708d7 = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                    _0x351754 != null ? _0x351754 = _0x351754[_0x32b5ef(0x1df)](0x0, _0x351754['byteLength'] - _0x5708d7) : _0x351754 = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x5708d7);
+                  }
+                  _0x351754 == null && (_0x351754 = _0x4463e1);
+                  var _0x598ce8 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x351754, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                  _0x4667a6[_0x32b5ef(0x1fb)](_0x598ce8);
+                  var _0x2bd225 = DataUntils['deal120ByteArray'](_0x4667a6, _0x5eb54c);
+                  _0x1731df[_0x32b5ef(0x1fb)](_0x2bd225);
+                }
+              }
+            }
+            _0x421cdb = !![], _0x348852 = 0xff;
+          }
+        }
+      }
+      var _0x1fd42b = {
+        '0': _0x1731df,
+        '1': _0x43489e,
+        '2': _0x8ec8b7
+      };
+      return _0x1fd42b;
+    } else {
+      if (_0x4f667a == 0x10e) {
+        for (var _0xca2525 = _0x33c35f - 0x1; _0xca2525 >= 0x0; _0xca2525--) {
+          _0x59a8b8 = 0x0;
+          var _0xb317a8 = !![];
+          for (var _0x4148c2 = 0x0; _0x4148c2 < _0x44a86e; _0x4148c2++) {
+            var _0x4d2e8b = _0x4148c2 * _0x33c35f + _0xca2525,
+              _0x5bc0c0 = _0x4d2e8b * 0x4;
+            var _0x49ad50 = _0x409225[_0x5bc0c0] * 0.299 + _0x409225[_0x5bc0c0 + 0x1] * 0.587 + _0x409225[_0x5bc0c0 + 0x2] * 0.114,
+              _0x10ecfa = _0x1dca04[_0x5bc0c0] * 0.299 + _0x1dca04[_0x5bc0c0 + 0x1] * 0.587 + _0x1dca04[_0x5bc0c0 + 0x2] * 0.114;
+            var _0x475c61 = 0x80;
+            if (_0x4148c2 % 0x8 == 0x0) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0x7f, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0x7f;else {
+              if (_0x4148c2 % 0x8 == 0x1) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xbf, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xbf;else {
+                if (_0x4148c2 % 0x8 == 0x2) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xdf, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xdf;else {
+                  if (_0x4148c2 % 0x8 == 0x3) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xef, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xef;else {
+                    if (_0x4148c2 % 0x8 == 0x4) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xf7, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xf7;else {
+                      if (_0x4148c2 % 0x8 == 0x5) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xfb, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xfb;else {
+                        if (_0x4148c2 % 0x8 == 0x6) _0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xfd, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xfd;else _0x4148c2 % 0x8 == 0x7 && (_0x348852 &= _0x49ad50 < _0x475c61 ? 0xff : 0xfe, _0x4906d4 &= _0x10ecfa < _0x475c61 ? 0xff : 0xfe, _0x3d9184['setUint8'](_0x59a8b8, _0x348852), _0x421cdb && (_0x421cdb = _0x348852 == 0x0), _0xb317a8 && (_0xb317a8 = _0x348852 == _0x4906d4), _0x4906d4 = 0xff, _0x348852 = 0xff, _0x59a8b8++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x4148c2 == _0x44a86e - 0x1) {
+              if (_0x4148c2 % 0x8 != 0x7) {
+                var _0x24d512 = 0x8 - _0x44a86e % 0x8;
+                _0x348852 = _0x348852 >> _0x24d512 << _0x24d512, _0x3d9184[_0x32b5ef(0x1d7)](_0x59a8b8, _0x348852), _0x59a8b8 = 0x0, _0x421cdb && (_0x421cdb = _0x348852 == 0x0);
+              }
+              if (_0xb317a8) {
+                if (_0xca2525 == 0x0) {
+                  if (_0x2904a7 != null) {
+                    var _0x1729cb = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                    _0x3cfd48[_0x32b5ef(0x1fb)](_0x1729cb);
+                  }
+                  var _0x19d8cc = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                  _0x3cfd48 = [], _0x19d8cc[_0x32b5ef(0x1da)] > 0x0 && _0x43489e[_0x32b5ef(0x1fb)](_0x19d8cc), _0x2904a7 = null;
+                }
+              } else {
+                if (_0x8ec8b7 == 0x0) {
+                  _0x2dc54c = _0x2b510f, _0x8ec8b7++, _0x39056c++, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                  ;
+                  _0x4d04c1 = _0x421cdb;
+                } else {
+                  _0x8ec8b7++;
+                  if (_0x2dc54c + _0x39056c == _0x2b510f) {
+                    if (_0x2904a7 == null) {
+                      _0x2904a7 = _0x339970['slice'](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb, _0x2dc54c = _0x2b510f, _0x39056c = 0x1;
+                    } else {
+                      var _0x5d9615 = DataUntils[_0x32b5ef(0x1f9)](_0x2904a7),
+                        _0x31c268 = DataUntils['ab2hex'](_0x339970);
+                      if (_0x5d9615 == _0x31c268) _0x39056c++;else {
+                        var _0x376414 = DataUntils['doCreateBuffer'](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                        _0x3cfd48[_0x32b5ef(0x1fb)](_0x376414), _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                        ;
+                        _0x4d04c1 = _0x421cdb;
+                      }
+                    }
+                  } else {
+                    if (_0x2904a7 == null) {
+                      _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb;
+                    } else {
+                      var _0x7777ac = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                      _0x3cfd48[_0x32b5ef(0x1fb)](_0x7777ac), _0x2dc54c = _0x2b510f, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb;
+                    }
+                  }
+                  if (_0x39056c > 0x0 && _0x39056c % _0x3e4c3d == 0x0 || _0xca2525 == 0x0 || _0x8ec8b7 % _0x3e4c3d == 0x0) {
+                    if (_0x2904a7 != null) {
+                      var _0x1fd400 = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                      _0x3cfd48[_0x32b5ef(0x1fb)](_0x1fd400);
+                    }
+                    var _0x1f2680 = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                    _0x3cfd48 = [], _0x1f2680[_0x32b5ef(0x1da)] > 0x0 && _0x43489e[_0x32b5ef(0x1fb)](_0x1f2680), _0x2904a7 = null;
+                  }
+                }
+              }
+              _0x2b510f++;
+              var _0xab9671 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+              if (_0x4463e1 == null) _0x4463e1 = _0xab9671[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x1d9c84++, _0x446319 = _0x421cdb;else {
+                var _0x20759c = DataUntils[_0x32b5ef(0x1f9)](_0x4463e1),
+                  _0x298d27 = DataUntils[_0x32b5ef(0x1f9)](_0xab9671);
+                var _0x2fa68d = ![],
+                  _0x51cc28 = ![];
+                if ((_0x1d9c84 + _0x4ece71) % _0x3e4c3d == 0x0 && _0x1d9c84 > 0x0) {
+                  _0x51cc28 = !![];
+                  var _0x2d124e = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x4463e1, _0x4ece71, _0x1d9c84);
+                  _0x4667a6['push'](_0x2d124e);
+                  var _0x3dae1c = _0x4667a6[_0x32b5ef(0x1df)](0x0, _0x4667a6[_0x32b5ef(0x1da)]),
+                    _0x35886e = DataUntils[_0x32b5ef(0x1e5)](_0x3dae1c, _0x5eb54c);
+                  _0x4667a6[_0x32b5ef(0x1d9)](0x0, _0x4667a6['length']), _0x1731df[_0x32b5ef(0x1fb)](_0x35886e), _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x0;
+                }
+                _0x20759c == _0x298d27 && (_0x1d9c84++, _0x2fa68d = !![]);
+                if (!_0x2fa68d) {
+                  var _0x58c2a0 = null;
+                  if (_0x19ca02[_0x32b5ef(0x20b)] > 0x0) {
+                    var _0x54fc0e = parseInt(_0x19ca02['left'] / 0x8);
+                    _0x58c2a0 = _0x4463e1[_0x32b5ef(0x1df)](_0x54fc0e, _0x4463e1[_0x32b5ef(0x1f5)] - _0x54fc0e);
+                  }
+                  if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                    var _0x5aa0d6 = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                    _0x58c2a0 != null ? _0x58c2a0 = _0x58c2a0['slice'](0x0, _0x58c2a0[_0x32b5ef(0x1f5)] - _0x5aa0d6) : _0x58c2a0 = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x5aa0d6);
+                  }
+                  _0x58c2a0 == null && (_0x58c2a0 = _0x4463e1);
+                  if (_0x1d9c84 > 0x0) {
+                    var _0x316aee = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x58c2a0, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                    _0x4667a6[_0x32b5ef(0x1fb)](_0x316aee);
+                  }
+                  _0x4463e1 = _0xab9671['slice'](0x0, _0x422f63), _0x446319 = _0x421cdb, _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x1;
+                }
+                if (_0xca2525 == 0x0) {
+                  if (!_0x51cc28) {
+                    var _0x191af5 = null;
+                    if (_0x19ca02[_0x32b5ef(0x20b)] > 0x0) {
+                      var _0x352103 = parseInt(_0x19ca02[_0x32b5ef(0x20b)] / 0x8);
+                      _0x191af5 = _0x4463e1[_0x32b5ef(0x1df)](_0x352103, _0x4463e1[_0x32b5ef(0x1f5)] - _0x352103);
+                    }
+                    if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                      var _0x1f61c0 = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                      _0x191af5 != null ? _0x191af5 = _0x191af5['slice'](0x0, _0x191af5[_0x32b5ef(0x1f5)] - _0x1f61c0) : _0x191af5 = _0x4463e1['slice'](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x1f61c0);
+                    }
+                    _0x191af5 == null && (_0x191af5 = _0x4463e1);
+                    var _0x1f3da6 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x191af5, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                    _0x4667a6[_0x32b5ef(0x1fb)](_0x1f3da6);
+                    var _0x3db474 = DataUntils['deal120ByteArray'](_0x4667a6, _0x5eb54c);
+                    _0x1731df[_0x32b5ef(0x1fb)](_0x3db474);
+                  }
+                }
+              }
+              _0x421cdb = !![], _0x348852 = 0xff;
+            }
+          }
+        }
+        var _0x46ed50 = {
+          '0': _0x1731df,
+          '1': _0x43489e,
+          '2': _0x8ec8b7
+        };
+        return _0x46ed50;
+      } else {
+        for (var _0xca2525 = 0x0; _0xca2525 < _0x44a86e; _0xca2525++) {
+          _0x59a8b8 = 0x0;
+          var _0xb317a8 = !![];
+          for (var _0x4148c2 = 0x0; _0x4148c2 < _0x33c35f; _0x4148c2++) {
+            var _0x1ff31f = _0x4148c2 + _0xca2525 * _0x33c35f,
+              _0x4f9700 = _0x1ff31f * 0x4;
+            var _0x49ad50 = _0x409225[_0x4f9700] * 0.299 + _0x409225[_0x4f9700 + 0x1] * 0.587 + _0x409225[_0x4f9700 + 0x2] * 0.114,
+              _0x10ecfa = _0x1dca04[_0x4f9700] * 0.299 + _0x1dca04[_0x4f9700 + 0x1] * 0.587 + _0x1dca04[_0x4f9700 + 0x2] * 0.114;
+            var _0x27ea19 = 0x80;
+            if (_0x4148c2 % 0x8 == 0x0) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0x7f, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0x7f;else {
+              if (_0x4148c2 % 0x8 == 0x1) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xbf, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xbf;else {
+                if (_0x4148c2 % 0x8 == 0x2) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xdf, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xdf;else {
+                  if (_0x4148c2 % 0x8 == 0x3) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xef, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xef;else {
+                    if (_0x4148c2 % 0x8 == 0x4) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xf7, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xf7;else {
+                      if (_0x4148c2 % 0x8 == 0x5) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xfb, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xfb;else {
+                        if (_0x4148c2 % 0x8 == 0x6) _0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xfd, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xfd;else _0x4148c2 % 0x8 == 0x7 && (_0x348852 &= _0x49ad50 < _0x27ea19 ? 0xff : 0xfe, _0x4906d4 &= _0x10ecfa < _0x27ea19 ? 0xff : 0xfe, _0x3d9184[_0x32b5ef(0x1d7)](_0x59a8b8, _0x348852), _0x421cdb && (_0x421cdb = _0x348852 == 0x0), _0xb317a8 && (_0xb317a8 = _0x348852 == _0x4906d4), _0x348852 = 0xff, _0x4906d4 = 0xff, _0x59a8b8++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x4148c2 == _0x33c35f - 0x1) {
+              if (_0x4148c2 % 0x8 != 0x7) {
+                var _0x455307 = 0x8 - _0x33c35f % 0x8;
+                _0x348852 = _0x348852 >> _0x455307 << _0x455307, _0x3d9184[_0x32b5ef(0x1d7)](_0x59a8b8, _0x348852), _0x59a8b8 = 0x0, _0x421cdb && (_0x421cdb = _0x348852 == 0x0);
+              }
+              if (_0xb317a8) {
+                if (_0xca2525 == _0x44a86e - 0x1) {
+                  if (_0x2904a7 != null) {
+                    var _0x37201e = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                    _0x3cfd48['push'](_0x37201e);
+                  }
+                  var _0x2cced2 = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                  _0x3cfd48 = [], _0x2cced2[_0x32b5ef(0x1da)] > 0x0 && _0x43489e['push'](_0x2cced2), _0x2904a7 = null;
+                }
+              } else {
+                if (_0x8ec8b7 == 0x0) {
+                  _0x2dc54c = _0xca2525, _0x8ec8b7++, _0x39056c++, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                  ;
+                  _0x4d04c1 = _0x421cdb;
+                } else {
+                  _0x8ec8b7++;
+                  if (_0x2dc54c + _0x39056c == _0xca2525) {
+                    if (_0x2904a7 == null) {
+                      _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb, _0x2dc54c = _0xca2525, _0x39056c = 0x1;
+                    } else {
+                      var _0x56f514 = DataUntils[_0x32b5ef(0x1f9)](_0x2904a7),
+                        _0x272237 = DataUntils[_0x32b5ef(0x1f9)](_0x339970);
+                      if (_0x56f514 == _0x272237) _0x39056c++;else {
+                        var _0x3a3947 = DataUntils['doCreateBuffer'](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                        _0x3cfd48[_0x32b5ef(0x1fb)](_0x3a3947), _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970['slice'](0x0, _0x422f63);
+                        ;
+                        _0x4d04c1 = _0x421cdb;
+                      }
+                    }
+                  } else {
+                    if (_0x2904a7 == null) {
+                      _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb;
+                    } else {
+                      var _0x593f3f = DataUntils['doCreateBuffer'](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                      _0x3cfd48[_0x32b5ef(0x1fb)](_0x593f3f), _0x2dc54c = _0xca2525, _0x39056c = 0x1, _0x2904a7 = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+                      ;
+                      _0x4d04c1 = _0x421cdb;
+                    }
+                  }
+                  if (_0x39056c > 0x0 && _0x39056c % _0x3e4c3d == 0x0 || _0xca2525 == _0x44a86e - 0x1 || _0x8ec8b7 % _0x3e4c3d == 0x0) {
+                    if (_0x2904a7 != null) {
+                      var _0xc024be = DataUntils[_0x32b5ef(0x213)](_0x4d04c1, _0x2904a7, _0x2dc54c, _0x39056c);
+                      _0x3cfd48['push'](_0xc024be);
+                    }
+                    var _0x3a9625 = DataUntils[_0x32b5ef(0x1e5)](_0x3cfd48, _0x5eb54c);
+                    _0x3cfd48 = [], _0x3a9625[_0x32b5ef(0x1da)] > 0x0 && _0x43489e[_0x32b5ef(0x1fb)](_0x3a9625), _0x2904a7 = null;
+                  }
+                }
+              }
+              var _0x5392ec = _0x339970[_0x32b5ef(0x1df)](0x0, _0x422f63);
+              if (_0x4463e1 == null) _0x4463e1 = _0x5392ec['slice'](0x0, _0x422f63), _0x1d9c84++, _0x446319 = _0x421cdb;else {
+                var _0x101f01 = DataUntils[_0x32b5ef(0x1f9)](_0x4463e1),
+                  _0x14e67c = DataUntils[_0x32b5ef(0x1f9)](_0x5392ec);
+                var _0x2fa68d = ![],
+                  _0x51cc28 = ![];
+                if ((_0x1d9c84 + _0x4ece71) % _0x3e4c3d == 0x0 && _0x1d9c84 > 0x0) {
+                  _0x51cc28 = !![];
+                  var _0x5bf007 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x4463e1, _0x4ece71, _0x1d9c84);
+                  _0x4667a6['push'](_0x5bf007);
+                  var _0x1adb0f = _0x4667a6['slice'](0x0, _0x4667a6[_0x32b5ef(0x1da)]),
+                    _0xd97ff3 = DataUntils[_0x32b5ef(0x1e5)](_0x1adb0f, _0x5eb54c);
+                  _0x4667a6['splice'](0x0, _0x4667a6[_0x32b5ef(0x1da)]), _0x1731df[_0x32b5ef(0x1fb)](_0xd97ff3), _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x0;
+                }
+                _0x101f01 == _0x14e67c && (_0x1d9c84++, _0x2fa68d = !![]);
+                if (!_0x2fa68d) {
+                  var _0x510e7c = null;
+                  if (_0x19ca02[_0x32b5ef(0x20b)] > 0x0) {
+                    var _0x45c48f = parseInt(_0x19ca02[_0x32b5ef(0x20b)] / 0x8);
+                    _0x510e7c = _0x4463e1[_0x32b5ef(0x1df)](_0x45c48f, _0x4463e1[_0x32b5ef(0x1f5)] - _0x45c48f);
+                  }
+                  if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                    var _0x24088f = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                    _0x510e7c != null ? _0x510e7c = _0x510e7c[_0x32b5ef(0x1df)](0x0, _0x510e7c[_0x32b5ef(0x1f5)] - _0x24088f) : _0x510e7c = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1[_0x32b5ef(0x1f5)] - _0x24088f);
+                  }
+                  _0x510e7c == null && (_0x510e7c = _0x4463e1);
+                  if (_0x1d9c84 > 0x0) {
+                    var _0xcf1996 = DataUntils[_0x32b5ef(0x213)](_0x446319, _0x510e7c, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                    _0x4667a6[_0x32b5ef(0x1fb)](_0xcf1996);
+                  }
+                  _0x4463e1 = _0x5392ec[_0x32b5ef(0x1df)](0x0, _0x422f63), _0x446319 = _0x421cdb, _0x4ece71 += _0x1d9c84, _0x1d9c84 = 0x1;
+                }
+                if (_0xca2525 == _0x44a86e - 0x1) {
+                  if (!_0x51cc28) {
+                    var _0x19e866 = null;
+                    if (_0x19ca02['left'] > 0x0) {
+                      var _0x4cae37 = parseInt(_0x19ca02['left'] / 0x8);
+                      _0x19e866 = _0x4463e1[_0x32b5ef(0x1df)](_0x4cae37, _0x4463e1[_0x32b5ef(0x1f5)] - _0x4cae37);
+                    }
+                    if (_0x19ca02[_0x32b5ef(0x1d6)] > 0x0) {
+                      var _0x4828aa = parseInt(_0x19ca02[_0x32b5ef(0x1d6)] / 0x8);
+                      _0x19e866 != null ? _0x19e866 = _0x19e866['slice'](0x0, _0x19e866[_0x32b5ef(0x1f5)] - _0x4828aa) : _0x19e866 = _0x4463e1[_0x32b5ef(0x1df)](0x0, _0x4463e1['byteLength'] - _0x4828aa);
+                    }
+                    _0x19e866 == null && (_0x19e866 = _0x4463e1);
+                    var _0xe3a229 = DataUntils['doCreateBuffer'](_0x446319, _0x19e866, _0x4ece71, _0x1d9c84, _0x4efdf2);
+                    _0x4667a6['push'](_0xe3a229);
+                    var _0x334e88 = DataUntils['deal120ByteArray'](_0x4667a6, _0x5eb54c);
+                    _0x1731df[_0x32b5ef(0x1fb)](_0x334e88);
+                  }
+                }
+              }
+              _0x421cdb = !![], _0x348852 = 0xff;
+            }
+          }
+        }
+        var _0x17e5a7 = {
+          '0': _0x1731df,
+          '1': _0x43489e,
+          '2': _0x8ec8b7
+        };
+        return _0x17e5a7;
+      }
+    }
+  }
+}, DataUntils[a0_0x268a7d(0x20d)] = function (_0x3380c2, _0x418344, _0x226b05, _0x32c028) {
+  var _0x3198f5 = a0_0x268a7d;
+  var _0x37da3b = [];
+  var _0x22ff67 = _0x418344,
+    _0x1762e9 = new Uint8Array(_0x226b05),
+    _0x2650df = 0x0;
+  for (var _0x214844 = 0x0; _0x214844 < _0x3380c2[_0x3198f5(0x1da)]; _0x214844++) {
+    var _0x2b529c = _0x3380c2[_0x214844],
+      _0x2e3584 = new DataView(_0x2b529c);
+    for (var _0x901a23 = 0x0; _0x901a23 < _0x2b529c[_0x3198f5(0x1f5)]; _0x901a23++) {
+      _0x1762e9[_0x2650df] = _0x2e3584[_0x3198f5(0x1e7)](_0x901a23), _0x2650df++;
+    }
+  }
+  var _0x2f943c = {
+      'inputBuffer': _0x1762e9,
+      'outputBuffer': null
+    },
+    _0x3c0048 = _lzo1x.default[_0x3198f5(0x1ef)][_0x3198f5(0x211)](_0x2f943c);
+  _0x2650df = 0x0;
+  if (_0x2f943c[_0x3198f5(0x200)] != null) {
+    _0x2f943c['outputBuffer'] = DataUntils[_0x3198f5(0x218)](_0x32c028, _0x2f943c[_0x3198f5(0x200)]);
+    while (_0x2650df < _0x2f943c[_0x3198f5(0x200)][_0x3198f5(0x1f5)]) {
+      var _0x346d2f = _0x22ff67;
+      _0x2650df + _0x22ff67 >= _0x2f943c['outputBuffer']['byteLength'] && (_0x346d2f = _0x2f943c[_0x3198f5(0x200)]['byteLength'] - _0x2650df);
+      var _0x352502 = _0x2f943c['outputBuffer']['slice'](_0x2650df, _0x346d2f + _0x2650df);
+      _0x37da3b['push'](_0x352502), _0x2650df += _0x22ff67;
+    }
+  }
+  return _0x37da3b;
+}, DataUntils[a0_0x268a7d(0x218)] = function (_0x3a4d70, _0x5603c1) {
+  var _0x4ab84d = a0_0x268a7d;
+  var _0x18b295 = 0x87,
+    _0x5c8940 = _0x5603c1['byteLength'] + 0x2,
+    _0x3c9a46 = 0x0;
+  var _0xd3aebf = _0x5c8940 / 0x100,
+    _0x296525 = _0x5c8940 % 0x100,
+    _0x349533 = _0x3a4d70 / 0x100,
+    _0x4e221a = _0x3a4d70 % 0x100;
+  _0x3c9a46 ^= _0x349533 ^ _0x4e221a ^ _0xd3aebf ^ _0x296525 ^ _0x18b295;
+  var _0x4f2704 = new ArrayBuffer(_0x5c8940 + 0xa),
+    _0x384c5a = new DataView(_0x4f2704);
+  _0x384c5a['setUint8'](0x0, 0x55), _0x384c5a[_0x4ab84d(0x1d7)](0x1, 0x55), _0x384c5a[_0x4ab84d(0x1d7)](0x2, _0x18b295), _0x384c5a[_0x4ab84d(0x1d7)](0x3, _0xd3aebf), _0x384c5a['setUint8'](0x4, _0x296525), _0x384c5a[_0x4ab84d(0x1d7)](0x5, _0x349533), _0x384c5a['setUint8'](0x6, _0x4e221a);
+  for (var _0x30945b = 0x0; _0x30945b < _0x5603c1['byteLength']; _0x30945b++) {
+    _0x384c5a[_0x4ab84d(0x1d7)](0x7 + _0x30945b, _0x5603c1[_0x30945b]), _0x3c9a46 ^= _0x5603c1[_0x30945b];
+  }
+  return _0x384c5a[_0x4ab84d(0x1d7)](0x7 + _0x5603c1[_0x4ab84d(0x1f5)], _0x3c9a46), _0x384c5a[_0x4ab84d(0x1d7)](0x8 + _0x5603c1[_0x4ab84d(0x1f5)], 0xaa), _0x384c5a['setUint8'](0x9 + _0x5603c1[_0x4ab84d(0x1f5)], 0xaa), _0x4f2704;
+}, DataUntils['deal120TotalPictureByteArrayWithZip'] = function (_0x3504c1, _0x34f781, _0x39743d, _0x31fb9e) {
+  var _0x16c8f1 = a0_0x268a7d;
+  var _0x5d6906 = [];
+  var _0x43d873 = _0x34f781,
+    _0x23b92d = new Uint8Array(_0x39743d),
+    _0x5e60c3 = 0x0;
+  for (var _0x303ade = 0x0; _0x303ade < _0x3504c1[_0x16c8f1(0x1da)]; _0x303ade++) {
+    var _0x578eab = _0x3504c1[_0x303ade],
+      _0x16d7be = new DataView(_0x578eab);
+    for (var _0xb20a97 = 0x0; _0xb20a97 < _0x578eab[_0x16c8f1(0x1f5)]; _0xb20a97++) {
+      _0x23b92d[_0x5e60c3] = _0x16d7be[_0x16c8f1(0x1e7)](_0xb20a97), _0x5e60c3++;
+    }
+  }
+  var _0x59df0d = {
+      'inputBuffer': _0x23b92d,
+      'outputBuffer': null
+    },
+    _0x482662 = _lzo1x.default[_0x16c8f1(0x1ef)][_0x16c8f1(0x211)](_0x59df0d);
+  _0x5e60c3 = 0x0;
+  if (_0x59df0d['outputBuffer'] != null) {
+    _0x59df0d[_0x16c8f1(0x200)] = DataUntils[_0x16c8f1(0x1f4)](_0x31fb9e, _0x59df0d['outputBuffer']);
+    while (_0x5e60c3 < _0x59df0d[_0x16c8f1(0x200)][_0x16c8f1(0x1f5)]) {
+      var _0x22daa8 = _0x43d873;
+      _0x5e60c3 + _0x43d873 >= _0x59df0d[_0x16c8f1(0x200)][_0x16c8f1(0x1f5)] && (_0x22daa8 = _0x59df0d[_0x16c8f1(0x200)][_0x16c8f1(0x1f5)] - _0x5e60c3);
+      var _0xa3bdd8 = _0x59df0d[_0x16c8f1(0x200)][_0x16c8f1(0x1df)](_0x5e60c3, _0x22daa8 + _0x5e60c3);
+      _0x5d6906['push'](_0xa3bdd8), _0x5e60c3 += _0x43d873;
+    }
+  }
+  return _0x5d6906;
+}, DataUntils[a0_0x268a7d(0x1f4)] = function (_0x5aa158, _0x46838e) {
+  var _0x51f0f9 = a0_0x268a7d;
+  var _0x4f5322 = 0xa7,
+    _0x2eecd6 = _0x46838e[_0x51f0f9(0x1f5)] + 0x2,
+    _0x21e563 = 0x0;
+  var _0x433151 = _0x2eecd6 >> 0x18,
+    _0x53a9b7 = _0x2eecd6 >> 0x10,
+    _0x5d8e61 = _0x2eecd6 >> 0x8,
+    _0x39e565 = _0x2eecd6 % 0x100,
+    _0x52fe68 = _0x5aa158 / 0x100,
+    _0x42b920 = _0x5aa158 % 0x100;
+  _0x21e563 ^= _0x52fe68 ^ _0x42b920 ^ _0x433151 ^ _0x53a9b7 ^ _0x5d8e61 ^ _0x39e565 ^ _0x4f5322;
+  var _0x57b11c = new ArrayBuffer(_0x2eecd6 + 0xc),
+    _0x1644a2 = new DataView(_0x57b11c);
+  _0x1644a2[_0x51f0f9(0x1d7)](0x0, 0x55), _0x1644a2[_0x51f0f9(0x1d7)](0x1, 0x55), _0x1644a2['setUint8'](0x2, _0x4f5322), _0x1644a2[_0x51f0f9(0x1d7)](0x3, _0x433151), _0x1644a2['setUint8'](0x4, _0x53a9b7), _0x1644a2[_0x51f0f9(0x1d7)](0x5, _0x5d8e61), _0x1644a2[_0x51f0f9(0x1d7)](0x6, _0x39e565), _0x1644a2[_0x51f0f9(0x1d7)](0x7, _0x52fe68), _0x1644a2[_0x51f0f9(0x1d7)](0x8, _0x42b920);
+  for (var _0x1534cd = 0x0; _0x1534cd < _0x46838e[_0x51f0f9(0x1f5)]; _0x1534cd++) {
+    _0x1644a2[_0x51f0f9(0x1d7)](0x9 + _0x1534cd, _0x46838e[_0x1534cd]), _0x21e563 ^= _0x46838e[_0x1534cd];
+  }
+  return _0x1644a2['setUint8'](0x9 + _0x46838e['byteLength'], _0x21e563), _0x1644a2[_0x51f0f9(0x1d7)](0xa + _0x46838e[_0x51f0f9(0x1f5)], 0xaa), _0x1644a2[_0x51f0f9(0x1d7)](0xb + _0x46838e[_0x51f0f9(0x1f5)], 0xaa), _0x57b11c;
+}, DataUntils['compareTotalImageDataWithZip'] = function (_0x584667, _0x5e98dd, _0x4d2abf) {
+  var _0x51b009 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x64;
+  var _0x1df044 = arguments.length > 4 ? arguments[4] : undefined;
+  var _0x3f038d = arguments.length > 5 ? arguments[5] : undefined;
+  var _0x20733b = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0xc8;
+  var _0x1909a4 = a0_0x268a7d;
+  var _0x5d4fb4 = 0x1800;
+  _0x3f038d > 0x0 && (_0x5d4fb4 = _0x3f038d);
+  _0x5d4fb4 -= 0xc;
+  var _0x22c0c4 = _0x584667[_0x1909a4(0x1e1)],
+    _0x3d778c = _0x584667[_0x1909a4(0x1f7)];
+  var _0x3b2e62 = 0x8;
+  var _0xc443e0 = parseInt((_0x22c0c4 - 0x1) / _0x3b2e62 + 0x1);
+  _0x1df044 % 0xb4 == 0x5a && (_0xc443e0 = parseInt((_0x3d778c - 0x1) / _0x3b2e62 + 0x1));
+  var _0x52f101 = new ArrayBuffer(_0xc443e0),
+    _0x3ad5e4 = new DataView(_0x52f101),
+    _0x17d9fb = _0x584667[_0x1909a4(0x212)],
+    _0x56676a = parseInt(_0x5d4fb4 / _0xc443e0);
+  _0x56676a > _0x20733b && (_0x56676a = _0x20733b);
+  var _0x313d71 = 0x0,
+    _0x2764f0 = [],
+    _0x7ff5cc = [],
+    _0x2dd02a = [],
+    _0x3e332c = 0x0,
+    _0x32dfcd = 0xff;
+  var _0x5d2abe = 0x1;
+  if (_0x1df044 == 0x5a) {
+    var _0x1f37f4 = (_0x3d778c - 0x1) % 0x8;
+    for (var _0x44d310 = 0x0; _0x44d310 < _0x22c0c4; _0x44d310++) {
+      _0x313d71 = 0x0;
+      for (var _0x13f38e = _0x3d778c - 0x1; _0x13f38e >= 0x0; _0x13f38e--) {
+        var _0x29c327 = _0x13f38e * _0x22c0c4 + _0x44d310,
+          _0x172c88 = _0x29c327 * 0x4;
+        var _0x3f9f82 = _0x17d9fb[_0x172c88] * 0.299 + _0x17d9fb[_0x172c88 + 0x1] * 0.587 + _0x17d9fb[_0x172c88 + 0x2] * 0.114;
+        var _0x4f52fa = 0x80;
+        if (_0x13f38e % 0x8 == _0x1f37f4) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0x7f;else {
+          if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x1 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xbf;else {
+            if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x2 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xdf;else {
+              if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x3 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xef;else {
+                if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x4 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xf7;else {
+                  if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x5 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xfb;else {
+                    if (_0x13f38e % 0x8 == (_0x1f37f4 - 0x6 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xfd;else _0x13f38e % 0x8 == (_0x1f37f4 - 0x7 + 0x8) % 0x8 && (_0x32dfcd &= _0x3f9f82 < _0x4f52fa ? 0xff : 0xfe, _0x3ad5e4[_0x1909a4(0x1d7)](_0x313d71, _0x32dfcd), _0x32dfcd = 0xff, _0x313d71++);
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (_0x13f38e == 0x0) {
+          if (_0x13f38e % 0x8 != (_0x1f37f4 - 0x7 + 0x8) % 0x8) {
+            var _0x472e79 = 0x8 - _0x3d778c % 0x8;
+            _0x32dfcd = _0x32dfcd >> _0x472e79 << _0x472e79, _0x3ad5e4['setUint8'](_0x313d71, _0x32dfcd), _0x313d71 = 0x0;
+          }
+          var _0x2bfa5d = _0x52f101[_0x1909a4(0x1df)](0x0, _0xc443e0);
+          _0x2dd02a[_0x1909a4(0x1fb)](_0x2bfa5d);
+          if (_0x44d310 == _0x22c0c4 - 0x1) {
+            var _0x124b5a = _0x3d778c % _0x56676a,
+              _0xca2e4e = _0x124b5a * _0xc443e0,
+              _0x520d29 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0xca2e4e, _0x3e332c);
+            _0x2764f0[_0x1909a4(0x1fb)](_0x520d29), _0x7ff5cc[_0x1909a4(0x1fb)](_0x124b5a), _0x3e332c++;
+          } else {
+            if (_0x44d310 / _0x56676a == _0x5d2abe) {
+              var _0x990f30 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x56676a * _0xc443e0, _0x3e332c);
+              _0x2764f0[_0x1909a4(0x1fb)](_0x990f30), _0x7ff5cc[_0x1909a4(0x1fb)](_0x56676a), _0x2dd02a = [], _0x3e332c++, _0x5d2abe++;
+            }
+          }
+          _0x32dfcd = 0xff;
+        }
+      }
+    }
+  } else {
+    if (_0x1df044 == 0xb4) {
+      var _0x28fb31 = (_0x22c0c4 - 0x1) % 0x8;
+      for (var _0x44d310 = _0x3d778c - 0x1; _0x44d310 >= 0x0; _0x44d310--) {
+        _0x313d71 = 0x0;
+        for (var _0x13f38e = _0x22c0c4 - 0x1; _0x13f38e >= 0x0; _0x13f38e--) {
+          var _0x33a6fd = _0x13f38e + _0x44d310 * _0x22c0c4,
+            _0x4e0c2e = _0x33a6fd * 0x4;
+          var _0x3f9f82 = _0x17d9fb[_0x4e0c2e] * 0.299 + _0x17d9fb[_0x4e0c2e + 0x1] * 0.587 + _0x17d9fb[_0x4e0c2e + 0x2] * 0.114;
+          var _0x46be5 = 0x80;
+          if (_0x13f38e % 0x8 == _0x28fb31) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0x7f;else {
+            if (_0x13f38e % 0x8 == (_0x28fb31 - 0x1 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xbf;else {
+              if (_0x13f38e % 0x8 == (_0x28fb31 - 0x2 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xdf;else {
+                if (_0x13f38e % 0x8 == (_0x28fb31 - 0x3 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xef;else {
+                  if (_0x13f38e % 0x8 == (_0x28fb31 - 0x4 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xf7;else {
+                    if (_0x13f38e % 0x8 == (_0x28fb31 - 0x5 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xfb;else {
+                      if (_0x13f38e % 0x8 == (_0x28fb31 - 0x6 + 0x8) % 0x8) _0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xfd;else _0x13f38e % 0x8 == (_0x28fb31 - 0x7 + 0x8) % 0x8 && (_0x32dfcd &= _0x3f9f82 < _0x46be5 ? 0xff : 0xfe, _0x3ad5e4[_0x1909a4(0x1d7)](_0x313d71, _0x32dfcd), _0x32dfcd = 0xff, _0x313d71++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x13f38e == 0x0) {
+            if (_0x13f38e % 0x8 != (_0x28fb31 - 0x7 + 0x8) % 0x8) {
+              var _0x5410bb = 0x8 - _0x22c0c4 % 0x8;
+              _0x32dfcd = _0x32dfcd >> _0x5410bb << _0x5410bb, _0x3ad5e4[_0x1909a4(0x1d7)](_0x313d71, _0x32dfcd), _0x313d71 = 0x0;
+            }
+            var _0x4a1e3f = _0x52f101[_0x1909a4(0x1df)](0x0, _0xc443e0);
+            _0x2dd02a['push'](_0x4a1e3f);
+            if (_0x44d310 == 0x0) {
+              var _0x5185df = _0x3d778c % _0x56676a,
+                _0x46f5a2 = _0x5185df * _0xc443e0,
+                _0x3cd626 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x46f5a2, _0x3e332c);
+              _0x2764f0[_0x1909a4(0x1fb)](_0x3cd626), _0x7ff5cc[_0x1909a4(0x1fb)](_0x5185df), _0x3e332c++;
+            } else {
+              if (_0x44d310 / _0x56676a == _0x5d2abe) {
+                var _0x184f81 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x56676a * _0xc443e0, _0x3e332c);
+                _0x2764f0['push'](_0x184f81), _0x7ff5cc['push'](_0x56676a), _0x2dd02a = [], _0x3e332c++, _0x5d2abe++;
+              }
+            }
+            _0x32dfcd = 0xff;
+          }
+        }
+      }
+    } else {
+      if (_0x1df044 == 0x10e) for (var _0x44d310 = _0x22c0c4 - 0x1; _0x44d310 >= 0x0; _0x44d310--) {
+        _0x313d71 = 0x0;
+        for (var _0x13f38e = 0x0; _0x13f38e < _0x3d778c; _0x13f38e++) {
+          var _0x279715 = _0x13f38e * _0x22c0c4 + _0x44d310,
+            _0x153cb4 = _0x279715 * 0x4;
+          var _0x3f9f82 = _0x17d9fb[_0x153cb4] * 0.299 + _0x17d9fb[_0x153cb4 + 0x1] * 0.587 + _0x17d9fb[_0x153cb4 + 0x2] * 0.114;
+          var _0x5ce7f6 = 0x80;
+          if (_0x13f38e % 0x8 == 0x0) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0x7f;else {
+            if (_0x13f38e % 0x8 == 0x1) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xbf;else {
+              if (_0x13f38e % 0x8 == 0x2) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xdf;else {
+                if (_0x13f38e % 0x8 == 0x3) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xef;else {
+                  if (_0x13f38e % 0x8 == 0x4) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xf7;else {
+                    if (_0x13f38e % 0x8 == 0x5) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xfb;else {
+                      if (_0x13f38e % 0x8 == 0x6) _0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xfd;else _0x13f38e % 0x8 == 0x7 && (_0x32dfcd &= _0x3f9f82 < _0x5ce7f6 ? 0xff : 0xfe, _0x3ad5e4[_0x1909a4(0x1d7)](_0x313d71, _0x32dfcd), _0x32dfcd = 0xff, _0x313d71++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x13f38e == _0x3d778c - 0x1) {
+            if (_0x13f38e % 0x8 != 0x7) {
+              var _0x358330 = 0x8 - _0x3d778c % 0x8;
+              _0x32dfcd = _0x32dfcd >> _0x358330 << _0x358330, _0x3ad5e4['setUint8'](_0x313d71, _0x32dfcd), _0x313d71 = 0x0;
+            }
+            var _0x165f06 = _0x52f101[_0x1909a4(0x1df)](0x0, _0xc443e0);
+            _0x2dd02a['push'](_0x165f06);
+            if (_0x44d310 == 0x0) {
+              var _0xaa80c2 = _0x3d778c % _0x56676a,
+                _0x2d7e9d = _0xaa80c2 * _0xc443e0,
+                _0x570dc2 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x2d7e9d, _0x3e332c);
+              _0x2764f0[_0x1909a4(0x1fb)](_0x570dc2), _0x7ff5cc['push'](_0xaa80c2), _0x3e332c++;
+            } else {
+              if (_0x44d310 / _0x56676a == _0x5d2abe) {
+                var _0x483998 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x56676a * _0xc443e0, _0x3e332c);
+                _0x2764f0['push'](_0x483998), _0x7ff5cc['push'](_0x56676a), _0x2dd02a = [], _0x3e332c++, _0x5d2abe++;
+              }
+            }
+            _0x32dfcd = 0xff;
+          }
+        }
+      } else for (var _0x44d310 = 0x0; _0x44d310 < _0x3d778c; _0x44d310++) {
+        _0x313d71 = 0x0;
+        for (var _0x13f38e = 0x0; _0x13f38e < _0x22c0c4; _0x13f38e++) {
+          var _0x576c63 = _0x13f38e + _0x44d310 * _0x22c0c4,
+            _0x44fa6e = _0x576c63 * 0x4;
+          var _0x3f9f82 = _0x17d9fb[_0x44fa6e] * 0.299 + _0x17d9fb[_0x44fa6e + 0x1] * 0.587 + _0x17d9fb[_0x44fa6e + 0x2] * 0.114;
+          var _0x3322db = 0x80;
+          if (_0x13f38e % 0x8 == 0x0) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0x7f;else {
+            if (_0x13f38e % 0x8 == 0x1) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xbf;else {
+              if (_0x13f38e % 0x8 == 0x2) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xdf;else {
+                if (_0x13f38e % 0x8 == 0x3) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xef;else {
+                  if (_0x13f38e % 0x8 == 0x4) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xf7;else {
+                    if (_0x13f38e % 0x8 == 0x5) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xfb;else {
+                      if (_0x13f38e % 0x8 == 0x6) _0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xfd;else _0x13f38e % 0x8 == 0x7 && (_0x32dfcd &= _0x3f9f82 < _0x3322db ? 0xff : 0xfe, _0x3ad5e4[_0x1909a4(0x1d7)](_0x313d71, _0x32dfcd), _0x32dfcd = 0xff, _0x313d71++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x13f38e == _0x22c0c4 - 0x1) {
+            if (_0x13f38e % 0x8 != 0x7) {
+              var _0x2de8de = 0x8 - _0x22c0c4 % 0x8;
+              _0x32dfcd = _0x32dfcd >> _0x2de8de << _0x2de8de, _0x3ad5e4['setUint8'](_0x313d71, _0x32dfcd);
+            }
+            var _0x378510 = _0x52f101[_0x1909a4(0x1df)](0x0, _0xc443e0);
+            _0x2dd02a[_0x1909a4(0x1fb)](_0x378510);
+            if (_0x44d310 == _0x3d778c - 0x1) {
+              var _0x302445 = _0x3d778c % _0x56676a,
+                _0x2ffc27 = _0x302445 * _0xc443e0,
+                _0x279111 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x2ffc27, _0x3e332c);
+              _0x2764f0['push'](_0x279111), _0x7ff5cc[_0x1909a4(0x1fb)](_0x302445), _0x3e332c++;
+            } else {
+              if (_0x44d310 / _0x56676a == _0x5d2abe) {
+                var _0x4ddd61 = DataUntils[_0x1909a4(0x1e8)](_0x2dd02a, _0x51b009, _0x56676a * _0xc443e0, _0x3e332c);
+                _0x2764f0[_0x1909a4(0x1fb)](_0x4ddd61), _0x7ff5cc['push'](_0x56676a), _0x2dd02a = [], _0x3e332c++, _0x5d2abe++;
+              }
+            }
+            _0x32dfcd = 0xff;
+          }
+        }
+      }
+    }
+  }
+  var _0x574645 = {
+    '0': _0x2764f0,
+    '3': _0x7ff5cc
+  };
+  return _0x574645;
+}, DataUntils['compareImageDataWithZip'] = function (_0x1c5db2, _0xf5a13e, _0x2628c1) {
+  var _0x3672c3 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x64;
+  var _0x5adaff = arguments.length > 4 ? arguments[4] : undefined;
+  var _0x1de12c = arguments.length > 5 ? arguments[5] : undefined;
+  var _0x34f6ff = arguments.length > 6 ? arguments[6] : undefined;
+  var _0x51c633 = a0_0x268a7d;
+  var _0x4bde42 = 0x1800;
+  _0x34f6ff > 0x0 && (_0x4bde42 = _0x34f6ff);
+  _0x4bde42 -= 0x8;
+  if (_0x1de12c == null) {
+    var _0x22d084 = DataUntils[_0x51c633(0x201)](_0x1c5db2, _0xf5a13e, _0x2628c1, _0x3672c3 = 0x64, _0x5adaff, _0x4bde42);
+    return _0x22d084;
+  }
+  var _0x14a146 = _0x1c5db2[_0x51c633(0x1e1)],
+    _0x3211d2 = _0x1c5db2[_0x51c633(0x1f7)],
+    _0x3d82f0 = _0x1c5db2['data'];
+  var _0x2ae66f = 0xff;
+  var _0x301f87 = 0x8;
+  var _0x33b8f7 = parseInt((_0x14a146 - 0x1) / _0x301f87 + 0x1);
+  _0x5adaff % 0xb4 == 0x5a && (_0x33b8f7 = parseInt((_0x3211d2 - 0x1) / _0x301f87 + 0x1));
+  var _0x36e809 = new ArrayBuffer(_0x33b8f7),
+    _0x264bf2 = new DataView(_0x36e809);
+  var _0x4f9221 = null,
+    _0x1847b1 = 0x0,
+    _0x5bd85f = 0x0,
+    _0x5eccfa = !![],
+    _0x522bda = ![],
+    _0x253d74 = 0x0,
+    _0x2b23ef = [],
+    _0x1463c7 = [],
+    _0x74e07 = 0x0,
+    _0x3649d2 = ![],
+    _0x7b704f = null,
+    _0x4a29f7 = 0x0,
+    _0xed3e2d = 0x0,
+    _0x536e41 = -0x1;
+  var _0x3393f1 = _0x1de12c[_0x51c633(0x212)];
+  var _0x55a945 = [],
+    _0xe8f3b3 = [],
+    _0x2b9198 = 0xff,
+    _0x288527 = 0x0,
+    _0x3b9fef = 0x0,
+    _0x211fec = 0x0,
+    _0x221839 = 0x0,
+    _0x35f9cf = 0x0,
+    _0x2205df = [];
+  if (_0x5adaff == 0x5a) {
+    var _0x1cc6cb = (_0x3211d2 - 0x1) % 0x8;
+    for (var _0x4ecef9 = 0x0; _0x4ecef9 < _0x14a146; _0x4ecef9++) {
+      _0x253d74 = 0x0, _0x536e41++;
+      for (var _0x563e1e = _0x3211d2 - 0x1; _0x563e1e >= 0x0; _0x563e1e--) {
+        var _0x54cf1f = _0x563e1e * _0x14a146 + _0x4ecef9,
+          _0x125e20 = _0x54cf1f * 0x4;
+        var _0x99b5f7 = _0x3d82f0[_0x125e20] * 0.299 + _0x3d82f0[_0x125e20 + 0x1] * 0.587 + _0x3d82f0[_0x125e20 + 0x2] * 0.114;
+        var _0x5328dd = 0x80;
+        if (_0x563e1e % 0x8 == _0x1cc6cb) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0x7f;else {
+          if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x1 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xbf;else {
+            if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x2 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xdf;else {
+              if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x3 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xef;else {
+                if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x4 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xf7;else {
+                  if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x5 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xfb;else {
+                    if (_0x563e1e % 0x8 == (_0x1cc6cb - 0x6 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xfd;else _0x563e1e % 0x8 == (_0x1cc6cb - 0x7 + 0x8) % 0x8 && (_0x2ae66f &= _0x99b5f7 < _0x5328dd ? 0xff : 0xfe, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0), _0x2ae66f = 0xff, _0x253d74++);
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (_0x563e1e == 0x0) {
+          if (_0x563e1e % 0x8 != (_0x1cc6cb - 0x7 + 0x8) % 0x8) {
+            var _0x53f566 = 0x8 - _0x3211d2 % 0x8;
+            _0x2ae66f = _0x2ae66f >> _0x53f566 << _0x53f566, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x253d74 = 0x0, _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0);
+          }
+          if (_0x564c01) {
+            if (_0x4ecef9 == _0x14a146 - 0x1) {
+              if (_0x7b704f != null) {
+                var _0x5557c5 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                if (_0x221839 + _0x5557c5[_0x51c633(0x1f5)] >= _0x4bde42) {
+                  var _0x313c84 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                  _0x55a945[_0x51c633(0x1fb)](_0x313c84), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                  var _0x159a52 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x313c84['byteLength'], _0x211fec);
+                  _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x159a52), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x5557c5), _0x221839 += _0x5557c5[_0x51c633(0x1f5)];
+                } else _0x55a945[_0x51c633(0x1fb)](_0x5557c5), _0x221839 += _0x5557c5[_0x51c633(0x1f5)];
+              }
+              var _0x53adec = DataUntils['createData'](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+              _0x55a945[_0x51c633(0x1fb)](_0x53adec), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+              var _0x2b1844 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x53adec[_0x51c633(0x1f5)], _0x211fec);
+              _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x2b1844), _0x7b704f = null;
+            }
+          } else {
+            if (_0x74e07 == 0x0) {
+              _0x4a29f7 = _0x536e41, _0x74e07++, _0xed3e2d++, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+              ;
+              _0x3649d2 = _0x5eccfa;
+            } else {
+              _0x74e07++;
+              if (_0x4a29f7 + _0xed3e2d == _0x536e41) {
+                if (_0x7b704f == null) {
+                  _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                  ;
+                  _0x3649d2 = _0x5eccfa, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1;
+                } else {
+                  var _0x1e7427 = DataUntils[_0x51c633(0x1f9)](_0x7b704f),
+                    _0x135e46 = DataUntils['ab2hex'](_0x36e809);
+                  if (_0x1e7427 == _0x135e46) {
+                    if (_0xed3e2d >= 0xff) {
+                      var _0x2b8921 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x2b8921['byteLength'] >= _0x4bde42) {
+                        var _0x1f9597 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945['push'](_0x1f9597), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x523885 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x1f9597['byteLength'], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x523885), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x2b8921), _0x221839 += _0x2b8921[_0x51c633(0x1f5)];
+                      } else _0x55a945[_0x51c633(0x1fb)](_0x2b8921), _0x221839 += _0x2b8921[_0x51c633(0x1f5)];
+                    }
+                    _0xed3e2d++;
+                  } else {
+                    var _0x364c30 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                    if (_0x221839 + _0x364c30['byteLength'] >= _0x4bde42) {
+                      var _0x37b1f9 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                      _0x55a945['push'](_0x37b1f9), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x4aeb46 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x37b1f9['byteLength'], _0x211fec);
+                      _0x211fec++, _0x221839 = 0x0, _0xe8f3b3['push'](_0x4aeb46), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x364c30), _0x221839 += _0x364c30[_0x51c633(0x1f5)];
+                    } else _0x55a945[_0x51c633(0x1fb)](_0x364c30), _0x221839 += _0x364c30[_0x51c633(0x1f5)];
+                    _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809['slice'](0x0, _0x33b8f7);
+                    ;
+                    _0x3649d2 = _0x5eccfa;
+                  }
+                }
+              } else {
+                if (_0x7b704f == null) {
+                  _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                  ;
+                  _0x3649d2 = _0x5eccfa;
+                } else {
+                  var _0x5ac8d3 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                  if (_0x221839 + _0x5ac8d3[_0x51c633(0x1f5)] >= _0x4bde42) {
+                    var _0x1f105c = DataUntils['createData'](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                    _0x55a945[_0x51c633(0x1fb)](_0x1f105c), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0x383edd = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x1f105c['byteLength'], _0x211fec);
+                    _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x383edd), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x5ac8d3), _0x221839 += _0x5ac8d3[_0x51c633(0x1f5)];
+                  } else _0x55a945[_0x51c633(0x1fb)](_0x5ac8d3), _0x221839 += _0x5ac8d3[_0x51c633(0x1f5)];
+                  _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                  ;
+                  _0x3649d2 = _0x5eccfa;
+                }
+              }
+              if (_0x4ecef9 == _0x14a146 - 0x1) {
+                if (_0x7b704f != null) {
+                  var _0x282a35 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                  if (_0x221839 + _0x282a35['byteLength'] >= _0x4bde42) {
+                    var _0x4e73c3 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                    _0x55a945['push'](_0x4e73c3), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0xc4d20f = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x4e73c3['byteLength'], _0x211fec);
+                    _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0xc4d20f), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x282a35), _0x221839 += _0x282a35[_0x51c633(0x1f5)];
+                  } else _0x55a945['push'](_0x282a35), _0x221839 += _0x282a35[_0x51c633(0x1f5)];
+                }
+                var _0x17e610 = DataUntils['createData'](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                _0x55a945[_0x51c633(0x1fb)](_0x17e610), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                var _0x4013c1 = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x17e610[_0x51c633(0x1f5)], _0x211fec);
+                _0x55a945 = [], _0xe8f3b3['push'](_0x4013c1), _0x7b704f = null;
+              }
+            }
+          }
+          var _0xeba045 = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+          if (_0x4f9221 == null) _0x4f9221 = _0xeba045[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x5bd85f++, _0x522bda = _0x5eccfa;else {
+            var _0x557fb2 = DataUntils[_0x51c633(0x1f9)](_0x4f9221),
+              _0x617621 = DataUntils[_0x51c633(0x1f9)](_0xeba045);
+            var _0x4707e8 = ![],
+              _0x1aa1a3 = ![];
+            if (_0x557fb2 == _0x617621) {
+              if (_0x5bd85f >= 0xff) {
+                var _0x14afc8 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x4f9221, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                _0x35f9cf += _0x5bd85f;
+                if (_0x288527 + _0x14afc8[_0x51c633(0x1f5)] >= _0x4bde42) {
+                  var _0x498c05 = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                  _0x1463c7[_0x51c633(0x1fb)](_0x498c05), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                  var _0x24edb3 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x498c05['byteLength'], _0x3b9fef);
+                  _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x24edb3), _0x1463c7 = [], _0x1463c7[_0x51c633(0x1fb)](_0x14afc8), _0x288527 += _0x14afc8[_0x51c633(0x1f5)];
+                } else _0x1463c7['push'](_0x14afc8), _0x288527 += _0x14afc8[_0x51c633(0x1f5)];
+                _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x0;
+              }
+              _0x5bd85f++, _0x4707e8 = !![];
+            } else {
+              var _0x702188 = null;
+              if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                var _0x58b58c = parseInt(_0x2628c1['left'] / 0x8);
+                _0x702188 = _0x4f9221['slice'](_0x58b58c, _0x4f9221['byteLength'] - _0x58b58c);
+              }
+              if (_0x2628c1['right'] > 0x0) {
+                var _0x5c683c = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                _0x702188 != null ? _0x702188 = _0x702188[_0x51c633(0x1df)](0x0, _0x702188[_0x51c633(0x1f5)] - _0x5c683c) : _0x702188 = _0x4f9221[_0x51c633(0x1df)](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x5c683c);
+              }
+              _0x702188 == null && (_0x702188 = _0x4f9221);
+              if (_0x5bd85f > 0x0) {
+                var _0x66ff32 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x702188, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                if (_0x288527 + _0x66ff32[_0x51c633(0x1f5)] >= _0x4bde42) {
+                  var _0x2d2c9b = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                  _0x1463c7[_0x51c633(0x1fb)](_0x2d2c9b);
+                  var _0x36ca82 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x2d2c9b[_0x51c633(0x1f5)], _0x3b9fef);
+                  _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x36ca82), _0x1463c7 = [], _0x1463c7['push'](_0x66ff32), _0x288527 += _0x66ff32[_0x51c633(0x1f5)];
+                } else _0x1463c7[_0x51c633(0x1fb)](_0x66ff32), _0x288527 += _0x66ff32[_0x51c633(0x1f5)];
+              }
+              _0x4f9221 = _0xeba045['slice'](0x0, _0x33b8f7), _0x522bda = _0x5eccfa, _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x1;
+            }
+            if (_0x4ecef9 == _0x14a146 - 0x1) {
+              var _0x499e8b = null;
+              if (_0x2628c1['left'] > 0x0) {
+                var _0x242cc2 = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                _0x499e8b = _0x4f9221[_0x51c633(0x1df)](_0x242cc2, _0x4f9221[_0x51c633(0x1f5)] - _0x242cc2);
+              }
+              if (_0x2628c1['right'] > 0x0) {
+                var _0x2121d4 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                _0x499e8b != null ? _0x499e8b = _0x499e8b[_0x51c633(0x1df)](0x0, _0x499e8b['byteLength'] - _0x2121d4) : _0x499e8b = _0x4f9221['slice'](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x2121d4);
+              }
+              _0x499e8b == null && (_0x499e8b = _0x4f9221);
+              var _0x44fae5 = DataUntils['doCreateBuffer'](_0x522bda, _0x499e8b, _0x1847b1, _0x5bd85f, _0xf5a13e);
+              if (_0x288527 + _0x44fae5[_0x51c633(0x1f5)] >= _0x4bde42) {
+                var _0x3ceea4 = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                _0x1463c7[_0x51c633(0x1fb)](_0x3ceea4);
+                var _0x868800 = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x3ceea4[_0x51c633(0x1f5)], _0x3b9fef);
+                _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x868800), _0x1463c7 = [];
+              }
+              _0x1463c7['push'](_0x44fae5), _0x288527 += _0x44fae5[_0x51c633(0x1f5)];
+              var _0x20122b = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+              _0x1463c7[_0x51c633(0x1fb)](_0x20122b);
+              var _0x4add64 = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x20122b[_0x51c633(0x1f5)], _0x3b9fef);
+              _0x288527 = 0x0, _0x2b23ef['push'](_0x4add64);
+            }
+          }
+          _0x5eccfa = !![], _0x2ae66f = 0xff;
+        }
+      }
+    }
+    var _0x1a95fe = {
+      '0': _0x2b23ef,
+      '1': _0xe8f3b3,
+      '2': _0x74e07,
+      '3': _0x2205df,
+      '4': !![]
+    };
+    return _0x1a95fe;
+  } else {
+    if (_0x5adaff == 0xb4) {
+      var _0x51021 = (_0x14a146 - 0x1) % 0x8;
+      for (var _0x4ecef9 = _0x3211d2 - 0x1; _0x4ecef9 >= 0x0; _0x4ecef9--) {
+        _0x253d74 = 0x0, _0x536e41++;
+        var _0x564c01 = !![];
+        for (var _0x563e1e = _0x14a146 - 0x1; _0x563e1e >= 0x0; _0x563e1e--) {
+          var _0x4fbb36 = _0x563e1e + _0x4ecef9 * _0x14a146,
+            _0x3b18c7 = _0x4fbb36 * 0x4;
+          var _0x99b5f7 = _0x3d82f0[_0x3b18c7] * 0.299 + _0x3d82f0[_0x3b18c7 + 0x1] * 0.587 + _0x3d82f0[_0x3b18c7 + 0x2] * 0.114,
+            _0x2b08d8 = _0x3393f1[_0x3b18c7] * 0.299 + _0x3393f1[_0x3b18c7 + 0x1] * 0.587 + _0x3393f1[_0x3b18c7 + 0x2] * 0.114;
+          var _0x134061 = 0x80;
+          if (_0x563e1e % 0x8 == _0x51021) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0x7f, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0x7f;else {
+            if (_0x563e1e % 0x8 == (_0x51021 - 0x1 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xbf, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xbf;else {
+              if (_0x563e1e % 0x8 == (_0x51021 - 0x2 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xdf, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xdf;else {
+                if (_0x563e1e % 0x8 == (_0x51021 - 0x3 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xef, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xef;else {
+                  if (_0x563e1e % 0x8 == (_0x51021 - 0x4 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xf7, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xf7;else {
+                    if (_0x563e1e % 0x8 == (_0x51021 - 0x5 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xfb, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xfb;else {
+                      if (_0x563e1e % 0x8 == (_0x51021 - 0x6 + 0x8) % 0x8) _0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xfd, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xfd;else _0x563e1e % 0x8 == (_0x51021 - 0x7 + 0x8) % 0x8 && (_0x2ae66f &= _0x99b5f7 < _0x134061 ? 0xff : 0xfe, _0x2b9198 &= _0x2b08d8 < _0x134061 ? 0xff : 0xfe, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0), _0x564c01 && (_0x564c01 = _0x2ae66f == _0x2b9198), _0x2b9198 = 0xff, _0x2ae66f = 0xff, _0x253d74++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x563e1e == 0x0) {
+            if (_0x563e1e % 0x8 != (_0x51021 - 0x7 + 0x8) % 0x8) {
+              var _0x383427 = 0x8 - _0x14a146 % 0x8;
+              _0x2ae66f = _0x2ae66f >> _0x383427 << _0x383427, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x253d74 = 0x0, _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0);
+            }
+            if (_0x564c01) {
+              if (_0x4ecef9 == 0x0) {
+                if (_0x7b704f != null) {
+                  var _0x51b7b5 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                  if (_0x221839 + _0x51b7b5[_0x51c633(0x1f5)] >= _0x4bde42) {
+                    var _0x1db32e = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                    _0x55a945['push'](_0x1db32e), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0x3cc6cf = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x1db32e[_0x51c633(0x1f5)], _0x211fec);
+                    _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x3cc6cf), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x51b7b5), _0x221839 += _0x51b7b5['byteLength'];
+                  } else _0x55a945[_0x51c633(0x1fb)](_0x51b7b5), _0x221839 += _0x51b7b5[_0x51c633(0x1f5)];
+                }
+                var _0x28a4ca = DataUntils['createData'](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                _0x55a945[_0x51c633(0x1fb)](_0x28a4ca), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                var _0x14c51c = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x28a4ca[_0x51c633(0x1f5)], _0x211fec);
+                _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x14c51c), _0x7b704f = null;
+              }
+            } else {
+              if (_0x74e07 == 0x0) {
+                _0x4a29f7 = _0x536e41, _0x74e07++, _0xed3e2d++, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                ;
+                _0x3649d2 = _0x5eccfa;
+              } else {
+                _0x74e07++;
+                if (_0x4a29f7 + _0xed3e2d == _0x536e41) {
+                  if (_0x7b704f == null) {
+                    _0x7b704f = _0x36e809['slice'](0x0, _0x33b8f7);
+                    ;
+                    _0x3649d2 = _0x5eccfa, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1;
+                  } else {
+                    var _0xa95d16 = DataUntils[_0x51c633(0x1f9)](_0x7b704f),
+                      _0x4366ed = DataUntils[_0x51c633(0x1f9)](_0x36e809);
+                    if (_0xa95d16 == _0x4366ed) {
+                      if (_0xed3e2d >= 0xff) {
+                        var _0x1622ae = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                        if (_0x221839 + _0x1622ae['byteLength'] >= _0x4bde42) {
+                          var _0x5ed990 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                          _0x55a945[_0x51c633(0x1fb)](_0x5ed990), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                          var _0x323c84 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x5ed990['byteLength'], _0x211fec);
+                          _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x323c84), _0x55a945 = [], _0x55a945['push'](_0x1622ae), _0x221839 += _0x1622ae[_0x51c633(0x1f5)];
+                        } else _0x55a945[_0x51c633(0x1fb)](_0x1622ae), _0x221839 += _0x1622ae[_0x51c633(0x1f5)];
+                      }
+                      _0xed3e2d++;
+                    } else {
+                      var _0x11760d = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x11760d[_0x51c633(0x1f5)] >= _0x4bde42) {
+                        var _0x560665 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945[_0x51c633(0x1fb)](_0x560665), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x144cb8 = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x560665[_0x51c633(0x1f5)], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x144cb8), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x11760d), _0x221839 += _0x11760d['byteLength'];
+                      } else _0x55a945['push'](_0x11760d), _0x221839 += _0x11760d[_0x51c633(0x1f5)];
+                      _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809['slice'](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa;
+                    }
+                  }
+                } else {
+                  if (_0x7b704f == null) {
+                    _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                    ;
+                    _0x3649d2 = _0x5eccfa;
+                  } else {
+                    var _0xfadedb = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                    if (_0x221839 + _0xfadedb[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x499e0f = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                      _0x55a945[_0x51c633(0x1fb)](_0x499e0f), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x159484 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x499e0f[_0x51c633(0x1f5)], _0x211fec);
+                      _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x159484), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0xfadedb), _0x221839 += _0xfadedb['byteLength'];
+                    } else _0x55a945[_0x51c633(0x1fb)](_0xfadedb), _0x221839 += _0xfadedb['byteLength'];
+                    _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                    ;
+                    _0x3649d2 = _0x5eccfa;
+                  }
+                }
+                if (_0x4ecef9 == 0x0) {
+                  if (_0x7b704f != null) {
+                    var _0x54cf74 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                    if (_0x221839 + _0x54cf74[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x38a323 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                      _0x55a945[_0x51c633(0x1fb)](_0x38a323), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x25f225 = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x38a323[_0x51c633(0x1f5)], _0x211fec);
+                      _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x25f225), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x54cf74), _0x221839 += _0x54cf74['byteLength'];
+                    } else _0x55a945['push'](_0x54cf74), _0x221839 += _0x54cf74[_0x51c633(0x1f5)];
+                  }
+                  var _0x4776ac = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                  _0x55a945[_0x51c633(0x1fb)](_0x4776ac), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                  var _0x808c1a = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x4776ac[_0x51c633(0x1f5)], _0x211fec);
+                  _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x808c1a), _0x7b704f = null;
+                }
+              }
+            }
+            var _0x10dee8 = _0x36e809['slice'](0x0, _0x33b8f7);
+            if (_0x4f9221 == null) _0x4f9221 = _0x10dee8[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x5bd85f++, _0x522bda = _0x5eccfa;else {
+              var _0x4721f6 = DataUntils[_0x51c633(0x1f9)](_0x4f9221),
+                _0x183d8e = DataUntils[_0x51c633(0x1f9)](_0x10dee8);
+              var _0x4707e8 = ![],
+                _0x1aa1a3 = ![];
+              if (_0x4721f6 == _0x183d8e) {
+                if (_0x5bd85f >= 0xff) {
+                  var _0x492920 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x4f9221, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                  _0x35f9cf += _0x5bd85f;
+                  if (_0x288527 + _0x492920['byteLength'] >= _0x4bde42) {
+                    var _0x304796 = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                    _0x1463c7[_0x51c633(0x1fb)](_0x304796), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0x1fa9b6 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x304796['byteLength'], _0x3b9fef);
+                    _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x1fa9b6), _0x1463c7 = [], _0x1463c7['push'](_0x492920), _0x288527 += _0x492920[_0x51c633(0x1f5)];
+                  } else _0x1463c7[_0x51c633(0x1fb)](_0x492920), _0x288527 += _0x492920[_0x51c633(0x1f5)];
+                  _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x0;
+                }
+                _0x5bd85f++, _0x4707e8 = !![];
+              } else {
+                var _0x52b27e = null;
+                if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                  var _0x4a946b = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                  _0x52b27e = _0x4f9221[_0x51c633(0x1df)](_0x4a946b, _0x4f9221[_0x51c633(0x1f5)] - _0x4a946b);
+                }
+                if (_0x2628c1[_0x51c633(0x1d6)] > 0x0) {
+                  var _0x100880 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                  _0x52b27e != null ? _0x52b27e = _0x52b27e[_0x51c633(0x1df)](0x0, _0x52b27e['byteLength'] - _0x100880) : _0x52b27e = _0x4f9221['slice'](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x100880);
+                }
+                _0x52b27e == null && (_0x52b27e = _0x4f9221);
+                if (_0x5bd85f > 0x0) {
+                  var _0x491082 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x52b27e, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                  if (_0x288527 + _0x491082[_0x51c633(0x1f5)] >= _0x4bde42) {
+                    var _0x1362dd = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                    _0x1463c7['push'](_0x1362dd);
+                    var _0x3d2562 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x1362dd[_0x51c633(0x1f5)], _0x3b9fef);
+                    _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x3d2562), _0x1463c7 = [], _0x1463c7['push'](_0x491082), _0x288527 += _0x491082[_0x51c633(0x1f5)];
+                  } else _0x1463c7['push'](_0x491082), _0x288527 += _0x491082[_0x51c633(0x1f5)];
+                }
+                _0x4f9221 = _0x10dee8[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x522bda = _0x5eccfa, _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x1;
+              }
+              if (_0x4ecef9 == 0x0) {
+                var _0x5a6063 = null;
+                if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                  var _0x58ddb1 = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                  _0x5a6063 = _0x4f9221[_0x51c633(0x1df)](_0x58ddb1, _0x4f9221[_0x51c633(0x1f5)] - _0x58ddb1);
+                }
+                if (_0x2628c1[_0x51c633(0x1d6)] > 0x0) {
+                  var _0x592495 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                  _0x5a6063 != null ? _0x5a6063 = _0x5a6063[_0x51c633(0x1df)](0x0, _0x5a6063[_0x51c633(0x1f5)] - _0x592495) : _0x5a6063 = _0x4f9221[_0x51c633(0x1df)](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x592495);
+                }
+                _0x5a6063 == null && (_0x5a6063 = _0x4f9221);
+                var _0xbccd52 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x5a6063, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                if (_0x288527 + _0xbccd52[_0x51c633(0x1f5)] >= _0x4bde42) {
+                  var _0x1cac96 = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                  _0x1463c7['push'](_0x1cac96);
+                  var _0x357098 = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x1cac96[_0x51c633(0x1f5)], _0x3b9fef);
+                  _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x357098), _0x1463c7 = [];
+                }
+                _0x1463c7[_0x51c633(0x1fb)](_0xbccd52), _0x288527 += _0xbccd52[_0x51c633(0x1f5)];
+                var _0x2c7b20 = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                _0x1463c7[_0x51c633(0x1fb)](_0x2c7b20);
+                var _0x2fd204 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x2c7b20[_0x51c633(0x1f5)], _0x3b9fef);
+                _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x2fd204);
+              }
+            }
+            _0x5eccfa = !![], _0x2ae66f = 0xff;
+          }
+        }
+      }
+      var _0x1171cc = {
+        '0': _0x2b23ef,
+        '1': _0xe8f3b3,
+        '2': _0x74e07,
+        '3': _0x2205df,
+        '4': !![]
+      };
+      return _0x1171cc;
+    } else {
+      if (_0x5adaff == 0x10e) {
+        for (var _0x4ecef9 = _0x14a146 - 0x1; _0x4ecef9 >= 0x0; _0x4ecef9--) {
+          _0x253d74 = 0x0, _0x536e41++;
+          for (var _0x563e1e = 0x0; _0x563e1e < _0x3211d2; _0x563e1e++) {
+            var _0x39415c = _0x563e1e * _0x14a146 + _0x4ecef9,
+              _0x48d5e8 = _0x39415c * 0x4;
+            var _0x99b5f7 = _0x3d82f0[_0x48d5e8] * 0.299 + _0x3d82f0[_0x48d5e8 + 0x1] * 0.587 + _0x3d82f0[_0x48d5e8 + 0x2] * 0.114;
+            var _0x3afbc7 = 0x80;
+            if (_0x563e1e % 0x8 == 0x0) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0x7f;else {
+              if (_0x563e1e % 0x8 == 0x1) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xbf;else {
+                if (_0x563e1e % 0x8 == 0x2) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xdf;else {
+                  if (_0x563e1e % 0x8 == 0x3) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xef;else {
+                    if (_0x563e1e % 0x8 == 0x4) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xf7;else {
+                      if (_0x563e1e % 0x8 == 0x5) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xfb;else {
+                        if (_0x563e1e % 0x8 == 0x6) _0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xfd;else _0x563e1e % 0x8 == 0x7 && (_0x2ae66f &= _0x99b5f7 < _0x3afbc7 ? 0xff : 0xfe, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0), _0x2ae66f = 0xff, _0x253d74++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x563e1e == _0x3211d2 - 0x1) {
+              if (_0x563e1e % 0x8 != 0x7) {
+                var _0x2f901f = 0x8 - _0x3211d2 % 0x8;
+                _0x2ae66f = _0x2ae66f >> _0x2f901f << _0x2f901f, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x253d74 = 0x0, _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0);
+              }
+              if (_0x564c01) {
+                if (_0x4ecef9 == 0x0) {
+                  if (_0x7b704f != null) {
+                    var _0x50eefb = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                    if (_0x221839 + _0x50eefb[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x2e269a = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                      _0x55a945[_0x51c633(0x1fb)](_0x2e269a), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x59d059 = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x2e269a['byteLength'], _0x211fec);
+                      _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x59d059), _0x55a945 = [], _0x55a945['push'](_0x50eefb), _0x221839 += _0x50eefb[_0x51c633(0x1f5)];
+                    } else _0x55a945['push'](_0x50eefb), _0x221839 += _0x50eefb[_0x51c633(0x1f5)];
+                  }
+                  var _0x2182e2 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                  _0x55a945[_0x51c633(0x1fb)](_0x2182e2), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                  var _0x7d975a = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x2182e2[_0x51c633(0x1f5)], _0x211fec);
+                  _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x7d975a), _0x7b704f = null;
+                }
+              } else {
+                if (_0x74e07 == 0x0) {
+                  _0x4a29f7 = _0x536e41, _0x74e07++, _0xed3e2d++, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                  ;
+                  _0x3649d2 = _0x5eccfa;
+                } else {
+                  _0x74e07++;
+                  if (_0x4a29f7 + _0xed3e2d == _0x536e41) {
+                    if (_0x7b704f == null) {
+                      _0x7b704f = _0x36e809['slice'](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1;
+                    } else {
+                      var _0x590a82 = DataUntils['ab2hex'](_0x7b704f),
+                        _0x6cf1da = DataUntils[_0x51c633(0x1f9)](_0x36e809);
+                      if (_0x590a82 == _0x6cf1da) {
+                        if (_0xed3e2d >= 0xff) {
+                          var _0x53e96f = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                          if (_0x221839 + _0x53e96f['byteLength'] >= _0x4bde42) {
+                            var _0x47ee1b = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                            _0x55a945[_0x51c633(0x1fb)](_0x47ee1b), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                            var _0x30a2db = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0x47ee1b['byteLength'], _0x211fec);
+                            _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x30a2db), _0x55a945 = [], _0x55a945['push'](_0x53e96f), _0x221839 += _0x53e96f[_0x51c633(0x1f5)];
+                          } else _0x55a945[_0x51c633(0x1fb)](_0x53e96f), _0x221839 += _0x53e96f[_0x51c633(0x1f5)];
+                        }
+                        _0xed3e2d++;
+                      } else {
+                        var _0x2ca6ae = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                        if (_0x221839 + _0x2ca6ae['byteLength'] >= _0x4bde42) {
+                          var _0x10dbe2 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                          _0x55a945['push'](_0x10dbe2), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                          var _0x3a0abc = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x10dbe2[_0x51c633(0x1f5)], _0x211fec);
+                          _0x211fec++, _0x221839 = 0x0, _0xe8f3b3['push'](_0x3a0abc), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x2ca6ae), _0x221839 += _0x2ca6ae[_0x51c633(0x1f5)];
+                        } else _0x55a945['push'](_0x2ca6ae), _0x221839 += _0x2ca6ae[_0x51c633(0x1f5)];
+                        _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                        ;
+                        _0x3649d2 = _0x5eccfa;
+                      }
+                    }
+                  } else {
+                    if (_0x7b704f == null) {
+                      _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa;
+                    } else {
+                      var _0x35bbb1 = DataUntils['doCreateBuffer'](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x35bbb1[_0x51c633(0x1f5)] >= _0x4bde42) {
+                        var _0x4cb191 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945['push'](_0x4cb191), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x3d512e = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x4cb191[_0x51c633(0x1f5)], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3['push'](_0x3d512e), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x35bbb1), _0x221839 += _0x35bbb1[_0x51c633(0x1f5)];
+                      } else _0x55a945[_0x51c633(0x1fb)](_0x35bbb1), _0x221839 += _0x35bbb1[_0x51c633(0x1f5)];
+                      _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x536e41, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa;
+                    }
+                  }
+                  if (_0x4ecef9 == 0x0) {
+                    if (_0x7b704f != null) {
+                      var _0x1f76ae = DataUntils['doCreateBuffer'](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x1f76ae['byteLength'] >= _0x4bde42) {
+                        var _0x271292 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945[_0x51c633(0x1fb)](_0x271292), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x573f32 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x271292[_0x51c633(0x1f5)], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x573f32), _0x55a945 = [], _0x55a945['push'](_0x1f76ae), _0x221839 += _0x1f76ae['byteLength'];
+                      } else _0x55a945[_0x51c633(0x1fb)](_0x1f76ae), _0x221839 += _0x1f76ae['byteLength'];
+                    }
+                    var _0x4ef874 = DataUntils['createData'](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                    _0x55a945[_0x51c633(0x1fb)](_0x4ef874), _0x35f9cf += _0xed3e2d, _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0xfa8be5 = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x4ef874[_0x51c633(0x1f5)], _0x211fec);
+                    _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0xfa8be5), _0x7b704f = null;
+                  }
+                }
+              }
+              var _0x53d907 = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+              if (_0x4f9221 == null) _0x4f9221 = _0x53d907[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x5bd85f++, _0x522bda = _0x5eccfa;else {
+                var _0x4bcb06 = DataUntils[_0x51c633(0x1f9)](_0x4f9221),
+                  _0xe9ff11 = DataUntils['ab2hex'](_0x53d907);
+                var _0x4707e8 = ![],
+                  _0x1aa1a3 = ![];
+                if (_0x4bcb06 == _0xe9ff11) {
+                  if (_0x5bd85f >= 0xff) {
+                    var _0x105f95 = DataUntils['doCreateBuffer'](_0x522bda, _0x4f9221, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                    _0x35f9cf += _0x5bd85f;
+                    if (_0x288527 + _0x105f95[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x440200 = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                      _0x1463c7[_0x51c633(0x1fb)](_0x440200), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x10220e = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x440200[_0x51c633(0x1f5)], _0x3b9fef);
+                      _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x10220e), _0x1463c7 = [], _0x1463c7['push'](_0x105f95), _0x288527 += _0x105f95[_0x51c633(0x1f5)];
+                    } else _0x1463c7[_0x51c633(0x1fb)](_0x105f95), _0x288527 += _0x105f95['byteLength'];
+                    _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x0;
+                  }
+                  _0x5bd85f++, _0x4707e8 = !![];
+                } else {
+                  var _0x1d5345 = null;
+                  if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                    var _0x3bf204 = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                    _0x1d5345 = _0x4f9221[_0x51c633(0x1df)](_0x3bf204, _0x4f9221[_0x51c633(0x1f5)] - _0x3bf204);
+                  }
+                  if (_0x2628c1[_0x51c633(0x1d6)] > 0x0) {
+                    var _0xdfd3d0 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                    _0x1d5345 != null ? _0x1d5345 = _0x1d5345[_0x51c633(0x1df)](0x0, _0x1d5345['byteLength'] - _0xdfd3d0) : _0x1d5345 = _0x4f9221['slice'](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0xdfd3d0);
+                  }
+                  _0x1d5345 == null && (_0x1d5345 = _0x4f9221);
+                  if (_0x5bd85f > 0x0) {
+                    var _0x1c07bd = DataUntils[_0x51c633(0x213)](_0x522bda, _0x1d5345, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                    if (_0x288527 + _0x1c07bd[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x836ea6 = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                      _0x1463c7['push'](_0x836ea6);
+                      var _0x5d07d4 = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x836ea6[_0x51c633(0x1f5)], _0x3b9fef);
+                      _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x5d07d4), _0x1463c7 = [], _0x1463c7[_0x51c633(0x1fb)](_0x1c07bd), _0x288527 += _0x1c07bd[_0x51c633(0x1f5)];
+                    } else _0x1463c7[_0x51c633(0x1fb)](_0x1c07bd), _0x288527 += _0x1c07bd[_0x51c633(0x1f5)];
+                  }
+                  _0x4f9221 = _0x53d907['slice'](0x0, _0x33b8f7), _0x522bda = _0x5eccfa, _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x1;
+                }
+                if (_0x4ecef9 == 0x0) {
+                  var _0x529461 = null;
+                  if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                    var _0xbb0cd = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                    _0x529461 = _0x4f9221[_0x51c633(0x1df)](_0xbb0cd, _0x4f9221[_0x51c633(0x1f5)] - _0xbb0cd);
+                  }
+                  if (_0x2628c1['right'] > 0x0) {
+                    var _0x562eb7 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                    _0x529461 != null ? _0x529461 = _0x529461[_0x51c633(0x1df)](0x0, _0x529461[_0x51c633(0x1f5)] - _0x562eb7) : _0x529461 = _0x4f9221['slice'](0x0, _0x4f9221['byteLength'] - _0x562eb7);
+                  }
+                  _0x529461 == null && (_0x529461 = _0x4f9221);
+                  var _0x2c1b86 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x529461, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                  if (_0x288527 + _0x2c1b86['byteLength'] >= _0x4bde42) {
+                    var _0xa1231e = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                    _0x1463c7['push'](_0xa1231e);
+                    var _0x35781a = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0xa1231e[_0x51c633(0x1f5)], _0x3b9fef);
+                    _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef['push'](_0x35781a), _0x1463c7 = [];
+                  }
+                  _0x1463c7[_0x51c633(0x1fb)](_0x2c1b86), _0x288527 += _0x2c1b86[_0x51c633(0x1f5)];
+                  var _0x35e969 = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                  _0x1463c7[_0x51c633(0x1fb)](_0x35e969);
+                  var _0x13110f = DataUntils['deal120ByteArrayWithZip'](_0x1463c7, _0x3672c3, _0x288527 + _0x35e969[_0x51c633(0x1f5)], _0x3b9fef);
+                  _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x13110f);
+                }
+              }
+              _0x5eccfa = !![], _0x2ae66f = 0xff;
+            }
+          }
+        }
+        var _0x8ad7bc = {
+          '0': _0x2b23ef,
+          '1': _0xe8f3b3,
+          '2': _0x74e07,
+          '3': _0x2205df,
+          '4': !![]
+        };
+        return _0x8ad7bc;
+      } else {
+        for (var _0x4ecef9 = 0x0; _0x4ecef9 < _0x3211d2; _0x4ecef9++) {
+          _0x253d74 = 0x0;
+          var _0x564c01 = !![];
+          for (var _0x563e1e = 0x0; _0x563e1e < _0x14a146; _0x563e1e++) {
+            var _0x37ab9d = _0x563e1e + _0x4ecef9 * _0x14a146,
+              _0x45f5d8 = _0x37ab9d * 0x4;
+            var _0x99b5f7 = _0x3d82f0[_0x45f5d8] * 0.299 + _0x3d82f0[_0x45f5d8 + 0x1] * 0.587 + _0x3d82f0[_0x45f5d8 + 0x2] * 0.114,
+              _0x2b08d8 = _0x3393f1[_0x45f5d8] * 0.299 + _0x3393f1[_0x45f5d8 + 0x1] * 0.587 + _0x3393f1[_0x45f5d8 + 0x2] * 0.114;
+            var _0x27a01f = 0x80;
+            if (_0x563e1e % 0x8 == 0x0) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0x7f, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0x7f;else {
+              if (_0x563e1e % 0x8 == 0x1) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xbf, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xbf;else {
+                if (_0x563e1e % 0x8 == 0x2) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xdf, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xdf;else {
+                  if (_0x563e1e % 0x8 == 0x3) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xef, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xef;else {
+                    if (_0x563e1e % 0x8 == 0x4) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xf7, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xf7;else {
+                      if (_0x563e1e % 0x8 == 0x5) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xfb, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xfb;else {
+                        if (_0x563e1e % 0x8 == 0x6) _0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xfd, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xfd;else _0x563e1e % 0x8 == 0x7 && (_0x2ae66f &= _0x99b5f7 < _0x27a01f ? 0xff : 0xfe, _0x2b9198 &= _0x2b08d8 < _0x27a01f ? 0xff : 0xfe, _0x264bf2['setUint8'](_0x253d74, _0x2ae66f), _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0), _0x564c01 && (_0x564c01 = _0x2ae66f == _0x2b9198), _0x2ae66f = 0xff, _0x2b9198 = 0xff, _0x253d74++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x563e1e == _0x14a146 - 0x1) {
+              if (_0x563e1e % 0x8 != 0x7) {
+                var _0x272a03 = 0x8 - _0x14a146 % 0x8;
+                _0x2ae66f = _0x2ae66f >> _0x272a03 << _0x272a03, _0x264bf2[_0x51c633(0x1d7)](_0x253d74, _0x2ae66f), _0x253d74 = 0x0, _0x5eccfa && (_0x5eccfa = _0x2ae66f == 0x0);
+              }
+              if (_0x564c01) {
+                if (_0x4ecef9 == _0x3211d2 - 0x1) {
+                  if (_0x7b704f != null) {
+                    var _0xce37ff = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                    if (_0x221839 + _0xce37ff[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x582875 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                      _0x55a945[_0x51c633(0x1fb)](_0x582875), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x32611b = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x582875[_0x51c633(0x1f5)], _0x211fec);
+                      _0x211fec++, _0x221839 = 0x0, _0xe8f3b3['push'](_0x32611b), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0xce37ff), _0x221839 += _0xce37ff[_0x51c633(0x1f5)];
+                    } else _0x55a945['push'](_0xce37ff), _0x221839 += _0xce37ff[_0x51c633(0x1f5)];
+                  }
+                  var _0x12c89c = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                  _0x55a945['push'](_0x12c89c), _0x35f9cf += _0xed3e2d, _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                  var _0x56ec2c = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x12c89c[_0x51c633(0x1f5)], _0x211fec);
+                  _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x56ec2c), _0x7b704f = null;
+                }
+              } else {
+                if (_0x74e07 == 0x0) {
+                  _0x4a29f7 = _0x4ecef9, _0x74e07++, _0xed3e2d++, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                  ;
+                  _0x3649d2 = _0x5eccfa;
+                } else {
+                  _0x74e07++;
+                  if (_0x4a29f7 + _0xed3e2d == _0x4ecef9) {
+                    if (_0x7b704f == null) {
+                      _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa, _0x4a29f7 = _0x4ecef9, _0xed3e2d = 0x1;
+                    } else {
+                      var _0x5c2ea7 = DataUntils[_0x51c633(0x1f9)](_0x7b704f),
+                        _0x10fdf = DataUntils[_0x51c633(0x1f9)](_0x36e809);
+                      if (_0x5c2ea7 == _0x10fdf) {
+                        if (_0xed3e2d >= 0xff) {
+                          var _0x1da027 = DataUntils['doCreateBuffer'](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                          if (_0x221839 + _0x1da027[_0x51c633(0x1f5)] >= _0x4bde42) {
+                            var _0x1c4dbe = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                            _0x55a945['push'](_0x1c4dbe), _0x35f9cf += _0xed3e2d, _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                            var _0xafc52c = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x1c4dbe['byteLength'], _0x211fec);
+                            _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0xafc52c), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x1da027), _0x221839 += _0x1da027[_0x51c633(0x1f5)];
+                          } else _0x55a945['push'](_0x1da027), _0x221839 += _0x1da027[_0x51c633(0x1f5)];
+                        }
+                        _0xed3e2d++;
+                      } else {
+                        var _0x4403be = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                        if (_0x221839 + _0x4403be['byteLength'] >= _0x4bde42) {
+                          var _0x10b655 = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                          _0x55a945[_0x51c633(0x1fb)](_0x10b655), _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                          var _0x329d6b = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x10b655[_0x51c633(0x1f5)], _0x211fec);
+                          _0x211fec++, _0x221839 = 0x0, _0xe8f3b3['push'](_0x329d6b), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x4403be), _0x221839 += _0x4403be[_0x51c633(0x1f5)];
+                        } else _0x55a945[_0x51c633(0x1fb)](_0x4403be), _0x221839 += _0x4403be[_0x51c633(0x1f5)];
+                        _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x4ecef9, _0xed3e2d = 0x1, _0x7b704f = _0x36e809['slice'](0x0, _0x33b8f7);
+                        ;
+                        _0x3649d2 = _0x5eccfa;
+                      }
+                    }
+                  } else {
+                    if (_0x7b704f == null) {
+                      _0x4a29f7 = _0x4ecef9, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa;
+                    } else {
+                      var _0x504ed6 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x504ed6[_0x51c633(0x1f5)] >= _0x4bde42) {
+                        var _0x131bda = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945[_0x51c633(0x1fb)](_0x131bda), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x2d580b = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0x131bda[_0x51c633(0x1f5)], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x2d580b), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x504ed6), _0x221839 += _0x504ed6['byteLength'];
+                      } else _0x55a945[_0x51c633(0x1fb)](_0x504ed6), _0x221839 += _0x504ed6[_0x51c633(0x1f5)];
+                      _0x35f9cf += _0xed3e2d, _0x4a29f7 = _0x4ecef9, _0xed3e2d = 0x1, _0x7b704f = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+                      ;
+                      _0x3649d2 = _0x5eccfa;
+                    }
+                  }
+                  if (_0x4ecef9 == _0x3211d2 - 0x1) {
+                    if (_0x7b704f != null) {
+                      var _0x9dc203 = DataUntils[_0x51c633(0x213)](_0x3649d2, _0x7b704f, _0x4a29f7, _0xed3e2d);
+                      if (_0x221839 + _0x9dc203['byteLength'] >= _0x4bde42) {
+                        var _0xe1c92b = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                        _0x55a945['push'](_0xe1c92b), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                        var _0x34f3be = DataUntils[_0x51c633(0x20d)](_0x55a945, _0x3672c3, _0x221839 + _0xe1c92b[_0x51c633(0x1f5)], _0x211fec);
+                        _0x211fec++, _0x221839 = 0x0, _0xe8f3b3[_0x51c633(0x1fb)](_0x34f3be), _0x55a945 = [], _0x55a945[_0x51c633(0x1fb)](_0x9dc203), _0x221839 += _0x9dc203[_0x51c633(0x1f5)];
+                      } else _0x55a945['push'](_0x9dc203), _0x221839 += _0x9dc203[_0x51c633(0x1f5)];
+                    }
+                    var _0xb8cdae = DataUntils[_0x51c633(0x1f2)](0x89, _0x211fec / 0x100, _0x211fec % 0x100);
+                    _0x55a945[_0x51c633(0x1fb)](_0xb8cdae), _0x35f9cf += _0xed3e2d, _0x2205df['push'](_0x35f9cf), _0x35f9cf = 0x0;
+                    var _0x32e47e = DataUntils['deal120ByteArrayWithZip'](_0x55a945, _0x3672c3, _0x221839 + _0xb8cdae['byteLength'], _0x211fec);
+                    _0x55a945 = [], _0xe8f3b3[_0x51c633(0x1fb)](_0x32e47e), _0x7b704f = null;
+                  }
+                }
+              }
+              var _0x492fc0 = _0x36e809[_0x51c633(0x1df)](0x0, _0x33b8f7);
+              if (_0x4f9221 == null) _0x4f9221 = _0x492fc0[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x5bd85f++, _0x522bda = _0x5eccfa;else {
+                var _0x17d74e = DataUntils[_0x51c633(0x1f9)](_0x4f9221),
+                  _0x106480 = DataUntils['ab2hex'](_0x492fc0);
+                var _0x4707e8 = ![],
+                  _0x1aa1a3 = ![];
+                if (_0x17d74e == _0x106480) {
+                  if (_0x5bd85f >= 0xff) {
+                    var _0x51690f = DataUntils[_0x51c633(0x213)](_0x522bda, _0x4f9221, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                    _0x35f9cf += _0x5bd85f;
+                    if (_0x288527 + _0x51690f[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x5570bb = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                      _0x1463c7[_0x51c633(0x1fb)](_0x5570bb), _0x2205df[_0x51c633(0x1fb)](_0x35f9cf), _0x35f9cf = 0x0;
+                      var _0x175b45 = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x5570bb[_0x51c633(0x1f5)], _0x3b9fef);
+                      _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x175b45), _0x1463c7 = [], _0x1463c7[_0x51c633(0x1fb)](_0x51690f), _0x288527 += _0x51690f[_0x51c633(0x1f5)];
+                    } else _0x1463c7['push'](_0x51690f), _0x288527 += _0x51690f['byteLength'];
+                    _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x0;
+                  }
+                  _0x5bd85f++, _0x4707e8 = !![];
+                } else {
+                  var _0x2a4525 = null;
+                  if (_0x2628c1['left'] > 0x0) {
+                    var _0x2883a1 = parseInt(_0x2628c1[_0x51c633(0x20b)] / 0x8);
+                    _0x2a4525 = _0x4f9221['slice'](_0x2883a1, _0x4f9221[_0x51c633(0x1f5)] - _0x2883a1);
+                  }
+                  if (_0x2628c1[_0x51c633(0x1d6)] > 0x0) {
+                    var _0x21b174 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                    _0x2a4525 != null ? _0x2a4525 = _0x2a4525[_0x51c633(0x1df)](0x0, _0x2a4525['byteLength'] - _0x21b174) : _0x2a4525 = _0x4f9221[_0x51c633(0x1df)](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x21b174);
+                  }
+                  _0x2a4525 == null && (_0x2a4525 = _0x4f9221);
+                  if (_0x5bd85f > 0x0) {
+                    var _0x26b3f3 = DataUntils[_0x51c633(0x213)](_0x522bda, _0x2a4525, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                    if (_0x288527 + _0x26b3f3[_0x51c633(0x1f5)] >= _0x4bde42) {
+                      var _0x43fa99 = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                      _0x1463c7[_0x51c633(0x1fb)](_0x43fa99);
+                      var _0x704c7c = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x43fa99[_0x51c633(0x1f5)], _0x3b9fef);
+                      _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x704c7c), _0x1463c7 = [], _0x1463c7['push'](_0x26b3f3), _0x288527 += _0x26b3f3[_0x51c633(0x1f5)];
+                    } else _0x1463c7[_0x51c633(0x1fb)](_0x26b3f3), _0x288527 += _0x26b3f3['byteLength'];
+                  }
+                  _0x4f9221 = _0x492fc0[_0x51c633(0x1df)](0x0, _0x33b8f7), _0x522bda = _0x5eccfa, _0x1847b1 += _0x5bd85f, _0x5bd85f = 0x1;
+                }
+                if (_0x4ecef9 == _0x3211d2 - 0x1) {
+                  var _0x37e9cc = null;
+                  if (_0x2628c1[_0x51c633(0x20b)] > 0x0) {
+                    var _0x16c9a9 = parseInt(_0x2628c1['left'] / 0x8);
+                    _0x37e9cc = _0x4f9221[_0x51c633(0x1df)](_0x16c9a9, _0x4f9221[_0x51c633(0x1f5)] - _0x16c9a9);
+                  }
+                  if (_0x2628c1[_0x51c633(0x1d6)] > 0x0) {
+                    var _0x13ecd7 = parseInt(_0x2628c1[_0x51c633(0x1d6)] / 0x8);
+                    _0x37e9cc != null ? _0x37e9cc = _0x37e9cc[_0x51c633(0x1df)](0x0, _0x37e9cc[_0x51c633(0x1f5)] - _0x13ecd7) : _0x37e9cc = _0x4f9221[_0x51c633(0x1df)](0x0, _0x4f9221[_0x51c633(0x1f5)] - _0x13ecd7);
+                  }
+                  _0x37e9cc == null && (_0x37e9cc = _0x4f9221);
+                  var _0x5e392c = DataUntils['doCreateBuffer'](_0x522bda, _0x37e9cc, _0x1847b1, _0x5bd85f, _0xf5a13e);
+                  if (_0x288527 + _0x5e392c[_0x51c633(0x1f5)] >= _0x4bde42) {
+                    var _0x4c7dac = DataUntils[_0x51c633(0x1f2)](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                    _0x1463c7['push'](_0x4c7dac);
+                    var _0x15167a = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x4c7dac['byteLength'], _0x3b9fef);
+                    _0x3b9fef++, _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x15167a), _0x1463c7 = [];
+                  }
+                  _0x1463c7[_0x51c633(0x1fb)](_0x5e392c), _0x288527 += _0x5e392c[_0x51c633(0x1f5)];
+                  var _0x40cc8f = DataUntils['createData'](0x89, _0x3b9fef / 0x100, _0x3b9fef % 0x100);
+                  _0x1463c7[_0x51c633(0x1fb)](_0x40cc8f);
+                  var _0x46fedd = DataUntils[_0x51c633(0x20d)](_0x1463c7, _0x3672c3, _0x288527 + _0x40cc8f[_0x51c633(0x1f5)], _0x3b9fef);
+                  _0x288527 = 0x0, _0x2b23ef[_0x51c633(0x1fb)](_0x46fedd);
+                }
+              }
+              _0x5eccfa = !![], _0x2ae66f = 0xff;
+            }
+          }
+        }
+        var _0x274353 = {
+          '0': _0x2b23ef,
+          '1': _0xe8f3b3,
+          '2': _0x74e07,
+          '3': _0x2205df,
+          '4': !![]
+        };
+        return _0x274353;
+      }
+    }
+  }
+}, DataUntils[a0_0x268a7d(0x201)] = function (_0x30b391, _0x21ec1c, _0x165e24) {
+  var _0x2647a7 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0x64;
+  var _0x5b5b45 = arguments.length > 4 ? arguments[4] : undefined;
+  var _0x4224cd = arguments.length > 5 ? arguments[5] : undefined;
+  var _0x211f4a = a0_0x268a7d;
+  var _0x3781c0 = 0x1800;
+  _0x4224cd > 0x0 && (_0x3781c0 = _0x4224cd);
+  _0x3781c0 -= 0x8;
+  var _0x523489 = _0x30b391[_0x211f4a(0x1e1)],
+    _0xd8c344 = _0x30b391[_0x211f4a(0x1f7)],
+    _0x5bfa26 = _0x30b391['data'];
+  var _0x26dbfa = 0xff;
+  var _0x15d086 = 0x8;
+  var _0x1b6712 = parseInt((_0x523489 - 0x1) / _0x15d086 + 0x1);
+  _0x5b5b45 % 0xb4 == 0x5a && (_0x1b6712 = parseInt((_0xd8c344 - 0x1) / _0x15d086 + 0x1));
+  var _0x275200 = new ArrayBuffer(_0x1b6712),
+    _0x626b04 = new DataView(_0x275200);
+  var _0x34c49c = null,
+    _0x6a255b = 0x0,
+    _0x383e0a = 0x0,
+    _0x560852 = !![],
+    _0x489739 = ![],
+    _0x55f776 = 0x0,
+    _0x39cd8c = [],
+    _0x1f12d6 = [],
+    _0x150355 = [],
+    _0x417d17 = 0x0,
+    _0x337ee6 = 0x0,
+    _0x50e106 = 0x0;
+  if (_0x5b5b45 == 0x5a) {
+    var _0x24d38d = (_0xd8c344 - 0x1) % 0x8;
+    for (var _0x563eab = 0x0; _0x563eab < _0x523489; _0x563eab++) {
+      _0x55f776 = 0x0;
+      for (var _0x1ae0a4 = _0xd8c344 - 0x1; _0x1ae0a4 >= 0x0; _0x1ae0a4--) {
+        var _0x2633d4 = _0x1ae0a4 * _0x523489 + _0x563eab,
+          _0x5daae2 = _0x2633d4 * 0x4;
+        var _0x4e09dc = _0x5bfa26[_0x5daae2] * 0.299 + _0x5bfa26[_0x5daae2 + 0x1] * 0.587 + _0x5bfa26[_0x5daae2 + 0x2] * 0.114;
+        var _0x55019d = 0x80;
+        if (_0x1ae0a4 % 0x8 == _0x24d38d) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0x7f;else {
+          if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x1 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xbf;else {
+            if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x2 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xdf;else {
+              if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x3 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xef;else {
+                if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x4 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xf7;else {
+                  if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x5 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xfb;else {
+                    if (_0x1ae0a4 % 0x8 == (_0x24d38d - 0x6 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xfd;else _0x1ae0a4 % 0x8 == (_0x24d38d - 0x7 + 0x8) % 0x8 && (_0x26dbfa &= _0x4e09dc < _0x55019d ? 0xff : 0xfe, _0x626b04['setUint8'](_0x55f776, _0x26dbfa), _0x560852 && (_0x560852 = _0x26dbfa == 0x0), _0x26dbfa = 0xff, _0x55f776++);
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (_0x1ae0a4 == 0x0) {
+          if (_0x1ae0a4 % 0x8 != (_0x24d38d - 0x7 + 0x8) % 0x8) {
+            var _0x372f9b = 0x8 - _0xd8c344 % 0x8;
+            _0x26dbfa = _0x26dbfa >> _0x372f9b << _0x372f9b, _0x626b04['setUint8'](_0x55f776, _0x26dbfa), _0x55f776 = 0x0, _0x560852 && (_0x560852 = _0x26dbfa == 0x0);
+          }
+          var _0x1ad078 = _0x275200[_0x211f4a(0x1df)](0x0, _0x1b6712);
+          if (_0x34c49c == null) _0x34c49c = _0x1ad078[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x383e0a++, _0x489739 = _0x560852;else {
+            var _0xaca534 = DataUntils['ab2hex'](_0x34c49c),
+              _0x238f59 = DataUntils[_0x211f4a(0x1f9)](_0x1ad078);
+            var _0x5c3f59 = ![],
+              _0x378ffb = ![];
+            if (_0xaca534 == _0x238f59) {
+              if (_0x383e0a >= 0xff) {
+                var _0x498932 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x34c49c, _0x6a255b, _0x383e0a, _0x21ec1c);
+                _0x417d17 += _0x383e0a;
+                if (_0x337ee6 + _0x498932[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                  var _0x43fdf2 = DataUntils['createData'](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x43fdf2), _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+                  var _0x1d572a = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x43fdf2[_0x211f4a(0x1f5)], _0x50e106);
+                  _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c['push'](_0x1d572a), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x498932), _0x337ee6 += _0x498932[_0x211f4a(0x1f5)];
+                } else _0x1f12d6[_0x211f4a(0x1fb)](_0x498932), _0x337ee6 += _0x498932[_0x211f4a(0x1f5)];
+                _0x6a255b += _0x383e0a, _0x383e0a = 0x0;
+              }
+              _0x383e0a++, _0x5c3f59 = !![];
+            } else {
+              var _0x5c8f1d = null;
+              if (_0x165e24[_0x211f4a(0x20b)] > 0x0) {
+                var _0x3df5f4 = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                _0x5c8f1d = _0x34c49c[_0x211f4a(0x1df)](_0x3df5f4, _0x34c49c['byteLength'] - _0x3df5f4);
+              }
+              if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                var _0x5ec691 = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                _0x5c8f1d != null ? _0x5c8f1d = _0x5c8f1d['slice'](0x0, _0x5c8f1d[_0x211f4a(0x1f5)] - _0x5ec691) : _0x5c8f1d = _0x34c49c[_0x211f4a(0x1df)](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x5ec691);
+              }
+              _0x5c8f1d == null && (_0x5c8f1d = _0x34c49c);
+              if (_0x383e0a > 0x0) {
+                var _0x1c1f7e = DataUntils['doCreateBuffer'](_0x489739, _0x5c8f1d, _0x6a255b, _0x383e0a, _0x21ec1c);
+                _0x417d17 += _0x383e0a;
+                if (_0x337ee6 + _0x1c1f7e['byteLength'] >= _0x3781c0) {
+                  var _0x150ec2 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x150ec2), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                  var _0x2b3870 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x150ec2[_0x211f4a(0x1f5)], _0x50e106);
+                  _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x2b3870), _0x1f12d6 = [], _0x1f12d6['push'](_0x1c1f7e), _0x337ee6 += _0x1c1f7e[_0x211f4a(0x1f5)];
+                } else _0x1f12d6[_0x211f4a(0x1fb)](_0x1c1f7e), _0x337ee6 += _0x1c1f7e[_0x211f4a(0x1f5)];
+              }
+              _0x34c49c = _0x1ad078[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x489739 = _0x560852, _0x6a255b += _0x383e0a, _0x383e0a = 0x1;
+            }
+            if (_0x563eab == _0x523489 - 0x1) {
+              var _0x5925d0 = null;
+              if (_0x165e24[_0x211f4a(0x20b)] > 0x0) {
+                var _0x587723 = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                _0x5925d0 = _0x34c49c[_0x211f4a(0x1df)](_0x587723, _0x34c49c[_0x211f4a(0x1f5)] - _0x587723);
+              }
+              if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                var _0x10eb9e = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                _0x5925d0 != null ? _0x5925d0 = _0x5925d0['slice'](0x0, _0x5925d0[_0x211f4a(0x1f5)] - _0x10eb9e) : _0x5925d0 = _0x34c49c[_0x211f4a(0x1df)](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x10eb9e);
+              }
+              _0x5925d0 == null && (_0x5925d0 = _0x34c49c);
+              var _0x11e598 = DataUntils['doCreateBuffer'](_0x489739, _0x5925d0, _0x6a255b, _0x383e0a, _0x21ec1c);
+              if (_0x337ee6 + _0x11e598[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                var _0x105ce8 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                _0x1f12d6[_0x211f4a(0x1fb)](_0x105ce8), _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+                var _0x4278a0 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x105ce8[_0x211f4a(0x1f5)], _0x50e106);
+                _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x4278a0), _0x1f12d6 = [];
+              }
+              _0x1f12d6[_0x211f4a(0x1fb)](_0x11e598), _0x337ee6 += _0x11e598[_0x211f4a(0x1f5)];
+              var _0x16212d = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+              _0x1f12d6[_0x211f4a(0x1fb)](_0x16212d), _0x417d17 += _0x383e0a, _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+              var _0x1be8ef = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x16212d['byteLength'], _0x50e106);
+              _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x1be8ef);
+            }
+          }
+          _0x560852 = !![], _0x26dbfa = 0xff;
+        }
+      }
+    }
+    return {
+      '0': _0x39cd8c,
+      '1': null,
+      '2': 0x0,
+      '3': _0x150355,
+      '4': ![]
+    };
+  } else {
+    if (_0x5b5b45 == 0xb4) {
+      var _0x203542 = (_0x523489 - 0x1) % 0x8;
+      for (var _0x563eab = _0xd8c344 - 0x1; _0x563eab >= 0x0; _0x563eab--) {
+        _0x55f776 = 0x0;
+        for (var _0x1ae0a4 = _0x523489 - 0x1; _0x1ae0a4 >= 0x0; _0x1ae0a4--) {
+          var _0x17a8af = _0x1ae0a4 + _0x563eab * _0x523489,
+            _0x1f06b2 = _0x17a8af * 0x4;
+          var _0x4e09dc = _0x5bfa26[_0x1f06b2] * 0.299 + _0x5bfa26[_0x1f06b2 + 0x1] * 0.587 + _0x5bfa26[_0x1f06b2 + 0x2] * 0.114;
+          var _0x19c9de = 0x80;
+          if (_0x1ae0a4 % 0x8 == _0x203542) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0x7f;else {
+            if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x1 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xbf;else {
+              if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x2 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xdf;else {
+                if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x3 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xef;else {
+                  if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x4 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xf7;else {
+                    if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x5 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xfb;else {
+                      if (_0x1ae0a4 % 0x8 == (_0x203542 - 0x6 + 0x8) % 0x8) _0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xfd;else _0x1ae0a4 % 0x8 == (_0x203542 - 0x7 + 0x8) % 0x8 && (_0x26dbfa &= _0x4e09dc < _0x19c9de ? 0xff : 0xfe, _0x626b04[_0x211f4a(0x1d7)](_0x55f776, _0x26dbfa), _0x560852 && (_0x560852 = _0x26dbfa == 0x0), _0x26dbfa = 0xff, _0x55f776++);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_0x1ae0a4 == 0x0) {
+            if (_0x1ae0a4 % 0x8 != (_0x203542 - 0x7 + 0x8) % 0x8) {
+              var _0x3bb5eb = 0x8 - _0x523489 % 0x8;
+              _0x26dbfa = _0x26dbfa >> _0x3bb5eb << _0x3bb5eb, _0x626b04[_0x211f4a(0x1d7)](_0x55f776, _0x26dbfa), _0x55f776 = 0x0, _0x560852 && (_0x560852 = _0x26dbfa == 0x0);
+            }
+            var _0x5dfcc7 = _0x275200[_0x211f4a(0x1df)](0x0, _0x1b6712);
+            if (_0x34c49c == null) _0x34c49c = _0x5dfcc7[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x383e0a++, _0x489739 = _0x560852;else {
+              var _0x4aa0f1 = DataUntils[_0x211f4a(0x1f9)](_0x34c49c),
+                _0x4268c9 = DataUntils[_0x211f4a(0x1f9)](_0x5dfcc7);
+              var _0x5c3f59 = ![],
+                _0x378ffb = ![];
+              if (_0x4aa0f1 == _0x4268c9) {
+                if (_0x383e0a >= 0xff) {
+                  var _0x39ea73 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x34c49c, _0x6a255b, _0x383e0a, _0x21ec1c);
+                  _0x417d17 += _0x383e0a;
+                  if (_0x337ee6 + _0x39ea73[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                    var _0x4c5668 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                    _0x1f12d6[_0x211f4a(0x1fb)](_0x4c5668), _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+                    var _0x2ad497 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x4c5668[_0x211f4a(0x1f5)], _0x50e106);
+                    _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c['push'](_0x2ad497), _0x1f12d6 = [], _0x1f12d6['push'](_0x39ea73), _0x337ee6 += _0x39ea73[_0x211f4a(0x1f5)];
+                  } else _0x1f12d6['push'](_0x39ea73), _0x337ee6 += _0x39ea73[_0x211f4a(0x1f5)];
+                  _0x6a255b += _0x383e0a, _0x383e0a = 0x0;
+                }
+                _0x383e0a++, _0x5c3f59 = !![];
+              } else {
+                var _0x1422c2 = null;
+                if (_0x165e24[_0x211f4a(0x20b)] > 0x0) {
+                  var _0x11124e = parseInt(_0x165e24['left'] / 0x8);
+                  _0x1422c2 = _0x34c49c[_0x211f4a(0x1df)](_0x11124e, _0x34c49c[_0x211f4a(0x1f5)] - _0x11124e);
+                }
+                if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                  var _0x3d36a9 = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                  _0x1422c2 != null ? _0x1422c2 = _0x1422c2[_0x211f4a(0x1df)](0x0, _0x1422c2[_0x211f4a(0x1f5)] - _0x3d36a9) : _0x1422c2 = _0x34c49c[_0x211f4a(0x1df)](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x3d36a9);
+                }
+                _0x1422c2 == null && (_0x1422c2 = _0x34c49c);
+                if (_0x383e0a > 0x0) {
+                  var _0x3eede9 = DataUntils['doCreateBuffer'](_0x489739, _0x1422c2, _0x6a255b, _0x383e0a, _0x21ec1c);
+                  _0x417d17 += _0x383e0a;
+                  if (_0x337ee6 + _0x3eede9[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                    var _0xc9d174 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                    _0x1f12d6[_0x211f4a(0x1fb)](_0xc9d174), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                    var _0x43c56c = DataUntils['deal120ByteArrayWithZip'](_0x1f12d6, _0x2647a7, _0x337ee6 + _0xc9d174[_0x211f4a(0x1f5)], _0x50e106);
+                    _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x43c56c), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x3eede9), _0x337ee6 += _0x3eede9[_0x211f4a(0x1f5)];
+                  } else _0x1f12d6['push'](_0x3eede9), _0x337ee6 += _0x3eede9['byteLength'];
+                }
+                _0x34c49c = _0x5dfcc7[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x489739 = _0x560852, _0x6a255b += _0x383e0a, _0x383e0a = 0x1;
+              }
+              if (_0x563eab == 0x0) {
+                var _0x2c1d42 = null;
+                if (_0x165e24['left'] > 0x0) {
+                  var _0x464dff = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                  _0x2c1d42 = _0x34c49c[_0x211f4a(0x1df)](_0x464dff, _0x34c49c[_0x211f4a(0x1f5)] - _0x464dff);
+                }
+                if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                  var _0x413b5d = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                  _0x2c1d42 != null ? _0x2c1d42 = _0x2c1d42[_0x211f4a(0x1df)](0x0, _0x2c1d42[_0x211f4a(0x1f5)] - _0x413b5d) : _0x2c1d42 = _0x34c49c[_0x211f4a(0x1df)](0x0, _0x34c49c['byteLength'] - _0x413b5d);
+                }
+                _0x2c1d42 == null && (_0x2c1d42 = _0x34c49c);
+                var _0x5950a7 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x2c1d42, _0x6a255b, _0x383e0a, _0x21ec1c);
+                if (_0x337ee6 + _0x5950a7[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                  var _0x4bf06c = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x4bf06c), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                  var _0x303140 = DataUntils['deal120ByteArrayWithZip'](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x4bf06c[_0x211f4a(0x1f5)], _0x50e106);
+                  _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c['push'](_0x303140), _0x1f12d6 = [];
+                }
+                _0x1f12d6[_0x211f4a(0x1fb)](_0x5950a7), _0x337ee6 += _0x5950a7['byteLength'];
+                var _0x1bdbdd = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                _0x1f12d6[_0x211f4a(0x1fb)](_0x1bdbdd), _0x417d17 += _0x383e0a, _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+                var _0x315746 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x1bdbdd[_0x211f4a(0x1f5)], _0x50e106);
+                _0x337ee6 = 0x0, _0x39cd8c['push'](_0x315746);
+              }
+            }
+            _0x560852 = !![], _0x26dbfa = 0xff;
+          }
+        }
+      }
+      return {
+        '0': _0x39cd8c,
+        '1': null,
+        '2': 0x0,
+        '3': _0x150355,
+        '4': ![]
+      };
+    } else {
+      if (_0x5b5b45 == 0x10e) {
+        for (var _0x563eab = _0x523489 - 0x1; _0x563eab >= 0x0; _0x563eab--) {
+          _0x55f776 = 0x0;
+          for (var _0x1ae0a4 = 0x0; _0x1ae0a4 < _0xd8c344; _0x1ae0a4++) {
+            var _0x401ed2 = _0x1ae0a4 * _0x523489 + _0x563eab,
+              _0x734b2 = _0x401ed2 * 0x4;
+            var _0x4e09dc = _0x5bfa26[_0x734b2] * 0.299 + _0x5bfa26[_0x734b2 + 0x1] * 0.587 + _0x5bfa26[_0x734b2 + 0x2] * 0.114;
+            var _0xecdba0 = 0x80;
+            if (_0x1ae0a4 % 0x8 == 0x0) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0x7f;else {
+              if (_0x1ae0a4 % 0x8 == 0x1) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xbf;else {
+                if (_0x1ae0a4 % 0x8 == 0x2) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xdf;else {
+                  if (_0x1ae0a4 % 0x8 == 0x3) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xef;else {
+                    if (_0x1ae0a4 % 0x8 == 0x4) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xf7;else {
+                      if (_0x1ae0a4 % 0x8 == 0x5) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xfb;else {
+                        if (_0x1ae0a4 % 0x8 == 0x6) _0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xfd;else _0x1ae0a4 % 0x8 == 0x7 && (_0x26dbfa &= _0x4e09dc < _0xecdba0 ? 0xff : 0xfe, _0x626b04['setUint8'](_0x55f776, _0x26dbfa), _0x560852 && (_0x560852 = _0x26dbfa == 0x0), _0x26dbfa = 0xff, _0x55f776++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x1ae0a4 == _0xd8c344 - 0x1) {
+              if (_0x1ae0a4 % 0x8 != 0x7) {
+                var _0x5de24e = 0x8 - _0xd8c344 % 0x8;
+                _0x26dbfa = _0x26dbfa >> _0x5de24e << _0x5de24e, _0x626b04[_0x211f4a(0x1d7)](_0x55f776, _0x26dbfa), _0x55f776 = 0x0, _0x560852 && (_0x560852 = _0x26dbfa == 0x0);
+              }
+              var _0xc2fee9 = _0x275200['slice'](0x0, _0x1b6712);
+              if (_0x34c49c == null) _0x34c49c = _0xc2fee9[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x383e0a++, _0x489739 = _0x560852;else {
+                var _0x4d84bc = DataUntils[_0x211f4a(0x1f9)](_0x34c49c),
+                  _0x159c4 = DataUntils['ab2hex'](_0xc2fee9);
+                var _0x5c3f59 = ![],
+                  _0x378ffb = ![];
+                if (_0x4d84bc == _0x159c4) {
+                  if (_0x383e0a >= 0xff) {
+                    var _0x1c36ed = DataUntils['doCreateBuffer'](_0x489739, _0x34c49c, _0x6a255b, _0x383e0a, _0x21ec1c);
+                    _0x417d17 += _0x383e0a;
+                    if (_0x337ee6 + _0x1c36ed[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                      var _0x4db4c = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                      _0x1f12d6[_0x211f4a(0x1fb)](_0x4db4c), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                      var _0x151c6e = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x4db4c[_0x211f4a(0x1f5)], _0x50e106);
+                      _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c['push'](_0x151c6e), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x1c36ed), _0x337ee6 += _0x1c36ed[_0x211f4a(0x1f5)];
+                    } else _0x1f12d6[_0x211f4a(0x1fb)](_0x1c36ed), _0x337ee6 += _0x1c36ed[_0x211f4a(0x1f5)];
+                    _0x6a255b += _0x383e0a, _0x383e0a = 0x0;
+                  }
+                  _0x383e0a++, _0x5c3f59 = !![];
+                } else {
+                  var _0x4391fd = null;
+                  if (_0x165e24['left'] > 0x0) {
+                    var _0x2fa2e5 = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                    _0x4391fd = _0x34c49c[_0x211f4a(0x1df)](_0x2fa2e5, _0x34c49c[_0x211f4a(0x1f5)] - _0x2fa2e5);
+                  }
+                  if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                    var _0x43c11d = parseInt(_0x165e24['right'] / 0x8);
+                    _0x4391fd != null ? _0x4391fd = _0x4391fd['slice'](0x0, _0x4391fd['byteLength'] - _0x43c11d) : _0x4391fd = _0x34c49c[_0x211f4a(0x1df)](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x43c11d);
+                  }
+                  _0x4391fd == null && (_0x4391fd = _0x34c49c);
+                  if (_0x383e0a > 0x0) {
+                    var _0x55aadb = DataUntils[_0x211f4a(0x213)](_0x489739, _0x4391fd, _0x6a255b, _0x383e0a, _0x21ec1c);
+                    _0x417d17 += _0x383e0a;
+                    if (_0x337ee6 + _0x55aadb[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                      var _0x4339ac = DataUntils['createData'](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                      _0x1f12d6['push'](_0x4339ac), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                      var _0x105425 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x4339ac[_0x211f4a(0x1f5)], _0x50e106);
+                      _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x105425), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x55aadb), _0x337ee6 += _0x55aadb[_0x211f4a(0x1f5)];
+                    } else _0x1f12d6['push'](_0x55aadb), _0x337ee6 += _0x55aadb[_0x211f4a(0x1f5)];
+                  }
+                  _0x34c49c = _0xc2fee9[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x489739 = _0x560852, _0x6a255b += _0x383e0a, _0x383e0a = 0x1;
+                }
+                if (_0x563eab == 0x0) {
+                  var _0x22f6a4 = null;
+                  if (_0x165e24[_0x211f4a(0x20b)] > 0x0) {
+                    var _0x1163d4 = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                    _0x22f6a4 = _0x34c49c[_0x211f4a(0x1df)](_0x1163d4, _0x34c49c[_0x211f4a(0x1f5)] - _0x1163d4);
+                  }
+                  if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                    var _0x10185a = parseInt(_0x165e24['right'] / 0x8);
+                    _0x22f6a4 != null ? _0x22f6a4 = _0x22f6a4[_0x211f4a(0x1df)](0x0, _0x22f6a4['byteLength'] - _0x10185a) : _0x22f6a4 = _0x34c49c['slice'](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x10185a);
+                  }
+                  _0x22f6a4 == null && (_0x22f6a4 = _0x34c49c);
+                  var _0x2d0f6f = DataUntils['doCreateBuffer'](_0x489739, _0x22f6a4, _0x6a255b, _0x383e0a, _0x21ec1c);
+                  if (_0x337ee6 + _0x2d0f6f[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                    var _0x592456 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                    _0x1f12d6[_0x211f4a(0x1fb)](_0x592456), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                    var _0x222013 = DataUntils['deal120ByteArrayWithZip'](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x592456[_0x211f4a(0x1f5)], _0x50e106);
+                    _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x222013), _0x1f12d6 = [];
+                  }
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x2d0f6f), _0x337ee6 += _0x2d0f6f['byteLength'];
+                  var _0x37127f = DataUntils['createData'](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x37127f), _0x417d17 += _0x383e0a, _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                  var _0x3536fd = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x37127f['byteLength'], _0x50e106);
+                  _0x337ee6 = 0x0, _0x39cd8c['push'](_0x3536fd);
+                }
+              }
+              _0x560852 = !![], _0x26dbfa = 0xff;
+            }
+          }
+        }
+        return {
+          '0': _0x39cd8c,
+          '1': null,
+          '2': 0x0,
+          '3': _0x150355,
+          '4': ![]
+        };
+      } else {
+        for (var _0x563eab = 0x0; _0x563eab < _0xd8c344; _0x563eab++) {
+          _0x55f776 = 0x0;
+          for (var _0x1ae0a4 = 0x0; _0x1ae0a4 < _0x523489; _0x1ae0a4++) {
+            var _0x4b4c23 = _0x1ae0a4 + _0x563eab * _0x523489,
+              _0x5bd9ec = _0x4b4c23 * 0x4;
+            var _0x4e09dc = _0x5bfa26[_0x5bd9ec] * 0.299 + _0x5bfa26[_0x5bd9ec + 0x1] * 0.587 + _0x5bfa26[_0x5bd9ec + 0x2] * 0.114;
+            var _0x3baa90 = 0x80;
+            if (_0x1ae0a4 % 0x8 == 0x0) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0x7f;else {
+              if (_0x1ae0a4 % 0x8 == 0x1) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xbf;else {
+                if (_0x1ae0a4 % 0x8 == 0x2) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xdf;else {
+                  if (_0x1ae0a4 % 0x8 == 0x3) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xef;else {
+                    if (_0x1ae0a4 % 0x8 == 0x4) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xf7;else {
+                      if (_0x1ae0a4 % 0x8 == 0x5) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xfb;else {
+                        if (_0x1ae0a4 % 0x8 == 0x6) _0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xfd;else _0x1ae0a4 % 0x8 == 0x7 && (_0x26dbfa &= _0x4e09dc < _0x3baa90 ? 0xff : 0xfe, _0x626b04['setUint8'](_0x55f776, _0x26dbfa), _0x560852 && (_0x560852 = _0x26dbfa == 0x0), _0x26dbfa = 0xff, _0x55f776++);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (_0x1ae0a4 == _0x523489 - 0x1) {
+              if (_0x1ae0a4 % 0x8 != 0x7) {
+                var _0x27490c = 0x8 - _0x523489 % 0x8;
+                _0x26dbfa = _0x26dbfa >> _0x27490c << _0x27490c, _0x626b04[_0x211f4a(0x1d7)](_0x55f776, _0x26dbfa), _0x55f776 = 0x0, _0x560852 && (_0x560852 = _0x26dbfa == 0x0);
+              }
+              var _0x30a3d4 = _0x275200[_0x211f4a(0x1df)](0x0, _0x1b6712);
+              if (_0x34c49c == null) _0x34c49c = _0x30a3d4[_0x211f4a(0x1df)](0x0, _0x1b6712), _0x383e0a++, _0x489739 = _0x560852;else {
+                var _0x2c1d08 = DataUntils['ab2hex'](_0x34c49c),
+                  _0x4ab10a = DataUntils[_0x211f4a(0x1f9)](_0x30a3d4);
+                var _0x5c3f59 = ![],
+                  _0x378ffb = ![];
+                if (_0x2c1d08 == _0x4ab10a) {
+                  if (_0x383e0a >= 0xff) {
+                    var _0x510553 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x34c49c, _0x6a255b, _0x383e0a, _0x21ec1c);
+                    _0x417d17 += _0x383e0a;
+                    if (_0x337ee6 + _0x510553[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                      var _0x1a261b = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                      _0x1f12d6[_0x211f4a(0x1fb)](_0x1a261b), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                      var _0x4c55a6 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x1a261b[_0x211f4a(0x1f5)], _0x50e106);
+                      _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x4c55a6), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x510553), _0x337ee6 += _0x510553[_0x211f4a(0x1f5)];
+                    } else _0x1f12d6[_0x211f4a(0x1fb)](_0x510553), _0x337ee6 += _0x510553[_0x211f4a(0x1f5)];
+                    _0x6a255b += _0x383e0a, _0x383e0a = 0x0;
+                  }
+                  _0x383e0a++, _0x5c3f59 = !![];
+                } else {
+                  var _0x179067 = null;
+                  if (_0x165e24[_0x211f4a(0x20b)] > 0x0) {
+                    var _0x3c6e1c = parseInt(_0x165e24[_0x211f4a(0x20b)] / 0x8);
+                    _0x179067 = _0x34c49c[_0x211f4a(0x1df)](_0x3c6e1c, _0x34c49c[_0x211f4a(0x1f5)] - _0x3c6e1c);
+                  }
+                  if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                    var _0x40b6c2 = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                    _0x179067 != null ? _0x179067 = _0x179067[_0x211f4a(0x1df)](0x0, _0x179067[_0x211f4a(0x1f5)] - _0x40b6c2) : _0x179067 = _0x34c49c['slice'](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x40b6c2);
+                  }
+                  _0x179067 == null && (_0x179067 = _0x34c49c);
+                  if (_0x383e0a > 0x0) {
+                    var _0x320899 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x179067, _0x6a255b, _0x383e0a, _0x21ec1c);
+                    _0x417d17 += _0x383e0a;
+                    if (_0x337ee6 + _0x320899[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                      var _0x995fce = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                      _0x1f12d6[_0x211f4a(0x1fb)](_0x995fce), _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                      var _0x39a900 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x995fce[_0x211f4a(0x1f5)], _0x50e106);
+                      _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x39a900), _0x1f12d6 = [], _0x1f12d6[_0x211f4a(0x1fb)](_0x320899), _0x337ee6 += _0x320899[_0x211f4a(0x1f5)];
+                    } else _0x1f12d6[_0x211f4a(0x1fb)](_0x320899), _0x337ee6 += _0x320899[_0x211f4a(0x1f5)];
+                  }
+                  _0x34c49c = _0x30a3d4['slice'](0x0, _0x1b6712), _0x489739 = _0x560852, _0x6a255b += _0x383e0a, _0x383e0a = 0x1;
+                }
+                if (_0x563eab == _0xd8c344 - 0x1) {
+                  var _0x47ad85 = null;
+                  if (_0x165e24['left'] > 0x0) {
+                    var _0x5705b9 = parseInt(_0x165e24['left'] / 0x8);
+                    _0x47ad85 = _0x34c49c[_0x211f4a(0x1df)](_0x5705b9, _0x34c49c[_0x211f4a(0x1f5)] - _0x5705b9);
+                  }
+                  if (_0x165e24[_0x211f4a(0x1d6)] > 0x0) {
+                    var _0x588f0a = parseInt(_0x165e24[_0x211f4a(0x1d6)] / 0x8);
+                    _0x47ad85 != null ? _0x47ad85 = _0x47ad85[_0x211f4a(0x1df)](0x0, _0x47ad85['byteLength'] - _0x588f0a) : _0x47ad85 = _0x34c49c['slice'](0x0, _0x34c49c[_0x211f4a(0x1f5)] - _0x588f0a);
+                  }
+                  _0x47ad85 == null && (_0x47ad85 = _0x34c49c);
+                  var _0x354288 = DataUntils[_0x211f4a(0x213)](_0x489739, _0x47ad85, _0x6a255b, _0x383e0a, _0x21ec1c);
+                  if (_0x337ee6 + _0x354288[_0x211f4a(0x1f5)] >= _0x3781c0) {
+                    var _0x12c8c3 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                    _0x1f12d6['push'](_0x12c8c3), _0x150355['push'](_0x417d17), _0x417d17 = 0x0;
+                    var _0x2bc703 = DataUntils['deal120ByteArrayWithZip'](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x12c8c3[_0x211f4a(0x1f5)], _0x50e106);
+                    _0x50e106++, _0x337ee6 = 0x0, _0x39cd8c['push'](_0x2bc703), _0x1f12d6 = [];
+                  }
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x354288), _0x337ee6 += _0x354288[_0x211f4a(0x1f5)];
+                  var _0x787490 = DataUntils[_0x211f4a(0x1f2)](0x89, _0x50e106 / 0x100, _0x50e106 % 0x100);
+                  _0x1f12d6[_0x211f4a(0x1fb)](_0x787490), _0x417d17 += _0x383e0a, _0x150355[_0x211f4a(0x1fb)](_0x417d17), _0x417d17 = 0x0;
+                  var _0x46baa0 = DataUntils[_0x211f4a(0x20d)](_0x1f12d6, _0x2647a7, _0x337ee6 + _0x787490['byteLength'], _0x50e106);
+                  _0x337ee6 = 0x0, _0x39cd8c[_0x211f4a(0x1fb)](_0x46baa0);
+                }
+              }
+              _0x560852 = !![], _0x26dbfa = 0xff;
+            }
+          }
+        }
+        return {
+          '0': _0x39cd8c,
+          '1': null,
+          '2': 0x0,
+          '3': _0x150355,
+          '4': ![]
+        };
+      }
+    }
+  }
+}, DataUntils['dealData'] = function (_0x55bf7a, _0x30d395) {
+  var _0x21460f = a0_0x268a7d,
+    _0x82f3eb = new DataView(_0x55bf7a);
+  if (_0x55bf7a[_0x21460f(0x1f5)] > 0x7) {
+    var _0x1b0600 = 0x55,
+      _0x1fc486 = 0xaa;
+    var _0x2e0f3b = 0x0,
+      _0xbc5cc3 = 0x0,
+      _0xbf484e = 0x0;
+    while (_0x55bf7a[_0x21460f(0x1f5)] > _0xbf484e + 0x7) {
+      var _0x2dbcd0 = _0x82f3eb[_0x21460f(0x1e7)](_0xbf484e),
+        _0x5dc30e = _0x82f3eb[_0x21460f(0x1e7)](_0xbf484e + 0x1),
+        _0x24e36f = _0x82f3eb['getUint8'](_0xbf484e + 0x2),
+        _0x1c9522 = _0x82f3eb[_0x21460f(0x1e7)](_0xbf484e + 0x3);
+      if (_0x2dbcd0 == _0x1b0600 && _0x5dc30e == _0x1b0600) {
+        var _0x2c8b0b = _0x82f3eb['getUint8'](_0xbf484e + 0x5 + _0x1c9522),
+          _0x45eba5 = _0x82f3eb[_0x21460f(0x1e7)](_0xbf484e + 0x6 + _0x1c9522);
+        if (_0x2c8b0b == _0x1fc486 && _0x45eba5 == _0x1fc486) {
+          _0x2e0f3b = _0x24e36f, _0xbc5cc3 = _0x1c9522;
+          break;
+        }
+      }
+      _0xbf484e++;
+    }
+    if (_0xbc5cc3 == 0x0) return;
+    if (_0xbc5cc3 > 0x0 && _0x55bf7a[_0x21460f(0x1f5)] > _0xbc5cc3 + 0x7 + _0xbf484e) {
+      var _0x4e08be = _0x55bf7a[_0x21460f(0x1df)](_0xbf484e, _0xbf484e + _0xbc5cc3 + 0x7),
+        _0x56af73 = _0x55bf7a[_0x21460f(0x1df)](_0xbf484e + _0xbc5cc3 + 0x7, _0x55bf7a[_0x21460f(0x1f5)] - (_0xbf484e + _0xbc5cc3 + 0x7));
+      if (_0x56af73[_0x21460f(0x1f5)] >= _0x4e08be['byteLength']) {
+        var _0x3331ca = this[_0x21460f(0x214)](_0x4e08be, _0x56af73);
+        !this[_0x21460f(0x1eb)](_0x4e08be, _0x3331ca) && this[_0x21460f(0x1e0)](_0x4e08be), this[_0x21460f(0x1e0)](_0x3331ca);
+      } else !this[_0x21460f(0x1eb)](_0x4e08be, _0x56af73) && this[_0x21460f(0x1e0)](_0x4e08be), this[_0x21460f(0x1e0)](_0x56af73);
+      return;
+    }
+    switch (_0x2e0f3b) {
+      case 0xc2:
+        {
+          var _0x55cdcd = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x1dc)][_0x21460f(0x1ff)](_0x2e0f3b, _0x55cdcd);
+        }
+        break;
+      case 0x48:
+        {
+          var _0x52abf9 = (_0x82f3eb['getUint8'](0x4, 0x1) << 0x8) + _0x82f3eb['getUint8'](0x5, 0x1);
+          _0x30d395['ble'][_0x21460f(0x1ff)](_0x2e0f3b, _0x52abf9);
+        }
+        break;
+      case 0x41:
+      case 0x42:
+      case 0x43:
+      case 0x46:
+      case 0x47:
+      case 0x4a:
+        {
+          var _0x1b740b = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395['printer'] && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, _0x1b740b);
+        }
+        break;
+      case 0x4b:
+        {
+          var _0x5eab59 = '';
+          var _0xcd76c2 = _0x82f3eb['getUint8'](0x3, 0x1);
+          if (_0x30d395[_0x21460f(0x1d3)] >= 0x300 || _0xcd76c2 > 0x8) for (var _0x40ec5d = 0x0; _0x40ec5d < _0xcd76c2; _0x40ec5d++) {
+            var _0x51b557 = String[_0x21460f(0x20f)](_0x82f3eb[_0x21460f(0x1e7)](0x3 + _0x40ec5d + 0x1, 0x1));
+            _0x5eab59 += _0x51b557;
+          } else for (var _0x40ec5d = 0x0; _0x40ec5d < _0xcd76c2; _0x40ec5d++) {
+            var _0x51b557 = _0x82f3eb[_0x21460f(0x1e7)](0x3 + _0x40ec5d + 0x1, 0x1)[_0x21460f(0x203)](0x10);
+            _0x51b557[_0x21460f(0x1da)] < 0x2 && (_0x51b557 = '0' + _0x51b557), _0x5eab59 += _0x51b557;
+          }
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)]['reciveCmd'](_0x2e0f3b, _0x5eab59);
+        }
+        break;
+      case 0x49:
+        {
+          var _0xb313e1 = _0x82f3eb['getUint8'](0x4, 0x1),
+            _0x2fad99 = _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0xb313e1 + '.' + (_0x2fad99 >= 0xa ? _0x2fad99 + '' : '0' + _0x2fad99));
+        }
+        break;
+      case 0x4c:
+        {
+          var _0x252f2e = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1),
+            _0x4ad140 = _0x82f3eb['getUint8'](0x5, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x252f2e + '.' + (_0x4ad140 >= 0xa ? _0x4ad140 + '' : '0' + _0x4ad140));
+        }
+        break;
+      case 0x31:
+      case 0x32:
+      case 0x33:
+      case 0x36:
+      case 0x37:
+      case 0x38:
+        var _0x10a8dc = _0x82f3eb['getUint8'](0x4, 0x1);
+        _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x10a8dc);
+        break;
+      case 0x4d:
+        {
+          var _0x3d6e3c = _0x82f3eb['getUint8'](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x3d6e3c);
+        }
+        break;
+      case 0x2:
+        {
+          var _0x44d0df = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395['printer']['reciveCmd'](_0x2e0f3b, _0x44d0df);
+        }
+        break;
+      case 0x4:
+        {
+          var _0x55c16f = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x55c16f);
+        }
+        break;
+      case 0x14:
+        {
+          var _0x4164c8 = _0x82f3eb['getUint8'](0x4, 0x1);
+          _0x30d395['printer'] && _0x30d395['printer']['reciveCmd'](_0x2e0f3b, _0x4164c8);
+        }
+        break;
+      case 0x71:
+        {
+          var _0x686ab9 = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x686ab9);
+        }
+        break;
+      case 0x16:
+        {
+          var _0x4dfc4c = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, _0x4dfc4c);
+        }
+        break;
+      case 0xd3:
+        {
+          var _0x52ee0e = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) * 0x100 * 0x100 + _0x82f3eb['getUint8'](0x5, 0x1) * 0x100 + _0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x52ee0e);
+        }
+        break;
+      case 0xe4:
+        {
+          var _0x17b90a = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x17b90a);
+        }
+        break;
+      case 0xf4:
+        {
+          var _0x7aa894 = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x7aa894);
+        }
+        break;
+      case 0xb3:
+        {
+          var _0x453a57 = (_0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) << 0x18) + (_0x82f3eb['getUint8'](0x5, 0x1) << 0x10) + (_0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x7, 0x1);
+          if (_0x30d395[_0x21460f(0x1f6)] == 0x3) {
+            _0x453a57 = (_0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) << 0x38) + (_0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1) << 0x30) + (_0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1) << 0x28) + (_0x82f3eb['getUint8'](0x7, 0x1) << 0x20) + (_0x82f3eb[_0x21460f(0x1e7)](0x8, 0x1) << 0x18) + (_0x82f3eb[_0x21460f(0x1e7)](0x9, 0x1) << 0x10) + (_0x82f3eb[_0x21460f(0x1e7)](0xa, 0x1) << 0x8) + (_0x82f3eb[_0x21460f(0x1e7)](0xb, 0x1) << 0x0), _0x453a57 = {
+              'count': (_0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1),
+              'cache': (_0x82f3eb[_0x21460f(0x1e7)](0x8, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x9, 0x1),
+              'status': _0x82f3eb[_0x21460f(0x1e7)](0xb, 0x1),
+              'error': _0x82f3eb[_0x21460f(0x1e7)](0xa, 0x1),
+              'value': '' + _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) + '' + _0x82f3eb['getUint8'](0x5, 0x1) + '' + _0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1) + '' + _0x82f3eb[_0x21460f(0x1e7)](0x7, 0x1) + '' + _0x82f3eb['getUint8'](0x8, 0x1) + '' + _0x82f3eb[_0x21460f(0x1e7)](0x9, 0x1) + '' + _0x82f3eb[_0x21460f(0x1e7)](0xa, 0x1) + '' + _0x82f3eb[_0x21460f(0x1e7)](0xb, 0x1)
+            };
+            if (_0xbc5cc3 > 0x8) {
+              var _0x2c8d8a = _0x82f3eb[_0x21460f(0x1e7)](0xc, 0x1),
+                _0x323a4c = '';
+              for (var _0x932205 = 0x0; _0x932205 < _0x2c8d8a; _0x932205++) {
+                var _0x5609b6 = _0x82f3eb[_0x21460f(0x1e7)](0xd + _0x932205, 0x1);
+                _0x323a4c = _0x323a4c + ('00' + _0x5609b6[_0x21460f(0x203)](0x10))['slice'](-0x2);
+              }
+              _0x453a57[_0x21460f(0x1fc)] = _0x323a4c;
+              if (_0xbc5cc3 > 0x8 + _0x2c8d8a) {
+                var _0x53e763 = _0x82f3eb['getUint8'](0xd + _0x2c8d8a, 0x1);
+                _0x453a57[_0x21460f(0x202)] = _0x53e763;
+              }
+            }
+          }
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)]['reciveCmd'](_0x2e0f3b, _0x453a57);
+        }
+        break;
+      case 0xdb:
+        {
+          var _0x181ed9 = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395['printer'] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x181ed9);
+        }
+        break;
+      case 0x0:
+        {
+          var _0x1f848c = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)]['reciveCmd'](_0x2e0f3b, _0x1f848c);
+        }
+        break;
+      case 0xd0:
+        {
+          var _0x32abc8 = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)]['reciveCmd'](_0x2e0f3b, _0x32abc8);
+        }
+        break;
+      case 0xb5:
+        {
+          _0x30d395[_0x21460f(0x1e9)] = (_0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x7, 0x1), _0x30d395[_0x21460f(0x216)] = (_0x82f3eb[_0x21460f(0x1e7)](0x8, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x9, 0x1), _0x30d395[_0x21460f(0x208)] = 0x0, _0x30d395[_0x21460f(0x1fa)] = 0x0, _0x30d395[_0x21460f(0x1d3)] = 0x0, _0x30d395[_0x21460f(0x217)] = 0x0, clearTimeout(_0x30d395[_0x21460f(0x1dc)]['repeatTimeoutId']), _0x30d395[_0x21460f(0x1dc)][_0x21460f(0x20e)] = 0x0;
+          _0x82f3eb[_0x21460f(0x1f5)] >= 0xd && (_0x30d395[_0x21460f(0x208)] = _0x82f3eb[_0x21460f(0x1e7)](0xd, 0x1));
+          _0x82f3eb['byteLength'] >= 0x14 && (_0x30d395[_0x21460f(0x1fa)] = _0x82f3eb[_0x21460f(0x1e7)](0xe, 0x1), _0x30d395[_0x21460f(0x1d3)] = (_0x82f3eb[_0x21460f(0x1e7)](0xf, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x10, 0x1), _0x30d395[_0x21460f(0x217)] = (_0x82f3eb['getUint8'](0x11, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x12, 0x1));
+          var _0x696a55 = function _0x696a55() {
+            var _0x19e528 = _0x21460f;
+            if (_0x30d395[_0x19e528(0x20a)]) {
+              var _0x5ddaff = _0x30d395[_0x19e528(0x20a)];
+              _0x30d395[_0x19e528(0x20a)] = null, _0x5ddaff();
+            }
+          };
+          _0x30d395[_0x21460f(0x1db)] = {};
+          if (_0x30d395[_0x21460f(0x1d3)] >= 0x300) {
+            _0x30d395[_0x21460f(0x207)](function () {
+              _0x696a55();
+            });
+            return;
+          }
+          _0x696a55();
+        }
+        break;
+      case 0xb4:
+        {
+          var _0x267e5c = (_0x82f3eb['getUint8'](0x4, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395[_0x21460f(0x215)]['reciveCmd'](_0x2e0f3b, _0x267e5c);
+        }
+        break;
+      case 0x1b:
+        {
+          if (_0xbc5cc3 > 0x1) {
+            var _0x14c229 = (_0x82f3eb['getUint8'](0x4, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1),
+              _0x4ff902 = '',
+              _0x241555 = 0x4,
+              _0x4ed11c = 0x8,
+              _0x4c644f = _0x21460f(0x1ee);
+            for (var _0x122872 = 0x0; _0x122872 < _0x4ed11c; _0x122872++) {
+              var _0x1729c4 = _0x82f3eb['getUint8'](_0x241555 + _0x122872, 0x1);
+              _0x4ff902 += _0x4c644f[_0x21460f(0x1f1)](_0x1729c4 >> 0x4 & 0xf) + _0x4c644f[_0x21460f(0x1f1)](_0x1729c4 & 0xf);
+            }
+            _0x241555 += _0x4ed11c;
+            var _0x585971 = _0x82f3eb[_0x21460f(0x1e7)](_0x241555, 0x1);
+            _0x241555++;
+            var _0x5eebcb = '';
+            for (var _0x4f1306 = 0x0; _0x4f1306 < _0x585971; _0x4f1306++) {
+              var _0x249cad = _0x82f3eb['getUint8'](_0x241555 + _0x4f1306, 0x1);
+              _0x5eebcb += String['fromCharCode'](_0x249cad);
+            }
+            _0x241555 += _0x585971;
+            var _0x5e677e = _0x82f3eb[_0x21460f(0x1e7)](_0x241555, 0x1);
+            _0x241555++;
+            var _0x44699e = '';
+            for (var _0x83808d = 0x0; _0x83808d < _0x5e677e; _0x83808d++) {
+              var _0x31f83b = _0x82f3eb[_0x21460f(0x1e7)](_0x241555 + _0x83808d, 0x1);
+              _0x44699e += String['fromCharCode'](_0x31f83b);
+            }
+            _0x241555 += _0x5e677e;
+            var _0x26452d = (_0x82f3eb[_0x21460f(0x1e7)](_0x241555, 0x1) << 0x8) + _0x82f3eb['getUint8'](_0x241555 + 0x1, 0x1);
+            _0x241555 += 0x2;
+            var _0x1321c8 = (_0x82f3eb['getUint8'](_0x241555, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](_0x241555 + 0x1, 0x1);
+            _0x241555 += 0x2;
+            var _0x3ad583 = _0x82f3eb['getUint8'](_0x241555, 0x1);
+            _0x30d395[_0x21460f(0x215)] && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, {
+              'res': 0x0,
+              'data': {
+                'uuid': _0x4ff902,
+                'bar': _0x5eebcb,
+                'pici': _0x44699e,
+                'used': _0x1321c8,
+                'total': _0x26452d,
+                'paper': _0x3ad583
+              }
+            });
+          } else _0x30d395[_0x21460f(0x215)] && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, {
+            'res': 0x1
+          });
+        }
+        break;
+      case 0xbf:
+        {
+          var _0x4f96c3 = {},
+            _0x393b72 = _0x82f3eb[_0x21460f(0x1e7)](0x3, 0x1),
+            _0x2f2864 = 0x4;
+          while (_0x2f2864 < _0x393b72 + 0x4) {
+            var _0xe8022b = _0x82f3eb[_0x21460f(0x1e7)](_0x2f2864, 0x1);
+            _0x2f2864++;
+            var _0x3cd57d = _0x82f3eb[_0x21460f(0x1e7)](_0x2f2864, 0x1);
+            _0x2f2864++;
+            var _0x479a72 = 0x0,
+              _0xe22ce6 = 0x0;
+            while (_0x479a72 < _0x3cd57d) {
+              _0xe22ce6 = _0xe22ce6 * 0x100 + _0x82f3eb[_0x21460f(0x1e7)](_0x2f2864, 0x1), _0x2f2864++, _0x479a72++;
+            }
+            _0x4f96c3[_0xe8022b] = _0xe22ce6;
+          }
+          _0x30d395[_0x21460f(0x1db)] = _0x4f96c3;
+          if (_0x30d395[_0x21460f(0x20c)] != null) {
+            var _0x1e428b = _0x30d395[_0x21460f(0x20c)];
+            _0x30d395['getPrinterInfosCallback'] = null, _0x1e428b();
+          }
+        }
+        break;
+      case 0x69:
+        {
+          var _0x210bf9 = {
+              0x0: (_0x82f3eb['getUint8'](0x4, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1),
+              0x1: (_0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x7, 0x1)
+            },
+            _0x10d937 = _0x82f3eb[_0x21460f(0x1e7)](0x3, 0x1);
+          _0x10d937 >= 0x12 ? (_0x210bf9[0x2] = _0x82f3eb['getUint8'](0x8, 0x1), _0x210bf9[0x3] = ((_0x82f3eb['getUint8'](0x9, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0xa, 0x1)) / 0xa, _0x210bf9[0x4] = ((_0x82f3eb[_0x21460f(0x1e7)](0xb, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0xc, 0x1)) / 0xa, _0x210bf9[0x5] = (_0x82f3eb[_0x21460f(0x1e7)](0xd, 0x1) << 0x8) + _0x82f3eb['getUint8'](0xe, 0x1), _0x210bf9[0x6] = ((_0x82f3eb[_0x21460f(0x1e7)](0xf, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x10, 0x1)) / 0xa, _0x210bf9[0x7] = _0x82f3eb[_0x21460f(0x1e7)](0x11, 0x1), _0x210bf9[0x8] = (_0x82f3eb[_0x21460f(0x1e7)](0x12, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x13, 0x1), _0x210bf9[0x9] = ((_0x82f3eb[_0x21460f(0x1e7)](0x14, 0x1) << 0x8) + _0x82f3eb[_0x21460f(0x1e7)](0x15, 0x1)) / 0xa) : (_0x210bf9[0x2] = 0x0, _0x210bf9[0x3] = 0x0, _0x210bf9[0x4] = 0x0, _0x210bf9[0x5] = 0x0, _0x210bf9[0x6] = 0x0, _0x210bf9[0x7] = 0x0, _0x210bf9[0x8] = 0x0, _0x210bf9[0x9] = 0x0), _0x30d395[_0x21460f(0x215)] && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, _0x210bf9);
+        }
+        break;
+      case 0x8f:
+        {
+          var _0x15e73f = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x30d395['printer']['reciveCmd'](_0x2e0f3b, _0x15e73f);
+        }
+        break;
+      case 0x6a:
+        {
+          var _0x3301b5 = _0x82f3eb['getUint8'](0x4, 0x1);
+          _0x30d395[_0x21460f(0x215)] && _0x3301b5 < 0x2 && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x3301b5);
+        }
+      case 0x88:
+        {
+          var _0x35ba49 = _0x82f3eb[_0x21460f(0x1e7)](0x4, 0x1) * 0x100 + _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1),
+            _0x5e8a15 = _0x82f3eb[_0x21460f(0x1e7)](0x6, 0x1),
+            _0x9979fb = _0x82f3eb[_0x21460f(0x1e7)](0x7, 0x1) * 0x100 + _0x82f3eb[_0x21460f(0x1e7)](0x8, 0x1),
+            _0x1c4e7e = _0x82f3eb['getUint8'](0xb, 0x1) * 0x100 + _0x82f3eb[_0x21460f(0x1e7)](0xc, 0x1),
+            _0x519117 = _0x82f3eb['getUint8'](0xd, 0x1),
+            _0xfea23f = _0x82f3eb[_0x21460f(0x1e7)](0xe, 0x1),
+            _0x28e870 = {
+              0x0: _0x35ba49,
+              0x1: _0x5e8a15,
+              0x2: _0x9979fb,
+              0x3: _0x1c4e7e,
+              0x4: _0xfea23f,
+              0x5: _0x519117
+            };
+          _0x30d395['printer'] && _0x30d395[_0x21460f(0x215)][_0x21460f(0x1ff)](_0x2e0f3b, _0x28e870);
+        }
+        break;
+      case 0xd:
+        {
+          var _0x2a0c8b = _0x82f3eb['getUint8'](0x4, 0x1),
+            _0x158a1b = _0x82f3eb[_0x21460f(0x1e7)](0x5, 0x1);
+          _0x30d395['printer'] && _0x2a0c8b == 0x2 && _0x30d395['printer'][_0x21460f(0x1ff)](_0x2e0f3b, _0x158a1b);
+        }
+        break;
+      default:
+        break;
+    }
+  }
+}, DataUntils[a0_0x268a7d(0x214)] = function (_0x253883, _0x134c58) {
+  var _0x521f38 = a0_0x268a7d;
+  if (_0x253883[_0x521f38(0x1f5)] < _0x134c58[_0x521f38(0x1f5)]) {
+    var _0x312c0c = _0x134c58[_0x521f38(0x1df)](0x0, _0x253883[_0x521f38(0x1f5)]);
+    return this[_0x521f38(0x1eb)](_0x253883, _0x312c0c) ? this[_0x521f38(0x214)](_0x253883, _0x134c58[_0x521f38(0x1df)](_0x253883[_0x521f38(0x1f5)], _0x134c58[_0x521f38(0x1f5)] - _0x253883['byteLength'])) : _0x134c58;
+  } else return _0x134c58;
+}, DataUntils[a0_0x268a7d(0x1eb)] = function (_0x1a094d, _0x5afb65) {
+  var _0x5cd3ae = a0_0x268a7d;
+  if (_0x1a094d[_0x5cd3ae(0x1f5)] != _0x5afb65['byteLength']) return ![];else {
+    var _0x5019c0 = new DataView(_0x1a094d),
+      _0x13b229 = new DataView(_0x5afb65);
+    for (var _0x2425c1 = 0x0; _0x2425c1 < _0x5afb65['byteLength']; _0x2425c1++) {
+      if (_0x5019c0[_0x5cd3ae(0x1e7)](_0x2425c1) != _0x13b229[_0x5cd3ae(0x1e7)](_0x2425c1)) return ![];
+    }
+    return !![];
+  }
+}, DataUntils[a0_0x268a7d(0x1e2)] = {};
+function a0_0x2089() {
+  var _0x58a3c1 = ['dealData', 'width', 'prototype', '1392846TngvXi', '2028708XyqMoW', 'deal120ByteArray', 'setInt8', 'getUint8', 'deal120TotalPictureByteArrayWithZip', 'maxCacheRows', '171075WdhMrI', 'compare', 'createSpaceRowData', '4dZSuhk', '0123456789abcdef', 'lzoapi', 'substr', 'charAt', 'createData', '409332EwwIVu', 'createTotalPictureZipBuffer', 'byteLength', 'agreement', 'height', 'createRowData', 'ab2hex', 'doubleColorPrintSupport', 'push', 'tid', '3480RopRQB', 'map', 'reciveCmd', 'outputBuffer', 'compareImageDataWithZipComplete', 'time', 'toString', 'createDataWithDataArray', '2525210PnsMeN', '11ZlUnmA', 'getInfos', 'sendBleInterval', '76308ADgRPW', 'getInfosCallback', 'left', 'getPrinterInfosCallback', 'deal120ByteArrayWithZip', 'repeatTimeoutId', 'fromCharCode', 'insertAtHeadOfBuffer', 'compress', 'data', 'doCreateBuffer', 'cutRepeat', 'printer', 'maxOnceSendRows', 'doublePrinterMaxCache', 'createZipBuffer', 'protoVer', 'call', '45qcJXAZ', 'right', 'setUint8', 'dealImageData', 'splice', 'length', 'printerInfos', 'ble', '4563VaOPZx', 'join', 'slice'];
+  a0_0x2089 = function a0_0x2089() {
+    return _0x58a3c1;
+  };
+  return a0_0x2089();
+}
+var _default = DataUntils;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 169:
+/*!***************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/lzo1x.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+function a0_0x4aa8(_0x118a14, _0x58dfe4) {
+  var _0x112761 = a0_0x1127();
+  return a0_0x4aa8 = function a0_0x4aa8(_0x4aa8b6, _0x2ed61c) {
+    _0x4aa8b6 = _0x4aa8b6 - 0x10e;
+    var _0x5b4956 = _0x112761[_0x4aa8b6];
+    return _0x5b4956;
+  }, a0_0x4aa8(_0x118a14, _0x58dfe4);
+}
+(function (_0x4ea811, _0x1660e4) {
+  var _0x50f18a = a0_0x4aa8,
+    _0x56e7cb = _0x4ea811();
+  while (!![]) {
+    try {
+      var _0x136493 = -parseInt(_0x50f18a(0x12e)) / 0x1 + parseInt(_0x50f18a(0x113)) / 0x2 * (-parseInt(_0x50f18a(0x12a)) / 0x3) + parseInt(_0x50f18a(0x11b)) / 0x4 + parseInt(_0x50f18a(0x12b)) / 0x5 + -parseInt(_0x50f18a(0x123)) / 0x6 + parseInt(_0x50f18a(0x135)) / 0x7 + parseInt(_0x50f18a(0x111)) / 0x8;
+      if (_0x136493 === _0x1660e4) break;else _0x56e7cb['push'](_0x56e7cb['shift']());
+    } catch (_0x1be189) {
+      _0x56e7cb['push'](_0x56e7cb['shift']());
+    }
+  }
+})(a0_0x1127, 0x327cd);
+function a0_0x1127() {
+  var _0x5139ec = ['copy_from_buf', 'ip_start', 'out', '537198DnfypK', 'blockSize', 'buf32', 'outputSize', 'OUTPUT_OVERRUN', 'set', 'ret', '798LKTfRa', '425430xCCldO', 'inputBuffer', 'setBlockSize', '266105fjCyAN', 'minNewSize', 'm_pos', 'compress', 'extendBuffer', 'copy_match', '_compressCore', '2211202MZuCjq', 'match_done', 'op_end', 'applyConfig', 'buf', 'state', 'returnNewBuffers', 'dv_hi', 'maxSize', 'dict', 'dv_lo', 'subarray', 'match_next', 'decompress', 'm_off', 'prev_ip', 'emptyDict', 'match', 'ceil', 'ip_end', '2696576lHfSHM', 'skipToFirstLiteralFun', '2524bRdDDh', 'LOOKBEHIND_OVERRUN', 'dindex', 'setOutputSize', 'cbl', 'length', 'setReturnNewBuffers', 'number', '640332onmbls', 'INPUT_OVERRUN', 'm_len', 'EOF_FOUND', 'outputBuffer'];
+  a0_0x1127 = function a0_0x1127() {
+    return _0x5139ec;
+  };
+  return a0_0x1127();
+}
+function _lzo1x() {
+  var _0x32de70 = a0_0x4aa8;
+  this[_0x32de70(0x124)] = 0x80 * 0x400, this[_0x32de70(0x12f)] = this[_0x32de70(0x124)], this['maxSize'] = 0x0, this['OK'] = 0x0, this[_0x32de70(0x11c)] = -0x4, this[_0x32de70(0x127)] = -0x5, this[_0x32de70(0x114)] = -0x6, this[_0x32de70(0x11e)] = -0x3e7, this[_0x32de70(0x129)] = 0x0, this[_0x32de70(0x139)] = null, this[_0x32de70(0x125)] = null, this[_0x32de70(0x122)] = new Uint8Array(0x100 * 0x400), this[_0x32de70(0x117)] = 0x0, this['ip_end'] = 0x0, this[_0x32de70(0x137)] = 0x0, this['t'] = 0x0, this['ip'] = 0x0, this['op'] = 0x0, this[_0x32de70(0x130)] = 0x0, this[_0x32de70(0x11d)] = 0x0, this[_0x32de70(0x143)] = 0x0, this['dv_hi'] = 0x0, this[_0x32de70(0x13f)] = 0x0, this[_0x32de70(0x115)] = 0x0, this['ii'] = 0x0, this['jj'] = 0x0, this['tt'] = 0x0, this['v'] = 0x0, this[_0x32de70(0x13e)] = new Uint32Array(0x4000), this[_0x32de70(0x145)] = new Uint32Array(0x4000), this[_0x32de70(0x112)] = ![], this[_0x32de70(0x13b)] = !![], this['setBlockSize'] = function (_0x43d3ff) {
+    var _0x55a205 = _0x32de70;
+    return (0, _typeof2.default)(_0x43d3ff) === _0x55a205(0x11a) && !isNaN(_0x43d3ff) && parseInt(_0x43d3ff) > 0x0 ? (this[_0x55a205(0x124)] = parseInt(_0x43d3ff), !![]) : ![];
+  }, this[_0x32de70(0x116)] = function (_0x2aeb40) {
+    var _0x423b60 = _0x32de70;
+    return (0, _typeof2.default)(_0x2aeb40) === _0x423b60(0x11a) && !isNaN(_0x2aeb40) && parseInt(_0x2aeb40) > 0x0 ? (this[_0x423b60(0x122)] = new Uint8Array(parseInt(_0x2aeb40)), !![]) : ![];
+  }, this[_0x32de70(0x119)] = function (_0x345cbe) {
+    var _0x3a1d81 = _0x32de70;
+    this[_0x3a1d81(0x13b)] = !!_0x345cbe;
+  }, this[_0x32de70(0x138)] = function (_0x284615) {
+    var _0x5b000a = _0x32de70;
+    _0x284615 !== undefined && (_0x284615['outputSize'] !== undefined && instance[_0x5b000a(0x116)](_0x284615[_0x5b000a(0x126)]), _0x284615['blockSize'] !== undefined && instance[_0x5b000a(0x12d)](_0x284615[_0x5b000a(0x124)]));
+  }, this['ctzl'] = function (_0xf20ff3) {
+    var _0x497455;
+    return _0xf20ff3 & 0x1 ? _0x497455 = 0x0 : (_0x497455 = 0x1, (_0xf20ff3 & 0xffff) === 0x0 && (_0xf20ff3 >>= 0x10, _0x497455 += 0x10), (_0xf20ff3 & 0xff) === 0x0 && (_0xf20ff3 >>= 0x8, _0x497455 += 0x8), (_0xf20ff3 & 0xf) === 0x0 && (_0xf20ff3 >>= 0x4, _0x497455 += 0x4), (_0xf20ff3 & 0x3) === 0x0 && (_0xf20ff3 >>= 0x2, _0x497455 += 0x2), _0x497455 -= _0xf20ff3 & 0x1), _0x497455;
+  }, this[_0x32de70(0x132)] = function () {
+    var _0x109b51 = _0x32de70,
+      _0x4ac6df = new Uint8Array(this[_0x109b51(0x12f)] + (this['blockSize'] - this['minNewSize'] % this[_0x109b51(0x124)]));
+    _0x4ac6df[_0x109b51(0x128)](this[_0x109b51(0x122)]), this[_0x109b51(0x122)] = _0x4ac6df, this[_0x109b51(0x117)] = this[_0x109b51(0x122)][_0x109b51(0x118)];
+  }, this[_0x32de70(0x141)] = function () {
+    var _0x29ada1 = _0x32de70;
+    this['minNewSize'] = this['op'] + 0x3, this[_0x29ada1(0x12f)] > this['cbl'] && this[_0x29ada1(0x132)](), this['out'][this['op']++] = this['buf'][this['ip']++], this['t'] > 0x1 && (this['out'][this['op']++] = this[_0x29ada1(0x139)][this['ip']++], this['t'] > 0x2 && (this[_0x29ada1(0x122)][this['op']++] = this[_0x29ada1(0x139)][this['ip']++])), this['t'] = this['buf'][this['ip']++];
+  }, this[_0x32de70(0x136)] = function () {
+    var _0x16e950 = _0x32de70;
+    return this['t'] = this[_0x16e950(0x139)][this['ip'] - 0x2] & 0x3, this['t'];
+  }, this[_0x32de70(0x133)] = function () {
+    var _0x411349 = _0x32de70;
+    this['t'] += 0x2, this['minNewSize'] = this['op'] + this['t'];
+    this[_0x411349(0x12f)] > this[_0x411349(0x117)] && this['extendBuffer']();
+    do {
+      this[_0x411349(0x122)][this['op']++] = this[_0x411349(0x122)][this[_0x411349(0x130)]++];
+    } while (--this['t'] > 0x0);
+  }, this[_0x32de70(0x120)] = function () {
+    var _0x5e2907 = _0x32de70;
+    this[_0x5e2907(0x12f)] = this['op'] + this['t'];
+    this[_0x5e2907(0x12f)] > this[_0x5e2907(0x117)] && this[_0x5e2907(0x132)]();
+    do {
+      this[_0x5e2907(0x122)][this['op']++] = this[_0x5e2907(0x139)][this['ip']++];
+    } while (--this['t'] > 0x0);
+  }, this['match'] = function () {
+    var _0x9f078 = _0x32de70;
+    for (;;) {
+      if (this['t'] >= 0x40) this[_0x9f078(0x130)] = this['op'] - 0x1 - (this['t'] >> 0x2 & 0x7) - (this[_0x9f078(0x139)][this['ip']++] << 0x3), this['t'] = (this['t'] >> 0x5) - 0x1, this['copy_match']();else {
+        if (this['t'] >= 0x20) {
+          this['t'] &= 0x1f;
+          if (this['t'] === 0x0) {
+            while (this[_0x9f078(0x139)][this['ip']] === 0x0) {
+              this['t'] += 0xff, this['ip']++;
+            }
+            this['t'] += 0x1f + this[_0x9f078(0x139)][this['ip']++];
+          }
+          this['m_pos'] = this['op'] - 0x1 - (this[_0x9f078(0x139)][this['ip']] >> 0x2) - (this['buf'][this['ip'] + 0x1] << 0x6), this['ip'] += 0x2, this[_0x9f078(0x133)]();
+        } else {
+          if (this['t'] >= 0x10) {
+            this[_0x9f078(0x130)] = this['op'] - ((this['t'] & 0x8) << 0xb), this['t'] &= 0x7;
+            if (this['t'] === 0x0) {
+              while (this[_0x9f078(0x139)][this['ip']] === 0x0) {
+                this['t'] += 0xff, this['ip']++;
+              }
+              this['t'] += 0x7 + this[_0x9f078(0x139)][this['ip']++];
+            }
+            this['m_pos'] -= (this[_0x9f078(0x139)][this['ip']] >> 0x2) + (this[_0x9f078(0x139)][this['ip'] + 0x1] << 0x6), this['ip'] += 0x2;
+            if (this[_0x9f078(0x130)] === this['op']) return this['state']['outputBuffer'] = this['returnNewBuffers'] === !![] ? new Uint8Array(this[_0x9f078(0x122)][_0x9f078(0x140)](0x0, this['op'])) : this['out'][_0x9f078(0x140)](0x0, this['op']), this['EOF_FOUND'];else this[_0x9f078(0x130)] -= 0x4000, this['copy_match']();
+          } else this[_0x9f078(0x130)] = this['op'] - 0x1 - (this['t'] >> 0x2) - (this[_0x9f078(0x139)][this['ip']++] << 0x2), this['minNewSize'] = this['op'] + 0x2, this[_0x9f078(0x12f)] > this[_0x9f078(0x117)] && this[_0x9f078(0x132)](), this[_0x9f078(0x122)][this['op']++] = this[_0x9f078(0x122)][this[_0x9f078(0x130)]++], this[_0x9f078(0x122)][this['op']++] = this['out'][this['m_pos']];
+        }
+      }
+      if (this[_0x9f078(0x136)]() === 0x0) return this['OK'];
+      this['match_next']();
+    }
+  }, this[_0x32de70(0x142)] = function (_0xf0a3de) {
+    var _0x360223 = _0x32de70;
+    this[_0x360223(0x13a)] = _0xf0a3de, this[_0x360223(0x139)] = this[_0x360223(0x13a)]['inputBuffer'], this[_0x360223(0x117)] = this['out']['length'], this['ip_end'] = this[_0x360223(0x139)]['length'], this['t'] = 0x0, this['ip'] = 0x0, this['op'] = 0x0, this[_0x360223(0x130)] = 0x0, this[_0x360223(0x112)] = ![];
+    if (this[_0x360223(0x139)][this['ip']] > 0x11) {
+      this['t'] = this['buf'][this['ip']++] - 0x11;
+      if (this['t'] < 0x4) {
+        this['match_next'](), this[_0x360223(0x129)] = this[_0x360223(0x10e)]();
+        if (this[_0x360223(0x129)] !== this['OK']) return this['ret'] === this[_0x360223(0x11e)] ? this['OK'] : this[_0x360223(0x129)];
+      } else this['copy_from_buf'](), this[_0x360223(0x112)] = !![];
+    }
+    for (;;) {
+      if (!this['skipToFirstLiteralFun']) {
+        this['t'] = this[_0x360223(0x139)][this['ip']++];
+        if (this['t'] >= 0x10) {
+          this[_0x360223(0x129)] = this[_0x360223(0x10e)]();
+          if (this['ret'] !== this['OK']) return this[_0x360223(0x129)] === this['EOF_FOUND'] ? this['OK'] : this[_0x360223(0x129)];
+          continue;
+        } else {
+          if (this['t'] === 0x0) {
+            while (this[_0x360223(0x139)][this['ip']] === 0x0) {
+              this['t'] += 0xff, this['ip']++;
+            }
+            this['t'] += 0xf + this[_0x360223(0x139)][this['ip']++];
+          }
+        }
+        this['t'] += 0x3, this['copy_from_buf']();
+      } else this[_0x360223(0x112)] = ![];
+      this['t'] = this[_0x360223(0x139)][this['ip']++];
+      if (this['t'] < 0x10) {
+        this[_0x360223(0x130)] = this['op'] - (0x1 + 0x800), this[_0x360223(0x130)] -= this['t'] >> 0x2, this['m_pos'] -= this['buf'][this['ip']++] << 0x2, this[_0x360223(0x12f)] = this['op'] + 0x3;
+        this[_0x360223(0x12f)] > this[_0x360223(0x117)] && this[_0x360223(0x132)]();
+        this[_0x360223(0x122)][this['op']++] = this[_0x360223(0x122)][this[_0x360223(0x130)]++], this[_0x360223(0x122)][this['op']++] = this['out'][this[_0x360223(0x130)]++], this[_0x360223(0x122)][this['op']++] = this[_0x360223(0x122)][this[_0x360223(0x130)]];
+        if (this[_0x360223(0x136)]() === 0x0) continue;else this[_0x360223(0x141)]();
+      }
+      this['ret'] = this['match']();
+      if (this[_0x360223(0x129)] !== this['OK']) return this[_0x360223(0x129)] === this[_0x360223(0x11e)] ? this['OK'] : this[_0x360223(0x129)];
+    }
+    return this['OK'];
+  }, this['_compressCore'] = function () {
+    var _0x2fd5c6 = _0x32de70;
+    this[_0x2fd5c6(0x121)] = this['ip'], this[_0x2fd5c6(0x110)] = this['ip'] + this['ll'] - 0x14, this['jj'] = this['ip'], this['ti'] = this['t'], this['ip'] += this['ti'] < 0x4 ? 0x4 - this['ti'] : 0x0, this['ip'] += 0x1 + (this['ip'] - this['jj'] >> 0x5);
+    for (;;) {
+      if (this['ip'] >= this[_0x2fd5c6(0x110)]) break;
+      this[_0x2fd5c6(0x13f)] = this[_0x2fd5c6(0x139)][this['ip']] | this[_0x2fd5c6(0x139)][this['ip'] + 0x1] << 0x8, this['dv_hi'] = this[_0x2fd5c6(0x139)][this['ip'] + 0x2] | this[_0x2fd5c6(0x139)][this['ip'] + 0x3] << 0x8, this['dindex'] = ((this['dv_lo'] * 0x429d >>> 0x10) + this['dv_hi'] * 0x429d + this[_0x2fd5c6(0x13f)] * 0x1824 & 0xffff) >>> 0x2, this[_0x2fd5c6(0x130)] = this[_0x2fd5c6(0x121)] + this[_0x2fd5c6(0x13e)][this[_0x2fd5c6(0x115)]], this['dict'][this[_0x2fd5c6(0x115)]] = this['ip'] - this[_0x2fd5c6(0x121)];
+      if ((this[_0x2fd5c6(0x13c)] << 0x10) + this[_0x2fd5c6(0x13f)] != (this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)]] | this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + 0x1] << 0x8 | this['buf'][this[_0x2fd5c6(0x130)] + 0x2] << 0x10 | this['buf'][this[_0x2fd5c6(0x130)] + 0x3] << 0x18)) {
+        this['ip'] += 0x1 + (this['ip'] - this['jj'] >> 0x5);
+        continue;
+      }
+      this['jj'] -= this['ti'], this['ti'] = 0x0, this['v'] = this['ip'] - this['jj'];
+      if (this['v'] !== 0x0) {
+        if (this['v'] <= 0x3) {
+          this[_0x2fd5c6(0x122)][this['op'] - 0x2] |= this['v'];
+          do {
+            this['out'][this['op']++] = this[_0x2fd5c6(0x139)][this['jj']++];
+          } while (--this['v'] > 0x0);
+        } else {
+          if (this['v'] <= 0x12) this[_0x2fd5c6(0x122)][this['op']++] = this['v'] - 0x3;else {
+            this['tt'] = this['v'] - 0x12, this['out'][this['op']++] = 0x0;
+            while (this['tt'] > 0xff) {
+              this['tt'] -= 0xff, this[_0x2fd5c6(0x122)][this['op']++] = 0x0;
+            }
+            this[_0x2fd5c6(0x122)][this['op']++] = this['tt'];
+          }
+          do {
+            this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x139)][this['jj']++];
+          } while (--this['v'] > 0x0);
+        }
+      }
+      this[_0x2fd5c6(0x11d)] = 0x4;
+      if (this['buf'][this['ip'] + this[_0x2fd5c6(0x11d)]] === this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) do {
+        this['m_len'] += 0x1;
+        if (this[_0x2fd5c6(0x139)][this['ip'] + this['m_len']] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this['buf'][this['ip'] + this[_0x2fd5c6(0x11d)]] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this['buf'][this['ip'] + this[_0x2fd5c6(0x11d)]] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this['buf'][this['ip'] + this['m_len']] !== this['buf'][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this[_0x2fd5c6(0x139)][this['ip'] + this[_0x2fd5c6(0x11d)]] !== this['buf'][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this[_0x2fd5c6(0x139)][this['ip'] + this['m_len']] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this['m_len'] += 0x1;
+        if (this[_0x2fd5c6(0x139)][this['ip'] + this['m_len']] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        this[_0x2fd5c6(0x11d)] += 0x1;
+        if (this['buf'][this['ip'] + this[_0x2fd5c6(0x11d)]] !== this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]) break;
+        if (this['ip'] + this[_0x2fd5c6(0x11d)] >= this[_0x2fd5c6(0x110)]) break;
+      } while (this[_0x2fd5c6(0x139)][this['ip'] + this[_0x2fd5c6(0x11d)]] === this[_0x2fd5c6(0x139)][this[_0x2fd5c6(0x130)] + this[_0x2fd5c6(0x11d)]]);
+      this['m_off'] = this['ip'] - this['m_pos'], this['ip'] += this['m_len'], this['jj'] = this['ip'];
+      if (this['m_len'] <= 0x8 && this[_0x2fd5c6(0x143)] <= 0x800) this[_0x2fd5c6(0x143)] -= 0x1, this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x11d)] - 0x1 << 0x5 | (this[_0x2fd5c6(0x143)] & 0x7) << 0x2, this[_0x2fd5c6(0x122)][this['op']++] = this['m_off'] >> 0x3;else {
+        if (this['m_off'] <= 0x4000) {
+          this[_0x2fd5c6(0x143)] -= 0x1;
+          if (this[_0x2fd5c6(0x11d)] <= 0x21) this['out'][this['op']++] = 0x20 | this[_0x2fd5c6(0x11d)] - 0x2;else {
+            this['m_len'] -= 0x21, this[_0x2fd5c6(0x122)][this['op']++] = 0x20;
+            while (this[_0x2fd5c6(0x11d)] > 0xff) {
+              this[_0x2fd5c6(0x11d)] -= 0xff, this[_0x2fd5c6(0x122)][this['op']++] = 0x0;
+            }
+            this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x11d)];
+          }
+          this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x143)] << 0x2, this[_0x2fd5c6(0x122)][this['op']++] = this['m_off'] >> 0x6;
+        } else {
+          this['m_off'] -= 0x4000;
+          if (this[_0x2fd5c6(0x11d)] <= 0x9) this[_0x2fd5c6(0x122)][this['op']++] = 0x10 | this[_0x2fd5c6(0x143)] >> 0xb & 0x8 | this[_0x2fd5c6(0x11d)] - 0x2;else {
+            this[_0x2fd5c6(0x11d)] -= 0x9, this['out'][this['op']++] = 0x10 | this['m_off'] >> 0xb & 0x8;
+            while (this[_0x2fd5c6(0x11d)] > 0xff) {
+              this[_0x2fd5c6(0x11d)] -= 0xff, this[_0x2fd5c6(0x122)][this['op']++] = 0x0;
+            }
+            this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x11d)];
+          }
+          this[_0x2fd5c6(0x122)][this['op']++] = this['m_off'] << 0x2, this[_0x2fd5c6(0x122)][this['op']++] = this[_0x2fd5c6(0x143)] >> 0x6;
+        }
+      }
+    }
+    this['t'] = this['ll'] - (this['jj'] - this[_0x2fd5c6(0x121)] - this['ti']);
+  }, this[_0x32de70(0x131)] = function (_0xd477df) {
+    var _0x57b2b5 = _0x32de70;
+    this[_0x57b2b5(0x13a)] = _0xd477df, this['ip'] = 0x0, this[_0x57b2b5(0x139)] = this[_0x57b2b5(0x13a)][_0x57b2b5(0x12c)], this[_0x57b2b5(0x13d)] = this[_0x57b2b5(0x139)][_0x57b2b5(0x118)] + Math[_0x57b2b5(0x10f)](this[_0x57b2b5(0x139)]['length'] / 0x10) + 0x40 + 0x3;
+    this[_0x57b2b5(0x13d)] > this['out'][_0x57b2b5(0x118)] && (this[_0x57b2b5(0x122)] = new Uint8Array(this[_0x57b2b5(0x13d)]));
+    this['op'] = 0x0, this['l'] = this['buf']['length'], this['t'] = 0x0;
+    while (this['l'] > 0x14) {
+      this['ll'] = this['l'] <= 0xc000 ? this['l'] : 0xc000;
+      if (this['t'] + this['ll'] >> 0x5 <= 0x0) break;
+      this[_0x57b2b5(0x13e)]['set'](this[_0x57b2b5(0x145)]), this[_0x57b2b5(0x144)] = this['ip'], this[_0x57b2b5(0x134)](), this['ip'] = this['prev_ip'] + this['ll'], this['l'] -= this['ll'];
+    }
+    this['t'] += this['l'];
+    if (this['t'] > 0x0) {
+      this['ii'] = this[_0x57b2b5(0x139)][_0x57b2b5(0x118)] - this['t'];
+      if (this['op'] === 0x0 && this['t'] <= 0xee) this[_0x57b2b5(0x122)][this['op']++] = 0x11 + this['t'];else {
+        if (this['t'] <= 0x3) this[_0x57b2b5(0x122)][this['op'] - 0x2] |= this['t'];else {
+          if (this['t'] <= 0x12) this[_0x57b2b5(0x122)][this['op']++] = this['t'] - 0x3;else {
+            this['tt'] = this['t'] - 0x12, this[_0x57b2b5(0x122)][this['op']++] = 0x0;
+            while (this['tt'] > 0xff) {
+              this['tt'] -= 0xff, this[_0x57b2b5(0x122)][this['op']++] = 0x0;
+            }
+            this[_0x57b2b5(0x122)][this['op']++] = this['tt'];
+          }
+        }
+      }
+      do {
+        this[_0x57b2b5(0x122)][this['op']++] = this[_0x57b2b5(0x139)][this['ii']++];
+      } while (--this['t'] > 0x0);
+    }
+    return this[_0x57b2b5(0x122)][this['op']++] = 0x11, this[_0x57b2b5(0x122)][this['op']++] = 0x0, this[_0x57b2b5(0x122)][this['op']++] = 0x0, this[_0x57b2b5(0x13a)][_0x57b2b5(0x11f)] = this[_0x57b2b5(0x13b)] === !![] ? new Uint8Array(this[_0x57b2b5(0x122)][_0x57b2b5(0x140)](0x0, this['op'])) : this[_0x57b2b5(0x122)]['subarray'](0x0, this['op']), this['OK'];
+  };
+}
+;
+var instance = new _lzo1x(),
+  lzoapi = {
+    'setBlockSize': function setBlockSize(_0x464d71) {
+      var _0x438897 = a0_0x4aa8;
+      return instance[_0x438897(0x12d)](_0x464d71);
+    },
+    'setOutputEstimate': function setOutputEstimate(_0x21aedb) {
+      return instance['setOutputSize'](_0x21aedb);
+    },
+    'setReturnNewBuffers': function setReturnNewBuffers(_0x5800ea) {
+      var _0x321022 = a0_0x4aa8;
+      instance[_0x321022(0x119)](_0x5800ea);
+    },
+    'compress': function compress(_0x4ba062, _0x3a26b7) {
+      var _0x480b03 = a0_0x4aa8;
+      return _0x3a26b7 !== undefined && instance[_0x480b03(0x138)](_0x3a26b7), instance[_0x480b03(0x131)](_0x4ba062);
+    },
+    'decompress': function decompress(_0x4fdb45, _0xfaa57d) {
+      var _0x983536 = a0_0x4aa8;
+      return _0xfaa57d !== undefined && instance[_0x983536(0x138)](_0xfaa57d), instance['decompress'](_0x4fdb45);
+    }
+  };
+var _default = {
+  'lzoapi': lzoapi
+};
+exports.default = _default;
+
+/***/ }),
+
 /***/ 17:
 /*!*************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
@@ -209,14 +6566,2801 @@ module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, mo
 
 /***/ }),
 
+/***/ 170:
+/*!************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPIErrorCode.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var SDKErrorCode = {
+  "JCSDK_PRINT_ERR_TIMEOUT": {
+    "errCode": 0xff00,
+    "msg": "打印超时"
+  },
+  "JCSDK_PRINT_ERR_DISCONNECT": {
+    "errCode": 0xff01,
+    "msg": "打印机断开"
+  },
+  "JCSDK_PRINT_ERR_DATA": {
+    "errCode": 0xff02,
+    "msg": "数据错误"
+  },
+  "JCSDK_PRINT_ERR_BUSY": {
+    "errCode": 0xff03,
+    "msg": "打印机忙碌"
+  },
+  "JCSDK_PRINT_ERR_GetDATA": {
+    "errCode": 0xff04,
+    "msg": "画布获取数据错误"
+  },
+  "JCSDK_PRINT_ERR_SetPaperFailed": {
+    "errCode": 0xff05,
+    "msg": "设置纸张失败错误"
+  },
+  "JCSDK_PRINT_ERR_PrinterNotWork": {
+    "errCode": 0xff06,
+    "msg": "查询打印纸张状态异常"
+  },
+  "JCSDK_PRINT_ERR_0x01": {
+    "errCode": 0xff07,
+    "msg": "盒盖打开"
+  },
+  "JCSDK_PRINT_ERR_0x02": {
+    "errCode": 0xff08,
+    "msg": "缺纸"
+  },
+  "JCSDK_PRINT_ERR_0x03": {
+    "errCode": 0xff09,
+    "msg": "电量不足"
+  },
+  "JCSDK_PRINT_ERR_0x04": {
+    "errCode": 0xff0a,
+    "msg": "电池异常"
+  },
+  "JCSDK_PRINT_ERR_0x05": {
+    "errCode": 0xff0b,
+    "msg": "手动停止"
+  },
+  "JCSDK_PRINT_ERR_0x06": {
+    "errCode": 0xff0c,
+    "msg": "数据错误"
+  },
+  "JCSDK_PRINT_ERR_0x07": {
+    "errCode": 0xff0d,
+    "msg": "温度过高"
+  },
+  "JCSDK_PRINT_ERR_0x08": {
+    "errCode": 0xff0e,
+    "msg": "出纸异常"
+  },
+  "JCSDK_PRINT_ERR_0x09": {
+    "errCode": 0xff0f,
+    "msg": "纸张错误"
+  },
+  "JCSDK_PRINT_ERR_0x0a": {
+    "errCode": 0xff10,
+    "msg": "rfid写入失败"
+  },
+  "JCSDK_PRINT_ERR_0x0b": {
+    "errCode": 0xff11,
+    "msg": "出纸异常"
+  },
+  "JCSDK_PRINT_ERR_0x0c": {
+    "errCode": 0xff12,
+    "msg": "发送epc指令但未检测到RFID标签"
+  },
+  "JCSDK_PRINT_ERR_0x0d": {
+    "errCode": 0xff13,
+    "msg": "检测到RFID标签但未发送EPC指令"
+  },
+  "JCSDK_PRINT_ERR_0x0e": {
+    "errCode": 0xff14,
+    "msg": "缺碳带"
+  },
+  "JCSDK_PRINT_ERR_0x0f": {
+    "errCode": 0xff15,
+    "msg": "打印头未锁紧"
+  },
+  "JCSDK_PRINT_ERR_0x11": {
+    "errCode": 0xff16,
+    "msg": "碳带已用完"
+  },
+  "JCSDK_PRINT_ERR_0x12": {
+    "errCode": 0xff17,
+    "msg": "碳带不匹配"
+  },
+  "JCSDK_PRINT_ERR_0x13": {
+    "errCode": 0xff18,
+    "msg": "标签纸安装异常"
+  },
+  "JCSDK_PRINT_ERR_0x14": {
+    "errCode": 0xff19,
+    "msg": "非法标签"
+  },
+  "JCSDK_PRINT_ERR_0x15": {
+    "errCode": 0xff20,
+    "msg": "非法碳带和标签"
+  },
+  "JCSDK_PRINT_ERR_0x16": {
+    "errCode": 0xff21,
+    "msg": "超时(打印机超时)"
+  },
+  "JCSDK_PRINT_ERR_0x17": {
+    "errCode": 0xff22,
+    "msg": "非专业碳带"
+  },
+  "JCSDK_PRINT_ERR_epc": {
+    "errCode": 0xfe01,
+    "msg": "epc格式不对"
+  },
+  "JCSDK_PRINT_ERR_Drawing_Timeout": {
+    "errCode": 0xfe00,
+    "msg": "绘制元素超时错误"
+  },
+  "JCSDK_PRINT_ERR_noSupport": {
+    "errCode": 0xfffd,
+    "msg": "打印机不支持"
+  },
+  "JCSDK_PRINT_ERR_fail": {
+    "errCode": 0xfd01,
+    "msg": "失败"
+  },
+  "JCSDK_PRINT_ERR_none": {
+    "errCode": 0xfd00,
+    "msg": "正常"
+  },
+  "JCSDK_PLATFORM_WX": "微信",
+  "JCSDK_PLATFORM_DD": "钉钉",
+  "JCSDK_PLATFORM_FS": "飞书",
+  "JCSDK_PLATFORM_Build_Origin": "原生环境编译",
+  "JCSDK_PLATFORM_Build_Uni": "Uni环境编译"
+};
+var _default = SDKErrorCode;
+exports.default = _default;
+
+/***/ }),
+
 /***/ 171:
-/*!**********************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/static/img/allHL.png ***!
-  \**********************************************************/
+/*!*******************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCPrinter.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 172));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 173));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 175));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var a0_0x51313f = a0_0x37ce;
+(function (_0xe7a43b, _0x4d8b95) {
+  var _0x565f74 = a0_0x37ce,
+    _0x547fbe = _0xe7a43b();
+  while (!![]) {
+    try {
+      var _0x47811d = -parseInt(_0x565f74(0x1a6)) / 0x1 * (parseInt(_0x565f74(0x18e)) / 0x2) + -parseInt(_0x565f74(0x1de)) / 0x3 + parseInt(_0x565f74(0x1c4)) / 0x4 * (-parseInt(_0x565f74(0x17b)) / 0x5) + parseInt(_0x565f74(0x20f)) / 0x6 + parseInt(_0x565f74(0x1ed)) / 0x7 * (parseInt(_0x565f74(0x15b)) / 0x8) + -parseInt(_0x565f74(0x1b6)) / 0x9 + -parseInt(_0x565f74(0x1ff)) / 0xa * (-parseInt(_0x565f74(0x211)) / 0xb);
+      if (_0x47811d === _0x4d8b95) break;else _0x547fbe['push'](_0x547fbe['shift']());
+    } catch (_0x47b24c) {
+      _0x547fbe['push'](_0x547fbe['shift']());
+    }
+  }
+})(a0_0x151a, 0xc3112);
+function a0_0x37ce(_0x24f334, _0x42e547) {
+  var _0x151a2b = a0_0x151a();
+  return a0_0x37ce = function a0_0x37ce(_0x37ceb0, _0x5d689c) {
+    _0x37ceb0 = _0x37ceb0 - 0x159;
+    var _0x1d7349 = _0x151a2b[_0x37ceb0];
+    return _0x1d7349;
+  }, a0_0x37ce(_0x24f334, _0x42e547);
+}
+var PrinterBase = /*#__PURE__*/function (_a0_0x51313f, _a0_0x51313f2, _a0_0x51313f3, _a0_0x51313f4, _a0_0x51313f5, _a0_0x51313f6, _a0_0x51313f7, _a0_0x51313f8, _a0_0x51313f9, _a0_0x51313f10, _a0_0x51313f11, _a0_0x51313f12, _a0_0x51313f13, _a0_0x51313f14, _a0_0x51313f15, _a0_0x51313f16, _a0_0x51313f17, _a0_0x51313f18, _a0_0x51313f19, _a0_0x51313f20, _a0_0x51313f21) {
+  function PrinterBase(_0x443fbf) {
+    (0, _classCallCheck2.default)(this, PrinterBase);
+    var _0x5c63c6 = a0_0x37ce;
+    this[_0x5c63c6(0x1e2)] = _0x443fbf, this[_0x5c63c6(0x176)] = null, this[_0x5c63c6(0x201)] = null, this[_0x5c63c6(0x16d)] = null, this[_0x5c63c6(0x190)] = null, this[_0x5c63c6(0x206)] = null, this[_0x5c63c6(0x185)] = null, this['getMacAddressCallback'] = null, this[_0x5c63c6(0x1ab)] = null, this[_0x5c63c6(0x178)] = null, this[_0x5c63c6(0x18d)] = null, this[_0x5c63c6(0x1f7)] = null, this['getSpeedQualityCallback'] = null, this[_0x5c63c6(0x1d8)] = null, this[_0x5c63c6(0x1cb)] = null, this[_0x5c63c6(0x18c)] = null, this[_0x5c63c6(0x1c2)] = null, this[_0x5c63c6(0x163)] = null, this[_0x5c63c6(0x1d9)] = null, this[_0x5c63c6(0x168)] = null, this[_0x5c63c6(0x171)] = null, this[_0x5c63c6(0x192)] = null, this[_0x5c63c6(0x218)] = null, this['setStandardCallback'] = null, this['printObj'] = null, this[_0x5c63c6(0x20c)] = null, this['cancelPrintObj'] = null, this[_0x5c63c6(0x16f)] = null, this['hVer'] = null, this[_0x5c63c6(0x207)] = 0x0, this[_0x5c63c6(0x1ec)] = 0x0, this[_0x5c63c6(0x193)] = 0x0, this[_0x5c63c6(0x15f)] = 0x0, this[_0x5c63c6(0x15a)] = 0x0, this[_0x5c63c6(0x1b5)] = 0x0, this[_0x5c63c6(0x1df)] = 0x0, this[_0x5c63c6(0x15c)] = ![], this[_0x5c63c6(0x1ae)] = ![], this[_0x5c63c6(0x1f1)] = ![], this[_0x5c63c6(0x1ea)] = 0x0, this[_0x5c63c6(0x1af)] = 0xc8, this['paperHeight'] = 0x0, this[_0x5c63c6(0x1f9)] = 0x0;
+  }
+  (0, _createClass2.default)(PrinterBase, [{
+    key: 'reciveCmd',
+    value: function reciveCmd(_0x41de1c, _0x385ab8) {
+      var _this = this;
+      var _0x4d2ec7 = a0_0x37ce;
+      var _0x32328b = this;
+      this['manager'][_0x4d2ec7(0x214)]['repeatTimeoutId'] && (clearTimeout(this['manager']['ble']['repeatTimeoutId']), this[_0x4d2ec7(0x1e2)]['ble'][_0x4d2ec7(0x176)] = null);
+      switch (_0x41de1c) {
+        case 0x41:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x201)], _0x385ab8);
+          break;
+        case 0x42:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x16d)], _0x385ab8);
+          break;
+        case 0x43:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x190)], _0x385ab8);
+          break;
+        case 0x46:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this['callbackOnce'](this[_0x4d2ec7(0x1c2)], _0x385ab8);
+          break;
+        case 0x47:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x206)], _0x385ab8);
+          break;
+        case 0x49:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this['callbackOnce'](this['getSversionCallback'], _0x385ab8);
+          break;
+        case 0x4a:
+          clearTimeout(this['repeatTimeoutId']), this[_0x4d2ec7(0x189)](this['getPowerLevelCallback'], _0x385ab8);
+          break;
+        case 0x4b:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this['callbackOnce'](this[_0x4d2ec7(0x1f7)], {
+            'code': 0x0,
+            'res': _0x385ab8
+          });
+          break;
+        case 0x4c:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this['callbackOnce'](this[_0x4d2ec7(0x178)], _0x385ab8);
+          break;
+        case 0x4d:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x1e1)], _0x385ab8);
+          break;
+        case 0x31:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this['callbackOnce'](this[_0x4d2ec7(0x163)], _0x385ab8);
+          break;
+        case 0x32:
+          clearTimeout(this['repeatTimeoutId']), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x1d9)], _0x385ab8);
+          break;
+        case 0x33:
+          clearTimeout(this['repeatTimeoutId']), this['callbackOnce'](this['setPaperTypeCallback'], _0x385ab8);
+          break;
+        case 0x36:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x218)], _0x385ab8);
+          break;
+        case 0x37:
+          clearTimeout(this['repeatTimeoutId']), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x171)], _0x385ab8);
+          break;
+        case 0x38:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this[_0x4d2ec7(0x192)], _0x385ab8);
+          break;
+        case 0x1b:
+          clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x189)](this['getRFIDInfosCallback'], _0x385ab8);
+          break;
+        case 0x2:
+          this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0x2 && (clearTimeout(this[_0x4d2ec7(0x176)]), _0x385ab8 == 0x0 ? this['sendPrintError'](_JCAPIErrorCode.default[_0x4d2ec7(0x1c6)], this[_0x4d2ec7(0x18b)][_0x4d2ec7(0x17e)], this[_0x4d2ec7(0x18b)]['complete']) : this[_0x4d2ec7(0x18a)]());
+          break;
+        case 0x4:
+          if (this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0x4) {
+            if (this[_0x4d2ec7(0x176)]) clearTimeout(this[_0x4d2ec7(0x176)]);
+            if (_0x385ab8 == 0x1) this[_0x4d2ec7(0x215)]();else {
+              if (this['reciveReject']() == ![]) return;
+              this[_0x4d2ec7(0x176)] = setTimeout(function () {
+                var _0x1992f0 = _0x4d2ec7;
+                var _0x1a28d9 = _JCDataUntil.default[_0x1992f0(0x1b9)](0x3, 0x1);
+                _this[_0x1992f0(0x1e2)][_0x1992f0(0x212)] = 0x4, _0x32328b[_0x1992f0(0x1e3)](_0x1a28d9);
+              }, 0x1f4);
+            }
+          }
+          break;
+        case 0x14:
+          {
+            this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0x14 && (clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x1a4)]());
+          }
+          break;
+        case 0x16:
+          {
+            this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0x16 && (clearTimeout(this['repeatTimeoutId']), this[_0x4d2ec7(0x21a)]());
+          }
+          break;
+        case 0xd3:
+          {
+            var _0x4863b6 = _0x385ab8 >> 0x8,
+              _0x79a19f = _0x385ab8 & 0xff;
+            if (_0x4863b6 > this[_0x4d2ec7(0x1d3)]) {
+              if (_0x4863b6 == (this[_0x4d2ec7(0x21e)] + 0x1) * 0xc8 - 0x1 || _0x4863b6 + 0x1 == this[_0x4d2ec7(0x15f)]) {
+                this['send86TimeoutId'] != null && (clearTimeout(this[_0x4d2ec7(0x1d4)]), this['send86TimeoutId'] = null);
+                this[_0x4d2ec7(0x176)] && (clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x176)] = null);
+                if (_0x79a19f == 0x1) {
+                  this['arrayIndex1']++, this[_0x4d2ec7(0x202)] = 0x0, this[_0x4d2ec7(0x1d3)] = _0x4863b6;
+                  if (this[_0x4d2ec7(0x21e)] == this['sendDataArray']['length']) {
+                    this[_0x4d2ec7(0x176)] = setTimeout(function () {
+                      var _0x5efb2a = _0x4d2ec7;
+                      var _0x1724a2 = _JCDataUntil.default[_0x5efb2a(0x1b9)](0xe3, 0x1);
+                      _0x32328b[_0x5efb2a(0x1e2)][_0x5efb2a(0x212)] = 0xe4, _0x32328b['unRes'] = 0x1, _0x32328b[_0x5efb2a(0x1e3)](_0x1724a2);
+                    }, 0x1f4);
+                    return;
+                  }
+                  this[_0x4d2ec7(0x17c)]();
+                } else {
+                  if (_0x79a19f == 0x2) this['arrayIndex2'] = 0x0, this['doSendPictrueData']();else {
+                    if (this['reciveReject']() == ![]) return;
+                    this[_0x4d2ec7(0x1d4)] = setTimeout(function () {
+                      var _0xc6e8d3 = _0x4d2ec7;
+                      _0x32328b[_0xc6e8d3(0x174)]();
+                    }, 0x1f4);
+                  }
+                }
+              }
+            }
+          }
+          break;
+        case 0xe4:
+          {
+            if (this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0xe4) {
+              clearTimeout(this[_0x4d2ec7(0x176)]);
+              if (_0x385ab8 == 0x1) this['reciveE4Succ']();else {
+                if (this[_0x4d2ec7(0x1b8)]() == ![]) return;
+                this[_0x4d2ec7(0x176)] = setTimeout(function () {
+                  var _0x51120b = _0x4d2ec7;
+                  var _0x237485 = _JCDataUntil.default['createData'](0xe3, 0x1);
+                  _this['manager'][_0x51120b(0x212)] = 0xe4, _0x32328b[_0x51120b(0x1e3)](_0x237485);
+                }, 0x1f4);
+              }
+            }
+          }
+          break;
+        case 0xd0:
+          {
+            this[_0x4d2ec7(0x15c)] && this[_0x4d2ec7(0x1ae)] && !this['reciveCancel'] && (clearTimeout(this[_0x4d2ec7(0x176)]), this[_0x4d2ec7(0x1f1)] = !![], this[_0x4d2ec7(0x198)]());
+          }
+          break;
+        case 0xf4:
+          {
+            if (this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] == 0xf4) {
+              clearTimeout(this[_0x4d2ec7(0x176)]);
+              if (_0x385ab8 == 0x1) this[_0x4d2ec7(0x1dd)]();else {
+                if (this['reciveReject']() == ![]) return;
+                this['repeatTimeoutId'] = setTimeout(function () {
+                  var _0x5e3bd9 = _0x4d2ec7;
+                  var _0x372e58 = _JCDataUntil.default[_0x5e3bd9(0x1b9)](0xf3, 0x1);
+                  _this['manager'][_0x5e3bd9(0x212)] = 0xf4, _0x32328b[_0x5e3bd9(0x1e3)](_0x372e58);
+                }, 0x1f4);
+              }
+            }
+          }
+          break;
+        case 0xb3:
+          {
+            if (this[_0x4d2ec7(0x1e2)]['needCMD'] == 0xb3) {
+              clearTimeout(this[_0x4d2ec7(0x176)]);
+              this[_0x4d2ec7(0x21b)] > 0x0 && clearTimeout(this[_0x4d2ec7(0x21b)]);
+              if (this[_0x4d2ec7(0x15a)] == _0x385ab8) {
+                this['reject']++;
+                if (this[_0x4d2ec7(0x207)] >= 0x3c) {
+                  this['sendPrintError'](_JCAPIErrorCode.default[_0x4d2ec7(0x210)], this[_0x4d2ec7(0x18b)]['fail'], this['printObj'][_0x4d2ec7(0x1c1)]), this[_0x4d2ec7(0x18f)]();
+                  return;
+                }
+                this[_0x4d2ec7(0x21b)] = setTimeout(function () {
+                  var _0x1e0c6a = _0x4d2ec7;
+                  _0x32328b[_0x1e0c6a(0x198)]();
+                }, 0x1f4);
+              } else {
+                this[_0x4d2ec7(0x207)] = 0x0, this[_0x4d2ec7(0x15a)] = _0x385ab8;
+                var _0x1d1fef = _0x385ab8 >> 0x10;
+                if (_0x1d1fef > this['printedCount']) {
+                  if (this['printObj']['success']) {
+                    this['printObj'][_0x4d2ec7(0x181)]({
+                      'count': _0x1d1fef
+                    });
+                    if (this[_0x4d2ec7(0x15c)] && this[_0x4d2ec7(0x1ae)] && this[_0x4d2ec7(0x1f1)]) {
+                      this[_0x4d2ec7(0x18f)]();
+                      return;
+                    }
+                    this['printedCount'] = _0x1d1fef;
+                  }
+                  if (_0x1d1fef == this[_0x4d2ec7(0x18b)][_0x4d2ec7(0x16c)]) this[_0x4d2ec7(0x18f)]();else {
+                    if (this['wantCancel'] && !this['sendCancel']) {
+                      this[_0x4d2ec7(0x1ae)] = !![], this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x212)] = 0xd0;
+                      var _0x17e978 = _JCDataUntil.default[_0x4d2ec7(0x1b9)](0xda, 0x1);
+                      this['sendData'](_0x17e978);
+                      return;
+                    }
+                    this[_0x4d2ec7(0x198)]();
+                  }
+                } else this[_0x4d2ec7(0x198)]();
+              }
+            }
+          }
+          break;
+        case 0xdb:
+          {
+            (this[_0x4d2ec7(0x1e2)][_0x4d2ec7(0x180)] & 0x100) == 0x100 && console['log'](_0x4d2ec7(0x200) + _0x385ab8), clearTimeout(this[_0x4d2ec7(0x176)]), this['printErrorCode'] = _0x385ab8, this[_0x4d2ec7(0x18f)]();
+          }
+          break;
+        case 0x0:
+          {
+            clearTimeout(this[_0x4d2ec7(0x176)]), this['recive0x00']();
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  }, {
+    key: _a0_0x51313f,
+    value: function value() {
+      var _0x3481b8 = a0_0x51313f;
+      switch (this[_0x3481b8(0x1e2)]['needCMD']) {
+        case 0x2:
+          break;
+        case 0x21:
+          this[_0x3481b8(0x189)](this[_0x3481b8(0x163)], 0x3);
+          break;
+        case 0x23:
+          this[_0x3481b8(0x189)](this[_0x3481b8(0x168)], 0x3);
+          break;
+        case 0x4:
+          break;
+        case 0x6:
+          break;
+        case 0x8:
+          break;
+        case 0x14:
+          break;
+        case 0x16:
+          break;
+        case 0xe4:
+          break;
+        case 0xf4:
+          break;
+        case 0xb3:
+          break;
+        case 0x31:
+          this['callbackOnce'](this[_0x3481b8(0x163)], 0x3);
+          break;
+        case 0x33:
+          this[_0x3481b8(0x189)](this[_0x3481b8(0x168)], 0x3);
+          break;
+        case 0x1b:
+          this['callbackOnce'](this['getRFIDInfosCallback'], {
+            'res': 0x3
+          });
+          break;
+        case 0xd:
+          this[_0x3481b8(0x189)](this[_0x3481b8(0x1b3)], {
+            'code': -0x3
+          });
+          break;
+        default:
+          break;
+      }
+    }
+  }, {
+    key: 'reciveReject',
+    value: function reciveReject() {
+      var _0x47ab56 = a0_0x51313f;
+      this['reject']++;
+      if (this[_0x47ab56(0x207)] >= 0xf) return this[_0x47ab56(0x1a3)](_JCAPIErrorCode.default[_0x47ab56(0x1ee)], this[_0x47ab56(0x18b)][_0x47ab56(0x17e)], this[_0x47ab56(0x18b)][_0x47ab56(0x1c1)]), this[_0x47ab56(0x207)] = 0x0, ![];
+      return !![];
+    }
+  }, {
+    key: _a0_0x51313f2,
+    value: function value() {
+      var _0x5b4afd = a0_0x51313f;
+      this[_0x5b4afd(0x207)] = 0x0, this[_0x5b4afd(0x15c)] = ![], this[_0x5b4afd(0x1ae)] = ![], this['reciveCancel'] = ![], this[_0x5b4afd(0x1b5)] = 0x0;
+      var _0x3fe41c = _JCDataUntil.default[_0x5b4afd(0x1b9)](0x3, 0x1);
+      this[_0x5b4afd(0x1e2)][_0x5b4afd(0x212)] = 0x4, this[_0x5b4afd(0x1ec)] = 0x1, this[_0x5b4afd(0x1e3)](_0x3fe41c);
+    }
+  }, {
+    key: _a0_0x51313f3,
+    value: function value() {
+      var _0x3a1aaa = a0_0x51313f;
+      this['reject'] = 0x0;
+      var _0x49641a = _JCDataUntil.default[_0x3a1aaa(0x1b9)](0x13, this[_0x3a1aaa(0x15f)] / 0x100, this[_0x3a1aaa(0x15f)] % 0x100, this[_0x3a1aaa(0x193)] / 0x100, this[_0x3a1aaa(0x193)] % 0x100);
+      this[_0x3a1aaa(0x1e2)][_0x3a1aaa(0x212)] = 0x14, this[_0x3a1aaa(0x1ec)] = 0x1, this[_0x3a1aaa(0x1e2)][_0x3a1aaa(0x214)][_0x3a1aaa(0x1e3)](_0x49641a, 0xa, function () {
+        var _0x3cbd27 = _0x3a1aaa;
+        self[_0x3cbd27(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], this[_0x3cbd27(0x205)]);
+      });
+    }
+  }, {
+    key: 'recive14Succ',
+    value: function recive14Succ() {
+      var _0x31f728 = a0_0x51313f;
+      this[_0x31f728(0x207)] = 0x0;
+      var _0x517424 = parseInt(this[_0x31f728(0x18b)][_0x31f728(0x16c)]),
+        _0x2b6349 = _JCDataUntil.default[_0x31f728(0x1b9)](0x15, _0x517424 / 0x100, _0x517424 % 0x100);
+      this['manager'][_0x31f728(0x212)] = 0x16, this['unRes'] = 0x1, this[_0x31f728(0x1e3)](_0x2b6349);
+    }
+  }, {
+    key: _a0_0x51313f4,
+    value: function value() {
+      var _0x10df82 = a0_0x51313f;
+      this[_0x10df82(0x1d3)] = 0x0, this[_0x10df82(0x21e)] = 0x0, this[_0x10df82(0x202)] = 0x0;
+      if (this['wantCancel']) {
+        this[_0x10df82(0x18f)]();
+        return;
+      }
+      this[_0x10df82(0x17c)]();
+    }
+  }, {
+    key: _a0_0x51313f5,
+    value: function value() {
+      var _0x576e06 = a0_0x51313f;
+      this[_0x576e06(0x207)] = 0x0, this[_0x576e06(0x198)]();
+    }
+  }, {
+    key: 'sendSearchPrintPage',
+    value: function sendSearchPrintPage() {
+      var _0x20dc98 = a0_0x51313f;
+      if (this[_0x20dc98(0x1e2)]['sdkPlatform'] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) {
+        if (this['manager'][_0x20dc98(0x212)] == 0xf4 || this[_0x20dc98(0x1e2)][_0x20dc98(0x212)] == 0x0) return;
+      }
+      var _0x181e97 = _JCDataUntil.default[_0x20dc98(0x1b9)](0xa3, 0x1);
+      this['manager'][_0x20dc98(0x212)] = 0xb3;
+      var _0xc9bd32 = this;
+      this[_0x20dc98(0x1e2)][_0x20dc98(0x214)]['sendData'](_0x181e97, 0xa, function () {
+        var _0x559953 = _0x20dc98;
+        _0xc9bd32[_0x559953(0x1a3)](_JCAPIErrorCode.default[_0x559953(0x1ee)], _0xc9bd32[_0x559953(0x205)]);
+      });
+    }
+  }, {
+    key: _a0_0x51313f6,
+    value: function value() {
+      var _0x146169 = a0_0x51313f;
+      this[_0x146169(0x1e2)][_0x146169(0x212)] = 0x0;
+      if (this[_0x146169(0x1df)] > 0x0) {
+        var _0x70a482 = this[_0x146169(0x1c5)]();
+        this[_0x146169(0x1df)] = 0x0, this[_0x146169(0x1a3)](_0x70a482, this[_0x146169(0x205)], null);
+      } else {
+        if (this[_0x146169(0x15c)]) {}
+      }
+    }
+  }, {
+    key: 'getPrintingError',
+    value: function getPrintingError() {
+      var _0x20a06e = a0_0x51313f;
+      var _0x2bc393 = {};
+      switch (this[_0x20a06e(0x1df)]) {
+        case 0x1:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x01'];
+          break;
+        case 0x2:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x1cc)];
+          break;
+        case 0x3:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x194)];
+          break;
+        case 0x4:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x20b)];
+          break;
+        case 0x5:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x1e5)];
+          break;
+        case 0x6:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x195)];
+          break;
+        case 0x7:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x07'];
+          break;
+        case 0x8:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x1bb)];
+          break;
+        case 0x9:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x09'];
+          break;
+        case 0xa:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x0a'];
+          break;
+        case 0xb:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x187)];
+          break;
+        case 0xc:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x0c'];
+          break;
+        case 0xd:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x16e)];
+          break;
+        case 0xe:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x219)];
+          break;
+        case 0xf:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x0f'];
+          break;
+        case 0x11:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x19c)];
+          break;
+        case 0x12:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x12'];
+          break;
+        case 0x13:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x19f)];
+          break;
+        case 0x14:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x14'];
+          break;
+        case 0x15:
+          _0x2bc393 = _JCAPIErrorCode.default[_0x20a06e(0x1be)];
+          break;
+        case 0x16:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x16'];
+          break;
+        case 0x17:
+          _0x2bc393 = _JCAPIErrorCode.default['JCSDK_PRINT_ERR_0x17'];
+          break;
+        default:
+          break;
+      }
+      return _0x2bc393;
+    }
+  }, {
+    key: _a0_0x51313f7,
+    value: function value() {
+      var _0x1496ba = a0_0x51313f;
+      this[_0x1496ba(0x17f)] = ![], this[_0x1496ba(0x176)] > 0x0 && clearTimeout(this[_0x1496ba(0x176)]), this['send86TimeoutId'] > 0x0 && clearTimeout(this[_0x1496ba(0x1d4)]), this[_0x1496ba(0x179)] > 0x0 && clearTimeout(this[_0x1496ba(0x179)]), (this[_0x1496ba(0x1e2)]['needCMD'] == 0x2 || this[_0x1496ba(0x1e2)][_0x1496ba(0x212)] == 0x4 || this[_0x1496ba(0x1e2)][_0x1496ba(0x212)] == 0x14 || this[_0x1496ba(0x1e2)]['needCMD'] == 0x16 || this[_0x1496ba(0x1e2)][_0x1496ba(0x212)] == 0xd3 || this[_0x1496ba(0x1e2)][_0x1496ba(0x212)] == 0xe4 || this[_0x1496ba(0x1e2)]['needCMD'] == 0xb3 || this[_0x1496ba(0x1e2)][_0x1496ba(0x212)] == 0xf4) && (this[_0x1496ba(0x18b)] && this[_0x1496ba(0x1a3)](_JCAPIErrorCode.default[_0x1496ba(0x186)], this[_0x1496ba(0x18b)][_0x1496ba(0x17e)], this[_0x1496ba(0x18b)]['complete']), this[_0x1496ba(0x205)] && this[_0x1496ba(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_DISCONNECT'], this[_0x1496ba(0x205)], null));
+    }
+  }, {
+    key: _a0_0x51313f8,
+    value: function value() {
+      var _0x3ab4e9 = a0_0x51313f;
+      var _0x376a09 = this;
+      if (this[_0x3ab4e9(0x21e)] < this[_0x3ab4e9(0x1b4)][_0x3ab4e9(0x1da)]) {
+        this[_0x3ab4e9(0x1e2)][_0x3ab4e9(0x212)] = 0xd3;
+        var _0x9bf487 = this[_0x3ab4e9(0x1b4)][this[_0x3ab4e9(0x21e)]];
+        if (this['arrayIndex2'] < _0x9bf487[_0x3ab4e9(0x1da)]) {
+          var _0x15df18 = _0x9bf487[this[_0x3ab4e9(0x202)]];
+          this[_0x3ab4e9(0x202)]++, this[_0x3ab4e9(0x1e2)][_0x3ab4e9(0x214)][_0x3ab4e9(0x1e3)](_0x15df18, 0x0, function () {
+            var _0x301010 = _0x3ab4e9;
+            _0x376a09[_0x301010(0x202)] == _0x9bf487['length'] ? _0x376a09[_0x301010(0x1d4)] = setTimeout(function () {
+              _0x376a09['doSend86']();
+            }, 0x1f4) : _0x376a09[_0x301010(0x179)] = setTimeout(function () {
+              _0x376a09['doSendPictrueData']();
+            }, 0x23);
+          });
+        }
+      }
+    }
+  }, {
+    key: _a0_0x51313f9,
+    value: function value() {
+      var _0x4d7382 = a0_0x51313f;
+      if (this[_0x4d7382(0x1e2)][_0x4d7382(0x212)] == 0xd3) {
+        var _0x35ea9d = (this[_0x4d7382(0x21e)] + 0x1) * 0xc8 - 0x1;
+        this[_0x4d7382(0x21e)] + 0x1 == this[_0x4d7382(0x1b4)][_0x4d7382(0x1da)] && (_0x35ea9d = this['rows'] - 0x1);
+        var _0x3eee4d = _0x35ea9d / 0x100,
+          _0x22e688 = _0x35ea9d % 0x100;
+        this[_0x4d7382(0x1e2)][_0x4d7382(0x212)] = 0xd3;
+        var _0x38771a = _JCDataUntil.default[_0x4d7382(0x1b9)](0x86, _0x3eee4d, _0x22e688, 0x1);
+        this[_0x4d7382(0x1e3)](_0x38771a);
+      }
+    }
+  }, {
+    key: _a0_0x51313f10,
+    value: function value() {
+      var _0x3c77fd = a0_0x51313f;
+      if (this[_0x3c77fd(0x1e2)][_0x3c77fd(0x212)] == 0xf4) return;
+      var _0x130873 = _JCDataUntil.default[_0x3c77fd(0x1b9)](0xf3, 0x1);
+      this['manager'][_0x3c77fd(0x212)] = 0xf4;
+      var _0x5b8060 = this;
+      this['manager'][_0x3c77fd(0x214)][_0x3c77fd(0x1e3)](_0x130873, 0xa, function () {
+        var _0xad1afb = _0x3c77fd;
+        _0x5b8060[_0xad1afb(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], this[_0xad1afb(0x205)]);
+      });
+    }
+  }, {
+    key: _a0_0x51313f11,
+    value: function value(_0x477b7d) {
+      var _0x63f9a0 = a0_0x51313f;
+      if (this[_0x63f9a0(0x1cd)] != null && this['hVer'][_0x63f9a0(0x1da)] > 0x0) {
+        this['callbackOnce'](_0x477b7d, {
+          'code': 0x0,
+          'res': this[_0x63f9a0(0x1cd)]
+        });
+        return;
+      }
+      this[_0x63f9a0(0x178)] = _0x477b7d;
+      var _0x11230a = _JCDataUntil.default[_0x63f9a0(0x1b9)](0x40, 0xc);
+      this[_0x63f9a0(0x1e2)][_0x63f9a0(0x212)] = 0x4c, this[_0x63f9a0(0x1ec)] = 0x1, this[_0x63f9a0(0x1e2)][_0x63f9a0(0x214)][_0x63f9a0(0x1e3)](_0x11230a, 0xa, function () {
+        _0x477b7d && _0x477b7d({
+          'code': -0x1
+        });
+      });
+    }
+  }, {
+    key: _a0_0x51313f12,
+    value: function value(_0x368e70) {
+      var _0x4deedd = a0_0x51313f;
+      this['getRFIDInfosCallback'] = _0x368e70;
+      var _0x449ed = _JCDataUntil.default[_0x4deedd(0x1b9)](0x1a, 0x1);
+      this[_0x4deedd(0x1e2)][_0x4deedd(0x212)] = 0x1b, this[_0x4deedd(0x1e2)][_0x4deedd(0x214)]['sendData'](_0x449ed, 0xa, function () {
+        _0x368e70 && _0x368e70({
+          'res': -0x1
+        });
+      });
+    }
+  }, {
+    key: 'getSversion',
+    value: function getSversion(_0x25b1a1) {
+      var _0x1886ac = a0_0x51313f;
+      if (this[_0x1886ac(0x16f)] != null && this[_0x1886ac(0x16f)]['length'] > 0x0) {
+        this[_0x1886ac(0x189)](_0x25b1a1, {
+          'code': 0x0,
+          'res': this[_0x1886ac(0x16f)]
+        });
+        return;
+      }
+      this[_0x1886ac(0x18d)] = _0x25b1a1;
+      var _0x244973 = _JCDataUntil.default[_0x1886ac(0x1b9)](0x40, 0x9);
+      this[_0x1886ac(0x1e2)][_0x1886ac(0x212)] = 0x49, this[_0x1886ac(0x1ec)] = 0x1, this['manager'][_0x1886ac(0x214)][_0x1886ac(0x1e3)](_0x244973, 0xa, function () {
+        _0x25b1a1 && _0x25b1a1({
+          'code': -0x1
+        });
+      });
+    }
+  }, {
+    key: _a0_0x51313f13,
+    value: function value(_0x1957d4) {
+      var _0x4ce648 = a0_0x51313f;
+      this[_0x4ce648(0x1f7)] = _0x1957d4;
+      var _0x5b9fa6 = _JCDataUntil.default['createData'](0x40, 0xb);
+      this['manager']['needCMD'] = 0x4b, this[_0x4ce648(0x1ec)] = 0x1, this[_0x4ce648(0x1e2)][_0x4ce648(0x214)][_0x4ce648(0x1e3)](_0x5b9fa6, 0xa, function () {
+        _0x1957d4 && _0x1957d4({
+          'code': -0x1
+        });
+      });
+    }
+  }, {
+    key: 'getPrintWithSpeedOrQuality',
+    value: function getPrintWithSpeedOrQuality(_0x56049c) {
+      var _0x251cf3 = a0_0x51313f;
+      this['getSpeedQualityCallback'] = _0x56049c;
+      var _0x54c3eb = _JCDataUntil.default[_0x251cf3(0x1b9)](0xd, 0x1, 0x1);
+      this[_0x251cf3(0x1e2)]['needCMD'] = 0xd, this[_0x251cf3(0x1ec)] = 0x1, this[_0x251cf3(0x1e2)][_0x251cf3(0x214)][_0x251cf3(0x1e3)](_0x54c3eb, 0xa, function () {
+        _0x56049c && _0x56049c({
+          'code': -0x1
+        });
+      });
+    }
+  }, {
+    key: _a0_0x51313f14,
+    value: function value() {
+      return this['dpi'];
+    }
+  }, {
+    key: 'setDensity',
+    value: function setDensity(_0x4130dd, _0x22a7ad) {
+      var _0x3a107f = a0_0x51313f;
+      this[_0x3a107f(0x163)] = _0x22a7ad;
+      var _0x1b0208 = _JCDataUntil.default[_0x3a107f(0x1b9)](0x21, _0x4130dd & 0xff);
+      this[_0x3a107f(0x1e2)][_0x3a107f(0x212)] = 0x31, this[_0x3a107f(0x1ec)] = 0x1, this[_0x3a107f(0x1e2)][_0x3a107f(0x214)][_0x3a107f(0x1e3)](_0x1b0208, 0xa, function () {
+        _0x22a7ad && _0x22a7ad({
+          'res': -0x1
+        });
+      });
+    }
+  }, {
+    key: _a0_0x51313f15,
+    value: function value(_0x477ab4, _0xbfacee) {
+      var _0x1e60b7 = a0_0x51313f;
+      this[_0x1e60b7(0x168)] = _0xbfacee;
+      var _0x3618f9 = _JCDataUntil.default[_0x1e60b7(0x1b9)](0x23, _0x477ab4 & 0xff);
+      this[_0x1e60b7(0x1e2)]['needCMD'] = 0x33, this[_0x1e60b7(0x1ec)] = 0x1, this[_0x1e60b7(0x1e2)][_0x1e60b7(0x214)]['sendData'](_0x3618f9, 0xa, function () {
+        _0xbfacee && _0xbfacee({
+          'res': -0x1
+        });
+      });
+    }
+  }, {
+    key: _a0_0x51313f16,
+    value: function value(_0x61bcd6) {
+      var _0x4df612 = a0_0x51313f;
+      var _0xe01e55 = this,
+        _0x51585a = _0x61bcd6[_0x4df612(0x1c0)](0x0, _0x61bcd6[_0x4df612(0x160)]);
+      this['manager'][_0x4df612(0x214)][_0x4df612(0x1e3)](_0x61bcd6, 0x0, function () {
+        var _0x31cd41 = _0x4df612;
+        _0xe01e55[_0x31cd41(0x176)] = setTimeout(function () {
+          var _0x4cb05e = _0x31cd41;
+          (_0xe01e55[_0x4cb05e(0x1e2)]['debug'] & 0x100) == 0x100 && (console[_0x4cb05e(0x166)](_0x4cb05e(0x1f3)), console[_0x4cb05e(0x166)](_0x51585a)), _0xe01e55[_0x4cb05e(0x16b)](_0x51585a);
+        }, 0x1f4);
+      });
+    }
+  }, {
+    key: 'sendUnRes',
+    value: function sendUnRes(_0x571fb5) {
+      var _0x5609f8 = a0_0x51313f;
+      this[_0x5609f8(0x1ec)]++, this[_0x5609f8(0x1ec)] >= 0xa ? (clearTimeout(this['repeatTimeoutId']), this[_0x5609f8(0x189)](this[_0x5609f8(0x201)], -0x4), this[_0x5609f8(0x189)](this['getSpeedCallback'], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x190)], -0x4), this[_0x5609f8(0x189)](this['getTimeOfPoweroffCallback'], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x185)], -0x4), this[_0x5609f8(0x189)](this['getMacAddressCallback'], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x178)], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x18d)], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x1c2)], -0x4), this['callbackOnce'](this[_0x5609f8(0x163)], -0x4), this[_0x5609f8(0x189)](this['setSpeedCallback'], -0x4), this['callbackOnce'](this[_0x5609f8(0x168)], -0x4), this[_0x5609f8(0x189)](this['setPowerOffTimeCallback'], -0x4), this['callbackOnce'](this[_0x5609f8(0x192)], -0x4), this[_0x5609f8(0x189)](this[_0x5609f8(0x21c)], -0x4), this['callbackOnce'](this[_0x5609f8(0x218)], -0x4), this[_0x5609f8(0x1ec)] = 0x1) : this[_0x5609f8(0x1e3)](_0x571fb5);
+    }
+  }, {
+    key: _a0_0x51313f17,
+    value: function value(_0x30b0e5, _0x833ba5) {
+      if (_0x30b0e5) {
+        var _0x18ea99 = _0x30b0e5;
+        _0x30b0e5 = null, _0x18ea99(_0x833ba5);
+      }
+    }
+  }, {
+    key: _a0_0x51313f18,
+    value: function value(_0x37738a) {
+      var _0x3d0310 = a0_0x51313f;
+      var _0x59a1ec = parseFloat(_0x37738a);
+      if (_0x59a1ec == null || _0x59a1ec == 0x0) return 0x0;
+      if (this[_0x3d0310(0x1af)] >= 0xc8 && this['dpi'] < 0x12c) return Math[_0x3d0310(0x1db)](_0x59a1ec * 0x8);else {
+        if (this[_0x3d0310(0x1af)] >= 0x12c && this[_0x3d0310(0x1af)] < 0x15e) {
+          return Math[_0x3d0310(0x1db)](_0x59a1ec * 11.8);
+          ;
+        } else return Math[_0x3d0310(0x1db)](_0x59a1ec * 0x8);
+      }
+    }
+  }, {
+    key: _a0_0x51313f19,
+    value: function value(_0x4f8812, _0x3173ba, _0x614380) {
+      var _0x19c63f = a0_0x51313f;
+      this[_0x19c63f(0x1e2)][_0x19c63f(0x19d)] = ![], _0x3173ba && _0x3173ba(_0x4f8812), _0x614380 && _0x614380();
+    }
+  }, {
+    key: _a0_0x51313f20,
+    value: function value(_0x308d66, _0x561379) {
+      var _0xf7032f = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0x1;
+      var _0x2edc9a = arguments.length > 3 ? arguments[3] : undefined;
+      var _0x4ee872 = a0_0x51313f;
+      this[_0x4ee872(0x1c9)] = _0xf7032f, this[_0x4ee872(0x1fa)] = 0x0, this[_0x4ee872(0x19a)] = [], this[_0x4ee872(0x17f)] = ![], this[_0x4ee872(0x1a8)] = null;
+      var _0x2df49b = this,
+        _0x144479 = function _0x144479(_0x44cac4) {
+          var _0x254b16 = _0x4ee872;
+          if (_0x44cac4 == 0x1) {
+            var _0x238b71 = function _0x238b71(_0x56688a) {
+              var _0x524ec7 = a0_0x37ce;
+              _0x308d66 == 0x2 && _0x2df49b[_0x524ec7(0x1e2)][_0x524ec7(0x21d)] >= 0x300 ? _0x2df49b[_0x524ec7(0x1b2)](function (_0x527370) {
+                _0x2edc9a && _0x2edc9a();
+              }) : _0x2edc9a && _0x2edc9a();
+            };
+            _0x561379 != null ? _0x2df49b[_0x254b16(0x19e)](parseInt(_0x561379), _0x238b71) : _0x238b71(0x1);
+          } else {
+            if (_0x44cac4 == 0x3) _0x2df49b[_0x254b16(0x205)] && _0x2df49b[_0x254b16(0x205)](_JCAPIErrorCode.default[_0x254b16(0x1ba)]), _0x2df49b['manager'][_0x254b16(0x19d)] = ![];else _0x44cac4 == 0x0 ? (_0x2df49b[_0x254b16(0x205)] && _0x2df49b['printErrorInfoCallback'](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_BUSY']), _0x2df49b[_0x254b16(0x1e2)][_0x254b16(0x19d)] = ![]) : _0x2df49b[_0x254b16(0x1e2)][_0x254b16(0x19d)] = ![];
+          }
+        };
+      _0x308d66 != null && parseInt(_0x308d66) > 0x0 ? this[_0x4ee872(0x1ca)](parseInt(_0x308d66), _0x144479) : _0x144479(0x1);
+    }
+  }, {
+    key: 'didReadPrintCountInfo',
+    value: function didReadPrintCountInfo(_0x32d071) {
+      var _0x1b6a74 = a0_0x51313f;
+      this[_0x1b6a74(0x1cf)] = _0x32d071;
+    }
+  }, {
+    key: _a0_0x51313f21,
+    value: function value(_0x90634b) {
+      var _0x30bb74 = a0_0x51313f;
+      this[_0x30bb74(0x205)] = _0x90634b;
+    }
+  }, {
+    key: 'startPrint',
+    value: function startPrint(_0x2d8cf9, _0x25559f, _0x3aa8f5, _0x3ae621, _0x48f687) {
+      var _0x2201ba = a0_0x51313f;
+      var _0x1fee05 = 0xdc;
+      this[_0x2201ba(0x1e2)]['agreement'] == 0x3 && this[_0x2201ba(0x1e2)][_0x2201ba(0x1aa)] > 0x0 && (_0x1fee05 = this[_0x2201ba(0x1e2)][_0x2201ba(0x1aa)]);
+      var _0x44efa7 = _JCDataUntil.default[_0x2201ba(0x1bc)](_0x2d8cf9, this[_0x2201ba(0x1a9)], {
+        'left': 0x0,
+        'rifht': 0x0
+      }, _0x1fee05, _0x3aa8f5);
+      this[_0x2201ba(0x1fa)] += _0x25559f;
+      if (_0x44efa7 != null && _0x44efa7[_0x2201ba(0x1da)] > 0x0) {
+        var _0x4ab698 = {};
+        _0x4ab698[_0x2201ba(0x1a1)] = _0x2d8cf9[_0x2201ba(0x1a1)], _0x4ab698['height'] = _0x2d8cf9['height'];
+        _0x3aa8f5 % 0xb4 != 0x0 && (_0x4ab698[_0x2201ba(0x1a1)] = _0x2d8cf9['height'], _0x4ab698[_0x2201ba(0x1fd)] = _0x2d8cf9[_0x2201ba(0x1a1)]);
+        _0x4ab698[_0x2201ba(0x1a7)] = _0x44efa7, _0x4ab698[_0x2201ba(0x16c)] = _0x25559f;
+        var _0x12f5be = this,
+          _0x43c972 = function _0x43c972() {
+            var _0x59afc1 = _0x2201ba;
+            _0x12f5be[_0x59afc1(0x193)] = _0x4ab698[_0x59afc1(0x1a1)], _0x12f5be[_0x59afc1(0x15f)] = _0x4ab698[_0x59afc1(0x1fd)], _0x12f5be[_0x59afc1(0x1b4)] = _0x4ab698['data'], _0x12f5be[_0x59afc1(0x17d)] = _0x4ab698['count'];
+            if (_0x48f687) {
+              var _0x5e3b9c = _0x48f687[_0x59afc1(0x15d)],
+                _0x12ed93 = _0x48f687[_0x59afc1(0x1ac)];
+              _0x5e3b9c ? _0x12f5be['epc'] = _0x5e3b9c : _0x12f5be[_0x59afc1(0x15d)] = null, _0x12ed93 != null ? _0x12f5be['hasDash'] = _0x12ed93 : _0x12f5be[_0x59afc1(0x1ac)] = null;
+            } else _0x12f5be[_0x59afc1(0x15d)] = null, _0x12f5be[_0x59afc1(0x1ac)] = null;
+            if (_0x12f5be[_0x59afc1(0x17f)]) {
+              var _0x555b9e = _JCDataUntil.default[_0x59afc1(0x1b9)](0x3, 0x1);
+              _0x12f5be[_0x59afc1(0x1e2)][_0x59afc1(0x212)] = 0x4;
+              if (_0x12f5be[_0x59afc1(0x1e2)][_0x59afc1(0x1a0)] == 0x3) {
+                _0x12f5be[_0x59afc1(0x1e2)][_0x59afc1(0x212)] = 0x14;
+                var _0x145218 = _0x4ab698[_0x59afc1(0x1fd)] >= _0x12f5be['manager'][_0x59afc1(0x1d5)] ? 0x1 : _0x25559f;
+                _0x555b9e = _JCDataUntil.default[_0x59afc1(0x1b9)](0x13, _0x12f5be[_0x59afc1(0x15f)] / 0x100, _0x12f5be[_0x59afc1(0x15f)] % 0x100, _0x12f5be['cols'] / 0x100, _0x12f5be[_0x59afc1(0x193)] % 0x100, _0x145218 / 0x100, _0x145218 % 0x100);
+              }
+              _0x12f5be['unRes'] = 0x1, _0x12f5be['manager']['ble'][_0x59afc1(0x1e3)](_0x555b9e, 0xa, function () {
+                var _0x44115e = _0x59afc1;
+                _0x12f5be[_0x44115e(0x1a3)](_JCAPIErrorCode.default[_0x44115e(0x1ee)], this[_0x44115e(0x205)]);
+              });
+            } else {
+              var _0x46fb3c = _JCDataUntil.default[_0x59afc1(0x1b9)](0x1, 0x1);
+              _0x12f5be['manager'][_0x59afc1(0x1a0)] == 0x3 && (_0x46fb3c = _JCDataUntil.default[_0x59afc1(0x1b9)](0x1, _0x12f5be[_0x59afc1(0x1c9)] / 0x100, _0x12f5be[_0x59afc1(0x1c9)] % 0x100)), _0x12f5be[_0x59afc1(0x1e2)][_0x59afc1(0x212)] = 0x2, _0x12f5be[_0x59afc1(0x1ec)] = 0x1, _0x12f5be['sendData'](_0x46fb3c);
+            }
+          };
+        if (_0x4ab698[_0x2201ba(0x1fd)] >= this['manager'][_0x2201ba(0x1d5)]) {
+          var _0x574c61 = _0x25559f;
+          while (_0x574c61 > 0x0) {
+            _0x574c61--, this[_0x2201ba(0x19a)][_0x2201ba(0x15e)](_0x43c972);
+          }
+        } else this[_0x2201ba(0x19a)]['push'](_0x43c972);
+        if (this[_0x2201ba(0x19a)][_0x2201ba(0x1da)] >= 0x5) {
+          this[_0x2201ba(0x20d)] = _0x3ae621;
+          if (!this[_0x2201ba(0x17f)]) {
+            var _0x2c010f = this[_0x2201ba(0x19a)][0x0];
+            _0x2c010f();
+          }
+        } else {
+          if (this[_0x2201ba(0x1fa)] == this['recordTotalCount']) {
+            if (!this['isPrinting']) {
+              var _0x3fdbd2 = this[_0x2201ba(0x19a)][0x0];
+              _0x3fdbd2();
+            }
+          } else {
+            if (this[_0x2201ba(0x17f)] == !![]) return;
+            _0x3ae621 && this[_0x2201ba(0x1e2)][_0x2201ba(0x1eb)] != !![] && _0x3ae621();
+          }
+        }
+      } else this[_0x2201ba(0x193)] = 0x0, this[_0x2201ba(0x15f)] = 0x0, this[_0x2201ba(0x1b4)] = [], this['manager'][_0x2201ba(0x19d)] = ![], this[_0x2201ba(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_GetDATA'], this[_0x2201ba(0x205)], null);
+    }
+  }, {
+    key: 'getDropSize',
+    value: function getDropSize(_0x30c507) {
+      var _0x8f823c = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x55bb6e = a0_0x51313f;
+      var _0x5cf806 = this['mm2px'](_0x30c507),
+        _0x1a27da = this[_0x55bb6e(0x1b1)](this[_0x55bb6e(0x1bd)]);
+      if (_0x5cf806 <= _0x1a27da) return {
+        'left': 0x0,
+        'width': _0x5cf806,
+        'top': 0x0
+      };else {
+        if (this[_0x55bb6e(0x203)] == 0x1) {
+          var _0xf4d3f5 = _0x5cf806 - _0x1a27da;
+          return {
+            'left': Math[_0x55bb6e(0x177)](_0xf4d3f5 / 0x2),
+            'width': _0x1a27da,
+            'top': 0x0
+          };
+        } else {
+          if (this['printWay'] == 0x2) {
+            var _0x3eacc6 = _0x5cf806 - _0x1a27da;
+            return {
+              'left': _0x3eacc6,
+              'width': _0x1a27da,
+              'top': 0x0
+            };
+          }
+        }
+        return {
+          'left': 0x0,
+          'width': _0x1a27da,
+          'top': 0x0
+        };
+      }
+    }
+  }, {
+    key: 'getDropByRealWidth',
+    value: function getDropByRealWidth(_0x565f28) {
+      var _0x164d13 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x51dd18 = a0_0x51313f;
+      var _0x304872 = _0x565f28,
+        _0x35db22 = this['mm2px'](this['maxDeviceLength']),
+        _0x1b0bbe = this[_0x51dd18(0x159)](_0x164d13),
+        _0x576684 = 0x0,
+        _0x31188b = 0x0;
+      (0, _typeof2.default)(_0x1b0bbe) == _0x51dd18(0x182) ? _0x576684 = _0x1b0bbe : (_0x576684 = _0x1b0bbe[_0x51dd18(0x1bf)], _0x31188b = _0x1b0bbe[_0x51dd18(0x1a5)]);
+      if (_0x304872 <= _0x35db22) return {
+        'left': 0x0,
+        'width': _0x304872,
+        'top': _0x576684,
+        'bottom': _0x31188b
+      };else {
+        if (this[_0x51dd18(0x203)] == 0x1) {
+          var _0x1a56fe = _0x304872 - _0x35db22;
+          return {
+            'left': Math[_0x51dd18(0x177)](_0x1a56fe / 0x2),
+            'width': _0x35db22,
+            'top': _0x576684,
+            'bottom': _0x31188b
+          };
+        } else {
+          if (this[_0x51dd18(0x203)] == 0x2) {
+            var _0x2fa94d = _0x304872 - _0x35db22;
+            return {
+              'left': _0x2fa94d,
+              'width': _0x35db22,
+              'top': _0x576684,
+              'bottom': _0x31188b
+            };
+          }
+        }
+        return {
+          'left': 0x0,
+          'width': _0x35db22,
+          'top': _0x576684,
+          'bottom': _0x31188b
+        };
+      }
+    }
+  }]);
+  return PrinterBase;
+}(a0_0x51313f(0x1f8), a0_0x51313f(0x18a), a0_0x51313f(0x215), a0_0x51313f(0x21a), a0_0x51313f(0x204), a0_0x51313f(0x1dd), a0_0x51313f(0x1f6), a0_0x51313f(0x17c), a0_0x51313f(0x174), a0_0x51313f(0x18f), a0_0x51313f(0x1d0), a0_0x51313f(0x1dc), a0_0x51313f(0x1fe), a0_0x51313f(0x196), a0_0x51313f(0x1ca), a0_0x51313f(0x1e3), a0_0x51313f(0x189), a0_0x51313f(0x1b1), a0_0x51313f(0x1a3), a0_0x51313f(0x216), a0_0x51313f(0x1f2));
+var B3SPrinter = /*#__PURE__*/function (_PrinterBase) {
+  (0, _inherits2.default)(B3SPrinter, _PrinterBase);
+  var _super = _createSuper(B3SPrinter);
+  function B3SPrinter(_0x5e5897) {
+    var _this2;
+    (0, _classCallCheck2.default)(this, B3SPrinter);
+    var _0x22f55c = a0_0x51313f;
+    _this2 = _super.call(this, _0x5e5897), _this2[_0x22f55c(0x1af)] = 0xcb, _this2[_0x22f55c(0x1bd)] = 0x48, _this2[_0x22f55c(0x1a9)] = 0x48, _this2[_0x22f55c(0x203)] = 0x0;
+    return _this2;
+  }
+  (0, _createClass2.default)(B3SPrinter, [{
+    key: 'getDropSize',
+    value: function getDropSize(_0x20f6bd) {
+      var _0x576aa3 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x1aad80 = a0_0x51313f;
+      var _0x83423e = this[_0x1aad80(0x1b1)](_0x20f6bd),
+        _0x33cafe = this[_0x1aad80(0x1b1)](this[_0x1aad80(0x1bd)]);
+      if (_0x83423e <= _0x33cafe) {
+        if (_0x576aa3 == 0x2) return {
+          'left': 0x0,
+          'width': _0x33cafe,
+          'top': 0x30
+        };
+        return {
+          'left': 0x0,
+          'width': _0x83423e,
+          'top': 0x0
+        };
+      } else {
+        if (_0x576aa3 == 0x2) return {
+          'left': 0x0,
+          'width': _0x33cafe,
+          'top': 0x30
+        };
+        return {
+          'left': 0x0,
+          'width': _0x33cafe,
+          'top': 0x0
+        };
+      }
+    }
+  }]);
+  return B3SPrinter;
+}(PrinterBase);
+var B16Printer = /*#__PURE__*/function (_PrinterBase2) {
+  (0, _inherits2.default)(B16Printer, _PrinterBase2);
+  var _super2 = _createSuper(B16Printer);
+  function B16Printer(_0x26436b) {
+    var _this3;
+    (0, _classCallCheck2.default)(this, B16Printer);
+    var _0x5818e9 = a0_0x51313f;
+    _this3 = _super2.call(this, _0x26436b), _this3[_0x5818e9(0x1af)] = 0xcb, _this3[_0x5818e9(0x1bd)] = 0xc, _this3['maxWordSizeLength'] = 0xc, _this3[_0x5818e9(0x203)] = 0x1;
+    return _this3;
+  }
+  return (0, _createClass2.default)(B16Printer);
+}(PrinterBase);
+var B101Printer = /*#__PURE__*/function (_PrinterBase3) {
+  (0, _inherits2.default)(B101Printer, _PrinterBase3);
+  var _super3 = _createSuper(B101Printer);
+  function B101Printer(_0x39a2a6) {
+    var _this4;
+    (0, _classCallCheck2.default)(this, B101Printer);
+    var _0x44f9e7 = a0_0x51313f;
+    _this4 = _super3.call(this, _0x39a2a6), _this4[_0x44f9e7(0x1af)] = 0xcb, _this4['maxDeviceLength'] = 0x18, _this4[_0x44f9e7(0x1a9)] = 0x18, _this4[_0x44f9e7(0x203)] = 0x2;
+    return _this4;
+  }
+  return (0, _createClass2.default)(B101Printer);
+}(PrinterBase);
+var B21Printer = /*#__PURE__*/function (_PrinterBase4) {
+  (0, _inherits2.default)(B21Printer, _PrinterBase4);
+  var _super4 = _createSuper(B21Printer);
+  function B21Printer(_0x38e302) {
+    var _this5;
+    (0, _classCallCheck2.default)(this, B21Printer);
+    var _0x15d634 = a0_0x51313f;
+    _this5 = _super4.call(this, _0x38e302), _this5[_0x15d634(0x1af)] = 0xcb, _this5[_0x15d634(0x1bd)] = 0x30, _this5[_0x15d634(0x1a9)] = 0x30, _this5['printWay'] = 0x0;
+    return _this5;
+  }
+  return (0, _createClass2.default)(B21Printer);
+}(PrinterBase);
+var QPrinterBase = /*#__PURE__*/function (_PrinterBase5, _a0_0x51313f22, _a0_0x51313f23, _a0_0x51313f24, _a0_0x51313f25, _a0_0x51313f26, _a0_0x51313f27, _a0_0x51313f28, _a0_0x51313f29, _a0_0x51313f30, _a0_0x51313f31, _a0_0x51313f32) {
+  (0, _inherits2.default)(QPrinterBase, _PrinterBase5);
+  var _super5 = _createSuper(QPrinterBase);
+  function QPrinterBase(_0x1d29c6) {
+    var _this6;
+    (0, _classCallCheck2.default)(this, QPrinterBase);
+    var _0x2f1138 = a0_0x51313f;
+    _this6 = _super5.call(this, _0x1d29c6), _this6[_0x2f1138(0x175)] = null;
+    return _this6;
+  }
+  (0, _createClass2.default)(QPrinterBase, [{
+    key: _a0_0x51313f22,
+    value: function value(_0x5abd8b, _0x1765fd) {
+      var _this7 = this;
+      var _0x401ced = a0_0x51313f;
+      var _0x1a14b7 = this;
+      if (this[_0x401ced(0x1e2)][_0x401ced(0x214)][_0x401ced(0x176)]) {
+        if ((this['manager'][_0x401ced(0x212)] == 0xb3 || this[_0x401ced(0x1e2)]['needCMD'] == 0xf4) && _0x5abd8b == 0xdb) {} else clearTimeout(this['manager']['ble'][_0x401ced(0x176)]), this[_0x401ced(0x1e2)][_0x401ced(0x214)][_0x401ced(0x176)] = null;
+      }
+      switch (_0x5abd8b) {
+        case 0x41:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x201)], _0x1765fd);
+          break;
+        case 0x42:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x16d)], _0x1765fd);
+          break;
+        case 0x43:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x190)], _0x1765fd);
+          break;
+        case 0x46:
+          clearTimeout(this['repeatTimeoutId']), this[_0x401ced(0x189)](this[_0x401ced(0x1c2)], _0x1765fd);
+          break;
+        case 0x47:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x206)], _0x1765fd);
+          break;
+        case 0x49:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x18d)], _0x1765fd);
+          break;
+        case 0x4a:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x185)], _0x1765fd);
+          break;
+        case 0x4b:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x1f7)], {
+            'code': 0x0,
+            'res': _0x1765fd
+          });
+          break;
+        case 0xd:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x1b3)], {
+            'code': 0x0,
+            'res': _0x1765fd
+          });
+          break;
+        case 0x4c:
+          clearTimeout(this['repeatTimeoutId']), this[_0x401ced(0x189)](this[_0x401ced(0x178)], _0x1765fd);
+          break;
+        case 0x4d:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x1e1)], _0x1765fd);
+          break;
+        case 0x31:
+          clearTimeout(this['repeatTimeoutId']), this[_0x401ced(0x189)](this[_0x401ced(0x163)], _0x1765fd);
+          break;
+        case 0x32:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this[_0x401ced(0x1d9)], _0x1765fd);
+          break;
+        case 0x33:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x168)], _0x1765fd);
+          break;
+        case 0x36:
+          clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this['setLangueCallback'], _0x1765fd);
+          break;
+        case 0x37:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this['setPowerOffTimeCallback'], _0x1765fd);
+          break;
+        case 0x38:
+          clearTimeout(this['repeatTimeoutId']), this[_0x401ced(0x189)](this[_0x401ced(0x192)], _0x1765fd);
+          break;
+        case 0x1b:
+          clearTimeout(this[_0x401ced(0x176)]), this['callbackOnce'](this[_0x401ced(0x1ab)], _0x1765fd);
+          break;
+        case 0x2:
+          this[_0x401ced(0x1e2)]['needCMD'] == 0x2 && (clearTimeout(this[_0x401ced(0x176)]), _0x1765fd == 0x0 ? this[_0x401ced(0x1a3)](_JCAPIErrorCode.default[_0x401ced(0x1c6)], this['printErrorInfoCallback'], null) : this[_0x401ced(0x18a)]());
+          break;
+        case 0x4:
+          if (this['manager'][_0x401ced(0x212)] == 0x4) {
+            if (this[_0x401ced(0x176)]) clearTimeout(this[_0x401ced(0x176)]);
+            if (_0x1765fd == 0x1) this[_0x401ced(0x215)]();else {
+              if (this[_0x401ced(0x1b8)]() == ![]) return;
+              this[_0x401ced(0x176)] = setTimeout(function () {
+                var _0x28188b = _0x401ced;
+                var _0x208264 = _JCDataUntil.default[_0x28188b(0x1b9)](0x3, 0x1);
+                _this7[_0x28188b(0x1e2)][_0x28188b(0x212)] = 0x4, _0x1a14b7[_0x28188b(0x1e3)](_0x208264);
+              }, 0x1f4);
+            }
+          }
+          break;
+        case 0x14:
+          {
+            this['manager'][_0x401ced(0x212)] == 0x14 && (clearTimeout(this['repeatTimeoutId']), this['recive14Succ']());
+          }
+          break;
+        case 0x16:
+          {
+            this['manager'][_0x401ced(0x212)] == 0x16 && (clearTimeout(this[_0x401ced(0x176)]), this['recive16Succ']());
+          }
+          break;
+        case 0x88:
+          {
+            this['recive88Succ'](_0x1765fd);
+          }
+          break;
+        case 0xd3:
+          {
+            this[_0x401ced(0x1b7)](_0x1765fd);
+          }
+          break;
+        case 0xe4:
+          {
+            if (this[_0x401ced(0x1e2)][_0x401ced(0x212)] == 0xe4) {
+              clearTimeout(this['repeatTimeoutId']);
+              if (_0x1765fd == 0x1) this[_0x401ced(0x204)]();else {
+                if (this[_0x401ced(0x1b8)]() == ![]) return;
+                this[_0x401ced(0x176)] = setTimeout(function () {
+                  var _0x3edc93 = _0x401ced;
+                  var _0x8040d2 = _JCDataUntil.default[_0x3edc93(0x1b9)](0xe3, 0x1);
+                  _this7[_0x3edc93(0x1e2)][_0x3edc93(0x212)] = 0xe4, _0x1a14b7['sendData'](_0x8040d2);
+                }, 0x1f4);
+              }
+            }
+          }
+          break;
+        case 0xd0:
+          {
+            this[_0x401ced(0x15c)] && this[_0x401ced(0x1ae)] && !this[_0x401ced(0x1f1)] && (clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x1f1)] = !![], this[_0x401ced(0x198)]());
+          }
+          break;
+        case 0xf4:
+          {
+            if (this[_0x401ced(0x1e2)][_0x401ced(0x212)] == 0xf4) {
+              clearTimeout(this['repeatTimeoutId']);
+              if (_0x1765fd == 0x1) this['reciveF4Succ']();else {
+                if (this[_0x401ced(0x1b8)]() == ![]) return;
+                this[_0x401ced(0x176)] = setTimeout(function () {
+                  var _0x32da75 = _0x401ced;
+                  var _0x5f523d = _JCDataUntil.default[_0x32da75(0x1b9)](0xf3, 0x1);
+                  _this7[_0x32da75(0x1e2)][_0x32da75(0x212)] = 0xf4, _0x1a14b7[_0x32da75(0x1e3)](_0x5f523d);
+                }, 0x1f4);
+              }
+            }
+          }
+          break;
+        case 0xb3:
+          {
+            this[_0x401ced(0x1ef)](_0x1765fd);
+          }
+          break;
+        case 0xdb:
+          {
+            (this['manager'][_0x401ced(0x180)] & 0x100) == 0x100 && console[_0x401ced(0x166)](_0x401ced(0x200) + _0x1765fd);
+            clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x1df)] = _0x1765fd;
+            if (this[_0x401ced(0x1e2)][_0x401ced(0x212)] == 0xb3) {
+              (this[_0x401ced(0x1e2)][_0x401ced(0x180)] & 0x100) == 0x100 && console[_0x401ced(0x166)](_0x401ced(0x169) + _0x1765fd + ',此时等待查询页码后发送结束');
+              return;
+            }
+            if (this[_0x401ced(0x1ad)] == !![]) return;else {
+              if (this[_0x401ced(0x1d4)] > 0x0) clearTimeout(this[_0x401ced(0x1d4)]);
+            }
+            this['doSendPrintOver']();
+          }
+          break;
+        case 0x0:
+          {
+            clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x1f8)]();
+          }
+          break;
+        case 0xb5:
+          {
+            clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x191)](_0x1765fd);
+          }
+          break;
+        case 0xb4:
+          {
+            clearTimeout(this[_0x401ced(0x176)]), this['recive0xB4'](_0x1765fd);
+          }
+          break;
+        case 0x71:
+          {
+            this[_0x401ced(0x1e2)][_0x401ced(0x212)] == 0x71 && (clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x209)]());
+          }
+          break;
+        case 0x69:
+          {
+            this[_0x401ced(0x1e2)]['needCMD'] == 0x69 && (clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x1f9)] = _0x1765fd[0x0], this[_0x401ced(0x1d1)] = _0x1765fd[0x1], this[_0x401ced(0x189)](this[_0x401ced(0x1d8)], _0x1765fd));
+          }
+          break;
+        case 0x8f:
+          {
+            this[_0x401ced(0x1e2)][_0x401ced(0x212)] == 0x8f && (clearTimeout(this[_0x401ced(0x176)]), this[_0x401ced(0x189)](this['setBiaoDingCallback'], _0x1765fd));
+          }
+          break;
+        case 0x6a:
+          {
+            this[_0x401ced(0x1e2)]['needCMD'] == 0x6a && (clearTimeout(this['repeatTimeoutId']), this[_0x401ced(0x189)](this[_0x401ced(0x18c)], _0x1765fd));
+          }
+        default:
+          break;
+      }
+    }
+  }, {
+    key: 'reciveD3Succ',
+    value: function reciveD3Succ(_0x124f61) {
+      var _0x411a4e = a0_0x51313f;
+      var _0x293ef4 = _0x124f61 >> 0x8,
+        _0xe6b678 = _0x124f61 & 0xff;
+      this['send86TimeoutId'] > 0x0 && (clearTimeout(this[_0x411a4e(0x1d4)]), this[_0x411a4e(0x1d4)] = 0x0);
+      if (_0x293ef4 > this['recive200Row']) {
+        if (_0x293ef4 == (this[_0x411a4e(0x21e)] + 0x1) * this['manager']['maxOnceSendRows'] - 0x1 || _0x293ef4 + 0x1 == this['rows']) {
+          this[_0x411a4e(0x1d4)] != null && (clearTimeout(this[_0x411a4e(0x1d4)]), this[_0x411a4e(0x1d4)] = null);
+          this[_0x411a4e(0x176)] && (clearTimeout(this[_0x411a4e(0x176)]), this[_0x411a4e(0x176)] = null);
+          if (_0xe6b678 == 0x1) {
+            this[_0x411a4e(0x21e)]++, this['arrayIndex2'] = 0x0, this[_0x411a4e(0x1d3)] = _0x293ef4;
+            if (this[_0x411a4e(0x21e)] == this[_0x411a4e(0x1b4)]['length']) {
+              this[_0x411a4e(0x1e2)][_0x411a4e(0x212)] = 0xe4;
+              var _0xc78807 = _JCDataUntil.default[_0x411a4e(0x1b9)](0xe3, 0x1);
+              this[_0x411a4e(0x1ad)] = ![], this[_0x411a4e(0x1e2)]['ble'][_0x411a4e(0x1e3)](_0xc78807, 0xa, function () {
+                var _0x4d04fa = _0x411a4e;
+                self[_0x4d04fa(0x1a3)](_JCAPIErrorCode.default[_0x4d04fa(0x1ee)], this[_0x4d04fa(0x205)]);
+              });
+              return;
+            }
+            this['checkStatus'] = 0xd3, this[_0x411a4e(0x198)]();
+          } else {
+            if (_0xe6b678 == 0x2) this['arrayIndex2'] = 0x0, this[_0x411a4e(0x17c)]();else {
+              if (this[_0x411a4e(0x1b8)]() == ![]) return;
+              this[_0x411a4e(0x1d4)] = setTimeout(function () {
+                var _0x3c98ac = _0x411a4e;
+                self[_0x3c98ac(0x174)]();
+              }, 0x1f4);
+            }
+          }
+        }
+      }
+    }
+  }, {
+    key: _a0_0x51313f23,
+    value: function value(_0x4ba772) {
+      var _0x551c88 = a0_0x51313f;
+      var _0x1ba087 = this;
+      if (this[_0x551c88(0x1e2)]['needCMD'] == 0xb3) {
+        clearTimeout(this['repeatTimeoutId']);
+        this[_0x551c88(0x21b)] > 0x0 && clearTimeout(this[_0x551c88(0x21b)]);
+        _0x4ba772['error'] > 0x0 && (this[_0x551c88(0x1df)] = _0x4ba772['error']);
+        if (this[_0x551c88(0x1df)] > 0x0) {
+          this[_0x551c88(0x18f)]();
+          return;
+        }
+        if (this[_0x551c88(0x15a)] == _0x4ba772[_0x551c88(0x1d2)]) {
+          if (this[_0x551c88(0x1d6)] == 0xd3) {
+            _0x4ba772['cache'] >= this[_0x551c88(0x1e2)][_0x551c88(0x188)] ? (this[_0x551c88(0x1d6)] = 0x0, this[_0x551c88(0x17c)]()) : this[_0x551c88(0x198)]();
+            return;
+          }
+          this[_0x551c88(0x207)]++;
+          if (this[_0x551c88(0x207)] >= 0x3c) {
+            this[_0x551c88(0x1a3)](_JCAPIErrorCode.default[_0x551c88(0x210)], this['printErrorInfoCallback'], null), this[_0x551c88(0x18f)]();
+            return;
+          }
+          this['b3ReTimeout'] = setTimeout(function () {
+            var _0xcad167 = _0x551c88;
+            _0x1ba087[_0xcad167(0x198)]();
+          }, 0x1f4);
+        } else {
+          this[_0x551c88(0x207)] = 0x0, this[_0x551c88(0x15a)] = _0x4ba772[_0x551c88(0x1d2)];
+          var _0x5b05b9 = _0x4ba772[_0x551c88(0x16c)];
+          if (_0x5b05b9 > this['printedCount']) {
+            var _0x203a3e = {
+              'count': _0x5b05b9
+            };
+            _0x4ba772['tid'] != null && _0x4ba772[_0x551c88(0x1e9)] != undefined && _0x4ba772[_0x551c88(0x1e9)] != '' && (_0x203a3e[_0x551c88(0x1e9)] = _0x4ba772[_0x551c88(0x1e9)]), _0x4ba772[_0x551c88(0x1f5)] != null && _0x4ba772[_0x551c88(0x1f5)] != undefined && (_0x203a3e[_0x551c88(0x1f5)] = _0x4ba772[_0x551c88(0x1f5)]), this[_0x551c88(0x1cf)] && this[_0x551c88(0x1cf)](_0x203a3e), this[_0x551c88(0x1b5)] = _0x5b05b9;
+          }
+          if (_0x5b05b9 == this['recordTotalCount']) {
+            this[_0x551c88(0x18f)]();
+            return;
+          }
+          if (this['wantCancel'] && !this['sendCancel']) {
+            this[_0x551c88(0x1ae)] = !![], this[_0x551c88(0x1e2)][_0x551c88(0x212)] = 0xd0;
+            var _0x4e9503 = _JCDataUntil.default[_0x551c88(0x1b9)](0xda, 0x1);
+            this['sendData'](_0x4e9503);
+            return;
+          }
+          if (this[_0x551c88(0x15c)] && this[_0x551c88(0x1ae)] && this[_0x551c88(0x1f1)]) {
+            this[_0x551c88(0x18f)]();
+            return;
+          }
+          if (this['checkStatus'] == 0xd3) {
+            if (_0x4ba772[_0x551c88(0x172)] >= this['manager'][_0x551c88(0x188)]) this['checkStatus'] = 0x0, this[_0x551c88(0x17c)]();else {
+              if (this[_0x551c88(0x21e)] + 0x1 == this['sendDataArray']['length']) {
+                var _0xc9d01f = this['rows'] % 0xc8;
+                if (_0x4ba772[_0x551c88(0x172)] >= _0xc9d01f) {
+                  this[_0x551c88(0x17c)]();
+                  return;
+                }
+              }
+              this[_0x551c88(0x198)]();
+            }
+            return;
+          }
+          if (_0x4ba772[_0x551c88(0x172)] >= this[_0x551c88(0x1e2)]['maxOnceSendRows']) {
+            this[_0x551c88(0x19a)][_0x551c88(0x1da)] < 0x5 && this['printCallback'] != null && this['manager'][_0x551c88(0x1eb)] != !![] && this[_0x551c88(0x20d)]();
+            if (this[_0x551c88(0x19a)][_0x551c88(0x1da)] > 0x0) {
+              this[_0x551c88(0x19a)][_0x551c88(0x165)](0x0, 0x1);
+              if (this['cacheDatas'][_0x551c88(0x1da)] > 0x0) {
+                var _0x4e763a = this[_0x551c88(0x19a)][0x0];
+                _0x4e763a();
+                return;
+              }
+            }
+            this[_0x551c88(0x198)]();
+          } else this[_0x551c88(0x198)]();
+        }
+      }
+    }
+  }, {
+    key: _a0_0x51313f24,
+    value: function value(_0x3aaf67) {
+      var _0x43c66f = a0_0x51313f;
+      _0x3aaf67 && _0x3aaf67();
+      return;
+      this['getBleInfosCallback'] = _0x3aaf67;
+      var _0x3532fc = _JCDataUntil.default[_0x43c66f(0x1b9)](0xa5, 0x1);
+      this[_0x43c66f(0x1e2)][_0x43c66f(0x212)] = 0xb5;
+      var _0x145391 = this;
+      this[_0x43c66f(0x1e2)]['ble'][_0x43c66f(0x1e3)](_0x3532fc, 0xa, function () {
+        _0x145391['callbackOnce'](_0x145391['getBleInfosCallback'], -0x4);
+      });
+    }
+  }, {
+    key: _a0_0x51313f25,
+    value: function value(_0x4a42) {
+      var _0x253372 = a0_0x51313f;
+      this[_0x253372(0x1fc)] = _0x4a42;
+      var _0x5aff42 = _JCDataUntil.default[_0x253372(0x1b9)](0xa4, 0x1);
+      this[_0x253372(0x1e2)][_0x253372(0x212)] = 0xb4;
+      var _0x10a4ae = this;
+      this[_0x253372(0x1e2)][_0x253372(0x214)][_0x253372(0x1e3)](_0x5aff42, 0xa, function () {
+        var _0xc8f59b = _0x253372;
+        _0x10a4ae[_0xc8f59b(0x189)](_0x10a4ae[_0xc8f59b(0x1fc)], -0x4);
+      });
+    }
+  }, {
+    key: 'getBlackPaperSpaceBetween',
+    value: function getBlackPaperSpaceBetween(_0x5e7b6a) {
+      var _0x704d7 = a0_0x51313f;
+      if (this['manager'][_0x704d7(0x162)] && this[_0x704d7(0x1e2)][_0x704d7(0x162)][0xc] > 0x0) {
+        this['getBlackPaperSpaceBetweenCallback'] = _0x5e7b6a;
+        var _0x4ef44d = _JCDataUntil.default['createData'](0x59, 0x1);
+        this[_0x704d7(0x1e2)][_0x704d7(0x212)] = 0x69;
+        var _0x4fe3b7 = this;
+        this['manager']['ble'][_0x704d7(0x1e3)](_0x4ef44d, 0xa, function () {
+          var _0x46e6ce = _0x704d7;
+          _0x4fe3b7[_0x46e6ce(0x189)](_0x4fe3b7['getBlackPaperSpaceBetweenCallback'], -0x4);
+        });
+      } else _0x5e7b6a(-0x3);
+    }
+  }, {
+    key: _a0_0x51313f26,
+    value: function value(_0x127591) {
+      var _0x384f49 = a0_0x51313f;
+      this['setBiaoDingCallback'] = _0x127591;
+      var _0x31ac68 = _JCDataUntil.default[_0x384f49(0x1b9)](0x8e, 0x1);
+      this[_0x384f49(0x1e2)][_0x384f49(0x212)] = 0x8f;
+      var _0x46e779 = this;
+      this[_0x384f49(0x1e2)]['ble']['sendData'](_0x31ac68, 0xa, function () {
+        var _0x21ae26 = _0x384f49;
+        _0x46e779[_0x21ae26(0x189)](_0x46e779[_0x21ae26(0x1cb)], -0x4);
+      });
+    }
+  }, {
+    key: _a0_0x51313f27,
+    value: function value(_0x25d903, _0x1ee2a0) {
+      var _0x719b67 = a0_0x51313f;
+      this[_0x719b67(0x18c)] = _0x1ee2a0;
+      var _0x30f897 = _JCDataUntil.default[_0x719b67(0x1b9)](0x5a, _0x25d903);
+      this[_0x719b67(0x1e2)][_0x719b67(0x212)] = 0x6a;
+      var _0x336778 = this,
+        _0x455f79 = this['manager']['printerInfos'][0x16];
+      this[_0x719b67(0x1e2)][_0x719b67(0x214)]['sendData'](_0x30f897, 0x0, function () {}), _0x455f79--, this['repeatTimeoutId'] = setTimeout(function () {
+        var _0x19603a = _0x719b67;
+        _0x455f79 <= 0x0 ? _0x336778[_0x19603a(0x189)](_0x336778['getBiaoDingResultCallback'], -0x4) : (_0x455f79--, _0x336778[_0x19603a(0x1e2)][_0x19603a(0x214)][_0x19603a(0x1e3)](_0x30f897, 0x0, function () {}));
+      }, 0x3e8);
+    }
+  }, {
+    key: _a0_0x51313f28,
+    value: function value() {
+      var _0x21bb3a = a0_0x51313f;
+      this[_0x21bb3a(0x207)] = 0x0, this[_0x21bb3a(0x1d6)] = 0xe4, this[_0x21bb3a(0x198)]();
+    }
+  }, {
+    key: 'recive71Succ',
+    value: function recive71Succ() {
+      var _0x3dd3c0 = a0_0x51313f;
+      this[_0x3dd3c0(0x1ea)] = 0x0, this[_0x3dd3c0(0x1d3)] = 0x0, this[_0x3dd3c0(0x21e)] = 0x0, this[_0x3dd3c0(0x202)] = 0x0;
+      if (this[_0x3dd3c0(0x15c)]) {
+        this[_0x3dd3c0(0x18f)]();
+        return;
+      }
+      this[_0x3dd3c0(0x17c)]();
+    }
+  }, {
+    key: 'reciveF4Succ',
+    value: function reciveF4Succ() {
+      var _0xe9fbd2 = a0_0x51313f;
+      this['manager'][_0xe9fbd2(0x212)] = 0x0, this[_0xe9fbd2(0x1e2)][_0xe9fbd2(0x19d)] = ![];
+      if (this[_0xe9fbd2(0x1df)] > 0x0) {
+        var _0x5257db = this[_0xe9fbd2(0x1c5)]();
+        this['printErrorCode'] = 0x0, this[_0xe9fbd2(0x1a3)](_0x5257db, this['printErrorInfoCallback'], null);
+      } else this['wantCancel'] && this['cancelCallback'] && this[_0xe9fbd2(0x167)]();
+    }
+  }, {
+    key: _a0_0x51313f29,
+    value: function value(_0xf084de) {
+      var _0x5cf577 = a0_0x51313f;
+      this[_0x5cf577(0x1e2)]['cutByteSize'] = _0xf084de, this['manager'][_0x5cf577(0x180)] & 0x1 == 0x1 && console[_0x5cf577(0x166)](_0x5cf577(0x1f0) + _0xf084de), this[_0x5cf577(0x189)](this[_0x5cf577(0x1fc)], _0xf084de);
+    }
+  }, {
+    key: 'recive0xB5',
+    value: function recive0xB5(_0x3c99ba) {
+      var _0xc312af = a0_0x51313f;
+      this[_0xc312af(0x1e2)]['maxCacheRows'] = _0x3c99ba >> 0x10, this[_0xc312af(0x1e2)][_0xc312af(0x188)] = _0x3c99ba % (0x100 * 0x100), this['manager'][_0xc312af(0x180)] & 0x1 == 0x1 && console[_0xc312af(0x166)](_0xc312af(0x1e7) + this[_0xc312af(0x1e2)]['maxCacheRows'] + _0xc312af(0x20e) + this[_0xc312af(0x1e2)]['maxOnceSendRows']), this[_0xc312af(0x189)](this['getBleInfosCallback'], _0x3c99ba);
+    }
+  }, {
+    key: _a0_0x51313f30,
+    value: function value() {
+      var _this8 = this;
+      var _0x267745 = a0_0x51313f;
+      this['reject'] = 0x0, this[_0x267745(0x15c)] = ![], this[_0x267745(0x1ae)] = ![], this[_0x267745(0x1f1)] = ![], this[_0x267745(0x1b5)] = 0x0, this[_0x267745(0x17f)] = !![], this['printErrorCode'] = 0x0, this['isSendPictureDataing'] = ![];
+      var _0x11bb7c = this['onePageCount'];
+      this[_0x267745(0x193)] % 0x8 != 0x0 && (this['cols'] = this[_0x267745(0x193)] + 0x8 - this[_0x267745(0x193)] % 0x8);
+      var _0xe86073 = this[_0x267745(0x19a)][0x0];
+      _0xe86073();
+      return;
+      var _0x8de762 = _JCDataUntil.default['createData'](0x13, this[_0x267745(0x15f)] / 0x100, this['rows'] % 0x100, this[_0x267745(0x193)] / 0x100, this[_0x267745(0x193)] % 0x100, _0x11bb7c / 0x100, _0x11bb7c % 0x100);
+      this[_0x267745(0x1e2)][_0x267745(0x212)] = 0x14, this['unRes'] = 0x1, this[_0x267745(0x1e2)][_0x267745(0x214)][_0x267745(0x1e3)](_0x8de762, 0x9, function () {
+        var _0x1e02fb = _0x267745;
+        _this8['sendPrintError'](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], _this8['printObj'][_0x1e02fb(0x17e)], _this8[_0x1e02fb(0x18b)]['complete']);
+      });
+    }
+  }, {
+    key: _a0_0x51313f31,
+    value: function value() {
+      var _0x4e60e3 = a0_0x51313f;
+      this[_0x4e60e3(0x1ea)] = 0x0, this['recive200Row'] = 0x0, this[_0x4e60e3(0x21e)] = 0x0, this[_0x4e60e3(0x202)] = 0x0;
+      if (this[_0x4e60e3(0x15c)]) {
+        this[_0x4e60e3(0x18f)]();
+        return;
+      }
+      this[_0x4e60e3(0x17c)]();
+    }
+  }, {
+    key: _a0_0x51313f32,
+    value: function value() {
+      var _0x465e06 = a0_0x51313f;
+      if (this[_0x465e06(0x1e2)][_0x465e06(0x212)] == 0xd3) {
+        var _0x16c999 = (this[_0x465e06(0x21e)] + 0x1) * this[_0x465e06(0x1e2)]['maxOnceSendRows'] - 0x1;
+        this['arrayIndex1'] + 0x1 == this[_0x465e06(0x1b4)][_0x465e06(0x1da)] && (_0x16c999 = this['rows'] - 0x1);
+        var _0x5d5857 = _0x16c999 / 0x100,
+          _0x212e37 = _0x16c999 % 0x100;
+        this[_0x465e06(0x1e2)][_0x465e06(0x212)] = 0xd3;
+        var _0x48ee86 = _JCDataUntil.default['createData'](0x86, _0x5d5857, _0x212e37, 0x1),
+          _0x7637d0 = this;
+        this[_0x465e06(0x1e2)][_0x465e06(0x214)][_0x465e06(0x1e3)](_0x48ee86, 0x9, function () {
+          var _0x26a9e5 = _0x465e06;
+          _0x7637d0[_0x26a9e5(0x1a3)](_JCAPIErrorCode.default[_0x26a9e5(0x1ee)], _0x7637d0[_0x26a9e5(0x205)], null);
+        });
+      }
+    }
+  }, {
+    key: 'doSendPictrueData',
+    value: function doSendPictrueData() {
+      var _0x529faf = a0_0x51313f;
+      var _0x3b3959 = this;
+      if (this[_0x529faf(0x21e)] < this[_0x529faf(0x1b4)][_0x529faf(0x1da)]) {
+        this[_0x529faf(0x1e2)][_0x529faf(0x212)] = 0xd3;
+        var _0x209f1e = this[_0x529faf(0x1b4)][this[_0x529faf(0x21e)]];
+        if (this[_0x529faf(0x202)] < _0x209f1e['length']) {
+          var _0x3b8315 = _0x209f1e[this[_0x529faf(0x202)]];
+          this[_0x529faf(0x202)]++, this[_0x529faf(0x1e2)]['ble']['sendData'](_0x3b8315, 0x0, function () {
+            var _0x5a5eda = _0x529faf;
+            if (_0x3b3959[_0x5a5eda(0x17f)] != !![]) return;
+            if (_0x3b3959[_0x5a5eda(0x202)] == _0x209f1e['length']) _0x3b3959[_0x5a5eda(0x1ad)] = ![], _0x3b3959[_0x5a5eda(0x1d4)] = setTimeout(function () {
+              var _0x103764 = _0x5a5eda;
+              _0x3b3959[_0x103764(0x174)]();
+            }, 0x1f4);else {
+              _0x3b3959[_0x5a5eda(0x1ad)] = !![];
+              var _0x4330d3 = 0x12;
+              if (_0x3b3959[_0x5a5eda(0x1e2)][_0x5a5eda(0x1c3)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_DD']) {} else _0x3b3959['manager'][_0x5a5eda(0x1c3)] == _JCAPIErrorCode.default['JCSDK_PLATFORM_FS'] && _0x3b3959[_0x5a5eda(0x1e2)][_0x5a5eda(0x16a)] == 'android' && _0x3b3959[_0x5a5eda(0x1e2)][_0x5a5eda(0x1e6)] == ![] && (_0x4330d3 = 0x8);
+              _0x3b3959['doSendPictrueDataTimeoutId'] = setTimeout(function () {
+                var _0x803c72 = _0x5a5eda;
+                _0x3b3959[_0x803c72(0x17c)]();
+              }, _0x4330d3);
+            }
+          });
+        }
+      }
+    }
+  }]);
+  return QPrinterBase;
+}(PrinterBase, a0_0x51313f(0x197), a0_0x51313f(0x1ef), a0_0x51313f(0x1e4), a0_0x51313f(0x170), a0_0x51313f(0x1d7), a0_0x51313f(0x199), a0_0x51313f(0x204), a0_0x51313f(0x20a), a0_0x51313f(0x18a), a0_0x51313f(0x1a4), a0_0x51313f(0x174));
+var QB21Printer = /*#__PURE__*/function (_QPrinterBase, _a0_0x51313f33) {
+  (0, _inherits2.default)(QB21Printer, _QPrinterBase);
+  var _super6 = _createSuper(QB21Printer);
+  function QB21Printer(_0x36f47a) {
+    var _this9;
+    (0, _classCallCheck2.default)(this, QB21Printer);
+    var _0x404b71 = a0_0x51313f;
+    _this9 = _super6.call(this, _0x36f47a), _this9[_0x404b71(0x1af)] = 0xcb, _this9[_0x404b71(0x1bd)] = 0x30, _this9[_0x404b71(0x1a9)] = 0x30, _this9['printWay'] = 0x1;
+    return _this9;
+  }
+  (0, _createClass2.default)(QB21Printer, [{
+    key: 'getDropSize',
+    value: function getDropSize(_0x248025) {
+      var _0xabc26e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x5d5217 = a0_0x51313f;
+      var _0x35cb8c = this['mm2px'](_0x248025),
+        _0x15a58f = this['mm2px'](this[_0x5d5217(0x1bd)]),
+        _0x34c213 = 0x0;
+      _0xabc26e == 0x2 && (_0x34c213 = 0x8);
+      if (_0x35cb8c <= _0x15a58f) return {
+        'left': 0x0,
+        'width': _0x35cb8c,
+        'top': _0x34c213
+      };else {
+        if (this['printWay'] == 0x1) {
+          var _0x5d8d51 = _0x35cb8c - _0x15a58f;
+          return {
+            'left': Math[_0x5d5217(0x177)](_0x5d8d51 / 0x2),
+            'width': _0x15a58f,
+            'top': _0x34c213
+          };
+        } else {
+          if (this[_0x5d5217(0x203)] == 0x2) {
+            var _0x5d1c67 = _0x35cb8c - _0x15a58f;
+            return {
+              'left': _0x5d1c67,
+              'width': _0x15a58f,
+              'top': _0x34c213
+            };
+          }
+        }
+        return {
+          'left': 0x0,
+          'width': _0x15a58f,
+          'top': _0x34c213
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f33,
+    value: function value() {
+      var _0x39dac8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      if (_0x39dac8 == 0x2) return 0x8;
+      return 0x0;
+    }
+  }]);
+  return QB21Printer;
+}(QPrinterBase, a0_0x51313f(0x159));
+var QB32Printer = /*#__PURE__*/function (_QPrinterBase2, _a0_0x51313f34) {
+  (0, _inherits2.default)(QB32Printer, _QPrinterBase2);
+  var _super7 = _createSuper(QB32Printer);
+  function QB32Printer(_0x195b21) {
+    var _this10;
+    (0, _classCallCheck2.default)(this, QB32Printer);
+    var _0x2118d9 = a0_0x51313f;
+    _this10 = _super7.call(this, _0x195b21), _this10[_0x2118d9(0x1af)] = 0x12c, _this10[_0x2118d9(0x1bd)] = 0x48, _this10[_0x2118d9(0x1a9)] = 0x6c, _this10[_0x2118d9(0x203)] = 0x1;
+    return _this10;
+  }
+  (0, _createClass2.default)(QB32Printer, [{
+    key: _a0_0x51313f34,
+    value: function value() {
+      var _0x5e74eb = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      return 0x0;
+    }
+  }]);
+  return QB32Printer;
+}(QPrinterBase, a0_0x51313f(0x159));
+var QB32RPrinter = /*#__PURE__*/function (_QPrinterBase3, _a0_0x51313f35) {
+  (0, _inherits2.default)(QB32RPrinter, _QPrinterBase3);
+  var _super8 = _createSuper(QB32RPrinter);
+  function QB32RPrinter(_0x11bca3) {
+    var _this11;
+    (0, _classCallCheck2.default)(this, QB32RPrinter);
+    var _0x172e18 = a0_0x51313f;
+    _this11 = _super8.call(this, _0x11bca3), _this11[_0x172e18(0x1af)] = 0x12c, _this11[_0x172e18(0x1bd)] = 0x48, _this11[_0x172e18(0x1a9)] = 0x6c, _this11[_0x172e18(0x203)] = 0x1;
+    return _this11;
+  }
+  (0, _createClass2.default)(QB32RPrinter, [{
+    key: 'getDropPxTopFrom',
+    value: function getDropPxTopFrom() {
+      var _0x58d6b8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      return 0x0;
+    }
+  }, {
+    key: _a0_0x51313f35,
+    value: function value() {
+      var _0xdc0569 = a0_0x51313f;
+      this['sendImageDataStatus'] = 0x0, this['recive200Row'] = 0x0, this[_0xdc0569(0x21e)] = 0x0, this[_0xdc0569(0x202)] = 0x0;
+      if (this['wantCancel']) {
+        this[_0xdc0569(0x18f)]();
+        return;
+      }
+      if (this[_0xdc0569(0x15d)]) {
+        var _0x14f31c = this,
+          _0x5a4e41 = function _0x5a4e41() {
+            var _0x1b5af4 = _0xdc0569;
+            _0x14f31c[_0x1b5af4(0x1a3)](_JCAPIErrorCode.default[_0x1b5af4(0x164)], _0x14f31c[_0x1b5af4(0x205)], null), _0x14f31c[_0x1b5af4(0x18f)]();
+          };
+        if ((0, _typeof2.default)(this[_0xdc0569(0x15d)]) != _0xdc0569(0x213)) {
+          _0x5a4e41();
+          return;
+        }
+        if (this['epc']['length'] % 0x4 != 0x0) {
+          _0x5a4e41();
+          return;
+        }
+        var _0x57de60 = [],
+          _0x4db0b7 = {
+            '0': 0x0,
+            '1': 0x1,
+            '2': 0x2,
+            '3': 0x3,
+            '4': 0x4,
+            '5': 0x5,
+            '6': 0x6,
+            '7': 0x7,
+            '8': 0x8,
+            '9': 0x9,
+            'a': 0xa,
+            'b': 0xb,
+            'c': 0xc,
+            'd': 0xd,
+            'e': 0xe,
+            'f': 0xf,
+            'A': 0xa,
+            'B': 0xb,
+            'C': 0xc,
+            'D': 0xd,
+            'E': 0xe,
+            'F': 0xf
+          },
+          _0x4d5fed = 0x0,
+          _0x55769c = ![];
+        for (var _0x4d736f = 0x0; _0x4d736f < this['epc'][_0xdc0569(0x1da)]; _0x4d736f += 0x2) {
+          var _0x2f2d01 = this[_0xdc0569(0x15d)][_0x4d736f],
+            _0x6a78ee = _0x4db0b7[_0x2f2d01];
+          if (_0x6a78ee == null || _0x6a78ee == undefined) {
+            _0x55769c = !![];
+            break;
+          }
+          _0x4d5fed |= _0x6a78ee, _0x4d5fed <<= 0x4, _0x2f2d01 = this[_0xdc0569(0x15d)][_0x4d736f + 0x1], _0x6a78ee = _0x4db0b7[_0x2f2d01], _0x4d5fed |= _0x6a78ee;
+          if (_0x6a78ee == null || _0x6a78ee == undefined) {
+            _0x55769c = !![];
+            break;
+          }
+          _0x57de60[_0xdc0569(0x15e)](_0x4d5fed), _0x4d5fed = 0x0;
+        }
+        if (_0x55769c) {
+          _0x5a4e41();
+          return;
+        }
+        var _0x231a5d = _JCDataUntil.default[_0xdc0569(0x183)](0x70, _0x57de60);
+        this[_0xdc0569(0x1e2)]['needCMD'] = 0x71, this[_0xdc0569(0x1e2)]['ble']['sendData'](_0x231a5d, 0xa, function () {
+          var _0x3af26c = _0xdc0569;
+          _0x14f31c[_0x3af26c(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], _0x14f31c[_0x3af26c(0x205)]);
+        });
+      } else this[_0xdc0569(0x17c)]();
+    }
+  }]);
+  return QB32RPrinter;
+}(QPrinterBase, a0_0x51313f(0x1a4));
+var QB3SPrinter = /*#__PURE__*/function (_QPrinterBase4, _a0_0x51313f36, _a0_0x51313f37) {
+  (0, _inherits2.default)(QB3SPrinter, _QPrinterBase4);
+  var _super9 = _createSuper(QB3SPrinter);
+  function QB3SPrinter(_0x247bae) {
+    var _this12;
+    (0, _classCallCheck2.default)(this, QB3SPrinter);
+    var _0x462df8 = a0_0x51313f;
+    _this12 = _super9.call(this, _0x247bae), _this12[_0x462df8(0x1af)] = 0xc8, _this12[_0x462df8(0x1bd)] = 0x48, _this12['maxWordSizeLength'] = 0x48, _this12['printWay'] = 0x0;
+    return _this12;
+  }
+  (0, _createClass2.default)(QB3SPrinter, [{
+    key: _a0_0x51313f36,
+    value: function value(_0x51bc69) {
+      var _0xf35c9d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x5df680 = a0_0x51313f;
+      var _0x33ddce = this[_0x5df680(0x1b1)](_0x51bc69),
+        _0x3ab7c7 = this[_0x5df680(0x1b1)](this[_0x5df680(0x1bd)]);
+      if (_0x33ddce <= _0x3ab7c7) {
+        if (_0xf35c9d == 0x2) return {
+          'left': 0x0,
+          'width': _0x33ddce,
+          'top': 0x30
+        };
+        return {
+          'left': 0x0,
+          'width': _0x33ddce,
+          'top': 0x0
+        };
+      } else {
+        if (_0xf35c9d == 0x2) return {
+          'left': 0x0,
+          'width': _0x3ab7c7,
+          'top': 0x30
+        };
+        return {
+          'left': 0x0,
+          'width': _0x3ab7c7,
+          'top': 0x0
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f37,
+    value: function value() {
+      var _0x1d13f6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      if (_0x1d13f6 == 0x2) return 0x30;
+      return 0x0;
+    }
+  }]);
+  return QB3SPrinter;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QB3SPPrinter = /*#__PURE__*/function (_QPrinterBase5, _a0_0x51313f38, _a0_0x51313f39) {
+  (0, _inherits2.default)(QB3SPPrinter, _QPrinterBase5);
+  var _super10 = _createSuper(QB3SPPrinter);
+  function QB3SPPrinter(_0xae4007) {
+    var _this13;
+    (0, _classCallCheck2.default)(this, QB3SPPrinter);
+    var _0x8ccd0e = a0_0x51313f;
+    _this13 = _super10.call(this, _0xae4007), _this13[_0x8ccd0e(0x1af)] = 0xc8, _this13['maxDeviceLength'] = 0x48, _this13['maxWordSizeLength'] = 0x48, _this13[_0x8ccd0e(0x203)] = 0x0;
+    return _this13;
+  }
+  (0, _createClass2.default)(QB3SPPrinter, [{
+    key: _a0_0x51313f38,
+    value: function value(_0x3bdc25) {
+      var _0xc6859e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x308dca = a0_0x51313f;
+      var _0x323a34 = this[_0x308dca(0x1b1)](_0x3bdc25),
+        _0xa1753a = this[_0x308dca(0x1b1)](this[_0x308dca(0x1bd)]);
+      if (_0x323a34 <= _0xa1753a) {
+        if (_0xc6859e == 0x2) return {
+          'left': 0x0,
+          'width': _0x323a34,
+          'top': 0x30
+        };
+        return {
+          'left': 0x0,
+          'width': _0x323a34,
+          'top': 0x0
+        };
+      } else {
+        var _0x39f397 = _0x323a34 - _0xa1753a;
+        if (_0xc6859e == 0x2) return {
+          'left': Math[_0x308dca(0x177)](_0x39f397 / 0x2),
+          'width': _0xa1753a,
+          'top': 0x30
+        };
+        return {
+          'left': Math[_0x308dca(0x177)](_0x39f397 / 0x2),
+          'width': _0xa1753a,
+          'top': 0x0
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f39,
+    value: function value() {
+      var _0x5b6245 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      if (_0x5b6245 == 0x2) return 0x30;
+      return 0x0;
+    }
+  }]);
+  return QB3SPPrinter;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QB1Printer = /*#__PURE__*/function (_QPrinterBase6, _a0_0x51313f40, _a0_0x51313f41) {
+  (0, _inherits2.default)(QB1Printer, _QPrinterBase6);
+  var _super11 = _createSuper(QB1Printer);
+  function QB1Printer(_0x2ca43c) {
+    var _this14;
+    (0, _classCallCheck2.default)(this, QB1Printer);
+    var _0x47dcf7 = a0_0x51313f;
+    _this14 = _super11.call(this, _0x2ca43c), _this14[_0x47dcf7(0x1af)] = 0xcb, _this14[_0x47dcf7(0x1bd)] = 0x30, _this14[_0x47dcf7(0x1a9)] = 0x30, _this14['printWay'] = 0x1, _this14[_0x47dcf7(0x1ce)] = !![];
+    return _this14;
+  }
+  (0, _createClass2.default)(QB1Printer, [{
+    key: _a0_0x51313f40,
+    value: function value(_0x5c22f5) {
+      var _0x479280 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x745590 = a0_0x51313f;
+      var _0x51c78c = this[_0x745590(0x1b1)](_0x5c22f5),
+        _0x41d4ff = this[_0x745590(0x1b1)](this['maxDeviceLength']),
+        _0x30749e = 0x0;
+      _0x479280 == 0x2 && (_0x30749e = 0x8);
+      if (_0x51c78c <= _0x41d4ff) return {
+        'left': 0x0,
+        'width': _0x51c78c,
+        'top': _0x30749e
+      };else {
+        var _0x267f25 = _0x51c78c - _0x41d4ff;
+        return {
+          'left': Math[_0x745590(0x177)](_0x267f25 / 0x2),
+          'width': _0x41d4ff,
+          'top': _0x30749e
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f41,
+    value: function value() {
+      var _0x39af32 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      if (_0x39af32 == 0x2) return 0x8;
+      return 0x0;
+    }
+  }]);
+  return QB1Printer;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QB203Printer = /*#__PURE__*/function (_QPrinterBase7, _a0_0x51313f42, _a0_0x51313f43) {
+  (0, _inherits2.default)(QB203Printer, _QPrinterBase7);
+  var _super12 = _createSuper(QB203Printer);
+  function QB203Printer(_0x259f9e) {
+    var _this15;
+    (0, _classCallCheck2.default)(this, QB203Printer);
+    var _0x4564c3 = a0_0x51313f;
+    _this15 = _super12.call(this, _0x259f9e), _this15[_0x4564c3(0x1af)] = 0xcb, _this15[_0x4564c3(0x1bd)] = 0x30, _this15[_0x4564c3(0x1a9)] = 0x30, _this15[_0x4564c3(0x203)] = 0x1, _this15['checkRFID'] = !![];
+    return _this15;
+  }
+  (0, _createClass2.default)(QB203Printer, [{
+    key: _a0_0x51313f42,
+    value: function value(_0x245a52) {
+      var _0x24d666 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x2adb2b = a0_0x51313f;
+      var _0x960de5 = this[_0x2adb2b(0x1b1)](_0x245a52),
+        _0x5e14c9 = this['mm2px'](this[_0x2adb2b(0x1bd)]),
+        _0x31e431 = 0x0;
+      _0x24d666 == 0x2 && (_0x31e431 = 0x8);
+      if (_0x960de5 <= _0x5e14c9) return {
+        'left': 0x0,
+        'width': _0x960de5,
+        'top': _0x31e431
+      };else {
+        var _0x1d9336 = _0x960de5 - _0x5e14c9;
+        return {
+          'left': Math['floor'](_0x1d9336 / 0x2),
+          'width': _0x5e14c9,
+          'top': _0x31e431
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f43,
+    value: function value() {
+      var _0x5aca09 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      if (_0x5aca09 == 0x2) return 0x8;
+      return 0x0;
+    }
+  }]);
+  return QB203Printer;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QB16Printer = /*#__PURE__*/function (_QPrinterBase8, _a0_0x51313f44, _a0_0x51313f45) {
+  (0, _inherits2.default)(QB16Printer, _QPrinterBase8);
+  var _super13 = _createSuper(QB16Printer);
+  function QB16Printer(_0x2ff57e) {
+    var _this16;
+    (0, _classCallCheck2.default)(this, QB16Printer);
+    var _0x13580e = a0_0x51313f;
+    _this16 = _super13.call(this, _0x2ff57e), _this16[_0x13580e(0x1af)] = 0xcb, _this16[_0x13580e(0x1bd)] = 0xc, _this16['maxWordSizeLength'] = 0xc, _this16['printWay'] = 0x1, _this16['checkRFID'] = !![];
+    return _this16;
+  }
+  (0, _createClass2.default)(QB16Printer, [{
+    key: _a0_0x51313f44,
+    value: function value(_0x552d1e) {
+      var _0x3eee1b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x432541 = a0_0x51313f;
+      var _0x2ffa61 = this[_0x432541(0x1b1)](_0x552d1e),
+        _0x488ff0 = this[_0x432541(0x1b1)](this[_0x432541(0x1bd)]),
+        _0x39d84a = 0x0;
+      if (_0x2ffa61 <= _0x488ff0) return {
+        'left': 0x0,
+        'width': _0x2ffa61,
+        'top': _0x39d84a
+      };else {
+        var _0x583e40 = _0x2ffa61 - _0x488ff0;
+        return {
+          'left': Math['floor'](_0x583e40 / 0x2),
+          'width': _0x488ff0,
+          'top': _0x39d84a
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f45,
+    value: function value() {
+      var _0xcdf17f = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      return 0x0;
+    }
+  }]);
+  return QB16Printer;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QK1Printer = /*#__PURE__*/function (_QPrinterBase9, _a0_0x51313f46, _a0_0x51313f47) {
+  (0, _inherits2.default)(QK1Printer, _QPrinterBase9);
+  var _super14 = _createSuper(QK1Printer);
+  function QK1Printer(_0x6399b3) {
+    var _this17;
+    (0, _classCallCheck2.default)(this, QK1Printer);
+    var _0xb67d7c = a0_0x51313f;
+    _this17 = _super14.call(this, _0x6399b3), _this17[_0xb67d7c(0x1af)] = 0xcb, _this17[_0xb67d7c(0x1bd)] = 0x50, _this17[_0xb67d7c(0x1a9)] = 0x50, _this17['printWay'] = 0x1, _this17[_0xb67d7c(0x1ce)] = ![];
+    return _this17;
+  }
+  (0, _createClass2.default)(QK1Printer, [{
+    key: _a0_0x51313f46,
+    value: function value(_0x9b0ac9) {
+      var _0x202010 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x4f8623 = a0_0x51313f;
+      var _0x2af95a = this[_0x4f8623(0x1b1)](_0x9b0ac9),
+        _0x3e37bd = this[_0x4f8623(0x1b1)](this[_0x4f8623(0x1bd)]),
+        _0x2cbdc4 = 0x0;
+      if (_0x2af95a <= _0x3e37bd) return {
+        'left': 0x0,
+        'width': _0x2af95a,
+        'top': _0x2cbdc4
+      };else {
+        var _0x580cb1 = _0x2af95a - _0x3e37bd;
+        return {
+          'left': Math[_0x4f8623(0x177)](_0x580cb1 / 0x2),
+          'width': _0x3e37bd,
+          'top': _0x2cbdc4
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f47,
+    value: function value() {
+      var _0x57667f = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      return 0x0;
+    }
+  }]);
+  return QK1Printer;
+}(QPrinterBase, a0_0x51313f(0x19b), a0_0x51313f(0x159));
+var QAutoPrinter = /*#__PURE__*/function (_QPrinterBase10, _a0_0x51313f48, _a0_0x51313f49, _a0_0x51313f50, _a0_0x51313f51) {
+  (0, _inherits2.default)(QAutoPrinter, _QPrinterBase10);
+  var _super15 = _createSuper(QAutoPrinter);
+  function QAutoPrinter(_0x175c9a) {
+    var _this18;
+    (0, _classCallCheck2.default)(this, QAutoPrinter);
+    var _0x379600 = a0_0x51313f;
+    _this18 = _super15.call(this, _0x175c9a), _this18['dpi'] = 0xcb, _this18['maxDeviceLength'] = 0x50, _this18[_0x379600(0x1a9)] = 0x50, _this18['printWay'] = 0x1, _this18['checkRFID'] = ![], _this18[_0x379600(0x1e8)] = 0x0;
+    return _this18;
+  }
+  (0, _createClass2.default)(QAutoPrinter, [{
+    key: _a0_0x51313f48,
+    value: function value(_0x407892, _0x1bc0a3, _0x37b9e3, _0x1473c1, _0x5232) {
+      var _0x255abf = a0_0x51313f;
+      var _0x5ec338 = 0xdc;
+      this[_0x255abf(0x1e2)][_0x255abf(0x1a0)] == 0x3 && this['manager']['cutByteSize'] > 0x0 && (_0x5ec338 = this[_0x255abf(0x1e2)][_0x255abf(0x1aa)]);
+      if (this['manager']['sdkPlatform'] == _JCAPIErrorCode.default[_0x255abf(0x208)]) {} else this[_0x255abf(0x1e2)][_0x255abf(0x1c3)] == _JCAPIErrorCode.default[_0x255abf(0x1e0)] && this[_0x255abf(0x1e2)][_0x255abf(0x16a)] == _0x255abf(0x1c8) && this[_0x255abf(0x1e2)]['setMtuSucc'] == ![] && (_0x5ec338 = 0x14);
+      var _0x300cb6 = _JCDataUntil.default['dealImageData'](_0x407892, this[_0x255abf(0x1a9)], {
+        'left': 0x0,
+        'rifht': 0x0
+      }, _0x5ec338, _0x37b9e3);
+      this[_0x255abf(0x1fa)] += _0x1bc0a3;
+      if (_0x300cb6 != null && _0x300cb6[_0x255abf(0x1da)] > 0x0) {
+        var _0x5ebeaf = {};
+        _0x5ebeaf[_0x255abf(0x1a1)] = _0x407892[_0x255abf(0x1a1)], _0x5ebeaf[_0x255abf(0x1fd)] = _0x407892[_0x255abf(0x1fd)];
+        _0x37b9e3 % 0xb4 != 0x0 && (_0x5ebeaf[_0x255abf(0x1a1)] = _0x407892[_0x255abf(0x1fd)], _0x5ebeaf[_0x255abf(0x1fd)] = _0x407892[_0x255abf(0x1a1)]);
+        _0x5ebeaf[_0x255abf(0x1a7)] = _0x300cb6, _0x5ebeaf['count'] = _0x1bc0a3;
+        var _0x2a7fae = this,
+          _0x187431 = function _0x187431() {
+            var _0x3c3b0b = _0x255abf;
+            _0x2a7fae['cols'] = _0x5ebeaf[_0x3c3b0b(0x1a1)], _0x2a7fae[_0x3c3b0b(0x15f)] = _0x5ebeaf[_0x3c3b0b(0x1fd)], _0x2a7fae['sendDataArray'] = _0x5ebeaf['data'], _0x2a7fae[_0x3c3b0b(0x17d)] = _0x5ebeaf['count'];
+            if (_0x5232) {
+              var _0x118fcf = _0x5232[_0x3c3b0b(0x15d)],
+                _0x8919fc = _0x5232['hasDash'];
+              _0x118fcf ? _0x2a7fae['epc'] = _0x118fcf : _0x2a7fae[_0x3c3b0b(0x15d)] = null, _0x8919fc != null ? _0x2a7fae[_0x3c3b0b(0x1ac)] = _0x8919fc : _0x2a7fae['hasDash'] = null;
+            } else _0x2a7fae[_0x3c3b0b(0x15d)] = null, _0x2a7fae[_0x3c3b0b(0x1ac)] = null;
+            if (_0x2a7fae[_0x3c3b0b(0x17f)]) {
+              var _0x3dc9b4 = _JCDataUntil.default[_0x3c3b0b(0x1b9)](0x3, 0x1);
+              _0x2a7fae['manager']['needCMD'] = 0x4;
+              if (_0x2a7fae['manager'][_0x3c3b0b(0x1a0)] == 0x3) {
+                _0x2a7fae['manager']['needCMD'] = 0x14;
+                var _0x10e1a2 = _0x5ebeaf[_0x3c3b0b(0x1fd)] >= _0x2a7fae[_0x3c3b0b(0x1e2)][_0x3c3b0b(0x1d5)] ? 0x1 : _0x1bc0a3;
+                _0x3dc9b4 = _JCDataUntil.default['createData'](0x13, _0x2a7fae[_0x3c3b0b(0x15f)] / 0x100, _0x2a7fae[_0x3c3b0b(0x15f)] % 0x100, _0x2a7fae[_0x3c3b0b(0x193)] / 0x100, _0x2a7fae[_0x3c3b0b(0x193)] % 0x100, _0x10e1a2 / 0x100, _0x10e1a2 % 0x100);
+              }
+              _0x2a7fae[_0x3c3b0b(0x1ec)] = 0x1, _0x2a7fae['manager'][_0x3c3b0b(0x214)][_0x3c3b0b(0x1e3)](_0x3dc9b4, 0xa, function () {
+                var _0x191f14 = _0x3c3b0b;
+                _0x2a7fae[_0x191f14(0x1a3)](_JCAPIErrorCode.default[_0x191f14(0x1ee)], this[_0x191f14(0x205)]);
+              });
+            } else {
+              var _0x245dee = _JCDataUntil.default[_0x3c3b0b(0x1b9)](0x1, 0x1);
+              if (_0x2a7fae[_0x3c3b0b(0x1e2)][_0x3c3b0b(0x1a0)] == 0x3) {
+                var _0x5e36e2 = 0x0;
+                _0x5232 != null && _0x5232[_0x3c3b0b(0x1f4)] != null && _0x5232[_0x3c3b0b(0x1f4)] == 0x1 && (_0x5e36e2 = 0x1), _0x245dee = _JCDataUntil.default[_0x3c3b0b(0x1b9)](0x1, _0x2a7fae[_0x3c3b0b(0x1c9)] / 0x100, _0x2a7fae['recordTotalCount'] % 0x100, 0x0, 0x0, 0x0, 0x0, 0x0, _0x5e36e2);
+              }
+              _0x2a7fae[_0x3c3b0b(0x1e2)][_0x3c3b0b(0x212)] = 0x2, _0x2a7fae[_0x3c3b0b(0x1ec)] = 0x1, _0x2a7fae[_0x3c3b0b(0x1e3)](_0x245dee);
+            }
+          };
+        if (_0x5ebeaf[_0x255abf(0x1fd)] >= this[_0x255abf(0x1e2)][_0x255abf(0x1d5)]) {
+          var _0x1ba9f4 = _0x1bc0a3;
+          while (_0x1ba9f4 > 0x0) {
+            _0x1ba9f4--, this[_0x255abf(0x19a)][_0x255abf(0x15e)](_0x187431);
+          }
+        } else this[_0x255abf(0x19a)][_0x255abf(0x15e)](_0x187431);
+        if (this[_0x255abf(0x19a)]['length'] >= 0x5) {
+          this['printCallback'] = _0x1473c1;
+          if (!this['isPrinting']) {
+            var _0x4e0222 = this[_0x255abf(0x19a)][0x0];
+            _0x4e0222();
+          }
+        } else {
+          if (this[_0x255abf(0x1fa)] == this['recordTotalCount']) {
+            if (!this['isPrinting']) {
+              var _0x3a8929 = this[_0x255abf(0x19a)][0x0];
+              _0x3a8929();
+            }
+          } else {
+            if (this[_0x255abf(0x17f)] == !![]) return;
+            _0x1473c1 && this[_0x255abf(0x1e2)][_0x255abf(0x1eb)] != !![] && _0x1473c1();
+          }
+        }
+      } else this['cols'] = 0x0, this[_0x255abf(0x15f)] = 0x0, this[_0x255abf(0x1b4)] = [], this[_0x255abf(0x1e2)][_0x255abf(0x19d)] = ![], this[_0x255abf(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_GetDATA'], this[_0x255abf(0x205)], null);
+    }
+  }, {
+    key: _a0_0x51313f49,
+    value: function value(_0x5d8445) {
+      var _0x20cb83 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x48cc68 = a0_0x51313f;
+      var _0x4778c0 = this[_0x48cc68(0x1b1)](_0x5d8445),
+        _0x5d8cd2 = this[_0x48cc68(0x1b1)](this[_0x48cc68(0x1bd)]),
+        _0x149ead = 0x0,
+        _0x2ce172 = 0x0;
+      _0x20cb83 == 0x2 && (_0x149ead = Math[_0x48cc68(0x1db)](this[_0x48cc68(0x1f9)] / 0x2), _0x2ce172 = _0x149ead);
+      if (_0x4778c0 <= _0x5d8cd2) return {
+        'left': 0x0,
+        'width': _0x4778c0,
+        'top': _0x149ead,
+        'bottom': _0x2ce172
+      };else {
+        var _0x10f73b = _0x4778c0 - _0x5d8cd2;
+        return {
+          'left': Math[_0x48cc68(0x177)](_0x10f73b / 0x2),
+          'width': _0x5d8cd2,
+          'top': _0x149ead,
+          'bottom': _0x2ce172
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f50,
+    value: function value() {
+      var _0x25233b = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      var _0x340852 = a0_0x51313f;
+      var _0xb17e97 = 0x0,
+        _0x2f6b83 = 0x0;
+      return _0x25233b == 0x2 && (_0xb17e97 = Math[_0x340852(0x1db)](this[_0x340852(0x1f9)] / 0x2), _0x2f6b83 = _0xb17e97), {
+        'top': _0xb17e97,
+        'bottom': _0x2f6b83
+      };
+    }
+  }, {
+    key: _a0_0x51313f51,
+    value: function value(_0x18ebf1) {
+      var _0x2177c6 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x1d631e = a0_0x51313f;
+      var _0x17977a = _0x18ebf1,
+        _0xb406b7 = this[_0x1d631e(0x1b1)](this[_0x1d631e(0x1bd)]),
+        _0xc273a4 = this[_0x1d631e(0x159)](_0x2177c6),
+        _0x55ccf7 = 0x0,
+        _0x20cc92 = 0x0;
+      (0, _typeof2.default)(_0xc273a4) == _0x1d631e(0x182) ? _0x55ccf7 = _0xc273a4 : (_0x55ccf7 = _0xc273a4[_0x1d631e(0x1bf)], _0x20cc92 = _0xc273a4['bottom']);
+      if (_0x17977a <= _0xb406b7) return {
+        'left': 0x0,
+        'width': _0x17977a,
+        'top': _0x55ccf7,
+        'bottom': _0x20cc92
+      };else {
+        if (this[_0x1d631e(0x203)] == 0x1) {
+          var _0x99713d = _0x17977a - _0xb406b7;
+          return {
+            'left': Math[_0x1d631e(0x177)](_0x99713d / 0x2),
+            'width': _0xb406b7,
+            'top': _0x55ccf7,
+            'bottom': _0x20cc92
+          };
+        } else {
+          if (this[_0x1d631e(0x203)] == 0x2) {
+            var _0xd98940 = _0x17977a - _0xb406b7;
+            return {
+              'left': _0xd98940,
+              'width': _0xb406b7,
+              'top': _0x55ccf7,
+              'bottom': _0x20cc92
+            };
+          }
+        }
+        return {
+          'left': 0x0,
+          'width': _0xb406b7,
+          'top': _0x55ccf7,
+          'bottom': _0x20cc92
+        };
+      }
+    }
+  }]);
+  return QAutoPrinter;
+}(QPrinterBase, a0_0x51313f(0x217), a0_0x51313f(0x19b), a0_0x51313f(0x159), a0_0x51313f(0x1b0));
+function a0_0x151a() {
+  var _0x465c7f = ['sendData', 'getBleInfos', 'JCSDK_PRINT_ERR_0x05', 'setMtuSucc', 'maxCahce\x20=\x20', 'supportRFID', 'tid', 'sendImageDataStatus', 'isDrawing', 'unRes', '301sIapEy', 'JCSDK_PRINT_ERR_TIMEOUT', 'reciveB3Succ', 'cutByteSize\x20=\x20', 'reciveCancel', 'didReadPrintErrorInfo', '---重复发送了-------', 'speedOrQuality', 'time', 'clear', 'getSnCallback', 'recive0x00', 'paperSpaceBetween', 'cacheCount', 'compareImageData', 'getCutDataInfosCallback', 'height', 'getSn', '6857780QgPZOw', '收到错误=', 'getDensityCallback', 'arrayIndex2', 'printWay', 'reciveE4Succ', 'printErrorInfoCallback', 'getTimeOfPoweroffCallback', 'reject', 'JCSDK_PLATFORM_DD', 'recive71Succ', 'recive0xB4', 'JCSDK_PRINT_ERR_0x04', 'printEndObj', 'printCallback', '\x20\x20maxSendRows\x20=\x20', '9082530OPVkrj', 'JCSDK_PRINT_ERR_PrinterNotWork', '11cWiTCy', 'needCMD', 'string', 'ble', 'recive04Succ', 'startJob', 'startPrint', 'setLangueCallback', 'JCSDK_PRINT_ERR_0x0e', 'recive16Succ', 'b3ReTimeout', 'setStandardCallback', 'protoVer', 'arrayIndex1', 'getDropPxTopFrom', 'printingStatus', '165344gNKPQB', 'wantCancel', 'epc', 'push', 'rows', 'byteLength', 'compareTotalImageDataWithZip', 'printerInfos', 'setDensityCallback', 'JCSDK_PRINT_ERR_epc', 'splice', 'log', 'cancelCallback', 'setPaperTypeCallback', '查询页码时，收到错误=', 'platform', 'sendUnRes', 'count', 'getSpeedCallback', 'JCSDK_PRINT_ERR_0x0d', 'sVer', 'getCutDataInfos', 'setPowerOffTimeCallback', 'cache', 'error', 'doSend86', 'getBleInfosCallback', 'repeatTimeoutId', 'floor', 'getHversionCallback', 'doSendPictrueDataTimeoutId', 'useRegion', '12260aCHdHb', 'doSendPictrueData', 'onePageCount', 'fail', 'isPrinting', 'debug', 'success', 'number', 'createDataWithDataArray', 'runCheckCacheAfter14', 'getPowerLevelCallback', 'JCSDK_PRINT_ERR_DISCONNECT', 'JCSDK_PRINT_ERR_0x0b', 'maxOnceSendRows', 'callbackOnce', 'recive02Succ', 'printObj', 'getBiaoDingResultCallback', 'getSversionCallback', '6MLjQNn', 'doSendPrintOver', 'getPaperTypeCallback', 'recive0xB5', 'setResetCallback', 'cols', 'JCSDK_PRINT_ERR_0x03', 'JCSDK_PRINT_ERR_0x06', 'getMultiple', 'reciveCmd', 'sendSearchPrintPage', 'getBiaoDingResult', 'cacheDatas', 'getDropSize', 'JCSDK_PRINT_ERR_0x11', 'startJobFlag', 'setDensity', 'JCSDK_PRINT_ERR_0x13', 'agreement', 'width', 'zipRows', 'sendPrintError', 'recive14Succ', 'bottom', '91301JPHyJW', 'data', 'lastImageDataModel', 'maxWordSizeLength', 'cutByteSize', 'getRFIDInfosCallback', 'hasDash', 'isSendPictureDataing', 'sendCancel', 'dpi', 'getDropByRealWidth', 'mm2px', 'getBlackPaperSpaceBetween', 'getSpeedQualityCallback', 'sendDataArray', 'printedCount', '3209661XcFGAo', 'reciveD3Succ', 'reciveReject', 'createData', 'JCSDK_PRINT_ERR_SetPaperFailed', 'JCSDK_PRINT_ERR_0x08', 'dealImageData', 'maxDeviceLength', 'JCSDK_PRINT_ERR_0x15', 'top', 'slice', 'complete', 'getLangueCallback', 'sdkPlatform', '1532EsaWzg', 'getPrintingError', 'JCSDK_PRINT_ERR_BUSY', 'diffRowCount', 'android', 'recordTotalCount', 'setPaperType', 'setBiaoDingCallback', 'JCSDK_PRINT_ERR_0x02', 'hVer', 'checkRFID', 'printCountInfoCallback', 'getHversion', 'paperHeight', 'value', 'recive200Row', 'send86TimeoutId', 'maxCacheRows', 'checkStatus', 'setBiaoDing', 'getBlackPaperSpaceBetweenCallback', 'setSpeedCallback', 'length', 'ceil', 'getRFIDInfos', 'reciveF4Succ', '2158845arqSob', 'printErrorCode', 'JCSDK_PLATFORM_FS', 'getMacAddressCallback', 'manager'];
+  a0_0x151a = function a0_0x151a() {
+    return _0x465c7f;
+  };
+  return a0_0x151a();
+}
+var SAutoPrinter = /*#__PURE__*/function (_QPrinterBase11, _a0_0x51313f52, _a0_0x51313f53, _a0_0x51313f54, _a0_0x51313f55, _a0_0x51313f56) {
+  (0, _inherits2.default)(SAutoPrinter, _QPrinterBase11);
+  var _super16 = _createSuper(SAutoPrinter);
+  function SAutoPrinter(_0x582d67) {
+    var _this19;
+    (0, _classCallCheck2.default)(this, SAutoPrinter);
+    var _0x5a3cf8 = a0_0x51313f;
+    _this19 = _super16.call(this, _0x582d67), _this19[_0x5a3cf8(0x1af)] = 0xcb, _this19['maxDeviceLength'] = 0x50, _this19['maxWordSizeLength'] = 0x50, _this19[_0x5a3cf8(0x203)] = 0x1, _this19['checkRFID'] = ![], _this19[_0x5a3cf8(0x1e8)] = 0x0, _this19['lastImageDataModel'] = null;
+    return _this19;
+  }
+  (0, _createClass2.default)(SAutoPrinter, [{
+    key: 'recive14Succ',
+    value: function recive14Succ() {
+      var _0x4086dc = a0_0x51313f;
+      if (this[_0x4086dc(0x15c)]) {
+        this['doSendPrintOver']();
+        return;
+      }
+      this[_0x4086dc(0x1d6)] = 0x14;
+      var _0xa1c0b7 = this;
+      this['runCheckCacheAfter14'] = function () {
+        var _0x5c3fbe = _0x4086dc;
+        if (_0xa1c0b7[_0x5c3fbe(0x17a)] && _0xa1c0b7[_0x5c3fbe(0x1c7)] == 0x0) {
+          _0xa1c0b7[_0x5c3fbe(0x1e2)][_0x5c3fbe(0x212)] = 0xe4;
+          var _0x13579b = _JCDataUntil.default[_0x5c3fbe(0x1b9)](0xe3, 0x1);
+          _0xa1c0b7[_0x5c3fbe(0x1ad)] = ![], _0xa1c0b7[_0x5c3fbe(0x1e2)][_0x5c3fbe(0x214)][_0x5c3fbe(0x1e3)](_0x13579b, 0xa, function () {
+            var _0x21d761 = _0x5c3fbe;
+            _0xa1c0b7[_0x21d761(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], this[_0x21d761(0x205)]);
+          });
+          return;
+        }
+        _0xa1c0b7[_0x5c3fbe(0x1ea)] = 0x0, _0xa1c0b7[_0x5c3fbe(0x1d3)] = 0x0, _0xa1c0b7[_0x5c3fbe(0x21e)] = 0x0, _0xa1c0b7['arrayIndex2'] = 0x0, _0xa1c0b7[_0x5c3fbe(0x17c)]();
+      }, this[_0x4086dc(0x1ea)] = 0x0, this[_0x4086dc(0x1d3)] = 0x0, this['arrayIndex1'] = 0x0, this[_0x4086dc(0x202)] = 0x0, this[_0x4086dc(0x198)]();
+    }
+  }, {
+    key: 'doSendPictrueData',
+    value: function doSendPictrueData() {
+      var _0x57ecc8 = a0_0x51313f;
+      var _0x42b083 = this;
+      if (this[_0x57ecc8(0x21e)] < this[_0x57ecc8(0x1b4)][_0x57ecc8(0x1da)]) {
+        this[_0x57ecc8(0x1e2)][_0x57ecc8(0x212)] = 0xd3;
+        var _0x28665a = this[_0x57ecc8(0x1b4)][this['arrayIndex1']];
+        if (this[_0x57ecc8(0x202)] < _0x28665a[_0x57ecc8(0x1da)]) {
+          var _0x21fcd4 = _0x28665a[this['arrayIndex2']];
+          this[_0x57ecc8(0x202)]++, this['manager'][_0x57ecc8(0x214)]['sendData'](_0x21fcd4, 0x0, function () {
+            var _0x2b6029 = _0x57ecc8;
+            if (_0x42b083['isPrinting'] != !![]) return;
+            if (_0x42b083[_0x2b6029(0x202)] == _0x28665a[_0x2b6029(0x1da)]) _0x42b083[_0x2b6029(0x1ad)] = ![], _0x42b083[_0x2b6029(0x1d4)] = setTimeout(function () {
+              var _0x2e3207 = _0x2b6029;
+              _0x42b083[_0x2e3207(0x174)]();
+            }, 0x1f4);else {
+              _0x42b083[_0x2b6029(0x1ad)] = !![];
+              var _0x57814c = 0x12;
+              if (_0x42b083[_0x2b6029(0x1e2)][_0x2b6029(0x1c3)] == _JCAPIErrorCode.default[_0x2b6029(0x208)]) {} else _0x42b083[_0x2b6029(0x1e2)][_0x2b6029(0x1c3)] == _JCAPIErrorCode.default[_0x2b6029(0x1e0)] && _0x42b083[_0x2b6029(0x1e2)][_0x2b6029(0x16a)] == _0x2b6029(0x1c8) && _0x42b083[_0x2b6029(0x1e2)][_0x2b6029(0x1e6)] == ![] && (_0x57814c = 0x8);
+              _0x42b083['doSendPictrueDataTimeoutId'] = setTimeout(function () {
+                _0x42b083['doSendPictrueData']();
+              }, _0x57814c);
+            }
+          });
+        } else this['isSendPictureDataing'] = ![], this[_0x57ecc8(0x1d4)] = setTimeout(function () {
+          var _0x52442b = _0x57ecc8;
+          _0x42b083[_0x52442b(0x174)]();
+        }, 0x1f4);
+      } else {
+        this['manager'][_0x57ecc8(0x212)] = 0xe4;
+        var _0x259263 = _JCDataUntil.default[_0x57ecc8(0x1b9)](0xe3, 0x1);
+        this[_0x57ecc8(0x1ad)] = ![], this[_0x57ecc8(0x1e2)]['ble'][_0x57ecc8(0x1e3)](_0x259263, 0xa, function () {
+          var _0x4c200e = _0x57ecc8;
+          _0x42b083['sendPrintError'](_JCAPIErrorCode.default[_0x4c200e(0x1ee)], this[_0x4c200e(0x205)]);
+        });
+      }
+    }
+  }, {
+    key: 'recive88Succ',
+    value: function recive88Succ(_0x3c4a50) {
+      var _0x4bc293 = a0_0x51313f;
+      if (this['isSendPictureDataing']) return;
+      var _0x2beb79 = this;
+      this[_0x4bc293(0x1d4)] > 0x0 && (clearTimeout(this['send86TimeoutId']), this[_0x4bc293(0x1d4)] = 0x0);
+      this['b3ReTimeout'] > 0x0 && clearTimeout(this[_0x4bc293(0x21b)]);
+      if (_0x3c4a50[0x5] > 0x0) {
+        this[_0x4bc293(0x1df)] = _0x3c4a50[0x5], this['doSendPrintOver']();
+        return;
+      }
+      if (this['wantCancel'] && !this['sendCancel']) {
+        this[_0x4bc293(0x1ae)] = !![], this[_0x4bc293(0x1e2)][_0x4bc293(0x212)] = 0xd0;
+        var _0x164bf8 = _JCDataUntil.default['createData'](0xda, 0x1);
+        this[_0x4bc293(0x1e3)](_0x164bf8);
+        return;
+      }
+      if (_0x3c4a50[0x0] == this[_0x4bc293(0x21e)]) {
+        if (_0x3c4a50[0x1] == 0x1) {
+          this[_0x4bc293(0x21e)]++, this[_0x4bc293(0x202)] = 0x0, this['recive200Row'] = _0x3c4a50[0x0];
+          if (this[_0x4bc293(0x21e)] == this[_0x4bc293(0x1b4)][_0x4bc293(0x1da)]) {
+            this[_0x4bc293(0x1e2)][_0x4bc293(0x212)] = 0xe4;
+            var _0x4d591b = _JCDataUntil.default['createData'](0xe3, 0x1);
+            this['isSendPictureDataing'] = ![], this['manager'][_0x4bc293(0x214)][_0x4bc293(0x1e3)](_0x4d591b, 0xa, function () {
+              var _0x6c23a9 = _0x4bc293;
+              _0x2beb79[_0x6c23a9(0x1a3)](_JCAPIErrorCode.default[_0x6c23a9(0x1ee)], this['printErrorInfoCallback']);
+            });
+            return;
+          }
+          if (this[_0x4bc293(0x1a2)] && this[_0x4bc293(0x1a2)][_0x4bc293(0x1da)] > this[_0x4bc293(0x21e)]) {
+            if (_0x3c4a50[0x3] < this[_0x4bc293(0x1a2)][this[_0x4bc293(0x21e)]]) {
+              this[_0x4bc293(0x198)]();
+              return;
+            }
+          }
+          this[_0x4bc293(0x1ad)] = !![], this[_0x4bc293(0x1d6)] = 0xd3, this[_0x4bc293(0x17c)]();
+        } else {
+          if (_0x3c4a50[0x1] == 0x2) this[_0x4bc293(0x202)] = 0x0, this[_0x4bc293(0x17c)]();else {
+            if (this['reciveReject']() == ![]) return;
+            this[_0x4bc293(0x1d4)] = setTimeout(function () {
+              var _0x252fa5 = _0x4bc293;
+              _0x2beb79[_0x252fa5(0x174)]();
+            }, 0x1f4);
+          }
+        }
+      } else this[_0x4bc293(0x1d4)] = setTimeout(function () {
+        var _0x952cad = _0x4bc293;
+        _0x2beb79[_0x952cad(0x174)]();
+      }, 0x1f4);
+    }
+  }, {
+    key: 'reciveD3Succ',
+    value: function reciveD3Succ(_0x11e2a7) {
+      var _0x5c6fed = a0_0x51313f;
+      var _0x31059a = _0x11e2a7 >> 0x8,
+        _0xcbec04 = _0x11e2a7 & 0xff;
+      this[_0x5c6fed(0x1d4)] > 0x0 && (clearTimeout(this[_0x5c6fed(0x1d4)]), this['send86TimeoutId'] = 0x0);
+      this[_0x5c6fed(0x21b)] > 0x0 && clearTimeout(this[_0x5c6fed(0x21b)]);
+      if (_0x31059a > this[_0x5c6fed(0x1d3)]) {
+        if (_0x31059a == (this[_0x5c6fed(0x21e)] + 0x1) * this[_0x5c6fed(0x1e2)]['maxOnceSendRows'] - 0x1 || _0x31059a + 0x1 == this[_0x5c6fed(0x15f)] || this[_0x5c6fed(0x17a)] && this[_0x5c6fed(0x1c7)] == _0x31059a + 0x1) {
+          this[_0x5c6fed(0x1d4)] != null && (clearTimeout(this[_0x5c6fed(0x1d4)]), this['send86TimeoutId'] = null);
+          this[_0x5c6fed(0x176)] && (clearTimeout(this[_0x5c6fed(0x176)]), this[_0x5c6fed(0x176)] = null);
+          if (_0xcbec04 == 0x1) {
+            this['arrayIndex1']++, this[_0x5c6fed(0x202)] = 0x0, this[_0x5c6fed(0x1d3)] = _0x31059a;
+            if (this[_0x5c6fed(0x21e)] == this['sendDataArray'][_0x5c6fed(0x1da)]) {
+              this['manager']['needCMD'] = 0xe4;
+              var _0x100a94 = _JCDataUntil.default['createData'](0xe3, 0x1);
+              this['isSendPictureDataing'] = ![], this[_0x5c6fed(0x1e2)][_0x5c6fed(0x214)][_0x5c6fed(0x1e3)](_0x100a94, 0xa, function () {
+                var _0x1eb1d1 = _0x5c6fed;
+                self[_0x1eb1d1(0x1a3)](_JCAPIErrorCode.default[_0x1eb1d1(0x1ee)], this['printErrorInfoCallback']);
+              });
+              return;
+            }
+            this[_0x5c6fed(0x1d6)] = 0xd3, this[_0x5c6fed(0x198)]();
+          } else {
+            if (_0xcbec04 == 0x2) this[_0x5c6fed(0x202)] = 0x0, this['doSendPictrueData']();else {
+              if (this[_0x5c6fed(0x1b8)]() == ![]) return;
+              this[_0x5c6fed(0x1d4)] = setTimeout(function () {
+                var _0x381552 = _0x5c6fed;
+                self[_0x381552(0x174)]();
+              }, 0x1f4);
+            }
+          }
+        }
+      }
+    }
+  }, {
+    key: _a0_0x51313f52,
+    value: function value(_0x34295a) {
+      var _0x21d412 = a0_0x51313f;
+      var _0x89931c = this;
+      if (this[_0x21d412(0x1e2)]['needCMD'] == 0xb3) {
+        clearTimeout(this['repeatTimeoutId']);
+        this['b3ReTimeout'] > 0x0 && clearTimeout(this['b3ReTimeout']);
+        _0x34295a[_0x21d412(0x173)] > 0x0 && (this[_0x21d412(0x1df)] = _0x34295a[_0x21d412(0x173)]);
+        if (this[_0x21d412(0x1df)] > 0x0) {
+          this['doSendPrintOver']();
+          return;
+        }
+        if (this[_0x21d412(0x15a)] == _0x34295a[_0x21d412(0x1d2)]) {
+          this[_0x21d412(0x207)]++;
+          if (this['reject'] >= 0x3c) {
+            this[_0x21d412(0x1a3)](_JCAPIErrorCode.default[_0x21d412(0x210)], this[_0x21d412(0x205)], null), this[_0x21d412(0x18f)]();
+            return;
+          }
+          this[_0x21d412(0x21b)] = setTimeout(function () {
+            var _0x3ee133 = _0x21d412;
+            _0x89931c[_0x3ee133(0x198)]();
+          }, 0x1f4);
+        } else this['reject'] = 0x0;
+        this[_0x21d412(0x15a)] = _0x34295a[_0x21d412(0x1d2)];
+        var _0x4eb257 = _0x34295a[_0x21d412(0x16c)];
+        if (_0x4eb257 > this[_0x21d412(0x1b5)]) {
+          var _0x227f78 = {
+            'count': _0x4eb257
+          };
+          _0x34295a[_0x21d412(0x1e9)] != null && _0x34295a[_0x21d412(0x1e9)] != undefined && _0x34295a[_0x21d412(0x1e9)] != '' && (_0x227f78['tid'] = _0x34295a[_0x21d412(0x1e9)]), _0x34295a['time'] != null && _0x34295a['time'] != undefined && (_0x227f78[_0x21d412(0x1f5)] = _0x34295a[_0x21d412(0x1f5)]), this['printCountInfoCallback'] && this[_0x21d412(0x1cf)](_0x227f78), this[_0x21d412(0x1b5)] = _0x4eb257;
+        }
+        if (_0x4eb257 == this[_0x21d412(0x1c9)]) {
+          this[_0x21d412(0x18f)]();
+          return;
+        }
+        if (this['wantCancel'] && !this['sendCancel']) {
+          this[_0x21d412(0x1ae)] = !![], this[_0x21d412(0x1e2)]['needCMD'] = 0xd0;
+          var _0x5d08f1 = _JCDataUntil.default['createData'](0xda, 0x1);
+          this[_0x21d412(0x1e3)](_0x5d08f1);
+          return;
+        }
+        if (this[_0x21d412(0x15c)] && this[_0x21d412(0x1ae)] && this[_0x21d412(0x1f1)]) {
+          this['doSendPrintOver']();
+          return;
+        }
+        if (this[_0x21d412(0x1d6)] == 0xd3) {
+          if (_0x34295a[_0x21d412(0x172)] >= this['manager'][_0x21d412(0x188)]) this[_0x21d412(0x1d6)] = 0x0, this[_0x21d412(0x17c)]();else {
+            if (this[_0x21d412(0x21e)] + 0x1 == this[_0x21d412(0x1b4)][_0x21d412(0x1da)]) {
+              var _0x419753 = this[_0x21d412(0x15f)] % this[_0x21d412(0x1e2)]['maxOnceSendRows'];
+              if (_0x34295a[_0x21d412(0x172)] >= _0x419753) {
+                this[_0x21d412(0x17c)]();
+                return;
+              }
+            }
+            this['sendSearchPrintPage']();
+          }
+          return;
+        }
+        if (this[_0x21d412(0x1d6)] == 0x14) {
+          var _0x11fa68 = ![];
+          if (this[_0x21d412(0x1e2)][_0x21d412(0x162)][0x1e] > 0x0 || this[_0x21d412(0x1e2)][_0x21d412(0x162)][0x22] > 0x0) this[_0x21d412(0x1a2)] && this[_0x21d412(0x1a2)][_0x21d412(0x1da)] > this[_0x21d412(0x21e)] && _0x34295a['cache'] >= this[_0x21d412(0x1a2)][0x0] && (this[_0x21d412(0x1d6)] = 0x0, _0x11fa68 = !![]), this[_0x21d412(0x17a)] && this[_0x21d412(0x1c7)] == 0x0 && _0x34295a[_0x21d412(0x172)] > 0x0 && (_0x11fa68 = !![]);else {
+            if (_0x34295a[_0x21d412(0x172)] >= this[_0x21d412(0x1e2)][_0x21d412(0x188)]) this[_0x21d412(0x1d6)] = 0x0, _0x11fa68 = !![];else {
+              if (this[_0x21d412(0x21e)] + 0x1 == this[_0x21d412(0x1b4)][_0x21d412(0x1da)]) {
+                var _0x419753 = this[_0x21d412(0x15f)] % this[_0x21d412(0x1e2)][_0x21d412(0x188)];
+                _0x34295a[_0x21d412(0x172)] >= _0x419753 && (_0x11fa68 = !![]);
+              }
+              _0x89931c[_0x21d412(0x17a)] && _0x89931c[_0x21d412(0x1c7)] == 0x0 && _0x34295a[_0x21d412(0x172)] > 0x0 && (_0x11fa68 = !![]);
+            }
+          }
+          if (_0x11fa68) {
+            if (this['runCheckCacheAfter14']) {
+              this['b3ReTimeout'] > 0x0 && clearTimeout(this[_0x21d412(0x21b)]);
+              var _0x30cb53 = this[_0x21d412(0x184)];
+              this[_0x21d412(0x184)] = null, _0x30cb53();
+            }
+            return;
+          }
+          this[_0x21d412(0x198)]();
+          return;
+        }
+        if (this[_0x21d412(0x1d6)] == 0xe4) {
+          this[_0x21d412(0x19a)][_0x21d412(0x1da)] < 0x5 && this[_0x21d412(0x20d)] != null && this[_0x21d412(0x1e2)][_0x21d412(0x1eb)] != !![] && this[_0x21d412(0x20d)]();
+          if (this[_0x21d412(0x19a)][_0x21d412(0x1da)] > 0x0) {
+            this['cacheDatas'][_0x21d412(0x165)](0x0, 0x1);
+            if (this[_0x21d412(0x19a)][_0x21d412(0x1da)] > 0x0) {
+              var _0x2f9f71 = this[_0x21d412(0x19a)][0x0];
+              _0x2f9f71();
+              return;
+            }
+          }
+          this[_0x21d412(0x198)]();
+          return;
+        }
+        if (_0x34295a[_0x21d412(0x172)] >= this[_0x21d412(0x1e2)][_0x21d412(0x188)]) {
+          this['cacheDatas'][_0x21d412(0x1da)] < 0x5 && this[_0x21d412(0x20d)] != null && this[_0x21d412(0x1e2)]['isDrawing'] != !![] && this[_0x21d412(0x20d)]();
+          if (this[_0x21d412(0x19a)][_0x21d412(0x1da)] > 0x0) {
+            this['cacheDatas'][_0x21d412(0x165)](0x0, 0x1);
+            if (this['cacheDatas']['length'] > 0x0) {
+              var _0x76f31f = this[_0x21d412(0x19a)][0x0];
+              _0x76f31f();
+              return;
+            }
+          }
+          this[_0x21d412(0x198)]();
+        } else this['sendSearchPrintPage']();
+      }
+    }
+  }, {
+    key: _a0_0x51313f53,
+    value: function value(_0x5e2623) {
+      var _0x5b3156 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x31d239 = a0_0x51313f;
+      var _0x5a8fb7 = this[_0x31d239(0x1b1)](_0x5e2623),
+        _0x594540 = this[_0x31d239(0x1b1)](this[_0x31d239(0x1bd)]),
+        _0xec55b4 = 0x0,
+        _0x41aea2 = 0x0;
+      _0x5b3156 == 0x2 && (_0xec55b4 = Math[_0x31d239(0x1db)](this['paperSpaceBetween'] / 0x2), _0x41aea2 = _0xec55b4);
+      if (_0x5a8fb7 <= _0x594540) return {
+        'left': 0x0,
+        'width': _0x5a8fb7,
+        'top': _0xec55b4,
+        'bottom': _0x41aea2
+      };else {
+        var _0x3ab468 = _0x5a8fb7 - _0x594540;
+        return {
+          'left': Math[_0x31d239(0x177)](_0x3ab468 / 0x2),
+          'width': _0x594540,
+          'top': _0xec55b4,
+          'bottom': _0x41aea2
+        };
+      }
+    }
+  }, {
+    key: _a0_0x51313f54,
+    value: function value() {
+      var _0x2d2fe4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x1;
+      var _0xec1cc = a0_0x51313f;
+      var _0x39fea2 = 0x0,
+        _0x4ac90e = 0x0;
+      return _0x2d2fe4 == 0x2 && (_0x39fea2 = Math[_0xec1cc(0x1db)](this['paperSpaceBetween'] / 0x2), _0x4ac90e = _0x39fea2), {
+        'top': _0x39fea2,
+        'bottom': _0x4ac90e
+      };
+    }
+  }, {
+    key: _a0_0x51313f55,
+    value: function value(_0x33d0bc) {
+      var _0x46813b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0x1;
+      var _0x28f1b6 = a0_0x51313f;
+      var _0x426870 = _0x33d0bc,
+        _0x4607f0 = this[_0x28f1b6(0x1b1)](this[_0x28f1b6(0x1bd)]),
+        _0x3fb8ca = this[_0x28f1b6(0x159)](_0x46813b),
+        _0x47eb63 = 0x0,
+        _0x51521e = 0x0;
+      (0, _typeof2.default)(_0x3fb8ca) == _0x28f1b6(0x182) ? _0x47eb63 = _0x3fb8ca : (_0x47eb63 = _0x3fb8ca[_0x28f1b6(0x1bf)], _0x51521e = _0x3fb8ca['bottom']);
+      if (_0x426870 <= _0x4607f0) return {
+        'left': 0x0,
+        'width': _0x426870,
+        'top': _0x47eb63,
+        'bottom': _0x51521e
+      };else {
+        if (this[_0x28f1b6(0x203)] == 0x1) {
+          var _0xcd7040 = _0x426870 - _0x4607f0;
+          return {
+            'left': Math['floor'](_0xcd7040 / 0x2),
+            'width': _0x4607f0,
+            'top': _0x47eb63,
+            'bottom': _0x51521e
+          };
+        } else {
+          if (this['printWay'] == 0x2) {
+            var _0x58902d = _0x426870 - _0x4607f0;
+            return {
+              'left': _0x58902d,
+              'width': _0x4607f0,
+              'top': _0x47eb63,
+              'bottom': _0x51521e
+            };
+          }
+        }
+        return {
+          'left': 0x0,
+          'width': _0x4607f0,
+          'top': _0x47eb63,
+          'bottom': _0x51521e
+        };
+      }
+    }
+  }, {
+    key: 'doSend86',
+    value: function doSend86() {
+      var _0x54324c = a0_0x51313f;
+      if (this[_0x54324c(0x1e2)][_0x54324c(0x162)][0x1e] > 0x0 || this[_0x54324c(0x1e2)][_0x54324c(0x162)][0x22] > 0x0) {
+        if (this[_0x54324c(0x1e2)]['needCMD'] == 0xd3 || this['manager'][_0x54324c(0x212)] == 0x88) {
+          this[_0x54324c(0x1e2)]['needCMD'] = 0x88;
+          var _0x36ee70 = _JCDataUntil.default[_0x54324c(0x1b9)](0x89, this[_0x54324c(0x21e)] / 0x100, this[_0x54324c(0x21e)] % 0x100),
+            _0x4d9e98 = this;
+          this[_0x54324c(0x1e2)][_0x54324c(0x214)][_0x54324c(0x1e3)](_0x36ee70, 0x9, function () {
+            var _0x1f7bec = _0x54324c;
+            _0x4d9e98[_0x1f7bec(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_TIMEOUT'], _0x4d9e98[_0x1f7bec(0x205)], null);
+          });
+        }
+      } else {
+        if (this[_0x54324c(0x1e2)][_0x54324c(0x212)] == 0xd3) {
+          var _0x543821 = (this[_0x54324c(0x21e)] + 0x1) * this[_0x54324c(0x1e2)][_0x54324c(0x188)] - 0x1;
+          this['arrayIndex1'] + 0x1 == this['sendDataArray'][_0x54324c(0x1da)] && (_0x543821 = this['rows'] - 0x1);
+          var _0x31420e = _0x543821 / 0x100,
+            _0x3b51e9 = _0x543821 % 0x100;
+          this[_0x54324c(0x1e2)][_0x54324c(0x212)] = 0xd3;
+          var _0x11ea39 = _JCDataUntil.default['createData'](0x86, _0x31420e, _0x3b51e9, 0x1),
+            _0x2bb2c4 = this;
+          this[_0x54324c(0x1e2)][_0x54324c(0x214)][_0x54324c(0x1e3)](_0x11ea39, 0x9, function () {
+            var _0x18845a = _0x54324c;
+            _0x2bb2c4[_0x18845a(0x1a3)](_JCAPIErrorCode.default[_0x18845a(0x1ee)], _0x2bb2c4[_0x18845a(0x205)], null);
+          });
+        }
+      }
+    }
+  }, {
+    key: _a0_0x51313f56,
+    value: function value(_0x297951, _0xcce72, _0x49456f, _0x4d5d2f, _0x2b599e) {
+      var _0x3094e7 = a0_0x51313f;
+      var _0x283219 = this,
+        _0x3e2e0c = 0xdc;
+      this[_0x3094e7(0x1e2)]['agreement'] == 0x3 && this['manager'][_0x3094e7(0x1aa)] > 0x0 && (_0x3e2e0c = this[_0x3094e7(0x1e2)][_0x3094e7(0x1aa)]);
+      if (this[_0x3094e7(0x1e2)][_0x3094e7(0x1c3)] == _JCAPIErrorCode.default[_0x3094e7(0x208)]) {} else this['manager'][_0x3094e7(0x1c3)] == _JCAPIErrorCode.default[_0x3094e7(0x1e0)] && this[_0x3094e7(0x1e2)]['platform'] == _0x3094e7(0x1c8) && this[_0x3094e7(0x1e2)][_0x3094e7(0x1e6)] == ![] && (_0x3e2e0c = 0x14);
+      var _0x379225 = null;
+      if (this[_0x3094e7(0x1e2)][_0x3094e7(0x162)][0x22] > 0x0) _0x379225 = _JCDataUntil.default[_0x3094e7(0x161)](_0x297951, this[_0x3094e7(0x1a9)], {
+        'left': 0x0,
+        'rifht': 0x0
+      }, _0x3e2e0c, _0x49456f, this[_0x3094e7(0x1e2)][_0x3094e7(0x162)][0x23], this[_0x3094e7(0x1e2)][_0x3094e7(0x1d5)]);else this[_0x3094e7(0x1e2)]['printerInfos'][0x1e] > 0x0 ? _0x379225 = _JCDataUntil.default['compareImageDataWithZip'](_0x297951, this[_0x3094e7(0x1a9)], {
+        'left': 0x0,
+        'rifht': 0x0
+      }, _0x3e2e0c, _0x49456f, this[_0x3094e7(0x1a8)], this[_0x3094e7(0x1e2)][_0x3094e7(0x162)][0x1e]) : _0x379225 = _JCDataUntil.default[_0x3094e7(0x1fb)](_0x297951, this[_0x3094e7(0x1a9)], {
+        'left': 0x0,
+        'rifht': 0x0
+      }, _0x3e2e0c, _0x49456f, this[_0x3094e7(0x1a8)], this[_0x3094e7(0x1e2)]['maxOnceSendRows']);
+      var _0x578efe = _0x379225['0'];
+      this[_0x3094e7(0x1fa)] += _0xcce72;
+      if (_0x578efe != null && _0x578efe['length'] > 0x0) {
+        var _0x314f78 = {};
+        _0x314f78[_0x3094e7(0x1a1)] = _0x297951['width'], _0x314f78[_0x3094e7(0x1fd)] = _0x297951[_0x3094e7(0x1fd)], _0x314f78[_0x3094e7(0x1a2)] = _0x379225['3'];
+        _0x49456f % 0xb4 != 0x0 && (_0x314f78[_0x3094e7(0x1a1)] = _0x297951[_0x3094e7(0x1fd)], _0x314f78[_0x3094e7(0x1fd)] = _0x297951['width']);
+        var _0x2c6825 = ![];
+        if (this[_0x3094e7(0x1a8)] != null) {
+          var _0x463b73 = _0x379225['2'];
+          if (this['manager']['printerInfos'][0x22] > 0x0) this[_0x3094e7(0x17a)] = ![];else this['manager'][_0x3094e7(0x162)][0x1e] > 0x0 ? (_0x463b73 != null && _0x463b73 > 0x0 && (_0x2c6825 = _0x314f78['height'] + _0x463b73 < this[_0x3094e7(0x1e2)][_0x3094e7(0x1d5)]), this[_0x3094e7(0x17a)] = _0x2c6825, _0x2c6825 && (_0x578efe = _0x379225['1'], _0x314f78[_0x3094e7(0x1fd)] = _0x379225['2'])) : (_0x463b73 != null && _0x463b73 >= 0x0 && (_0x2c6825 = _0x314f78[_0x3094e7(0x1fd)] + _0x463b73 < this[_0x3094e7(0x1e2)]['maxCacheRows']), this[_0x3094e7(0x17a)] = _0x2c6825, _0x2c6825 && (_0x578efe = _0x379225['1']));
+        }
+        this[_0x3094e7(0x1a8)] = _0x297951, _0x314f78[_0x3094e7(0x1a7)] = _0x578efe, _0x314f78[_0x3094e7(0x16c)] = _0xcce72;
+        var _0x4986b0 = function _0x4986b0() {
+          var _0x4b7030 = _0x3094e7;
+          _0x283219[_0x4b7030(0x193)] = _0x314f78['width'], _0x283219[_0x4b7030(0x15f)] = _0x314f78[_0x4b7030(0x1fd)], _0x283219[_0x4b7030(0x1b4)] = _0x314f78[_0x4b7030(0x1a7)], _0x283219[_0x4b7030(0x17d)] = _0x314f78[_0x4b7030(0x16c)];
+          (_0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x162)][0x1e] > 0x0 || _0x283219[_0x4b7030(0x1e2)]['printerInfos'][0x22] > 0x0) && (_0x283219['zipRows'] = _0x314f78['zipRows']);
+          if (_0x2b599e) {
+            var _0x2dd2e6 = _0x2b599e[_0x4b7030(0x15d)],
+              _0x405ba7 = _0x2b599e['hasDash'];
+            _0x2dd2e6 ? _0x283219[_0x4b7030(0x15d)] = _0x2dd2e6 : _0x283219[_0x4b7030(0x15d)] = null, _0x405ba7 != null ? _0x283219[_0x4b7030(0x1ac)] = _0x405ba7 : _0x283219[_0x4b7030(0x1ac)] = null;
+          } else _0x283219[_0x4b7030(0x15d)] = null, _0x283219['hasDash'] = null;
+          if (_0x283219[_0x4b7030(0x17f)]) {
+            var _0x4d92d8 = _JCDataUntil.default[_0x4b7030(0x1b9)](0x3, 0x1);
+            _0x283219['manager'][_0x4b7030(0x212)] = 0x4;
+            if (_0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x1a0)] == 0x3) {
+              _0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x212)] = 0x14;
+              var _0x586ada = _0x314f78[_0x4b7030(0x1fd)] >= _0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x1d5)] ? 0x1 : _0xcce72;
+              _0x283219[_0x4b7030(0x17a)] = _0x2c6825;
+              if (_0x2c6825) {
+                var _0xc2a51d = _0x379225['2'];
+                _0x283219['diffRowCount'] = _0xc2a51d, _0x4d92d8 = _JCDataUntil.default[_0x4b7030(0x1b9)](0x13, _0x283219[_0x4b7030(0x15f)] / 0x100, _0x283219[_0x4b7030(0x15f)] % 0x100, _0x283219[_0x4b7030(0x193)] / 0x100, _0x283219[_0x4b7030(0x193)] % 0x100, _0x586ada / 0x100, _0x586ada % 0x100, 0x0, 0x0, 0x0, 0x0, 0x2, _0xc2a51d / 0x100, _0xc2a51d % 0x100);
+              } else _0x283219['manager'][_0x4b7030(0x162)][0x22] > 0x0 ? _0x4d92d8 = _JCDataUntil.default[_0x4b7030(0x1b9)](0x13, _0x283219[_0x4b7030(0x15f)] / 0x100, _0x283219[_0x4b7030(0x15f)] % 0x100, _0x283219[_0x4b7030(0x193)] / 0x100, _0x283219[_0x4b7030(0x193)] % 0x100, _0x586ada / 0x100, _0x586ada % 0x100, 0x0, 0x0, 0x0, 0x0, 0x0) : _0x4d92d8 = _JCDataUntil.default[_0x4b7030(0x1b9)](0x13, _0x283219[_0x4b7030(0x15f)] / 0x100, _0x283219[_0x4b7030(0x15f)] % 0x100, _0x283219['cols'] / 0x100, _0x283219[_0x4b7030(0x193)] % 0x100, _0x586ada / 0x100, _0x586ada % 0x100, 0x0, 0x0, 0x0, 0x0, 0x1);
+            }
+            _0x283219[_0x4b7030(0x1ec)] = 0x1, _0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x214)][_0x4b7030(0x1e3)](_0x4d92d8, 0xa, function () {
+              var _0x2ab38c = _0x4b7030;
+              _0x283219['sendPrintError'](_JCAPIErrorCode.default[_0x2ab38c(0x1ee)], this[_0x2ab38c(0x205)]);
+            });
+          } else {
+            var _0x3828eb = _JCDataUntil.default[_0x4b7030(0x1b9)](0x1, 0x1);
+            if (_0x283219[_0x4b7030(0x1e2)]['agreement'] == 0x3) {
+              var _0x5ef362 = 0x0;
+              _0x2b599e != null && _0x2b599e['speedOrQuality'] != null && _0x2b599e[_0x4b7030(0x1f4)] == 0x1 && (_0x5ef362 = 0x1), _0x283219[_0x4b7030(0x1e2)]['printerInfos'][0x1e] > 0x0 || _0x283219['manager'][_0x4b7030(0x162)][0x22] > 0x0 ? _0x3828eb = _JCDataUntil.default[_0x4b7030(0x1b9)](0x1, _0x283219[_0x4b7030(0x1c9)] / 0x100, _0x283219[_0x4b7030(0x1c9)] % 0x100, 0x0, 0x0, 0x0, 0x1, 0x0, _0x5ef362) : _0x3828eb = _JCDataUntil.default[_0x4b7030(0x1b9)](0x1, _0x283219[_0x4b7030(0x1c9)] / 0x100, _0x283219[_0x4b7030(0x1c9)] % 0x100, 0x0, 0x0, 0x0, 0x0, 0x0, _0x5ef362);
+            }
+            _0x283219[_0x4b7030(0x1e2)]['needCMD'] = 0x2, _0x283219[_0x4b7030(0x1e2)][_0x4b7030(0x214)][_0x4b7030(0x1e3)](_0x3828eb, 0xa, function () {
+              var _0x536d6b = _0x4b7030;
+              _0x283219['sendPrintError'](_JCAPIErrorCode.default[_0x536d6b(0x1ee)], this[_0x536d6b(0x205)]);
+            });
+          }
+        };
+        if (_0x314f78[_0x3094e7(0x1fd)] >= this[_0x3094e7(0x1e2)][_0x3094e7(0x1d5)]) {
+          var _0xff121a = _0xcce72;
+          while (_0xff121a > 0x0) {
+            _0xff121a--, this[_0x3094e7(0x19a)][_0x3094e7(0x15e)](_0x4986b0);
+          }
+        } else this[_0x3094e7(0x19a)][_0x3094e7(0x15e)](_0x4986b0);
+        if (this[_0x3094e7(0x19a)][_0x3094e7(0x1da)] >= 0x5) {
+          this[_0x3094e7(0x20d)] = _0x4d5d2f;
+          if (!this[_0x3094e7(0x17f)]) {
+            var _0x1d777a = this[_0x3094e7(0x19a)][0x0];
+            _0x1d777a();
+          }
+        } else {
+          if (this[_0x3094e7(0x1fa)] == this[_0x3094e7(0x1c9)]) {
+            if (!this[_0x3094e7(0x17f)]) {
+              var _0x47d492 = this[_0x3094e7(0x19a)][0x0];
+              _0x47d492();
+            }
+          } else {
+            if (this[_0x3094e7(0x17f)] == !![]) return;
+            _0x4d5d2f && this[_0x3094e7(0x1e2)]['isDrawing'] != !![] && _0x4d5d2f();
+          }
+        }
+      } else this[_0x3094e7(0x193)] = 0x0, this[_0x3094e7(0x15f)] = 0x0, this[_0x3094e7(0x1b4)] = [], this[_0x3094e7(0x1e2)][_0x3094e7(0x19d)] = ![], this[_0x3094e7(0x1a3)](_JCAPIErrorCode.default['JCSDK_PRINT_ERR_GetDATA'], this[_0x3094e7(0x205)], null);
+    }
+  }]);
+  return SAutoPrinter;
+}(QPrinterBase, a0_0x51313f(0x1ef), a0_0x51313f(0x19b), a0_0x51313f(0x159), a0_0x51313f(0x1b0), a0_0x51313f(0x217));
+var _default = {
+  'B3SPrinter': B3SPrinter,
+  'B16Printer': B16Printer,
+  'B101Printer': B101Printer,
+  'B21Printer': B21Printer,
+  'QB21Printer': QB21Printer,
+  'QB32Printer': QB32Printer,
+  'QB3SPrinter': QB3SPrinter,
+  'QB1Printer': QB1Printer,
+  'QB203Printer': QB203Printer,
+  'QB32RPrinter': QB32RPrinter,
+  'QB16Printer': QB16Printer,
+  'QK1Printer': QK1Printer,
+  'QAutoPrinter': QAutoPrinter,
+  'SAutoPrinter': SAutoPrinter,
+  'QB3SPPrinter': QB3SPPrinter
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 172:
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 173:
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 174);
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return assertThisInitialized(self);
+}
+module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 174:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAUfUlEQVR4Xu1da5Ac1XU+p2cFwgWC6V2JMlgSaKdXCgRsgyokppJAkGWLWLFTTpRKRB62Mdrp2VUKP2KSih1hp8pg/CDSTo+EUGwTQdkhRRLhBIPNwy6XsSoOQRAlaHtWyBIEkDQ9QrxU2p0+qd6VQEja6b637525rT5TpV8657vn+875tmf6dRH4wwqwAtMqgKwNK8AKTK8AG4SngxVoowAbhMeDFWCD8AywAnIK8BFETjfOyokCbJCcNJppyinABpHTjbNyogAbJCeNZppyCrBB5HTjrJwowAbJSaOZppwCbBA53TgrJwqwQXLSaKYppwAbRE43zsqJAmyQnDSaacopwAaR042zcqIAGyQnjWaacgqwQeR046ycKMAGyUmjmaacAmwQOd04KycKsEFy0mimKacAG0RON87KiQJskJw0mmnKKcAGkdONs3KiABskJ41mmnIKsEHkdOOsnCjABslJo5mmnAJsEDndOCsnCrBBctJopimnABtETjfOyokCbJCcNJppyinABpHTjbNyogAbJCeNZppyCmTGIH0bdr2zFbYux3BiMaJ1WQhwlhxlrVkHAeFxDOGJntMK2/Z+csFLWldTBH7BmmdnvtoXzguhNR8Q5wHgfAKaDwjzEHEXhK1fIOCuVoi7oGdi14HyL+1StLTxMMYbpOiNDSKSC0SXGK/mCQXSUwR4T9N1bjWt9r4N/mXhBP02IF4LAL8qWh8CbCGA+wuEj+2rlOqi+VmJN9Ygs6vbzwxxxm0EOJgVMdvUuTWknsEDlQuf7CYXe339g0C0FAiWAsDFymoh2kqIjyC1fhxUFn1fGa4BQEYaxB4ZfT9Y+JAB+igtAQFubbjOTUpBE4AVa2Mfsii8gQCWJwhPGYL3oYVeY7D/4ZRARqQbZ5BizV+JBJuNUEdDEYQw0iw7wxqgT4DsrDHevjwS3U1geUGl9NNOcNW1hlEGmXXnHrvn8KGGLrLG4BJeqXNwzqn57y0Q3NyZI0aMqggbYRw+E6x2Dhqjv0AhRhnErtV/CETXCNSf1dA9BTp80b7Kxa+qJtC7fuwaClt3AeB5qrHl8fA/wKI/Cwad/5HH6E6mMQaxa/VPA9FXuyND51dFoPUNd6CscmV7xF8BFnxXJaZCrOgU+Iqg7DyoEFM7lDkG8Ua3AeCl2hmbtADhvKBS2qOipF5v9K8J8EsqsLRiEFwfVJxNWtdQCG6EQeZs3HnuxHjrRYW8MgGFYbikMbQw9dke2/OjU6sfyATpqEiENUHZuTkL9RphELvqLwWETB16VTSXENxm2amlwbK90Q0AeEMajG7komUtycKpYCMMUqz5NyHBl7vRqC6veXvgOjfK1tDr1YcJaK1sfrfzCArvbroLnup2He3WN8Mgnv+vCPA7SYUigMeSxnY6DgGuEljzgcB1ols9hD+9tWd+i6iQ+utZm4V3E8BOBHAA4HzhApMkIL4E47Q4WO08lyS8GzGmGORRkcGKDNJ0nau7IVi7NYue3xEe59bqc8aJInP8siINdhLATxCtLVYLnt6/f8FOWIMTR7Hf9fU9Z7w28zUHw8JiQFpCgEsQYbaitR96x6GZH3nuU3PfUISnFIYNolDOThnE9vw7AeATCkr/JgDcEbjOz4Sw1lBPcXZ9GSIMAUze15Xug7AxKDtG/o5ig6Rr7duyO2EQu+Z/AAjS3RBI9M9ohSON8qJH0tLvrfl/TDRplF9JhaX57gLZ2tggssqdJK8jBkl9ShdXBW7pDoW0J6F6Pd8jAOkLn9G9W43KwHWq60qLxwZJq+Ax+boNYlf9TwBC9PVK6mMBLt7vlv5TKjlBku3VbwCgDQlCTxpi4qlfNohsNzt8BLHX+rOgB6I7Y6We4whcp2O9tj2f5GTF+wK39FG5XD1ZHROtXfm6//Lqke5EVJ087OqONYDW38hwIcBrm27pAZlcmZxz1vlXWQV4VCYXCJcFlVK631hSC588iQ2iUEydBil6/iMIIHxqm4D+oukO3KaQZiIoaUMTfC2oOJ9JtEgHgtggCkXWZRC7Wp8LSLtFS9Vxx7BIDbbnb5U4u/Vk4DrvFVlHZywbRKG6ugxS9PzrEOAfBEt9FSy4opvPYBw5BXyXYN2ARBc1KgP/K5qnI54NolBVXQbprY5uJsSVIqUiwi2NsvOXIjk6Ym3Pj25CFb2YeGPgOrfrqEcUkw0iqlibeF0GsT3/ZQCYJVBqEzG8pFFe+LxAjpbQYtVfjghbBMEfDFzng4I5WsLZIApl1WEQyTNC9waus0IhNXmoDT+fYbfOfiG6ligC0snT0u3qYoOIdC0mVodBbM//fQD4R7Ey9VwtF6vhrehizf8XJPiwSH6IExea8AZHNohI17pgkGLVdxGhKlJmC6j/ZXdgp0iOzthibXQVEq4XWSNswdUHhp2uP9bABhHpWhcMInE94Y3Add6hkFZqqKL3zKUIhW0iQEj0sUZl4FsiOTpi2SAKVdXxFatY9auI4AqU+XzgOu8SiNceGj1P8vrMQ68LLUThzUFl4RqhHA3BbBCFouowiO350e+P6HdIwg8+FbildycM7liY7fnRU4PJn0xE/FZQLn2sYwVOsxAbRGEHdBhEB6ZCyomhssqDDZK4xfGBOobArvr3AsLvxa/+ZsS2wHXeIxDfkVDb838BAPOSLkYEdzUrzp8mjdcVxwZRqKwOg0g8iLQ7cJ35Cmmlh1pDPfac+rgQEOGXgkrpC0I5GoLZIApF1WEQu1r/IiB9XqDMVwLXEbnqLgAtF9o3MjYQWuEOoWxD3sDIBhHqWvtgHQbpHRldTRb+nUiZLTjNftmd3xTJ0Rlr18Y+ChT+k9AaIS0NhgZ+IJSjIZgNolBUHQYpVsf+EDG8R7DMFYHr3CuYoy286PnfRoA/EVnACq2F+4f6R0VydMSyQRSqqsMgcrtt0R2BO7BKIbVUULbnjwHAAhGQWXt7zti15sJDIjk6YtkgClXVYRBY659u94DooOwMXKdfITVpKNvzow1CHxcE+FngOr8mmKMlnA2iUFYtBgGAouCrWSNKiDjcKJdGFNKTgrI9/+8BQOyCH9EXgsqAEVs5sEGk2n7yJF0GsT3/egDYKFYq7qACXtFc1R89S9KVj+z7g60CXL5/lfNEV4o+blE2iMIu6DLI2Wv9/kIPCO9FjkCfb7gDf6uQohCUXR29DxB/VygJYHvgOqreOSy49InhbJDUEr4FoMsg0Qq9nv8YAfymRLldOaMl/RI5hG8EZedTEjy1pLBBFMqq0yASt72/yUz3GxWPl7DPq18eAv1cSloLlwWD/F6st2mnc7CkmiSZpJNHtEV24fChrQhQkimvk4+wyr5ZEQHub7hO4n1iZHQQzeEjiKhibeJ1GmTqa1a6HaVardaCl4cXPauQ8nF/6OrLEOjfZfEJreXNcv/3ZPN15LFBFKqq2yBRqbbnR3t5XCFbNiJe0yiXUm97cPz6RW/0swj4Fem6DDx6RFzYILIdPUleJwxSrPkrkWBzmrKjs1thobBOxSlge71/EYY0TICDaWoy8ejBBknT0S4Z5MhRJPoasyxd+bgDEUZkLyb21nacD2ANHdk858w0tZj42+MoHz6CpOnscbmdOIJESxZr9SuR4CEAUvFyht0I8BNCeHjcCre8smrh/ukkOdsbXVAAawkALQGA6F8xvXz0fyHihw6Unf9Kj6UewRSD5HKX2zSbkfZW60OEtE79SMArABDdKt8kgCYC2gAUvfTNBoAzVK9n4qY5x3I0wyA53Sc9jUEmv2pV/U2A8HHVQ9sxvBD+IBhyBF+K17HqJhcywiB21V8KCNFLjnP1SWuQSKxez3+CAIzZLiBpA7t9G0zyOpNGaoybs3HnuRPjrRc1LmEktAqDHPnRLrnlWddkMebl1HEKGHEEmWry6DYAvDSu4FPp/1UZ5MiRZAsBLDdfH7Me5orTyxiDFD3/cwhwS1zBp9L/qzTIlElGo+sRa03VCAFXN9ySjhML2igbY5AjXxVSXSXWppImYNUGmTJJ/SMEFL3T9mxNZcvA/jdi688b5UXKr+DLFCOSY5RBzqk++x4LJ4w8Hy4iatJYHQaJ1u5bP7Y4DMMvpr+YmJRJ27hNMxD/6qVyaa8StA6DGGWQI9+lbyGAz3VYh64sp8sgR8kcuS1lOM29WymEeRCmnu3I9NlJ4wwSNaRY89chwVCK5mQiVbdBjooQ3QUcAq2WvVVeUMztQPCNoOJsEswzMtxIg0z+HqnW3wdI3wGAuUYqp6CoThkkKjV6nqRn/NAwEC4FoPcpKP9tEATwKFL4Y2hZXw9WOwdV43cLz1iDRILMrm4/M8QZt6W9U7Rb4sat20mDHFtL77odi6hgXQuAy47cVxVX6sn+/yAS3R8ifh8JfxRUSntkQEzPMdogR8Wzq/W5SK2BsGANIMEAACwkDfcFdaNZTde5uhvrHl3zgm8+O/Pga+O/Tljos6g1m9DqQ6Q+IphNCH0IsI8I9iGE+wisvYiwL2zBPhO2R+uEbpkwSCeE4DVYgZMpwAbhuWAF2ijABuHxYAXYIDwDrICcAnwEkdONs3KiABskJ41mmnIKsEHkdOOsnCjABslJo5mmnAKZMEieLxRGb0qRa61ZWUj0OqC1HZCeCZHqBaKxRnnh82ZVeWI1RhuEbzWZ3DznUQS4yvRBkqkPCe4eP33m6oPXzw1k8juRY6xB+GbFqfafygaZYkgBIa5ulp27OzHwomsYaRC+3f2tNp76BpniGh1NGhXnOtEB1h1vnEF6PZ8fmDqm63kxyKRJgFY33AGjnlk3yiD8yO2Jfw/zZJDJL1wFa35zVf9u3UeGpPhGGSTtq/2TkjYlLsnzIHkzCALc03Cdlab0yBiD8Gt/Tj4SeTPI5FctQ7awnvraZ8iHXxzHBnlTAcSng3LJiJcIGmEQfvXo9H+l8ngEidSwCjPO27/qghe6/ffbCIPwy6vZIMcrYMqOU0YYpMjbH0zrkLweQYDCm4PKwjV8BJm6Wswb6EwzCaIGic6MdXuopltf5JYZU7ZlM+MIIni/UZLTo90YEplhjnuriQ7MU0WbTvBggyhUWccw68BUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzxMMUgud7kFgAcC17m23Tja1dF/A8S2Mcfm8y63as1thkFyuk86ANweuM6NbQ3i1b8CQJ9V2/YMoPE+6W81ya76SwHhwQy0TWmJhOA2y06trUFq/seBYJPShTMARmgtb5b7v9ftUo04gszZuPPcifHWi90Wo9PrYxguaQwtfLjduuesH/0NK8Qfdbq2bq9nFWact3/VBS90uw4jDBKJYHuj2wDw0m4L0tH1CecFldKedmv21nacT2Q919G6ur0Y4tNBuWTELJhjkFr900D01W73plPrI9D6hjtQTrJeb9XfTAgrk8SeCjEEVrnp9q83gYsxBpk8itTqPwSia0wQRnMNewp0+KJ9lYtfTbLOrDv32D2H3/AB0E4Sn+UYkT8cneBplEGmBuFQoxPEu7oG4ZVBpfRTkRqKNX8lEmwWyclibIEOn5X0D0cn+BllkIjwqT4IhDDSLDvDMs095b9qhbQ0GBr4gYw2unKMM8jkV62R0feDhQ/pIt0tXAS4teE6N6VZv9cbHSbAtWkwTMwlhOuaZedu02oz0iCRSLOr288MccZtBDhommgS9WwNqWfwQOXCJyVyT0gpbhibZ7XCLxPAH6nA6yoG4sMTM05fcfD6uUFX65hmcWMNcrTeojc2iEguEF1iooDta6KnCPCepuvcqqP23lp9iABuyKo2gNZdQbn0NR3aqMI03iBHifZt2PXOVti6HMOJxYjWZSHAWapEUIhzEBAexxCe6DmtsG3vJxe8pBB7WijWRp/KmTGIPgkYmRWYXgE2CE8HK9BGATYIjwcrwAbhGWAF5BTgI4icbpyVEwXYIDlpNNOUU4ANIqcbZ+VEATZIThrNNOUUYIPI6cZZOVGADZKTRjNNOQXYIHK6cVZOFGCD5KTRTFNOATaInG6clRMF2CA5aTTTlFOADSKnG2flRAE2SE4azTTlFGCDyOnGWTlRgA2Sk0YzTTkF2CByunFWThRgg+Sk0UxTTgE2iJxunJUTBdggOWk005RTgA0ipxtn5UQBNkhOGs005RRgg8jpxlk5UYANkpNGM005BdggcrpxVk4UYIPkpNFMU04BNoicbpyVEwXYIDlpNNOUU4ANIqcbZ+VEATZIThrNNOUUYIPI6cZZOVHg/wFkq4Rf4QerOwAAAABJRU5ErkJggg=="
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 175:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _getPrototypeOf(o);
+}
+module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -238,39 +9382,6 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 182:
-/*!*************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/api/user.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.submitHotel = exports.getData = void 0;
-var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 76));
-var getData = function getData(params) {
-  return (0, _request.default)('/api/hotel/item', 'GET', params);
-};
-
-// 初始化提交
-exports.getData = getData;
-var submitHotel = function submitHotel(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/item',
-    method: 'POST',
-    data: data
-  });
-};
-exports.submitHotel = submitHotel;
-
-/***/ }),
-
 /***/ 19:
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
@@ -286,43 +9397,14 @@ module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 191:
-/*!*****************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/English.js ***!
-  \*****************************************************/
+/***/ 190:
+/*!**********************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/allHL.png ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var data = [{
-  total_iden: '001',
-  total_name: '合肥仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222111',
-  material_name: '新概念',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}, {
-  total_iden: '002',
-  total_name: '南京仓',
-  orga_iden: '2020001',
-  orga_name: '合肥艺朝艺夕艺术有限公司',
-  material_iden: '222112',
-  material_name: '视听说',
-  material_specification: '1KG',
-  material_model: '书本',
-  material_meterage: '本',
-  ts_present_num: '200',
-  ts_present_price: '80',
-  ts_present_sum: '16000'
-}];
-module.exports = {
-  data: data
-};
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAUfUlEQVR4Xu1da5Ac1XU+p2cFwgWC6V2JMlgSaKdXCgRsgyokppJAkGWLWLFTTpRKRB62Mdrp2VUKP2KSih1hp8pg/CDSTo+EUGwTQdkhRRLhBIPNwy6XsSoOQRAlaHtWyBIEkDQ9QrxU2p0+qd6VQEja6b637525rT5TpV8657vn+875tmf6dRH4wwqwAtMqgKwNK8AKTK8AG4SngxVoowAbhMeDFWCD8AywAnIK8BFETjfOyokCbJCcNJppyinABpHTjbNyogAbJCeNZppyCrBB5HTjrJwowAbJSaOZppwCbBA53TgrJwqwQXLSaKYppwAbRE43zsqJAmyQnDSaacopwAaR042zcqIAGyQnjWaacgqwQeR046ycKMAGyUmjmaacAmwQOd04KycKsEFy0mimKacAG0RON87KiQJskJw0mmnKKcAGkdONs3KiABskJ41mmnIKsEHkdOOsnCjABslJo5mmnAJsEDndOCsnCrBBctJopimnABtETjfOyokCbJCcNJppyinABpHTjbNyogAbJCeNZppyCmTGIH0bdr2zFbYux3BiMaJ1WQhwlhxlrVkHAeFxDOGJntMK2/Z+csFLWldTBH7BmmdnvtoXzguhNR8Q5wHgfAKaDwjzEHEXhK1fIOCuVoi7oGdi14HyL+1StLTxMMYbpOiNDSKSC0SXGK/mCQXSUwR4T9N1bjWt9r4N/mXhBP02IF4LAL8qWh8CbCGA+wuEj+2rlOqi+VmJN9Ygs6vbzwxxxm0EOJgVMdvUuTWknsEDlQuf7CYXe339g0C0FAiWAsDFymoh2kqIjyC1fhxUFn1fGa4BQEYaxB4ZfT9Y+JAB+igtAQFubbjOTUpBE4AVa2Mfsii8gQCWJwhPGYL3oYVeY7D/4ZRARqQbZ5BizV+JBJuNUEdDEYQw0iw7wxqgT4DsrDHevjwS3U1geUGl9NNOcNW1hlEGmXXnHrvn8KGGLrLG4BJeqXNwzqn57y0Q3NyZI0aMqggbYRw+E6x2Dhqjv0AhRhnErtV/CETXCNSf1dA9BTp80b7Kxa+qJtC7fuwaClt3AeB5qrHl8fA/wKI/Cwad/5HH6E6mMQaxa/VPA9FXuyND51dFoPUNd6CscmV7xF8BFnxXJaZCrOgU+Iqg7DyoEFM7lDkG8Ua3AeCl2hmbtADhvKBS2qOipF5v9K8J8EsqsLRiEFwfVJxNWtdQCG6EQeZs3HnuxHjrRYW8MgGFYbikMbQw9dke2/OjU6sfyATpqEiENUHZuTkL9RphELvqLwWETB16VTSXENxm2amlwbK90Q0AeEMajG7komUtycKpYCMMUqz5NyHBl7vRqC6veXvgOjfK1tDr1YcJaK1sfrfzCArvbroLnup2He3WN8Mgnv+vCPA7SYUigMeSxnY6DgGuEljzgcB1ols9hD+9tWd+i6iQ+utZm4V3E8BOBHAA4HzhApMkIL4E47Q4WO08lyS8GzGmGORRkcGKDNJ0nau7IVi7NYue3xEe59bqc8aJInP8siINdhLATxCtLVYLnt6/f8FOWIMTR7Hf9fU9Z7w28zUHw8JiQFpCgEsQYbaitR96x6GZH3nuU3PfUISnFIYNolDOThnE9vw7AeATCkr/JgDcEbjOz4Sw1lBPcXZ9GSIMAUze15Xug7AxKDtG/o5ig6Rr7duyO2EQu+Z/AAjS3RBI9M9ohSON8qJH0tLvrfl/TDRplF9JhaX57gLZ2tggssqdJK8jBkl9ShdXBW7pDoW0J6F6Pd8jAOkLn9G9W43KwHWq60qLxwZJq+Ax+boNYlf9TwBC9PVK6mMBLt7vlv5TKjlBku3VbwCgDQlCTxpi4qlfNohsNzt8BLHX+rOgB6I7Y6We4whcp2O9tj2f5GTF+wK39FG5XD1ZHROtXfm6//Lqke5EVJ087OqONYDW38hwIcBrm27pAZlcmZxz1vlXWQV4VCYXCJcFlVK631hSC588iQ2iUEydBil6/iMIIHxqm4D+oukO3KaQZiIoaUMTfC2oOJ9JtEgHgtggCkXWZRC7Wp8LSLtFS9Vxx7BIDbbnb5U4u/Vk4DrvFVlHZywbRKG6ugxS9PzrEOAfBEt9FSy4opvPYBw5BXyXYN2ARBc1KgP/K5qnI54NolBVXQbprY5uJsSVIqUiwi2NsvOXIjk6Ym3Pj25CFb2YeGPgOrfrqEcUkw0iqlibeF0GsT3/ZQCYJVBqEzG8pFFe+LxAjpbQYtVfjghbBMEfDFzng4I5WsLZIApl1WEQyTNC9waus0IhNXmoDT+fYbfOfiG6ligC0snT0u3qYoOIdC0mVodBbM//fQD4R7Ey9VwtF6vhrehizf8XJPiwSH6IExea8AZHNohI17pgkGLVdxGhKlJmC6j/ZXdgp0iOzthibXQVEq4XWSNswdUHhp2uP9bABhHpWhcMInE94Y3Add6hkFZqqKL3zKUIhW0iQEj0sUZl4FsiOTpi2SAKVdXxFatY9auI4AqU+XzgOu8SiNceGj1P8vrMQ68LLUThzUFl4RqhHA3BbBCFouowiO350e+P6HdIwg8+FbildycM7liY7fnRU4PJn0xE/FZQLn2sYwVOsxAbRGEHdBhEB6ZCyomhssqDDZK4xfGBOobArvr3AsLvxa/+ZsS2wHXeIxDfkVDb838BAPOSLkYEdzUrzp8mjdcVxwZRqKwOg0g8iLQ7cJ35Cmmlh1pDPfac+rgQEOGXgkrpC0I5GoLZIApF1WEQu1r/IiB9XqDMVwLXEbnqLgAtF9o3MjYQWuEOoWxD3sDIBhHqWvtgHQbpHRldTRb+nUiZLTjNftmd3xTJ0Rlr18Y+ChT+k9AaIS0NhgZ+IJSjIZgNolBUHQYpVsf+EDG8R7DMFYHr3CuYoy286PnfRoA/EVnACq2F+4f6R0VydMSyQRSqqsMgcrtt0R2BO7BKIbVUULbnjwHAAhGQWXt7zti15sJDIjk6YtkgClXVYRBY659u94DooOwMXKdfITVpKNvzow1CHxcE+FngOr8mmKMlnA2iUFYtBgGAouCrWSNKiDjcKJdGFNKTgrI9/+8BQOyCH9EXgsqAEVs5sEGk2n7yJF0GsT3/egDYKFYq7qACXtFc1R89S9KVj+z7g60CXL5/lfNEV4o+blE2iMIu6DLI2Wv9/kIPCO9FjkCfb7gDf6uQohCUXR29DxB/VygJYHvgOqreOSy49InhbJDUEr4FoMsg0Qq9nv8YAfymRLldOaMl/RI5hG8EZedTEjy1pLBBFMqq0yASt72/yUz3GxWPl7DPq18eAv1cSloLlwWD/F6st2mnc7CkmiSZpJNHtEV24fChrQhQkimvk4+wyr5ZEQHub7hO4n1iZHQQzeEjiKhibeJ1GmTqa1a6HaVardaCl4cXPauQ8nF/6OrLEOjfZfEJreXNcv/3ZPN15LFBFKqq2yBRqbbnR3t5XCFbNiJe0yiXUm97cPz6RW/0swj4Fem6DDx6RFzYILIdPUleJwxSrPkrkWBzmrKjs1thobBOxSlge71/EYY0TICDaWoy8ejBBknT0S4Z5MhRJPoasyxd+bgDEUZkLyb21nacD2ANHdk858w0tZj42+MoHz6CpOnscbmdOIJESxZr9SuR4CEAUvFyht0I8BNCeHjcCre8smrh/ukkOdsbXVAAawkALQGA6F8xvXz0fyHihw6Unf9Kj6UewRSD5HKX2zSbkfZW60OEtE79SMArABDdKt8kgCYC2gAUvfTNBoAzVK9n4qY5x3I0wyA53Sc9jUEmv2pV/U2A8HHVQ9sxvBD+IBhyBF+K17HqJhcywiB21V8KCNFLjnP1SWuQSKxez3+CAIzZLiBpA7t9G0zyOpNGaoybs3HnuRPjrRc1LmEktAqDHPnRLrnlWddkMebl1HEKGHEEmWry6DYAvDSu4FPp/1UZ5MiRZAsBLDdfH7Me5orTyxiDFD3/cwhwS1zBp9L/qzTIlElGo+sRa03VCAFXN9ySjhML2igbY5AjXxVSXSXWppImYNUGmTJJ/SMEFL3T9mxNZcvA/jdi688b5UXKr+DLFCOSY5RBzqk++x4LJ4w8Hy4iatJYHQaJ1u5bP7Y4DMMvpr+YmJRJ27hNMxD/6qVyaa8StA6DGGWQI9+lbyGAz3VYh64sp8sgR8kcuS1lOM29WymEeRCmnu3I9NlJ4wwSNaRY89chwVCK5mQiVbdBjooQ3QUcAq2WvVVeUMztQPCNoOJsEswzMtxIg0z+HqnW3wdI3wGAuUYqp6CoThkkKjV6nqRn/NAwEC4FoPcpKP9tEATwKFL4Y2hZXw9WOwdV43cLz1iDRILMrm4/M8QZt6W9U7Rb4sat20mDHFtL77odi6hgXQuAy47cVxVX6sn+/yAS3R8ifh8JfxRUSntkQEzPMdogR8Wzq/W5SK2BsGANIMEAACwkDfcFdaNZTde5uhvrHl3zgm8+O/Pga+O/Tljos6g1m9DqQ6Q+IphNCH0IsI8I9iGE+wisvYiwL2zBPhO2R+uEbpkwSCeE4DVYgZMpwAbhuWAF2ijABuHxYAXYIDwDrICcAnwEkdONs3KiABskJ41mmnIKsEHkdOOsnCjABslJo5mmnAKZMEieLxRGb0qRa61ZWUj0OqC1HZCeCZHqBaKxRnnh82ZVeWI1RhuEbzWZ3DznUQS4yvRBkqkPCe4eP33m6oPXzw1k8juRY6xB+GbFqfafygaZYkgBIa5ulp27OzHwomsYaRC+3f2tNp76BpniGh1NGhXnOtEB1h1vnEF6PZ8fmDqm63kxyKRJgFY33AGjnlk3yiD8yO2Jfw/zZJDJL1wFa35zVf9u3UeGpPhGGSTtq/2TkjYlLsnzIHkzCALc03Cdlab0yBiD8Gt/Tj4SeTPI5FctQ7awnvraZ8iHXxzHBnlTAcSng3LJiJcIGmEQfvXo9H+l8ngEidSwCjPO27/qghe6/ffbCIPwy6vZIMcrYMqOU0YYpMjbH0zrkLweQYDCm4PKwjV8BJm6Wswb6EwzCaIGic6MdXuopltf5JYZU7ZlM+MIIni/UZLTo90YEplhjnuriQ7MU0WbTvBggyhUWccw68BUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzzYIApnQccQ6MBUSDkxVFZ5sEEStzg+UMcQ6MCMZ6I+Iqs82CAKZ0HHEOjAVEg5MVRWebBBErc4PlDHEOjAjGeiPiKrPNggCmdBxxDowFRIOTFUVnmwQRK3OD5QxxDowIxnoj4iqzxMMUgud7kFgAcC17m23Tja1dF/A8S2Mcfm8y63as1thkFyuk86ANweuM6NbQ3i1b8CQJ9V2/YMoPE+6W81ya76SwHhwQy0TWmJhOA2y06trUFq/seBYJPShTMARmgtb5b7v9ftUo04gszZuPPcifHWi90Wo9PrYxguaQwtfLjduuesH/0NK8Qfdbq2bq9nFWact3/VBS90uw4jDBKJYHuj2wDw0m4L0tH1CecFldKedmv21nacT2Q919G6ur0Y4tNBuWTELJhjkFr900D01W73plPrI9D6hjtQTrJeb9XfTAgrk8SeCjEEVrnp9q83gYsxBpk8itTqPwSia0wQRnMNewp0+KJ9lYtfTbLOrDv32D2H3/AB0E4Sn+UYkT8cneBplEGmBuFQoxPEu7oG4ZVBpfRTkRqKNX8lEmwWyclibIEOn5X0D0cn+BllkIjwqT4IhDDSLDvDMs095b9qhbQ0GBr4gYw2unKMM8jkV62R0feDhQ/pIt0tXAS4teE6N6VZv9cbHSbAtWkwTMwlhOuaZedu02oz0iCRSLOr288MccZtBDhommgS9WwNqWfwQOXCJyVyT0gpbhibZ7XCLxPAH6nA6yoG4sMTM05fcfD6uUFX65hmcWMNcrTeojc2iEguEF1iooDta6KnCPCepuvcqqP23lp9iABuyKo2gNZdQbn0NR3aqMI03iBHifZt2PXOVti6HMOJxYjWZSHAWapEUIhzEBAexxCe6DmtsG3vJxe8pBB7WijWRp/KmTGIPgkYmRWYXgE2CE8HK9BGATYIjwcrwAbhGWAF5BTgI4icbpyVEwXYIDlpNNOUU4ANIqcbZ+VEATZIThrNNOUUYIPI6cZZOVGADZKTRjNNOQXYIHK6cVZOFGCD5KTRTFNOATaInG6clRMF2CA5aTTTlFOADSKnG2flRAE2SE4azTTlFGCDyOnGWTlRgA2Sk0YzTTkF2CByunFWThRgg+Sk0UxTTgE2iJxunJUTBdggOWk005RTgA0ipxtn5UQBNkhOGs005RRgg8jpxlk5UYANkpNGM005BdggcrpxVk4UYIPkpNFMU04BNoicbpyVEwXYIDlpNNOUU4ANIqcbZ+VEATZIThrNNOUUYIPI6cZZOVHg/wFkq4Rf4QerOwAAAABJRU5ErkJggg=="
 
 /***/ }),
 
@@ -1075,13 +10157,13 @@ function populateParameters(result) {
 
   var parameters = {
     appId: "",
-    appName: "九点荟",
+    appName: "九点荟库存管理",
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "4.56",
-    uniCompilerVersion: "4.56",
-    uniRuntimeVersion: "4.56",
+    uniCompileVersion: "4.57",
+    uniCompilerVersion: "4.57",
+    uniRuntimeVersion: "4.57",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -1176,7 +10258,7 @@ var getAppBaseInfo = {
     var hostLanguage = (language || '').replace('_', '-');
     result = sortObject(Object.assign(result, {
       appId: "",
-      appName: "九点荟",
+      appName: "九点荟库存管理",
       appVersion: "1.0.0",
       appVersionCode: "100",
       appLanguage: getAppLanguage(hostLanguage),
@@ -1187,9 +10269,9 @@ var getAppBaseInfo = {
       hostTheme: theme,
       isUniAppX: false,
       uniPlatform: undefined || "mp-weixin",
-      uniCompileVersion: "4.56",
-      uniCompilerVersion: "4.56",
-      uniRuntimeVersion: "4.56"
+      uniCompileVersion: "4.57",
+      uniCompilerVersion: "4.57",
+      uniRuntimeVersion: "4.57"
     }));
   }
 };
@@ -1870,7 +10952,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟库存管理","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2787,45 +11869,144 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 208:
-/*!************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/service.js ***!
-  \************************************************/
+/***/ 201:
+/*!*************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/api/user.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
 
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-// 管理账号信息
-var USERS_KEY = 'USERS_KEY';
-var STATE_KEY = 'STATE_KEY';
-var getUsers = function getUsers() {
-  var ret = '';
-  ret = uni.getStorageSync(USERS_KEY);
-  if (!ret) {
-    ret = '[]';
-  }
-  return JSON.parse(ret);
-};
-var addUser = function addUser(userInfo) {
-  var users = getUsers();
-  users.push({
-    account: userInfo.account,
-    password: userInfo.password
+exports.updateHotelUser = exports.submitHotel = exports.getUserShopping = exports.getUserPrime = exports.getUserInvite = exports.getUserInfo = exports.getUserConfig = exports.getHotelUser = exports.getAppMessage = exports.getAppHelp = exports.getAppFeedback = exports.deleteHotelUser = exports.addAppFeedback = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 63));
+// 初始化提交
+var submitHotel = function submitHotel(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/item',
+    method: 'POST',
+    data: data
   });
-  uni.setStorageSync(USERS_KEY, JSON.stringify(users));
 };
-var _default = {
-  getUsers: getUsers,
-  addUser: addUser
+
+// 获取反馈
+exports.submitHotel = submitHotel;
+var getAppFeedback = function getAppFeedback(data) {
+  return (0, _request.default)({
+    url: '/api/app/feedback',
+    method: 'GET',
+    data: data
+  });
 };
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+// 新增反馈
+exports.getAppFeedback = getAppFeedback;
+var addAppFeedback = function addAppFeedback(data) {
+  return (0, _request.default)({
+    url: '/api/app/feedback',
+    method: 'POST',
+    data: data
+  });
+};
+
+// 获取帮助文档
+exports.addAppFeedback = addAppFeedback;
+var getAppHelp = function getAppHelp(data) {
+  return (0, _request.default)({
+    url: '/api/app/help',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取消息
+exports.getAppHelp = getAppHelp;
+var getAppMessage = function getAppMessage(data) {
+  return (0, _request.default)({
+    url: '/api/app/message',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取酒店人员
+exports.getAppMessage = getAppMessage;
+var getHotelUser = function getHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'GET',
+    data: data
+  });
+};
+// 更新酒店人员角色
+exports.getHotelUser = getHotelUser;
+var updateHotelUser = function updateHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'PUT',
+    data: data
+  });
+};
+// 删除酒店人员
+exports.updateHotelUser = updateHotelUser;
+var deleteHotelUser = function deleteHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'DELETE',
+    data: data
+  });
+};
+// 获取用户配置
+exports.deleteHotelUser = deleteHotelUser;
+var getUserConfig = function getUserConfig(data) {
+  return (0, _request.default)({
+    url: '/api/user/config',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取用户信息
+exports.getUserConfig = getUserConfig;
+var getUserInfo = function getUserInfo(data) {
+  return (0, _request.default)({
+    url: '/api/user/info',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取邀请记录
+exports.getUserInfo = getUserInfo;
+var getUserInvite = function getUserInvite(data) {
+  return (0, _request.default)({
+    url: '/api/user/invite',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取会员套餐
+exports.getUserInvite = getUserInvite;
+var getUserPrime = function getUserPrime(data) {
+  return (0, _request.default)({
+    url: '/api/user/prime/plan',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取可用优惠卷
+exports.getUserPrime = getUserPrime;
+var getUserShopping = function getUserShopping(data) {
+  return (0, _request.default)({
+    url: '/api/user/shopping/coupon',
+    method: 'GET',
+    data: data
+  });
+};
+exports.getUserShopping = getUserShopping;
 
 /***/ }),
 
@@ -3380,76 +12561,6 @@ function resolveLocaleChain(locale) {
 
 /***/ }),
 
-/***/ 221:
-/*!***************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/purchaseMaterials.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  material_iden: '00100001',
-  material_name: '舞鞋',
-  material_specification: '31码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '208'
-}, {
-  id: 2,
-  material_iden: '00100002',
-  material_name: '舞鞋',
-  material_specification: '30码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
-}, {
-  id: 3,
-  material_iden: '00100003',
-  material_name: '毛笔',
-  material_specification: '狼毫',
-  material_model: '1234',
-  material_meterage: '支',
-  material_attr: '200'
-}, {
-  id: 4,
-  material_iden: '00100004',
-  material_name: '颜料',
-  material_specification: '水彩',
-  material_model: '1234',
-  material_meterage: '盒',
-  material_attr: '200'
-}, {
-  id: 5,
-  material_iden: '00100005',
-  material_name: '颜料',
-  material_specification: '油画棒',
-  material_model: '1234',
-  material_meterage: '盒',
-  material_attr: '200'
-}, {
-  id: 6,
-  material_iden: '00100006',
-  material_name: '演出服',
-  material_specification: 'x',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
-}, {
-  id: 7,
-  material_iden: '00100001',
-  material_name: '舞鞋',
-  material_specification: '29码',
-  material_model: '1234',
-  material_meterage: '双',
-  material_attr: '200'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
 /***/ 23:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -3463,156 +12574,6 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 230:
-/*!*******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/common/catUtil.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function formateDate(datetime, type) {
-  var year = datetime.getFullYear(),
-    month = ("0" + (datetime.getMonth() + 1)).slice(-2),
-    date = ("0" + datetime.getDate()).slice(-2),
-    hour = ("0" + datetime.getHours()).slice(-2),
-    minute = ("0" + datetime.getMinutes()).slice(-2),
-    second = ("0" + datetime.getSeconds()).slice(-2);
-  if (type === "Y-M-D h:min:s") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
-  } else if (type === "Y-M-D h:min") {
-    var result = year + "-" + month + "-" + date + " " + hour + ":" + minute;
-  } else if (type === "Y-M-D") {
-    var result = year + "-" + month + "-" + date;
-  } else if (type === "Y") {
-    var result = year;
-  } else if (type === "Y-M") {
-    var result = year + "-" + month;
-  } else if (type === "M") {
-    var result = month;
-  } else if (type === "h:min:s") {
-    var result = hour + ":" + minute + ":" + second;
-  } else if (type === "h:min") {
-    var result = hour + ":" + minute;
-  } else if (type === "h") {
-    var result = hour;
-  } else if (type === "min") {
-    var result = minute;
-  } else if (type === "s") {
-    var result = second;
-  }
-  return result;
-}
-function formatNumber(value, pattern) {
-  if (value == null) return value;
-  var strarr = value ? value.toString().split('.') : ['0'];
-  var fmtarr = pattern ? pattern.split('.') : [''];
-  var retstr = '';
-  // 整数部分   
-  var str = strarr[0];
-  var fmt = fmtarr[0];
-  var i = str.length - 1;
-  var comma = false;
-  for (var f = fmt.length - 1; f >= 0; f--) {
-    switch (fmt.substr(f, 1)) {
-      case '#':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;
-        break;
-      case '0':
-        if (i >= 0) retstr = str.substr(i--, 1) + retstr;else retstr = '0' + retstr;
-        break;
-      case ',':
-        comma = true;
-        retstr = ',' + retstr;
-        break;
-    }
-  }
-  if (i >= 0) {
-    if (comma) {
-      var l = str.length;
-      for (; i >= 0; i--) {
-        retstr = str.substr(i, 1) + retstr;
-        if (i > 0 && (l - i) % 3 == 0) retstr = ',' + retstr;
-      }
-    } else retstr = str.substr(0, i + 1) + retstr;
-  }
-  retstr = retstr + '.';
-  // 处理小数部分   
-  str = strarr.length > 1 ? strarr[1] : '';
-  fmt = fmtarr.length > 1 ? fmtarr[1] : '';
-  i = 0;
-  for (var _f = 0; _f < fmt.length; _f++) {
-    switch (fmt.substr(_f, 1)) {
-      case '#':
-        if (i < str.length) retstr += str.substr(i++, 1);
-        break;
-      case '0':
-        if (i < str.length) retstr += str.substr(i++, 1);else retstr += '0';
-        break;
-    }
-  }
-  return retstr.replace(/^,+/, '').replace(/\.$/, '');
-}
-//格式化金额
-function catformatMoney(value, pattern) {
-  if (!value || value == 0) return 0;
-  var sign = value < 0 ? '-' : '';
-  return sign + formatNumber(Math.abs(value), pattern || '#,##0.00');
-}
-function formatMoneyAuto(value) {
-  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '#,##0.00';
-  var unit = "元";
-  if (value) {
-    var unitNum = {
-      // '千': 1000.00,
-      '万': 10000.00,
-      '千万': 10000000.00,
-      '亿': 100000000.00,
-      '百亿': 10000000000.00
-    };
-    var unitCount = {
-      // "4": '千',
-      "5": '万',
-      "8": '千万',
-      "9": '亿',
-      "11": '百亿'
-    };
-    var count = 0;
-    var money = value;
-    while (money >= 1) {
-      money = money / 10;
-      count++;
-    }
-    var tmp = unitCount[count + ""];
-    while (count >= 4 && tmp === undefined) {
-      tmp = unitCount[--count + ""];
-    }
-    unit = tmp === undefined ? unit : tmp;
-    value = count >= 4 ? value / unitNum[unit] : value;
-  }
-  return formatMoney(value, pattern) + unit || "";
-}
-// 格式化文件大小
-function formatFileSize(value) {
-  if (null == value || value == '') {
-    return "0 Bytes";
-  }
-  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
-  var index = 0;
-  var srcsize = parseFloat(value);
-  index = Math.floor(Math.log(srcsize) / Math.log(1024));
-  var size = srcsize / Math.pow(1024, index);
-  size = size.toFixed(2);
-  return size + unitArr[index];
-}
-var emptyPatt = /(^$)|(^[\u4E00-\u9FA5a-zA-Z0-9,，,.,!,@,#,$,%,^,&,*,(,),-,+,/,\\,!,￥,……,*,（,）,~,·,]{1,250}$)/;
-var phonePatt = /^1((3[\d])|(4[5,6,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[1-8])|(9[1,8,9]))\d{8}$/;
-var cardPatt = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-module.exports = {
-  formateDate: formateDate
-};
 
 /***/ }),
 
@@ -9184,7 +18145,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟库存管理","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -9205,14 +18166,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟库存管理","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟库存管理","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9308,7 +18269,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"九点荟库存管理","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9738,138 +18699,507 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 269:
-/*!********************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/outDetails.js ***!
-  \********************************************************/
+/***/ 298:
+/*!*****************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-icons/components/uni-icons/uniicons_file_vue.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var data = [{
-  id: 1,
-  msod_iden: '010100001',
-  msod_name: '钢琴',
-  msod_specification: '16键',
-  msod_model: '圆形',
-  msod_meterage: '台',
-  msod_num: '20',
-  msod_present_num: '50',
-  msod_remarks: '上音乐课借用器材'
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fontData = void 0;
+var fontData = [{
+  "font_class": "arrow-down",
+  "unicode": "\uE6BE"
 }, {
-  id: 2,
-  msod_iden: '020100003',
-  msod_name: '足球',
-  msod_specification: '黑白',
-  msod_model: '签名款',
-  msod_meterage: '个',
-  msod_num: '30',
-  msod_present_num: '50',
-  msod_remarks: '上体育课借用器材'
+  "font_class": "arrow-left",
+  "unicode": "\uE6BC"
 }, {
-  id: 3,
-  msod_iden: '030100018',
-  msod_name: '画纸',
-  msod_specification: 'A4',
-  msod_model: '宣纸',
-  msod_meterage: '张',
-  msod_num: '50',
-  msod_present_num: '200',
-  msod_remarks: '上美术课借用器材'
+  "font_class": "arrow-right",
+  "unicode": "\uE6BB"
+}, {
+  "font_class": "arrow-up",
+  "unicode": "\uE6BD"
+}, {
+  "font_class": "auth",
+  "unicode": "\uE6AB"
+}, {
+  "font_class": "auth-filled",
+  "unicode": "\uE6CC"
+}, {
+  "font_class": "back",
+  "unicode": "\uE6B9"
+}, {
+  "font_class": "bars",
+  "unicode": "\uE627"
+}, {
+  "font_class": "calendar",
+  "unicode": "\uE6A0"
+}, {
+  "font_class": "calendar-filled",
+  "unicode": "\uE6C0"
+}, {
+  "font_class": "camera",
+  "unicode": "\uE65A"
+}, {
+  "font_class": "camera-filled",
+  "unicode": "\uE658"
+}, {
+  "font_class": "cart",
+  "unicode": "\uE631"
+}, {
+  "font_class": "cart-filled",
+  "unicode": "\uE6D0"
+}, {
+  "font_class": "chat",
+  "unicode": "\uE65D"
+}, {
+  "font_class": "chat-filled",
+  "unicode": "\uE659"
+}, {
+  "font_class": "chatboxes",
+  "unicode": "\uE696"
+}, {
+  "font_class": "chatboxes-filled",
+  "unicode": "\uE692"
+}, {
+  "font_class": "chatbubble",
+  "unicode": "\uE697"
+}, {
+  "font_class": "chatbubble-filled",
+  "unicode": "\uE694"
+}, {
+  "font_class": "checkbox",
+  "unicode": "\uE62B"
+}, {
+  "font_class": "checkbox-filled",
+  "unicode": "\uE62C"
+}, {
+  "font_class": "checkmarkempty",
+  "unicode": "\uE65C"
+}, {
+  "font_class": "circle",
+  "unicode": "\uE65B"
+}, {
+  "font_class": "circle-filled",
+  "unicode": "\uE65E"
+}, {
+  "font_class": "clear",
+  "unicode": "\uE66D"
+}, {
+  "font_class": "close",
+  "unicode": "\uE673"
+}, {
+  "font_class": "closeempty",
+  "unicode": "\uE66C"
+}, {
+  "font_class": "cloud-download",
+  "unicode": "\uE647"
+}, {
+  "font_class": "cloud-download-filled",
+  "unicode": "\uE646"
+}, {
+  "font_class": "cloud-upload",
+  "unicode": "\uE645"
+}, {
+  "font_class": "cloud-upload-filled",
+  "unicode": "\uE648"
+}, {
+  "font_class": "color",
+  "unicode": "\uE6CF"
+}, {
+  "font_class": "color-filled",
+  "unicode": "\uE6C9"
+}, {
+  "font_class": "compose",
+  "unicode": "\uE67F"
+}, {
+  "font_class": "contact",
+  "unicode": "\uE693"
+}, {
+  "font_class": "contact-filled",
+  "unicode": "\uE695"
+}, {
+  "font_class": "down",
+  "unicode": "\uE6B8"
+}, {
+  "font_class": "bottom",
+  "unicode": "\uE6B8"
+}, {
+  "font_class": "download",
+  "unicode": "\uE68D"
+}, {
+  "font_class": "download-filled",
+  "unicode": "\uE681"
+}, {
+  "font_class": "email",
+  "unicode": "\uE69E"
+}, {
+  "font_class": "email-filled",
+  "unicode": "\uE69A"
+}, {
+  "font_class": "eye",
+  "unicode": "\uE651"
+}, {
+  "font_class": "eye-filled",
+  "unicode": "\uE66A"
+}, {
+  "font_class": "eye-slash",
+  "unicode": "\uE6B3"
+}, {
+  "font_class": "eye-slash-filled",
+  "unicode": "\uE6B4"
+}, {
+  "font_class": "fire",
+  "unicode": "\uE6A1"
+}, {
+  "font_class": "fire-filled",
+  "unicode": "\uE6C5"
+}, {
+  "font_class": "flag",
+  "unicode": "\uE65F"
+}, {
+  "font_class": "flag-filled",
+  "unicode": "\uE660"
+}, {
+  "font_class": "folder-add",
+  "unicode": "\uE6A9"
+}, {
+  "font_class": "folder-add-filled",
+  "unicode": "\uE6C8"
+}, {
+  "font_class": "font",
+  "unicode": "\uE6A3"
+}, {
+  "font_class": "forward",
+  "unicode": "\uE6BA"
+}, {
+  "font_class": "gear",
+  "unicode": "\uE664"
+}, {
+  "font_class": "gear-filled",
+  "unicode": "\uE661"
+}, {
+  "font_class": "gift",
+  "unicode": "\uE6A4"
+}, {
+  "font_class": "gift-filled",
+  "unicode": "\uE6C4"
+}, {
+  "font_class": "hand-down",
+  "unicode": "\uE63D"
+}, {
+  "font_class": "hand-down-filled",
+  "unicode": "\uE63C"
+}, {
+  "font_class": "hand-up",
+  "unicode": "\uE63F"
+}, {
+  "font_class": "hand-up-filled",
+  "unicode": "\uE63E"
+}, {
+  "font_class": "headphones",
+  "unicode": "\uE630"
+}, {
+  "font_class": "heart",
+  "unicode": "\uE639"
+}, {
+  "font_class": "heart-filled",
+  "unicode": "\uE641"
+}, {
+  "font_class": "help",
+  "unicode": "\uE679"
+}, {
+  "font_class": "help-filled",
+  "unicode": "\uE674"
+}, {
+  "font_class": "home",
+  "unicode": "\uE662"
+}, {
+  "font_class": "home-filled",
+  "unicode": "\uE663"
+}, {
+  "font_class": "image",
+  "unicode": "\uE670"
+}, {
+  "font_class": "image-filled",
+  "unicode": "\uE678"
+}, {
+  "font_class": "images",
+  "unicode": "\uE650"
+}, {
+  "font_class": "images-filled",
+  "unicode": "\uE64B"
+}, {
+  "font_class": "info",
+  "unicode": "\uE669"
+}, {
+  "font_class": "info-filled",
+  "unicode": "\uE649"
+}, {
+  "font_class": "left",
+  "unicode": "\uE6B7"
+}, {
+  "font_class": "link",
+  "unicode": "\uE6A5"
+}, {
+  "font_class": "list",
+  "unicode": "\uE644"
+}, {
+  "font_class": "location",
+  "unicode": "\uE6AE"
+}, {
+  "font_class": "location-filled",
+  "unicode": "\uE6AF"
+}, {
+  "font_class": "locked",
+  "unicode": "\uE66B"
+}, {
+  "font_class": "locked-filled",
+  "unicode": "\uE668"
+}, {
+  "font_class": "loop",
+  "unicode": "\uE633"
+}, {
+  "font_class": "mail-open",
+  "unicode": "\uE643"
+}, {
+  "font_class": "mail-open-filled",
+  "unicode": "\uE63A"
+}, {
+  "font_class": "map",
+  "unicode": "\uE667"
+}, {
+  "font_class": "map-filled",
+  "unicode": "\uE666"
+}, {
+  "font_class": "map-pin",
+  "unicode": "\uE6AD"
+}, {
+  "font_class": "map-pin-ellipse",
+  "unicode": "\uE6AC"
+}, {
+  "font_class": "medal",
+  "unicode": "\uE6A2"
+}, {
+  "font_class": "medal-filled",
+  "unicode": "\uE6C3"
+}, {
+  "font_class": "mic",
+  "unicode": "\uE671"
+}, {
+  "font_class": "mic-filled",
+  "unicode": "\uE677"
+}, {
+  "font_class": "micoff",
+  "unicode": "\uE67E"
+}, {
+  "font_class": "micoff-filled",
+  "unicode": "\uE6B0"
+}, {
+  "font_class": "minus",
+  "unicode": "\uE66F"
+}, {
+  "font_class": "minus-filled",
+  "unicode": "\uE67D"
+}, {
+  "font_class": "more",
+  "unicode": "\uE64D"
+}, {
+  "font_class": "more-filled",
+  "unicode": "\uE64E"
+}, {
+  "font_class": "navigate",
+  "unicode": "\uE66E"
+}, {
+  "font_class": "navigate-filled",
+  "unicode": "\uE67A"
+}, {
+  "font_class": "notification",
+  "unicode": "\uE6A6"
+}, {
+  "font_class": "notification-filled",
+  "unicode": "\uE6C1"
+}, {
+  "font_class": "paperclip",
+  "unicode": "\uE652"
+}, {
+  "font_class": "paperplane",
+  "unicode": "\uE672"
+}, {
+  "font_class": "paperplane-filled",
+  "unicode": "\uE675"
+}, {
+  "font_class": "person",
+  "unicode": "\uE699"
+}, {
+  "font_class": "person-filled",
+  "unicode": "\uE69D"
+}, {
+  "font_class": "personadd",
+  "unicode": "\uE69F"
+}, {
+  "font_class": "personadd-filled",
+  "unicode": "\uE698"
+}, {
+  "font_class": "personadd-filled-copy",
+  "unicode": "\uE6D1"
+}, {
+  "font_class": "phone",
+  "unicode": "\uE69C"
+}, {
+  "font_class": "phone-filled",
+  "unicode": "\uE69B"
+}, {
+  "font_class": "plus",
+  "unicode": "\uE676"
+}, {
+  "font_class": "plus-filled",
+  "unicode": "\uE6C7"
+}, {
+  "font_class": "plusempty",
+  "unicode": "\uE67B"
+}, {
+  "font_class": "pulldown",
+  "unicode": "\uE632"
+}, {
+  "font_class": "pyq",
+  "unicode": "\uE682"
+}, {
+  "font_class": "qq",
+  "unicode": "\uE680"
+}, {
+  "font_class": "redo",
+  "unicode": "\uE64A"
+}, {
+  "font_class": "redo-filled",
+  "unicode": "\uE655"
+}, {
+  "font_class": "refresh",
+  "unicode": "\uE657"
+}, {
+  "font_class": "refresh-filled",
+  "unicode": "\uE656"
+}, {
+  "font_class": "refreshempty",
+  "unicode": "\uE6BF"
+}, {
+  "font_class": "reload",
+  "unicode": "\uE6B2"
+}, {
+  "font_class": "right",
+  "unicode": "\uE6B5"
+}, {
+  "font_class": "scan",
+  "unicode": "\uE62A"
+}, {
+  "font_class": "search",
+  "unicode": "\uE654"
+}, {
+  "font_class": "settings",
+  "unicode": "\uE653"
+}, {
+  "font_class": "settings-filled",
+  "unicode": "\uE6CE"
+}, {
+  "font_class": "shop",
+  "unicode": "\uE62F"
+}, {
+  "font_class": "shop-filled",
+  "unicode": "\uE6CD"
+}, {
+  "font_class": "smallcircle",
+  "unicode": "\uE67C"
+}, {
+  "font_class": "smallcircle-filled",
+  "unicode": "\uE665"
+}, {
+  "font_class": "sound",
+  "unicode": "\uE684"
+}, {
+  "font_class": "sound-filled",
+  "unicode": "\uE686"
+}, {
+  "font_class": "spinner-cycle",
+  "unicode": "\uE68A"
+}, {
+  "font_class": "staff",
+  "unicode": "\uE6A7"
+}, {
+  "font_class": "staff-filled",
+  "unicode": "\uE6CB"
+}, {
+  "font_class": "star",
+  "unicode": "\uE688"
+}, {
+  "font_class": "star-filled",
+  "unicode": "\uE68F"
+}, {
+  "font_class": "starhalf",
+  "unicode": "\uE683"
+}, {
+  "font_class": "trash",
+  "unicode": "\uE687"
+}, {
+  "font_class": "trash-filled",
+  "unicode": "\uE685"
+}, {
+  "font_class": "tune",
+  "unicode": "\uE6AA"
+}, {
+  "font_class": "tune-filled",
+  "unicode": "\uE6CA"
+}, {
+  "font_class": "undo",
+  "unicode": "\uE64F"
+}, {
+  "font_class": "undo-filled",
+  "unicode": "\uE64C"
+}, {
+  "font_class": "up",
+  "unicode": "\uE6B6"
+}, {
+  "font_class": "top",
+  "unicode": "\uE6B6"
+}, {
+  "font_class": "upload",
+  "unicode": "\uE690"
+}, {
+  "font_class": "upload-filled",
+  "unicode": "\uE68E"
+}, {
+  "font_class": "videocam",
+  "unicode": "\uE68C"
+}, {
+  "font_class": "videocam-filled",
+  "unicode": "\uE689"
+}, {
+  "font_class": "vip",
+  "unicode": "\uE6A8"
+}, {
+  "font_class": "vip-filled",
+  "unicode": "\uE6C6"
+}, {
+  "font_class": "wallet",
+  "unicode": "\uE6B1"
+}, {
+  "font_class": "wallet-filled",
+  "unicode": "\uE6C2"
+}, {
+  "font_class": "weibo",
+  "unicode": "\uE68B"
+}, {
+  "font_class": "weixin",
+  "unicode": "\uE691"
 }];
-module.exports = {
-  data: data
-};
 
-/***/ }),
-
-/***/ 286:
-/*!*********************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/sellDetails.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  sod_iden: '010100001',
-  sod_name: '钢琴',
-  sod_specification: '16键',
-  sod_model: '圆形',
-  sod_meterage: '台',
-  sod_num: '20',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '4300.00',
-  sod_remarks: '上音乐课借用器材'
-}, {
-  id: 2,
-  sod_iden: '020100003',
-  sod_name: '足球',
-  sod_specification: '黑白',
-  sod_model: '签名款',
-  sod_meterage: '个',
-  sod_num: '30',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '120.00',
-  sod_remarks: '上体育课借用器材'
-}, {
-  id: 3,
-  sod_iden: '030100018',
-  sod_name: '画纸',
-  sod_specification: 'A4',
-  sod_model: '宣纸',
-  sod_meterage: '张',
-  sod_num: '50',
-  sod_taxRate: '13',
-  sod_tax_unitPrice: '1.00',
-  sod_remarks: '上美术课借用器材'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 295:
-/*!*************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/exchangeDetails.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  trd_iden: '010100001',
-  trd_name: '钢琴',
-  trd_specification: '16键',
-  trd_model: '圆形',
-  trd_meterage: '台',
-  trd_num: '20',
-  trd_present_num: '50',
-  trd_remarks: '上音乐课借用器材'
-}, {
-  id: 2,
-  trd_iden: '020100003',
-  trd_name: '足球',
-  trd_specification: '黑白',
-  trd_model: '签名款',
-  trd_meterage: '个',
-  trd_num: '30',
-  trd_present_num: '50',
-  trd_remarks: '上体育课借用器材'
-}, {
-  id: 3,
-  trd_iden: '030100018',
-  trd_name: '画纸',
-  trd_specification: 'A4',
-  trd_model: '宣纸',
-  trd_meterage: '张',
-  trd_num: '50',
-  trd_present_num: '200',
-  trd_remarks: '上美术课借用器材'
-}];
-module.exports = {
-  data: data
-};
+// export const fontData = JSON.parse<IconsDataItem>(fontDataJson)
+exports.fontData = fontData;
 
 /***/ }),
 
@@ -9901,6 +19231,92 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ 306:
+/*!********************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 307));
+var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 308));
+var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 309));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 310));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 311));
+var _default = {
+  en: _en.default,
+  es: _es.default,
+  fr: _fr.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 307:
+/*!*******************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
+  \*******************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-pagination.nextText\":\"next\",\"uni-pagination.piecePerPage\":\"piece/page\"}");
+
+/***/ }),
+
+/***/ 308:
+/*!*******************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
+  \*******************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pagination.nextText\":\"prxima\",\"uni-pagination.piecePerPage\":\"Art��culo/P��gina\"}");
+
+/***/ }),
+
+/***/ 309:
+/*!*******************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
+  \*******************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni-pagination.nextText\":\"suivante\",\"uni-pagination.piecePerPage\":\"Articles/Pages\"}");
+
+/***/ }),
+
+/***/ 310:
+/*!************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
+  \************************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pagination.nextText\":\"下一页\",\"uni-pagination.piecePerPage\":\"条/页\"}");
+
+/***/ }),
+
+/***/ 311:
+/*!************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
+  \************************************************************************************************************/
+/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pagination.nextText\":\"下一頁\",\"uni-pagination.piecePerPage\":\"條/頁\"}");
 
 /***/ }),
 
@@ -11336,1097 +20752,7 @@ module.exports = index_cjs;
 
 /***/ }),
 
-/***/ 35:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/common/config.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  webUrl: 'http://49.234.123.211:8000'
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 36:
-/*!*******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/common/request.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 35));
-var _default = {
-  config: {
-    baseUrl: _config.default.webUrl,
-    header: {
-      'Content-Type': 'application/json;charset=UTF-8'
-    },
-    data: {},
-    method: "POST",
-    dataType: "json"
-  },
-  request: function request() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    options.header = options.header || this.config.header;
-    options.method = options.method || this.config.method;
-    options.dataType = options.dataType || this.config.dataType;
-    options.url = this.config.baseUrl + options.url;
-    //TODO: token等操作
-    // if(options.token) {
-    // 	if(options.checkToken && !User.token) {
-    // 		uni.showToast({ title: '您未登录', icon:"none" })
-    // 		return uni.navigateTo({
-    // 			url: '/pages/login/login'
-    // 		});
-    // 	}
-    // 	options.header.token = User.token;
-    // }
-
-    return uni.request(options);
-  },
-  get: function get(url, data) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'GET';
-    return this.request(options);
-  },
-  post: function post(url, data) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'POST';
-    return this.request(options);
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
-/***/ 4:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 417:
-/*!********************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/evan-icons/icons.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  "glass": "\uF000",
-  "music": "\uF001",
-  "search": "\uF002",
-  "envelope-o": "\uF003",
-  "heart": "\uF004",
-  "star": "\uF005",
-  "star-o": "\uF006",
-  "user": "\uF007",
-  "film": "\uF008",
-  "th-large": "\uF009",
-  "th": "\uF00A",
-  "th-list": "\uF00B",
-  "check": "\uF00C",
-  "remove": "\uF00D",
-  "close": "\uF00D",
-  "times": "\uF00D",
-  "search-plus": "\uF00E",
-  "search-minus": "\uF010",
-  "power-off": "\uF011",
-  "signal": "\uF012",
-  "gear": "\uF013",
-  "cog": "\uF013",
-  "trash-o": "\uF014",
-  "home": "\uF015",
-  "file-o": "\uF016",
-  "clock-o": "\uF017",
-  "road": "\uF018",
-  "download": "\uF019",
-  "arrow-circle-o-down": "\uF01A",
-  "arrow-circle-o-up": "\uF01B",
-  "inbox": "\uF01C",
-  "play-circle-o": "\uF01D",
-  "rotate-right": "\uF01E",
-  "repeat": "\uF01E",
-  "refresh": "\uF021",
-  "list-alt": "\uF022",
-  "lock": "\uF023",
-  "flag": "\uF024",
-  "headphones": "\uF025",
-  "volume-off": "\uF026",
-  "volume-down": "\uF027",
-  "volume-up": "\uF028",
-  "qrcode": "\uF029",
-  "barcode": "\uF02A",
-  "tag": "\uF02B",
-  "tags": "\uF02C",
-  "book": "\uF02D",
-  "bookmark": "\uF02E",
-  "print": "\uF02F",
-  "camera": "\uF030",
-  "font": "\uF031",
-  "bold": "\uF032",
-  "italic": "\uF033",
-  "text-height": "\uF034",
-  "text-width": "\uF035",
-  "align-left": "\uF036",
-  "align-center": "\uF037",
-  "align-right": "\uF038",
-  "align-justify": "\uF039",
-  "list": "\uF03A",
-  "dedent": "\uF03B",
-  "outdent": "\uF03B",
-  "indent": "\uF03C",
-  "video-camera": "\uF03D",
-  "photo": "\uF03E",
-  "image": "\uF03E",
-  "picture-o": "\uF03E",
-  "pencil": "\uF040",
-  "map-marker": "\uF041",
-  "adjust": "\uF042",
-  "tint": "\uF043",
-  "edit": "\uF044",
-  "pencil-square-o": "\uF044",
-  "share-square-o": "\uF045",
-  "check-square-o": "\uF046",
-  "arrows": "\uF047",
-  "step-backward": "\uF048",
-  "fast-backward": "\uF049",
-  "backward": "\uF04A",
-  "play": "\uF04B",
-  "pause": "\uF04C",
-  "stop": "\uF04D",
-  "forward": "\uF04E",
-  "fast-forward": "\uF050",
-  "step-forward": "\uF051",
-  "eject": "\uF052",
-  "chevron-left": "\uF053",
-  "chevron-right": "\uF054",
-  "plus-circle": "\uF055",
-  "minus-circle": "\uF056",
-  "times-circle": "\uF057",
-  "check-circle": "\uF058",
-  "question-circle": "\uF059",
-  "info-circle": "\uF05A",
-  "crosshairs": "\uF05B",
-  "times-circle-o": "\uF05C",
-  "check-circle-o": "\uF05D",
-  "ban": "\uF05E",
-  "arrow-left": "\uF060",
-  "arrow-right": "\uF061",
-  "arrow-up": "\uF062",
-  "arrow-down": "\uF063",
-  "mail-forward": "\uF064",
-  "share": "\uF064",
-  "expand": "\uF065",
-  "compress": "\uF066",
-  "plus": "\uF067",
-  "minus": "\uF068",
-  "asterisk": "\uF069",
-  "exclamation-circle": "\uF06A",
-  "gift": "\uF06B",
-  "leaf": "\uF06C",
-  "fire": "\uF06D",
-  "eye": "\uF06E",
-  "eye-slash": "\uF070",
-  "warning": "\uF071",
-  "exclamation-triangle": "\uF071",
-  "plane": "\uF072",
-  "calendar": "\uF073",
-  "random": "\uF074",
-  "comment": "\uF075",
-  "magnet": "\uF076",
-  "chevron-up": "\uF077",
-  "chevron-down": "\uF078",
-  "retweet": "\uF079",
-  "shopping-cart": "\uF07A",
-  "folder": "\uF07B",
-  "folder-open": "\uF07C",
-  "arrows-v": "\uF07D",
-  "arrows-h": "\uF07E",
-  "bar-chart-o": "\uF080",
-  "bar-chart": "\uF080",
-  "twitter-square": "\uF081",
-  "facebook-square": "\uF082",
-  "camera-retro": "\uF083",
-  "key": "\uF084",
-  "gears": "\uF085",
-  "cogs": "\uF085",
-  "comments": "\uF086",
-  "thumbs-o-up": "\uF087",
-  "thumbs-o-down": "\uF088",
-  "star-half": "\uF089",
-  "heart-o": "\uF08A",
-  "sign-out": "\uF08B",
-  "linkedin-square": "\uF08C",
-  "thumb-tack": "\uF08D",
-  "external-link": "\uF08E",
-  "sign-in": "\uF090",
-  "trophy": "\uF091",
-  "github-square": "\uF092",
-  "upload": "\uF093",
-  "lemon-o": "\uF094",
-  "phone": "\uF095",
-  "square-o": "\uF096",
-  "bookmark-o": "\uF097",
-  "phone-square": "\uF098",
-  "twitter": "\uF099",
-  "facebook-f": "\uF09A",
-  "facebook": "\uF09A",
-  "github": "\uF09B",
-  "unlock": "\uF09C",
-  "credit-card": "\uF09D",
-  "feed": "\uF09E",
-  "rss": "\uF09E",
-  "hdd-o": "\uF0A0",
-  "bullhorn": "\uF0A1",
-  "bell-o": "\uF0A2",
-  "certificate": "\uF0A3",
-  "hand-o-right": "\uF0A4",
-  "hand-o-left": "\uF0A5",
-  "hand-o-up": "\uF0A6",
-  "hand-o-down": "\uF0A7",
-  "arrow-circle-left": "\uF0A8",
-  "arrow-circle-right": "\uF0A9",
-  "arrow-circle-up": "\uF0AA",
-  "arrow-circle-down": "\uF0AB",
-  "globe": "\uF0AC",
-  "wrench": "\uF0AD",
-  "tasks": "\uF0AE",
-  "filter": "\uF0B0",
-  "briefcase": "\uF0B1",
-  "arrows-alt": "\uF0B2",
-  "group": "\uF0C0",
-  "users": "\uF0C0",
-  "chain": "\uF0C1",
-  "link": "\uF0C1",
-  "cloud": "\uF0C2",
-  "flask": "\uF0C3",
-  "cut": "\uF0C4",
-  "scissors": "\uF0C4",
-  "copy": "\uF0C5",
-  "files-o": "\uF0C5",
-  "paperclip": "\uF0C6",
-  "save": "\uF0C7",
-  "floppy-o": "\uF0C7",
-  "square": "\uF0C8",
-  "navicon": "\uF0C9",
-  "reorder": "\uF0C9",
-  "bars": "\uF0C9",
-  "list-ul": "\uF0CA",
-  "list-ol": "\uF0CB",
-  "strikethrough": "\uF0CC",
-  "underline": "\uF0CD",
-  "table": "\uF0CE",
-  "magic": "\uF0D0",
-  "truck": "\uF0D1",
-  "pinterest": "\uF0D2",
-  "pinterest-square": "\uF0D3",
-  "google-plus-square": "\uF0D4",
-  "google-plus": "\uF0D5",
-  "money": "\uF0D6",
-  "caret-down": "\uF0D7",
-  "caret-up": "\uF0D8",
-  "caret-left": "\uF0D9",
-  "caret-right": "\uF0DA",
-  "columns": "\uF0DB",
-  "unsorted": "\uF0DC",
-  "sort": "\uF0DC",
-  "sort-down": "\uF0DD",
-  "sort-desc": "\uF0DD",
-  "sort-up": "\uF0DE",
-  "sort-asc": "\uF0DE",
-  "envelope": "\uF0E0",
-  "linkedin": "\uF0E1",
-  "rotate-left": "\uF0E2",
-  "undo": "\uF0E2",
-  "legal": "\uF0E3",
-  "gavel": "\uF0E3",
-  "dashboard": "\uF0E4",
-  "tachometer": "\uF0E4",
-  "comment-o": "\uF0E5",
-  "comments-o": "\uF0E6",
-  "flash": "\uF0E7",
-  "bolt": "\uF0E7",
-  "sitemap": "\uF0E8",
-  "umbrella": "\uF0E9",
-  "paste": "\uF0EA",
-  "clipboard": "\uF0EA",
-  "lightbulb-o": "\uF0EB",
-  "exchange": "\uF0EC",
-  "cloud-download": "\uF0ED",
-  "cloud-upload": "\uF0EE",
-  "user-md": "\uF0F0",
-  "stethoscope": "\uF0F1",
-  "suitcase": "\uF0F2",
-  "bell": "\uF0F3",
-  "coffee": "\uF0F4",
-  "cutlery": "\uF0F5",
-  "file-text-o": "\uF0F6",
-  "building-o": "\uF0F7",
-  "hospital-o": "\uF0F8",
-  "ambulance": "\uF0F9",
-  "medkit": "\uF0FA",
-  "fighter-jet": "\uF0FB",
-  "beer": "\uF0FC",
-  "h-square": "\uF0FD",
-  "plus-square": "\uF0FE",
-  "angle-double-left": "\uF100",
-  "angle-double-right": "\uF101",
-  "angle-double-up": "\uF102",
-  "angle-double-down": "\uF103",
-  "angle-left": "\uF104",
-  "angle-right": "\uF105",
-  "angle-up": "\uF106",
-  "angle-down": "\uF107",
-  "desktop": "\uF108",
-  "laptop": "\uF109",
-  "tablet": "\uF10A",
-  "mobile-phone": "\uF10B",
-  "mobile": "\uF10B",
-  "circle-o": "\uF10C",
-  "quote-left": "\uF10D",
-  "quote-right": "\uF10E",
-  "spinner": "\uF110",
-  "circle": "\uF111",
-  "mail-reply": "\uF112",
-  "reply": "\uF112",
-  "github-alt": "\uF113",
-  "folder-o": "\uF114",
-  "folder-open-o": "\uF115",
-  "smile-o": "\uF118",
-  "frown-o": "\uF119",
-  "meh-o": "\uF11A",
-  "gamepad": "\uF11B",
-  "keyboard-o": "\uF11C",
-  "flag-o": "\uF11D",
-  "flag-checkered": "\uF11E",
-  "terminal": "\uF120",
-  "code": "\uF121",
-  "mail-reply-all": "\uF122",
-  "reply-all": "\uF122",
-  "star-half-empty": "\uF123",
-  "star-half-full": "\uF123",
-  "star-half-o": "\uF123",
-  "location-arrow": "\uF124",
-  "crop": "\uF125",
-  "code-fork": "\uF126",
-  "unlink": "\uF127",
-  "chain-broken": "\uF127",
-  "question": "\uF128",
-  "info": "\uF129",
-  "exclamation": "\uF12A",
-  "superscript": "\uF12B",
-  "subscript": "\uF12C",
-  "eraser": "\uF12D",
-  "puzzle-piece": "\uF12E",
-  "microphone": "\uF130",
-  "microphone-slash": "\uF131",
-  "shield": "\uF132",
-  "calendar-o": "\uF133",
-  "fire-extinguisher": "\uF134",
-  "rocket": "\uF135",
-  "maxcdn": "\uF136",
-  "chevron-circle-left": "\uF137",
-  "chevron-circle-right": "\uF138",
-  "chevron-circle-up": "\uF139",
-  "chevron-circle-down": "\uF13A",
-  "html5": "\uF13B",
-  "css3": "\uF13C",
-  "anchor": "\uF13D",
-  "unlock-alt": "\uF13E",
-  "bullseye": "\uF140",
-  "ellipsis-h": "\uF141",
-  "ellipsis-v": "\uF142",
-  "rss-square": "\uF143",
-  "play-circle": "\uF144",
-  "ticket": "\uF145",
-  "minus-square": "\uF146",
-  "minus-square-o": "\uF147",
-  "level-up": "\uF148",
-  "level-down": "\uF149",
-  "check-square": "\uF14A",
-  "pencil-square": "\uF14B",
-  "external-link-square": "\uF14C",
-  "share-square": "\uF14D",
-  "compass": "\uF14E",
-  "toggle-down": "\uF150",
-  "caret-square-o-down": "\uF150",
-  "toggle-up": "\uF151",
-  "caret-square-o-up": "\uF151",
-  "toggle-right": "\uF152",
-  "caret-square-o-right": "\uF152",
-  "fa-euro": "\uF153",
-  "fa-eur": "\uF153",
-  "gbp": "\uF154",
-  "dollar": "\uF155",
-  "usd": "\uF155",
-  "rupee": "\uF156",
-  "inr": "\uF156",
-  "cny": "\uF157",
-  "rmb": "\uF157",
-  "yen": "\uF157",
-  "jpy": "\uF157",
-  "ruble": "\uF158",
-  "rouble": "\uF158",
-  "rub": "\uF158",
-  "won": "\uF159",
-  "krw": "\uF159",
-  "bitcoin": "\uF15A",
-  "btc": "\uF15A",
-  "file": "\uF15B",
-  "file-text": "\uF15C",
-  "sort-alpha-asc": "\uF15D",
-  "sort-alpha-desc": "\uF15E",
-  "sort-amount-asc": "\uF160",
-  "sort-amount-desc": "\uF161",
-  "sort-numeric-asc": "\uF162",
-  "sort-numeric-desc": "\uF163",
-  "thumbs-up": "\uF164",
-  "thumbs-down": "\uF165",
-  "youtube-square": "\uF166",
-  "youtube": "\uF167",
-  "xing": "\uF168",
-  "xing-square": "\uF169",
-  "youtube-play": "\uF16A",
-  "dropbox": "\uF16B",
-  "stack-overflow": "\uF16C",
-  "instagram": "\uF16D",
-  "flickr": "\uF16E",
-  "adn": "\uF170",
-  "bitbucket": "\uF171",
-  "bitbucket-square": "\uF172",
-  "tumblr": "\uF173",
-  "tumblr-square": "\uF174",
-  "long-arrow-down": "\uF175",
-  "long-arrow-up": "\uF176",
-  "long-arrow-left": "\uF177",
-  "long-arrow-right": "\uF178",
-  "apple": "\uF179",
-  "windows": "\uF17A",
-  "android": "\uF17B",
-  "linux": "\uF17C",
-  "dribbble": "\uF17D",
-  "skype": "\uF17E",
-  "foursquare": "\uF180",
-  "trello": "\uF181",
-  "female": "\uF182",
-  "male": "\uF183",
-  "gittip": "\uF184",
-  "gratipay": "\uF184",
-  "sun-o": "\uF185",
-  "moon-o": "\uF186",
-  "archive": "\uF187",
-  "bug": "\uF188",
-  "vk": "\uF189",
-  "weibo": "\uF18A",
-  "renren": "\uF18B",
-  "pagelines": "\uF18C",
-  "stack-exchange": "\uF18D",
-  "arrow-circle-o-right": "\uF18E",
-  "arrow-circle-o-left": "\uF190",
-  "toggle-left": "\uF191",
-  "caret-square-o-left": "\uF191",
-  "dot-circle-o": "\uF192",
-  "wheelchair": "\uF193",
-  "vimeo-square": "\uF194",
-  "turkish-lira": "\uF195",
-  "try": "\uF195",
-  "plus-square-o": "\uF196",
-  "space-shuttle": "\uF197",
-  "slack": "\uF198",
-  "envelope-square": "\uF199",
-  "wordpress": "\uF19A",
-  "openid": "\uF19B",
-  "institution": "\uF19C",
-  "bank": "\uF19C",
-  "university": "\uF19C",
-  "mortar-board": "\uF19D",
-  "graduation-cap": "\uF19D",
-  "yahoo": "\uF19E",
-  "google": "\uF1A0",
-  "reddit": "\uF1A1",
-  "reddit-square": "\uF1A2",
-  "stumbleupon-circle": "\uF1A3",
-  "stumbleupon": "\uF1A4",
-  "delicious": "\uF1A5",
-  "digg": "\uF1A6",
-  "pied-piper-pp": "\uF1A7",
-  "pied-piper-alt": "\uF1A8",
-  "drupal": "\uF1A9",
-  "joomla": "\uF1AA",
-  "language": "\uF1AB",
-  "fax": "\uF1AC",
-  "building": "\uF1AD",
-  "child": "\uF1AE",
-  "paw": "\uF1B0",
-  "spoon": "\uF1B1",
-  "cube": "\uF1B2",
-  "cubes": "\uF1B3",
-  "behance": "\uF1B4",
-  "behance-square": "\uF1B5",
-  "steam": "\uF1B6",
-  "steam-square": "\uF1B7",
-  "recycle": "\uF1B8",
-  "automobile": "\uF1B9",
-  "car": "\uF1B9",
-  "cab": "\uF1BA",
-  "taxi": "\uF1BA",
-  "tree": "\uF1BB",
-  "spotify": "\uF1BC",
-  "deviantart": "\uF1BD",
-  "soundcloud": "\uF1BE",
-  "database": "\uF1C0",
-  "file-pdf-o": "\uF1C1",
-  "file-word-o": "\uF1C2",
-  "file-excel-o": "\uF1C3",
-  "file-powerpoint-o": "\uF1C4",
-  "file-photo-o": "\uF1C5",
-  "file-picture-o": "\uF1C5",
-  "file-image-o": "\uF1C5",
-  "file-zip-o": "\uF1C6",
-  "file-archive-o": "\uF1C6",
-  "file-sound-o": "\uF1C7",
-  "file-audio-o": "\uF1C7",
-  "file-movie-o": "\uF1C8",
-  "file-video-o": "\uF1C8",
-  "file-code-o": "\uF1C9",
-  "vine": "\uF1CA",
-  "codepen": "\uF1CB",
-  "jsfiddle": "\uF1CC",
-  "life-bouy": "\uF1CD",
-  "life-buoy": "\uF1CD",
-  "life-saver": "\uF1CD",
-  "support": "\uF1CD",
-  "life-ring": "\uF1CD",
-  "circle-o-notch": "\uF1CE",
-  "ra": "\uF1D0",
-  "resistance": "\uF1D0",
-  "rebel": "\uF1D0",
-  "ge": "\uF1D1",
-  "empire": "\uF1D1",
-  "git-square": "\uF1D2",
-  "git": "\uF1D3",
-  "y-combinator-square": "\uF1D4",
-  "yc-square": "\uF1D4",
-  "hacker-news": "\uF1D4",
-  "tencent-weibo": "\uF1D5",
-  "qq": "\uF1D6",
-  "wechat": "\uF1D7",
-  "weixin": "\uF1D7",
-  "send": "\uF1D8",
-  "paper-plane": "\uF1D8",
-  "send-o": "\uF1D9",
-  "paper-plane-o": "\uF1D9",
-  "history": "\uF1DA",
-  "circle-thin": "\uF1DB",
-  "header": "\uF1DC",
-  "paragraph": "\uF1DD",
-  "sliders": "\uF1DE",
-  "share-alt": "\uF1E0",
-  "share-alt-square": "\uF1E1",
-  "bomb": "\uF1E2",
-  "soccer-ball-o": "\uF1E3",
-  "futbol-o": "\uF1E3",
-  "tty": "\uF1E4",
-  "binoculars": "\uF1E5",
-  "plug": "\uF1E6",
-  "slideshare": "\uF1E7",
-  "twitch": "\uF1E8",
-  "yelp": "\uF1E9",
-  "newspaper-o": "\uF1EA",
-  "wifi": "\uF1EB",
-  "calculator": "\uF1EC",
-  "paypal": "\uF1ED",
-  "google-wallet": "\uF1EE",
-  "cc-visa": "\uF1F0",
-  "cc-mastercard": "\uF1F1",
-  "cc-discover": "\uF1F2",
-  "cc-amex": "\uF1F3",
-  "cc-paypal": "\uF1F4",
-  "cc-stripe": "\uF1F5",
-  "bell-slash": "\uF1F6",
-  "bell-slash-o": "\uF1F7",
-  "trash": "\uF1F8",
-  "copyright": "\uF1F9",
-  "at": "\uF1FA",
-  "eyedropper": "\uF1FB",
-  "paint-brush": "\uF1FC",
-  "birthday-cake": "\uF1FD",
-  "area-chart": "\uF1FE",
-  "pie-chart": "\uF200",
-  "line-chart": "\uF201",
-  "lastfm": "\uF202",
-  "lastfm-square": "\uF203",
-  "toggle-off": "\uF204",
-  "toggle-on": "\uF205",
-  "bicycle": "\uF206",
-  "bus": "\uF207",
-  "ioxhost": "\uF208",
-  "angellist": "\uF209",
-  "cc": "\uF20A",
-  "shekel": "\uF20B",
-  "sheqel": "\uF20B",
-  "ils": "\uF20B",
-  "meanpath": "\uF20C",
-  "buysellads": "\uF20D",
-  "connectdevelop": "\uF20E",
-  "dashcube": "\uF210",
-  "forumbee": "\uF211",
-  "leanpub": "\uF212",
-  "sellsy": "\uF213",
-  "shirtsinbulk": "\uF214",
-  "simplybuilt": "\uF215",
-  "skyatlas": "\uF216",
-  "cart-plus": "\uF217",
-  "cart-arrow-down": "\uF218",
-  "diamond": "\uF219",
-  "ship": "\uF21A",
-  "user-secret": "\uF21B",
-  "motorcycle": "\uF21C",
-  "street-view": "\uF21D",
-  "heartbeat": "\uF21E",
-  "venus": "\uF221",
-  "mars": "\uF222",
-  "mercury": "\uF223",
-  "intersex": "\uF224",
-  "transgender": "\uF224",
-  "transgender-alt": "\uF225",
-  "venus-double": "\uF226",
-  "mars-double": "\uF227",
-  "venus-mars": "\uF228",
-  "mars-stroke": "\uF229",
-  "mars-stroke-v": "\uF22A",
-  "mars-stroke-h": "\uF22B",
-  "neuter": "\uF22C",
-  "genderless": "\uF22D",
-  "facebook-official": "\uF230",
-  "pinterest-p": "\uF231",
-  "whatsapp": "\uF232",
-  "server": "\uF233",
-  "user-plus": "\uF234",
-  "user-times": "\uF235",
-  "hotel": "\uF236",
-  "bed": "\uF236",
-  "viacoin": "\uF237",
-  "train": "\uF238",
-  "subway": "\uF239",
-  "medium": "\uF23A",
-  "yc": "\uF23B",
-  "y-combinator": "\uF23B",
-  "optin-monster": "\uF23C",
-  "opencart": "\uF23D",
-  "expeditedssl": "\uF23E",
-  "battery-4": "\uF240",
-  "battery": "\uF240",
-  "battery-full": "\uF240",
-  "battery-3": "\uF241",
-  "battery-three-quarters": "\uF241",
-  "battery-2": "\uF242",
-  "battery-half": "\uF242",
-  "battery-1": "\uF243",
-  "battery-quarter": "\uF243",
-  "battery-0": "\uF244",
-  "battery-empty": "\uF244",
-  "mouse-pointer": "\uF245",
-  "i-cursor": "\uF246",
-  "object-group": "\uF247",
-  "object-ungroup": "\uF248",
-  "sticky-note": "\uF249",
-  "sticky-note-o": "\uF24A",
-  "cc-jcb": "\uF24B",
-  "cc-diners-club": "\uF24C",
-  "clone": "\uF24D",
-  "balance-scale": "\uF24E",
-  "hourglass-o": "\uF250",
-  "hourglass-1": "\uF251",
-  "hourglass-start": "\uF251",
-  "hourglass-2": "\uF252",
-  "hourglass-half": "\uF252",
-  "hourglass-3": "\uF253",
-  "hourglass-end": "\uF253",
-  "hourglass": "\uF254",
-  "hand-grab-o": "\uF255",
-  "hand-rock-o": "\uF255",
-  "hand-stop-o": "\uF256",
-  "hand-paper-o": "\uF256",
-  "hand-scissors-o": "\uF257",
-  "hand-lizard-o": "\uF258",
-  "hand-spock-o": "\uF259",
-  "hand-pointer-o": "\uF25A",
-  "hand-peace-o": "\uF25B",
-  "trademark": "\uF25C",
-  "registered": "\uF25D",
-  "creative-commons": "\uF25E",
-  "gg": "\uF260",
-  "gg-circle": "\uF261",
-  "tripadvisor": "\uF262",
-  "odnoklassniki": "\uF263",
-  "odnoklassniki-square": "\uF264",
-  "get-pocket": "\uF265",
-  "wikipedia-w": "\uF266",
-  "safari": "\uF267",
-  "chrome": "\uF268",
-  "firefox": "\uF269",
-  "opera": "\uF26A",
-  "internet-explorer": "\uF26B",
-  "tv": "\uF26C",
-  "television": "\uF26C",
-  "contao": "\uF26D",
-  "500px": "\uF26E",
-  "amazon": "\uF270",
-  "calendar-plus-o": "\uF271",
-  "calendar-minus-o": "\uF272",
-  "calendar-times-o": "\uF273",
-  "calendar-check-o": "\uF274",
-  "industry": "\uF275",
-  "map-pin": "\uF276",
-  "map-signs": "\uF277",
-  "map-o": "\uF278",
-  "map": "\uF279",
-  "commenting": "\uF27A",
-  "commenting-o": "\uF27B",
-  "houzz": "\uF27C",
-  "vimeo": "\uF27D",
-  "black-tie": "\uF27E",
-  "fonticons": "\uF280",
-  "reddit-alien": "\uF281",
-  "edge": "\uF282",
-  "credit-card-alt": "\uF283",
-  "codiepie": "\uF284",
-  "modx": "\uF285",
-  "fort-awesome": "\uF286",
-  "usb": "\uF287",
-  "product-hunt": "\uF288",
-  "mixcloud": "\uF289",
-  "scribd": "\uF28A",
-  "pause-circle": "\uF28B",
-  "pause-circle-o": "\uF28C",
-  "stop-circle": "\uF28D",
-  "stop-circle-o": "\uF28E",
-  "shopping-bag": "\uF290",
-  "shopping-basket": "\uF291",
-  "hashtag": "\uF292",
-  "bluetooth": "\uF293",
-  "bluetooth-b": "\uF294",
-  "percent": "\uF295",
-  "gitlab": "\uF296",
-  "wpbeginner": "\uF297",
-  "wpforms": "\uF298",
-  "envira": "\uF299",
-  "universal-access": "\uF29A",
-  "wheelchair-alt": "\uF29B",
-  "question-circle-o": "\uF29C",
-  "blind": "\uF29D",
-  "audio-description": "\uF29E",
-  "volume-control-phone": "\uF2A0",
-  "braille": "\uF2A1",
-  "assistive-listening-systems": "\uF2A2",
-  "asl-interpreting": "\uF2A3",
-  "american-sign-language-interpreting": "\uF2A3",
-  "deafness": "\uF2A4",
-  "hard-of-hearing": "\uF2A4",
-  "deaf": "\uF2A4",
-  "glide": "\uF2A5",
-  "glide-g": "\uF2A6",
-  "signing": "\uF2A7",
-  "sign-language": "\uF2A7",
-  "low-vision": "\uF2A8",
-  "viadeo": "\uF2A9",
-  "viadeo-square": "\uF2AA",
-  "snapchat": "\uF2AB",
-  "snapchat-ghost": "\uF2AC",
-  "snapchat-square": "\uF2AD",
-  "pied-piper": "\uF2AE",
-  "first-order": "\uF2B0",
-  "yoast": "\uF2B1",
-  "themeisle": "\uF2B2",
-  "google-plus-circle": "\uF2B3",
-  "google-plus-official": "\uF2B3",
-  "fa": "\uF2B4",
-  "font-awesome": "\uF2B4",
-  "handshake-o": "\uF2B5",
-  "envelope-open": "\uF2B6",
-  "envelope-open-o": "\uF2B7",
-  "linode": "\uF2B8",
-  "address-book": "\uF2B9",
-  "address-book-o": "\uF2BA",
-  "vcard": "\uF2BB",
-  "address-card": "\uF2BB",
-  "vcard-o": "\uF2BC",
-  "address-card-o": "\uF2BC",
-  "user-circle": "\uF2BD",
-  "user-circle-o": "\uF2BE",
-  "user-o": "\uF2C0",
-  "id-badge": "\uF2C1",
-  "drivers-license": "\uF2C2",
-  "id-card": "\uF2C2",
-  "drivers-license-o": "\uF2C3",
-  "id-card-o": "\uF2C3",
-  "quora": "\uF2C4",
-  "free-code-camp": "\uF2C5",
-  "telegram": "\uF2C6",
-  "thermometer-4": "\uF2C7",
-  "thermometer": "\uF2C7",
-  "thermometer-full": "\uF2C7",
-  "thermometer-3": "\uF2C8",
-  "thermometer-three-quarters": "\uF2C8",
-  "thermometer-2": "\uF2C9",
-  "thermometer-half": "\uF2C9",
-  "thermometer-1": "\uF2CA",
-  "thermometer-quarter": "\uF2CA",
-  "thermometer-0": "\uF2CB",
-  "thermometer-empty": "\uF2CB",
-  "shower": "\uF2CC",
-  "bathtub": "\uF2CD",
-  "s15": "\uF2CD",
-  "bath": "\uF2CD",
-  "podcast": "\uF2CE",
-  "window-maximize": "\uF2D0",
-  "window-minimize": "\uF2D1",
-  "window-restore": "\uF2D2",
-  "times-rectangle": "\uF2D3",
-  "window-close": "\uF2D3",
-  "times-rectangle-o": "\uF2D4",
-  "window-close-o": "\uF2D4",
-  "bandcamp": "\uF2D5",
-  "grav": "\uF2D6",
-  "etsy": "\uF2D7",
-  "imdb": "\uF2D8",
-  "ravelry": "\uF2D9",
-  "eercast": "\uF2DA",
-  "microchip": "\uF2DB",
-  "snowflake-o": "\uF2DC",
-  "superpowers": "\uF2DD",
-  "wpexplorer": "\uF2DE",
-  "meetup": "\uF2E0"
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 446:
-/*!********************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 447));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 448));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 449));
-var _default = {
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 447:
-/*!*******************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
-  \*******************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
-
-/***/ }),
-
-/***/ 448:
-/*!************************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
-  \************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
-
-/***/ }),
-
-/***/ 449:
-/*!************************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
-  \************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
-
-/***/ }),
-
-/***/ 471:
-/*!********************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 472));
-var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 473));
-var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 474));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 475));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 476));
-var _default = {
-  en: _en.default,
-  es: _es.default,
-  fr: _fr.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 472:
-/*!*******************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
-  \*******************************************************************************************************/
-/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-pagination.nextText\":\"next\",\"uni-pagination.piecePerPage\":\"piece/page\"}");
-
-/***/ }),
-
-/***/ 473:
-/*!*******************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
-  \*******************************************************************************************************/
-/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pagination.nextText\":\"prxima\",\"uni-pagination.piecePerPage\":\"Art��culo/P��gina\"}");
-
-/***/ }),
-
-/***/ 474:
-/*!*******************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
-  \*******************************************************************************************************/
-/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni-pagination.nextText\":\"suivante\",\"uni-pagination.piecePerPage\":\"Articles/Pages\"}");
-
-/***/ }),
-
-/***/ 475:
-/*!************************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
-  \************************************************************************************************************/
-/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pagination.nextText\":\"下一页\",\"uni-pagination.piecePerPage\":\"条/页\"}");
-
-/***/ }),
-
-/***/ 476:
-/*!************************************************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
-  \************************************************************************************************************/
-/*! exports provided: uni-pagination.prevText, uni-pagination.nextText, uni-pagination.piecePerPage, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pagination.nextText\":\"下一頁\",\"uni-pagination.piecePerPage\":\"條/頁\"}");
-
-/***/ }),
-
-/***/ 5:
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 51:
-/*!****************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/accunt.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  user_id: '2017214879',
-  user_pwd: '2017214879'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 512:
+/***/ 347:
 /*!********************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \********************************************************************************************/
@@ -12441,11 +20767,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 72));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 513));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 514));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 516));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 74));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 59));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 172));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 173));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 175));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 61));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -13118,90 +21444,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 513:
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 514:
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 515);
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return assertThisInitialized(self);
-}
-module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 515:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 516:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _getPrototypeOf(o);
-}
-module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 517:
+/***/ 348:
 /*!*****************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \*****************************************************************************************/
@@ -13537,10 +21780,10 @@ exports.isEqual = isEqual;
 
 /***/ }),
 
-/***/ 574:
-/*!*******************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/w-picker/city-data/province.js ***!
-  \*******************************************************************************/
+/***/ 35:
+/*!******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/common/config.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13551,11441 +21794,112 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-/* eslint-disable */
-var provinceData = [{
-  "label": "北京市",
-  "value": "11"
-}, {
-  "label": "天津市",
-  "value": "12"
-}, {
-  "label": "河北省",
-  "value": "13"
-}, {
-  "label": "山西省",
-  "value": "14"
-}, {
-  "label": "内蒙古自治区",
-  "value": "15"
-}, {
-  "label": "辽宁省",
-  "value": "21"
-}, {
-  "label": "吉林省",
-  "value": "22"
-}, {
-  "label": "黑龙江省",
-  "value": "23"
-}, {
-  "label": "上海市",
-  "value": "31"
-}, {
-  "label": "江苏省",
-  "value": "32"
-}, {
-  "label": "浙江省",
-  "value": "33"
-}, {
-  "label": "安徽省",
-  "value": "34"
-}, {
-  "label": "福建省",
-  "value": "35"
-}, {
-  "label": "江西省",
-  "value": "36"
-}, {
-  "label": "山东省",
-  "value": "37"
-}, {
-  "label": "河南省",
-  "value": "41"
-}, {
-  "label": "湖北省",
-  "value": "42"
-}, {
-  "label": "湖南省",
-  "value": "43"
-}, {
-  "label": "广东省",
-  "value": "44"
-}, {
-  "label": "广西壮族自治区",
-  "value": "45"
-}, {
-  "label": "海南省",
-  "value": "46"
-}, {
-  "label": "重庆市",
-  "value": "50"
-}, {
-  "label": "四川省",
-  "value": "51"
-}, {
-  "label": "贵州省",
-  "value": "52"
-}, {
-  "label": "云南省",
-  "value": "53"
-}, {
-  "label": "西藏自治区",
-  "value": "54"
-}, {
-  "label": "陕西省",
-  "value": "61"
-}, {
-  "label": "甘肃省",
-  "value": "62"
-}, {
-  "label": "青海省",
-  "value": "63"
-}, {
-  "label": "宁夏回族自治区",
-  "value": "64"
-}, {
-  "label": "新疆维吾尔自治区",
-  "value": "65"
-}, {
-  "label": "台湾",
-  "value": "66"
-}, {
-  "label": "香港",
-  "value": "67"
-}, {
-  "label": "澳门",
-  "value": "68"
-}];
-var _default = provinceData;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 575:
-/*!***************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/w-picker/city-data/city.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/* eslint-disable */
-var cityData = [[{
-  "label": "市辖区",
-  "value": "1101"
-}], [{
-  "label": "市辖区",
-  "value": "1201"
-}], [{
-  "label": "石家庄市",
-  "value": "1301"
-}, {
-  "label": "唐山市",
-  "value": "1302"
-}, {
-  "label": "秦皇岛市",
-  "value": "1303"
-}, {
-  "label": "邯郸市",
-  "value": "1304"
-}, {
-  "label": "邢台市",
-  "value": "1305"
-}, {
-  "label": "保定市",
-  "value": "1306"
-}, {
-  "label": "张家口市",
-  "value": "1307"
-}, {
-  "label": "承德市",
-  "value": "1308"
-}, {
-  "label": "沧州市",
-  "value": "1309"
-}, {
-  "label": "廊坊市",
-  "value": "1310"
-}, {
-  "label": "衡水市",
-  "value": "1311"
-}], [{
-  "label": "太原市",
-  "value": "1401"
-}, {
-  "label": "大同市",
-  "value": "1402"
-}, {
-  "label": "阳泉市",
-  "value": "1403"
-}, {
-  "label": "长治市",
-  "value": "1404"
-}, {
-  "label": "晋城市",
-  "value": "1405"
-}, {
-  "label": "朔州市",
-  "value": "1406"
-}, {
-  "label": "晋中市",
-  "value": "1407"
-}, {
-  "label": "运城市",
-  "value": "1408"
-}, {
-  "label": "忻州市",
-  "value": "1409"
-}, {
-  "label": "临汾市",
-  "value": "1410"
-}, {
-  "label": "吕梁市",
-  "value": "1411"
-}], [{
-  "label": "呼和浩特市",
-  "value": "1501"
-}, {
-  "label": "包头市",
-  "value": "1502"
-}, {
-  "label": "乌海市",
-  "value": "1503"
-}, {
-  "label": "赤峰市",
-  "value": "1504"
-}, {
-  "label": "通辽市",
-  "value": "1505"
-}, {
-  "label": "鄂尔多斯市",
-  "value": "1506"
-}, {
-  "label": "呼伦贝尔市",
-  "value": "1507"
-}, {
-  "label": "巴彦淖尔市",
-  "value": "1508"
-}, {
-  "label": "乌兰察布市",
-  "value": "1509"
-}, {
-  "label": "兴安盟",
-  "value": "1522"
-}, {
-  "label": "锡林郭勒盟",
-  "value": "1525"
-}, {
-  "label": "阿拉善盟",
-  "value": "1529"
-}], [{
-  "label": "沈阳市",
-  "value": "2101"
-}, {
-  "label": "大连市",
-  "value": "2102"
-}, {
-  "label": "鞍山市",
-  "value": "2103"
-}, {
-  "label": "抚顺市",
-  "value": "2104"
-}, {
-  "label": "本溪市",
-  "value": "2105"
-}, {
-  "label": "丹东市",
-  "value": "2106"
-}, {
-  "label": "锦州市",
-  "value": "2107"
-}, {
-  "label": "营口市",
-  "value": "2108"
-}, {
-  "label": "阜新市",
-  "value": "2109"
-}, {
-  "label": "辽阳市",
-  "value": "2110"
-}, {
-  "label": "盘锦市",
-  "value": "2111"
-}, {
-  "label": "铁岭市",
-  "value": "2112"
-}, {
-  "label": "朝阳市",
-  "value": "2113"
-}, {
-  "label": "葫芦岛市",
-  "value": "2114"
-}], [{
-  "label": "长春市",
-  "value": "2201"
-}, {
-  "label": "吉林市",
-  "value": "2202"
-}, {
-  "label": "四平市",
-  "value": "2203"
-}, {
-  "label": "辽源市",
-  "value": "2204"
-}, {
-  "label": "通化市",
-  "value": "2205"
-}, {
-  "label": "白山市",
-  "value": "2206"
-}, {
-  "label": "松原市",
-  "value": "2207"
-}, {
-  "label": "白城市",
-  "value": "2208"
-}, {
-  "label": "延边朝鲜族自治州",
-  "value": "2224"
-}], [{
-  "label": "哈尔滨市",
-  "value": "2301"
-}, {
-  "label": "齐齐哈尔市",
-  "value": "2302"
-}, {
-  "label": "鸡西市",
-  "value": "2303"
-}, {
-  "label": "鹤岗市",
-  "value": "2304"
-}, {
-  "label": "双鸭山市",
-  "value": "2305"
-}, {
-  "label": "大庆市",
-  "value": "2306"
-}, {
-  "label": "伊春市",
-  "value": "2307"
-}, {
-  "label": "佳木斯市",
-  "value": "2308"
-}, {
-  "label": "七台河市",
-  "value": "2309"
-}, {
-  "label": "牡丹江市",
-  "value": "2310"
-}, {
-  "label": "黑河市",
-  "value": "2311"
-}, {
-  "label": "绥化市",
-  "value": "2312"
-}, {
-  "label": "大兴安岭地区",
-  "value": "2327"
-}], [{
-  "label": "市辖区",
-  "value": "3101"
-}], [{
-  "label": "南京市",
-  "value": "3201"
-}, {
-  "label": "无锡市",
-  "value": "3202"
-}, {
-  "label": "徐州市",
-  "value": "3203"
-}, {
-  "label": "常州市",
-  "value": "3204"
-}, {
-  "label": "苏州市",
-  "value": "3205"
-}, {
-  "label": "南通市",
-  "value": "3206"
-}, {
-  "label": "连云港市",
-  "value": "3207"
-}, {
-  "label": "淮安市",
-  "value": "3208"
-}, {
-  "label": "盐城市",
-  "value": "3209"
-}, {
-  "label": "扬州市",
-  "value": "3210"
-}, {
-  "label": "镇江市",
-  "value": "3211"
-}, {
-  "label": "泰州市",
-  "value": "3212"
-}, {
-  "label": "宿迁市",
-  "value": "3213"
-}], [{
-  "label": "杭州市",
-  "value": "3301"
-}, {
-  "label": "宁波市",
-  "value": "3302"
-}, {
-  "label": "温州市",
-  "value": "3303"
-}, {
-  "label": "嘉兴市",
-  "value": "3304"
-}, {
-  "label": "湖州市",
-  "value": "3305"
-}, {
-  "label": "绍兴市",
-  "value": "3306"
-}, {
-  "label": "金华市",
-  "value": "3307"
-}, {
-  "label": "衢州市",
-  "value": "3308"
-}, {
-  "label": "舟山市",
-  "value": "3309"
-}, {
-  "label": "台州市",
-  "value": "3310"
-}, {
-  "label": "丽水市",
-  "value": "3311"
-}], [{
-  "label": "合肥市",
-  "value": "3401"
-}, {
-  "label": "芜湖市",
-  "value": "3402"
-}, {
-  "label": "蚌埠市",
-  "value": "3403"
-}, {
-  "label": "淮南市",
-  "value": "3404"
-}, {
-  "label": "马鞍山市",
-  "value": "3405"
-}, {
-  "label": "淮北市",
-  "value": "3406"
-}, {
-  "label": "铜陵市",
-  "value": "3407"
-}, {
-  "label": "安庆市",
-  "value": "3408"
-}, {
-  "label": "黄山市",
-  "value": "3410"
-}, {
-  "label": "滁州市",
-  "value": "3411"
-}, {
-  "label": "阜阳市",
-  "value": "3412"
-}, {
-  "label": "宿州市",
-  "value": "3413"
-}, {
-  "label": "六安市",
-  "value": "3415"
-}, {
-  "label": "亳州市",
-  "value": "3416"
-}, {
-  "label": "池州市",
-  "value": "3417"
-}, {
-  "label": "宣城市",
-  "value": "3418"
-}], [{
-  "label": "福州市",
-  "value": "3501"
-}, {
-  "label": "厦门市",
-  "value": "3502"
-}, {
-  "label": "莆田市",
-  "value": "3503"
-}, {
-  "label": "三明市",
-  "value": "3504"
-}, {
-  "label": "泉州市",
-  "value": "3505"
-}, {
-  "label": "漳州市",
-  "value": "3506"
-}, {
-  "label": "南平市",
-  "value": "3507"
-}, {
-  "label": "龙岩市",
-  "value": "3508"
-}, {
-  "label": "宁德市",
-  "value": "3509"
-}], [{
-  "label": "南昌市",
-  "value": "3601"
-}, {
-  "label": "景德镇市",
-  "value": "3602"
-}, {
-  "label": "萍乡市",
-  "value": "3603"
-}, {
-  "label": "九江市",
-  "value": "3604"
-}, {
-  "label": "新余市",
-  "value": "3605"
-}, {
-  "label": "鹰潭市",
-  "value": "3606"
-}, {
-  "label": "赣州市",
-  "value": "3607"
-}, {
-  "label": "吉安市",
-  "value": "3608"
-}, {
-  "label": "宜春市",
-  "value": "3609"
-}, {
-  "label": "抚州市",
-  "value": "3610"
-}, {
-  "label": "上饶市",
-  "value": "3611"
-}], [{
-  "label": "济南市",
-  "value": "3701"
-}, {
-  "label": "青岛市",
-  "value": "3702"
-}, {
-  "label": "淄博市",
-  "value": "3703"
-}, {
-  "label": "枣庄市",
-  "value": "3704"
-}, {
-  "label": "东营市",
-  "value": "3705"
-}, {
-  "label": "烟台市",
-  "value": "3706"
-}, {
-  "label": "潍坊市",
-  "value": "3707"
-}, {
-  "label": "济宁市",
-  "value": "3708"
-}, {
-  "label": "泰安市",
-  "value": "3709"
-}, {
-  "label": "威海市",
-  "value": "3710"
-}, {
-  "label": "日照市",
-  "value": "3711"
-}, {
-  "label": "莱芜市",
-  "value": "3712"
-}, {
-  "label": "临沂市",
-  "value": "3713"
-}, {
-  "label": "德州市",
-  "value": "3714"
-}, {
-  "label": "聊城市",
-  "value": "3715"
-}, {
-  "label": "滨州市",
-  "value": "3716"
-}, {
-  "label": "菏泽市",
-  "value": "3717"
-}], [{
-  "label": "郑州市",
-  "value": "4101"
-}, {
-  "label": "开封市",
-  "value": "4102"
-}, {
-  "label": "洛阳市",
-  "value": "4103"
-}, {
-  "label": "平顶山市",
-  "value": "4104"
-}, {
-  "label": "安阳市",
-  "value": "4105"
-}, {
-  "label": "鹤壁市",
-  "value": "4106"
-}, {
-  "label": "新乡市",
-  "value": "4107"
-}, {
-  "label": "焦作市",
-  "value": "4108"
-}, {
-  "label": "濮阳市",
-  "value": "4109"
-}, {
-  "label": "许昌市",
-  "value": "4110"
-}, {
-  "label": "漯河市",
-  "value": "4111"
-}, {
-  "label": "三门峡市",
-  "value": "4112"
-}, {
-  "label": "南阳市",
-  "value": "4113"
-}, {
-  "label": "商丘市",
-  "value": "4114"
-}, {
-  "label": "信阳市",
-  "value": "4115"
-}, {
-  "label": "周口市",
-  "value": "4116"
-}, {
-  "label": "驻马店市",
-  "value": "4117"
-}, {
-  "label": "省直辖县级行政区划",
-  "value": "4190"
-}], [{
-  "label": "武汉市",
-  "value": "4201"
-}, {
-  "label": "黄石市",
-  "value": "4202"
-}, {
-  "label": "十堰市",
-  "value": "4203"
-}, {
-  "label": "宜昌市",
-  "value": "4205"
-}, {
-  "label": "襄阳市",
-  "value": "4206"
-}, {
-  "label": "鄂州市",
-  "value": "4207"
-}, {
-  "label": "荆门市",
-  "value": "4208"
-}, {
-  "label": "孝感市",
-  "value": "4209"
-}, {
-  "label": "荆州市",
-  "value": "4210"
-}, {
-  "label": "黄冈市",
-  "value": "4211"
-}, {
-  "label": "咸宁市",
-  "value": "4212"
-}, {
-  "label": "随州市",
-  "value": "4213"
-}, {
-  "label": "恩施土家族苗族自治州",
-  "value": "4228"
-}, {
-  "label": "省直辖县级行政区划",
-  "value": "4290"
-}], [{
-  "label": "长沙市",
-  "value": "4301"
-}, {
-  "label": "株洲市",
-  "value": "4302"
-}, {
-  "label": "湘潭市",
-  "value": "4303"
-}, {
-  "label": "衡阳市",
-  "value": "4304"
-}, {
-  "label": "邵阳市",
-  "value": "4305"
-}, {
-  "label": "岳阳市",
-  "value": "4306"
-}, {
-  "label": "常德市",
-  "value": "4307"
-}, {
-  "label": "张家界市",
-  "value": "4308"
-}, {
-  "label": "益阳市",
-  "value": "4309"
-}, {
-  "label": "郴州市",
-  "value": "4310"
-}, {
-  "label": "永州市",
-  "value": "4311"
-}, {
-  "label": "怀化市",
-  "value": "4312"
-}, {
-  "label": "娄底市",
-  "value": "4313"
-}, {
-  "label": "湘西土家族苗族自治州",
-  "value": "4331"
-}], [{
-  "label": "广州市",
-  "value": "4401"
-}, {
-  "label": "韶关市",
-  "value": "4402"
-}, {
-  "label": "深圳市",
-  "value": "4403"
-}, {
-  "label": "珠海市",
-  "value": "4404"
-}, {
-  "label": "汕头市",
-  "value": "4405"
-}, {
-  "label": "佛山市",
-  "value": "4406"
-}, {
-  "label": "江门市",
-  "value": "4407"
-}, {
-  "label": "湛江市",
-  "value": "4408"
-}, {
-  "label": "茂名市",
-  "value": "4409"
-}, {
-  "label": "肇庆市",
-  "value": "4412"
-}, {
-  "label": "惠州市",
-  "value": "4413"
-}, {
-  "label": "梅州市",
-  "value": "4414"
-}, {
-  "label": "汕尾市",
-  "value": "4415"
-}, {
-  "label": "河源市",
-  "value": "4416"
-}, {
-  "label": "阳江市",
-  "value": "4417"
-}, {
-  "label": "清远市",
-  "value": "4418"
-}, {
-  "label": "东莞市",
-  "value": "4419"
-}, {
-  "label": "中山市",
-  "value": "4420"
-}, {
-  "label": "潮州市",
-  "value": "4451"
-}, {
-  "label": "揭阳市",
-  "value": "4452"
-}, {
-  "label": "云浮市",
-  "value": "4453"
-}], [{
-  "label": "南宁市",
-  "value": "4501"
-}, {
-  "label": "柳州市",
-  "value": "4502"
-}, {
-  "label": "桂林市",
-  "value": "4503"
-}, {
-  "label": "梧州市",
-  "value": "4504"
-}, {
-  "label": "北海市",
-  "value": "4505"
-}, {
-  "label": "防城港市",
-  "value": "4506"
-}, {
-  "label": "钦州市",
-  "value": "4507"
-}, {
-  "label": "贵港市",
-  "value": "4508"
-}, {
-  "label": "玉林市",
-  "value": "4509"
-}, {
-  "label": "百色市",
-  "value": "4510"
-}, {
-  "label": "贺州市",
-  "value": "4511"
-}, {
-  "label": "河池市",
-  "value": "4512"
-}, {
-  "label": "来宾市",
-  "value": "4513"
-}, {
-  "label": "崇左市",
-  "value": "4514"
-}], [{
-  "label": "海口市",
-  "value": "4601"
-}, {
-  "label": "三亚市",
-  "value": "4602"
-}, {
-  "label": "三沙市",
-  "value": "4603"
-}, {
-  "label": "儋州市",
-  "value": "4604"
-}, {
-  "label": "省直辖县级行政区划",
-  "value": "4690"
-}], [{
-  "label": "市辖区",
-  "value": "5001"
-}, {
-  "label": "县",
-  "value": "5002"
-}], [{
-  "label": "成都市",
-  "value": "5101"
-}, {
-  "label": "自贡市",
-  "value": "5103"
-}, {
-  "label": "攀枝花市",
-  "value": "5104"
-}, {
-  "label": "泸州市",
-  "value": "5105"
-}, {
-  "label": "德阳市",
-  "value": "5106"
-}, {
-  "label": "绵阳市",
-  "value": "5107"
-}, {
-  "label": "广元市",
-  "value": "5108"
-}, {
-  "label": "遂宁市",
-  "value": "5109"
-}, {
-  "label": "内江市",
-  "value": "5110"
-}, {
-  "label": "乐山市",
-  "value": "5111"
-}, {
-  "label": "南充市",
-  "value": "5113"
-}, {
-  "label": "眉山市",
-  "value": "5114"
-}, {
-  "label": "宜宾市",
-  "value": "5115"
-}, {
-  "label": "广安市",
-  "value": "5116"
-}, {
-  "label": "达州市",
-  "value": "5117"
-}, {
-  "label": "雅安市",
-  "value": "5118"
-}, {
-  "label": "巴中市",
-  "value": "5119"
-}, {
-  "label": "资阳市",
-  "value": "5120"
-}, {
-  "label": "阿坝藏族羌族自治州",
-  "value": "5132"
-}, {
-  "label": "甘孜藏族自治州",
-  "value": "5133"
-}, {
-  "label": "凉山彝族自治州",
-  "value": "5134"
-}], [{
-  "label": "贵阳市",
-  "value": "5201"
-}, {
-  "label": "六盘水市",
-  "value": "5202"
-}, {
-  "label": "遵义市",
-  "value": "5203"
-}, {
-  "label": "安顺市",
-  "value": "5204"
-}, {
-  "label": "毕节市",
-  "value": "5205"
-}, {
-  "label": "铜仁市",
-  "value": "5206"
-}, {
-  "label": "黔西南布依族苗族自治州",
-  "value": "5223"
-}, {
-  "label": "黔东南苗族侗族自治州",
-  "value": "5226"
-}, {
-  "label": "黔南布依族苗族自治州",
-  "value": "5227"
-}], [{
-  "label": "昆明市",
-  "value": "5301"
-}, {
-  "label": "曲靖市",
-  "value": "5303"
-}, {
-  "label": "玉溪市",
-  "value": "5304"
-}, {
-  "label": "保山市",
-  "value": "5305"
-}, {
-  "label": "昭通市",
-  "value": "5306"
-}, {
-  "label": "丽江市",
-  "value": "5307"
-}, {
-  "label": "普洱市",
-  "value": "5308"
-}, {
-  "label": "临沧市",
-  "value": "5309"
-}, {
-  "label": "楚雄彝族自治州",
-  "value": "5323"
-}, {
-  "label": "红河哈尼族彝族自治州",
-  "value": "5325"
-}, {
-  "label": "文山壮族苗族自治州",
-  "value": "5326"
-}, {
-  "label": "西双版纳傣族自治州",
-  "value": "5328"
-}, {
-  "label": "大理白族自治州",
-  "value": "5329"
-}, {
-  "label": "德宏傣族景颇族自治州",
-  "value": "5331"
-}, {
-  "label": "怒江傈僳族自治州",
-  "value": "5333"
-}, {
-  "label": "迪庆藏族自治州",
-  "value": "5334"
-}], [{
-  "label": "拉萨市",
-  "value": "5401"
-}, {
-  "label": "日喀则市",
-  "value": "5402"
-}, {
-  "label": "昌都市",
-  "value": "5403"
-}, {
-  "label": "林芝市",
-  "value": "5404"
-}, {
-  "label": "山南市",
-  "value": "5405"
-}, {
-  "label": "那曲地区",
-  "value": "5424"
-}, {
-  "label": "阿里地区",
-  "value": "5425"
-}], [{
-  "label": "西安市",
-  "value": "6101"
-}, {
-  "label": "铜川市",
-  "value": "6102"
-}, {
-  "label": "宝鸡市",
-  "value": "6103"
-}, {
-  "label": "咸阳市",
-  "value": "6104"
-}, {
-  "label": "渭南市",
-  "value": "6105"
-}, {
-  "label": "延安市",
-  "value": "6106"
-}, {
-  "label": "汉中市",
-  "value": "6107"
-}, {
-  "label": "榆林市",
-  "value": "6108"
-}, {
-  "label": "安康市",
-  "value": "6109"
-}, {
-  "label": "商洛市",
-  "value": "6110"
-}], [{
-  "label": "兰州市",
-  "value": "6201"
-}, {
-  "label": "嘉峪关市",
-  "value": "6202"
-}, {
-  "label": "金昌市",
-  "value": "6203"
-}, {
-  "label": "白银市",
-  "value": "6204"
-}, {
-  "label": "天水市",
-  "value": "6205"
-}, {
-  "label": "武威市",
-  "value": "6206"
-}, {
-  "label": "张掖市",
-  "value": "6207"
-}, {
-  "label": "平凉市",
-  "value": "6208"
-}, {
-  "label": "酒泉市",
-  "value": "6209"
-}, {
-  "label": "庆阳市",
-  "value": "6210"
-}, {
-  "label": "定西市",
-  "value": "6211"
-}, {
-  "label": "陇南市",
-  "value": "6212"
-}, {
-  "label": "临夏回族自治州",
-  "value": "6229"
-}, {
-  "label": "甘南藏族自治州",
-  "value": "6230"
-}], [{
-  "label": "西宁市",
-  "value": "6301"
-}, {
-  "label": "海东市",
-  "value": "6302"
-}, {
-  "label": "海北藏族自治州",
-  "value": "6322"
-}, {
-  "label": "黄南藏族自治州",
-  "value": "6323"
-}, {
-  "label": "海南藏族自治州",
-  "value": "6325"
-}, {
-  "label": "果洛藏族自治州",
-  "value": "6326"
-}, {
-  "label": "玉树藏族自治州",
-  "value": "6327"
-}, {
-  "label": "海西蒙古族藏族自治州",
-  "value": "6328"
-}], [{
-  "label": "银川市",
-  "value": "6401"
-}, {
-  "label": "石嘴山市",
-  "value": "6402"
-}, {
-  "label": "吴忠市",
-  "value": "6403"
-}, {
-  "label": "固原市",
-  "value": "6404"
-}, {
-  "label": "中卫市",
-  "value": "6405"
-}], [{
-  "label": "乌鲁木齐市",
-  "value": "6501"
-}, {
-  "label": "克拉玛依市",
-  "value": "6502"
-}, {
-  "label": "吐鲁番市",
-  "value": "6504"
-}, {
-  "label": "哈密市",
-  "value": "6505"
-}, {
-  "label": "昌吉回族自治州",
-  "value": "6523"
-}, {
-  "label": "博尔塔拉蒙古自治州",
-  "value": "6527"
-}, {
-  "label": "巴音郭楞蒙古自治州",
-  "value": "6528"
-}, {
-  "label": "阿克苏地区",
-  "value": "6529"
-}, {
-  "label": "克孜勒苏柯尔克孜自治州",
-  "value": "6530"
-}, {
-  "label": "喀什地区",
-  "value": "6531"
-}, {
-  "label": "和田地区",
-  "value": "6532"
-}, {
-  "label": "伊犁哈萨克自治州",
-  "value": "6540"
-}, {
-  "label": "塔城地区",
-  "value": "6542"
-}, {
-  "label": "阿勒泰地区",
-  "value": "6543"
-}, {
-  "label": "自治区直辖县级行政区划",
-  "value": "6590"
-}], [{
-  "label": "台北",
-  "value": "6601"
-}, {
-  "label": "高雄",
-  "value": "6602"
-}, {
-  "label": "基隆",
-  "value": "6603"
-}, {
-  "label": "台中",
-  "value": "6604"
-}, {
-  "label": "台南",
-  "value": "6605"
-}, {
-  "label": "新竹",
-  "value": "6606"
-}, {
-  "label": "嘉义",
-  "value": "6607"
-}, {
-  "label": "宜兰",
-  "value": "6608"
-}, {
-  "label": "桃园",
-  "value": "6609"
-}, {
-  "label": "苗栗",
-  "value": "6610"
-}, {
-  "label": "彰化",
-  "value": "6611"
-}, {
-  "label": "南投",
-  "value": "6612"
-}, {
-  "label": "云林",
-  "value": "6613"
-}, {
-  "label": "屏东",
-  "value": "6614"
-}, {
-  "label": "台东",
-  "value": "6615"
-}, {
-  "label": "花莲",
-  "value": "6616"
-}, {
-  "label": "澎湖",
-  "value": "6617"
-}], [{
-  "label": "香港岛",
-  "value": "6701"
-}, {
-  "label": "九龙",
-  "value": "6702"
-}, {
-  "label": "新界",
-  "value": "6703"
-}], [{
-  "label": "澳门半岛",
-  "value": "6801"
-}, {
-  "label": "氹仔岛",
-  "value": "6802"
-}, {
-  "label": "路环岛",
-  "value": "6803"
-}, {
-  "label": "路氹城",
-  "value": "6804"
-}]];
-var _default = cityData;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 576:
-/*!***************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/w-picker/city-data/area.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/* eslint-disable */
-var areaData = [[[{
-  "label": "东城区",
-  "value": "110101"
-}, {
-  "label": "西城区",
-  "value": "110102"
-}, {
-  "label": "朝阳区",
-  "value": "110105"
-}, {
-  "label": "丰台区",
-  "value": "110106"
-}, {
-  "label": "石景山区",
-  "value": "110107"
-}, {
-  "label": "海淀区",
-  "value": "110108"
-}, {
-  "label": "门头沟区",
-  "value": "110109"
-}, {
-  "label": "房山区",
-  "value": "110111"
-}, {
-  "label": "通州区",
-  "value": "110112"
-}, {
-  "label": "顺义区",
-  "value": "110113"
-}, {
-  "label": "昌平区",
-  "value": "110114"
-}, {
-  "label": "大兴区",
-  "value": "110115"
-}, {
-  "label": "怀柔区",
-  "value": "110116"
-}, {
-  "label": "平谷区",
-  "value": "110117"
-}, {
-  "label": "密云区",
-  "value": "110118"
-}, {
-  "label": "延庆区",
-  "value": "110119"
-}]], [[{
-  "label": "和平区",
-  "value": "120101"
-}, {
-  "label": "河东区",
-  "value": "120102"
-}, {
-  "label": "河西区",
-  "value": "120103"
-}, {
-  "label": "南开区",
-  "value": "120104"
-}, {
-  "label": "河北区",
-  "value": "120105"
-}, {
-  "label": "红桥区",
-  "value": "120106"
-}, {
-  "label": "东丽区",
-  "value": "120110"
-}, {
-  "label": "西青区",
-  "value": "120111"
-}, {
-  "label": "津南区",
-  "value": "120112"
-}, {
-  "label": "北辰区",
-  "value": "120113"
-}, {
-  "label": "武清区",
-  "value": "120114"
-}, {
-  "label": "宝坻区",
-  "value": "120115"
-}, {
-  "label": "滨海新区",
-  "value": "120116"
-}, {
-  "label": "宁河区",
-  "value": "120117"
-}, {
-  "label": "静海区",
-  "value": "120118"
-}, {
-  "label": "蓟州区",
-  "value": "120119"
-}]], [[{
-  "label": "长安区",
-  "value": "130102"
-}, {
-  "label": "桥西区",
-  "value": "130104"
-}, {
-  "label": "新华区",
-  "value": "130105"
-}, {
-  "label": "井陉矿区",
-  "value": "130107"
-}, {
-  "label": "裕华区",
-  "value": "130108"
-}, {
-  "label": "藁城区",
-  "value": "130109"
-}, {
-  "label": "鹿泉区",
-  "value": "130110"
-}, {
-  "label": "栾城区",
-  "value": "130111"
-}, {
-  "label": "井陉县",
-  "value": "130121"
-}, {
-  "label": "正定县",
-  "value": "130123"
-}, {
-  "label": "行唐县",
-  "value": "130125"
-}, {
-  "label": "灵寿县",
-  "value": "130126"
-}, {
-  "label": "高邑县",
-  "value": "130127"
-}, {
-  "label": "深泽县",
-  "value": "130128"
-}, {
-  "label": "赞皇县",
-  "value": "130129"
-}, {
-  "label": "无极县",
-  "value": "130130"
-}, {
-  "label": "平山县",
-  "value": "130131"
-}, {
-  "label": "元氏县",
-  "value": "130132"
-}, {
-  "label": "赵县",
-  "value": "130133"
-}, {
-  "label": "石家庄高新技术产业开发区",
-  "value": "130171"
-}, {
-  "label": "石家庄循环化工园区",
-  "value": "130172"
-}, {
-  "label": "辛集市",
-  "value": "130181"
-}, {
-  "label": "晋州市",
-  "value": "130183"
-}, {
-  "label": "新乐市",
-  "value": "130184"
-}], [{
-  "label": "路南区",
-  "value": "130202"
-}, {
-  "label": "路北区",
-  "value": "130203"
-}, {
-  "label": "古冶区",
-  "value": "130204"
-}, {
-  "label": "开平区",
-  "value": "130205"
-}, {
-  "label": "丰南区",
-  "value": "130207"
-}, {
-  "label": "丰润区",
-  "value": "130208"
-}, {
-  "label": "曹妃甸区",
-  "value": "130209"
-}, {
-  "label": "滦县",
-  "value": "130223"
-}, {
-  "label": "滦南县",
-  "value": "130224"
-}, {
-  "label": "乐亭县",
-  "value": "130225"
-}, {
-  "label": "迁西县",
-  "value": "130227"
-}, {
-  "label": "玉田县",
-  "value": "130229"
-}, {
-  "label": "唐山市芦台经济技术开发区",
-  "value": "130271"
-}, {
-  "label": "唐山市汉沽管理区",
-  "value": "130272"
-}, {
-  "label": "唐山高新技术产业开发区",
-  "value": "130273"
-}, {
-  "label": "河北唐山海港经济开发区",
-  "value": "130274"
-}, {
-  "label": "遵化市",
-  "value": "130281"
-}, {
-  "label": "迁安市",
-  "value": "130283"
-}], [{
-  "label": "海港区",
-  "value": "130302"
-}, {
-  "label": "山海关区",
-  "value": "130303"
-}, {
-  "label": "北戴河区",
-  "value": "130304"
-}, {
-  "label": "抚宁区",
-  "value": "130306"
-}, {
-  "label": "青龙满族自治县",
-  "value": "130321"
-}, {
-  "label": "昌黎县",
-  "value": "130322"
-}, {
-  "label": "卢龙县",
-  "value": "130324"
-}, {
-  "label": "秦皇岛市经济技术开发区",
-  "value": "130371"
-}, {
-  "label": "北戴河新区",
-  "value": "130372"
-}], [{
-  "label": "邯山区",
-  "value": "130402"
-}, {
-  "label": "丛台区",
-  "value": "130403"
-}, {
-  "label": "复兴区",
-  "value": "130404"
-}, {
-  "label": "峰峰矿区",
-  "value": "130406"
-}, {
-  "label": "肥乡区",
-  "value": "130407"
-}, {
-  "label": "永年区",
-  "value": "130408"
-}, {
-  "label": "临漳县",
-  "value": "130423"
-}, {
-  "label": "成安县",
-  "value": "130424"
-}, {
-  "label": "大名县",
-  "value": "130425"
-}, {
-  "label": "涉县",
-  "value": "130426"
-}, {
-  "label": "磁县",
-  "value": "130427"
-}, {
-  "label": "邱县",
-  "value": "130430"
-}, {
-  "label": "鸡泽县",
-  "value": "130431"
-}, {
-  "label": "广平县",
-  "value": "130432"
-}, {
-  "label": "馆陶县",
-  "value": "130433"
-}, {
-  "label": "魏县",
-  "value": "130434"
-}, {
-  "label": "曲周县",
-  "value": "130435"
-}, {
-  "label": "邯郸经济技术开发区",
-  "value": "130471"
-}, {
-  "label": "邯郸冀南新区",
-  "value": "130473"
-}, {
-  "label": "武安市",
-  "value": "130481"
-}], [{
-  "label": "桥东区",
-  "value": "130502"
-}, {
-  "label": "桥西区",
-  "value": "130503"
-}, {
-  "label": "邢台县",
-  "value": "130521"
-}, {
-  "label": "临城县",
-  "value": "130522"
-}, {
-  "label": "内丘县",
-  "value": "130523"
-}, {
-  "label": "柏乡县",
-  "value": "130524"
-}, {
-  "label": "隆尧县",
-  "value": "130525"
-}, {
-  "label": "任县",
-  "value": "130526"
-}, {
-  "label": "南和县",
-  "value": "130527"
-}, {
-  "label": "宁晋县",
-  "value": "130528"
-}, {
-  "label": "巨鹿县",
-  "value": "130529"
-}, {
-  "label": "新河县",
-  "value": "130530"
-}, {
-  "label": "广宗县",
-  "value": "130531"
-}, {
-  "label": "平乡县",
-  "value": "130532"
-}, {
-  "label": "威县",
-  "value": "130533"
-}, {
-  "label": "清河县",
-  "value": "130534"
-}, {
-  "label": "临西县",
-  "value": "130535"
-}, {
-  "label": "河北邢台经济开发区",
-  "value": "130571"
-}, {
-  "label": "南宫市",
-  "value": "130581"
-}, {
-  "label": "沙河市",
-  "value": "130582"
-}], [{
-  "label": "竞秀区",
-  "value": "130602"
-}, {
-  "label": "莲池区",
-  "value": "130606"
-}, {
-  "label": "满城区",
-  "value": "130607"
-}, {
-  "label": "清苑区",
-  "value": "130608"
-}, {
-  "label": "徐水区",
-  "value": "130609"
-}, {
-  "label": "涞水县",
-  "value": "130623"
-}, {
-  "label": "阜平县",
-  "value": "130624"
-}, {
-  "label": "定兴县",
-  "value": "130626"
-}, {
-  "label": "唐县",
-  "value": "130627"
-}, {
-  "label": "高阳县",
-  "value": "130628"
-}, {
-  "label": "容城县",
-  "value": "130629"
-}, {
-  "label": "涞源县",
-  "value": "130630"
-}, {
-  "label": "望都县",
-  "value": "130631"
-}, {
-  "label": "安新县",
-  "value": "130632"
-}, {
-  "label": "易县",
-  "value": "130633"
-}, {
-  "label": "曲阳县",
-  "value": "130634"
-}, {
-  "label": "蠡县",
-  "value": "130635"
-}, {
-  "label": "顺平县",
-  "value": "130636"
-}, {
-  "label": "博野县",
-  "value": "130637"
-}, {
-  "label": "雄县",
-  "value": "130638"
-}, {
-  "label": "保定高新技术产业开发区",
-  "value": "130671"
-}, {
-  "label": "保定白沟新城",
-  "value": "130672"
-}, {
-  "label": "涿州市",
-  "value": "130681"
-}, {
-  "label": "定州市",
-  "value": "130682"
-}, {
-  "label": "安国市",
-  "value": "130683"
-}, {
-  "label": "高碑店市",
-  "value": "130684"
-}], [{
-  "label": "桥东区",
-  "value": "130702"
-}, {
-  "label": "桥西区",
-  "value": "130703"
-}, {
-  "label": "宣化区",
-  "value": "130705"
-}, {
-  "label": "下花园区",
-  "value": "130706"
-}, {
-  "label": "万全区",
-  "value": "130708"
-}, {
-  "label": "崇礼区",
-  "value": "130709"
-}, {
-  "label": "张北县",
-  "value": "130722"
-}, {
-  "label": "康保县",
-  "value": "130723"
-}, {
-  "label": "沽源县",
-  "value": "130724"
-}, {
-  "label": "尚义县",
-  "value": "130725"
-}, {
-  "label": "蔚县",
-  "value": "130726"
-}, {
-  "label": "阳原县",
-  "value": "130727"
-}, {
-  "label": "怀安县",
-  "value": "130728"
-}, {
-  "label": "怀来县",
-  "value": "130730"
-}, {
-  "label": "涿鹿县",
-  "value": "130731"
-}, {
-  "label": "赤城县",
-  "value": "130732"
-}, {
-  "label": "张家口市高新技术产业开发区",
-  "value": "130771"
-}, {
-  "label": "张家口市察北管理区",
-  "value": "130772"
-}, {
-  "label": "张家口市塞北管理区",
-  "value": "130773"
-}], [{
-  "label": "双桥区",
-  "value": "130802"
-}, {
-  "label": "双滦区",
-  "value": "130803"
-}, {
-  "label": "鹰手营子矿区",
-  "value": "130804"
-}, {
-  "label": "承德县",
-  "value": "130821"
-}, {
-  "label": "兴隆县",
-  "value": "130822"
-}, {
-  "label": "滦平县",
-  "value": "130824"
-}, {
-  "label": "隆化县",
-  "value": "130825"
-}, {
-  "label": "丰宁满族自治县",
-  "value": "130826"
-}, {
-  "label": "宽城满族自治县",
-  "value": "130827"
-}, {
-  "label": "围场满族蒙古族自治县",
-  "value": "130828"
-}, {
-  "label": "承德高新技术产业开发区",
-  "value": "130871"
-}, {
-  "label": "平泉市",
-  "value": "130881"
-}], [{
-  "label": "新华区",
-  "value": "130902"
-}, {
-  "label": "运河区",
-  "value": "130903"
-}, {
-  "label": "沧县",
-  "value": "130921"
-}, {
-  "label": "青县",
-  "value": "130922"
-}, {
-  "label": "东光县",
-  "value": "130923"
-}, {
-  "label": "海兴县",
-  "value": "130924"
-}, {
-  "label": "盐山县",
-  "value": "130925"
-}, {
-  "label": "肃宁县",
-  "value": "130926"
-}, {
-  "label": "南皮县",
-  "value": "130927"
-}, {
-  "label": "吴桥县",
-  "value": "130928"
-}, {
-  "label": "献县",
-  "value": "130929"
-}, {
-  "label": "孟村回族自治县",
-  "value": "130930"
-}, {
-  "label": "河北沧州经济开发区",
-  "value": "130971"
-}, {
-  "label": "沧州高新技术产业开发区",
-  "value": "130972"
-}, {
-  "label": "沧州渤海新区",
-  "value": "130973"
-}, {
-  "label": "泊头市",
-  "value": "130981"
-}, {
-  "label": "任丘市",
-  "value": "130982"
-}, {
-  "label": "黄骅市",
-  "value": "130983"
-}, {
-  "label": "河间市",
-  "value": "130984"
-}], [{
-  "label": "安次区",
-  "value": "131002"
-}, {
-  "label": "广阳区",
-  "value": "131003"
-}, {
-  "label": "固安县",
-  "value": "131022"
-}, {
-  "label": "永清县",
-  "value": "131023"
-}, {
-  "label": "香河县",
-  "value": "131024"
-}, {
-  "label": "大城县",
-  "value": "131025"
-}, {
-  "label": "文安县",
-  "value": "131026"
-}, {
-  "label": "大厂回族自治县",
-  "value": "131028"
-}, {
-  "label": "廊坊经济技术开发区",
-  "value": "131071"
-}, {
-  "label": "霸州市",
-  "value": "131081"
-}, {
-  "label": "三河市",
-  "value": "131082"
-}], [{
-  "label": "桃城区",
-  "value": "131102"
-}, {
-  "label": "冀州区",
-  "value": "131103"
-}, {
-  "label": "枣强县",
-  "value": "131121"
-}, {
-  "label": "武邑县",
-  "value": "131122"
-}, {
-  "label": "武强县",
-  "value": "131123"
-}, {
-  "label": "饶阳县",
-  "value": "131124"
-}, {
-  "label": "安平县",
-  "value": "131125"
-}, {
-  "label": "故城县",
-  "value": "131126"
-}, {
-  "label": "景县",
-  "value": "131127"
-}, {
-  "label": "阜城县",
-  "value": "131128"
-}, {
-  "label": "河北衡水经济开发区",
-  "value": "131171"
-}, {
-  "label": "衡水滨湖新区",
-  "value": "131172"
-}, {
-  "label": "深州市",
-  "value": "131182"
-}]], [[{
-  "label": "小店区",
-  "value": "140105"
-}, {
-  "label": "迎泽区",
-  "value": "140106"
-}, {
-  "label": "杏花岭区",
-  "value": "140107"
-}, {
-  "label": "尖草坪区",
-  "value": "140108"
-}, {
-  "label": "万柏林区",
-  "value": "140109"
-}, {
-  "label": "晋源区",
-  "value": "140110"
-}, {
-  "label": "清徐县",
-  "value": "140121"
-}, {
-  "label": "阳曲县",
-  "value": "140122"
-}, {
-  "label": "娄烦县",
-  "value": "140123"
-}, {
-  "label": "山西转型综合改革示范区",
-  "value": "140171"
-}, {
-  "label": "古交市",
-  "value": "140181"
-}], [{
-  "label": "城区",
-  "value": "140202"
-}, {
-  "label": "矿区",
-  "value": "140203"
-}, {
-  "label": "南郊区",
-  "value": "140211"
-}, {
-  "label": "新荣区",
-  "value": "140212"
-}, {
-  "label": "阳高县",
-  "value": "140221"
-}, {
-  "label": "天镇县",
-  "value": "140222"
-}, {
-  "label": "广灵县",
-  "value": "140223"
-}, {
-  "label": "灵丘县",
-  "value": "140224"
-}, {
-  "label": "浑源县",
-  "value": "140225"
-}, {
-  "label": "左云县",
-  "value": "140226"
-}, {
-  "label": "大同县",
-  "value": "140227"
-}, {
-  "label": "山西大同经济开发区",
-  "value": "140271"
-}], [{
-  "label": "城区",
-  "value": "140302"
-}, {
-  "label": "矿区",
-  "value": "140303"
-}, {
-  "label": "郊区",
-  "value": "140311"
-}, {
-  "label": "平定县",
-  "value": "140321"
-}, {
-  "label": "盂县",
-  "value": "140322"
-}, {
-  "label": "山西阳泉经济开发区",
-  "value": "140371"
-}], [{
-  "label": "城区",
-  "value": "140402"
-}, {
-  "label": "郊区",
-  "value": "140411"
-}, {
-  "label": "长治县",
-  "value": "140421"
-}, {
-  "label": "襄垣县",
-  "value": "140423"
-}, {
-  "label": "屯留县",
-  "value": "140424"
-}, {
-  "label": "平顺县",
-  "value": "140425"
-}, {
-  "label": "黎城县",
-  "value": "140426"
-}, {
-  "label": "壶关县",
-  "value": "140427"
-}, {
-  "label": "长子县",
-  "value": "140428"
-}, {
-  "label": "武乡县",
-  "value": "140429"
-}, {
-  "label": "沁县",
-  "value": "140430"
-}, {
-  "label": "沁源县",
-  "value": "140431"
-}, {
-  "label": "山西长治高新技术产业园区",
-  "value": "140471"
-}, {
-  "label": "潞城市",
-  "value": "140481"
-}], [{
-  "label": "城区",
-  "value": "140502"
-}, {
-  "label": "沁水县",
-  "value": "140521"
-}, {
-  "label": "阳城县",
-  "value": "140522"
-}, {
-  "label": "陵川县",
-  "value": "140524"
-}, {
-  "label": "泽州县",
-  "value": "140525"
-}, {
-  "label": "高平市",
-  "value": "140581"
-}], [{
-  "label": "朔城区",
-  "value": "140602"
-}, {
-  "label": "平鲁区",
-  "value": "140603"
-}, {
-  "label": "山阴县",
-  "value": "140621"
-}, {
-  "label": "应县",
-  "value": "140622"
-}, {
-  "label": "右玉县",
-  "value": "140623"
-}, {
-  "label": "怀仁县",
-  "value": "140624"
-}, {
-  "label": "山西朔州经济开发区",
-  "value": "140671"
-}], [{
-  "label": "榆次区",
-  "value": "140702"
-}, {
-  "label": "榆社县",
-  "value": "140721"
-}, {
-  "label": "左权县",
-  "value": "140722"
-}, {
-  "label": "和顺县",
-  "value": "140723"
-}, {
-  "label": "昔阳县",
-  "value": "140724"
-}, {
-  "label": "寿阳县",
-  "value": "140725"
-}, {
-  "label": "太谷县",
-  "value": "140726"
-}, {
-  "label": "祁县",
-  "value": "140727"
-}, {
-  "label": "平遥县",
-  "value": "140728"
-}, {
-  "label": "灵石县",
-  "value": "140729"
-}, {
-  "label": "介休市",
-  "value": "140781"
-}], [{
-  "label": "盐湖区",
-  "value": "140802"
-}, {
-  "label": "临猗县",
-  "value": "140821"
-}, {
-  "label": "万荣县",
-  "value": "140822"
-}, {
-  "label": "闻喜县",
-  "value": "140823"
-}, {
-  "label": "稷山县",
-  "value": "140824"
-}, {
-  "label": "新绛县",
-  "value": "140825"
-}, {
-  "label": "绛县",
-  "value": "140826"
-}, {
-  "label": "垣曲县",
-  "value": "140827"
-}, {
-  "label": "夏县",
-  "value": "140828"
-}, {
-  "label": "平陆县",
-  "value": "140829"
-}, {
-  "label": "芮城县",
-  "value": "140830"
-}, {
-  "label": "永济市",
-  "value": "140881"
-}, {
-  "label": "河津市",
-  "value": "140882"
-}], [{
-  "label": "忻府区",
-  "value": "140902"
-}, {
-  "label": "定襄县",
-  "value": "140921"
-}, {
-  "label": "五台县",
-  "value": "140922"
-}, {
-  "label": "代县",
-  "value": "140923"
-}, {
-  "label": "繁峙县",
-  "value": "140924"
-}, {
-  "label": "宁武县",
-  "value": "140925"
-}, {
-  "label": "静乐县",
-  "value": "140926"
-}, {
-  "label": "神池县",
-  "value": "140927"
-}, {
-  "label": "五寨县",
-  "value": "140928"
-}, {
-  "label": "岢岚县",
-  "value": "140929"
-}, {
-  "label": "河曲县",
-  "value": "140930"
-}, {
-  "label": "保德县",
-  "value": "140931"
-}, {
-  "label": "偏关县",
-  "value": "140932"
-}, {
-  "label": "五台山风景名胜区",
-  "value": "140971"
-}, {
-  "label": "原平市",
-  "value": "140981"
-}], [{
-  "label": "尧都区",
-  "value": "141002"
-}, {
-  "label": "曲沃县",
-  "value": "141021"
-}, {
-  "label": "翼城县",
-  "value": "141022"
-}, {
-  "label": "襄汾县",
-  "value": "141023"
-}, {
-  "label": "洪洞县",
-  "value": "141024"
-}, {
-  "label": "古县",
-  "value": "141025"
-}, {
-  "label": "安泽县",
-  "value": "141026"
-}, {
-  "label": "浮山县",
-  "value": "141027"
-}, {
-  "label": "吉县",
-  "value": "141028"
-}, {
-  "label": "乡宁县",
-  "value": "141029"
-}, {
-  "label": "大宁县",
-  "value": "141030"
-}, {
-  "label": "隰县",
-  "value": "141031"
-}, {
-  "label": "永和县",
-  "value": "141032"
-}, {
-  "label": "蒲县",
-  "value": "141033"
-}, {
-  "label": "汾西县",
-  "value": "141034"
-}, {
-  "label": "侯马市",
-  "value": "141081"
-}, {
-  "label": "霍州市",
-  "value": "141082"
-}], [{
-  "label": "离石区",
-  "value": "141102"
-}, {
-  "label": "文水县",
-  "value": "141121"
-}, {
-  "label": "交城县",
-  "value": "141122"
-}, {
-  "label": "兴县",
-  "value": "141123"
-}, {
-  "label": "临县",
-  "value": "141124"
-}, {
-  "label": "柳林县",
-  "value": "141125"
-}, {
-  "label": "石楼县",
-  "value": "141126"
-}, {
-  "label": "岚县",
-  "value": "141127"
-}, {
-  "label": "方山县",
-  "value": "141128"
-}, {
-  "label": "中阳县",
-  "value": "141129"
-}, {
-  "label": "交口县",
-  "value": "141130"
-}, {
-  "label": "孝义市",
-  "value": "141181"
-}, {
-  "label": "汾阳市",
-  "value": "141182"
-}]], [[{
-  "label": "新城区",
-  "value": "150102"
-}, {
-  "label": "回民区",
-  "value": "150103"
-}, {
-  "label": "玉泉区",
-  "value": "150104"
-}, {
-  "label": "赛罕区",
-  "value": "150105"
-}, {
-  "label": "土默特左旗",
-  "value": "150121"
-}, {
-  "label": "托克托县",
-  "value": "150122"
-}, {
-  "label": "和林格尔县",
-  "value": "150123"
-}, {
-  "label": "清水河县",
-  "value": "150124"
-}, {
-  "label": "武川县",
-  "value": "150125"
-}, {
-  "label": "呼和浩特金海工业园区",
-  "value": "150171"
-}, {
-  "label": "呼和浩特经济技术开发区",
-  "value": "150172"
-}], [{
-  "label": "东河区",
-  "value": "150202"
-}, {
-  "label": "昆都仑区",
-  "value": "150203"
-}, {
-  "label": "青山区",
-  "value": "150204"
-}, {
-  "label": "石拐区",
-  "value": "150205"
-}, {
-  "label": "白云鄂博矿区",
-  "value": "150206"
-}, {
-  "label": "九原区",
-  "value": "150207"
-}, {
-  "label": "土默特右旗",
-  "value": "150221"
-}, {
-  "label": "固阳县",
-  "value": "150222"
-}, {
-  "label": "达尔罕茂明安联合旗",
-  "value": "150223"
-}, {
-  "label": "包头稀土高新技术产业开发区",
-  "value": "150271"
-}], [{
-  "label": "海勃湾区",
-  "value": "150302"
-}, {
-  "label": "海南区",
-  "value": "150303"
-}, {
-  "label": "乌达区",
-  "value": "150304"
-}], [{
-  "label": "红山区",
-  "value": "150402"
-}, {
-  "label": "元宝山区",
-  "value": "150403"
-}, {
-  "label": "松山区",
-  "value": "150404"
-}, {
-  "label": "阿鲁科尔沁旗",
-  "value": "150421"
-}, {
-  "label": "巴林左旗",
-  "value": "150422"
-}, {
-  "label": "巴林右旗",
-  "value": "150423"
-}, {
-  "label": "林西县",
-  "value": "150424"
-}, {
-  "label": "克什克腾旗",
-  "value": "150425"
-}, {
-  "label": "翁牛特旗",
-  "value": "150426"
-}, {
-  "label": "喀喇沁旗",
-  "value": "150428"
-}, {
-  "label": "宁城县",
-  "value": "150429"
-}, {
-  "label": "敖汉旗",
-  "value": "150430"
-}], [{
-  "label": "科尔沁区",
-  "value": "150502"
-}, {
-  "label": "科尔沁左翼中旗",
-  "value": "150521"
-}, {
-  "label": "科尔沁左翼后旗",
-  "value": "150522"
-}, {
-  "label": "开鲁县",
-  "value": "150523"
-}, {
-  "label": "库伦旗",
-  "value": "150524"
-}, {
-  "label": "奈曼旗",
-  "value": "150525"
-}, {
-  "label": "扎鲁特旗",
-  "value": "150526"
-}, {
-  "label": "通辽经济技术开发区",
-  "value": "150571"
-}, {
-  "label": "霍林郭勒市",
-  "value": "150581"
-}], [{
-  "label": "东胜区",
-  "value": "150602"
-}, {
-  "label": "康巴什区",
-  "value": "150603"
-}, {
-  "label": "达拉特旗",
-  "value": "150621"
-}, {
-  "label": "准格尔旗",
-  "value": "150622"
-}, {
-  "label": "鄂托克前旗",
-  "value": "150623"
-}, {
-  "label": "鄂托克旗",
-  "value": "150624"
-}, {
-  "label": "杭锦旗",
-  "value": "150625"
-}, {
-  "label": "乌审旗",
-  "value": "150626"
-}, {
-  "label": "伊金霍洛旗",
-  "value": "150627"
-}], [{
-  "label": "海拉尔区",
-  "value": "150702"
-}, {
-  "label": "扎赉诺尔区",
-  "value": "150703"
-}, {
-  "label": "阿荣旗",
-  "value": "150721"
-}, {
-  "label": "莫力达瓦达斡尔族自治旗",
-  "value": "150722"
-}, {
-  "label": "鄂伦春自治旗",
-  "value": "150723"
-}, {
-  "label": "鄂温克族自治旗",
-  "value": "150724"
-}, {
-  "label": "陈巴尔虎旗",
-  "value": "150725"
-}, {
-  "label": "新巴尔虎左旗",
-  "value": "150726"
-}, {
-  "label": "新巴尔虎右旗",
-  "value": "150727"
-}, {
-  "label": "满洲里市",
-  "value": "150781"
-}, {
-  "label": "牙克石市",
-  "value": "150782"
-}, {
-  "label": "扎兰屯市",
-  "value": "150783"
-}, {
-  "label": "额尔古纳市",
-  "value": "150784"
-}, {
-  "label": "根河市",
-  "value": "150785"
-}], [{
-  "label": "临河区",
-  "value": "150802"
-}, {
-  "label": "五原县",
-  "value": "150821"
-}, {
-  "label": "磴口县",
-  "value": "150822"
-}, {
-  "label": "乌拉特前旗",
-  "value": "150823"
-}, {
-  "label": "乌拉特中旗",
-  "value": "150824"
-}, {
-  "label": "乌拉特后旗",
-  "value": "150825"
-}, {
-  "label": "杭锦后旗",
-  "value": "150826"
-}], [{
-  "label": "集宁区",
-  "value": "150902"
-}, {
-  "label": "卓资县",
-  "value": "150921"
-}, {
-  "label": "化德县",
-  "value": "150922"
-}, {
-  "label": "商都县",
-  "value": "150923"
-}, {
-  "label": "兴和县",
-  "value": "150924"
-}, {
-  "label": "凉城县",
-  "value": "150925"
-}, {
-  "label": "察哈尔右翼前旗",
-  "value": "150926"
-}, {
-  "label": "察哈尔右翼中旗",
-  "value": "150927"
-}, {
-  "label": "察哈尔右翼后旗",
-  "value": "150928"
-}, {
-  "label": "四子王旗",
-  "value": "150929"
-}, {
-  "label": "丰镇市",
-  "value": "150981"
-}], [{
-  "label": "乌兰浩特市",
-  "value": "152201"
-}, {
-  "label": "阿尔山市",
-  "value": "152202"
-}, {
-  "label": "科尔沁右翼前旗",
-  "value": "152221"
-}, {
-  "label": "科尔沁右翼中旗",
-  "value": "152222"
-}, {
-  "label": "扎赉特旗",
-  "value": "152223"
-}, {
-  "label": "突泉县",
-  "value": "152224"
-}], [{
-  "label": "二连浩特市",
-  "value": "152501"
-}, {
-  "label": "锡林浩特市",
-  "value": "152502"
-}, {
-  "label": "阿巴嘎旗",
-  "value": "152522"
-}, {
-  "label": "苏尼特左旗",
-  "value": "152523"
-}, {
-  "label": "苏尼特右旗",
-  "value": "152524"
-}, {
-  "label": "东乌珠穆沁旗",
-  "value": "152525"
-}, {
-  "label": "西乌珠穆沁旗",
-  "value": "152526"
-}, {
-  "label": "太仆寺旗",
-  "value": "152527"
-}, {
-  "label": "镶黄旗",
-  "value": "152528"
-}, {
-  "label": "正镶白旗",
-  "value": "152529"
-}, {
-  "label": "正蓝旗",
-  "value": "152530"
-}, {
-  "label": "多伦县",
-  "value": "152531"
-}, {
-  "label": "乌拉盖管委会",
-  "value": "152571"
-}], [{
-  "label": "阿拉善左旗",
-  "value": "152921"
-}, {
-  "label": "阿拉善右旗",
-  "value": "152922"
-}, {
-  "label": "额济纳旗",
-  "value": "152923"
-}, {
-  "label": "内蒙古阿拉善经济开发区",
-  "value": "152971"
-}]], [[{
-  "label": "和平区",
-  "value": "210102"
-}, {
-  "label": "沈河区",
-  "value": "210103"
-}, {
-  "label": "大东区",
-  "value": "210104"
-}, {
-  "label": "皇姑区",
-  "value": "210105"
-}, {
-  "label": "铁西区",
-  "value": "210106"
-}, {
-  "label": "苏家屯区",
-  "value": "210111"
-}, {
-  "label": "浑南区",
-  "value": "210112"
-}, {
-  "label": "沈北新区",
-  "value": "210113"
-}, {
-  "label": "于洪区",
-  "value": "210114"
-}, {
-  "label": "辽中区",
-  "value": "210115"
-}, {
-  "label": "康平县",
-  "value": "210123"
-}, {
-  "label": "法库县",
-  "value": "210124"
-}, {
-  "label": "新民市",
-  "value": "210181"
-}], [{
-  "label": "中山区",
-  "value": "210202"
-}, {
-  "label": "西岗区",
-  "value": "210203"
-}, {
-  "label": "沙河口区",
-  "value": "210204"
-}, {
-  "label": "甘井子区",
-  "value": "210211"
-}, {
-  "label": "旅顺口区",
-  "value": "210212"
-}, {
-  "label": "金州区",
-  "value": "210213"
-}, {
-  "label": "普兰店区",
-  "value": "210214"
-}, {
-  "label": "长海县",
-  "value": "210224"
-}, {
-  "label": "瓦房店市",
-  "value": "210281"
-}, {
-  "label": "庄河市",
-  "value": "210283"
-}], [{
-  "label": "铁东区",
-  "value": "210302"
-}, {
-  "label": "铁西区",
-  "value": "210303"
-}, {
-  "label": "立山区",
-  "value": "210304"
-}, {
-  "label": "千山区",
-  "value": "210311"
-}, {
-  "label": "台安县",
-  "value": "210321"
-}, {
-  "label": "岫岩满族自治县",
-  "value": "210323"
-}, {
-  "label": "海城市",
-  "value": "210381"
-}], [{
-  "label": "新抚区",
-  "value": "210402"
-}, {
-  "label": "东洲区",
-  "value": "210403"
-}, {
-  "label": "望花区",
-  "value": "210404"
-}, {
-  "label": "顺城区",
-  "value": "210411"
-}, {
-  "label": "抚顺县",
-  "value": "210421"
-}, {
-  "label": "新宾满族自治县",
-  "value": "210422"
-}, {
-  "label": "清原满族自治县",
-  "value": "210423"
-}], [{
-  "label": "平山区",
-  "value": "210502"
-}, {
-  "label": "溪湖区",
-  "value": "210503"
-}, {
-  "label": "明山区",
-  "value": "210504"
-}, {
-  "label": "南芬区",
-  "value": "210505"
-}, {
-  "label": "本溪满族自治县",
-  "value": "210521"
-}, {
-  "label": "桓仁满族自治县",
-  "value": "210522"
-}], [{
-  "label": "元宝区",
-  "value": "210602"
-}, {
-  "label": "振兴区",
-  "value": "210603"
-}, {
-  "label": "振安区",
-  "value": "210604"
-}, {
-  "label": "宽甸满族自治县",
-  "value": "210624"
-}, {
-  "label": "东港市",
-  "value": "210681"
-}, {
-  "label": "凤城市",
-  "value": "210682"
-}], [{
-  "label": "古塔区",
-  "value": "210702"
-}, {
-  "label": "凌河区",
-  "value": "210703"
-}, {
-  "label": "太和区",
-  "value": "210711"
-}, {
-  "label": "黑山县",
-  "value": "210726"
-}, {
-  "label": "义县",
-  "value": "210727"
-}, {
-  "label": "凌海市",
-  "value": "210781"
-}, {
-  "label": "北镇市",
-  "value": "210782"
-}], [{
-  "label": "站前区",
-  "value": "210802"
-}, {
-  "label": "西市区",
-  "value": "210803"
-}, {
-  "label": "鲅鱼圈区",
-  "value": "210804"
-}, {
-  "label": "老边区",
-  "value": "210811"
-}, {
-  "label": "盖州市",
-  "value": "210881"
-}, {
-  "label": "大石桥市",
-  "value": "210882"
-}], [{
-  "label": "海州区",
-  "value": "210902"
-}, {
-  "label": "新邱区",
-  "value": "210903"
-}, {
-  "label": "太平区",
-  "value": "210904"
-}, {
-  "label": "清河门区",
-  "value": "210905"
-}, {
-  "label": "细河区",
-  "value": "210911"
-}, {
-  "label": "阜新蒙古族自治县",
-  "value": "210921"
-}, {
-  "label": "彰武县",
-  "value": "210922"
-}], [{
-  "label": "白塔区",
-  "value": "211002"
-}, {
-  "label": "文圣区",
-  "value": "211003"
-}, {
-  "label": "宏伟区",
-  "value": "211004"
-}, {
-  "label": "弓长岭区",
-  "value": "211005"
-}, {
-  "label": "太子河区",
-  "value": "211011"
-}, {
-  "label": "辽阳县",
-  "value": "211021"
-}, {
-  "label": "灯塔市",
-  "value": "211081"
-}], [{
-  "label": "双台子区",
-  "value": "211102"
-}, {
-  "label": "兴隆台区",
-  "value": "211103"
-}, {
-  "label": "大洼区",
-  "value": "211104"
-}, {
-  "label": "盘山县",
-  "value": "211122"
-}], [{
-  "label": "银州区",
-  "value": "211202"
-}, {
-  "label": "清河区",
-  "value": "211204"
-}, {
-  "label": "铁岭县",
-  "value": "211221"
-}, {
-  "label": "西丰县",
-  "value": "211223"
-}, {
-  "label": "昌图县",
-  "value": "211224"
-}, {
-  "label": "调兵山市",
-  "value": "211281"
-}, {
-  "label": "开原市",
-  "value": "211282"
-}], [{
-  "label": "双塔区",
-  "value": "211302"
-}, {
-  "label": "龙城区",
-  "value": "211303"
-}, {
-  "label": "朝阳县",
-  "value": "211321"
-}, {
-  "label": "建平县",
-  "value": "211322"
-}, {
-  "label": "喀喇沁左翼蒙古族自治县",
-  "value": "211324"
-}, {
-  "label": "北票市",
-  "value": "211381"
-}, {
-  "label": "凌源市",
-  "value": "211382"
-}], [{
-  "label": "连山区",
-  "value": "211402"
-}, {
-  "label": "龙港区",
-  "value": "211403"
-}, {
-  "label": "南票区",
-  "value": "211404"
-}, {
-  "label": "绥中县",
-  "value": "211421"
-}, {
-  "label": "建昌县",
-  "value": "211422"
-}, {
-  "label": "兴城市",
-  "value": "211481"
-}]], [[{
-  "label": "南关区",
-  "value": "220102"
-}, {
-  "label": "宽城区",
-  "value": "220103"
-}, {
-  "label": "朝阳区",
-  "value": "220104"
-}, {
-  "label": "二道区",
-  "value": "220105"
-}, {
-  "label": "绿园区",
-  "value": "220106"
-}, {
-  "label": "双阳区",
-  "value": "220112"
-}, {
-  "label": "九台区",
-  "value": "220113"
-}, {
-  "label": "农安县",
-  "value": "220122"
-}, {
-  "label": "长春经济技术开发区",
-  "value": "220171"
-}, {
-  "label": "长春净月高新技术产业开发区",
-  "value": "220172"
-}, {
-  "label": "长春高新技术产业开发区",
-  "value": "220173"
-}, {
-  "label": "长春汽车经济技术开发区",
-  "value": "220174"
-}, {
-  "label": "榆树市",
-  "value": "220182"
-}, {
-  "label": "德惠市",
-  "value": "220183"
-}], [{
-  "label": "昌邑区",
-  "value": "220202"
-}, {
-  "label": "龙潭区",
-  "value": "220203"
-}, {
-  "label": "船营区",
-  "value": "220204"
-}, {
-  "label": "丰满区",
-  "value": "220211"
-}, {
-  "label": "永吉县",
-  "value": "220221"
-}, {
-  "label": "吉林经济开发区",
-  "value": "220271"
-}, {
-  "label": "吉林高新技术产业开发区",
-  "value": "220272"
-}, {
-  "label": "吉林中国新加坡食品区",
-  "value": "220273"
-}, {
-  "label": "蛟河市",
-  "value": "220281"
-}, {
-  "label": "桦甸市",
-  "value": "220282"
-}, {
-  "label": "舒兰市",
-  "value": "220283"
-}, {
-  "label": "磐石市",
-  "value": "220284"
-}], [{
-  "label": "铁西区",
-  "value": "220302"
-}, {
-  "label": "铁东区",
-  "value": "220303"
-}, {
-  "label": "梨树县",
-  "value": "220322"
-}, {
-  "label": "伊通满族自治县",
-  "value": "220323"
-}, {
-  "label": "公主岭市",
-  "value": "220381"
-}, {
-  "label": "双辽市",
-  "value": "220382"
-}], [{
-  "label": "龙山区",
-  "value": "220402"
-}, {
-  "label": "西安区",
-  "value": "220403"
-}, {
-  "label": "东丰县",
-  "value": "220421"
-}, {
-  "label": "东辽县",
-  "value": "220422"
-}], [{
-  "label": "东昌区",
-  "value": "220502"
-}, {
-  "label": "二道江区",
-  "value": "220503"
-}, {
-  "label": "通化县",
-  "value": "220521"
-}, {
-  "label": "辉南县",
-  "value": "220523"
-}, {
-  "label": "柳河县",
-  "value": "220524"
-}, {
-  "label": "梅河口市",
-  "value": "220581"
-}, {
-  "label": "集安市",
-  "value": "220582"
-}], [{
-  "label": "浑江区",
-  "value": "220602"
-}, {
-  "label": "江源区",
-  "value": "220605"
-}, {
-  "label": "抚松县",
-  "value": "220621"
-}, {
-  "label": "靖宇县",
-  "value": "220622"
-}, {
-  "label": "长白朝鲜族自治县",
-  "value": "220623"
-}, {
-  "label": "临江市",
-  "value": "220681"
-}], [{
-  "label": "宁江区",
-  "value": "220702"
-}, {
-  "label": "前郭尔罗斯蒙古族自治县",
-  "value": "220721"
-}, {
-  "label": "长岭县",
-  "value": "220722"
-}, {
-  "label": "乾安县",
-  "value": "220723"
-}, {
-  "label": "吉林松原经济开发区",
-  "value": "220771"
-}, {
-  "label": "扶余市",
-  "value": "220781"
-}], [{
-  "label": "洮北区",
-  "value": "220802"
-}, {
-  "label": "镇赉县",
-  "value": "220821"
-}, {
-  "label": "通榆县",
-  "value": "220822"
-}, {
-  "label": "吉林白城经济开发区",
-  "value": "220871"
-}, {
-  "label": "洮南市",
-  "value": "220881"
-}, {
-  "label": "大安市",
-  "value": "220882"
-}], [{
-  "label": "延吉市",
-  "value": "222401"
-}, {
-  "label": "图们市",
-  "value": "222402"
-}, {
-  "label": "敦化市",
-  "value": "222403"
-}, {
-  "label": "珲春市",
-  "value": "222404"
-}, {
-  "label": "龙井市",
-  "value": "222405"
-}, {
-  "label": "和龙市",
-  "value": "222406"
-}, {
-  "label": "汪清县",
-  "value": "222424"
-}, {
-  "label": "安图县",
-  "value": "222426"
-}]], [[{
-  "label": "道里区",
-  "value": "230102"
-}, {
-  "label": "南岗区",
-  "value": "230103"
-}, {
-  "label": "道外区",
-  "value": "230104"
-}, {
-  "label": "平房区",
-  "value": "230108"
-}, {
-  "label": "松北区",
-  "value": "230109"
-}, {
-  "label": "香坊区",
-  "value": "230110"
-}, {
-  "label": "呼兰区",
-  "value": "230111"
-}, {
-  "label": "阿城区",
-  "value": "230112"
-}, {
-  "label": "双城区",
-  "value": "230113"
-}, {
-  "label": "依兰县",
-  "value": "230123"
-}, {
-  "label": "方正县",
-  "value": "230124"
-}, {
-  "label": "宾县",
-  "value": "230125"
-}, {
-  "label": "巴彦县",
-  "value": "230126"
-}, {
-  "label": "木兰县",
-  "value": "230127"
-}, {
-  "label": "通河县",
-  "value": "230128"
-}, {
-  "label": "延寿县",
-  "value": "230129"
-}, {
-  "label": "尚志市",
-  "value": "230183"
-}, {
-  "label": "五常市",
-  "value": "230184"
-}], [{
-  "label": "龙沙区",
-  "value": "230202"
-}, {
-  "label": "建华区",
-  "value": "230203"
-}, {
-  "label": "铁锋区",
-  "value": "230204"
-}, {
-  "label": "昂昂溪区",
-  "value": "230205"
-}, {
-  "label": "富拉尔基区",
-  "value": "230206"
-}, {
-  "label": "碾子山区",
-  "value": "230207"
-}, {
-  "label": "梅里斯达斡尔族区",
-  "value": "230208"
-}, {
-  "label": "龙江县",
-  "value": "230221"
-}, {
-  "label": "依安县",
-  "value": "230223"
-}, {
-  "label": "泰来县",
-  "value": "230224"
-}, {
-  "label": "甘南县",
-  "value": "230225"
-}, {
-  "label": "富裕县",
-  "value": "230227"
-}, {
-  "label": "克山县",
-  "value": "230229"
-}, {
-  "label": "克东县",
-  "value": "230230"
-}, {
-  "label": "拜泉县",
-  "value": "230231"
-}, {
-  "label": "讷河市",
-  "value": "230281"
-}], [{
-  "label": "鸡冠区",
-  "value": "230302"
-}, {
-  "label": "恒山区",
-  "value": "230303"
-}, {
-  "label": "滴道区",
-  "value": "230304"
-}, {
-  "label": "梨树区",
-  "value": "230305"
-}, {
-  "label": "城子河区",
-  "value": "230306"
-}, {
-  "label": "麻山区",
-  "value": "230307"
-}, {
-  "label": "鸡东县",
-  "value": "230321"
-}, {
-  "label": "虎林市",
-  "value": "230381"
-}, {
-  "label": "密山市",
-  "value": "230382"
-}], [{
-  "label": "向阳区",
-  "value": "230402"
-}, {
-  "label": "工农区",
-  "value": "230403"
-}, {
-  "label": "南山区",
-  "value": "230404"
-}, {
-  "label": "兴安区",
-  "value": "230405"
-}, {
-  "label": "东山区",
-  "value": "230406"
-}, {
-  "label": "兴山区",
-  "value": "230407"
-}, {
-  "label": "萝北县",
-  "value": "230421"
-}, {
-  "label": "绥滨县",
-  "value": "230422"
-}], [{
-  "label": "尖山区",
-  "value": "230502"
-}, {
-  "label": "岭东区",
-  "value": "230503"
-}, {
-  "label": "四方台区",
-  "value": "230505"
-}, {
-  "label": "宝山区",
-  "value": "230506"
-}, {
-  "label": "集贤县",
-  "value": "230521"
-}, {
-  "label": "友谊县",
-  "value": "230522"
-}, {
-  "label": "宝清县",
-  "value": "230523"
-}, {
-  "label": "饶河县",
-  "value": "230524"
-}], [{
-  "label": "萨尔图区",
-  "value": "230602"
-}, {
-  "label": "龙凤区",
-  "value": "230603"
-}, {
-  "label": "让胡路区",
-  "value": "230604"
-}, {
-  "label": "红岗区",
-  "value": "230605"
-}, {
-  "label": "大同区",
-  "value": "230606"
-}, {
-  "label": "肇州县",
-  "value": "230621"
-}, {
-  "label": "肇源县",
-  "value": "230622"
-}, {
-  "label": "林甸县",
-  "value": "230623"
-}, {
-  "label": "杜尔伯特蒙古族自治县",
-  "value": "230624"
-}, {
-  "label": "大庆高新技术产业开发区",
-  "value": "230671"
-}], [{
-  "label": "伊春区",
-  "value": "230702"
-}, {
-  "label": "南岔区",
-  "value": "230703"
-}, {
-  "label": "友好区",
-  "value": "230704"
-}, {
-  "label": "西林区",
-  "value": "230705"
-}, {
-  "label": "翠峦区",
-  "value": "230706"
-}, {
-  "label": "新青区",
-  "value": "230707"
-}, {
-  "label": "美溪区",
-  "value": "230708"
-}, {
-  "label": "金山屯区",
-  "value": "230709"
-}, {
-  "label": "五营区",
-  "value": "230710"
-}, {
-  "label": "乌马河区",
-  "value": "230711"
-}, {
-  "label": "汤旺河区",
-  "value": "230712"
-}, {
-  "label": "带岭区",
-  "value": "230713"
-}, {
-  "label": "乌伊岭区",
-  "value": "230714"
-}, {
-  "label": "红星区",
-  "value": "230715"
-}, {
-  "label": "上甘岭区",
-  "value": "230716"
-}, {
-  "label": "嘉荫县",
-  "value": "230722"
-}, {
-  "label": "铁力市",
-  "value": "230781"
-}], [{
-  "label": "向阳区",
-  "value": "230803"
-}, {
-  "label": "前进区",
-  "value": "230804"
-}, {
-  "label": "东风区",
-  "value": "230805"
-}, {
-  "label": "郊区",
-  "value": "230811"
-}, {
-  "label": "桦南县",
-  "value": "230822"
-}, {
-  "label": "桦川县",
-  "value": "230826"
-}, {
-  "label": "汤原县",
-  "value": "230828"
-}, {
-  "label": "同江市",
-  "value": "230881"
-}, {
-  "label": "富锦市",
-  "value": "230882"
-}, {
-  "label": "抚远市",
-  "value": "230883"
-}], [{
-  "label": "新兴区",
-  "value": "230902"
-}, {
-  "label": "桃山区",
-  "value": "230903"
-}, {
-  "label": "茄子河区",
-  "value": "230904"
-}, {
-  "label": "勃利县",
-  "value": "230921"
-}], [{
-  "label": "东安区",
-  "value": "231002"
-}, {
-  "label": "阳明区",
-  "value": "231003"
-}, {
-  "label": "爱民区",
-  "value": "231004"
-}, {
-  "label": "西安区",
-  "value": "231005"
-}, {
-  "label": "林口县",
-  "value": "231025"
-}, {
-  "label": "牡丹江经济技术开发区",
-  "value": "231071"
-}, {
-  "label": "绥芬河市",
-  "value": "231081"
-}, {
-  "label": "海林市",
-  "value": "231083"
-}, {
-  "label": "宁安市",
-  "value": "231084"
-}, {
-  "label": "穆棱市",
-  "value": "231085"
-}, {
-  "label": "东宁市",
-  "value": "231086"
-}], [{
-  "label": "爱辉区",
-  "value": "231102"
-}, {
-  "label": "嫩江县",
-  "value": "231121"
-}, {
-  "label": "逊克县",
-  "value": "231123"
-}, {
-  "label": "孙吴县",
-  "value": "231124"
-}, {
-  "label": "北安市",
-  "value": "231181"
-}, {
-  "label": "五大连池市",
-  "value": "231182"
-}], [{
-  "label": "北林区",
-  "value": "231202"
-}, {
-  "label": "望奎县",
-  "value": "231221"
-}, {
-  "label": "兰西县",
-  "value": "231222"
-}, {
-  "label": "青冈县",
-  "value": "231223"
-}, {
-  "label": "庆安县",
-  "value": "231224"
-}, {
-  "label": "明水县",
-  "value": "231225"
-}, {
-  "label": "绥棱县",
-  "value": "231226"
-}, {
-  "label": "安达市",
-  "value": "231281"
-}, {
-  "label": "肇东市",
-  "value": "231282"
-}, {
-  "label": "海伦市",
-  "value": "231283"
-}], [{
-  "label": "加格达奇区",
-  "value": "232701"
-}, {
-  "label": "松岭区",
-  "value": "232702"
-}, {
-  "label": "新林区",
-  "value": "232703"
-}, {
-  "label": "呼中区",
-  "value": "232704"
-}, {
-  "label": "呼玛县",
-  "value": "232721"
-}, {
-  "label": "塔河县",
-  "value": "232722"
-}, {
-  "label": "漠河县",
-  "value": "232723"
-}]], [[{
-  "label": "黄浦区",
-  "value": "310101"
-}, {
-  "label": "徐汇区",
-  "value": "310104"
-}, {
-  "label": "长宁区",
-  "value": "310105"
-}, {
-  "label": "静安区",
-  "value": "310106"
-}, {
-  "label": "普陀区",
-  "value": "310107"
-}, {
-  "label": "虹口区",
-  "value": "310109"
-}, {
-  "label": "杨浦区",
-  "value": "310110"
-}, {
-  "label": "闵行区",
-  "value": "310112"
-}, {
-  "label": "宝山区",
-  "value": "310113"
-}, {
-  "label": "嘉定区",
-  "value": "310114"
-}, {
-  "label": "浦东新区",
-  "value": "310115"
-}, {
-  "label": "金山区",
-  "value": "310116"
-}, {
-  "label": "松江区",
-  "value": "310117"
-}, {
-  "label": "青浦区",
-  "value": "310118"
-}, {
-  "label": "奉贤区",
-  "value": "310120"
-}, {
-  "label": "崇明区",
-  "value": "310151"
-}]], [[{
-  "label": "玄武区",
-  "value": "320102"
-}, {
-  "label": "秦淮区",
-  "value": "320104"
-}, {
-  "label": "建邺区",
-  "value": "320105"
-}, {
-  "label": "鼓楼区",
-  "value": "320106"
-}, {
-  "label": "浦口区",
-  "value": "320111"
-}, {
-  "label": "栖霞区",
-  "value": "320113"
-}, {
-  "label": "雨花台区",
-  "value": "320114"
-}, {
-  "label": "江宁区",
-  "value": "320115"
-}, {
-  "label": "六合区",
-  "value": "320116"
-}, {
-  "label": "溧水区",
-  "value": "320117"
-}, {
-  "label": "高淳区",
-  "value": "320118"
-}], [{
-  "label": "锡山区",
-  "value": "320205"
-}, {
-  "label": "惠山区",
-  "value": "320206"
-}, {
-  "label": "滨湖区",
-  "value": "320211"
-}, {
-  "label": "梁溪区",
-  "value": "320213"
-}, {
-  "label": "新吴区",
-  "value": "320214"
-}, {
-  "label": "江阴市",
-  "value": "320281"
-}, {
-  "label": "宜兴市",
-  "value": "320282"
-}], [{
-  "label": "鼓楼区",
-  "value": "320302"
-}, {
-  "label": "云龙区",
-  "value": "320303"
-}, {
-  "label": "贾汪区",
-  "value": "320305"
-}, {
-  "label": "泉山区",
-  "value": "320311"
-}, {
-  "label": "铜山区",
-  "value": "320312"
-}, {
-  "label": "丰县",
-  "value": "320321"
-}, {
-  "label": "沛县",
-  "value": "320322"
-}, {
-  "label": "睢宁县",
-  "value": "320324"
-}, {
-  "label": "徐州经济技术开发区",
-  "value": "320371"
-}, {
-  "label": "新沂市",
-  "value": "320381"
-}, {
-  "label": "邳州市",
-  "value": "320382"
-}], [{
-  "label": "天宁区",
-  "value": "320402"
-}, {
-  "label": "钟楼区",
-  "value": "320404"
-}, {
-  "label": "新北区",
-  "value": "320411"
-}, {
-  "label": "武进区",
-  "value": "320412"
-}, {
-  "label": "金坛区",
-  "value": "320413"
-}, {
-  "label": "溧阳市",
-  "value": "320481"
-}], [{
-  "label": "虎丘区",
-  "value": "320505"
-}, {
-  "label": "吴中区",
-  "value": "320506"
-}, {
-  "label": "相城区",
-  "value": "320507"
-}, {
-  "label": "姑苏区",
-  "value": "320508"
-}, {
-  "label": "吴江区",
-  "value": "320509"
-}, {
-  "label": "苏州工业园区",
-  "value": "320571"
-}, {
-  "label": "常熟市",
-  "value": "320581"
-}, {
-  "label": "张家港市",
-  "value": "320582"
-}, {
-  "label": "昆山市",
-  "value": "320583"
-}, {
-  "label": "太仓市",
-  "value": "320585"
-}], [{
-  "label": "崇川区",
-  "value": "320602"
-}, {
-  "label": "港闸区",
-  "value": "320611"
-}, {
-  "label": "通州区",
-  "value": "320612"
-}, {
-  "label": "海安县",
-  "value": "320621"
-}, {
-  "label": "如东县",
-  "value": "320623"
-}, {
-  "label": "南通经济技术开发区",
-  "value": "320671"
-}, {
-  "label": "启东市",
-  "value": "320681"
-}, {
-  "label": "如皋市",
-  "value": "320682"
-}, {
-  "label": "海门市",
-  "value": "320684"
-}], [{
-  "label": "连云区",
-  "value": "320703"
-}, {
-  "label": "海州区",
-  "value": "320706"
-}, {
-  "label": "赣榆区",
-  "value": "320707"
-}, {
-  "label": "东海县",
-  "value": "320722"
-}, {
-  "label": "灌云县",
-  "value": "320723"
-}, {
-  "label": "灌南县",
-  "value": "320724"
-}, {
-  "label": "连云港经济技术开发区",
-  "value": "320771"
-}, {
-  "label": "连云港高新技术产业开发区",
-  "value": "320772"
-}], [{
-  "label": "淮安区",
-  "value": "320803"
-}, {
-  "label": "淮阴区",
-  "value": "320804"
-}, {
-  "label": "清江浦区",
-  "value": "320812"
-}, {
-  "label": "洪泽区",
-  "value": "320813"
-}, {
-  "label": "涟水县",
-  "value": "320826"
-}, {
-  "label": "盱眙县",
-  "value": "320830"
-}, {
-  "label": "金湖县",
-  "value": "320831"
-}, {
-  "label": "淮安经济技术开发区",
-  "value": "320871"
-}], [{
-  "label": "亭湖区",
-  "value": "320902"
-}, {
-  "label": "盐都区",
-  "value": "320903"
-}, {
-  "label": "大丰区",
-  "value": "320904"
-}, {
-  "label": "响水县",
-  "value": "320921"
-}, {
-  "label": "滨海县",
-  "value": "320922"
-}, {
-  "label": "阜宁县",
-  "value": "320923"
-}, {
-  "label": "射阳县",
-  "value": "320924"
-}, {
-  "label": "建湖县",
-  "value": "320925"
-}, {
-  "label": "盐城经济技术开发区",
-  "value": "320971"
-}, {
-  "label": "东台市",
-  "value": "320981"
-}], [{
-  "label": "广陵区",
-  "value": "321002"
-}, {
-  "label": "邗江区",
-  "value": "321003"
-}, {
-  "label": "江都区",
-  "value": "321012"
-}, {
-  "label": "宝应县",
-  "value": "321023"
-}, {
-  "label": "扬州经济技术开发区",
-  "value": "321071"
-}, {
-  "label": "仪征市",
-  "value": "321081"
-}, {
-  "label": "高邮市",
-  "value": "321084"
-}], [{
-  "label": "京口区",
-  "value": "321102"
-}, {
-  "label": "润州区",
-  "value": "321111"
-}, {
-  "label": "丹徒区",
-  "value": "321112"
-}, {
-  "label": "镇江新区",
-  "value": "321171"
-}, {
-  "label": "丹阳市",
-  "value": "321181"
-}, {
-  "label": "扬中市",
-  "value": "321182"
-}, {
-  "label": "句容市",
-  "value": "321183"
-}], [{
-  "label": "海陵区",
-  "value": "321202"
-}, {
-  "label": "高港区",
-  "value": "321203"
-}, {
-  "label": "姜堰区",
-  "value": "321204"
-}, {
-  "label": "泰州医药高新技术产业开发区",
-  "value": "321271"
-}, {
-  "label": "兴化市",
-  "value": "321281"
-}, {
-  "label": "靖江市",
-  "value": "321282"
-}, {
-  "label": "泰兴市",
-  "value": "321283"
-}], [{
-  "label": "宿城区",
-  "value": "321302"
-}, {
-  "label": "宿豫区",
-  "value": "321311"
-}, {
-  "label": "沭阳县",
-  "value": "321322"
-}, {
-  "label": "泗阳县",
-  "value": "321323"
-}, {
-  "label": "泗洪县",
-  "value": "321324"
-}, {
-  "label": "宿迁经济技术开发区",
-  "value": "321371"
-}]], [[{
-  "label": "上城区",
-  "value": "330102"
-}, {
-  "label": "下城区",
-  "value": "330103"
-}, {
-  "label": "江干区",
-  "value": "330104"
-}, {
-  "label": "拱墅区",
-  "value": "330105"
-}, {
-  "label": "西湖区",
-  "value": "330106"
-}, {
-  "label": "滨江区",
-  "value": "330108"
-}, {
-  "label": "萧山区",
-  "value": "330109"
-}, {
-  "label": "余杭区",
-  "value": "330110"
-}, {
-  "label": "富阳区",
-  "value": "330111"
-}, {
-  "label": "临安区",
-  "value": "330112"
-}, {
-  "label": "桐庐县",
-  "value": "330122"
-}, {
-  "label": "淳安县",
-  "value": "330127"
-}, {
-  "label": "建德市",
-  "value": "330182"
-}], [{
-  "label": "海曙区",
-  "value": "330203"
-}, {
-  "label": "江北区",
-  "value": "330205"
-}, {
-  "label": "北仑区",
-  "value": "330206"
-}, {
-  "label": "镇海区",
-  "value": "330211"
-}, {
-  "label": "鄞州区",
-  "value": "330212"
-}, {
-  "label": "奉化区",
-  "value": "330213"
-}, {
-  "label": "象山县",
-  "value": "330225"
-}, {
-  "label": "宁海县",
-  "value": "330226"
-}, {
-  "label": "余姚市",
-  "value": "330281"
-}, {
-  "label": "慈溪市",
-  "value": "330282"
-}], [{
-  "label": "鹿城区",
-  "value": "330302"
-}, {
-  "label": "龙湾区",
-  "value": "330303"
-}, {
-  "label": "瓯海区",
-  "value": "330304"
-}, {
-  "label": "洞头区",
-  "value": "330305"
-}, {
-  "label": "永嘉县",
-  "value": "330324"
-}, {
-  "label": "平阳县",
-  "value": "330326"
-}, {
-  "label": "苍南县",
-  "value": "330327"
-}, {
-  "label": "文成县",
-  "value": "330328"
-}, {
-  "label": "泰顺县",
-  "value": "330329"
-}, {
-  "label": "温州经济技术开发区",
-  "value": "330371"
-}, {
-  "label": "瑞安市",
-  "value": "330381"
-}, {
-  "label": "乐清市",
-  "value": "330382"
-}], [{
-  "label": "南湖区",
-  "value": "330402"
-}, {
-  "label": "秀洲区",
-  "value": "330411"
-}, {
-  "label": "嘉善县",
-  "value": "330421"
-}, {
-  "label": "海盐县",
-  "value": "330424"
-}, {
-  "label": "海宁市",
-  "value": "330481"
-}, {
-  "label": "平湖市",
-  "value": "330482"
-}, {
-  "label": "桐乡市",
-  "value": "330483"
-}], [{
-  "label": "吴兴区",
-  "value": "330502"
-}, {
-  "label": "南浔区",
-  "value": "330503"
-}, {
-  "label": "德清县",
-  "value": "330521"
-}, {
-  "label": "长兴县",
-  "value": "330522"
-}, {
-  "label": "安吉县",
-  "value": "330523"
-}], [{
-  "label": "越城区",
-  "value": "330602"
-}, {
-  "label": "柯桥区",
-  "value": "330603"
-}, {
-  "label": "上虞区",
-  "value": "330604"
-}, {
-  "label": "新昌县",
-  "value": "330624"
-}, {
-  "label": "诸暨市",
-  "value": "330681"
-}, {
-  "label": "嵊州市",
-  "value": "330683"
-}], [{
-  "label": "婺城区",
-  "value": "330702"
-}, {
-  "label": "金东区",
-  "value": "330703"
-}, {
-  "label": "武义县",
-  "value": "330723"
-}, {
-  "label": "浦江县",
-  "value": "330726"
-}, {
-  "label": "磐安县",
-  "value": "330727"
-}, {
-  "label": "兰溪市",
-  "value": "330781"
-}, {
-  "label": "义乌市",
-  "value": "330782"
-}, {
-  "label": "东阳市",
-  "value": "330783"
-}, {
-  "label": "永康市",
-  "value": "330784"
-}], [{
-  "label": "柯城区",
-  "value": "330802"
-}, {
-  "label": "衢江区",
-  "value": "330803"
-}, {
-  "label": "常山县",
-  "value": "330822"
-}, {
-  "label": "开化县",
-  "value": "330824"
-}, {
-  "label": "龙游县",
-  "value": "330825"
-}, {
-  "label": "江山市",
-  "value": "330881"
-}], [{
-  "label": "定海区",
-  "value": "330902"
-}, {
-  "label": "普陀区",
-  "value": "330903"
-}, {
-  "label": "岱山县",
-  "value": "330921"
-}, {
-  "label": "嵊泗县",
-  "value": "330922"
-}], [{
-  "label": "椒江区",
-  "value": "331002"
-}, {
-  "label": "黄岩区",
-  "value": "331003"
-}, {
-  "label": "路桥区",
-  "value": "331004"
-}, {
-  "label": "三门县",
-  "value": "331022"
-}, {
-  "label": "天台县",
-  "value": "331023"
-}, {
-  "label": "仙居县",
-  "value": "331024"
-}, {
-  "label": "温岭市",
-  "value": "331081"
-}, {
-  "label": "临海市",
-  "value": "331082"
-}, {
-  "label": "玉环市",
-  "value": "331083"
-}], [{
-  "label": "莲都区",
-  "value": "331102"
-}, {
-  "label": "青田县",
-  "value": "331121"
-}, {
-  "label": "缙云县",
-  "value": "331122"
-}, {
-  "label": "遂昌县",
-  "value": "331123"
-}, {
-  "label": "松阳县",
-  "value": "331124"
-}, {
-  "label": "云和县",
-  "value": "331125"
-}, {
-  "label": "庆元县",
-  "value": "331126"
-}, {
-  "label": "景宁畲族自治县",
-  "value": "331127"
-}, {
-  "label": "龙泉市",
-  "value": "331181"
-}]], [[{
-  "label": "瑶海区",
-  "value": "340102"
-}, {
-  "label": "庐阳区",
-  "value": "340103"
-}, {
-  "label": "蜀山区",
-  "value": "340104"
-}, {
-  "label": "包河区",
-  "value": "340111"
-}, {
-  "label": "长丰县",
-  "value": "340121"
-}, {
-  "label": "肥东县",
-  "value": "340122"
-}, {
-  "label": "肥西县",
-  "value": "340123"
-}, {
-  "label": "庐江县",
-  "value": "340124"
-}, {
-  "label": "合肥高新技术产业开发区",
-  "value": "340171"
-}, {
-  "label": "合肥经济技术开发区",
-  "value": "340172"
-}, {
-  "label": "合肥新站高新技术产业开发区",
-  "value": "340173"
-}, {
-  "label": "巢湖市",
-  "value": "340181"
-}], [{
-  "label": "镜湖区",
-  "value": "340202"
-}, {
-  "label": "弋江区",
-  "value": "340203"
-}, {
-  "label": "鸠江区",
-  "value": "340207"
-}, {
-  "label": "三山区",
-  "value": "340208"
-}, {
-  "label": "芜湖县",
-  "value": "340221"
-}, {
-  "label": "繁昌县",
-  "value": "340222"
-}, {
-  "label": "南陵县",
-  "value": "340223"
-}, {
-  "label": "无为县",
-  "value": "340225"
-}, {
-  "label": "芜湖经济技术开发区",
-  "value": "340271"
-}, {
-  "label": "安徽芜湖长江大桥经济开发区",
-  "value": "340272"
-}], [{
-  "label": "龙子湖区",
-  "value": "340302"
-}, {
-  "label": "蚌山区",
-  "value": "340303"
-}, {
-  "label": "禹会区",
-  "value": "340304"
-}, {
-  "label": "淮上区",
-  "value": "340311"
-}, {
-  "label": "怀远县",
-  "value": "340321"
-}, {
-  "label": "五河县",
-  "value": "340322"
-}, {
-  "label": "固镇县",
-  "value": "340323"
-}, {
-  "label": "蚌埠市高新技术开发区",
-  "value": "340371"
-}, {
-  "label": "蚌埠市经济开发区",
-  "value": "340372"
-}], [{
-  "label": "大通区",
-  "value": "340402"
-}, {
-  "label": "田家庵区",
-  "value": "340403"
-}, {
-  "label": "谢家集区",
-  "value": "340404"
-}, {
-  "label": "八公山区",
-  "value": "340405"
-}, {
-  "label": "潘集区",
-  "value": "340406"
-}, {
-  "label": "凤台县",
-  "value": "340421"
-}, {
-  "label": "寿县",
-  "value": "340422"
-}], [{
-  "label": "花山区",
-  "value": "340503"
-}, {
-  "label": "雨山区",
-  "value": "340504"
-}, {
-  "label": "博望区",
-  "value": "340506"
-}, {
-  "label": "当涂县",
-  "value": "340521"
-}, {
-  "label": "含山县",
-  "value": "340522"
-}, {
-  "label": "和县",
-  "value": "340523"
-}], [{
-  "label": "杜集区",
-  "value": "340602"
-}, {
-  "label": "相山区",
-  "value": "340603"
-}, {
-  "label": "烈山区",
-  "value": "340604"
-}, {
-  "label": "濉溪县",
-  "value": "340621"
-}], [{
-  "label": "铜官区",
-  "value": "340705"
-}, {
-  "label": "义安区",
-  "value": "340706"
-}, {
-  "label": "郊区",
-  "value": "340711"
-}, {
-  "label": "枞阳县",
-  "value": "340722"
-}], [{
-  "label": "迎江区",
-  "value": "340802"
-}, {
-  "label": "大观区",
-  "value": "340803"
-}, {
-  "label": "宜秀区",
-  "value": "340811"
-}, {
-  "label": "怀宁县",
-  "value": "340822"
-}, {
-  "label": "潜山县",
-  "value": "340824"
-}, {
-  "label": "太湖县",
-  "value": "340825"
-}, {
-  "label": "宿松县",
-  "value": "340826"
-}, {
-  "label": "望江县",
-  "value": "340827"
-}, {
-  "label": "岳西县",
-  "value": "340828"
-}, {
-  "label": "安徽安庆经济开发区",
-  "value": "340871"
-}, {
-  "label": "桐城市",
-  "value": "340881"
-}], [{
-  "label": "屯溪区",
-  "value": "341002"
-}, {
-  "label": "黄山区",
-  "value": "341003"
-}, {
-  "label": "徽州区",
-  "value": "341004"
-}, {
-  "label": "歙县",
-  "value": "341021"
-}, {
-  "label": "休宁县",
-  "value": "341022"
-}, {
-  "label": "黟县",
-  "value": "341023"
-}, {
-  "label": "祁门县",
-  "value": "341024"
-}], [{
-  "label": "琅琊区",
-  "value": "341102"
-}, {
-  "label": "南谯区",
-  "value": "341103"
-}, {
-  "label": "来安县",
-  "value": "341122"
-}, {
-  "label": "全椒县",
-  "value": "341124"
-}, {
-  "label": "定远县",
-  "value": "341125"
-}, {
-  "label": "凤阳县",
-  "value": "341126"
-}, {
-  "label": "苏滁现代产业园",
-  "value": "341171"
-}, {
-  "label": "滁州经济技术开发区",
-  "value": "341172"
-}, {
-  "label": "天长市",
-  "value": "341181"
-}, {
-  "label": "明光市",
-  "value": "341182"
-}], [{
-  "label": "颍州区",
-  "value": "341202"
-}, {
-  "label": "颍东区",
-  "value": "341203"
-}, {
-  "label": "颍泉区",
-  "value": "341204"
-}, {
-  "label": "临泉县",
-  "value": "341221"
-}, {
-  "label": "太和县",
-  "value": "341222"
-}, {
-  "label": "阜南县",
-  "value": "341225"
-}, {
-  "label": "颍上县",
-  "value": "341226"
-}, {
-  "label": "阜阳合肥现代产业园区",
-  "value": "341271"
-}, {
-  "label": "阜阳经济技术开发区",
-  "value": "341272"
-}, {
-  "label": "界首市",
-  "value": "341282"
-}], [{
-  "label": "埇桥区",
-  "value": "341302"
-}, {
-  "label": "砀山县",
-  "value": "341321"
-}, {
-  "label": "萧县",
-  "value": "341322"
-}, {
-  "label": "灵璧县",
-  "value": "341323"
-}, {
-  "label": "泗县",
-  "value": "341324"
-}, {
-  "label": "宿州马鞍山现代产业园区",
-  "value": "341371"
-}, {
-  "label": "宿州经济技术开发区",
-  "value": "341372"
-}], [{
-  "label": "金安区",
-  "value": "341502"
-}, {
-  "label": "裕安区",
-  "value": "341503"
-}, {
-  "label": "叶集区",
-  "value": "341504"
-}, {
-  "label": "霍邱县",
-  "value": "341522"
-}, {
-  "label": "舒城县",
-  "value": "341523"
-}, {
-  "label": "金寨县",
-  "value": "341524"
-}, {
-  "label": "霍山县",
-  "value": "341525"
-}], [{
-  "label": "谯城区",
-  "value": "341602"
-}, {
-  "label": "涡阳县",
-  "value": "341621"
-}, {
-  "label": "蒙城县",
-  "value": "341622"
-}, {
-  "label": "利辛县",
-  "value": "341623"
-}], [{
-  "label": "贵池区",
-  "value": "341702"
-}, {
-  "label": "东至县",
-  "value": "341721"
-}, {
-  "label": "石台县",
-  "value": "341722"
-}, {
-  "label": "青阳县",
-  "value": "341723"
-}], [{
-  "label": "宣州区",
-  "value": "341802"
-}, {
-  "label": "郎溪县",
-  "value": "341821"
-}, {
-  "label": "广德县",
-  "value": "341822"
-}, {
-  "label": "泾县",
-  "value": "341823"
-}, {
-  "label": "绩溪县",
-  "value": "341824"
-}, {
-  "label": "旌德县",
-  "value": "341825"
-}, {
-  "label": "宣城市经济开发区",
-  "value": "341871"
-}, {
-  "label": "宁国市",
-  "value": "341881"
-}]], [[{
-  "label": "鼓楼区",
-  "value": "350102"
-}, {
-  "label": "台江区",
-  "value": "350103"
-}, {
-  "label": "仓山区",
-  "value": "350104"
-}, {
-  "label": "马尾区",
-  "value": "350105"
-}, {
-  "label": "晋安区",
-  "value": "350111"
-}, {
-  "label": "闽侯县",
-  "value": "350121"
-}, {
-  "label": "连江县",
-  "value": "350122"
-}, {
-  "label": "罗源县",
-  "value": "350123"
-}, {
-  "label": "闽清县",
-  "value": "350124"
-}, {
-  "label": "永泰县",
-  "value": "350125"
-}, {
-  "label": "平潭县",
-  "value": "350128"
-}, {
-  "label": "福清市",
-  "value": "350181"
-}, {
-  "label": "长乐市",
-  "value": "350182"
-}], [{
-  "label": "思明区",
-  "value": "350203"
-}, {
-  "label": "海沧区",
-  "value": "350205"
-}, {
-  "label": "湖里区",
-  "value": "350206"
-}, {
-  "label": "集美区",
-  "value": "350211"
-}, {
-  "label": "同安区",
-  "value": "350212"
-}, {
-  "label": "翔安区",
-  "value": "350213"
-}], [{
-  "label": "城厢区",
-  "value": "350302"
-}, {
-  "label": "涵江区",
-  "value": "350303"
-}, {
-  "label": "荔城区",
-  "value": "350304"
-}, {
-  "label": "秀屿区",
-  "value": "350305"
-}, {
-  "label": "仙游县",
-  "value": "350322"
-}], [{
-  "label": "梅列区",
-  "value": "350402"
-}, {
-  "label": "三元区",
-  "value": "350403"
-}, {
-  "label": "明溪县",
-  "value": "350421"
-}, {
-  "label": "清流县",
-  "value": "350423"
-}, {
-  "label": "宁化县",
-  "value": "350424"
-}, {
-  "label": "大田县",
-  "value": "350425"
-}, {
-  "label": "尤溪县",
-  "value": "350426"
-}, {
-  "label": "沙县",
-  "value": "350427"
-}, {
-  "label": "将乐县",
-  "value": "350428"
-}, {
-  "label": "泰宁县",
-  "value": "350429"
-}, {
-  "label": "建宁县",
-  "value": "350430"
-}, {
-  "label": "永安市",
-  "value": "350481"
-}], [{
-  "label": "鲤城区",
-  "value": "350502"
-}, {
-  "label": "丰泽区",
-  "value": "350503"
-}, {
-  "label": "洛江区",
-  "value": "350504"
-}, {
-  "label": "泉港区",
-  "value": "350505"
-}, {
-  "label": "惠安县",
-  "value": "350521"
-}, {
-  "label": "安溪县",
-  "value": "350524"
-}, {
-  "label": "永春县",
-  "value": "350525"
-}, {
-  "label": "德化县",
-  "value": "350526"
-}, {
-  "label": "金门县",
-  "value": "350527"
-}, {
-  "label": "石狮市",
-  "value": "350581"
-}, {
-  "label": "晋江市",
-  "value": "350582"
-}, {
-  "label": "南安市",
-  "value": "350583"
-}], [{
-  "label": "芗城区",
-  "value": "350602"
-}, {
-  "label": "龙文区",
-  "value": "350603"
-}, {
-  "label": "云霄县",
-  "value": "350622"
-}, {
-  "label": "漳浦县",
-  "value": "350623"
-}, {
-  "label": "诏安县",
-  "value": "350624"
-}, {
-  "label": "长泰县",
-  "value": "350625"
-}, {
-  "label": "东山县",
-  "value": "350626"
-}, {
-  "label": "南靖县",
-  "value": "350627"
-}, {
-  "label": "平和县",
-  "value": "350628"
-}, {
-  "label": "华安县",
-  "value": "350629"
-}, {
-  "label": "龙海市",
-  "value": "350681"
-}], [{
-  "label": "延平区",
-  "value": "350702"
-}, {
-  "label": "建阳区",
-  "value": "350703"
-}, {
-  "label": "顺昌县",
-  "value": "350721"
-}, {
-  "label": "浦城县",
-  "value": "350722"
-}, {
-  "label": "光泽县",
-  "value": "350723"
-}, {
-  "label": "松溪县",
-  "value": "350724"
-}, {
-  "label": "政和县",
-  "value": "350725"
-}, {
-  "label": "邵武市",
-  "value": "350781"
-}, {
-  "label": "武夷山市",
-  "value": "350782"
-}, {
-  "label": "建瓯市",
-  "value": "350783"
-}], [{
-  "label": "新罗区",
-  "value": "350802"
-}, {
-  "label": "永定区",
-  "value": "350803"
-}, {
-  "label": "长汀县",
-  "value": "350821"
-}, {
-  "label": "上杭县",
-  "value": "350823"
-}, {
-  "label": "武平县",
-  "value": "350824"
-}, {
-  "label": "连城县",
-  "value": "350825"
-}, {
-  "label": "漳平市",
-  "value": "350881"
-}], [{
-  "label": "蕉城区",
-  "value": "350902"
-}, {
-  "label": "霞浦县",
-  "value": "350921"
-}, {
-  "label": "古田县",
-  "value": "350922"
-}, {
-  "label": "屏南县",
-  "value": "350923"
-}, {
-  "label": "寿宁县",
-  "value": "350924"
-}, {
-  "label": "周宁县",
-  "value": "350925"
-}, {
-  "label": "柘荣县",
-  "value": "350926"
-}, {
-  "label": "福安市",
-  "value": "350981"
-}, {
-  "label": "福鼎市",
-  "value": "350982"
-}]], [[{
-  "label": "东湖区",
-  "value": "360102"
-}, {
-  "label": "西湖区",
-  "value": "360103"
-}, {
-  "label": "青云谱区",
-  "value": "360104"
-}, {
-  "label": "湾里区",
-  "value": "360105"
-}, {
-  "label": "青山湖区",
-  "value": "360111"
-}, {
-  "label": "新建区",
-  "value": "360112"
-}, {
-  "label": "南昌县",
-  "value": "360121"
-}, {
-  "label": "安义县",
-  "value": "360123"
-}, {
-  "label": "进贤县",
-  "value": "360124"
-}], [{
-  "label": "昌江区",
-  "value": "360202"
-}, {
-  "label": "珠山区",
-  "value": "360203"
-}, {
-  "label": "浮梁县",
-  "value": "360222"
-}, {
-  "label": "乐平市",
-  "value": "360281"
-}], [{
-  "label": "安源区",
-  "value": "360302"
-}, {
-  "label": "湘东区",
-  "value": "360313"
-}, {
-  "label": "莲花县",
-  "value": "360321"
-}, {
-  "label": "上栗县",
-  "value": "360322"
-}, {
-  "label": "芦溪县",
-  "value": "360323"
-}], [{
-  "label": "濂溪区",
-  "value": "360402"
-}, {
-  "label": "浔阳区",
-  "value": "360403"
-}, {
-  "label": "柴桑区",
-  "value": "360404"
-}, {
-  "label": "武宁县",
-  "value": "360423"
-}, {
-  "label": "修水县",
-  "value": "360424"
-}, {
-  "label": "永修县",
-  "value": "360425"
-}, {
-  "label": "德安县",
-  "value": "360426"
-}, {
-  "label": "都昌县",
-  "value": "360428"
-}, {
-  "label": "湖口县",
-  "value": "360429"
-}, {
-  "label": "彭泽县",
-  "value": "360430"
-}, {
-  "label": "瑞昌市",
-  "value": "360481"
-}, {
-  "label": "共青城市",
-  "value": "360482"
-}, {
-  "label": "庐山市",
-  "value": "360483"
-}], [{
-  "label": "渝水区",
-  "value": "360502"
-}, {
-  "label": "分宜县",
-  "value": "360521"
-}], [{
-  "label": "月湖区",
-  "value": "360602"
-}, {
-  "label": "余江县",
-  "value": "360622"
-}, {
-  "label": "贵溪市",
-  "value": "360681"
-}], [{
-  "label": "章贡区",
-  "value": "360702"
-}, {
-  "label": "南康区",
-  "value": "360703"
-}, {
-  "label": "赣县区",
-  "value": "360704"
-}, {
-  "label": "信丰县",
-  "value": "360722"
-}, {
-  "label": "大余县",
-  "value": "360723"
-}, {
-  "label": "上犹县",
-  "value": "360724"
-}, {
-  "label": "崇义县",
-  "value": "360725"
-}, {
-  "label": "安远县",
-  "value": "360726"
-}, {
-  "label": "龙南县",
-  "value": "360727"
-}, {
-  "label": "定南县",
-  "value": "360728"
-}, {
-  "label": "全南县",
-  "value": "360729"
-}, {
-  "label": "宁都县",
-  "value": "360730"
-}, {
-  "label": "于都县",
-  "value": "360731"
-}, {
-  "label": "兴国县",
-  "value": "360732"
-}, {
-  "label": "会昌县",
-  "value": "360733"
-}, {
-  "label": "寻乌县",
-  "value": "360734"
-}, {
-  "label": "石城县",
-  "value": "360735"
-}, {
-  "label": "瑞金市",
-  "value": "360781"
-}], [{
-  "label": "吉州区",
-  "value": "360802"
-}, {
-  "label": "青原区",
-  "value": "360803"
-}, {
-  "label": "吉安县",
-  "value": "360821"
-}, {
-  "label": "吉水县",
-  "value": "360822"
-}, {
-  "label": "峡江县",
-  "value": "360823"
-}, {
-  "label": "新干县",
-  "value": "360824"
-}, {
-  "label": "永丰县",
-  "value": "360825"
-}, {
-  "label": "泰和县",
-  "value": "360826"
-}, {
-  "label": "遂川县",
-  "value": "360827"
-}, {
-  "label": "万安县",
-  "value": "360828"
-}, {
-  "label": "安福县",
-  "value": "360829"
-}, {
-  "label": "永新县",
-  "value": "360830"
-}, {
-  "label": "井冈山市",
-  "value": "360881"
-}], [{
-  "label": "袁州区",
-  "value": "360902"
-}, {
-  "label": "奉新县",
-  "value": "360921"
-}, {
-  "label": "万载县",
-  "value": "360922"
-}, {
-  "label": "上高县",
-  "value": "360923"
-}, {
-  "label": "宜丰县",
-  "value": "360924"
-}, {
-  "label": "靖安县",
-  "value": "360925"
-}, {
-  "label": "铜鼓县",
-  "value": "360926"
-}, {
-  "label": "丰城市",
-  "value": "360981"
-}, {
-  "label": "樟树市",
-  "value": "360982"
-}, {
-  "label": "高安市",
-  "value": "360983"
-}], [{
-  "label": "临川区",
-  "value": "361002"
-}, {
-  "label": "东乡区",
-  "value": "361003"
-}, {
-  "label": "南城县",
-  "value": "361021"
-}, {
-  "label": "黎川县",
-  "value": "361022"
-}, {
-  "label": "南丰县",
-  "value": "361023"
-}, {
-  "label": "崇仁县",
-  "value": "361024"
-}, {
-  "label": "乐安县",
-  "value": "361025"
-}, {
-  "label": "宜黄县",
-  "value": "361026"
-}, {
-  "label": "金溪县",
-  "value": "361027"
-}, {
-  "label": "资溪县",
-  "value": "361028"
-}, {
-  "label": "广昌县",
-  "value": "361030"
-}], [{
-  "label": "信州区",
-  "value": "361102"
-}, {
-  "label": "广丰区",
-  "value": "361103"
-}, {
-  "label": "上饶县",
-  "value": "361121"
-}, {
-  "label": "玉山县",
-  "value": "361123"
-}, {
-  "label": "铅山县",
-  "value": "361124"
-}, {
-  "label": "横峰县",
-  "value": "361125"
-}, {
-  "label": "弋阳县",
-  "value": "361126"
-}, {
-  "label": "余干县",
-  "value": "361127"
-}, {
-  "label": "鄱阳县",
-  "value": "361128"
-}, {
-  "label": "万年县",
-  "value": "361129"
-}, {
-  "label": "婺源县",
-  "value": "361130"
-}, {
-  "label": "德兴市",
-  "value": "361181"
-}]], [[{
-  "label": "历下区",
-  "value": "370102"
-}, {
-  "label": "市中区",
-  "value": "370103"
-}, {
-  "label": "槐荫区",
-  "value": "370104"
-}, {
-  "label": "天桥区",
-  "value": "370105"
-}, {
-  "label": "历城区",
-  "value": "370112"
-}, {
-  "label": "长清区",
-  "value": "370113"
-}, {
-  "label": "章丘区",
-  "value": "370114"
-}, {
-  "label": "平阴县",
-  "value": "370124"
-}, {
-  "label": "济阳县",
-  "value": "370125"
-}, {
-  "label": "商河县",
-  "value": "370126"
-}, {
-  "label": "济南高新技术产业开发区",
-  "value": "370171"
-}], [{
-  "label": "市南区",
-  "value": "370202"
-}, {
-  "label": "市北区",
-  "value": "370203"
-}, {
-  "label": "黄岛区",
-  "value": "370211"
-}, {
-  "label": "崂山区",
-  "value": "370212"
-}, {
-  "label": "李沧区",
-  "value": "370213"
-}, {
-  "label": "城阳区",
-  "value": "370214"
-}, {
-  "label": "即墨区",
-  "value": "370215"
-}, {
-  "label": "青岛高新技术产业开发区",
-  "value": "370271"
-}, {
-  "label": "胶州市",
-  "value": "370281"
-}, {
-  "label": "平度市",
-  "value": "370283"
-}, {
-  "label": "莱西市",
-  "value": "370285"
-}], [{
-  "label": "淄川区",
-  "value": "370302"
-}, {
-  "label": "张店区",
-  "value": "370303"
-}, {
-  "label": "博山区",
-  "value": "370304"
-}, {
-  "label": "临淄区",
-  "value": "370305"
-}, {
-  "label": "周村区",
-  "value": "370306"
-}, {
-  "label": "桓台县",
-  "value": "370321"
-}, {
-  "label": "高青县",
-  "value": "370322"
-}, {
-  "label": "沂源县",
-  "value": "370323"
-}], [{
-  "label": "市中区",
-  "value": "370402"
-}, {
-  "label": "薛城区",
-  "value": "370403"
-}, {
-  "label": "峄城区",
-  "value": "370404"
-}, {
-  "label": "台儿庄区",
-  "value": "370405"
-}, {
-  "label": "山亭区",
-  "value": "370406"
-}, {
-  "label": "滕州市",
-  "value": "370481"
-}], [{
-  "label": "东营区",
-  "value": "370502"
-}, {
-  "label": "河口区",
-  "value": "370503"
-}, {
-  "label": "垦利区",
-  "value": "370505"
-}, {
-  "label": "利津县",
-  "value": "370522"
-}, {
-  "label": "广饶县",
-  "value": "370523"
-}, {
-  "label": "东营经济技术开发区",
-  "value": "370571"
-}, {
-  "label": "东营港经济开发区",
-  "value": "370572"
-}], [{
-  "label": "芝罘区",
-  "value": "370602"
-}, {
-  "label": "福山区",
-  "value": "370611"
-}, {
-  "label": "牟平区",
-  "value": "370612"
-}, {
-  "label": "莱山区",
-  "value": "370613"
-}, {
-  "label": "长岛县",
-  "value": "370634"
-}, {
-  "label": "烟台高新技术产业开发区",
-  "value": "370671"
-}, {
-  "label": "烟台经济技术开发区",
-  "value": "370672"
-}, {
-  "label": "龙口市",
-  "value": "370681"
-}, {
-  "label": "莱阳市",
-  "value": "370682"
-}, {
-  "label": "莱州市",
-  "value": "370683"
-}, {
-  "label": "蓬莱市",
-  "value": "370684"
-}, {
-  "label": "招远市",
-  "value": "370685"
-}, {
-  "label": "栖霞市",
-  "value": "370686"
-}, {
-  "label": "海阳市",
-  "value": "370687"
-}], [{
-  "label": "潍城区",
-  "value": "370702"
-}, {
-  "label": "寒亭区",
-  "value": "370703"
-}, {
-  "label": "坊子区",
-  "value": "370704"
-}, {
-  "label": "奎文区",
-  "value": "370705"
-}, {
-  "label": "临朐县",
-  "value": "370724"
-}, {
-  "label": "昌乐县",
-  "value": "370725"
-}, {
-  "label": "潍坊滨海经济技术开发区",
-  "value": "370772"
-}, {
-  "label": "青州市",
-  "value": "370781"
-}, {
-  "label": "诸城市",
-  "value": "370782"
-}, {
-  "label": "寿光市",
-  "value": "370783"
-}, {
-  "label": "安丘市",
-  "value": "370784"
-}, {
-  "label": "高密市",
-  "value": "370785"
-}, {
-  "label": "昌邑市",
-  "value": "370786"
-}], [{
-  "label": "任城区",
-  "value": "370811"
-}, {
-  "label": "兖州区",
-  "value": "370812"
-}, {
-  "label": "微山县",
-  "value": "370826"
-}, {
-  "label": "鱼台县",
-  "value": "370827"
-}, {
-  "label": "金乡县",
-  "value": "370828"
-}, {
-  "label": "嘉祥县",
-  "value": "370829"
-}, {
-  "label": "汶上县",
-  "value": "370830"
-}, {
-  "label": "泗水县",
-  "value": "370831"
-}, {
-  "label": "梁山县",
-  "value": "370832"
-}, {
-  "label": "济宁高新技术产业开发区",
-  "value": "370871"
-}, {
-  "label": "曲阜市",
-  "value": "370881"
-}, {
-  "label": "邹城市",
-  "value": "370883"
-}], [{
-  "label": "泰山区",
-  "value": "370902"
-}, {
-  "label": "岱岳区",
-  "value": "370911"
-}, {
-  "label": "宁阳县",
-  "value": "370921"
-}, {
-  "label": "东平县",
-  "value": "370923"
-}, {
-  "label": "新泰市",
-  "value": "370982"
-}, {
-  "label": "肥城市",
-  "value": "370983"
-}], [{
-  "label": "环翠区",
-  "value": "371002"
-}, {
-  "label": "文登区",
-  "value": "371003"
-}, {
-  "label": "威海火炬高技术产业开发区",
-  "value": "371071"
-}, {
-  "label": "威海经济技术开发区",
-  "value": "371072"
-}, {
-  "label": "威海临港经济技术开发区",
-  "value": "371073"
-}, {
-  "label": "荣成市",
-  "value": "371082"
-}, {
-  "label": "乳山市",
-  "value": "371083"
-}], [{
-  "label": "东港区",
-  "value": "371102"
-}, {
-  "label": "岚山区",
-  "value": "371103"
-}, {
-  "label": "五莲县",
-  "value": "371121"
-}, {
-  "label": "莒县",
-  "value": "371122"
-}, {
-  "label": "日照经济技术开发区",
-  "value": "371171"
-}, {
-  "label": "日照国际海洋城",
-  "value": "371172"
-}], [{
-  "label": "莱城区",
-  "value": "371202"
-}, {
-  "label": "钢城区",
-  "value": "371203"
-}], [{
-  "label": "兰山区",
-  "value": "371302"
-}, {
-  "label": "罗庄区",
-  "value": "371311"
-}, {
-  "label": "河东区",
-  "value": "371312"
-}, {
-  "label": "沂南县",
-  "value": "371321"
-}, {
-  "label": "郯城县",
-  "value": "371322"
-}, {
-  "label": "沂水县",
-  "value": "371323"
-}, {
-  "label": "兰陵县",
-  "value": "371324"
-}, {
-  "label": "费县",
-  "value": "371325"
-}, {
-  "label": "平邑县",
-  "value": "371326"
-}, {
-  "label": "莒南县",
-  "value": "371327"
-}, {
-  "label": "蒙阴县",
-  "value": "371328"
-}, {
-  "label": "临沭县",
-  "value": "371329"
-}, {
-  "label": "临沂高新技术产业开发区",
-  "value": "371371"
-}, {
-  "label": "临沂经济技术开发区",
-  "value": "371372"
-}, {
-  "label": "临沂临港经济开发区",
-  "value": "371373"
-}], [{
-  "label": "德城区",
-  "value": "371402"
-}, {
-  "label": "陵城区",
-  "value": "371403"
-}, {
-  "label": "宁津县",
-  "value": "371422"
-}, {
-  "label": "庆云县",
-  "value": "371423"
-}, {
-  "label": "临邑县",
-  "value": "371424"
-}, {
-  "label": "齐河县",
-  "value": "371425"
-}, {
-  "label": "平原县",
-  "value": "371426"
-}, {
-  "label": "夏津县",
-  "value": "371427"
-}, {
-  "label": "武城县",
-  "value": "371428"
-}, {
-  "label": "德州经济技术开发区",
-  "value": "371471"
-}, {
-  "label": "德州运河经济开发区",
-  "value": "371472"
-}, {
-  "label": "乐陵市",
-  "value": "371481"
-}, {
-  "label": "禹城市",
-  "value": "371482"
-}], [{
-  "label": "东昌府区",
-  "value": "371502"
-}, {
-  "label": "阳谷县",
-  "value": "371521"
-}, {
-  "label": "莘县",
-  "value": "371522"
-}, {
-  "label": "茌平县",
-  "value": "371523"
-}, {
-  "label": "东阿县",
-  "value": "371524"
-}, {
-  "label": "冠县",
-  "value": "371525"
-}, {
-  "label": "高唐县",
-  "value": "371526"
-}, {
-  "label": "临清市",
-  "value": "371581"
-}], [{
-  "label": "滨城区",
-  "value": "371602"
-}, {
-  "label": "沾化区",
-  "value": "371603"
-}, {
-  "label": "惠民县",
-  "value": "371621"
-}, {
-  "label": "阳信县",
-  "value": "371622"
-}, {
-  "label": "无棣县",
-  "value": "371623"
-}, {
-  "label": "博兴县",
-  "value": "371625"
-}, {
-  "label": "邹平县",
-  "value": "371626"
-}], [{
-  "label": "牡丹区",
-  "value": "371702"
-}, {
-  "label": "定陶区",
-  "value": "371703"
-}, {
-  "label": "曹县",
-  "value": "371721"
-}, {
-  "label": "单县",
-  "value": "371722"
-}, {
-  "label": "成武县",
-  "value": "371723"
-}, {
-  "label": "巨野县",
-  "value": "371724"
-}, {
-  "label": "郓城县",
-  "value": "371725"
-}, {
-  "label": "鄄城县",
-  "value": "371726"
-}, {
-  "label": "东明县",
-  "value": "371728"
-}, {
-  "label": "菏泽经济技术开发区",
-  "value": "371771"
-}, {
-  "label": "菏泽高新技术开发区",
-  "value": "371772"
-}]], [[{
-  "label": "中原区",
-  "value": "410102"
-}, {
-  "label": "二七区",
-  "value": "410103"
-}, {
-  "label": "管城回族区",
-  "value": "410104"
-}, {
-  "label": "金水区",
-  "value": "410105"
-}, {
-  "label": "上街区",
-  "value": "410106"
-}, {
-  "label": "惠济区",
-  "value": "410108"
-}, {
-  "label": "中牟县",
-  "value": "410122"
-}, {
-  "label": "郑州经济技术开发区",
-  "value": "410171"
-}, {
-  "label": "郑州高新技术产业开发区",
-  "value": "410172"
-}, {
-  "label": "郑州航空港经济综合实验区",
-  "value": "410173"
-}, {
-  "label": "巩义市",
-  "value": "410181"
-}, {
-  "label": "荥阳市",
-  "value": "410182"
-}, {
-  "label": "新密市",
-  "value": "410183"
-}, {
-  "label": "新郑市",
-  "value": "410184"
-}, {
-  "label": "登封市",
-  "value": "410185"
-}], [{
-  "label": "龙亭区",
-  "value": "410202"
-}, {
-  "label": "顺河回族区",
-  "value": "410203"
-}, {
-  "label": "鼓楼区",
-  "value": "410204"
-}, {
-  "label": "禹王台区",
-  "value": "410205"
-}, {
-  "label": "祥符区",
-  "value": "410212"
-}, {
-  "label": "杞县",
-  "value": "410221"
-}, {
-  "label": "通许县",
-  "value": "410222"
-}, {
-  "label": "尉氏县",
-  "value": "410223"
-}, {
-  "label": "兰考县",
-  "value": "410225"
-}], [{
-  "label": "老城区",
-  "value": "410302"
-}, {
-  "label": "西工区",
-  "value": "410303"
-}, {
-  "label": "瀍河回族区",
-  "value": "410304"
-}, {
-  "label": "涧西区",
-  "value": "410305"
-}, {
-  "label": "吉利区",
-  "value": "410306"
-}, {
-  "label": "洛龙区",
-  "value": "410311"
-}, {
-  "label": "孟津县",
-  "value": "410322"
-}, {
-  "label": "新安县",
-  "value": "410323"
-}, {
-  "label": "栾川县",
-  "value": "410324"
-}, {
-  "label": "嵩县",
-  "value": "410325"
-}, {
-  "label": "汝阳县",
-  "value": "410326"
-}, {
-  "label": "宜阳县",
-  "value": "410327"
-}, {
-  "label": "洛宁县",
-  "value": "410328"
-}, {
-  "label": "伊川县",
-  "value": "410329"
-}, {
-  "label": "洛阳高新技术产业开发区",
-  "value": "410371"
-}, {
-  "label": "偃师市",
-  "value": "410381"
-}], [{
-  "label": "新华区",
-  "value": "410402"
-}, {
-  "label": "卫东区",
-  "value": "410403"
-}, {
-  "label": "石龙区",
-  "value": "410404"
-}, {
-  "label": "湛河区",
-  "value": "410411"
-}, {
-  "label": "宝丰县",
-  "value": "410421"
-}, {
-  "label": "叶县",
-  "value": "410422"
-}, {
-  "label": "鲁山县",
-  "value": "410423"
-}, {
-  "label": "郏县",
-  "value": "410425"
-}, {
-  "label": "平顶山高新技术产业开发区",
-  "value": "410471"
-}, {
-  "label": "平顶山市新城区",
-  "value": "410472"
-}, {
-  "label": "舞钢市",
-  "value": "410481"
-}, {
-  "label": "汝州市",
-  "value": "410482"
-}], [{
-  "label": "文峰区",
-  "value": "410502"
-}, {
-  "label": "北关区",
-  "value": "410503"
-}, {
-  "label": "殷都区",
-  "value": "410505"
-}, {
-  "label": "龙安区",
-  "value": "410506"
-}, {
-  "label": "安阳县",
-  "value": "410522"
-}, {
-  "label": "汤阴县",
-  "value": "410523"
-}, {
-  "label": "滑县",
-  "value": "410526"
-}, {
-  "label": "内黄县",
-  "value": "410527"
-}, {
-  "label": "安阳高新技术产业开发区",
-  "value": "410571"
-}, {
-  "label": "林州市",
-  "value": "410581"
-}], [{
-  "label": "鹤山区",
-  "value": "410602"
-}, {
-  "label": "山城区",
-  "value": "410603"
-}, {
-  "label": "淇滨区",
-  "value": "410611"
-}, {
-  "label": "浚县",
-  "value": "410621"
-}, {
-  "label": "淇县",
-  "value": "410622"
-}, {
-  "label": "鹤壁经济技术开发区",
-  "value": "410671"
-}], [{
-  "label": "红旗区",
-  "value": "410702"
-}, {
-  "label": "卫滨区",
-  "value": "410703"
-}, {
-  "label": "凤泉区",
-  "value": "410704"
-}, {
-  "label": "牧野区",
-  "value": "410711"
-}, {
-  "label": "新乡县",
-  "value": "410721"
-}, {
-  "label": "获嘉县",
-  "value": "410724"
-}, {
-  "label": "原阳县",
-  "value": "410725"
-}, {
-  "label": "延津县",
-  "value": "410726"
-}, {
-  "label": "封丘县",
-  "value": "410727"
-}, {
-  "label": "长垣县",
-  "value": "410728"
-}, {
-  "label": "新乡高新技术产业开发区",
-  "value": "410771"
-}, {
-  "label": "新乡经济技术开发区",
-  "value": "410772"
-}, {
-  "label": "新乡市平原城乡一体化示范区",
-  "value": "410773"
-}, {
-  "label": "卫辉市",
-  "value": "410781"
-}, {
-  "label": "辉县市",
-  "value": "410782"
-}], [{
-  "label": "解放区",
-  "value": "410802"
-}, {
-  "label": "中站区",
-  "value": "410803"
-}, {
-  "label": "马村区",
-  "value": "410804"
-}, {
-  "label": "山阳区",
-  "value": "410811"
-}, {
-  "label": "修武县",
-  "value": "410821"
-}, {
-  "label": "博爱县",
-  "value": "410822"
-}, {
-  "label": "武陟县",
-  "value": "410823"
-}, {
-  "label": "温县",
-  "value": "410825"
-}, {
-  "label": "焦作城乡一体化示范区",
-  "value": "410871"
-}, {
-  "label": "沁阳市",
-  "value": "410882"
-}, {
-  "label": "孟州市",
-  "value": "410883"
-}], [{
-  "label": "华龙区",
-  "value": "410902"
-}, {
-  "label": "清丰县",
-  "value": "410922"
-}, {
-  "label": "南乐县",
-  "value": "410923"
-}, {
-  "label": "范县",
-  "value": "410926"
-}, {
-  "label": "台前县",
-  "value": "410927"
-}, {
-  "label": "濮阳县",
-  "value": "410928"
-}, {
-  "label": "河南濮阳工业园区",
-  "value": "410971"
-}, {
-  "label": "濮阳经济技术开发区",
-  "value": "410972"
-}], [{
-  "label": "魏都区",
-  "value": "411002"
-}, {
-  "label": "建安区",
-  "value": "411003"
-}, {
-  "label": "鄢陵县",
-  "value": "411024"
-}, {
-  "label": "襄城县",
-  "value": "411025"
-}, {
-  "label": "许昌经济技术开发区",
-  "value": "411071"
-}, {
-  "label": "禹州市",
-  "value": "411081"
-}, {
-  "label": "长葛市",
-  "value": "411082"
-}], [{
-  "label": "源汇区",
-  "value": "411102"
-}, {
-  "label": "郾城区",
-  "value": "411103"
-}, {
-  "label": "召陵区",
-  "value": "411104"
-}, {
-  "label": "舞阳县",
-  "value": "411121"
-}, {
-  "label": "临颍县",
-  "value": "411122"
-}, {
-  "label": "漯河经济技术开发区",
-  "value": "411171"
-}], [{
-  "label": "湖滨区",
-  "value": "411202"
-}, {
-  "label": "陕州区",
-  "value": "411203"
-}, {
-  "label": "渑池县",
-  "value": "411221"
-}, {
-  "label": "卢氏县",
-  "value": "411224"
-}, {
-  "label": "河南三门峡经济开发区",
-  "value": "411271"
-}, {
-  "label": "义马市",
-  "value": "411281"
-}, {
-  "label": "灵宝市",
-  "value": "411282"
-}], [{
-  "label": "宛城区",
-  "value": "411302"
-}, {
-  "label": "卧龙区",
-  "value": "411303"
-}, {
-  "label": "南召县",
-  "value": "411321"
-}, {
-  "label": "方城县",
-  "value": "411322"
-}, {
-  "label": "西峡县",
-  "value": "411323"
-}, {
-  "label": "镇平县",
-  "value": "411324"
-}, {
-  "label": "内乡县",
-  "value": "411325"
-}, {
-  "label": "淅川县",
-  "value": "411326"
-}, {
-  "label": "社旗县",
-  "value": "411327"
-}, {
-  "label": "唐河县",
-  "value": "411328"
-}, {
-  "label": "新野县",
-  "value": "411329"
-}, {
-  "label": "桐柏县",
-  "value": "411330"
-}, {
-  "label": "南阳高新技术产业开发区",
-  "value": "411371"
-}, {
-  "label": "南阳市城乡一体化示范区",
-  "value": "411372"
-}, {
-  "label": "邓州市",
-  "value": "411381"
-}], [{
-  "label": "梁园区",
-  "value": "411402"
-}, {
-  "label": "睢阳区",
-  "value": "411403"
-}, {
-  "label": "民权县",
-  "value": "411421"
-}, {
-  "label": "睢县",
-  "value": "411422"
-}, {
-  "label": "宁陵县",
-  "value": "411423"
-}, {
-  "label": "柘城县",
-  "value": "411424"
-}, {
-  "label": "虞城县",
-  "value": "411425"
-}, {
-  "label": "夏邑县",
-  "value": "411426"
-}, {
-  "label": "豫东综合物流产业聚集区",
-  "value": "411471"
-}, {
-  "label": "河南商丘经济开发区",
-  "value": "411472"
-}, {
-  "label": "永城市",
-  "value": "411481"
-}], [{
-  "label": "浉河区",
-  "value": "411502"
-}, {
-  "label": "平桥区",
-  "value": "411503"
-}, {
-  "label": "罗山县",
-  "value": "411521"
-}, {
-  "label": "光山县",
-  "value": "411522"
-}, {
-  "label": "新县",
-  "value": "411523"
-}, {
-  "label": "商城县",
-  "value": "411524"
-}, {
-  "label": "固始县",
-  "value": "411525"
-}, {
-  "label": "潢川县",
-  "value": "411526"
-}, {
-  "label": "淮滨县",
-  "value": "411527"
-}, {
-  "label": "息县",
-  "value": "411528"
-}, {
-  "label": "信阳高新技术产业开发区",
-  "value": "411571"
-}], [{
-  "label": "川汇区",
-  "value": "411602"
-}, {
-  "label": "扶沟县",
-  "value": "411621"
-}, {
-  "label": "西华县",
-  "value": "411622"
-}, {
-  "label": "商水县",
-  "value": "411623"
-}, {
-  "label": "沈丘县",
-  "value": "411624"
-}, {
-  "label": "郸城县",
-  "value": "411625"
-}, {
-  "label": "淮阳县",
-  "value": "411626"
-}, {
-  "label": "太康县",
-  "value": "411627"
-}, {
-  "label": "鹿邑县",
-  "value": "411628"
-}, {
-  "label": "河南周口经济开发区",
-  "value": "411671"
-}, {
-  "label": "项城市",
-  "value": "411681"
-}], [{
-  "label": "驿城区",
-  "value": "411702"
-}, {
-  "label": "西平县",
-  "value": "411721"
-}, {
-  "label": "上蔡县",
-  "value": "411722"
-}, {
-  "label": "平舆县",
-  "value": "411723"
-}, {
-  "label": "正阳县",
-  "value": "411724"
-}, {
-  "label": "确山县",
-  "value": "411725"
-}, {
-  "label": "泌阳县",
-  "value": "411726"
-}, {
-  "label": "汝南县",
-  "value": "411727"
-}, {
-  "label": "遂平县",
-  "value": "411728"
-}, {
-  "label": "新蔡县",
-  "value": "411729"
-}, {
-  "label": "河南驻马店经济开发区",
-  "value": "411771"
-}], [{
-  "label": "济源市",
-  "value": "419001"
-}]], [[{
-  "label": "江岸区",
-  "value": "420102"
-}, {
-  "label": "江汉区",
-  "value": "420103"
-}, {
-  "label": "硚口区",
-  "value": "420104"
-}, {
-  "label": "汉阳区",
-  "value": "420105"
-}, {
-  "label": "武昌区",
-  "value": "420106"
-}, {
-  "label": "青山区",
-  "value": "420107"
-}, {
-  "label": "洪山区",
-  "value": "420111"
-}, {
-  "label": "东西湖区",
-  "value": "420112"
-}, {
-  "label": "汉南区",
-  "value": "420113"
-}, {
-  "label": "蔡甸区",
-  "value": "420114"
-}, {
-  "label": "江夏区",
-  "value": "420115"
-}, {
-  "label": "黄陂区",
-  "value": "420116"
-}, {
-  "label": "新洲区",
-  "value": "420117"
-}], [{
-  "label": "黄石港区",
-  "value": "420202"
-}, {
-  "label": "西塞山区",
-  "value": "420203"
-}, {
-  "label": "下陆区",
-  "value": "420204"
-}, {
-  "label": "铁山区",
-  "value": "420205"
-}, {
-  "label": "阳新县",
-  "value": "420222"
-}, {
-  "label": "大冶市",
-  "value": "420281"
-}], [{
-  "label": "茅箭区",
-  "value": "420302"
-}, {
-  "label": "张湾区",
-  "value": "420303"
-}, {
-  "label": "郧阳区",
-  "value": "420304"
-}, {
-  "label": "郧西县",
-  "value": "420322"
-}, {
-  "label": "竹山县",
-  "value": "420323"
-}, {
-  "label": "竹溪县",
-  "value": "420324"
-}, {
-  "label": "房县",
-  "value": "420325"
-}, {
-  "label": "丹江口市",
-  "value": "420381"
-}], [{
-  "label": "西陵区",
-  "value": "420502"
-}, {
-  "label": "伍家岗区",
-  "value": "420503"
-}, {
-  "label": "点军区",
-  "value": "420504"
-}, {
-  "label": "猇亭区",
-  "value": "420505"
-}, {
-  "label": "夷陵区",
-  "value": "420506"
-}, {
-  "label": "远安县",
-  "value": "420525"
-}, {
-  "label": "兴山县",
-  "value": "420526"
-}, {
-  "label": "秭归县",
-  "value": "420527"
-}, {
-  "label": "长阳土家族自治县",
-  "value": "420528"
-}, {
-  "label": "五峰土家族自治县",
-  "value": "420529"
-}, {
-  "label": "宜都市",
-  "value": "420581"
-}, {
-  "label": "当阳市",
-  "value": "420582"
-}, {
-  "label": "枝江市",
-  "value": "420583"
-}], [{
-  "label": "襄城区",
-  "value": "420602"
-}, {
-  "label": "樊城区",
-  "value": "420606"
-}, {
-  "label": "襄州区",
-  "value": "420607"
-}, {
-  "label": "南漳县",
-  "value": "420624"
-}, {
-  "label": "谷城县",
-  "value": "420625"
-}, {
-  "label": "保康县",
-  "value": "420626"
-}, {
-  "label": "老河口市",
-  "value": "420682"
-}, {
-  "label": "枣阳市",
-  "value": "420683"
-}, {
-  "label": "宜城市",
-  "value": "420684"
-}], [{
-  "label": "梁子湖区",
-  "value": "420702"
-}, {
-  "label": "华容区",
-  "value": "420703"
-}, {
-  "label": "鄂城区",
-  "value": "420704"
-}], [{
-  "label": "东宝区",
-  "value": "420802"
-}, {
-  "label": "掇刀区",
-  "value": "420804"
-}, {
-  "label": "京山县",
-  "value": "420821"
-}, {
-  "label": "沙洋县",
-  "value": "420822"
-}, {
-  "label": "钟祥市",
-  "value": "420881"
-}], [{
-  "label": "孝南区",
-  "value": "420902"
-}, {
-  "label": "孝昌县",
-  "value": "420921"
-}, {
-  "label": "大悟县",
-  "value": "420922"
-}, {
-  "label": "云梦县",
-  "value": "420923"
-}, {
-  "label": "应城市",
-  "value": "420981"
-}, {
-  "label": "安陆市",
-  "value": "420982"
-}, {
-  "label": "汉川市",
-  "value": "420984"
-}], [{
-  "label": "沙市区",
-  "value": "421002"
-}, {
-  "label": "荆州区",
-  "value": "421003"
-}, {
-  "label": "公安县",
-  "value": "421022"
-}, {
-  "label": "监利县",
-  "value": "421023"
-}, {
-  "label": "江陵县",
-  "value": "421024"
-}, {
-  "label": "荆州经济技术开发区",
-  "value": "421071"
-}, {
-  "label": "石首市",
-  "value": "421081"
-}, {
-  "label": "洪湖市",
-  "value": "421083"
-}, {
-  "label": "松滋市",
-  "value": "421087"
-}], [{
-  "label": "黄州区",
-  "value": "421102"
-}, {
-  "label": "团风县",
-  "value": "421121"
-}, {
-  "label": "红安县",
-  "value": "421122"
-}, {
-  "label": "罗田县",
-  "value": "421123"
-}, {
-  "label": "英山县",
-  "value": "421124"
-}, {
-  "label": "浠水县",
-  "value": "421125"
-}, {
-  "label": "蕲春县",
-  "value": "421126"
-}, {
-  "label": "黄梅县",
-  "value": "421127"
-}, {
-  "label": "龙感湖管理区",
-  "value": "421171"
-}, {
-  "label": "麻城市",
-  "value": "421181"
-}, {
-  "label": "武穴市",
-  "value": "421182"
-}], [{
-  "label": "咸安区",
-  "value": "421202"
-}, {
-  "label": "嘉鱼县",
-  "value": "421221"
-}, {
-  "label": "通城县",
-  "value": "421222"
-}, {
-  "label": "崇阳县",
-  "value": "421223"
-}, {
-  "label": "通山县",
-  "value": "421224"
-}, {
-  "label": "赤壁市",
-  "value": "421281"
-}], [{
-  "label": "曾都区",
-  "value": "421303"
-}, {
-  "label": "随县",
-  "value": "421321"
-}, {
-  "label": "广水市",
-  "value": "421381"
-}], [{
-  "label": "恩施市",
-  "value": "422801"
-}, {
-  "label": "利川市",
-  "value": "422802"
-}, {
-  "label": "建始县",
-  "value": "422822"
-}, {
-  "label": "巴东县",
-  "value": "422823"
-}, {
-  "label": "宣恩县",
-  "value": "422825"
-}, {
-  "label": "咸丰县",
-  "value": "422826"
-}, {
-  "label": "来凤县",
-  "value": "422827"
-}, {
-  "label": "鹤峰县",
-  "value": "422828"
-}], [{
-  "label": "仙桃市",
-  "value": "429004"
-}, {
-  "label": "潜江市",
-  "value": "429005"
-}, {
-  "label": "天门市",
-  "value": "429006"
-}, {
-  "label": "神农架林区",
-  "value": "429021"
-}]], [[{
-  "label": "芙蓉区",
-  "value": "430102"
-}, {
-  "label": "天心区",
-  "value": "430103"
-}, {
-  "label": "岳麓区",
-  "value": "430104"
-}, {
-  "label": "开福区",
-  "value": "430105"
-}, {
-  "label": "雨花区",
-  "value": "430111"
-}, {
-  "label": "望城区",
-  "value": "430112"
-}, {
-  "label": "长沙县",
-  "value": "430121"
-}, {
-  "label": "浏阳市",
-  "value": "430181"
-}, {
-  "label": "宁乡市",
-  "value": "430182"
-}], [{
-  "label": "荷塘区",
-  "value": "430202"
-}, {
-  "label": "芦淞区",
-  "value": "430203"
-}, {
-  "label": "石峰区",
-  "value": "430204"
-}, {
-  "label": "天元区",
-  "value": "430211"
-}, {
-  "label": "株洲县",
-  "value": "430221"
-}, {
-  "label": "攸县",
-  "value": "430223"
-}, {
-  "label": "茶陵县",
-  "value": "430224"
-}, {
-  "label": "炎陵县",
-  "value": "430225"
-}, {
-  "label": "云龙示范区",
-  "value": "430271"
-}, {
-  "label": "醴陵市",
-  "value": "430281"
-}], [{
-  "label": "雨湖区",
-  "value": "430302"
-}, {
-  "label": "岳塘区",
-  "value": "430304"
-}, {
-  "label": "湘潭县",
-  "value": "430321"
-}, {
-  "label": "湖南湘潭高新技术产业园区",
-  "value": "430371"
-}, {
-  "label": "湘潭昭山示范区",
-  "value": "430372"
-}, {
-  "label": "湘潭九华示范区",
-  "value": "430373"
-}, {
-  "label": "湘乡市",
-  "value": "430381"
-}, {
-  "label": "韶山市",
-  "value": "430382"
-}], [{
-  "label": "珠晖区",
-  "value": "430405"
-}, {
-  "label": "雁峰区",
-  "value": "430406"
-}, {
-  "label": "石鼓区",
-  "value": "430407"
-}, {
-  "label": "蒸湘区",
-  "value": "430408"
-}, {
-  "label": "南岳区",
-  "value": "430412"
-}, {
-  "label": "衡阳县",
-  "value": "430421"
-}, {
-  "label": "衡南县",
-  "value": "430422"
-}, {
-  "label": "衡山县",
-  "value": "430423"
-}, {
-  "label": "衡东县",
-  "value": "430424"
-}, {
-  "label": "祁东县",
-  "value": "430426"
-}, {
-  "label": "衡阳综合保税区",
-  "value": "430471"
-}, {
-  "label": "湖南衡阳高新技术产业园区",
-  "value": "430472"
-}, {
-  "label": "湖南衡阳松木经济开发区",
-  "value": "430473"
-}, {
-  "label": "耒阳市",
-  "value": "430481"
-}, {
-  "label": "常宁市",
-  "value": "430482"
-}], [{
-  "label": "双清区",
-  "value": "430502"
-}, {
-  "label": "大祥区",
-  "value": "430503"
-}, {
-  "label": "北塔区",
-  "value": "430511"
-}, {
-  "label": "邵东县",
-  "value": "430521"
-}, {
-  "label": "新邵县",
-  "value": "430522"
-}, {
-  "label": "邵阳县",
-  "value": "430523"
-}, {
-  "label": "隆回县",
-  "value": "430524"
-}, {
-  "label": "洞口县",
-  "value": "430525"
-}, {
-  "label": "绥宁县",
-  "value": "430527"
-}, {
-  "label": "新宁县",
-  "value": "430528"
-}, {
-  "label": "城步苗族自治县",
-  "value": "430529"
-}, {
-  "label": "武冈市",
-  "value": "430581"
-}], [{
-  "label": "岳阳楼区",
-  "value": "430602"
-}, {
-  "label": "云溪区",
-  "value": "430603"
-}, {
-  "label": "君山区",
-  "value": "430611"
-}, {
-  "label": "岳阳县",
-  "value": "430621"
-}, {
-  "label": "华容县",
-  "value": "430623"
-}, {
-  "label": "湘阴县",
-  "value": "430624"
-}, {
-  "label": "平江县",
-  "value": "430626"
-}, {
-  "label": "岳阳市屈原管理区",
-  "value": "430671"
-}, {
-  "label": "汨罗市",
-  "value": "430681"
-}, {
-  "label": "临湘市",
-  "value": "430682"
-}], [{
-  "label": "武陵区",
-  "value": "430702"
-}, {
-  "label": "鼎城区",
-  "value": "430703"
-}, {
-  "label": "安乡县",
-  "value": "430721"
-}, {
-  "label": "汉寿县",
-  "value": "430722"
-}, {
-  "label": "澧县",
-  "value": "430723"
-}, {
-  "label": "临澧县",
-  "value": "430724"
-}, {
-  "label": "桃源县",
-  "value": "430725"
-}, {
-  "label": "石门县",
-  "value": "430726"
-}, {
-  "label": "常德市西洞庭管理区",
-  "value": "430771"
-}, {
-  "label": "津市市",
-  "value": "430781"
-}], [{
-  "label": "永定区",
-  "value": "430802"
-}, {
-  "label": "武陵源区",
-  "value": "430811"
-}, {
-  "label": "慈利县",
-  "value": "430821"
-}, {
-  "label": "桑植县",
-  "value": "430822"
-}], [{
-  "label": "资阳区",
-  "value": "430902"
-}, {
-  "label": "赫山区",
-  "value": "430903"
-}, {
-  "label": "南县",
-  "value": "430921"
-}, {
-  "label": "桃江县",
-  "value": "430922"
-}, {
-  "label": "安化县",
-  "value": "430923"
-}, {
-  "label": "益阳市大通湖管理区",
-  "value": "430971"
-}, {
-  "label": "湖南益阳高新技术产业园区",
-  "value": "430972"
-}, {
-  "label": "沅江市",
-  "value": "430981"
-}], [{
-  "label": "北湖区",
-  "value": "431002"
-}, {
-  "label": "苏仙区",
-  "value": "431003"
-}, {
-  "label": "桂阳县",
-  "value": "431021"
-}, {
-  "label": "宜章县",
-  "value": "431022"
-}, {
-  "label": "永兴县",
-  "value": "431023"
-}, {
-  "label": "嘉禾县",
-  "value": "431024"
-}, {
-  "label": "临武县",
-  "value": "431025"
-}, {
-  "label": "汝城县",
-  "value": "431026"
-}, {
-  "label": "桂东县",
-  "value": "431027"
-}, {
-  "label": "安仁县",
-  "value": "431028"
-}, {
-  "label": "资兴市",
-  "value": "431081"
-}], [{
-  "label": "零陵区",
-  "value": "431102"
-}, {
-  "label": "冷水滩区",
-  "value": "431103"
-}, {
-  "label": "祁阳县",
-  "value": "431121"
-}, {
-  "label": "东安县",
-  "value": "431122"
-}, {
-  "label": "双牌县",
-  "value": "431123"
-}, {
-  "label": "道县",
-  "value": "431124"
-}, {
-  "label": "江永县",
-  "value": "431125"
-}, {
-  "label": "宁远县",
-  "value": "431126"
-}, {
-  "label": "蓝山县",
-  "value": "431127"
-}, {
-  "label": "新田县",
-  "value": "431128"
-}, {
-  "label": "江华瑶族自治县",
-  "value": "431129"
-}, {
-  "label": "永州经济技术开发区",
-  "value": "431171"
-}, {
-  "label": "永州市金洞管理区",
-  "value": "431172"
-}, {
-  "label": "永州市回龙圩管理区",
-  "value": "431173"
-}], [{
-  "label": "鹤城区",
-  "value": "431202"
-}, {
-  "label": "中方县",
-  "value": "431221"
-}, {
-  "label": "沅陵县",
-  "value": "431222"
-}, {
-  "label": "辰溪县",
-  "value": "431223"
-}, {
-  "label": "溆浦县",
-  "value": "431224"
-}, {
-  "label": "会同县",
-  "value": "431225"
-}, {
-  "label": "麻阳苗族自治县",
-  "value": "431226"
-}, {
-  "label": "新晃侗族自治县",
-  "value": "431227"
-}, {
-  "label": "芷江侗族自治县",
-  "value": "431228"
-}, {
-  "label": "靖州苗族侗族自治县",
-  "value": "431229"
-}, {
-  "label": "通道侗族自治县",
-  "value": "431230"
-}, {
-  "label": "怀化市洪江管理区",
-  "value": "431271"
-}, {
-  "label": "洪江市",
-  "value": "431281"
-}], [{
-  "label": "娄星区",
-  "value": "431302"
-}, {
-  "label": "双峰县",
-  "value": "431321"
-}, {
-  "label": "新化县",
-  "value": "431322"
-}, {
-  "label": "冷水江市",
-  "value": "431381"
-}, {
-  "label": "涟源市",
-  "value": "431382"
-}], [{
-  "label": "吉首市",
-  "value": "433101"
-}, {
-  "label": "泸溪县",
-  "value": "433122"
-}, {
-  "label": "凤凰县",
-  "value": "433123"
-}, {
-  "label": "花垣县",
-  "value": "433124"
-}, {
-  "label": "保靖县",
-  "value": "433125"
-}, {
-  "label": "古丈县",
-  "value": "433126"
-}, {
-  "label": "永顺县",
-  "value": "433127"
-}, {
-  "label": "龙山县",
-  "value": "433130"
-}, {
-  "label": "湖南吉首经济开发区",
-  "value": "433172"
-}, {
-  "label": "湖南永顺经济开发区",
-  "value": "433173"
-}]], [[{
-  "label": "荔湾区",
-  "value": "440103"
-}, {
-  "label": "越秀区",
-  "value": "440104"
-}, {
-  "label": "海珠区",
-  "value": "440105"
-}, {
-  "label": "天河区",
-  "value": "440106"
-}, {
-  "label": "白云区",
-  "value": "440111"
-}, {
-  "label": "黄埔区",
-  "value": "440112"
-}, {
-  "label": "番禺区",
-  "value": "440113"
-}, {
-  "label": "花都区",
-  "value": "440114"
-}, {
-  "label": "南沙区",
-  "value": "440115"
-}, {
-  "label": "从化区",
-  "value": "440117"
-}, {
-  "label": "增城区",
-  "value": "440118"
-}], [{
-  "label": "武江区",
-  "value": "440203"
-}, {
-  "label": "浈江区",
-  "value": "440204"
-}, {
-  "label": "曲江区",
-  "value": "440205"
-}, {
-  "label": "始兴县",
-  "value": "440222"
-}, {
-  "label": "仁化县",
-  "value": "440224"
-}, {
-  "label": "翁源县",
-  "value": "440229"
-}, {
-  "label": "乳源瑶族自治县",
-  "value": "440232"
-}, {
-  "label": "新丰县",
-  "value": "440233"
-}, {
-  "label": "乐昌市",
-  "value": "440281"
-}, {
-  "label": "南雄市",
-  "value": "440282"
-}], [{
-  "label": "罗湖区",
-  "value": "440303"
-}, {
-  "label": "福田区",
-  "value": "440304"
-}, {
-  "label": "南山区",
-  "value": "440305"
-}, {
-  "label": "宝安区",
-  "value": "440306"
-}, {
-  "label": "龙岗区",
-  "value": "440307"
-}, {
-  "label": "盐田区",
-  "value": "440308"
-}, {
-  "label": "龙华区",
-  "value": "440309"
-}, {
-  "label": "坪山区",
-  "value": "440310"
-}], [{
-  "label": "香洲区",
-  "value": "440402"
-}, {
-  "label": "斗门区",
-  "value": "440403"
-}, {
-  "label": "金湾区",
-  "value": "440404"
-}], [{
-  "label": "龙湖区",
-  "value": "440507"
-}, {
-  "label": "金平区",
-  "value": "440511"
-}, {
-  "label": "濠江区",
-  "value": "440512"
-}, {
-  "label": "潮阳区",
-  "value": "440513"
-}, {
-  "label": "潮南区",
-  "value": "440514"
-}, {
-  "label": "澄海区",
-  "value": "440515"
-}, {
-  "label": "南澳县",
-  "value": "440523"
-}], [{
-  "label": "禅城区",
-  "value": "440604"
-}, {
-  "label": "南海区",
-  "value": "440605"
-}, {
-  "label": "顺德区",
-  "value": "440606"
-}, {
-  "label": "三水区",
-  "value": "440607"
-}, {
-  "label": "高明区",
-  "value": "440608"
-}], [{
-  "label": "蓬江区",
-  "value": "440703"
-}, {
-  "label": "江海区",
-  "value": "440704"
-}, {
-  "label": "新会区",
-  "value": "440705"
-}, {
-  "label": "台山市",
-  "value": "440781"
-}, {
-  "label": "开平市",
-  "value": "440783"
-}, {
-  "label": "鹤山市",
-  "value": "440784"
-}, {
-  "label": "恩平市",
-  "value": "440785"
-}], [{
-  "label": "赤坎区",
-  "value": "440802"
-}, {
-  "label": "霞山区",
-  "value": "440803"
-}, {
-  "label": "坡头区",
-  "value": "440804"
-}, {
-  "label": "麻章区",
-  "value": "440811"
-}, {
-  "label": "遂溪县",
-  "value": "440823"
-}, {
-  "label": "徐闻县",
-  "value": "440825"
-}, {
-  "label": "廉江市",
-  "value": "440881"
-}, {
-  "label": "雷州市",
-  "value": "440882"
-}, {
-  "label": "吴川市",
-  "value": "440883"
-}], [{
-  "label": "茂南区",
-  "value": "440902"
-}, {
-  "label": "电白区",
-  "value": "440904"
-}, {
-  "label": "高州市",
-  "value": "440981"
-}, {
-  "label": "化州市",
-  "value": "440982"
-}, {
-  "label": "信宜市",
-  "value": "440983"
-}], [{
-  "label": "端州区",
-  "value": "441202"
-}, {
-  "label": "鼎湖区",
-  "value": "441203"
-}, {
-  "label": "高要区",
-  "value": "441204"
-}, {
-  "label": "广宁县",
-  "value": "441223"
-}, {
-  "label": "怀集县",
-  "value": "441224"
-}, {
-  "label": "封开县",
-  "value": "441225"
-}, {
-  "label": "德庆县",
-  "value": "441226"
-}, {
-  "label": "四会市",
-  "value": "441284"
-}], [{
-  "label": "惠城区",
-  "value": "441302"
-}, {
-  "label": "惠阳区",
-  "value": "441303"
-}, {
-  "label": "博罗县",
-  "value": "441322"
-}, {
-  "label": "惠东县",
-  "value": "441323"
-}, {
-  "label": "龙门县",
-  "value": "441324"
-}], [{
-  "label": "梅江区",
-  "value": "441402"
-}, {
-  "label": "梅县区",
-  "value": "441403"
-}, {
-  "label": "大埔县",
-  "value": "441422"
-}, {
-  "label": "丰顺县",
-  "value": "441423"
-}, {
-  "label": "五华县",
-  "value": "441424"
-}, {
-  "label": "平远县",
-  "value": "441426"
-}, {
-  "label": "蕉岭县",
-  "value": "441427"
-}, {
-  "label": "兴宁市",
-  "value": "441481"
-}], [{
-  "label": "城区",
-  "value": "441502"
-}, {
-  "label": "海丰县",
-  "value": "441521"
-}, {
-  "label": "陆河县",
-  "value": "441523"
-}, {
-  "label": "陆丰市",
-  "value": "441581"
-}], [{
-  "label": "源城区",
-  "value": "441602"
-}, {
-  "label": "紫金县",
-  "value": "441621"
-}, {
-  "label": "龙川县",
-  "value": "441622"
-}, {
-  "label": "连平县",
-  "value": "441623"
-}, {
-  "label": "和平县",
-  "value": "441624"
-}, {
-  "label": "东源县",
-  "value": "441625"
-}], [{
-  "label": "江城区",
-  "value": "441702"
-}, {
-  "label": "阳东区",
-  "value": "441704"
-}, {
-  "label": "阳西县",
-  "value": "441721"
-}, {
-  "label": "阳春市",
-  "value": "441781"
-}], [{
-  "label": "清城区",
-  "value": "441802"
-}, {
-  "label": "清新区",
-  "value": "441803"
-}, {
-  "label": "佛冈县",
-  "value": "441821"
-}, {
-  "label": "阳山县",
-  "value": "441823"
-}, {
-  "label": "连山壮族瑶族自治县",
-  "value": "441825"
-}, {
-  "label": "连南瑶族自治县",
-  "value": "441826"
-}, {
-  "label": "英德市",
-  "value": "441881"
-}, {
-  "label": "连州市",
-  "value": "441882"
-}], [{
-  "label": "东莞市",
-  "value": "441900"
-}], [{
-  "label": "中山市",
-  "value": "442000"
-}], [{
-  "label": "湘桥区",
-  "value": "445102"
-}, {
-  "label": "潮安区",
-  "value": "445103"
-}, {
-  "label": "饶平县",
-  "value": "445122"
-}], [{
-  "label": "榕城区",
-  "value": "445202"
-}, {
-  "label": "揭东区",
-  "value": "445203"
-}, {
-  "label": "揭西县",
-  "value": "445222"
-}, {
-  "label": "惠来县",
-  "value": "445224"
-}, {
-  "label": "普宁市",
-  "value": "445281"
-}], [{
-  "label": "云城区",
-  "value": "445302"
-}, {
-  "label": "云安区",
-  "value": "445303"
-}, {
-  "label": "新兴县",
-  "value": "445321"
-}, {
-  "label": "郁南县",
-  "value": "445322"
-}, {
-  "label": "罗定市",
-  "value": "445381"
-}]], [[{
-  "label": "兴宁区",
-  "value": "450102"
-}, {
-  "label": "青秀区",
-  "value": "450103"
-}, {
-  "label": "江南区",
-  "value": "450105"
-}, {
-  "label": "西乡塘区",
-  "value": "450107"
-}, {
-  "label": "良庆区",
-  "value": "450108"
-}, {
-  "label": "邕宁区",
-  "value": "450109"
-}, {
-  "label": "武鸣区",
-  "value": "450110"
-}, {
-  "label": "隆安县",
-  "value": "450123"
-}, {
-  "label": "马山县",
-  "value": "450124"
-}, {
-  "label": "上林县",
-  "value": "450125"
-}, {
-  "label": "宾阳县",
-  "value": "450126"
-}, {
-  "label": "横县",
-  "value": "450127"
-}], [{
-  "label": "城中区",
-  "value": "450202"
-}, {
-  "label": "鱼峰区",
-  "value": "450203"
-}, {
-  "label": "柳南区",
-  "value": "450204"
-}, {
-  "label": "柳北区",
-  "value": "450205"
-}, {
-  "label": "柳江区",
-  "value": "450206"
-}, {
-  "label": "柳城县",
-  "value": "450222"
-}, {
-  "label": "鹿寨县",
-  "value": "450223"
-}, {
-  "label": "融安县",
-  "value": "450224"
-}, {
-  "label": "融水苗族自治县",
-  "value": "450225"
-}, {
-  "label": "三江侗族自治县",
-  "value": "450226"
-}], [{
-  "label": "秀峰区",
-  "value": "450302"
-}, {
-  "label": "叠彩区",
-  "value": "450303"
-}, {
-  "label": "象山区",
-  "value": "450304"
-}, {
-  "label": "七星区",
-  "value": "450305"
-}, {
-  "label": "雁山区",
-  "value": "450311"
-}, {
-  "label": "临桂区",
-  "value": "450312"
-}, {
-  "label": "阳朔县",
-  "value": "450321"
-}, {
-  "label": "灵川县",
-  "value": "450323"
-}, {
-  "label": "全州县",
-  "value": "450324"
-}, {
-  "label": "兴安县",
-  "value": "450325"
-}, {
-  "label": "永福县",
-  "value": "450326"
-}, {
-  "label": "灌阳县",
-  "value": "450327"
-}, {
-  "label": "龙胜各族自治县",
-  "value": "450328"
-}, {
-  "label": "资源县",
-  "value": "450329"
-}, {
-  "label": "平乐县",
-  "value": "450330"
-}, {
-  "label": "荔浦县",
-  "value": "450331"
-}, {
-  "label": "恭城瑶族自治县",
-  "value": "450332"
-}], [{
-  "label": "万秀区",
-  "value": "450403"
-}, {
-  "label": "长洲区",
-  "value": "450405"
-}, {
-  "label": "龙圩区",
-  "value": "450406"
-}, {
-  "label": "苍梧县",
-  "value": "450421"
-}, {
-  "label": "藤县",
-  "value": "450422"
-}, {
-  "label": "蒙山县",
-  "value": "450423"
-}, {
-  "label": "岑溪市",
-  "value": "450481"
-}], [{
-  "label": "海城区",
-  "value": "450502"
-}, {
-  "label": "银海区",
-  "value": "450503"
-}, {
-  "label": "铁山港区",
-  "value": "450512"
-}, {
-  "label": "合浦县",
-  "value": "450521"
-}], [{
-  "label": "港口区",
-  "value": "450602"
-}, {
-  "label": "防城区",
-  "value": "450603"
-}, {
-  "label": "上思县",
-  "value": "450621"
-}, {
-  "label": "东兴市",
-  "value": "450681"
-}], [{
-  "label": "钦南区",
-  "value": "450702"
-}, {
-  "label": "钦北区",
-  "value": "450703"
-}, {
-  "label": "灵山县",
-  "value": "450721"
-}, {
-  "label": "浦北县",
-  "value": "450722"
-}], [{
-  "label": "港北区",
-  "value": "450802"
-}, {
-  "label": "港南区",
-  "value": "450803"
-}, {
-  "label": "覃塘区",
-  "value": "450804"
-}, {
-  "label": "平南县",
-  "value": "450821"
-}, {
-  "label": "桂平市",
-  "value": "450881"
-}], [{
-  "label": "玉州区",
-  "value": "450902"
-}, {
-  "label": "福绵区",
-  "value": "450903"
-}, {
-  "label": "容县",
-  "value": "450921"
-}, {
-  "label": "陆川县",
-  "value": "450922"
-}, {
-  "label": "博白县",
-  "value": "450923"
-}, {
-  "label": "兴业县",
-  "value": "450924"
-}, {
-  "label": "北流市",
-  "value": "450981"
-}], [{
-  "label": "右江区",
-  "value": "451002"
-}, {
-  "label": "田阳县",
-  "value": "451021"
-}, {
-  "label": "田东县",
-  "value": "451022"
-}, {
-  "label": "平果县",
-  "value": "451023"
-}, {
-  "label": "德保县",
-  "value": "451024"
-}, {
-  "label": "那坡县",
-  "value": "451026"
-}, {
-  "label": "凌云县",
-  "value": "451027"
-}, {
-  "label": "乐业县",
-  "value": "451028"
-}, {
-  "label": "田林县",
-  "value": "451029"
-}, {
-  "label": "西林县",
-  "value": "451030"
-}, {
-  "label": "隆林各族自治县",
-  "value": "451031"
-}, {
-  "label": "靖西市",
-  "value": "451081"
-}], [{
-  "label": "八步区",
-  "value": "451102"
-}, {
-  "label": "平桂区",
-  "value": "451103"
-}, {
-  "label": "昭平县",
-  "value": "451121"
-}, {
-  "label": "钟山县",
-  "value": "451122"
-}, {
-  "label": "富川瑶族自治县",
-  "value": "451123"
-}], [{
-  "label": "金城江区",
-  "value": "451202"
-}, {
-  "label": "宜州区",
-  "value": "451203"
-}, {
-  "label": "南丹县",
-  "value": "451221"
-}, {
-  "label": "天峨县",
-  "value": "451222"
-}, {
-  "label": "凤山县",
-  "value": "451223"
-}, {
-  "label": "东兰县",
-  "value": "451224"
-}, {
-  "label": "罗城仫佬族自治县",
-  "value": "451225"
-}, {
-  "label": "环江毛南族自治县",
-  "value": "451226"
-}, {
-  "label": "巴马瑶族自治县",
-  "value": "451227"
-}, {
-  "label": "都安瑶族自治县",
-  "value": "451228"
-}, {
-  "label": "大化瑶族自治县",
-  "value": "451229"
-}], [{
-  "label": "兴宾区",
-  "value": "451302"
-}, {
-  "label": "忻城县",
-  "value": "451321"
-}, {
-  "label": "象州县",
-  "value": "451322"
-}, {
-  "label": "武宣县",
-  "value": "451323"
-}, {
-  "label": "金秀瑶族自治县",
-  "value": "451324"
-}, {
-  "label": "合山市",
-  "value": "451381"
-}], [{
-  "label": "江州区",
-  "value": "451402"
-}, {
-  "label": "扶绥县",
-  "value": "451421"
-}, {
-  "label": "宁明县",
-  "value": "451422"
-}, {
-  "label": "龙州县",
-  "value": "451423"
-}, {
-  "label": "大新县",
-  "value": "451424"
-}, {
-  "label": "天等县",
-  "value": "451425"
-}, {
-  "label": "凭祥市",
-  "value": "451481"
-}]], [[{
-  "label": "秀英区",
-  "value": "460105"
-}, {
-  "label": "龙华区",
-  "value": "460106"
-}, {
-  "label": "琼山区",
-  "value": "460107"
-}, {
-  "label": "美兰区",
-  "value": "460108"
-}], [{
-  "label": "海棠区",
-  "value": "460202"
-}, {
-  "label": "吉阳区",
-  "value": "460203"
-}, {
-  "label": "天涯区",
-  "value": "460204"
-}, {
-  "label": "崖州区",
-  "value": "460205"
-}], [{
-  "label": "西沙群岛",
-  "value": "460321"
-}, {
-  "label": "南沙群岛",
-  "value": "460322"
-}, {
-  "label": "中沙群岛的岛礁及其海域",
-  "value": "460323"
-}], [{
-  "label": "儋州市",
-  "value": "460400"
-}], [{
-  "label": "五指山市",
-  "value": "469001"
-}, {
-  "label": "琼海市",
-  "value": "469002"
-}, {
-  "label": "文昌市",
-  "value": "469005"
-}, {
-  "label": "万宁市",
-  "value": "469006"
-}, {
-  "label": "东方市",
-  "value": "469007"
-}, {
-  "label": "定安县",
-  "value": "469021"
-}, {
-  "label": "屯昌县",
-  "value": "469022"
-}, {
-  "label": "澄迈县",
-  "value": "469023"
-}, {
-  "label": "临高县",
-  "value": "469024"
-}, {
-  "label": "白沙黎族自治县",
-  "value": "469025"
-}, {
-  "label": "昌江黎族自治县",
-  "value": "469026"
-}, {
-  "label": "乐东黎族自治县",
-  "value": "469027"
-}, {
-  "label": "陵水黎族自治县",
-  "value": "469028"
-}, {
-  "label": "保亭黎族苗族自治县",
-  "value": "469029"
-}, {
-  "label": "琼中黎族苗族自治县",
-  "value": "469030"
-}]], [[{
-  "label": "万州区",
-  "value": "500101"
-}, {
-  "label": "涪陵区",
-  "value": "500102"
-}, {
-  "label": "渝中区",
-  "value": "500103"
-}, {
-  "label": "大渡口区",
-  "value": "500104"
-}, {
-  "label": "江北区",
-  "value": "500105"
-}, {
-  "label": "沙坪坝区",
-  "value": "500106"
-}, {
-  "label": "九龙坡区",
-  "value": "500107"
-}, {
-  "label": "南岸区",
-  "value": "500108"
-}, {
-  "label": "北碚区",
-  "value": "500109"
-}, {
-  "label": "綦江区",
-  "value": "500110"
-}, {
-  "label": "大足区",
-  "value": "500111"
-}, {
-  "label": "渝北区",
-  "value": "500112"
-}, {
-  "label": "巴南区",
-  "value": "500113"
-}, {
-  "label": "黔江区",
-  "value": "500114"
-}, {
-  "label": "长寿区",
-  "value": "500115"
-}, {
-  "label": "江津区",
-  "value": "500116"
-}, {
-  "label": "合川区",
-  "value": "500117"
-}, {
-  "label": "永川区",
-  "value": "500118"
-}, {
-  "label": "南川区",
-  "value": "500119"
-}, {
-  "label": "璧山区",
-  "value": "500120"
-}, {
-  "label": "铜梁区",
-  "value": "500151"
-}, {
-  "label": "潼南区",
-  "value": "500152"
-}, {
-  "label": "荣昌区",
-  "value": "500153"
-}, {
-  "label": "开州区",
-  "value": "500154"
-}, {
-  "label": "梁平区",
-  "value": "500155"
-}, {
-  "label": "武隆区",
-  "value": "500156"
-}], [{
-  "label": "城口县",
-  "value": "500229"
-}, {
-  "label": "丰都县",
-  "value": "500230"
-}, {
-  "label": "垫江县",
-  "value": "500231"
-}, {
-  "label": "忠县",
-  "value": "500233"
-}, {
-  "label": "云阳县",
-  "value": "500235"
-}, {
-  "label": "奉节县",
-  "value": "500236"
-}, {
-  "label": "巫山县",
-  "value": "500237"
-}, {
-  "label": "巫溪县",
-  "value": "500238"
-}, {
-  "label": "石柱土家族自治县",
-  "value": "500240"
-}, {
-  "label": "秀山土家族苗族自治县",
-  "value": "500241"
-}, {
-  "label": "酉阳土家族苗族自治县",
-  "value": "500242"
-}, {
-  "label": "彭水苗族土家族自治县",
-  "value": "500243"
-}]], [[{
-  "label": "锦江区",
-  "value": "510104"
-}, {
-  "label": "青羊区",
-  "value": "510105"
-}, {
-  "label": "金牛区",
-  "value": "510106"
-}, {
-  "label": "武侯区",
-  "value": "510107"
-}, {
-  "label": "成华区",
-  "value": "510108"
-}, {
-  "label": "龙泉驿区",
-  "value": "510112"
-}, {
-  "label": "青白江区",
-  "value": "510113"
-}, {
-  "label": "新都区",
-  "value": "510114"
-}, {
-  "label": "温江区",
-  "value": "510115"
-}, {
-  "label": "双流区",
-  "value": "510116"
-}, {
-  "label": "郫都区",
-  "value": "510117"
-}, {
-  "label": "金堂县",
-  "value": "510121"
-}, {
-  "label": "大邑县",
-  "value": "510129"
-}, {
-  "label": "蒲江县",
-  "value": "510131"
-}, {
-  "label": "新津县",
-  "value": "510132"
-}, {
-  "label": "都江堰市",
-  "value": "510181"
-}, {
-  "label": "彭州市",
-  "value": "510182"
-}, {
-  "label": "邛崃市",
-  "value": "510183"
-}, {
-  "label": "崇州市",
-  "value": "510184"
-}, {
-  "label": "简阳市",
-  "value": "510185"
-}], [{
-  "label": "自流井区",
-  "value": "510302"
-}, {
-  "label": "贡井区",
-  "value": "510303"
-}, {
-  "label": "大安区",
-  "value": "510304"
-}, {
-  "label": "沿滩区",
-  "value": "510311"
-}, {
-  "label": "荣县",
-  "value": "510321"
-}, {
-  "label": "富顺县",
-  "value": "510322"
-}], [{
-  "label": "东区",
-  "value": "510402"
-}, {
-  "label": "西区",
-  "value": "510403"
-}, {
-  "label": "仁和区",
-  "value": "510411"
-}, {
-  "label": "米易县",
-  "value": "510421"
-}, {
-  "label": "盐边县",
-  "value": "510422"
-}], [{
-  "label": "江阳区",
-  "value": "510502"
-}, {
-  "label": "纳溪区",
-  "value": "510503"
-}, {
-  "label": "龙马潭区",
-  "value": "510504"
-}, {
-  "label": "泸县",
-  "value": "510521"
-}, {
-  "label": "合江县",
-  "value": "510522"
-}, {
-  "label": "叙永县",
-  "value": "510524"
-}, {
-  "label": "古蔺县",
-  "value": "510525"
-}], [{
-  "label": "旌阳区",
-  "value": "510603"
-}, {
-  "label": "罗江区",
-  "value": "510604"
-}, {
-  "label": "中江县",
-  "value": "510623"
-}, {
-  "label": "广汉市",
-  "value": "510681"
-}, {
-  "label": "什邡市",
-  "value": "510682"
-}, {
-  "label": "绵竹市",
-  "value": "510683"
-}], [{
-  "label": "涪城区",
-  "value": "510703"
-}, {
-  "label": "游仙区",
-  "value": "510704"
-}, {
-  "label": "安州区",
-  "value": "510705"
-}, {
-  "label": "三台县",
-  "value": "510722"
-}, {
-  "label": "盐亭县",
-  "value": "510723"
-}, {
-  "label": "梓潼县",
-  "value": "510725"
-}, {
-  "label": "北川羌族自治县",
-  "value": "510726"
-}, {
-  "label": "平武县",
-  "value": "510727"
-}, {
-  "label": "江油市",
-  "value": "510781"
-}], [{
-  "label": "利州区",
-  "value": "510802"
-}, {
-  "label": "昭化区",
-  "value": "510811"
-}, {
-  "label": "朝天区",
-  "value": "510812"
-}, {
-  "label": "旺苍县",
-  "value": "510821"
-}, {
-  "label": "青川县",
-  "value": "510822"
-}, {
-  "label": "剑阁县",
-  "value": "510823"
-}, {
-  "label": "苍溪县",
-  "value": "510824"
-}], [{
-  "label": "船山区",
-  "value": "510903"
-}, {
-  "label": "安居区",
-  "value": "510904"
-}, {
-  "label": "蓬溪县",
-  "value": "510921"
-}, {
-  "label": "射洪县",
-  "value": "510922"
-}, {
-  "label": "大英县",
-  "value": "510923"
-}], [{
-  "label": "市中区",
-  "value": "511002"
-}, {
-  "label": "东兴区",
-  "value": "511011"
-}, {
-  "label": "威远县",
-  "value": "511024"
-}, {
-  "label": "资中县",
-  "value": "511025"
-}, {
-  "label": "内江经济开发区",
-  "value": "511071"
-}, {
-  "label": "隆昌市",
-  "value": "511083"
-}], [{
-  "label": "市中区",
-  "value": "511102"
-}, {
-  "label": "沙湾区",
-  "value": "511111"
-}, {
-  "label": "五通桥区",
-  "value": "511112"
-}, {
-  "label": "金口河区",
-  "value": "511113"
-}, {
-  "label": "犍为县",
-  "value": "511123"
-}, {
-  "label": "井研县",
-  "value": "511124"
-}, {
-  "label": "夹江县",
-  "value": "511126"
-}, {
-  "label": "沐川县",
-  "value": "511129"
-}, {
-  "label": "峨边彝族自治县",
-  "value": "511132"
-}, {
-  "label": "马边彝族自治县",
-  "value": "511133"
-}, {
-  "label": "峨眉山市",
-  "value": "511181"
-}], [{
-  "label": "顺庆区",
-  "value": "511302"
-}, {
-  "label": "高坪区",
-  "value": "511303"
-}, {
-  "label": "嘉陵区",
-  "value": "511304"
-}, {
-  "label": "南部县",
-  "value": "511321"
-}, {
-  "label": "营山县",
-  "value": "511322"
-}, {
-  "label": "蓬安县",
-  "value": "511323"
-}, {
-  "label": "仪陇县",
-  "value": "511324"
-}, {
-  "label": "西充县",
-  "value": "511325"
-}, {
-  "label": "阆中市",
-  "value": "511381"
-}], [{
-  "label": "东坡区",
-  "value": "511402"
-}, {
-  "label": "彭山区",
-  "value": "511403"
-}, {
-  "label": "仁寿县",
-  "value": "511421"
-}, {
-  "label": "洪雅县",
-  "value": "511423"
-}, {
-  "label": "丹棱县",
-  "value": "511424"
-}, {
-  "label": "青神县",
-  "value": "511425"
-}], [{
-  "label": "翠屏区",
-  "value": "511502"
-}, {
-  "label": "南溪区",
-  "value": "511503"
-}, {
-  "label": "宜宾县",
-  "value": "511521"
-}, {
-  "label": "江安县",
-  "value": "511523"
-}, {
-  "label": "长宁县",
-  "value": "511524"
-}, {
-  "label": "高县",
-  "value": "511525"
-}, {
-  "label": "珙县",
-  "value": "511526"
-}, {
-  "label": "筠连县",
-  "value": "511527"
-}, {
-  "label": "兴文县",
-  "value": "511528"
-}, {
-  "label": "屏山县",
-  "value": "511529"
-}], [{
-  "label": "广安区",
-  "value": "511602"
-}, {
-  "label": "前锋区",
-  "value": "511603"
-}, {
-  "label": "岳池县",
-  "value": "511621"
-}, {
-  "label": "武胜县",
-  "value": "511622"
-}, {
-  "label": "邻水县",
-  "value": "511623"
-}, {
-  "label": "华蓥市",
-  "value": "511681"
-}], [{
-  "label": "通川区",
-  "value": "511702"
-}, {
-  "label": "达川区",
-  "value": "511703"
-}, {
-  "label": "宣汉县",
-  "value": "511722"
-}, {
-  "label": "开江县",
-  "value": "511723"
-}, {
-  "label": "大竹县",
-  "value": "511724"
-}, {
-  "label": "渠县",
-  "value": "511725"
-}, {
-  "label": "达州经济开发区",
-  "value": "511771"
-}, {
-  "label": "万源市",
-  "value": "511781"
-}], [{
-  "label": "雨城区",
-  "value": "511802"
-}, {
-  "label": "名山区",
-  "value": "511803"
-}, {
-  "label": "荥经县",
-  "value": "511822"
-}, {
-  "label": "汉源县",
-  "value": "511823"
-}, {
-  "label": "石棉县",
-  "value": "511824"
-}, {
-  "label": "天全县",
-  "value": "511825"
-}, {
-  "label": "芦山县",
-  "value": "511826"
-}, {
-  "label": "宝兴县",
-  "value": "511827"
-}], [{
-  "label": "巴州区",
-  "value": "511902"
-}, {
-  "label": "恩阳区",
-  "value": "511903"
-}, {
-  "label": "通江县",
-  "value": "511921"
-}, {
-  "label": "南江县",
-  "value": "511922"
-}, {
-  "label": "平昌县",
-  "value": "511923"
-}, {
-  "label": "巴中经济开发区",
-  "value": "511971"
-}], [{
-  "label": "雁江区",
-  "value": "512002"
-}, {
-  "label": "安岳县",
-  "value": "512021"
-}, {
-  "label": "乐至县",
-  "value": "512022"
-}], [{
-  "label": "马尔康市",
-  "value": "513201"
-}, {
-  "label": "汶川县",
-  "value": "513221"
-}, {
-  "label": "理县",
-  "value": "513222"
-}, {
-  "label": "茂县",
-  "value": "513223"
-}, {
-  "label": "松潘县",
-  "value": "513224"
-}, {
-  "label": "九寨沟县",
-  "value": "513225"
-}, {
-  "label": "金川县",
-  "value": "513226"
-}, {
-  "label": "小金县",
-  "value": "513227"
-}, {
-  "label": "黑水县",
-  "value": "513228"
-}, {
-  "label": "壤塘县",
-  "value": "513230"
-}, {
-  "label": "阿坝县",
-  "value": "513231"
-}, {
-  "label": "若尔盖县",
-  "value": "513232"
-}, {
-  "label": "红原县",
-  "value": "513233"
-}], [{
-  "label": "康定市",
-  "value": "513301"
-}, {
-  "label": "泸定县",
-  "value": "513322"
-}, {
-  "label": "丹巴县",
-  "value": "513323"
-}, {
-  "label": "九龙县",
-  "value": "513324"
-}, {
-  "label": "雅江县",
-  "value": "513325"
-}, {
-  "label": "道孚县",
-  "value": "513326"
-}, {
-  "label": "炉霍县",
-  "value": "513327"
-}, {
-  "label": "甘孜县",
-  "value": "513328"
-}, {
-  "label": "新龙县",
-  "value": "513329"
-}, {
-  "label": "德格县",
-  "value": "513330"
-}, {
-  "label": "白玉县",
-  "value": "513331"
-}, {
-  "label": "石渠县",
-  "value": "513332"
-}, {
-  "label": "色达县",
-  "value": "513333"
-}, {
-  "label": "理塘县",
-  "value": "513334"
-}, {
-  "label": "巴塘县",
-  "value": "513335"
-}, {
-  "label": "乡城县",
-  "value": "513336"
-}, {
-  "label": "稻城县",
-  "value": "513337"
-}, {
-  "label": "得荣县",
-  "value": "513338"
-}], [{
-  "label": "西昌市",
-  "value": "513401"
-}, {
-  "label": "木里藏族自治县",
-  "value": "513422"
-}, {
-  "label": "盐源县",
-  "value": "513423"
-}, {
-  "label": "德昌县",
-  "value": "513424"
-}, {
-  "label": "会理县",
-  "value": "513425"
-}, {
-  "label": "会东县",
-  "value": "513426"
-}, {
-  "label": "宁南县",
-  "value": "513427"
-}, {
-  "label": "普格县",
-  "value": "513428"
-}, {
-  "label": "布拖县",
-  "value": "513429"
-}, {
-  "label": "金阳县",
-  "value": "513430"
-}, {
-  "label": "昭觉县",
-  "value": "513431"
-}, {
-  "label": "喜德县",
-  "value": "513432"
-}, {
-  "label": "冕宁县",
-  "value": "513433"
-}, {
-  "label": "越西县",
-  "value": "513434"
-}, {
-  "label": "甘洛县",
-  "value": "513435"
-}, {
-  "label": "美姑县",
-  "value": "513436"
-}, {
-  "label": "雷波县",
-  "value": "513437"
-}]], [[{
-  "label": "南明区",
-  "value": "520102"
-}, {
-  "label": "云岩区",
-  "value": "520103"
-}, {
-  "label": "花溪区",
-  "value": "520111"
-}, {
-  "label": "乌当区",
-  "value": "520112"
-}, {
-  "label": "白云区",
-  "value": "520113"
-}, {
-  "label": "观山湖区",
-  "value": "520115"
-}, {
-  "label": "开阳县",
-  "value": "520121"
-}, {
-  "label": "息烽县",
-  "value": "520122"
-}, {
-  "label": "修文县",
-  "value": "520123"
-}, {
-  "label": "清镇市",
-  "value": "520181"
-}], [{
-  "label": "钟山区",
-  "value": "520201"
-}, {
-  "label": "六枝特区",
-  "value": "520203"
-}, {
-  "label": "水城县",
-  "value": "520221"
-}, {
-  "label": "盘州市",
-  "value": "520281"
-}], [{
-  "label": "红花岗区",
-  "value": "520302"
-}, {
-  "label": "汇川区",
-  "value": "520303"
-}, {
-  "label": "播州区",
-  "value": "520304"
-}, {
-  "label": "桐梓县",
-  "value": "520322"
-}, {
-  "label": "绥阳县",
-  "value": "520323"
-}, {
-  "label": "正安县",
-  "value": "520324"
-}, {
-  "label": "道真仡佬族苗族自治县",
-  "value": "520325"
-}, {
-  "label": "务川仡佬族苗族自治县",
-  "value": "520326"
-}, {
-  "label": "凤冈县",
-  "value": "520327"
-}, {
-  "label": "湄潭县",
-  "value": "520328"
-}, {
-  "label": "余庆县",
-  "value": "520329"
-}, {
-  "label": "习水县",
-  "value": "520330"
-}, {
-  "label": "赤水市",
-  "value": "520381"
-}, {
-  "label": "仁怀市",
-  "value": "520382"
-}], [{
-  "label": "西秀区",
-  "value": "520402"
-}, {
-  "label": "平坝区",
-  "value": "520403"
-}, {
-  "label": "普定县",
-  "value": "520422"
-}, {
-  "label": "镇宁布依族苗族自治县",
-  "value": "520423"
-}, {
-  "label": "关岭布依族苗族自治县",
-  "value": "520424"
-}, {
-  "label": "紫云苗族布依族自治县",
-  "value": "520425"
-}], [{
-  "label": "七星关区",
-  "value": "520502"
-}, {
-  "label": "大方县",
-  "value": "520521"
-}, {
-  "label": "黔西县",
-  "value": "520522"
-}, {
-  "label": "金沙县",
-  "value": "520523"
-}, {
-  "label": "织金县",
-  "value": "520524"
-}, {
-  "label": "纳雍县",
-  "value": "520525"
-}, {
-  "label": "威宁彝族回族苗族自治县",
-  "value": "520526"
-}, {
-  "label": "赫章县",
-  "value": "520527"
-}], [{
-  "label": "碧江区",
-  "value": "520602"
-}, {
-  "label": "万山区",
-  "value": "520603"
-}, {
-  "label": "江口县",
-  "value": "520621"
-}, {
-  "label": "玉屏侗族自治县",
-  "value": "520622"
-}, {
-  "label": "石阡县",
-  "value": "520623"
-}, {
-  "label": "思南县",
-  "value": "520624"
-}, {
-  "label": "印江土家族苗族自治县",
-  "value": "520625"
-}, {
-  "label": "德江县",
-  "value": "520626"
-}, {
-  "label": "沿河土家族自治县",
-  "value": "520627"
-}, {
-  "label": "松桃苗族自治县",
-  "value": "520628"
-}], [{
-  "label": "兴义市",
-  "value": "522301"
-}, {
-  "label": "兴仁县",
-  "value": "522322"
-}, {
-  "label": "普安县",
-  "value": "522323"
-}, {
-  "label": "晴隆县",
-  "value": "522324"
-}, {
-  "label": "贞丰县",
-  "value": "522325"
-}, {
-  "label": "望谟县",
-  "value": "522326"
-}, {
-  "label": "册亨县",
-  "value": "522327"
-}, {
-  "label": "安龙县",
-  "value": "522328"
-}], [{
-  "label": "凯里市",
-  "value": "522601"
-}, {
-  "label": "黄平县",
-  "value": "522622"
-}, {
-  "label": "施秉县",
-  "value": "522623"
-}, {
-  "label": "三穗县",
-  "value": "522624"
-}, {
-  "label": "镇远县",
-  "value": "522625"
-}, {
-  "label": "岑巩县",
-  "value": "522626"
-}, {
-  "label": "天柱县",
-  "value": "522627"
-}, {
-  "label": "锦屏县",
-  "value": "522628"
-}, {
-  "label": "剑河县",
-  "value": "522629"
-}, {
-  "label": "台江县",
-  "value": "522630"
-}, {
-  "label": "黎平县",
-  "value": "522631"
-}, {
-  "label": "榕江县",
-  "value": "522632"
-}, {
-  "label": "从江县",
-  "value": "522633"
-}, {
-  "label": "雷山县",
-  "value": "522634"
-}, {
-  "label": "麻江县",
-  "value": "522635"
-}, {
-  "label": "丹寨县",
-  "value": "522636"
-}], [{
-  "label": "都匀市",
-  "value": "522701"
-}, {
-  "label": "福泉市",
-  "value": "522702"
-}, {
-  "label": "荔波县",
-  "value": "522722"
-}, {
-  "label": "贵定县",
-  "value": "522723"
-}, {
-  "label": "瓮安县",
-  "value": "522725"
-}, {
-  "label": "独山县",
-  "value": "522726"
-}, {
-  "label": "平塘县",
-  "value": "522727"
-}, {
-  "label": "罗甸县",
-  "value": "522728"
-}, {
-  "label": "长顺县",
-  "value": "522729"
-}, {
-  "label": "龙里县",
-  "value": "522730"
-}, {
-  "label": "惠水县",
-  "value": "522731"
-}, {
-  "label": "三都水族自治县",
-  "value": "522732"
-}]], [[{
-  "label": "五华区",
-  "value": "530102"
-}, {
-  "label": "盘龙区",
-  "value": "530103"
-}, {
-  "label": "官渡区",
-  "value": "530111"
-}, {
-  "label": "西山区",
-  "value": "530112"
-}, {
-  "label": "东川区",
-  "value": "530113"
-}, {
-  "label": "呈贡区",
-  "value": "530114"
-}, {
-  "label": "晋宁区",
-  "value": "530115"
-}, {
-  "label": "富民县",
-  "value": "530124"
-}, {
-  "label": "宜良县",
-  "value": "530125"
-}, {
-  "label": "石林彝族自治县",
-  "value": "530126"
-}, {
-  "label": "嵩明县",
-  "value": "530127"
-}, {
-  "label": "禄劝彝族苗族自治县",
-  "value": "530128"
-}, {
-  "label": "寻甸回族彝族自治县",
-  "value": "530129"
-}, {
-  "label": "安宁市",
-  "value": "530181"
-}], [{
-  "label": "麒麟区",
-  "value": "530302"
-}, {
-  "label": "沾益区",
-  "value": "530303"
-}, {
-  "label": "马龙县",
-  "value": "530321"
-}, {
-  "label": "陆良县",
-  "value": "530322"
-}, {
-  "label": "师宗县",
-  "value": "530323"
-}, {
-  "label": "罗平县",
-  "value": "530324"
-}, {
-  "label": "富源县",
-  "value": "530325"
-}, {
-  "label": "会泽县",
-  "value": "530326"
-}, {
-  "label": "宣威市",
-  "value": "530381"
-}], [{
-  "label": "红塔区",
-  "value": "530402"
-}, {
-  "label": "江川区",
-  "value": "530403"
-}, {
-  "label": "澄江县",
-  "value": "530422"
-}, {
-  "label": "通海县",
-  "value": "530423"
-}, {
-  "label": "华宁县",
-  "value": "530424"
-}, {
-  "label": "易门县",
-  "value": "530425"
-}, {
-  "label": "峨山彝族自治县",
-  "value": "530426"
-}, {
-  "label": "新平彝族傣族自治县",
-  "value": "530427"
-}, {
-  "label": "元江哈尼族彝族傣族自治县",
-  "value": "530428"
-}], [{
-  "label": "隆阳区",
-  "value": "530502"
-}, {
-  "label": "施甸县",
-  "value": "530521"
-}, {
-  "label": "龙陵县",
-  "value": "530523"
-}, {
-  "label": "昌宁县",
-  "value": "530524"
-}, {
-  "label": "腾冲市",
-  "value": "530581"
-}], [{
-  "label": "昭阳区",
-  "value": "530602"
-}, {
-  "label": "鲁甸县",
-  "value": "530621"
-}, {
-  "label": "巧家县",
-  "value": "530622"
-}, {
-  "label": "盐津县",
-  "value": "530623"
-}, {
-  "label": "大关县",
-  "value": "530624"
-}, {
-  "label": "永善县",
-  "value": "530625"
-}, {
-  "label": "绥江县",
-  "value": "530626"
-}, {
-  "label": "镇雄县",
-  "value": "530627"
-}, {
-  "label": "彝良县",
-  "value": "530628"
-}, {
-  "label": "威信县",
-  "value": "530629"
-}, {
-  "label": "水富县",
-  "value": "530630"
-}], [{
-  "label": "古城区",
-  "value": "530702"
-}, {
-  "label": "玉龙纳西族自治县",
-  "value": "530721"
-}, {
-  "label": "永胜县",
-  "value": "530722"
-}, {
-  "label": "华坪县",
-  "value": "530723"
-}, {
-  "label": "宁蒗彝族自治县",
-  "value": "530724"
-}], [{
-  "label": "思茅区",
-  "value": "530802"
-}, {
-  "label": "宁洱哈尼族彝族自治县",
-  "value": "530821"
-}, {
-  "label": "墨江哈尼族自治县",
-  "value": "530822"
-}, {
-  "label": "景东彝族自治县",
-  "value": "530823"
-}, {
-  "label": "景谷傣族彝族自治县",
-  "value": "530824"
-}, {
-  "label": "镇沅彝族哈尼族拉祜族自治县",
-  "value": "530825"
-}, {
-  "label": "江城哈尼族彝族自治县",
-  "value": "530826"
-}, {
-  "label": "孟连傣族拉祜族佤族自治县",
-  "value": "530827"
-}, {
-  "label": "澜沧拉祜族自治县",
-  "value": "530828"
-}, {
-  "label": "西盟佤族自治县",
-  "value": "530829"
-}], [{
-  "label": "临翔区",
-  "value": "530902"
-}, {
-  "label": "凤庆县",
-  "value": "530921"
-}, {
-  "label": "云县",
-  "value": "530922"
-}, {
-  "label": "永德县",
-  "value": "530923"
-}, {
-  "label": "镇康县",
-  "value": "530924"
-}, {
-  "label": "双江拉祜族佤族布朗族傣族自治县",
-  "value": "530925"
-}, {
-  "label": "耿马傣族佤族自治县",
-  "value": "530926"
-}, {
-  "label": "沧源佤族自治县",
-  "value": "530927"
-}], [{
-  "label": "楚雄市",
-  "value": "532301"
-}, {
-  "label": "双柏县",
-  "value": "532322"
-}, {
-  "label": "牟定县",
-  "value": "532323"
-}, {
-  "label": "南华县",
-  "value": "532324"
-}, {
-  "label": "姚安县",
-  "value": "532325"
-}, {
-  "label": "大姚县",
-  "value": "532326"
-}, {
-  "label": "永仁县",
-  "value": "532327"
-}, {
-  "label": "元谋县",
-  "value": "532328"
-}, {
-  "label": "武定县",
-  "value": "532329"
-}, {
-  "label": "禄丰县",
-  "value": "532331"
-}], [{
-  "label": "个旧市",
-  "value": "532501"
-}, {
-  "label": "开远市",
-  "value": "532502"
-}, {
-  "label": "蒙自市",
-  "value": "532503"
-}, {
-  "label": "弥勒市",
-  "value": "532504"
-}, {
-  "label": "屏边苗族自治县",
-  "value": "532523"
-}, {
-  "label": "建水县",
-  "value": "532524"
-}, {
-  "label": "石屏县",
-  "value": "532525"
-}, {
-  "label": "泸西县",
-  "value": "532527"
-}, {
-  "label": "元阳县",
-  "value": "532528"
-}, {
-  "label": "红河县",
-  "value": "532529"
-}, {
-  "label": "金平苗族瑶族傣族自治县",
-  "value": "532530"
-}, {
-  "label": "绿春县",
-  "value": "532531"
-}, {
-  "label": "河口瑶族自治县",
-  "value": "532532"
-}], [{
-  "label": "文山市",
-  "value": "532601"
-}, {
-  "label": "砚山县",
-  "value": "532622"
-}, {
-  "label": "西畴县",
-  "value": "532623"
-}, {
-  "label": "麻栗坡县",
-  "value": "532624"
-}, {
-  "label": "马关县",
-  "value": "532625"
-}, {
-  "label": "丘北县",
-  "value": "532626"
-}, {
-  "label": "广南县",
-  "value": "532627"
-}, {
-  "label": "富宁县",
-  "value": "532628"
-}], [{
-  "label": "景洪市",
-  "value": "532801"
-}, {
-  "label": "勐海县",
-  "value": "532822"
-}, {
-  "label": "勐腊县",
-  "value": "532823"
-}], [{
-  "label": "大理市",
-  "value": "532901"
-}, {
-  "label": "漾濞彝族自治县",
-  "value": "532922"
-}, {
-  "label": "祥云县",
-  "value": "532923"
-}, {
-  "label": "宾川县",
-  "value": "532924"
-}, {
-  "label": "弥渡县",
-  "value": "532925"
-}, {
-  "label": "南涧彝族自治县",
-  "value": "532926"
-}, {
-  "label": "巍山彝族回族自治县",
-  "value": "532927"
-}, {
-  "label": "永平县",
-  "value": "532928"
-}, {
-  "label": "云龙县",
-  "value": "532929"
-}, {
-  "label": "洱源县",
-  "value": "532930"
-}, {
-  "label": "剑川县",
-  "value": "532931"
-}, {
-  "label": "鹤庆县",
-  "value": "532932"
-}], [{
-  "label": "瑞丽市",
-  "value": "533102"
-}, {
-  "label": "芒市",
-  "value": "533103"
-}, {
-  "label": "梁河县",
-  "value": "533122"
-}, {
-  "label": "盈江县",
-  "value": "533123"
-}, {
-  "label": "陇川县",
-  "value": "533124"
-}], [{
-  "label": "泸水市",
-  "value": "533301"
-}, {
-  "label": "福贡县",
-  "value": "533323"
-}, {
-  "label": "贡山独龙族怒族自治县",
-  "value": "533324"
-}, {
-  "label": "兰坪白族普米族自治县",
-  "value": "533325"
-}], [{
-  "label": "香格里拉市",
-  "value": "533401"
-}, {
-  "label": "德钦县",
-  "value": "533422"
-}, {
-  "label": "维西傈僳族自治县",
-  "value": "533423"
-}]], [[{
-  "label": "城关区",
-  "value": "540102"
-}, {
-  "label": "堆龙德庆区",
-  "value": "540103"
-}, {
-  "label": "林周县",
-  "value": "540121"
-}, {
-  "label": "当雄县",
-  "value": "540122"
-}, {
-  "label": "尼木县",
-  "value": "540123"
-}, {
-  "label": "曲水县",
-  "value": "540124"
-}, {
-  "label": "达孜县",
-  "value": "540126"
-}, {
-  "label": "墨竹工卡县",
-  "value": "540127"
-}, {
-  "label": "格尔木藏青工业园区",
-  "value": "540171"
-}, {
-  "label": "拉萨经济技术开发区",
-  "value": "540172"
-}, {
-  "label": "西藏文化旅游创意园区",
-  "value": "540173"
-}, {
-  "label": "达孜工业园区",
-  "value": "540174"
-}], [{
-  "label": "桑珠孜区",
-  "value": "540202"
-}, {
-  "label": "南木林县",
-  "value": "540221"
-}, {
-  "label": "江孜县",
-  "value": "540222"
-}, {
-  "label": "定日县",
-  "value": "540223"
-}, {
-  "label": "萨迦县",
-  "value": "540224"
-}, {
-  "label": "拉孜县",
-  "value": "540225"
-}, {
-  "label": "昂仁县",
-  "value": "540226"
-}, {
-  "label": "谢通门县",
-  "value": "540227"
-}, {
-  "label": "白朗县",
-  "value": "540228"
-}, {
-  "label": "仁布县",
-  "value": "540229"
-}, {
-  "label": "康马县",
-  "value": "540230"
-}, {
-  "label": "定结县",
-  "value": "540231"
-}, {
-  "label": "仲巴县",
-  "value": "540232"
-}, {
-  "label": "亚东县",
-  "value": "540233"
-}, {
-  "label": "吉隆县",
-  "value": "540234"
-}, {
-  "label": "聂拉木县",
-  "value": "540235"
-}, {
-  "label": "萨嘎县",
-  "value": "540236"
-}, {
-  "label": "岗巴县",
-  "value": "540237"
-}], [{
-  "label": "卡若区",
-  "value": "540302"
-}, {
-  "label": "江达县",
-  "value": "540321"
-}, {
-  "label": "贡觉县",
-  "value": "540322"
-}, {
-  "label": "类乌齐县",
-  "value": "540323"
-}, {
-  "label": "丁青县",
-  "value": "540324"
-}, {
-  "label": "察雅县",
-  "value": "540325"
-}, {
-  "label": "八宿县",
-  "value": "540326"
-}, {
-  "label": "左贡县",
-  "value": "540327"
-}, {
-  "label": "芒康县",
-  "value": "540328"
-}, {
-  "label": "洛隆县",
-  "value": "540329"
-}, {
-  "label": "边坝县",
-  "value": "540330"
-}], [{
-  "label": "巴宜区",
-  "value": "540402"
-}, {
-  "label": "工布江达县",
-  "value": "540421"
-}, {
-  "label": "米林县",
-  "value": "540422"
-}, {
-  "label": "墨脱县",
-  "value": "540423"
-}, {
-  "label": "波密县",
-  "value": "540424"
-}, {
-  "label": "察隅县",
-  "value": "540425"
-}, {
-  "label": "朗县",
-  "value": "540426"
-}], [{
-  "label": "乃东区",
-  "value": "540502"
-}, {
-  "label": "扎囊县",
-  "value": "540521"
-}, {
-  "label": "贡嘎县",
-  "value": "540522"
-}, {
-  "label": "桑日县",
-  "value": "540523"
-}, {
-  "label": "琼结县",
-  "value": "540524"
-}, {
-  "label": "曲松县",
-  "value": "540525"
-}, {
-  "label": "措美县",
-  "value": "540526"
-}, {
-  "label": "洛扎县",
-  "value": "540527"
-}, {
-  "label": "加查县",
-  "value": "540528"
-}, {
-  "label": "隆子县",
-  "value": "540529"
-}, {
-  "label": "错那县",
-  "value": "540530"
-}, {
-  "label": "浪卡子县",
-  "value": "540531"
-}], [{
-  "label": "那曲县",
-  "value": "542421"
-}, {
-  "label": "嘉黎县",
-  "value": "542422"
-}, {
-  "label": "比如县",
-  "value": "542423"
-}, {
-  "label": "聂荣县",
-  "value": "542424"
-}, {
-  "label": "安多县",
-  "value": "542425"
-}, {
-  "label": "申扎县",
-  "value": "542426"
-}, {
-  "label": "索县",
-  "value": "542427"
-}, {
-  "label": "班戈县",
-  "value": "542428"
-}, {
-  "label": "巴青县",
-  "value": "542429"
-}, {
-  "label": "尼玛县",
-  "value": "542430"
-}, {
-  "label": "双湖县",
-  "value": "542431"
-}], [{
-  "label": "普兰县",
-  "value": "542521"
-}, {
-  "label": "札达县",
-  "value": "542522"
-}, {
-  "label": "噶尔县",
-  "value": "542523"
-}, {
-  "label": "日土县",
-  "value": "542524"
-}, {
-  "label": "革吉县",
-  "value": "542525"
-}, {
-  "label": "改则县",
-  "value": "542526"
-}, {
-  "label": "措勤县",
-  "value": "542527"
-}]], [[{
-  "label": "新城区",
-  "value": "610102"
-}, {
-  "label": "碑林区",
-  "value": "610103"
-}, {
-  "label": "莲湖区",
-  "value": "610104"
-}, {
-  "label": "灞桥区",
-  "value": "610111"
-}, {
-  "label": "未央区",
-  "value": "610112"
-}, {
-  "label": "雁塔区",
-  "value": "610113"
-}, {
-  "label": "阎良区",
-  "value": "610114"
-}, {
-  "label": "临潼区",
-  "value": "610115"
-}, {
-  "label": "长安区",
-  "value": "610116"
-}, {
-  "label": "高陵区",
-  "value": "610117"
-}, {
-  "label": "鄠邑区",
-  "value": "610118"
-}, {
-  "label": "蓝田县",
-  "value": "610122"
-}, {
-  "label": "周至县",
-  "value": "610124"
-}], [{
-  "label": "王益区",
-  "value": "610202"
-}, {
-  "label": "印台区",
-  "value": "610203"
-}, {
-  "label": "耀州区",
-  "value": "610204"
-}, {
-  "label": "宜君县",
-  "value": "610222"
-}], [{
-  "label": "渭滨区",
-  "value": "610302"
-}, {
-  "label": "金台区",
-  "value": "610303"
-}, {
-  "label": "陈仓区",
-  "value": "610304"
-}, {
-  "label": "凤翔县",
-  "value": "610322"
-}, {
-  "label": "岐山县",
-  "value": "610323"
-}, {
-  "label": "扶风县",
-  "value": "610324"
-}, {
-  "label": "眉县",
-  "value": "610326"
-}, {
-  "label": "陇县",
-  "value": "610327"
-}, {
-  "label": "千阳县",
-  "value": "610328"
-}, {
-  "label": "麟游县",
-  "value": "610329"
-}, {
-  "label": "凤县",
-  "value": "610330"
-}, {
-  "label": "太白县",
-  "value": "610331"
-}], [{
-  "label": "秦都区",
-  "value": "610402"
-}, {
-  "label": "杨陵区",
-  "value": "610403"
-}, {
-  "label": "渭城区",
-  "value": "610404"
-}, {
-  "label": "三原县",
-  "value": "610422"
-}, {
-  "label": "泾阳县",
-  "value": "610423"
-}, {
-  "label": "乾县",
-  "value": "610424"
-}, {
-  "label": "礼泉县",
-  "value": "610425"
-}, {
-  "label": "永寿县",
-  "value": "610426"
-}, {
-  "label": "彬县",
-  "value": "610427"
-}, {
-  "label": "长武县",
-  "value": "610428"
-}, {
-  "label": "旬邑县",
-  "value": "610429"
-}, {
-  "label": "淳化县",
-  "value": "610430"
-}, {
-  "label": "武功县",
-  "value": "610431"
-}, {
-  "label": "兴平市",
-  "value": "610481"
-}], [{
-  "label": "临渭区",
-  "value": "610502"
-}, {
-  "label": "华州区",
-  "value": "610503"
-}, {
-  "label": "潼关县",
-  "value": "610522"
-}, {
-  "label": "大荔县",
-  "value": "610523"
-}, {
-  "label": "合阳县",
-  "value": "610524"
-}, {
-  "label": "澄城县",
-  "value": "610525"
-}, {
-  "label": "蒲城县",
-  "value": "610526"
-}, {
-  "label": "白水县",
-  "value": "610527"
-}, {
-  "label": "富平县",
-  "value": "610528"
-}, {
-  "label": "韩城市",
-  "value": "610581"
-}, {
-  "label": "华阴市",
-  "value": "610582"
-}], [{
-  "label": "宝塔区",
-  "value": "610602"
-}, {
-  "label": "安塞区",
-  "value": "610603"
-}, {
-  "label": "延长县",
-  "value": "610621"
-}, {
-  "label": "延川县",
-  "value": "610622"
-}, {
-  "label": "子长县",
-  "value": "610623"
-}, {
-  "label": "志丹县",
-  "value": "610625"
-}, {
-  "label": "吴起县",
-  "value": "610626"
-}, {
-  "label": "甘泉县",
-  "value": "610627"
-}, {
-  "label": "富县",
-  "value": "610628"
-}, {
-  "label": "洛川县",
-  "value": "610629"
-}, {
-  "label": "宜川县",
-  "value": "610630"
-}, {
-  "label": "黄龙县",
-  "value": "610631"
-}, {
-  "label": "黄陵县",
-  "value": "610632"
-}], [{
-  "label": "汉台区",
-  "value": "610702"
-}, {
-  "label": "南郑区",
-  "value": "610703"
-}, {
-  "label": "城固县",
-  "value": "610722"
-}, {
-  "label": "洋县",
-  "value": "610723"
-}, {
-  "label": "西乡县",
-  "value": "610724"
-}, {
-  "label": "勉县",
-  "value": "610725"
-}, {
-  "label": "宁强县",
-  "value": "610726"
-}, {
-  "label": "略阳县",
-  "value": "610727"
-}, {
-  "label": "镇巴县",
-  "value": "610728"
-}, {
-  "label": "留坝县",
-  "value": "610729"
-}, {
-  "label": "佛坪县",
-  "value": "610730"
-}], [{
-  "label": "榆阳区",
-  "value": "610802"
-}, {
-  "label": "横山区",
-  "value": "610803"
-}, {
-  "label": "府谷县",
-  "value": "610822"
-}, {
-  "label": "靖边县",
-  "value": "610824"
-}, {
-  "label": "定边县",
-  "value": "610825"
-}, {
-  "label": "绥德县",
-  "value": "610826"
-}, {
-  "label": "米脂县",
-  "value": "610827"
-}, {
-  "label": "佳县",
-  "value": "610828"
-}, {
-  "label": "吴堡县",
-  "value": "610829"
-}, {
-  "label": "清涧县",
-  "value": "610830"
-}, {
-  "label": "子洲县",
-  "value": "610831"
-}, {
-  "label": "神木市",
-  "value": "610881"
-}], [{
-  "label": "汉滨区",
-  "value": "610902"
-}, {
-  "label": "汉阴县",
-  "value": "610921"
-}, {
-  "label": "石泉县",
-  "value": "610922"
-}, {
-  "label": "宁陕县",
-  "value": "610923"
-}, {
-  "label": "紫阳县",
-  "value": "610924"
-}, {
-  "label": "岚皋县",
-  "value": "610925"
-}, {
-  "label": "平利县",
-  "value": "610926"
-}, {
-  "label": "镇坪县",
-  "value": "610927"
-}, {
-  "label": "旬阳县",
-  "value": "610928"
-}, {
-  "label": "白河县",
-  "value": "610929"
-}], [{
-  "label": "商州区",
-  "value": "611002"
-}, {
-  "label": "洛南县",
-  "value": "611021"
-}, {
-  "label": "丹凤县",
-  "value": "611022"
-}, {
-  "label": "商南县",
-  "value": "611023"
-}, {
-  "label": "山阳县",
-  "value": "611024"
-}, {
-  "label": "镇安县",
-  "value": "611025"
-}, {
-  "label": "柞水县",
-  "value": "611026"
-}]], [[{
-  "label": "城关区",
-  "value": "620102"
-}, {
-  "label": "七里河区",
-  "value": "620103"
-}, {
-  "label": "西固区",
-  "value": "620104"
-}, {
-  "label": "安宁区",
-  "value": "620105"
-}, {
-  "label": "红古区",
-  "value": "620111"
-}, {
-  "label": "永登县",
-  "value": "620121"
-}, {
-  "label": "皋兰县",
-  "value": "620122"
-}, {
-  "label": "榆中县",
-  "value": "620123"
-}, {
-  "label": "兰州新区",
-  "value": "620171"
-}], [{
-  "label": "嘉峪关市",
-  "value": "620201"
-}], [{
-  "label": "金川区",
-  "value": "620302"
-}, {
-  "label": "永昌县",
-  "value": "620321"
-}], [{
-  "label": "白银区",
-  "value": "620402"
-}, {
-  "label": "平川区",
-  "value": "620403"
-}, {
-  "label": "靖远县",
-  "value": "620421"
-}, {
-  "label": "会宁县",
-  "value": "620422"
-}, {
-  "label": "景泰县",
-  "value": "620423"
-}], [{
-  "label": "秦州区",
-  "value": "620502"
-}, {
-  "label": "麦积区",
-  "value": "620503"
-}, {
-  "label": "清水县",
-  "value": "620521"
-}, {
-  "label": "秦安县",
-  "value": "620522"
-}, {
-  "label": "甘谷县",
-  "value": "620523"
-}, {
-  "label": "武山县",
-  "value": "620524"
-}, {
-  "label": "张家川回族自治县",
-  "value": "620525"
-}], [{
-  "label": "凉州区",
-  "value": "620602"
-}, {
-  "label": "民勤县",
-  "value": "620621"
-}, {
-  "label": "古浪县",
-  "value": "620622"
-}, {
-  "label": "天祝藏族自治县",
-  "value": "620623"
-}], [{
-  "label": "甘州区",
-  "value": "620702"
-}, {
-  "label": "肃南裕固族自治县",
-  "value": "620721"
-}, {
-  "label": "民乐县",
-  "value": "620722"
-}, {
-  "label": "临泽县",
-  "value": "620723"
-}, {
-  "label": "高台县",
-  "value": "620724"
-}, {
-  "label": "山丹县",
-  "value": "620725"
-}], [{
-  "label": "崆峒区",
-  "value": "620802"
-}, {
-  "label": "泾川县",
-  "value": "620821"
-}, {
-  "label": "灵台县",
-  "value": "620822"
-}, {
-  "label": "崇信县",
-  "value": "620823"
-}, {
-  "label": "华亭县",
-  "value": "620824"
-}, {
-  "label": "庄浪县",
-  "value": "620825"
-}, {
-  "label": "静宁县",
-  "value": "620826"
-}, {
-  "label": "平凉工业园区",
-  "value": "620871"
-}], [{
-  "label": "肃州区",
-  "value": "620902"
-}, {
-  "label": "金塔县",
-  "value": "620921"
-}, {
-  "label": "瓜州县",
-  "value": "620922"
-}, {
-  "label": "肃北蒙古族自治县",
-  "value": "620923"
-}, {
-  "label": "阿克塞哈萨克族自治县",
-  "value": "620924"
-}, {
-  "label": "玉门市",
-  "value": "620981"
-}, {
-  "label": "敦煌市",
-  "value": "620982"
-}], [{
-  "label": "西峰区",
-  "value": "621002"
-}, {
-  "label": "庆城县",
-  "value": "621021"
-}, {
-  "label": "环县",
-  "value": "621022"
-}, {
-  "label": "华池县",
-  "value": "621023"
-}, {
-  "label": "合水县",
-  "value": "621024"
-}, {
-  "label": "正宁县",
-  "value": "621025"
-}, {
-  "label": "宁县",
-  "value": "621026"
-}, {
-  "label": "镇原县",
-  "value": "621027"
-}], [{
-  "label": "安定区",
-  "value": "621102"
-}, {
-  "label": "通渭县",
-  "value": "621121"
-}, {
-  "label": "陇西县",
-  "value": "621122"
-}, {
-  "label": "渭源县",
-  "value": "621123"
-}, {
-  "label": "临洮县",
-  "value": "621124"
-}, {
-  "label": "漳县",
-  "value": "621125"
-}, {
-  "label": "岷县",
-  "value": "621126"
-}], [{
-  "label": "武都区",
-  "value": "621202"
-}, {
-  "label": "成县",
-  "value": "621221"
-}, {
-  "label": "文县",
-  "value": "621222"
-}, {
-  "label": "宕昌县",
-  "value": "621223"
-}, {
-  "label": "康县",
-  "value": "621224"
-}, {
-  "label": "西和县",
-  "value": "621225"
-}, {
-  "label": "礼县",
-  "value": "621226"
-}, {
-  "label": "徽县",
-  "value": "621227"
-}, {
-  "label": "两当县",
-  "value": "621228"
-}], [{
-  "label": "临夏市",
-  "value": "622901"
-}, {
-  "label": "临夏县",
-  "value": "622921"
-}, {
-  "label": "康乐县",
-  "value": "622922"
-}, {
-  "label": "永靖县",
-  "value": "622923"
-}, {
-  "label": "广河县",
-  "value": "622924"
-}, {
-  "label": "和政县",
-  "value": "622925"
-}, {
-  "label": "东乡族自治县",
-  "value": "622926"
-}, {
-  "label": "积石山保安族东乡族撒拉族自治县",
-  "value": "622927"
-}], [{
-  "label": "合作市",
-  "value": "623001"
-}, {
-  "label": "临潭县",
-  "value": "623021"
-}, {
-  "label": "卓尼县",
-  "value": "623022"
-}, {
-  "label": "舟曲县",
-  "value": "623023"
-}, {
-  "label": "迭部县",
-  "value": "623024"
-}, {
-  "label": "玛曲县",
-  "value": "623025"
-}, {
-  "label": "碌曲县",
-  "value": "623026"
-}, {
-  "label": "夏河县",
-  "value": "623027"
-}]], [[{
-  "label": "城东区",
-  "value": "630102"
-}, {
-  "label": "城中区",
-  "value": "630103"
-}, {
-  "label": "城西区",
-  "value": "630104"
-}, {
-  "label": "城北区",
-  "value": "630105"
-}, {
-  "label": "大通回族土族自治县",
-  "value": "630121"
-}, {
-  "label": "湟中县",
-  "value": "630122"
-}, {
-  "label": "湟源县",
-  "value": "630123"
-}], [{
-  "label": "乐都区",
-  "value": "630202"
-}, {
-  "label": "平安区",
-  "value": "630203"
-}, {
-  "label": "民和回族土族自治县",
-  "value": "630222"
-}, {
-  "label": "互助土族自治县",
-  "value": "630223"
-}, {
-  "label": "化隆回族自治县",
-  "value": "630224"
-}, {
-  "label": "循化撒拉族自治县",
-  "value": "630225"
-}], [{
-  "label": "门源回族自治县",
-  "value": "632221"
-}, {
-  "label": "祁连县",
-  "value": "632222"
-}, {
-  "label": "海晏县",
-  "value": "632223"
-}, {
-  "label": "刚察县",
-  "value": "632224"
-}], [{
-  "label": "同仁县",
-  "value": "632321"
-}, {
-  "label": "尖扎县",
-  "value": "632322"
-}, {
-  "label": "泽库县",
-  "value": "632323"
-}, {
-  "label": "河南蒙古族自治县",
-  "value": "632324"
-}], [{
-  "label": "共和县",
-  "value": "632521"
-}, {
-  "label": "同德县",
-  "value": "632522"
-}, {
-  "label": "贵德县",
-  "value": "632523"
-}, {
-  "label": "兴海县",
-  "value": "632524"
-}, {
-  "label": "贵南县",
-  "value": "632525"
-}], [{
-  "label": "玛沁县",
-  "value": "632621"
-}, {
-  "label": "班玛县",
-  "value": "632622"
-}, {
-  "label": "甘德县",
-  "value": "632623"
-}, {
-  "label": "达日县",
-  "value": "632624"
-}, {
-  "label": "久治县",
-  "value": "632625"
-}, {
-  "label": "玛多县",
-  "value": "632626"
-}], [{
-  "label": "玉树市",
-  "value": "632701"
-}, {
-  "label": "杂多县",
-  "value": "632722"
-}, {
-  "label": "称多县",
-  "value": "632723"
-}, {
-  "label": "治多县",
-  "value": "632724"
-}, {
-  "label": "囊谦县",
-  "value": "632725"
-}, {
-  "label": "曲麻莱县",
-  "value": "632726"
-}], [{
-  "label": "格尔木市",
-  "value": "632801"
-}, {
-  "label": "德令哈市",
-  "value": "632802"
-}, {
-  "label": "乌兰县",
-  "value": "632821"
-}, {
-  "label": "都兰县",
-  "value": "632822"
-}, {
-  "label": "天峻县",
-  "value": "632823"
-}, {
-  "label": "大柴旦行政委员会",
-  "value": "632857"
-}, {
-  "label": "冷湖行政委员会",
-  "value": "632858"
-}, {
-  "label": "茫崖行政委员会",
-  "value": "632859"
-}]], [[{
-  "label": "兴庆区",
-  "value": "640104"
-}, {
-  "label": "西夏区",
-  "value": "640105"
-}, {
-  "label": "金凤区",
-  "value": "640106"
-}, {
-  "label": "永宁县",
-  "value": "640121"
-}, {
-  "label": "贺兰县",
-  "value": "640122"
-}, {
-  "label": "灵武市",
-  "value": "640181"
-}], [{
-  "label": "大武口区",
-  "value": "640202"
-}, {
-  "label": "惠农区",
-  "value": "640205"
-}, {
-  "label": "平罗县",
-  "value": "640221"
-}], [{
-  "label": "利通区",
-  "value": "640302"
-}, {
-  "label": "红寺堡区",
-  "value": "640303"
-}, {
-  "label": "盐池县",
-  "value": "640323"
-}, {
-  "label": "同心县",
-  "value": "640324"
-}, {
-  "label": "青铜峡市",
-  "value": "640381"
-}], [{
-  "label": "原州区",
-  "value": "640402"
-}, {
-  "label": "西吉县",
-  "value": "640422"
-}, {
-  "label": "隆德县",
-  "value": "640423"
-}, {
-  "label": "泾源县",
-  "value": "640424"
-}, {
-  "label": "彭阳县",
-  "value": "640425"
-}], [{
-  "label": "沙坡头区",
-  "value": "640502"
-}, {
-  "label": "中宁县",
-  "value": "640521"
-}, {
-  "label": "海原县",
-  "value": "640522"
-}]], [[{
-  "label": "天山区",
-  "value": "650102"
-}, {
-  "label": "沙依巴克区",
-  "value": "650103"
-}, {
-  "label": "新市区",
-  "value": "650104"
-}, {
-  "label": "水磨沟区",
-  "value": "650105"
-}, {
-  "label": "头屯河区",
-  "value": "650106"
-}, {
-  "label": "达坂城区",
-  "value": "650107"
-}, {
-  "label": "米东区",
-  "value": "650109"
-}, {
-  "label": "乌鲁木齐县",
-  "value": "650121"
-}, {
-  "label": "乌鲁木齐经济技术开发区",
-  "value": "650171"
-}, {
-  "label": "乌鲁木齐高新技术产业开发区",
-  "value": "650172"
-}], [{
-  "label": "独山子区",
-  "value": "650202"
-}, {
-  "label": "克拉玛依区",
-  "value": "650203"
-}, {
-  "label": "白碱滩区",
-  "value": "650204"
-}, {
-  "label": "乌尔禾区",
-  "value": "650205"
-}], [{
-  "label": "高昌区",
-  "value": "650402"
-}, {
-  "label": "鄯善县",
-  "value": "650421"
-}, {
-  "label": "托克逊县",
-  "value": "650422"
-}], [{
-  "label": "伊州区",
-  "value": "650502"
-}, {
-  "label": "巴里坤哈萨克自治县",
-  "value": "650521"
-}, {
-  "label": "伊吾县",
-  "value": "650522"
-}], [{
-  "label": "昌吉市",
-  "value": "652301"
-}, {
-  "label": "阜康市",
-  "value": "652302"
-}, {
-  "label": "呼图壁县",
-  "value": "652323"
-}, {
-  "label": "玛纳斯县",
-  "value": "652324"
-}, {
-  "label": "奇台县",
-  "value": "652325"
-}, {
-  "label": "吉木萨尔县",
-  "value": "652327"
-}, {
-  "label": "木垒哈萨克自治县",
-  "value": "652328"
-}], [{
-  "label": "博乐市",
-  "value": "652701"
-}, {
-  "label": "阿拉山口市",
-  "value": "652702"
-}, {
-  "label": "精河县",
-  "value": "652722"
-}, {
-  "label": "温泉县",
-  "value": "652723"
-}], [{
-  "label": "库尔勒市",
-  "value": "652801"
-}, {
-  "label": "轮台县",
-  "value": "652822"
-}, {
-  "label": "尉犁县",
-  "value": "652823"
-}, {
-  "label": "若羌县",
-  "value": "652824"
-}, {
-  "label": "且末县",
-  "value": "652825"
-}, {
-  "label": "焉耆回族自治县",
-  "value": "652826"
-}, {
-  "label": "和静县",
-  "value": "652827"
-}, {
-  "label": "和硕县",
-  "value": "652828"
-}, {
-  "label": "博湖县",
-  "value": "652829"
-}, {
-  "label": "库尔勒经济技术开发区",
-  "value": "652871"
-}], [{
-  "label": "阿克苏市",
-  "value": "652901"
-}, {
-  "label": "温宿县",
-  "value": "652922"
-}, {
-  "label": "库车县",
-  "value": "652923"
-}, {
-  "label": "沙雅县",
-  "value": "652924"
-}, {
-  "label": "新和县",
-  "value": "652925"
-}, {
-  "label": "拜城县",
-  "value": "652926"
-}, {
-  "label": "乌什县",
-  "value": "652927"
-}, {
-  "label": "阿瓦提县",
-  "value": "652928"
-}, {
-  "label": "柯坪县",
-  "value": "652929"
-}], [{
-  "label": "阿图什市",
-  "value": "653001"
-}, {
-  "label": "阿克陶县",
-  "value": "653022"
-}, {
-  "label": "阿合奇县",
-  "value": "653023"
-}, {
-  "label": "乌恰县",
-  "value": "653024"
-}], [{
-  "label": "喀什市",
-  "value": "653101"
-}, {
-  "label": "疏附县",
-  "value": "653121"
-}, {
-  "label": "疏勒县",
-  "value": "653122"
-}, {
-  "label": "英吉沙县",
-  "value": "653123"
-}, {
-  "label": "泽普县",
-  "value": "653124"
-}, {
-  "label": "莎车县",
-  "value": "653125"
-}, {
-  "label": "叶城县",
-  "value": "653126"
-}, {
-  "label": "麦盖提县",
-  "value": "653127"
-}, {
-  "label": "岳普湖县",
-  "value": "653128"
-}, {
-  "label": "伽师县",
-  "value": "653129"
-}, {
-  "label": "巴楚县",
-  "value": "653130"
-}, {
-  "label": "塔什库尔干塔吉克自治县",
-  "value": "653131"
-}], [{
-  "label": "和田市",
-  "value": "653201"
-}, {
-  "label": "和田县",
-  "value": "653221"
-}, {
-  "label": "墨玉县",
-  "value": "653222"
-}, {
-  "label": "皮山县",
-  "value": "653223"
-}, {
-  "label": "洛浦县",
-  "value": "653224"
-}, {
-  "label": "策勒县",
-  "value": "653225"
-}, {
-  "label": "于田县",
-  "value": "653226"
-}, {
-  "label": "民丰县",
-  "value": "653227"
-}], [{
-  "label": "伊宁市",
-  "value": "654002"
-}, {
-  "label": "奎屯市",
-  "value": "654003"
-}, {
-  "label": "霍尔果斯市",
-  "value": "654004"
-}, {
-  "label": "伊宁县",
-  "value": "654021"
-}, {
-  "label": "察布查尔锡伯自治县",
-  "value": "654022"
-}, {
-  "label": "霍城县",
-  "value": "654023"
-}, {
-  "label": "巩留县",
-  "value": "654024"
-}, {
-  "label": "新源县",
-  "value": "654025"
-}, {
-  "label": "昭苏县",
-  "value": "654026"
-}, {
-  "label": "特克斯县",
-  "value": "654027"
-}, {
-  "label": "尼勒克县",
-  "value": "654028"
-}], [{
-  "label": "塔城市",
-  "value": "654201"
-}, {
-  "label": "乌苏市",
-  "value": "654202"
-}, {
-  "label": "额敏县",
-  "value": "654221"
-}, {
-  "label": "沙湾县",
-  "value": "654223"
-}, {
-  "label": "托里县",
-  "value": "654224"
-}, {
-  "label": "裕民县",
-  "value": "654225"
-}, {
-  "label": "和布克赛尔蒙古自治县",
-  "value": "654226"
-}], [{
-  "label": "阿勒泰市",
-  "value": "654301"
-}, {
-  "label": "布尔津县",
-  "value": "654321"
-}, {
-  "label": "富蕴县",
-  "value": "654322"
-}, {
-  "label": "福海县",
-  "value": "654323"
-}, {
-  "label": "哈巴河县",
-  "value": "654324"
-}, {
-  "label": "青河县",
-  "value": "654325"
-}, {
-  "label": "吉木乃县",
-  "value": "654326"
-}], [{
-  "label": "石河子市",
-  "value": "659001"
-}, {
-  "label": "阿拉尔市",
-  "value": "659002"
-}, {
-  "label": "图木舒克市",
-  "value": "659003"
-}, {
-  "label": "五家渠市",
-  "value": "659004"
-}, {
-  "label": "铁门关市",
-  "value": "659006"
-}]], [[{
-  "label": "台北",
-  "value": "660101"
-}], [{
-  "label": "高雄",
-  "value": "660201"
-}], [{
-  "label": "基隆",
-  "value": "660301"
-}], [{
-  "label": "台中",
-  "value": "660401"
-}], [{
-  "label": "台南",
-  "value": "660501"
-}], [{
-  "label": "新竹",
-  "value": "660601"
-}], [{
-  "label": "嘉义",
-  "value": "660701"
-}], [{
-  "label": "宜兰",
-  "value": "660801"
-}], [{
-  "label": "桃园",
-  "value": "660901"
-}], [{
-  "label": "苗栗",
-  "value": "661001"
-}], [{
-  "label": "彰化",
-  "value": "661101"
-}], [{
-  "label": "南投",
-  "value": "661201"
-}], [{
-  "label": "云林",
-  "value": "661301"
-}], [{
-  "label": "屏东",
-  "value": "661401"
-}], [{
-  "label": "台东",
-  "value": "661501"
-}], [{
-  "label": "花莲",
-  "value": "661601"
-}], [{
-  "label": "澎湖",
-  "value": "661701"
-}]], [[{
-  "label": "香港岛",
-  "value": "670101"
-}], [{
-  "label": "九龙",
-  "value": "670201"
-}], [{
-  "label": "新界",
-  "value": "670301"
-}]], [[{
-  "label": "澳门半岛",
-  "value": "680101"
-}], [{
-  "label": "氹仔岛",
-  "value": "680201"
-}], [{
-  "label": "路环岛",
-  "value": "680301"
-}], [{
-  "label": "路氹城",
-  "value": "680401"
-}]]];
-var _default = areaData;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 577:
-/*!*********************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/w-picker/w-picker.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var forMatNum = function forMatNum(num) {
-  return num < 10 ? '0' + num : num + '';
+var _default = {
+  webUrl: 'http://49.234.123.211:8000'
 };
-var initPicker = {
-  //日期
-  date: {
-    init: function init(start, end) {
-      var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "date";
-      var step = arguments.length > 3 ? arguments[3] : undefined;
-      var value = arguments.length > 4 ? arguments[4] : undefined;
-      var flag = arguments.length > 5 ? arguments[5] : undefined;
-      var disabled = arguments.length > 6 ? arguments[6] : undefined;
-      var aToday = new Date();
-      var tYear,
-        tMonth,
-        tDay,
-        tHours,
-        tMinutes,
-        tSeconds,
-        defaultVal = [];
-      var initstartDate = new Date(start.toString());
-      var endDate = new Date(end.toString());
-      if (start > end) {
-        initstartDate = new Date(end.toString());
-        endDate = new Date(start.toString());
-      }
-      ;
-      var startYear = initstartDate.getFullYear();
-      var startMonth = initstartDate.getMonth() + 1;
-      var endYear = endDate.getFullYear();
-      var years = [],
-        months = [],
-        days = [],
-        hours = [],
-        minutes = [],
-        seconds = [],
-        areas = [],
-        returnArr = [],
-        dvalDate = [];
-      switch (mode) {
-        case "half":
-          dvalDate = flag ? [].concat((0, _toConsumableArray2.default)(value.split(" ")[0].split("-")), (0, _toConsumableArray2.default)(value.split(" ")[1].split(":"))) : [].concat((0, _toConsumableArray2.default)(value.split(" ")[0].split("-")), [value.split(" ")[1]]);
-          break;
-        case "date":
-        case "yearMonth":
-          dvalDate = value.split("-");
-          break;
-        case "dateTime":
-          dvalDate = [].concat((0, _toConsumableArray2.default)(value.split(" ")[0].split("-")), (0, _toConsumableArray2.default)(value.split(" ")[1].split(":")));
-          break;
-        case "time":
-          dvalDate = value.split(":");
-          break;
-      }
-      var curMonth = flag ? dvalDate[1] * 1 : dvalDate[1] + 1;
-      var dYear = aToday.getFullYear();
-      var dMonth = aToday.getMonth() + 1;
-      var dDate = aToday.getDate();
-      var totalDays = new Date(startYear, curMonth, 0).getDate();
-      var dvalObj = {};
-      switch (mode) {
-        case "half":
-        case "date":
-        case "yearMonth":
-          var curYear = dvalDate[0];
-          var _curMonth = dvalDate[1];
-          if (disabled) {
-            for (var s = startYear; s <= dYear; s++) {
-              years.push(s + '');
-            }
-            ;
-            if (curYear == dYear) {
-              for (var m = 1; m <= dMonth; m++) {
-                months.push(forMatNum(m));
-              }
-              ;
-            } else {
-              for (var _m = 1; _m <= 12; _m++) {
-                months.push(forMatNum(_m));
-              }
-              ;
-            }
-            if (_curMonth == dMonth) {
-              for (var d = 1; d <= dDate; d++) {
-                days.push(forMatNum(d));
-              }
-            } else {
-              for (var _d = 1; _d <= totalDays; _d++) {
-                days.push(forMatNum(_d));
-              }
-            }
-          } else {
-            for (var _s = startYear; _s <= endYear; _s++) {
-              years.push(_s + '');
-            }
-            ;
-            for (var _m2 = 1; _m2 <= 12; _m2++) {
-              months.push(forMatNum(_m2));
-            }
-            ;
-            for (var _d2 = 1; _d2 <= totalDays; _d2++) {
-              days.push(forMatNum(_d2));
-            }
-          }
-          ;
-          break;
-        default:
-          for (var _s2 = startYear; _s2 <= endYear; _s2++) {
-            years.push(_s2 + '');
-          }
-          ;
-          for (var _m3 = 1; _m3 <= 12; _m3++) {
-            months.push(forMatNum(_m3));
-          }
-          ;
-          for (var _d3 = 1; _d3 <= totalDays; _d3++) {
-            days.push(forMatNum(_d3));
-          }
-          break;
-      }
-      for (var h = 0; h < 24; h++) {
-        hours.push(forMatNum(h));
-      }
-      for (var _m4 = 0; _m4 < 60; _m4 += step * 1) {
-        minutes.push(forMatNum(_m4));
-      }
-      for (var _s3 = 0; _s3 < 60; _s3++) {
-        seconds.push(forMatNum(_s3));
-      }
-      if (flag) {
-        returnArr = [years.indexOf(dvalDate[0]), months.indexOf(dvalDate[1]), days.indexOf(dvalDate[2]), hours.indexOf(dvalDate[3]), minutes.indexOf(dvalDate[4]) == -1 ? 0 : minutes.indexOf(dvalDate[4]), seconds.indexOf(dvalDate[5])];
-      }
-      switch (mode) {
-        case "date":
-          if (flag) {
-            defaultVal = [returnArr[0], returnArr[1], returnArr[2]];
-            return {
-              years: years,
-              months: months,
-              days: days,
-              defaultVal: defaultVal
-            };
-          } else {
-            defaultVal = [years.indexOf(dvalDate[0]) == -1 ? 0 : years.indexOf(dvalDate[0]), months.indexOf(dvalDate[1]) == -1 ? 0 : months.indexOf(dvalDate[1]), days.indexOf(dvalDate[2]) == -1 ? 0 : days.indexOf(dvalDate[2])];
-            return {
-              years: years,
-              months: months,
-              days: days,
-              defaultVal: defaultVal
-            };
-          }
-          break;
-        case "half":
-          areas = [{
-            label: "上午",
-            value: 0
-          }, {
-            label: "下午",
-            value: 1
-          }];
-          if (flag) {
-            defaultVal = [returnArr[0], returnArr[1], returnArr[2], returnArr[3]];
-            return {
-              years: years,
-              months: months,
-              days: days,
-              areas: areas,
-              defaultVal: defaultVal
-            };
-          } else {
-            var idx = 0;
-            areas.map(function (v, k) {
-              if (v.label == dvalDate[3]) {
-                idx = v.value;
-              }
-            });
-            defaultVal = [years.indexOf(dvalDate[0]) == -1 ? 0 : years.indexOf(dvalDate[0]), months.indexOf(dvalDate[1]) == -1 ? 0 : months.indexOf(dvalDate[1]), days.indexOf(dvalDate[2]) == -1 ? 0 : days.indexOf(dvalDate[2]), idx];
-            return {
-              years: years,
-              months: months,
-              days: days,
-              areas: areas,
-              defaultVal: defaultVal
-            };
-          }
-          break;
-        case "yearMonth":
-          if (flag) {
-            defaultVal = [returnArr[0], returnArr[1]];
-            return {
-              years: years,
-              months: months,
-              defaultVal: defaultVal
-            };
-          } else {
-            defaultVal = [years.indexOf(dvalDate[0]) == -1 ? 0 : years.indexOf(dvalDate[0]), months.indexOf(dvalDate[1]) == -1 ? 0 : months.indexOf(dvalDate[1])];
-            return {
-              years: years,
-              months: months,
-              defaultVal: defaultVal
-            };
-          }
-          break;
-        case "dateTime":
-          if (flag) {
-            defaultVal = returnArr;
-          } else {
-            defaultVal = [years.indexOf(dvalDate[0]) == -1 ? 0 : years.indexOf(dvalDate[0]), months.indexOf(dvalDate[1]) == -1 ? 0 : months.indexOf(dvalDate[1]), days.indexOf(dvalDate[2]) == -1 ? 0 : days.indexOf(dvalDate[2]), hours.indexOf(dvalDate[3]) == -1 ? 0 : hours.indexOf(dvalDate[3]), minutes.indexOf(dvalDate[4]) == -1 ? 0 : minutes.indexOf(dvalDate[4]), seconds.indexOf(dvalDate[5]) == -1 ? 0 : seconds.indexOf(dvalDate[5])];
-          }
-          return {
-            years: years,
-            months: months,
-            days: days,
-            hours: hours,
-            minutes: minutes,
-            seconds: seconds,
-            defaultVal: defaultVal
-          };
-          break;
-        case "time":
-          if (flag) {
-            defaultVal = [returnArr[3], returnArr[4], returnArr[5]];
-          } else {
-            defaultVal = [hours.indexOf(dvalDate[0]) == -1 ? 0 : hours.indexOf(dvalDate[0]), minutes.indexOf(dvalDate[1]) == -1 ? 0 : minutes.indexOf(dvalDate[1]), seconds.indexOf(dvalDate[2]) == -1 ? 0 : seconds.indexOf(dvalDate[2])];
-          }
-          return {
-            hours: hours,
-            minutes: minutes,
-            seconds: seconds,
-            defaultVal: defaultVal
-          };
-          break;
-      }
-    },
-    initMonths: function initMonths(year, disabled) {
-      var aDate = new Date();
-      var dYear = aDate.getFullYear();
-      var dMonth = aDate.getMonth() + 1;
-      var dDate = aDate.getDate();
-      var flag = dYear == year ? true : false;
-      var months = [];
-      if (disabled) {
-        if (flag) {
-          for (var m = 1; m <= dMonth; m++) {
-            months.push(forMatNum(m));
-          }
-          ;
-        } else {
-          for (var _m5 = 1; _m5 <= 12; _m5++) {
-            months.push(forMatNum(_m5));
-          }
-          ;
-        }
-      } else {
-        for (var _m6 = 1; _m6 <= 12; _m6++) {
-          months.push(forMatNum(_m6));
-        }
-        ;
-      }
-      ;
-      return months;
-    },
-    initDays: function initDays(year, month, disabled) {
-      var aDate = new Date();
-      var dYear = aDate.getFullYear();
-      var dMonth = aDate.getMonth() + 1;
-      var dDate = aDate.getDate();
-      var flag = dYear == year && dMonth == month ? true : false;
-      var totalDays = new Date(year, month, 0).getDate();
-      var dates = [];
-      if (flag && disabled) {
-        for (var d = 1; d <= dDate; d++) {
-          dates.push(forMatNum(d));
-        }
-        ;
-      } else {
-        for (var _d4 = 1; _d4 <= totalDays; _d4++) {
-          dates.push(forMatNum(_d4));
-        }
-        ;
-      }
-      ;
-      return dates;
-    }
-  },
-  //短期日期上下午
-  limitHour: {
-    init: function init() {
-      var dayStep = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 7;
-      var dVal = arguments.length > 1 ? arguments[1] : undefined;
-      var startDate = new Date();
-      var date = [],
-        areas = [],
-        hours = [];
-      var hour = new Date().getHours();
-      var weeks = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-      var arrs = [];
-      var defaultVal = [];
-      var d = 0,
-        a = 0,
-        h = 0;
-      for (var i = 0; i < dayStep; i++) {
-        var year = void 0,
-          month = void 0,
-          day = void 0,
-          weekday = void 0;
-        year = startDate.getFullYear();
-        month = forMatNum(startDate.getMonth() + 1);
-        day = forMatNum(startDate.getDate());
-        weekday = weeks[startDate.getDay()];
-        var label = "";
-        switch (i) {
-          case 0:
-            label = "今天";
-            break;
-          case 1:
-            label = "明天";
-            break;
-          case 2:
-            label = "后天";
-            break;
-          default:
-            label = month + "月" + day + "日" + " " + weekday;
-            break;
-        }
-        date.push({
-          label: label,
-          value: year + "-" + month + "-" + day,
-          today: i == 0 ? true : false
-        });
-        startDate.setDate(startDate.getDate() + 1);
-      }
-      if (hour > 12) {
-        areas = [{
-          label: "下午",
-          value: 1
-        }];
-      } else {
-        areas = [{
-          label: "上午",
-          value: 0
-        }, {
-          label: "下午",
-          value: 1
-        }];
-      }
-      ;
-      for (var k = hour > 12 ? hour - 12 : hour; k <= 12; k++) {
-        hours.push({
-          label: forMatNum(k),
-          value: forMatNum(hour > 12 ? k + 12 : k)
-        });
-      }
-      ;
-      date.map(function (v, k) {
-        if (v.label == dVal[0]) {
-          d = k;
-        }
-      });
-      if (d != 0) {
-        areas = this.initAreas(date[d]);
-        hours = this.initHours(date[d], areas[a]);
-      }
-      areas.map(function (v, k) {
-        if (v.label == dVal[1]) {
-          a = k;
-        }
-      });
-      hours.map(function (v, k) {
-        if (v.label == dVal[2]) {
-          h = k;
-        }
-      });
-      defaultVal = [d, a, h];
-      return {
-        date: date,
-        areas: areas,
-        hours: hours,
-        defaultVal: defaultVal
-      };
-    },
-    initAreas: function initAreas(date) {
-      var areas = [];
-      var hour = new Date().getHours();
-      if (date.today) {
-        if (hour > 12) {
-          areas = [{
-            label: "下午",
-            value: 1
-          }];
-        } else {
-          areas = [{
-            label: "上午",
-            value: 0
-          }, {
-            label: "下午",
-            value: 1
-          }];
-        }
-        ;
-      } else {
-        areas = [{
-          label: "上午",
-          value: 0
-        }, {
-          label: "下午",
-          value: 1
-        }];
-      }
-      return areas;
-    },
-    initHours: function initHours(dateCol, hourCol) {
-      var hours = [];
-      var hour = new Date().getHours();
-      if (dateCol.today) {
-        if (hourCol.value == 1 && hour <= 12) {
-          for (var k = 1; k <= 12; k++) {
-            hours.push({
-              label: forMatNum(k),
-              value: forMatNum(hourCol.value == 1 ? k + 12 : k)
-            });
-          }
-          ;
-        } else {
-          for (var _k = hour > 12 ? hour - 12 : hour; _k <= 12; _k++) {
-            hours.push({
-              label: forMatNum(_k),
-              value: forMatNum(hourCol.value == 1 ? _k + 12 : _k)
-            });
-          }
-          ;
-        }
-      } else {
-        for (var _k2 = 1; _k2 <= 12; _k2++) {
-          hours.push({
-            label: forMatNum(_k2),
-            value: forMatNum(hourCol.value == 1 ? _k2 + 12 : _k2)
-          });
-        }
-        ;
-      }
-      ;
-      return hours;
-    }
-  },
-  //短期日期时间初始化
-  limit: {
-    init: function init() {
-      var dayStep = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 7;
-      var startHour = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 8;
-      var endHour = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 20;
-      var minuteStep = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
-      var afterStep = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 30;
-      var dVal = arguments.length > 5 ? arguments[5] : undefined;
-      var startDate = new Date();
-      var bsDate = new Date(new Date().getTime() + afterStep * 60 * 1000);
-      var date = [],
-        hours = [],
-        minutes = [];
-      var hour = bsDate.getHours();
-      var minute = Math.floor(bsDate.getMinutes() / minuteStep) * minuteStep;
-      var weeks = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-      var d = 0,
-        h = 0,
-        m = 0;
-      var defaultVal = [];
-      for (var i = 0; i < dayStep; i++) {
-        var year = void 0,
-          month = void 0,
-          day = void 0,
-          weekday = void 0;
-        year = startDate.getFullYear();
-        month = forMatNum(startDate.getMonth() + 1);
-        day = forMatNum(startDate.getDate());
-        weekday = weeks[startDate.getDay()];
-        var label = "";
-        switch (i) {
-          case 0:
-            label = "今天";
-            break;
-          case 1:
-            label = "明天";
-            break;
-          case 2:
-            label = "后天";
-            break;
-          default:
-            label = month + "月" + day + "日" + " " + weekday;
-            break;
-        }
-        date.push({
-          label: label,
-          value: year + "-" + month + "-" + day,
-          flag: i == 0 ? true : false
-        });
-        startDate.setDate(startDate.getDate() + 1);
-      }
-      if (hour < startHour) {
-        hour = startHour;
-      }
-      ;
-      if (hour > endHour) {
-        hour = endHour;
-      }
-      ;
-      for (var k = hour * 1; k <= endHour * 1; k++) {
-        hours.push({
-          label: forMatNum(k),
-          value: forMatNum(k),
-          flag: k == hour ? true : false
-        });
-      }
-      ;
-      for (var j = minute; j < 60; j += minuteStep * 1) {
-        minutes.push({
-          label: forMatNum(j),
-          value: forMatNum(j)
-        });
-      }
-      date.map(function (v, k) {
-        if (v.label == dVal[0]) {
-          d = k;
-        }
-      });
-      if (d != 0) {
-        hours = this.initHours(startHour = 8, endHour = 20, minuteStep = 1, afterStep = 30, date[d].value);
-      }
-      hours.map(function (v, k) {
-        if (v.label == dVal[1]) {
-          h = k;
-        }
-      });
-      minutes.map(function (v, k) {
-        if (v.label == dVal[2]) {
-          m = k;
-        }
-      });
-      defaultVal = [d, h, m];
-      return {
-        date: date,
-        hours: hours,
-        minutes: minutes,
-        defaultVal: defaultVal
-      };
-    },
-    initHours: function initHours() {
-      var startHour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 8;
-      var endHour = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
-      var minuteStep = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-      var afterStep = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 30;
-      var date = arguments.length > 4 ? arguments[4] : undefined;
-      var hours = [];
-      var arr = date.split("-");
-      var aDate = new Date();
-      var dYear = aDate.getFullYear();
-      var dMonth = aDate.getMonth() + 1;
-      var dDate = aDate.getDate();
-      var bsDate = new Date(new Date().getTime() + afterStep * 60 * 1000);
-      var hour = bsDate.getHours();
-      var flag = dYear == arr[0] && dMonth == arr[1] && dDate == arr[2] ? true : false;
-      if (hour > endHour) {
-        hour = endHour;
-      }
-      ;
-      if (flag) {
-        for (var k = hour * 1; k <= endHour * 1; k++) {
-          hours.push({
-            label: forMatNum(k),
-            value: forMatNum(k),
-            flag: k == hour ? true : false
-          });
-        }
-        ;
-      } else {
-        for (var _k3 = startHour * 1; _k3 <= endHour * 1; _k3++) {
-          hours.push({
-            label: forMatNum(_k3),
-            value: forMatNum(_k3),
-            flag: false
-          });
-        }
-      }
-      ;
-      return hours;
-    },
-    initMinutes: function initMinutes() {
-      var startHour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 8;
-      var endHour = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
-      var minuteStep = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-      var afterStep = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 30;
-      var date = arguments.length > 4 ? arguments[4] : undefined;
-      var hour = arguments.length > 5 ? arguments[5] : undefined;
-      var minutes = [];
-      var bsDate = new Date(new Date().getTime() + afterStep * 60 * 1000);
-      var arr = date.split("-");
-      var aDate = new Date();
-      var dYear = aDate.getFullYear();
-      var dMonth = aDate.getMonth() + 1;
-      var dDate = aDate.getDate();
-      var dHour = bsDate.getHours();
-      ;
-      var minute = Math.floor(bsDate.getMinutes() / minuteStep) * minuteStep;
-      var flag = dYear == arr[0] && dMonth == arr[1] && dDate == arr[2] ? true : false;
-      if (flag) {
-        if (hour == dHour) {
-          for (var j = minute; j < 60; j += minuteStep * 1) {
-            minutes.push({
-              label: forMatNum(j),
-              value: forMatNum(j)
-            });
-          }
-        } else {
-          for (var _j = 0; _j < 60; _j += minuteStep * 1) {
-            minutes.push({
-              label: forMatNum(_j),
-              value: forMatNum(_j)
-            });
-          }
-        }
-      } else {
-        for (var _j2 = 0; _j2 < 60; _j2 += minuteStep * 1) {
-          minutes.push({
-            label: forMatNum(_j2),
-            value: forMatNum(_j2)
-          });
-        }
-      }
-      return minutes;
-    }
-  },
-  //选择区间初始化
-  range: {
-    init: function init(start, end, value, flag) {
-      var aToday = new Date();
-      var tYear,
-        tMonth,
-        tDay,
-        tHours,
-        tMinutes,
-        tSeconds,
-        defaultVal = [];
-      var initstartDate = new Date(start.toString());
-      var endDate = new Date(end.toString());
-      if (start > end) {
-        initstartDate = new Date(end.toString());
-        endDate = new Date(start.toString());
-      }
-      ;
-      var startYear = initstartDate.getFullYear();
-      var startMonth = initstartDate.getMonth() + 1;
-      var endYear = endDate.getFullYear();
-      var fyears = [],
-        fmonths = [],
-        fdays = [],
-        tyears = [],
-        tmonths = [],
-        tdays = [],
-        returnArr = [],
-        startDVal = [],
-        endDVal = [];
-      startDVal = value[0].split("-");
-      endDVal = value[1].split("-");
-      var curMonth = flag ? startDVal[1] * 1 : startDVal[1] + 1;
-      var totalDays = new Date(startYear, curMonth, 0).getDate();
-      for (var s = startYear; s <= endYear; s++) {
-        fyears.push(s + '');
-      }
-      ;
-      for (var m = 1; m <= 12; m++) {
-        fmonths.push(forMatNum(m));
-      }
-      ;
-      for (var d = 1; d <= totalDays; d++) {
-        fdays.push(forMatNum(d));
-      }
-      ;
-      for (var _s4 = startDVal[0]; _s4 <= endYear; _s4++) {
-        tyears.push(_s4 + '');
-      }
-      ;
-      for (var _m7 = startDVal[1]; _m7 <= 12; _m7++) {
-        tmonths.push(forMatNum(_m7));
-      }
-      ;
-      for (var _d5 = startDVal[2]; _d5 <= totalDays; _d5++) {
-        tdays.push(forMatNum(_d5));
-      }
-      ;
-      defaultVal = [fyears.indexOf(startDVal[0]) == -1 ? 0 : fyears.indexOf(startDVal[0]), fmonths.indexOf(startDVal[1]) == -1 ? 0 : fmonths.indexOf(startDVal[1]), fdays.indexOf(startDVal[2]) == -1 ? 0 : fdays.indexOf(startDVal[2]), 0, tyears.indexOf(endDVal[0]) == -1 ? 0 : tyears.indexOf(endDVal[0]), tmonths.indexOf(endDVal[1]) == -1 ? 0 : tmonths.indexOf(endDVal[1]), tdays.indexOf(endDVal[2]) == -1 ? 0 : tdays.indexOf(endDVal[2])];
-      return {
-        fyears: fyears,
-        fmonths: fmonths,
-        fdays: fdays,
-        tyears: tyears,
-        tmonths: tmonths,
-        tdays: tdays,
-        defaultVal: defaultVal
-      };
-    },
-    initStartDays: function initStartDays(year, month) {
-      var totalDays = new Date(year, month, 0).getDate();
-      var dates = [];
-      for (var d = 1; d <= totalDays; d++) {
-        dates.push(forMatNum(d));
-      }
-      ;
-      return dates;
-    },
-    initEndYears: function initEndYears(curYear, startYear, endYear) {
-      var years = [];
-      for (var y = curYear; y <= endYear; y++) {
-        years.push(forMatNum(y));
-      }
-      ;
-      return years;
-    },
-    initEndMonths: function initEndMonths(curMonth) {
-      var months = [];
-      for (var m = curMonth * 1; m <= 12; m++) {
-        months.push(forMatNum(m));
-      }
-      ;
-      return months;
-    },
-    initEndDays: function initEndDays(curYear, curMonth, curDate, tYear, tMonth) {
-      var totalDays = new Date(curYear, curMonth, 0).getDate();
-      var days = [];
-      for (var d = curDate * 1; d <= totalDays; d++) {
-        days.push(forMatNum(d));
-      }
-      ;
-      return days;
-    },
-    initToMonths: function initToMonths(curYear, curMonth, curDate, tYear) {
-      var aDate = new Date(curYear, curMonth, curDate).getTime();
-      var bDate = new Date(tYear, curMonth, curDate).getTime();
-      var months = [];
-      if (bDate - aDate > 0) {
-        console.log(1);
-        for (var m = 1; m <= 12; m++) {
-          months.push(forMatNum(m));
-        }
-        ;
-      } else {
-        for (var _m8 = curMonth * 1; _m8 <= 12; _m8++) {
-          months.push(forMatNum(_m8));
-        }
-        ;
-      }
-      return months;
-    },
-    initToDays: function initToDays(curYear, curMonth, curDate, tYear, tMonth) {
-      var aDate = new Date(curYear, curMonth, curDate).getTime();
-      var bDate = new Date(tYear, tMonth, curDate).getTime();
-      var totalDays = new Date(tYear, tMonth, 0).getDate();
-      var days = [];
-      if (bDate - aDate > 0) {
-        for (var d = 1; d <= totalDays; d++) {
-          days.push(forMatNum(d));
-        }
-        ;
-      } else {
-        for (var _d6 = curDate * 1; _d6 <= totalDays; _d6++) {
-          days.push(forMatNum(_d6));
-        }
-        ;
-      }
-      return days;
-    }
-  }
-};
-var _default = initPicker;
 exports.default = _default;
 
 /***/ }),
 
-/***/ 585:
-/*!****************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/lb-picker/style/picker.scss ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 586:
-/*!*******************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/lb-picker/utils.js ***!
-  \*******************************************************************/
+/***/ 36:
+/*!*******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/common/request.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getIndicatorHeight = getIndicatorHeight;
-exports.isArray = isArray;
-function isArray(val) {
-  return Object.prototype.toString.call(val) === '[object Array]';
-}
-function getIndicatorHeight() {
-  return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100));
-}
+exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 35));
+var _default = {
+  config: {
+    baseUrl: _config.default.webUrl,
+    header: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    data: {},
+    method: "POST",
+    dataType: "json"
+  },
+  request: function request() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    options.header = options.header || this.config.header;
+    options.method = options.method || this.config.method;
+    options.dataType = options.dataType || this.config.dataType;
+    options.url = this.config.baseUrl + options.url;
+    //TODO: token等操作
+    // if(options.token) {
+    // 	if(options.checkToken && !User.token) {
+    // 		uni.showToast({ title: '您未登录', icon:"none" })
+    // 		return uni.navigateTo({
+    // 			url: '/pages/login/login'
+    // 		});
+    // 	}
+    // 	options.header.token = User.token;
+    // }
+
+    return uni.request(options);
+  },
+  get: function get(url, data) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'GET';
+    return this.request(options);
+  },
+  post: function post(url, data) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'POST';
+    return this.request(options);
+  }
+};
+exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
-/***/ 6:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
-  \***************************************************************/
+/***/ 384:
+/*!*************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/day.js ***!
+  \*************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+"use strict";
 
-/***/ }),
 
-/***/ 60:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/outStore.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatTime = void 0;
+var formatTime = function formatTime(data) {
+  var date = new Date(data);
 
-var data = [{
-  id: 1,
-  mso_iden: 'MSO2001020001',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 14:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  mso_iden: 'MSO2001020002',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库03',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 15:00:00',
-  mso_req_department: '合工大中心',
-  mso_remarks: '上音乐课借用器材',
-  mso_status: '已审批',
-  mso_creator: '钟小林',
-  mso_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  mso_iden: 'MSO2001020003',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库02',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 16:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上美术课借用器材',
-  mso_status: '已审批',
-  mso_creator: '董新宇',
-  mso_createDate: '2020-1-2 12:09:00'
-}, {
-  id: 4,
-  mso_iden: 'MSO2001020004',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库04',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 17:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '李浩',
-  mso_createDate: '2020-1-2 12:04:00'
-}, {
-  id: 5,
-  mso_iden: 'MSO2001020005',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 18:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上美术课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:05:00'
-}, {
-  id: 6,
-  mso_iden: 'MSO2001020006',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 19:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上音乐课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:06:00'
-}, {
-  id: 7,
-  mso_iden: 'MSO2001020007',
-  mso_orga: '合肥库存组织01',
-  mso_warehouse: '合工大中心仓库01',
-  mso_type: '材料出库',
-  mso_date: '2020-1-2 20:00:00',
-  mso_req_department: '非中心',
-  mso_remarks: '上体育课借用器材',
-  mso_status: '草稿',
-  mso_creator: '张恩普',
-  mso_createDate: '2020-1-2 12:07:00'
-}];
-module.exports = {
-  data: data
+  // 获取年、月、日、时、分、秒
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var padZero = function padZero(num) {
+    return String(num).padStart(2, '0');
+  };
+  return "".concat(year, "-").concat(padZero(month), "-").concat(padZero(day), " ").concat(padZero(hours), ":").concat(padZero(minutes), ":").concat(padZero(seconds));
 };
+exports.formatTime = formatTime;
 
 /***/ }),
 
-/***/ 61:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/purchase.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  rp_iden: 'PR2001020001',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 14:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  rp_iden: 'PR2001020002',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 15:00:00',
-  rp_remarks: '上音乐课借用器材',
-  rp_status: '已审批',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  rp_iden: 'PR2001020003',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 16:00:00',
-  rp_remarks: '上美术课借用器材',
-  rp_status: '已关闭',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:09:00'
-}, {
-  id: 4,
-  rp_iden: 'PR2001020004',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 17:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:04:00'
-}, {
-  id: 5,
-  rp_iden: 'PR2001020005',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 18:00:00',
-  rp_remarks: '上美术课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:05:00'
-}, {
-  id: 6,
-  rp_iden: 'PR2001020006',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 19:00:00',
-  rp_remarks: '上音乐课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:06:00'
-}, {
-  id: 7,
-  rp_iden: 'PR2001020007',
-  rp_orga: '合肥库存组织01',
-  rp_type: '教学用品',
-  rp_req_department: '非中心',
-  rp_date: '2020-1-2 20:00:00',
-  rp_remarks: '上体育课借用器材',
-  rp_status: '草稿',
-  rp_creator: '张恩普',
-  rp_createDate: '2020-1-2 12:07:00'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 62:
-/*!**************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/sell.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = [{
-  id: 1,
-  so_iden: 'SO2001020001',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '董新宇',
-  so_date: '2020-1-2 14:00:00',
-  so_warehouse: '合工大中心仓库01',
-  so_remarks: '上体育课借用器材',
-  so_status: '草稿',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  so_iden: 'SO2001020002',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '董新宇',
-  so_date: '2020-1-2 15:00:00',
-  so_warehouse: '合工大中心仓库03',
-  so_remarks: '上音乐课借用器材',
-  so_status: '已审批',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  so_iden: 'SO2001020003',
-  so_orga: '合肥库存组织01',
-  so_type: '普通发票',
-  so_custom: '余钱',
-  so_date: '2020-1-2 16:00:00',
-  so_warehouse: '合工大中心仓库02',
-  so_remarks: '上美术课借用器材',
-  so_status: '草稿',
-  so_creator: '张恩普',
-  so_createDate: '2020-1-2 12:09:00'
-}];
-module.exports = {
-  data: data
-};
-
-/***/ }),
-
-/***/ 620:
+/***/ 392:
 /*!*************************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*************************************************************************************************************/
@@ -25120,107 +22034,41 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 63:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/data/exchange.js ***!
-  \******************************************************/
+/***/ 4:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var data = [{
-  id: 1,
-  str_iden: 'STR2001020001',
-  str_orga: '合肥库存组织01',
-  str_to: '合工大中心仓库02',
-  str_from: '合工大中心仓库01',
-  str_req_date: '2020-1-2 14:00:00',
-  str_req_department: '非中心',
-  str_status: '草稿',
-  str_creator: '张恩普',
-  str_createDate: '2020-1-2 12:02:00'
-}, {
-  id: 2,
-  str_iden: 'STR2001020002',
-  str_orga: '合肥库存组织01',
-  str_to: '合工大中心仓库01',
-  str_from: '合工大中心仓库02',
-  str_date: '2020-1-2 15:00:00',
-  str_req_department: '非中心',
-  str_status: '已审批',
-  str_creator: '张恩普',
-  str_createDate: '2020-1-2 12:03:00'
-}, {
-  id: 3,
-  str_iden: 'STR2001020003',
-  str_orga: '合肥库存组织01',
-  str_to: '合工大中心仓库02',
-  str_from: '合工大中心仓库03',
-  str_date: '2020-1-2 16:00:00',
-  str_req_department: '非中心',
-  str_status: '草稿',
-  str_creator: '张恩普',
-  str_createDate: '2020-1-2 12:09:00'
-}];
-module.exports = {
-  data: data
-};
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ 654:
-/*!*********************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/components/lb-picker/style/picker-item.scss ***!
-  \*********************************************************************************/
+/***/ 5:
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 7:
-/*!*********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = !0,
-      o = !1;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = !1;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0) {
-        ;
-      }
-    } catch (r) {
-      o = !0, n = r;
-    } finally {
-      try {
-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
-module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ 72:
+/***/ 59:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -25229,12 +22077,26 @@ module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 73)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 60)();
 module.exports = runtime;
 
 /***/ }),
 
-/***/ 73:
+/***/ 6:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 60:
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -25556,7 +22418,7 @@ module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.e
 
 /***/ }),
 
-/***/ 74:
+/***/ 61:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -25597,7 +22459,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 75:
+/***/ 62:
 /*!*************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/api/work.js ***!
   \*************************************************/
@@ -25611,8 +22473,8 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateWarehouse = exports.updateStockTaking = exports.updateHotelClass = exports.updateGoodsItme = exports.submitHotel = exports.getWarehouse = exports.getStockTaking = exports.getHotelClass = exports.getGoodsItme = exports.deleteWarehouse = exports.deleteHotelClass = exports.deleteGoodsItme = exports.addWarehouse = exports.addStockTaking = exports.addHotelClass = exports.addGoodsItme = void 0;
-var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 76));
+exports.updateWarehouse = exports.updateStockTakingString = exports.updateStockTaking = exports.updateHotelClass = exports.updateGoodsItme = exports.submitHotel = exports.reportEmail = exports.getWarehouse = exports.getStockTakingStringSummary = exports.getStockTakingString = exports.getStockTaking = exports.getStockOperate = exports.getReportGoodsCurrent = exports.getReportConsumeMonth = exports.getQrcode = exports.getHotelClass = exports.getGoodsString = exports.getGoodsItme = exports.deleteWarehouse = exports.deleteHotelClass = exports.deleteGoodsItme = exports.addWarehouse = exports.addStockTakingString = exports.addStockTaking = exports.addStockOperate = exports.addHotelClass = exports.addGoodsItme = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 63));
 // 获取分类
 var getHotelClass = function getHotelClass(data) {
   return (0, _request.default)({
@@ -25757,11 +22619,114 @@ var getStockTaking = function getStockTaking(data) {
     data: data
   });
 };
+
+// 商品列表下拉
 exports.getStockTaking = getStockTaking;
+var getGoodsString = function getGoodsString(data) {
+  return (0, _request.default)({
+    url: '/api/goods/string',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取当前盘点列表
+exports.getGoodsString = getGoodsString;
+var getStockTakingString = function getStockTakingString(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking/goods',
+    method: 'GET',
+    data: data
+  });
+};
+// 盘点填写数量（个）
+exports.getStockTakingString = getStockTakingString;
+var updateStockTakingString = function updateStockTakingString(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking/goods',
+    method: 'PUT',
+    data: data
+  });
+};
+// 新增选择商品
+exports.updateStockTakingString = updateStockTakingString;
+var addStockTakingString = function addStockTakingString(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking/goods',
+    method: 'POST',
+    data: data
+  });
+};
+// 获取盘点统计信息
+exports.addStockTakingString = addStockTakingString;
+var getStockTakingStringSummary = function getStockTakingStringSummary(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking/goods/summary',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取月度用户消耗表
+exports.getStockTakingStringSummary = getStockTakingStringSummary;
+var getReportConsumeMonth = function getReportConsumeMonth(data) {
+  return (0, _request.default)({
+    url: '/api/report/consume/month',
+    method: 'GET',
+    data: data
+  });
+};
+// 发送邮件
+exports.getReportConsumeMonth = getReportConsumeMonth;
+var reportEmail = function reportEmail(data) {
+  return (0, _request.default)({
+    url: '/api/report/email',
+    method: 'POST',
+    data: data
+  });
+};
+
+// 获取实时库存明细
+exports.reportEmail = reportEmail;
+var getReportGoodsCurrent = function getReportGoodsCurrent(data) {
+  return (0, _request.default)({
+    url: '/api/report/goods/current',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取出入库明细
+exports.getReportGoodsCurrent = getReportGoodsCurrent;
+var getStockOperate = function getStockOperate(data) {
+  return (0, _request.default)({
+    url: '/api/stock/operate',
+    method: 'GET',
+    data: data
+  });
+};
+// 出入库
+exports.getStockOperate = getStockOperate;
+var addStockOperate = function addStockOperate(data) {
+  return (0, _request.default)({
+    url: '/api/stock/operate',
+    method: 'POST',
+    data: data
+  });
+};
+// 获取商品二维码
+exports.addStockOperate = addStockOperate;
+var getQrcode = function getQrcode(data) {
+  return (0, _request.default)({
+    url: '/api/goods/item/qrcode',
+    method: 'GET',
+    data: data
+  });
+};
+exports.getQrcode = getQrcode;
 
 /***/ }),
 
-/***/ 76:
+/***/ 63:
 /*!****************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/api/request.js ***!
   \****************************************************/
@@ -25855,6 +22820,46 @@ var request = function request(config) {
 var _default = request;
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
+/***/ 7:
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0) {
+        ;
+      }
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

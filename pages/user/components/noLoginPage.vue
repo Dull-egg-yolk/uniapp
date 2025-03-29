@@ -13,9 +13,17 @@
     <view class="login-info">
       <view class="login-title">
 		<view>
-			<span  @click="loginFun()">登录</span>
+			<!-- 在页面中添加按钮 -->
+			<button 
+				open-type="getPhoneNumber" 
+				@getphonenumber="onGetPhoneNumber"
+				class="login-btn"
+			>
+			 登录/注册
+			</button>
+			<!-- <span  @click="loginFun()">登录</span>
 			<span>/</span>
-			<span>注册</span>
+			<span>注册</span> -->
 		</view>
 		
 	  </view>
@@ -89,7 +97,7 @@
 	// import cmdCellItem from "../../components/cmd-cell-item/cmd-cell-item.vue"
 	var _this;
 
-    export default {
+  export default {
 		components: {
 			// cmdAvatar,
 			// cmdIcon,
@@ -110,7 +118,54 @@
 			this.user_name = myinfo.data.user.user_name
 			this.user_id = myinfo.data.user.username
 		},
-        methods: {
+    methods: {
+			async onGetPhoneNumber(e) {
+				// 1. 检查是否授权成功
+				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
+					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
+					return;
+				}
+
+				// 2. 显示加载状态
+				uni.showLoading({ title: '登录中...', mask: true });
+
+				try {
+					// 3. 获取微信登录code
+					const [loginErr, loginRes] = await uni.login({
+						provider: 'weixin'
+					});
+					if (loginErr) throw new Error('微信登录失败');
+
+					// 4. 发送到后端解密
+					const [requestErr, res] = await uni.request({
+						url: 'https://your-api-domain.com/api/decrypt-phone',
+						method: 'POST',
+						data: {
+							code: loginRes.code,
+							encryptedData: e.detail.encryptedData,
+							iv: e.detail.iv
+						}
+					});
+					
+					if (requestErr || res.data.code !== 200) {
+						throw new Error(res.data?.msg || '解密手机号失败');
+					}
+					this.hasLogin = true;
+					this.userInfo = {
+						...res.data.data,
+						phoneNumber: res.data.data.phoneNumber.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2')
+					};
+					
+					// 6. 存储登录状态
+					uni.setStorageSync('token', res.data.token);
+					uni.showToast({ title: '登录成功' });
+					
+				} catch (error) {
+					uni.showToast({ title: error.message, icon: 'none' });
+				} finally {
+					uni.hideLoading();
+				}
+			},
 			mydetail() {
 				uni.navigateTo({
 				    url: 'myinfo',
@@ -135,11 +190,27 @@
 				    url: 'setting',
 				});
 			}
-        }
-    }
+    },
+		onLoad() {
+			// 检查已有登录状态
+			if (uni.getStorageSync('token')) {
+				this.hasLogin = true;
+				this.userInfo = uni.getStorageSync('userInfo') || {};
+			}
+		}
+  }
 </script>
 
-<style>
+<style scoped>
+	.login-btn {
+		font-size: 26rpx;
+		background-color: #fff;
+		text-align: left;
+		padding-left: 0;
+	}
+	.login-btn::after {
+		border: none;
+	}
 	.content {
 		padding: 10;
 	}

@@ -1,4 +1,16 @@
 
+.header.data-v-92bb8f34 {
+  height: 28px;
+  padding: 0 20rpx;
+  background-color: rgba(235,240,253,1);
+}
+.header .title.data-v-92bb8f34 {
+  line-height: 28px;
+  color: rgba(96,137,247,1);
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+}
 .box.data-v-92bb8f34 {
   width: 100%;
   background: rgb(248 248 248);

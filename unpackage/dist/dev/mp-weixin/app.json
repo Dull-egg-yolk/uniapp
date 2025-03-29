@@ -2,7 +2,6 @@
   "pages": [
     "pages/initialization/index",
     "pages/login/login",
-    "pages/main/main",
     "pages/warehouseManagement/index",
     "pages/classification/index",
     "pages/enter/index",
@@ -12,34 +11,20 @@
     "pages/inventoryDetails/index",
     "pages/realTimeInventoryDetails/index",
     "pages/newStocktaking/index",
-    "pages/checking/index",
     "pages/changeItem/index",
+    "pages/checking/index",
+    "pages/inventoryReport/index",
+    "pages/lian/lian",
     "pages/itemDetail/index",
     "pages/home/home",
     "pages/form/form",
-    "pages/index/index",
     "pages/user/user",
-    "pages/reg/reg",
-    "pages/pwd/pwd",
-    "pages/purchase/purchaseMaterials",
-    "pages/purchase/purchase",
-    "pages/user/phoneus",
     "pages/user/setting",
-    "pages/user/myinfo",
-    "pages/detail/detail",
-    "pages/detail/outDetails",
-    "pages/detail/purchaseDetails",
-    "pages/detail/sellDetails",
-    "pages/detail/exchangeDetails",
-    "pages/out/out",
-    "pages/out/outMaterials",
-    "pages/sell/sell",
-    "pages/sell/sellMaterials",
-    "pages/exchange/exchange",
-    "pages/exchange/exchangeMaterials",
     "pages/user/userInfo",
     "pages/user/renew",
-    "pages/user/feedback"
+    "pages/user/feedback",
+    "pages/user/helpDoc",
+    "pages/user/teamData"
   ],
   "subPackages": [],
   "window": {
@@ -59,18 +44,22 @@
         "selectedIconPath": "static/img/all.png"
       },
       {
-        "pagePath": "pages/main/main",
+        "pagePath": "pages/user/teamData",
         "text": "扫码",
         "iconPath": "static/img/all.png",
         "selectedIconPath": "static/img/all.png"
       },
       {
         "pagePath": "pages/user/user",
-        "text": "我的",
+        "text": "个人中心",
         "iconPath": "static/img/user.png",
         "selectedIconPath": "static/img/userHL.png"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "global-popup": "/components/global-popup/global-popup",
+    "tips-popup": "/components/tips-popup/tips-popup",
+    "img-popup": "/components/img-popup/img-popup"
+  }
 }

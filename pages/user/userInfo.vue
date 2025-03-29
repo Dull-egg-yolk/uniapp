@@ -8,40 +8,55 @@
     <view class="hotel-info">
       <view
         class="info-item"
-        v-for="(item, index) in hotelInfoList"
+        v-for="(item, index) in hotelLabelList"
         :key="index"
       >
         <text class="label">{{ item.label }}：</text>
-        <text class="value">{{ item.value }}</text>
+        <text class="value">{{ hotelInfoList[item.value] }}</text>
       </view>
     </view>
   </view>
 </template>
 <script>
 import commonHeader from "./components/commonHeader.vue";
-
+import { getUserInfo } from '../../api/user.js';
 export default {
   components: {
     commonHeader,
   },
   data() {
     return {
-      hotelInfoList: [
-        { label: "店名", value: "同福客栈" },
-        { label: "地址", value: "七侠镇 01 大街 01 号" },
-        { label: "电话", value: "888 - 8888 8888" },
-        { label: "公司", value: "七侠镇同福客栈有限公司" },
-        { label: "社会信用代码", value: "888888888888888888" },
-        { label: "开户行", value: "大德通票号七侠镇分号" },
-        { label: "账号", value: "888888888888888888" },
+      hotelLabelList: [
+        { label: "店名", value: 'Name' },
+        { label: "地址", value: 'Address' },
+        { label: "电话", value: 'Telephone' },
+        { label: "公司", value: 'Company' },
+        { label: "社会信用代码", value: 'SocialCode' },
+        { label: "开户行", value: 'BankAddress' },
+        { label: "账号", value: 'BankAccount' },
       ],
+      hotelInfoList: [],
+      userInfo: {}
     };
   },
   methods: {
-    getHotelInfoList() {
+    async getHotelInfoList() {
       console.info("13");
+      const res = await getUserInfo();
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.hotelInfoList = res.Data.Hotel
+        uni.setStorageSync('user_info', res.Data);
+      }
     },
   },
+  mounted(){
+    this.getHotelInfoList();
+  }
 };
 </script>
 <style scoped>
@@ -111,7 +126,7 @@ export default {
 }
 
 .hotel-info .info-item .label {
-  width: 180rpx;
+  width: 200rpx;
   color: #333;
   font-size: 28rpx;
 }

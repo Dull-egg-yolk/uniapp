@@ -1,5 +1,8 @@
 <script>
 	export default {
+		globalData: {
+			bluetoothConnected: false,
+		},
 		onLaunch: function() {
 			console.log('App Launch');
 		},

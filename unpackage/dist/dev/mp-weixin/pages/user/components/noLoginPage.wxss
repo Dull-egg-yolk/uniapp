@@ -1,8 +1,17 @@
 
-.content {
+.login-btn.data-v-66183739 {
+	font-size: 26rpx;
+	background-color: #fff;
+	text-align: left;
+	padding-left: 0;
+}
+.login-btn.data-v-66183739::after {
+	border: none;
+}
+.content.data-v-66183739 {
 	padding: 10;
 }
-.person-head {
+.person-head.data-v-66183739 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -11,28 +20,28 @@
 	background: linear-gradient(to top, #4073ff, #20a0ff);
 	border-top: 0;
 }
-.person-head-box {
+.person-head-box.data-v-66183739 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 	padding-left: 20rpx;
 }
-.user-name {
+.user-name.data-v-66183739 {
 	font-size: 18px;
 	font-weight: 1000;
 	color: #000000;
 	font-family: '楷体';
 }
-.user-id {
+.user-id.data-v-66183739 {
 	font-size: 14px;
 	font-weight: 1000;
 	color: #000000;
 }
-.person-list {
+.person-list.data-v-66183739 {
 	background: #FFFFFF;
 }
-.header {
+.header.data-v-66183739 {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -40,118 +49,118 @@
 	height: 80rpx;
 	background-color: white;
 }
-.back-icon, .more-icon {
+.back-icon.data-v-66183739, .more-icon.data-v-66183739 {
 	display: flex;
 	align-items: center;
 }
-.back-icon image, .more-icon image {
+.back-icon image.data-v-66183739, .more-icon image.data-v-66183739 {
 width: 30rpx;
 height: 30rpx;
 }
-.title {
+.title.data-v-66183739 {
 font-size: 36rpx;
 font-weight: bold;
 }
-.menu-btn {
+.menu-btn.data-v-66183739 {
 margin-right: 20rpx;
 padding: 0;
 border: none;
 }
-.login-section {
+.login-section.data-v-66183739 {
 display: flex;
 align-items: center;
 padding: 30rpx;
 background-color: white;
 margin: 20rpx 0;
 }
-.avatar {
+.avatar.data-v-66183739 {
 width: 120rpx;
 height: 120rpx;
 border-radius: 50%;
 margin-right: 30rpx;
 }
-.login-info .login-title {
+.login-info .login-title.data-v-66183739 {
 	font-size: 28rpx;
 	margin-bottom: 10rpx;
 }
-.login-info .login-subtitle {
+.login-info .login-subtitle.data-v-66183739 {
 	font-size: 24rpx;
 	color: #999;
 }
-.price-section {
+.price-section.data-v-66183739 {
 	background-color: white;
 	padding: 20rpx;
 	margin: 20rpx 0;
 }
-.section-title {
+.section-title.data-v-66183739 {
 	font-size: 28rpx;
 	color: #333;
 	margin-bottom: 20rpx;
 }
-.price-btns {
+.price-btns.data-v-66183739 {
 	display: flex;
 	justify-content: space-between;
 }
-.price-btn {
+.price-btn.data-v-66183739 {
 	/* width: 30%; */
 	text-align: center;
 	padding: 18rpx 30rpx;
 	border: 1rpx solid #e5e5e5;
 	border-radius: 8rpx;
 }
-.free-btn{
+.free-btn.data-v-66183739{
 	width: 38%;
 }
-.btn-text {
+.btn-text.data-v-66183739 {
 	font-size: 24rpx;
 	margin-bottom: 10rpx;
 }
-.btn-desc {
+.btn-desc.data-v-66183739 {
 	font-size: 18rpx;
 	color: #999;
 }
-.invite-section {
+.invite-section.data-v-66183739 {
 	background-color: white;
 	margin: 20rpx 0;
 }
-.invite-banner {
+.invite-banner.data-v-66183739 {
 	background-color: #1a1a1a;
 	color: #ffd700;
 	padding: 30rpx;
 	text-align: center;
 }
-.invite-title {
+.invite-title.data-v-66183739 {
 	font-size: 32rpx;
 	margin-bottom: 10rpx;
 }
-.invite-desc {
+.invite-desc.data-v-66183739 {
 font-size: 28rpx;
 }
-.advantage-section {
+.advantage-section.data-v-66183739 {
 	
 	padding: 20rpx;
 	margin: 20rpx 0;
 }
-.advantage-list {
+.advantage-list.data-v-66183739 {
 	background-color: #fff;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-.advantage-item {
+.advantage-item.data-v-66183739 {
 width: 23%;
 text-align: center;
 margin-bottom: 20rpx;
 }
-.advantage-icon {
+.advantage-icon.data-v-66183739 {
 width: 80rpx;
 height: 80rpx;
 margin-bottom: 10rpx;
 }
-.advantage-text {
+.advantage-text.data-v-66183739 {
 font-size: 26rpx;
 }
-.custom-tab {
+.custom-tab.data-v-66183739 {
 position: fixed;
 bottom: 0;
 left: 0;
@@ -162,25 +171,25 @@ justify-content: space-around;
 align-items: center;
 padding: 10rpx 0;
 }
-.tab-item {
+.tab-item.data-v-66183739 {
 display: flex;
 flex-direction: column;
 align-items: center;
 }
-.tab-icon {
+.tab-icon.data-v-66183739 {
 width: 40rpx;
 height: 40rpx;
 margin-bottom: 5rpx;
 }
-.tab-text {
+.tab-text.data-v-66183739 {
 font-size: 24rpx;
 color: #666;
 }
-.tab-center {
+.tab-center.data-v-66183739 {
 position: relative;
 top: -20rpx;
 }
-.center-icon {
+.center-icon.data-v-66183739 {
 width: 80rpx;
 height: 80rpx;
 background-color: #ff4444;

@@ -24,16 +24,7 @@
       <view class="input-view">
 				<uni-icons type="search" size="22" color="#666666" />
 				<input v-model="searchKeyword" confirm-type="search" class="input" type="text" placeholder="输入出库单信息">
-				<uni-icons :color="'#999999'" v-if="searchKeyword!==''" type="clear" size="22" @click="clear1" />
 			</view>
-      <!-- <view class="search-box">
-        
-        <input
-          v-model="searchKeyword"
-          placeholder="请输入关键字"
-          class="search-input"
-        />
-      </view> -->
      </view>
     <!-- 商品列表 -->
     <view class="product-list">
@@ -42,9 +33,9 @@
         :key="index"
         class="product-item"
       >
-        <checkbox-group @change="handleSelectProduct(index)">
+        <checkbox-group @change="handleSelectProduct($event, index)">
           <label>
-            <checkbox :checked="product.selected" /> {{ product.name }}
+            <checkbox :value="JSON.stringify(product.ID)" :checked="product.selected" /> {{ product.Name + ' ' + product.Format + '/' + product.Uint }}
           </label>
         </checkbox-group>
       </view>
@@ -56,34 +47,30 @@
 </template>
 
 <script>
-
+import { getGoodsItme, addStockTakingString } from '@/api/work.js';
 export default {
   components: {},
   data() {
     return {
-      activeStep: 0,
-      steps: ['选择物品', '盘点', '生成报表'],
-      inventoryDate: '',
-      departments: ['财务', '客房'],
-      selectedDepartment: '财务',
-      inventoryPerson: '',
+      query: {
+        StockTakingRecordID: null,
+        Page: 1,
+        Size: 10,
+        Search: '',
+        Status: ''
+      },
       remarks: '',
       selectedDate: '',
       searchKeyword: '', // 搜索关键字
-      products: [
-        { name: '可口可乐 330ml / 听', selected: false },
-        { name: '雪碧 330ml / 听', selected: false },
-        { name: '燕京啤酒 330ml / 听', selected: false },
-        { name: '84 消毒 500ml / 瓶', selected: false },
-        { name: '一次性拖鞋', selected: false },
-      ],
+      products: [],
+      selectedIds: []
     };
   },
   computed: {
     // 过滤后的商品列表
     filteredProducts() {
       return this.products.filter((product) =>
-        product.name.includes(this.searchKeyword)
+        product.Name.includes(this.searchKeyword)
       );
     },
     // 是否全选
@@ -92,17 +79,57 @@ export default {
     },
   },
   methods: {
-    nextStep() {
+    async getGoodsItme() {
+      const res = await getGoodsItme(this.query);
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+          this.products = res.Data;
+          this.products = this.products.map((item) => {
+            return{
+              ...item,
+              selected: false
+            }
+          })
+				}
+    },
+    async nextStep() {
       uni.navigateTo({
-				url: '../checking/index'
-			});
-    },
-    onDateChange(e) {
-      this.selectedDate = e.detail.value;
-      // 这里可以添加根据日期筛选数据的逻辑
-    },
-    onDepartmentChange(e) {
-      this.selectedDepartment = this.departments[e.detail.value];
+        url: `/pages/checking/index?id=${this.query.StockTakingRecordID}`
+      });
+      const params = {
+        StockTakingRecordID: parseInt(this.query.StockTakingRecordID),
+        GoodsIDs: this.selectedIds
+      }
+      // 判断 如果未选择 提示
+      if (this.selectedIds.length === 0) {
+        uni.showToast({
+          title: '请选择商品',
+          icon: "none"
+        });
+        return;
+      }
+      const res = await addStockTakingString(params)
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+          this.products = res.Data;
+          this.products = this.products.map((item) => {
+            return{
+              ...item,
+              selected: false
+            }
+          })
+          uni.navigateTo({
+            url: '../checking/index'
+          });
+				}
     },
     // 处理全选
     handleSelectAll(e) {
@@ -110,18 +137,24 @@ export default {
       this.filteredProducts.forEach((product) => {
         product.selected = isSelected;
       });
+      this.selectedIds = e.detail.value.length ? this.products.map(item => item.ID) : []
     },
     // 处理单个商品选择
-    handleSelectProduct(index) {
+    handleSelectProduct(e,index) {
       this.filteredProducts[index].selected =
         !this.filteredProducts[index].selected;
+      this.selectedIds.push(parseInt(e.detail.value))
     },
-    // 处理搜索
-    handleSearch() {
-      // 搜索逻辑已在 computed 中实现
-      console.log('搜索关键字:', this.searchKeyword);
-    },
-  }
+  },
+  onLoad(options) {
+    this.query.StockTakingRecordID = options.id;
+    console.log(options.id); // 输出 "value"
+  },
+  mounted(){
+    if(this.query.StockTakingRecordID) {
+      this.getGoodsItme();
+    }
+  },
 };
 </script>
 
@@ -129,6 +162,16 @@ export default {
 @import '../../common/index.css';
 .container {
   background-color: #f5f5f5;
+}
+.product-list {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+.product-item {
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #eee;
 }
 .uni-checkbox .uni-checkbox-input {
   width: 34rpx;

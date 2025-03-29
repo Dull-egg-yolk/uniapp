@@ -1,0 +1,71 @@
+
+.admin-container.data-v-476aa842 {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+.header.data-v-476aa842 {
+  padding: 30rpx 0;
+}
+.title.data-v-476aa842 {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.admin-list.data-v-476aa842 {
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.admin-group.data-v-476aa842 {
+  border-bottom: 1rpx solid #eee;
+}
+.admin-item.data-v-476aa842 {
+  padding: 28rpx 30rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.super-admin.data-v-476aa842 {
+  background-color: #f9f9f9;
+}
+.name.data-v-476aa842 {
+  font-size: 32rpx;
+  color: #333;
+  flex: 1;
+}
+.role.data-v-476aa842 {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 40rpx;
+}
+.sub-admin-list.data-v-476aa842 {
+  background-color: #fafafa;
+  padding-left: 60rpx;
+}
+.sub-admin-item.data-v-476aa842 {
+  padding: 24rpx 30rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1rpx dashed #eee;
+  position: relative;
+}
+.settings.data-v-476aa842 {
+  position: absolute;
+  right: 30rpx;
+  color: #07C160;
+  font-size: 28rpx;
+}
+.add-btn.data-v-476aa842 {
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #07C160;
+  font-size: 30rpx;
+}
+.btn-text.data-v-476aa842 {
+  margin-left: 10rpx;
+}
+

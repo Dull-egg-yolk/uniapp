@@ -59,7 +59,7 @@
 <script>
 	const {
 		windowWidth
-	} = uni.getSystemInfoSync();
+	} = uni.getWindowInfo();
 	const preId = 'QSTabsID_';
 	export default {
 		props: {

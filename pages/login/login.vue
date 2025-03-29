@@ -1,23 +1,7 @@
 <template>
 	<view class="content">
-		<!-- 头部logo -->
-		<!-- <view class="header">
-			<image :src="logoImage"></image>
-		</view> -->
 		<!-- 主体表单 -->
 		<view class="main">
-			<!-- <wInput
-				v-model="loginData.user_iden"
-				type="text"
-				maxlength="20"
-				placeholder="用户名"
-			></wInput>
-			<wInput
-				v-model="loginData.user_passwd"
-				type="password"
-				maxlength="20"
-				placeholder="密码"
-			></wInput> -->
 		</view>
 		<wButton 
 			text="快速初始化"
@@ -28,9 +12,7 @@
 </template>
 
 <script>
-	import wInput from '../../components/watch-login/watch-input.vue' //input
 	import wButton from '../../components/watch-login/watch-button.vue' //button
-	import myAccunt from '../../data/accunt.js'
 	var _this;
 	
 	export default {
@@ -42,11 +24,9 @@
 					user_passwd: '', //密码
 				},
 				isRotate: false, //是否加载旋转
-				mydata: myAccunt.data
 			};
 		},
 		components:{
-			wInput,
 			wButton,
 		},
 		mounted() {
@@ -55,12 +35,9 @@
 		},
 		methods: {
 		    startLogin(){
-				uni.navigateTo({
+				    uni.navigateTo({
 							url: '../form/form'
 						});
-					// uni.switchTab({
-					// 	url: '../home/home'
-					// })
 					return
 				//登录
 				if(this.isRotate){

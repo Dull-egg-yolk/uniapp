@@ -10,63 +10,101 @@
       <text class="tab">生成报表</text>
      </view>
      <view class="form-content">
-        <view class="form-item">
+        <!-- <view class="form-item">
           <text class="form-title">盘点日期</text>
           <picker mode="date" @change="onDateChange">
             <view class="date-picker">时间{{ selectedDate }}</view>
           </picker>
-        </view> 
+        </view>  -->
         <view class="form-item">
-          <text class="form-title">盘点部门</text>
-          <picker mode="selector" :range="departments" @change="onDepartmentChange">
-            <view class="picker">{{ selectedDepartment }}</view>
+          <text class="form-title">盘点仓库</text>
+          <picker mode="selector" :range="warehouseList" range-key="Name" range-value="ID" @change="onWarehouseChange">
+            <view class="picker">{{ selectedWarehouse }}</view>
           </picker>
         </view>
         <view class="form-item">
+          <text class="form-title">盘点分类</text>
+          <picker mode="selector" :range="classList" range-key="Name" @change="onClassChange">
+            <view class="picker">{{ selectedClass }}</view>
+          </picker>
+        </view>
+        <!-- <view class="form-item">
           <text class="form-title">盘点人</text>
           <input type="text" v-model="inventoryPerson" placeholder="请输入" />
-        </view>
+        </view> -->
         <view class="form-item">
           <text class="form-title">备注</text>
           <input type="text" v-model="remarks" placeholder="请输入备注" />
         </view>
       </view>
     <view class="add-button" @click="nextStep">
-      <text>下一步</text>
+      <text>确定</text>
     </view>
   </view>
 </template>
 
 <script>
-import { addStockTaking, updateStockTaking} from '@/api/work.js'
+import { addStockTaking, updateStockTaking, getWarehouse, getHotelClass } from '@/api/work.js'
 export default {
   components: {},
   data() {
     return {
       activeStep: 0,
+      warehouseList: [],
+      classList: [],
+      selectedWarehouse: '请选择仓库',
+      selectedClass: '请选择分类',
       steps: ['选择物品', '盘点', '生成报表'],
       inventoryDate: '',
       departments: ['财务', '客房'],
       selectedDepartment: '财务',
       inventoryPerson: '',
       remarks: '',
-      selectedDate: ''
+      selectedDate: '',
+      WarehouseID: null
     };
   },
   methods: {
-    nextStep() {
-      uni.navigateTo({
-				url: '../changeItem/index'
-			});
+    async nextStep() {
+      const params = {
+        WarehouseID: this.WarehouseID,
+        Note: this.remarks
+      }
+      const res = await addStockTaking(params);
+      if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+          uni.navigateTo({
+            url: '../changeItem/index?id=' + res.Data.ID
+          });
+				}
     },
-    onDateChange(e) {
-      this.selectedDate = e.detail.value;
-      // 这里可以添加根据日期筛选数据的逻辑
+    // 获取仓库
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      this.warehouseList = res.Data;
     },
-    onDepartmentChange(e) {
-      this.selectedDepartment = this.departments[e.detail.value];
+    // 获取分类
+    async getHotelClassList(){
+      const res = await getHotelClass();
+      this.classList = res.Data;
+    },
+    onClassChange(e) {
+      this.selectedClass = this.classList[e.detail.value].Name;
+    },
+    onWarehouseChange(e) {
+      console.log(e, '88888');
+      this.WarehouseID = this.warehouseList[e.detail.value].ID
+      this.selectedWarehouse = this.warehouseList[e.detail.value].Name;
     }
-  }
+  },
+  mounted(){
+    this.getHotelClassList();
+    this.getWarehouseList();
+  },
 };
 </script>
 
@@ -111,7 +149,7 @@ export default {
   align-items: center;
 }
 .picker {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 10px;
   border-radius: 5px;
 }

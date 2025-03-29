@@ -5,7 +5,7 @@
 </template>
 
 <script>
-var statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+var statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px'
 export default {
   name: 'UniStatusBar',
   data () {
