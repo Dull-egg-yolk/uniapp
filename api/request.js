@@ -26,9 +26,9 @@ const responseInterceptor = (response) => {
       title: '登录已过期，请重新登录',
       icon: 'none',
     });
-    uni.navigateTo({
-      url: '/pages/login/login',
-    });
+    // uni.navigateTo({
+    //   url: '/pages/user/user',
+    // });
     return Promise.reject(response.data);
   } else {
     // 处理其他错误状态码
@@ -46,6 +46,13 @@ const request = (config) => {
   config = requestInterceptor(config);
 
   return new Promise((resolve, reject) => {
+    const token = uni.getStorageSync('token')
+    
+    // 设置请求头
+    config.header = config.header || {}
+    if (token) {
+      config.header['Authorization'] = `Bearer ${token}`
+    }
     uni.request({
       url: baseUrl + config.url, // 拼接完整 URL
       method: config.method || 'GET', // 默认 GET 请求
@@ -62,6 +69,11 @@ const request = (config) => {
           title: '网络请求失败',
           icon: 'none',
         });
+        uni.removeStorageSync('token')
+        uni.reLaunch({
+          url: '/pages/user/user'
+        })
+        reject(new Error('登录已过期，请重新登录'))
         reject(err);
       },
     });

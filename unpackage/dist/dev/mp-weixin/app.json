@@ -10,16 +10,23 @@
     "pages/export/index",
     "pages/inventoryDetails/index",
     "pages/realTimeInventoryDetails/index",
+    "pages/monthTimeInventoryDetails/index",
+    "pages/stockInventoryDetails/index",
     "pages/newStocktaking/index",
     "pages/changeItem/index",
     "pages/checking/index",
     "pages/inventoryReport/index",
     "pages/lian/lian",
+    "pages/earlyWarning/index",
+    "pages/user/myFeedback",
     "pages/itemDetail/index",
     "pages/home/home",
     "pages/form/form",
     "pages/user/user",
+    "pages/user/InvitationGifts",
     "pages/user/setting",
+    "pages/user/addHome",
+    "pages/webview/webview",
     "pages/user/userInfo",
     "pages/user/renew",
     "pages/user/feedback",
@@ -33,6 +40,7 @@
     "backgroundColor": "#fbf9fe"
   },
   "tabBar": {
+    "custom": true,
     "color": "#7a7e83",
     "selectedColor": "#0faeff",
     "backgroundColor": "#ffffff",
@@ -40,12 +48,6 @@
       {
         "pagePath": "pages/home/home",
         "text": "工作台",
-        "iconPath": "static/img/all.png",
-        "selectedIconPath": "static/img/all.png"
-      },
-      {
-        "pagePath": "pages/user/teamData",
-        "text": "扫码",
         "iconPath": "static/img/all.png",
         "selectedIconPath": "static/img/all.png"
       },
@@ -60,6 +62,9 @@
   "usingComponents": {
     "global-popup": "/components/global-popup/global-popup",
     "tips-popup": "/components/tips-popup/tips-popup",
-    "img-popup": "/components/img-popup/img-popup"
+    "inout-popup": "/components/inout-popup/inout-popup",
+    "img-popup": "/components/img-popup/img-popup",
+    "invite-friends-popup": "/components/inviteFriends-popup/inviteFriends-popup",
+    "stock-popup": "/components/stock-popup/stock-popup"
   }
 }

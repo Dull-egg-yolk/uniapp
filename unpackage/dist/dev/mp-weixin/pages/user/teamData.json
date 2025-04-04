@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "团队建设",
   "usingComponents": {
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "invite-friends-popup": "/components/inviteFriends-popup/inviteFriends-popup"
   }
 }

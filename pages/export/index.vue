@@ -25,10 +25,12 @@ export default {
         { name: '实时库存明细',
           key: 'realTimeInventoryDetails'
          },
-        { name: '盘点',
-          key: 'newStocktaking'
+        { name: '盘点明细',
+          key: 'stockInventoryDetails'
          },
-        { name: '月度消耗明细' },
+        { name: '月度消耗明细',
+          key: 'monthTimeInventoryDetails'
+         },
       ],
       newCategory: {
         name: "",

@@ -59,7 +59,8 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      popupContent: ''
     }
   },
   methods: {
@@ -73,12 +74,15 @@ export default {
       uni.showTabBar()
       this.visible = false
       this.$emit('close')
+      // #ifdef MP-WEIXIN
+      wx.hideTabBar();
+      // #endif
     },
     handleConfirm() {
       this.$emit('confirm')
       this.close()
     }
-  }
+  },
 }
 </script>
 
@@ -106,6 +110,8 @@ export default {
   max-height: 70vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+  z-index: 9999;
 }
 
 .popup-show {

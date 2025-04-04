@@ -5,32 +5,22 @@
       <text class="title">管理员</text>
     </view>
 
-    <!-- 管理员列表 -->
-    <view class="admin-list">
-      <!-- 超级管理员 -->
-      <view class="admin-group">
-        <view class="admin-item super-admin">
-          <text class="name">佟湘玉</text>
-          <text class="role">超级管理员</text>
-        </view>
-      </view>
-
       <!-- 普通管理员分组 -->
-      <view class="admin-group" v-for="(group, index) in adminGroups" :key="index">
-        <view class="admin-item" @click="toggleGroup(index)">
-          <text class="name">{{ group.name }}</text>
-          <text class="role">管理员</text>
-          <uni-icons type="arrowdown" size="16" color="#999" v-if="!group.expanded"></uni-icons>
-          <uni-icons type="arrowup" size="16" color="#999" v-else></uni-icons>
-        </view>
-
-        <!-- 子管理员 (可折叠) -->
-        <view class="sub-admin-list" v-show="group.expanded">
-          <view class="sub-admin-item" v-for="(subAdmin, subIndex) in group.subAdmins" :key="subIndex">
-            <text class="name">{{ subAdmin.name }}</text>
-            <text class="role">管理员</text>
-            <view class="settings" @click="navToSettings(subAdmin)">
-              <text>设置 ></text>
+       <view class="group-box">
+        <view class="admin-group" v-for="(group, index) in adminGroups" :key="index">
+          <view class="admin-item" @click="toggleGroup(index)">
+            <view class="admin-info">
+              <view class="avatar"><image class="avatar-img"
+                src="https://cdn.uviewui.com/uview/album/1.jpg"
+                mode="scaleToFill"
+              /></view>
+              <view class="info">
+                <text class="name">{{ group.Name }} <text class="ico">{{ group.UserHotelRole.Department }}</text></text>
+                <text class="role">{{ group.UserHotelRole.Role }}</text>
+              </view>
+            </view>
+            <view>
+              <text class="set">设置</text><uni-icons type="forward" size="16" color="#999"></uni-icons>
             </view>
           </view>
         </view>
@@ -38,37 +28,37 @@
 
       <!-- 新增按钮 -->
       <view class="add-btn" @click="addAdmin">
-        <uni-icons type="plusempty" size="18" color="#07C160"></uni-icons>
         <text class="btn-text">新增</text>
       </view>
+      <inviteFriends-popup 
+        ref="InviteFriendsPopup"
+        confirmText="邀请同事加入"
+        closeText="取消"
+        @confirm="onConfirm"
+      />
     </view>
-  </view>
 </template>
 <script>
+import { getHotelUser } from '@/api/user'
 export default {
   data() {
     return {
-      adminGroups: [
-        {
-          name: '白展堂',
-          expanded: false,
-          subAdmins: [
-            { name: '跑堂', id: 2 },
-            { name: '设置', id: 3 }
-          ]
-        },
-        {
-          name: '日常才',
-          expanded: false,
-          subAdmins: [
-            { name: '账房', id: 4 },
-            { name: '设置', id: 5 }
-          ]
-        }
-      ]
+      adminGroups: [],
+      InvitedCode: ''
     }
   },
   methods: {
+    // 获取酒店用户信息
+    async getHotelUsers() {
+      try {
+        const res = await getHotelUser()
+        console.log(res)
+        // 处理返回的数据，生成adminGroups
+        this.adminGroups = res.Data
+      } catch (error) {
+        console.error(error)
+      }
+    },
     // 切换分组展开/折叠
     toggleGroup(index) {
       this.adminGroups[index].expanded = !this.adminGroups[index].expanded
@@ -85,13 +75,38 @@ export default {
     
     // 新增管理员
     addAdmin() {
-      uni.showToast({
-        title: '跳转新增页面',
-        icon: 'none'
-      })
-      // 实际项目中跳转到新增页面
-      // uni.navigateTo({ url: '/pages/admin/add' })
+      this.$refs.InviteFriendsPopup.open()
+    },
+    // 分享好友功能配置
+    onShareAppMessage() {
+      return {
+        title: '快来加入我们吧',  // 必填
+        path: `/pages/user/user?InvitedCode=${this.InvitedCode}`, // 必填，分享页面路径
+        imageUrl: '/static/img/weixin.png', // 可选，分享图片
+        desc: '自己有会员，经营更稳健',   // 可选，微信小程序支持
+        success(res) {
+          console.log('分享成功', res);
+          uni.showToast({ title: '分享成功' });
+        },
+        fail(err) {
+          console.log('分享失败', err);
+        }
+      }
+    },
+    // 微信朋友圈分享
+    onShareTimeline() {
+      return {
+        title: this.shareData.title,
+        query: `ref=${uni.getStorageSync('userId')}`,
+        imageUrl: this.shareData.image
+      };
     }
+  },
+  mounted() {
+    this.getHotelUsers()
+    this.InvitedCode = uni.getStorageSync('user_info').InvitedCode
+    console.log(this.InvitedCode);
+    
   }
 }
 </script>
@@ -100,19 +115,30 @@ export default {
   width: 100%;
   padding: 20rpx;
   background-color: #f5f5f5;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--status-bar-height));
 }
-
+.admin-info {
+  display: flex;
+  align-items: center;
+}
 .header {
   padding: 30rpx 0;
+  height: 60rpx;
 }
-
+.info {
+  display: flex;
+  flex-direction: column;
+}
 .title {
   font-size: 36rpx;
   font-weight: bold;
   color: #333;
 }
-
+.group-box {
+  flex: 1;
+}
 .admin-list {
   background-color: #fff;
   border-radius: 12rpx;
@@ -120,7 +146,15 @@ export default {
 }
 
 .admin-group {
-  border-bottom: 1rpx solid #eee;
+  border-radius: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.avatar-img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
 }
 
 .admin-item {
@@ -128,6 +162,7 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 .super-admin {
@@ -136,13 +171,22 @@ export default {
 
 .name {
   font-size: 32rpx;
-  color: #333;
+  color: #000;
   flex: 1;
+}
+.ico {
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 10rpx;
+}
+.set {
+  font-size: 30rpx;
+  color: #999;
 }
 
 .role {
-  font-size: 26rpx;
-  color: #999;
+  font-size: 30rpx;
+  color: #f40e0e;
   margin-right: 40rpx;
 }
 
@@ -167,15 +211,19 @@ export default {
 }
 
 .add-btn {
-  padding: 30rpx;
+  margin-top: 40rpx;
+  background-color: red;
+  color: #fff;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #07C160;
-  font-size: 30rpx;
+  align-items: center;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  padding: 16rpx 50rpx;
 }
 
 .btn-text {
-  margin-left: 10rpx;
+  /* width: 200rpx;
+  height: 80rpx; */
 }
 </style>

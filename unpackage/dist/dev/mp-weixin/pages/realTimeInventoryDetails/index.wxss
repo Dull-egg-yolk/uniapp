@@ -1,8 +1,8 @@
-.container.data-v-25ca7aed {
+.container {
   padding: 20rpx;
   width: 100%;
 }
-.add-button.data-v-25ca7aed {
+.add-button {
   position: fixed;
   bottom: 40rpx;
   left: 50%;
@@ -17,66 +17,77 @@
   align-items: center;
   border-radius: 10rpx;
 }
-.list.data-v-25ca7aed {
-  margin-bottom: 100rpx;
-}
-.item.data-v-25ca7aed {
+.container {
+  padding: 20px;
+  background: #f5f5f5;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx;
-  border-bottom: 1rpx solid #eee;
-}
-.info.data-v-25ca7aed {
-  display: flex;
+  overflow: hidden;
   flex-direction: column;
+  height: calc(100vh - 25px);
 }
-.name.data-v-25ca7aed {
-  font-size: 32rpx;
-  font-weight: bold;
-}
-.description.data-v-25ca7aed {
-  font-size: 28rpx;
-  color: #666;
-}
-.actions.data-v-25ca7aed {
-  color: #007aff;
-}
-.data-v-25ca7aed .uni-popup__wrapper{
-  width: 90%;
-}
-.popup-content.data-v-25ca7aed {
-  background-color: #fff;
-  padding: 40rpx;
-  border-radius: 20rpx;
-}
-.form-item.data-v-25ca7aed {
-  margin-bottom: 40rpx;
-}
-.label.data-v-25ca7aed {
-  font-size: 32rpx;
-  font-weight: bold;
-  margin-bottom: 10rpx;
-}
-.input.data-v-25ca7aed {
-  height: 80rpx;
-  border: 1rpx solid #eee;
-  padding: 10rpx;
-  border-radius: 10rpx;
-  margin-top: 10rpx;
-}
-.popup-buttons.data-v-25ca7aed {
+.filter-section {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
-.popup-button.data-v-25ca7aed {
+.page-button {
+  background-color: #fff;
+  border-radius: 20rpx;
+  color: #000;
+  padding: 10rpx 20rpx;
+}
+.uni-picker {
+  height: 46rpx;
+}
+.date-picker {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.pagination-section {
+  background: #fff;
+  border-radius: 0 0 10rpx 10rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.table-section {
   flex: 1;
-  margin: 0 10rpx;
-  background-color: #f0f0f0;
-  color: #333;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 20rpx 20rpx 0 0;
 }
-.popup-button.confirm.data-v-25ca7aed {
-  background-color: #007aff;
+.email-section {
+  height: 400rpx;
+}
+.email-section input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.email-button { 
+  display: flex;
+}
+.email-button input {
+  width: 70%;
+  height: 46rpx;
+}
+.email-button text{
+  height: 46rpx;
+  padding: 20rpx 30rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ccc;
+  text-align: center;
+  line-height: 46rpx;
+  margin-left: 20rpx;
+  background-color: red;
   color: #fff;
+}
+ .uni-table{
+  min-width: auto !important;
+}
+ .uni-table-th-content {
+  font-size: 20rpx!important;
 }
 

@@ -1,6 +1,7 @@
 
 .content {
 	padding: 10;
+	background-color: #f8f8f8;
 }
 .person-head {
 	display: flex;

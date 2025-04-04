@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { getWarehouse, addWarehouse, updateWarehouse, deleteWarehouse } from "@/api/work.js";
 export default {
   data() {
@@ -83,18 +84,16 @@ export default {
       console.log(res);
       this.warehouseList = res.Data;
     },
-    // 打开新增弹窗
-    openAddPopup() {
-      // this.showAddPopup = true;
+    openAddPopup: throttle(function() {
       this.newWarehouse = { name: "", description: "" };
       this.$refs.addPopup.open();
-    },
+    }, 500),
     // 关闭新增弹窗
     closeAddPopup() {
       this.$refs.addPopup.close();
     },
     // 提交新增库房
-    async confirmAddWarehouse() {
+    confirmAddWarehouse: throttle( async function() {
       if (!this.newWarehouse.name || !this.newWarehouse.description) {
         uni.showToast({
           title: "请填写完整信息",
@@ -113,10 +112,14 @@ export default {
           icon: "none"
         });
       } else {
+        uni.showToast({
+          title: '新增成功',
+          icon: "success"
+        });
         this.getWarehouseList();
         this.closeAddPopup();
       }
-    },
+    }, 1000),
     // 打开编辑弹窗
     openEditPopup(index) {
       console.log(index);
@@ -132,7 +135,7 @@ export default {
       this.$refs.editPopup.close();
     },
     // 提交编辑库房
-    async confirmWarehouse() {
+    confirmWarehouse: throttle( async function() {
       if (!this.editWarehouse.name || !this.editWarehouse.description) {
         uni.showToast({
           title: "请填写完整信息",
@@ -155,7 +158,7 @@ export default {
         this.getWarehouseList();
         this.closeEditPopup();
       }
-    }
+    },1000),
   },
   mounted(){
     this.getWarehouseList();

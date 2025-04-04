@@ -2,6 +2,7 @@
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
     "login-page": "/pages/user/components/loginPage",
-    "no-login-page": "/pages/user/components/noLoginPage"
+    "no-login-page": "/pages/user/components/noLoginPage",
+    "tab-bar": "/components/custom-tab-bar/tabBar"
   }
 }

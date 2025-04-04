@@ -72,6 +72,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* 用户信息区 */
 .user-info {
   display: flex;
@@ -129,7 +141,7 @@
   height: 48rpx;
 }
 .svg-bkg-diamond {
-  background-image: url(/static/img/iconPark-level.e0a1774f.svg);
+  /* background-image: url("../images/iconPark-level.svg"); */
   width: 22rpx;
   height: 22rpx;
   background-size: cover;

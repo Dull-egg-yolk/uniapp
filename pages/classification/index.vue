@@ -9,7 +9,7 @@
         <view class="actions">
           <text class="edit" @click="openEditPopup(index)">
             <text>编辑</text>
-            <uni-icons :size="16" color="#bbb" type="chatbubble-filled" />
+            <uni-icons type="forward" size="16" color="#999"></uni-icons>
           </text>
         </view>
       </view>
@@ -25,12 +25,12 @@
           <text class="label">类别名称</text>
           <input class="input" v-model="newCategory.name" placeholder="请输入类别名称" />
         </view>
-        <view class="form-item">
+        <!-- <view class="form-item">
           <text class="label">仓库</text>
           <picker mode="selector" :range="categories" range-key="Name" @change="onCategoryChange" >
             <input class="input" v-model="selectedCategory" placeholder="请选择仓库" />
           </picker>
-        </view>
+        </view> -->
         <view class="popup-buttons">
           <button class="popup-button" @click="closeAddPopup">取消</button>
           <button class="popup-button confirm" @click="addWarehouse">确认</button>
@@ -44,12 +44,12 @@
           <text class="label">类别名称</text>
           <input class="input" v-model="editWarehouse.name" placeholder="请输入库房名称" />
         </view>
-        <view class="form-item">
+        <!-- <view class="form-item">
           <text class="label">仓库</text>
           <picker mode="selector" :range="categories" range-key="Name" @change="onChange" >
             <input class="input" v-model="editWarehouse.selectedCategory" placeholder="请选择仓库" />
           </picker>
-        </view>
+        </view> -->
         <view class="popup-buttons">
           <button class="popup-button" @click="closeEditPopup">取消</button>
           <button class="popup-button confirm" @click="confirmWarehouse">确认</button>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { getWarehouse, getHotelClass, addHotelClass, updateHotelClass, deleteHotelClass} from '@/api/work.js'
 export default {
   data() {
@@ -95,16 +96,16 @@ export default {
       const res = await getHotelClass();
       this.classList = res.Data;
     },
-    openAddPopup(index) {
+    openAddPopup: throttle(function() {
       this.newCategory = { name: "" };
       this.$refs.addPopup.open();
-    },
+    },500),
     // 关闭新增弹窗
     closeAddPopup() {
       this.$refs.addPopup.close();
     },
     // 提交新增列表
-    async addWarehouse() {
+    addWarehouse: throttle(async function() {
       if (!this.newCategory.name) {
         uni.showToast({
           title: "请填写完整信息",
@@ -114,7 +115,7 @@ export default {
       }
       const params = {
         Name: this.newCategory.name,
-        WarehouseID: this.categories.find(item => item.Name === this.selectedCategory).ID
+        // WarehouseID: this.categories.find(item => item.Name === this.selectedCategory).ID
       }
       const res = await addHotelClass(params);
       if (res.ErrorMsg) {
@@ -126,27 +127,21 @@ export default {
         this.getHotelClassList();
         this.closeAddPopup();
       }
-    },
+    },1000),
     closeEditPopup(){
       this.$refs.editPopup.close();
     },
      // 打开编辑弹窗
      openEditPopup(index) {
-      console.log(index);
-      console.log(this.classList[index].WarehouseID);
-      
-      console.log(this.categories);
-      console.log(this.categories.findIndex( item => item.ID == this.classList[index].WarehouseID), '000');
-      
       this.editWarehouse = {
         index: this.classList[index].ID,
         name: this.classList[index].Name,
-        selectedCategory: this.categories[this.categories.findIndex( item => item.ID == this.classList[index].WarehouseID)].Name
+        // selectedCategory: this.categories[this.categories.findIndex( item => item.ID == this.classList[index].WarehouseID)].Name
       };
       this.$refs.editPopup.open();
     },
       // 提交编辑分类
-    async confirmWarehouse() {
+    confirmWarehouse: throttle(async function() {
       if (!this.editWarehouse.name || !this.editWarehouse.selectedCategory) {
         uni.showToast({
           title: "请填写完整信息",
@@ -157,7 +152,7 @@ export default {
       const params = {
         ID: this.editWarehouse.index,
         Name: this.editWarehouse.name,
-        WarehouseID: this.categories[this.categories.findIndex( item => item.Name == this.editWarehouse.selectedCategory)].ID
+        // WarehouseID: this.categories[this.categories.findIndex( item => item.Name == this.editWarehouse.selectedCategory)].ID
       }
       const res = await updateHotelClass(params);
       if (res.ErrorMsg) {
@@ -169,7 +164,7 @@ export default {
         this.getHotelClassList();
         this.closeEditPopup();
       }
-    }
+    },1000),
   },
   mounted(){
     this.getHotelClassList();

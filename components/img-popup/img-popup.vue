@@ -78,12 +78,17 @@ export default {
     closeOnClickMask: {
       type: Boolean,
       default: true
+    },
+    imgContent: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
       rqImg: '',
-      visible: false
+      visible: false,
+      saveImg: ''
     }
   },
   methods: {
@@ -115,9 +120,12 @@ export default {
           ctx.scale(dpr, dpr);
           
           // 绘制背景
+          ctx.setFontSize(16);
+          ctx.setFillStyle("#000000");
+          ctx.setTextAlign("center");
           ctx.fillStyle = '#fff';
           ctx.fillRect(0, 0, width, height);
-          
+          // ctx.fillText("Hello UniApp Canvas", 150, 200); // (x, y) 是文字左下角坐标
           // 绘制网络图片
           const { tempFilePath } = await uni.downloadFile({
             url: this.rqImg
@@ -137,23 +145,17 @@ export default {
       const labelHeight = 40
 
       const multiple = 8
-
-      console.log('开始绘制');
-      console.log('1')
       let canvasId = '';
       canvasId = 'myCanvas';
-      console.log('canvasId', canvasId)
-
       const ctx = uni.createCanvasContext(canvasId);
-      console.log(' ctx', ctx)
       this.handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, 0)
     },
 
     // 提取公共逻辑
     async handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
-      const localPath = await this.drawCanvas();
+      const localPath = await this.generateImage();
       startDrawLabel(canvasId, this, labelWidth, labelHeight, rotation, ctx);
-      drawImage(localPath, 2, 2, 30, 30);
+      drawImage(localPath, 0, 0, 40, 40);
       endDrawLabel(() => {
         print(1, () => {
           if (this.quantity > this.printed) {
@@ -167,78 +169,33 @@ export default {
       return new Promise((resolve) => {
         const ctx = uni.createCanvasContext('myCanvas', this);
         ctx.drawImage(imagePath, 40, 20, 220, 220);
-        ctx.draw();
-        resolve(imagePath);
+        ctx.setFontSize(20);
+        ctx.setFillStyle("#000000");
+        ctx.setTextAlign("center");
+        const textY = 20 + 220 + 30; // 图片Y + 图片高度 + 间距
+        ctx.fillText(this.imgContent, 150, textY);
+        // ctx.draw();
+        // resolve();
+        ctx.draw(false, () => {
+          setTimeout(resolve, 300); // 延迟确保渲染完成
+        });
       })
    
     },
-    // drawCanvas() {
-    //   console.log(1111);
-    //   return new Promise((resolve) => {
-    //     const ctx = uni.createCanvasContext('myCanvas', this);
-    //     console.log(2222);
-        
-    //     // 1. 绘制背景
-    //     ctx.setFillStyle('#fff');
-    //     ctx.fillRect(0, 0, 300, 300);
-    //     // 2. 绘制图片（需先下载）
-    //     console.log(this.rqImgm, 'this.rqImg');
-    //     console.log(this.getBuffer(), 'this.getBuffer');
-        
-    //     uni.downloadFile({
-    //       url: this.rqImg,
-    //       success: (res) => {
-    //         console.log(res, 'res');
-            
-    //         resolve(res.tempFilePath);
-    //         const canvasWidth = 300;
-    //         const text = "居中文字示例";
-    //         const fontSize = 16;
-
-    //         // 1. 设置文字样式
-    //         ctx.setFontSize(fontSize);
-    //         ctx.setFillStyle('#000');
-
-    //         // 2. 测量文字宽度
-    //         const textWidth = ctx.measureText(text).width;
-
-    //         // 3. 计算居中坐标
-    //         const x = (canvasWidth - textWidth) / 2;
-    //         const y = 270
-    //         // 3. 绘制文字
-    //         ctx.setFontSize(16);
-    //         ctx.setFillStyle('#333');;
-    //         ctx.fillText(text, x, y);
-    //         console.log(res.tempFilePath, 'res.tempFilePath');
-    //         console.log(this.rqImg, 'this.rqImg');
-            
-    //         ctx.drawImage(res.tempFilePath, 40, 20, 220, 220);
-    //         ctx.draw();
-    //         // 4. 执行绘制
-    //         // ctx.draw(false, () => {
-    //         //   uni.canvasToTempFilePath({
-    //         //     canvasId: 'myCanvas',
-    //         //     success: (res) => {
-    //         //       console.log('临时路径:', res.tempFilePath);
-    //         //     }
-    //         //   });
-    //         // });
-    //       },
-    //       fail: (err) =>{
-    //         console.log(err, 'err');
-            
-    //       }
-    //     });
-    //   });
-    // },
-    generateImage() {
-      this.drawCanvas(); // 先绘制内容
-      uni.canvasToTempFilePath({
-        canvasId: 'myCanvas',
-        success: (res) => {
-          this.imageReady = true;
-          uni.showToast({ title: '内容已生成', icon: 'success' });
-        }
+    async generateImage() {
+      await this.drawCanvas();
+      return new Promise((resolve, reject) => {
+        uni.canvasToTempFilePath({
+          canvasId: "myCanvas",
+          success: (res) => {
+            this.saveImg = res.tempFilePath
+            resolve(res.tempFilePath);
+          },
+          fail: (err) => {
+            console.error("Canvas转图片失败:", err);
+            reject(err);
+          }
+        }, this);
       });
     },
     async getBuffer(){
@@ -277,8 +234,6 @@ export default {
       this.visible = true
       this.$nextTick(() => {
         this.getBuffer().then(data => {
-          
-          console.log(data, 'data');
           this.rqImg = data
           setTimeout(() => {
             this.generateImage();
@@ -308,12 +263,9 @@ export default {
 
        let connectStatus = 0;
         getSn((res) => {
-          console.log('sn', res)
-          console.log('code', res.code)
           if (res.code === -4) {
             connectStatus = -4;
           }
-          console.log('code', '1')
           if (connectStatus === -4) {
             uni.showToast({
               title: '打印机未连接',
@@ -321,13 +273,11 @@ export default {
             });
             return;
           }
-          console.log('code', '2')
 
           this.printed = 0
           uni.showToast({
             title: '开始打印'
           });
-          console.log('code', '3')
           didReadPrintCountInfo((res) => {
             console.log(res.count);
           });
@@ -335,9 +285,6 @@ export default {
           didReadPrintErrorInfo((res) => {
             console.log(res.errCode);
           });
-          console.log('code', '4')
-          // this.starPrint();
-
           startJob(1, 3, this.quantity, () => {
             this.starPrint();
           });
@@ -345,9 +292,29 @@ export default {
 
       }
     },
-    handleSave() {
-      this.$emit('save')
-      // this.close()
+   async handleSave() {
+      const localPath = await this.generateImage();
+      uni.saveImageToPhotosAlbum({
+        filePath: localPath, // 临时路径
+        success() {
+          uni.showToast({ title: '保存成功', icon: 'success' });
+        },
+        fail(err) {
+          console.error('保存失败:', err);
+          if (err.errMsg.includes('auth deny')) {
+            uni.showModal({
+              title: '提示',
+              content: '需要相册权限才能保存',
+              success(res) {
+                if (res.confirm) {
+                  // 引导用户去设置页开启权限
+                  uni.openSetting();
+                }
+              }
+            });
+          }
+        }
+      });
     }
   },
   mounted() {

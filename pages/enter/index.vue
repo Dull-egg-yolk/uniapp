@@ -15,45 +15,41 @@
     <view class="form">
       <view class="form-item">
         <text class="label">物品名称 *</text>
-        <input class="input" v-model="form.name" placeholder="请输入" />
+        <input class="input" v-model="form.Name" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">单位 *</text>
-        <input class="input" v-model="form.unit" placeholder="个" />
+        <input class="input" v-model="form.Uint" placeholder="个" />
       </view>
       <view class="form-item">
         <text class="label">规格</text>
-        <input class="input" v-model="form.specification" placeholder="请输入" />
+        <input class="input" v-model="form.Format" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">单价</text>
-        <input class="input" v-model="form.price" placeholder="请输入" />
+        <input class="input" v-model="form.Price" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">分类</text>
-        <picker class="input" mode="selector" :range="categories" @change="onCategoryChange">
-          <view>{{ form.category || '默认分类' }}</view>
+        <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
+          <view class="date-picker">{{ selectedClass }}</view>
         </picker>
       </view>
       <view class="form-item">
         <text class="label">供货商</text>
-        <input class="input" v-model="form.supplier" placeholder="请输入" />
+        <input class="input" v-model="form.Suppliers" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">最低库存</text>
-        <input class="input" v-model="form.minStock" placeholder="请输入" />
+        <input class="input" v-model="form.MinStock" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">最高库存</text>
-        <input class="input" v-model="form.maxStock" placeholder="请输入" />
-      </view>
-      <view class="form-item">
-        <text class="label">期初库存</text>
-        <input class="input" v-model="form.initialStock" placeholder="请输入" />
+        <input class="input" v-model="form.MaxStock" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">备注</text>
-        <input class="input" v-model="form.remark" placeholder="请输入" />
+        <input class="input" v-model="form.Note" placeholder="请输入" />
       </view>
     </view>
 
@@ -65,86 +61,177 @@
 </template>
 
 <script>
-import { addGoodsItme } from "@/api/work";
+import { throttle } from '@/util/throttle';
+import { addGoodsItme, getHotelClass } from "@/api/work";
+import { getUserConfig } from "@/api/user";
 export default {
   data() {
     return {
       // 上传的图片 URL
       imageUrl: "",
+      imagePath: '',
+      uploadToken: '',
+      classList: [],
+      selectedClass: '请选择',
       // 表单数据
       form: {
-        name: "",
-        unit: "",
-        specification: "",
-        price: "",
-        category: "",
-        supplier: "",
-        minStock: "",
-        maxStock: "",
-        initialStock: "",
-        remark: ""
+        Name: "",
+        Uint: "",
+        Format: "",
+        Price: "",
+        ClassID: "",
+        Suppliers: "",
+        MinStock: "",
+        MaxStock: "",
+        Image: "",
+        Note: ""
       },
+      HotelID: 0,
+      qiniuDomain: 'https://staticweb.jiudianhui.com.cn', // 七牛域名
       // 分类选项
       categories: ["默认分类", "分类1", "分类2", "分类3"]
     };
   },
   methods: {
+    async getHotelClassList(){
+      const res = await getHotelClass();
+      this.classList = res.Data;
+    },
+    async getUserConfig(){
+      const res = await getUserConfig().then(res=>{
+        if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+        } else {
+          this.uploadToken = res.Data.CdnT; 
+        }
+      })
+    },
     // 选择图片
-    chooseImage() {
+   chooseImage() {
       uni.chooseImage({
         count: 1,
-        success: (res) => {
-          this.imageUrl = res.tempFilePaths[0];
+        sizeType: ['compressed'],
+        sourceType: ['album', 'camera'],
+          success: async (res) => {
+          this.imagePath = res.tempFilePaths[0]
+          // 压缩图片
+          const compressResult = await new Promise((resolve) => {
+             wx.compressImage({
+              src: this.imagePath,
+              quality: 80, // 压缩质量，范围0～100
+              success: resolve,
+              fail: (err) => {
+                console.log('压缩失败', err);
+                resolve({ tempFilePath: this.imagePath }); // 压缩失败使用原图
+              }
+            });
+          });
+          setTimeout(() => {
+            this.uploadImage(compressResult.tempFilePath, this.uploadToken)
+          },100)
         }
-      });
+      })
+    },
+    // 上传图片到七牛
+    uploadImage(filePath, token) {
+      return new Promise((resolve, reject) => {
+          const fileName = `ims/dev/goods/${this.HotelID}/${Date.now()}.${filePath.split('.').pop()}`;
+          uni.uploadFile({
+            url: 'https://up-z1.qiniup.com', // 根据区域修改s
+            filePath: filePath,
+            name: 'file',
+            header: {
+              'Content-Type': 'multipart/form-data' // 确保设置正确的Content-Type
+            },
+            formData: {
+              token: token,
+              key: fileName // 生成唯一文件名
+            },
+            success: (res) => {
+              if (res.statusCode === 200) {
+                const data = JSON.parse(res.data)
+                this.form.Image = `${this.qiniuDomain}/${data.key}`
+                this.imageUrl = `${this.qiniuDomain}/${data.key}`
+                console.log(this.form.Image);
+                resolve(data)
+              } else {
+                reject(new Error('上传失败'))
+              }
+            },
+            fail: (err) => {
+              reject(err)
+            }
+          })
+        })
     },
     // 分类选择器变化事件
     onCategoryChange(e) {
       this.form.category = this.categories[e.detail.value];
     },
     // 提交表单
-    async submitForm() {
+    submitForm: throttle(async function() {
       // 表单校验
-      if (!this.form.name) {
+      if (!this.form.Name) {
         uni.showToast({
           title: "请填写物品名称",
           icon: "none"
         });
         return;
       }
-      if (!this.form.unit) {
+      if (!this.form.Uint) {
         uni.showToast({
           title: "请填写单位",
           icon: "none"
         });
         return;
       }
-      const res = await addGoodsItme(this.form);
-      // 打印表单数据（实际开发中可以提交到服务器）
-      console.log("表单数据：", this.form);
-      console.log("上传的图片：", this.imageUrl);
-
-      uni.showToast({
-        title: "提交成功",
-        icon: "success"
-      });
-
-      // 清空表单和图片
-      this.form = {
-        name: "",
-        unit: "",
-        specification: "",
-        price: "",
-        category: "",
-        supplier: "",
-        minStock: "",
-        maxStock: "",
-        initialStock: "",
-        remark: ""
-      };
-      this.imageUrl = "";
-    }
-  }
+      // const res = await addGoodsItme(this.form);
+      this.form.Price = Number(this.form.Price);
+      this.form.MinStock = Number(this.form.MinStock);
+      this.form.MaxStock = Number(this.form.MaxStock);
+      this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
+      // this.form.Image = 'https://cdn.uviewui.com/uview/album/1.jpg'
+      await addGoodsItme(this.form).then(res=>{
+        if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+        } else{
+          uni.showToast({
+            title: "提交成功",
+            icon: "success"
+          });
+          // uni.navigateTo({ url: '/pages/itemPage/index' })
+                // 清空表单和图片
+          this.form = {
+            Name: "",
+            Uint: "",
+            Format: "",
+            Price: "",
+            ClassID: "",
+            Suppliers: "",
+            MinStock: "",
+            MaxStock: "",
+            Image: "",
+            Note: ""
+          };
+          this.imageUrl = "";
+          }
+      })
+    }, 1000),
+    onClassChange(e) {
+      this.selectedClass = this.classList[e.detail.value].Name;
+    },
+  },
+  mounted(){
+    this.getUserConfig();
+    this.getHotelClassList();
+    this.HotelID = uni.getStorageSync('user_info').Hotel.ID;
+  },
 };
 </script>
 
@@ -153,6 +240,9 @@ export default {
 
 .upload-section {
   margin-bottom: 40rpx;
+}
+.date-picker {
+  color: grey;
 }
 
 .upload-label {

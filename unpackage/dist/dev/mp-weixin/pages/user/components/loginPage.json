@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "global-popup": "/components/global-popup/global-popup",
     "header-info": "/pages/user/components/headerInfo"
   }
 }

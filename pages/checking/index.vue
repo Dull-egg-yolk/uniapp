@@ -25,7 +25,7 @@
         </view>
         <view class="stat-item">
           <text class="stat-label">盘盈</text>
-          <text class="stat-value">{{ summaryList.Wrong }}</text>
+          <text class="stat-value">{{ summaryList.More }}</text>
         </view>
         <view class="stat-item">
           <text class="stat-label">盘亏</text>
@@ -35,8 +35,9 @@
     </div>
     <view class="list" v-if="inventoryList.length > 0">
       <view v-for="(item, index) in inventoryList" :key="index" class="list-item">
-        <text class="item-name">{{ item.Goods.Name }}</text>
-        <text class="item-status">{{ item.Status }}</text>
+        <text class="item-name">{{ item.Goods.Name}}</text>
+        <text>{{ ' ' + item.Goods.Format }}</text>
+        <text class="item-status">{{ statusList[item.Status] }}</text>
         <view class="item-detail">
           <view>
             <text>账面数量：{{ item.Expect }}</text>
@@ -44,6 +45,7 @@
           <view class="item-quantity">
             <text>盘点数量：</text>
             <input
+              :disabled ="item.Status !== 'InProgress'"
               lable="盘点数量"
               v-model="item.Current"
               type="number"
@@ -68,6 +70,7 @@
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { updateStockTaking, updateStockTakingString, getStockTakingStringSummary, getStockTakingString} from '@/api/work.js'
 import { debounce } from '../../util/debounce'
 export default {
@@ -75,51 +78,12 @@ export default {
   data() {
     return {
       StockTakingRecordID: '',
-      inventoryList: [
-        {
-          "Current": 0,
-          "Expect": 0,
-          "Goods": {
-            "Class": {
-              "ID": 0,
-              "Name": "string"
-            },
-            "ClassID": 0,
-            "Format": "string",
-            "Hotel": {
-              "Address": "string",
-              "BankAccount": "string",
-              "BankAddress": "string",
-              "Company": "string",
-              "ID": 0,
-              "InvitedBy": "string",
-              "Name": "string",
-              "SocialCode": "string",
-              "Telephone": "string"
-            },
-            "HotelID": 0,
-            "ID": 0,
-            "Image": "string",
-            "MaxStock": 0,
-            "MinStock": 0,
-            "Name": "string",
-            "Note": "string",
-            "Price": 0,
-            "Suppliers": "string",
-            "Uint": "string"
-          },
-          "GoodsID": 0,
-          "ID": 0,
-          "Status": "已盘点",
-          "StockTakingRecordID": 0,
-          "Warehouse": {
-            "ID": 0,
-            "Name": "string",
-            "Place": "string"
-          },
-          "WarehouseID": 0
-        }
-      ],
+      inventoryList: [],
+      statusList:  {
+        'InProgress': '未盘点',
+        'Completed': '已盘点',
+        'Discard': '已审核'
+      },
       summaryList: {
         Already: 0,
         Correct: 0,
@@ -135,13 +99,13 @@ export default {
   methods: {
     onSave() {
       this.updateStockTaking();
-       uni.navigateTo({
-				url: '/pages/inventoryReport/index'
-			});
     },
     // 盘点完成
     async updateStockTaking(){
-      const params = this.inventoryList
+      const params = {
+          ID: Number(this.StockTakingRecordID),
+          Status: 'Completed'
+        };
       const res = await updateStockTaking(params)
       if (res.ErrorMsg) {
 					uni.showToast({
@@ -149,7 +113,9 @@ export default {
 						icon: "none"
 					});
 			} else {
-          
+        uni.navigateTo({
+          url: `/pages/inventoryReport/index?id=${this.StockTakingRecordID}`
+        });   
 			}
     },
     // 单个输入盘点数量
@@ -158,15 +124,22 @@ export default {
       this.$set(this.inventoryList, index, { 
         ...this.inventoryList[index], 
         value,
-        status: '保存中...'
+        Status: 'Completed'
       });
       
       this.updateStockTakingString(item, value);
     }, 500),
     // 盘点完成按钮
-    nextStep(data) {
-      this.$refs.tipsPopup.open()
-    },
+    nextStep: throttle(function() {
+      // 校验 是否都盘点完成
+      const allFilled = this.inventoryList.every(item => item.Current !== '' && item.Current !== 0);
+      if(allFilled){
+        this.$refs.tipsPopup.open()
+      } else {
+        uni.showToast({ title: '你有未完成的盘点请盘点', icon: 'none' });
+      }
+    }, 1000),
+    // 单个填写 更新盘点
     async updateStockTakingString(data, value){
       const params = {
         Current: parseInt(value), 
@@ -211,7 +184,7 @@ export default {
 						icon: "none"
 					});
 			} else {
-        // this.inventoryList = res.Data
+        this.inventoryList = res.Data
 			}
     }
   },
@@ -292,8 +265,12 @@ export default {
 
 .item-status {
   font-size: 28rpx;
-  color: #07c160;
+  color: #fff;
+  background-color: #f97762;
   margin-top: 8rpx;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  margin-left: 8rpx;
 }
 
 .item-detail {

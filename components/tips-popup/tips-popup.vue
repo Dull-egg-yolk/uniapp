@@ -9,6 +9,7 @@
 
     <!-- 弹窗主体 -->
     <div 
+      v-if="visible" 
       class="popup-container"
       :class="{ 'popup-show': visible }"
     >

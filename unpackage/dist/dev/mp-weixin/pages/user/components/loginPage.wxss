@@ -5,7 +5,7 @@
 
 /* 常用功能 */
 .function-section {
-  padding: 20rpx;
+  /* padding: 20rpx; */
   margin: 20rpx 0;
 }
 .section-title {
@@ -18,7 +18,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 15rpx 10rpx;
+  padding: 25rpx 10rpx 15rpx 10rpx;
+  border-radius: 10rpx;
+}
+.invite-section {
+		background-color: white;
+		margin-top: 40rpx;
+}
+.invite-banner {
+		background-color: #1a1a1a;
+		color: #E99D42;
+		padding: 30rpx;
+		text-align: center;
+		border-radius: 10rpx;
+}
+.invite-banner ._a {
+		color: #E99D42;
+		padding-left: 4rpx;
+}
+.invite-title {
+		font-size: 32rpx;
+		margin-bottom: 10rpx;
+}
+.invite-desc {
+	font-size: 28rpx;
+}
+.invite-desc ._a {
+    display: inline-block;
+    text-decoration: underline;
 }
 .function-item {
   width: 23%;
@@ -36,32 +63,18 @@
   background-size: cover;
   background-position: center;
 }
-.person-info {
-  background-image: url(/static/img/riLine-contacts-line.a0591e92.svg);
+.contact-btn {
+  background-color: #fff;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.team-setting {
-  background-image: url(/static/img/antOutline-team.dab06fa4.svg);
-}
-.invite-gift {
-  background-image: url(/static/img/riLine-feedback-line.ac1f87a6.svg);
-}
-.help-doc {
-  background-image: url(/static/img/iconPark-doc-search-two.68fb1fb5.svg);
-}
-.online-service {
-  background-image: url(/static/img/riLine-mail-send-line.1303bd9a.svg);
-}
-.new-guide {
-  background-image: url(/static/img/if-compass.ffe02874.svg);
-}
-.info-feedback {
-  background-image: url(/static/img/riLine-feedback-line.ac1f87a6.svg);
-}
-.add-desktop {
-  background-image: url(/static/img/md-airplay.df633b94.svg);
+.contact-btn::after {
+  border: none;
 }
 .function-text {
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #666;
 }
 

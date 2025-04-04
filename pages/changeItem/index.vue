@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { getGoodsItme, addStockTakingString } from '@/api/work.js';
 export default {
   components: {},
@@ -96,10 +97,10 @@ export default {
           })
 				}
     },
-    async nextStep() {
-      uni.navigateTo({
-        url: `/pages/checking/index?id=${this.query.StockTakingRecordID}`
-      });
+    nextStep: throttle(async function() {
+      // uni.navigateTo({
+      //   url: `/pages/checking/index?id=${this.query.StockTakingRecordID}`
+      // });
       const params = {
         StockTakingRecordID: parseInt(this.query.StockTakingRecordID),
         GoodsIDs: this.selectedIds
@@ -119,18 +120,18 @@ export default {
 						icon: "none"
 					});
 				} else {
-          this.products = res.Data;
-          this.products = this.products.map((item) => {
-            return{
-              ...item,
-              selected: false
-            }
-          })
+          // this.products = res.Data;
+          // this.products = this.products.map((item) => {
+          //   return{
+          //     ...item,
+          //     selected: false
+          //   }
+          // })
           uni.navigateTo({
-            url: '../checking/index'
+            url: `/pages/checking/index?id=${this.query.StockTakingRecordID}`
           });
 				}
-    },
+    }, 1000),
     // 处理全选
     handleSelectAll(e) {
       const isSelected = e.detail.value.length > 0;

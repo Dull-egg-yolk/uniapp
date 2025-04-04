@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "qiniu-js": "^4.0.0-beta.6",
     "uqrcodejs": "^4.0.7"
   }
 }

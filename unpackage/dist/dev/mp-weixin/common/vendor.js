@@ -93,6 +93,61 @@ module.exports = _defineProperty, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
+/***/ 113:
+/*!*************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/day.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.transformDateTime = exports.formatTime = void 0;
+var formatTime = function formatTime(data) {
+  var date = new Date(data);
+
+  // 获取年、月、日、时、分、秒
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var padZero = function padZero(num) {
+    return String(num).padStart(2, '0');
+  };
+  return "".concat(year, "-").concat(padZero(month), "-").concat(padZero(day));
+};
+exports.formatTime = formatTime;
+var transformDateTime = function transformDateTime(input) {
+  // 1. 解析原始日期时间
+  var originalDate = new Date(input.replace(' ', 'T') + '+08:00');
+
+  // 2. 创建目标日期对象 (2026-01-01)
+  var targetDate = new Date(originalDate);
+  targetDate.setFullYear(2026);
+  targetDate.setMonth(0); // 月份是0-11，0表示一月
+  targetDate.setDate(1);
+
+  // 3. 重置时间为00:00:00
+  targetDate.setHours(0, 0, 0, 0);
+
+  // 4. 格式化为ISO字符串并保留时区
+  var timezoneOffset = -targetDate.getTimezoneOffset() / 60;
+  var timezone = (timezoneOffset >= 0 ? '+' : '-') + Math.abs(timezoneOffset).toString().padStart(2, '0') + ':00';
+
+  // 5. 构建最终字符串
+  var isoString = targetDate.toISOString().replace('Z', timezone);
+  return isoString;
+};
+exports.transformDateTime = transformDateTime;
+
+/***/ }),
+
 /***/ 12:
 /*!**************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
@@ -152,37 +207,6 @@ module.exports = toPrimitive, module.exports.__esModule = true, module.exports["
 
 /***/ }),
 
-/***/ 144:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/util/debounce.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.debounce = void 0;
-var debounce = function debounce(fn, delay) {
-  var timer = null;
-  return function () {
-    var _this = this;
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      return fn.apply(_this, args);
-    }, delay);
-  };
-};
-exports.debounce = debounce;
-
-/***/ }),
-
 /***/ 15:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
@@ -221,7 +245,57 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 161:
+/***/ 162:
+/*!******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/debounce.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.debounce = void 0;
+var debounce = function debounce(fn, delay) {
+  var timer = null;
+  return function () {
+    var _this = this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      return fn.apply(_this, args);
+    }, delay);
+  };
+};
+exports.debounce = debounce;
+
+/***/ }),
+
+/***/ 17:
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeReflectConstruct() {
+  try {
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+  } catch (t) {}
+  return (module.exports = _isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
+}
+module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 179:
 /*!***************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/util/print.js ***!
   \***************************************************/
@@ -236,7 +310,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.usePrint = usePrint;
-var _JCAPI = _interopRequireDefault(__webpack_require__(/*! ../static/img/JCAPI/JCAPI.js */ 162));
+var _JCAPI = _interopRequireDefault(__webpack_require__(/*! ../static/img/JCAPI/JCAPI.js */ 180));
 /**
  * @Description
  * @Version
@@ -330,7 +404,25 @@ function usePrint() {
 
 /***/ }),
 
-/***/ 162:
+/***/ 18:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 180:
 /*!***************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPI.js ***!
   \***************************************************************/
@@ -345,8 +437,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 163));
-var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 181));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 188));
 /**
  * 小程序SDK V3.0.0
  */
@@ -696,7 +788,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 163:
+/***/ 181:
 /*!**********************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPIManager.js ***!
   \**********************************************************************/
@@ -714,11 +806,11 @@ exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _JCCodeWriter = _interopRequireDefault(__webpack_require__(/*! ./JCCodeWriter */ 164));
-var _JCBle = _interopRequireDefault(__webpack_require__(/*! ./JCBle */ 167));
-var _JCPrinter = _interopRequireDefault(__webpack_require__(/*! ./JCPrinter */ 171));
-var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
-var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
+var _JCCodeWriter = _interopRequireDefault(__webpack_require__(/*! ./JCCodeWriter */ 182));
+var _JCBle = _interopRequireDefault(__webpack_require__(/*! ./JCBle */ 185));
+var _JCPrinter = _interopRequireDefault(__webpack_require__(/*! ./JCPrinter */ 189));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 188));
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 186));
 (function (_0x2b0ee8, _0x19a313) {
   var _0x55938b = a0_0x51ee,
     _0x148ec2 = _0x2b0ee8();
@@ -1206,7 +1298,7 @@ function a0_0x5528() {
 
 /***/ }),
 
-/***/ 164:
+/***/ 182:
 /*!**********************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCCodeWriter.js ***!
   \**********************************************************************/
@@ -1221,8 +1313,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _JCBarcode = _interopRequireDefault(__webpack_require__(/*! ./JCBarcode */ 165));
-var _JCQrcode = _interopRequireDefault(__webpack_require__(/*! ./JCQrcode */ 166));
+var _JCBarcode = _interopRequireDefault(__webpack_require__(/*! ./JCBarcode */ 183));
+var _JCQrcode = _interopRequireDefault(__webpack_require__(/*! ./JCQrcode */ 184));
 (function (_0x2eb4de, _0x497fa0) {
   var _0x3b60dc = a0_0xf7bb,
     _0x420fda = _0x2eb4de();
@@ -1274,7 +1366,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 165:
+/***/ 183:
 /*!*******************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCBarcode.js ***!
   \*******************************************************************/
@@ -1502,7 +1594,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 166:
+/***/ 184:
 /*!******************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCQrcode.js ***!
   \******************************************************************/
@@ -2158,7 +2250,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 167:
+/***/ 185:
 /*!***************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCBle.js ***!
   \***************************************************************/
@@ -2173,8 +2265,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
-var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 186));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 188));
 var a0_0x4ebaee = a0_0x1c78;
 (function (_0x2f54b6, _0x1a3ac0) {
   var _0x2da02d = a0_0x1c78,
@@ -2913,7 +3005,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 168:
+/***/ 186:
 /*!*********************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCDataUntil.js ***!
   \*********************************************************************/
@@ -2928,8 +3020,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 163));
-var _lzo1x = _interopRequireDefault(__webpack_require__(/*! ./lzo1x */ 169));
+var _JCAPIManager = _interopRequireDefault(__webpack_require__(/*! ./JCAPIManager */ 181));
+var _lzo1x = _interopRequireDefault(__webpack_require__(/*! ./lzo1x */ 187));
 var a0_0x268a7d = a0_0x506b;
 function a0_0x506b(_0xce1b7b, _0x58651b) {
   var _0x2089d7 = a0_0x2089();
@@ -6258,7 +6350,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 169:
+/***/ 187:
 /*!***************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/lzo1x.js ***!
   \***************************************************************/
@@ -6547,26 +6639,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 17:
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _isNativeReflectConstruct() {
-  try {
-    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-  } catch (t) {}
-  return (module.exports = _isNativeReflectConstruct = function _isNativeReflectConstruct() {
-    return !!t;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
-}
-module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 170:
+/***/ 188:
 /*!************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCAPIErrorCode.js ***!
   \************************************************************************/
@@ -6728,7 +6801,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 171:
+/***/ 189:
 /*!*******************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/static/img/JCAPI/JCPrinter.js ***!
   \*******************************************************************/
@@ -6743,14 +6816,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 172));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 173));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 175));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 190));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 191));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 193));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 168));
-var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 170));
+var _JCDataUntil = _interopRequireDefault(__webpack_require__(/*! ./JCDataUntil */ 186));
+var _JCAPIErrorCode = _interopRequireDefault(__webpack_require__(/*! ./JCAPIErrorCode */ 188));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var a0_0x51313f = a0_0x37ce;
@@ -9281,7 +9354,22 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 172:
+/***/ 19:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 190:
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -9309,7 +9397,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 
 /***/ }),
 
-/***/ 173:
+/***/ 191:
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -9317,7 +9405,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 174);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 192);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -9330,7 +9418,7 @@ module.exports = _possibleConstructorReturn, module.exports.__esModule = true, m
 
 /***/ }),
 
-/***/ 174:
+/***/ 192:
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -9347,7 +9435,7 @@ module.exports = _assertThisInitialized, module.exports.__esModule = true, modul
 
 /***/ }),
 
-/***/ 175:
+/***/ 193:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -9361,50 +9449,6 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 18:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 19:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 190:
-/*!**********************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/static/img/allHL.png ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -10156,7 +10200,7 @@ function populateParameters(result) {
   // wx.getAccountInfoSync
 
   var parameters = {
-    appId: "",
+    appId: "wxda8dce2c465f8f12",
     appName: "九点荟库存管理",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -10257,7 +10301,7 @@ var getAppBaseInfo = {
     var _hostName = getHostName(result);
     var hostLanguage = (language || '').replace('_', '-');
     result = sortObject(Object.assign(result, {
-      appId: "",
+      appId: "wxda8dce2c465f8f12",
       appName: "九点荟库存管理",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -11869,147 +11913,6 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 201:
-/*!*************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/api/user.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateHotelUser = exports.submitHotel = exports.getUserShopping = exports.getUserPrime = exports.getUserInvite = exports.getUserInfo = exports.getUserConfig = exports.getHotelUser = exports.getAppMessage = exports.getAppHelp = exports.getAppFeedback = exports.deleteHotelUser = exports.addAppFeedback = void 0;
-var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 63));
-// 初始化提交
-var submitHotel = function submitHotel(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/item',
-    method: 'POST',
-    data: data
-  });
-};
-
-// 获取反馈
-exports.submitHotel = submitHotel;
-var getAppFeedback = function getAppFeedback(data) {
-  return (0, _request.default)({
-    url: '/api/app/feedback',
-    method: 'GET',
-    data: data
-  });
-};
-
-// 新增反馈
-exports.getAppFeedback = getAppFeedback;
-var addAppFeedback = function addAppFeedback(data) {
-  return (0, _request.default)({
-    url: '/api/app/feedback',
-    method: 'POST',
-    data: data
-  });
-};
-
-// 获取帮助文档
-exports.addAppFeedback = addAppFeedback;
-var getAppHelp = function getAppHelp(data) {
-  return (0, _request.default)({
-    url: '/api/app/help',
-    method: 'GET',
-    data: data
-  });
-};
-// 获取消息
-exports.getAppHelp = getAppHelp;
-var getAppMessage = function getAppMessage(data) {
-  return (0, _request.default)({
-    url: '/api/app/message',
-    method: 'GET',
-    data: data
-  });
-};
-// 获取酒店人员
-exports.getAppMessage = getAppMessage;
-var getHotelUser = function getHotelUser(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/user',
-    method: 'GET',
-    data: data
-  });
-};
-// 更新酒店人员角色
-exports.getHotelUser = getHotelUser;
-var updateHotelUser = function updateHotelUser(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/user',
-    method: 'PUT',
-    data: data
-  });
-};
-// 删除酒店人员
-exports.updateHotelUser = updateHotelUser;
-var deleteHotelUser = function deleteHotelUser(data) {
-  return (0, _request.default)({
-    url: '/api/hotel/user',
-    method: 'DELETE',
-    data: data
-  });
-};
-// 获取用户配置
-exports.deleteHotelUser = deleteHotelUser;
-var getUserConfig = function getUserConfig(data) {
-  return (0, _request.default)({
-    url: '/api/user/config',
-    method: 'GET',
-    data: data
-  });
-};
-
-// 获取用户信息
-exports.getUserConfig = getUserConfig;
-var getUserInfo = function getUserInfo(data) {
-  return (0, _request.default)({
-    url: '/api/user/info',
-    method: 'GET',
-    data: data
-  });
-};
-
-// 获取邀请记录
-exports.getUserInfo = getUserInfo;
-var getUserInvite = function getUserInvite(data) {
-  return (0, _request.default)({
-    url: '/api/user/invite',
-    method: 'GET',
-    data: data
-  });
-};
-// 获取会员套餐
-exports.getUserInvite = getUserInvite;
-var getUserPrime = function getUserPrime(data) {
-  return (0, _request.default)({
-    url: '/api/user/prime/plan',
-    method: 'GET',
-    data: data
-  });
-};
-// 获取可用优惠卷
-exports.getUserPrime = getUserPrime;
-var getUserShopping = function getUserShopping(data) {
-  return (0, _request.default)({
-    url: '/api/user/shopping/coupon',
-    method: 'GET',
-    data: data
-  });
-};
-exports.getUserShopping = getUserShopping;
-
-/***/ }),
-
 /***/ 21:
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
@@ -12574,6 +12477,17 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 233:
+/*!***************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/static/img/Invitation.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHCAkIBgoJCAkMCwoMDxoRDw4ODx8WGBMaJSEnJiQhJCMpLjsyKSw4LCMkM0Y0OD0/QkNCKDFITUhATTtBQj//2wBDAQsMDA8NDx4RER4/KiQqPz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz//wgARCAN4BDgDAREAAhEBAxEB/8QAGwABAQACAwEAAAAAAAAAAAAAAAEDBAUGBwL/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAQMCBAUG/9oADAMBAAIQAxAAAADnfLdQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfUub39ff2a6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBXlwXP2NarIAAAAAAAAAAAAAAAAAAAD6l3bvaHI7VQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGPGekcHf0NaygAAAAAAAAAAAAAAAAAAHO9DX7Z2dMa9dkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsWV04zWt6L5/oZEAAAAAAAAAAAAAAAAAAAds7OnzvQ19euzNnh9TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAENeuzZsr+YeVeZ7G7jhUAAAAAAAAAAAAAAAAAADtvZ0+c6GvrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2VjyLzHa5LGr6QAAAAAAAAEkAAAAAAAAAO29nT5zoa+tXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPIfMdrk8avpAAAAAAAAA5DranH8nbAAAAAAAAA7b2dPnOhr61dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8h8z2uTwq+kAAAAAAAAfVmPZPS83geDv6+paAAAAAAAAO29nT5zoa+tXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPIPMdrlMavpAAAAAAAAHLd/Q5vaq4/DLgfPdD4qyAAAAAAAHH4b3cO1z+09Lm61dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8S8t6fsEc/JOAAAAAAAA3+tqcv09blDTOMos4Xz+/MZAAAAAAHG4b/GV9H0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrt7COcs5H1OIAAAAAA2d+jmu1pbxvmuaZxWndxHD3kAAAAABq47PCVdYn0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1Vu9lqcxbywAAAAAM23VzXd0N+W2bZhNY0zidC/i+LugAAAARPA09nDFw9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbTnbePsZUAAAAAZdivme/ob+UbhsGY+DCaxpnEc/Y43jbgAAAA1cdnhKuuB6J3vPdq6XM1q7NmysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWrs2bKx4V5T12aq2p3ctPmLeWAAAAMl+HM9/Q388dw2DKfZD4MJrGmcTz9jjONuAAAAcXX0eOw3wPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1P2w7DfwqAAADJsV8z3tHfzx2zZMp9H0QhjMRrGmcVo38Xxd1AAADhautqY7QHone892rpczWrs2bKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANauzZsrHhXlPXZqrakdiu4X3OAAAGbaq5ju6O9lG2bBlPspQQhjMRrGocbq28Rwt6YyAAODp7GtGwB6J3vPdq6XM1q7NmysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWrs2bKx4V5T12aq2pHYLuHlmsAAbG9RzHa092Y2zYMh9lKACEPgwmuapx9OfD8Lex05gAcHT2NaNgD0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSOwXcPLNYAhvdTV5Xq6u6bRnMp9FKAACEPgxGA1TSwnhuLu6+ncAODp7GtGwB6J3vPdq6XM1q7NmysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWrs2bKx4V5T12aq2pHYLuHlmsC5RyXa0+S3aNs2jOZD6KUAAAEIfJiMBrGocVzNrj+VtIDg6exrRsAeid7z3aulzNauzZsrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1q7NmyseFeU9dmqtqR2C7h5ZrGTYw5Xt6O/dhtmwZz7PsoAAAABCHyYzEaxqnH61nE8Xd+Kc+Dp7GtGwB6J3vPdq6XM1q7NmysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWrs2bKx4V5T12aq2pHYLuHlmvb6WtyvW1dyY2TYMx9n0UAAAAAAEPk+DEa5rGnjPFcnb6vyfQa2OwB6J3vPdq6XM1q7NmysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWrs2bKx4V5T12aq2pHY9zgcv2ufyG1VtmwZzKfZSgAAAAAAAhD4MZhNY1jofm/T8dp7oHone892rpczWrs2bKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANauzZsrHhXlPXZqrakd89T5Lk76NozmYyH0UoAAAAAAAAIQ+T4MRgPOfN+n4rT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9K9V5Hk7qcxlPs+gUAAAAAAAAAAh8nyYzzLzfp+H090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPVfVeR5G6n7PspQAAAAAAAAAAAQh8nl/m/T8Lp7oHone892rpczWrs2bKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANauzZsrHhXlPXZqraket+q8jyF1P0CgAAAAAAAAAAAAEPLfN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9f9V5HeupoAAAAAAAAAAAAAAPLPN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9g9V5HeupAAAAAAAAAAAAAAA8s836fhNPdA9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbUj2D1Xkd66kAAAAAAAAAAAAAADyzzfp+E090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPYPVeR3rqQAAAAAAAAAAAAAAPLPN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9g9V5HeupAAAAAAAAAAAAAAA8s836fhNPdA9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbUj2D1Xkd66kAAAAAAAAAAAAAADyzzfp+E090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPYPVeR3rqQAAAAAAAAAAAAAAPLPN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9g9V5HeupAAAAAAAAAAAAAAA8s836fhNPdA9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbUj2D1Xkd66kAAAAAAAAAAAAAADyzzfp+E090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPYPVeR3rqQAAAAAAAAAAAAAAPLPN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9g9V5HeupAAAAAAAAAAAAAAA8s836fhNPdA9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbUj2D1Xkd66kAAAAAAAAAAAAAADyzzfp+E090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPYPVeR3rqQAAAAAAAAAAAAAAPLPN+n4TT3QPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa1dmzZWPCvKeuzVW1I9g9V5HeupAAAAAAAAAAAAAAA8s836fhNPdA9E73nu1dLma1dmzZWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrV2bNlY8K8p67NVbUj2D1Xkd66kAAAAAAAAAAAAAADyzzfp+E090D0Tvee7V0uZrV2bNlYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGtXZs2Vjwrynrs1VtSPYPVeR3rqQAAAAAAAAAAAAAAPLfN+m4PT3gPRO957tXS5mtXZs2VgAAAAAAAAAAAAAAAAAAAAAQAoAAAAAAAAAAAAAAAAABD5wn5xykTgrzy5YjzTid1Vbhxz1sbPVPTeX3rqQAAAAAAAAAAAAAAOP5+1r024sZ+U7FleWcYlACzH1lH3Zjltwy21/ecAAAAAAAAAAAAAAAAQBIQELIgCgAAAAAAAAAAAAAHxhOKqzFVnjry+cMoAAAADc3KNjYqAAAAAAAAAAAAAAHH62xr6d2ScQAAAAABlsxz7FWe+qyAAAAAAAAAAAAAECUIQAAFBRMCgAAAAAAAAAAA+YnBr2YNe3HXkkAAAAAAMWU8t0NP7ygAAAAAAAAAAAAAcNo7nnXl/Sd17HF5Xa1QAAAAABQfWUbGxVn2avqYAAAAAAAAAAAAhIkQkTCFgEgLMUpUJUAAAAAAAAAAkNbWu1ta6QAAEidbCzWwsw454oy+YkfUxknHLlhs54da5nS+cno/qfNgAAAAAAAAAAAADovnu71nk9TBbMzjLlj9zCHyn5ifmJifqYyzjs5171lPJ363MX6m3ZUErMfUxsbNWe+qyAAAAAAAAAAgTIQ+YmRNLEUkgAIJfUxSiYoAAAAAAAABiqz09LY+MZAGrXbxNG1xdG1x1V+lXd8RIhACAiSNiqMuMerex8ntXVAAAAAAAAAAAAAdD853ut8vp69s48pAFBQUoLKg5K3W7Bt6HPbejknGysx9Z47OzVltwAAAAAAAAAgTIfMT8xKFglx9F/Bae9x9F/xGWzZVy+1qc9uaX3liPlP1MWYpZigAAAAAAAGvr26mnfAY8cuB1d7gdXf46q+ETBCEBACAgNiqMuMeqew8puX0gAAAAAAAAAAAAdD853ut8vp69s48pAJIpQWVgLIipqKZssex7nO7Ju83PnhZWYyWYZ9mr7ygAAAAAAACEifiJ+Im4zYjjqNjonH7fB6m8AAM+dfcuryO4dTk2Y+U2Y+pj6ExQAAAAAAfGE6mpsYacx8Y5dd1Oh1vT6WHHKEIRMgIQEBACA2Koy4x6p7Dym5fSAAAAAAAAAAAAB0Pzne63y+nr2zjyyIBNQKCyFgLKlRSgzZY9m3uZ2Te5uTLGysxltwzXV/WUAAAAAACEifiJ+Iylc/SOuaPQ8+4ve+IyAAAA5vb0vSe/wCdzZYfEz9TH1MfUiKAAAAASGtrXa2tdIDj6djp3O7GnXdCEIRMIQQgICAEBsVRlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PXunHORAApQUFBZVFKClKbVlXbOjyed29GyTFmMtuGW3D6ygAAAACEifmJxxl8V5fWLg9Tc834foYmoy5Y9r3eZzmxp5Jx08LuA1d3rerv/MZDmtvS9O9B5tL5lkmPqYsxQAAACGGizW1bvjDIQ4PV3uo8/r/ESIQ+QQiYSAgICAAhsVRlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PXtnHlkQBQUFBQUsxQUpSlKcrs6nb+nx966iiYsvvPHJZh92Y0AAAET8w+McsOOSnLHhl5VwPTa2FuxnX9THfulxOSu1wAOPp2PP+Z29XC0d56/E7h1OTjT9ZRkyj6RZgAACGKrPX1rsdeSJkNXC3qnP6vEa+3EwhCEICJhBCEBACAGxVGXGPVPYeU3L6QAAAAAAAAAAAAOh+c73W+X09e6cc5EACgoKUSsLMClKUpQVH1LsG7z+0dHlbNlVEhZj7sxyZ4/WeNAAPlPzjOLHLDVn9VT1Ln9TpfN7H1Mdh29Djqdj0nq+fkggkNOu3Djn53yu9jjLPnX696bylmPnJlyx+pj6mKACQxVZ4KLfjDKYzD4xy67pdHrmn0seMxMIQhCEImQEICAgBADYqjLjHqnsPKbl9IAAAAAAAAAAAAHQ/Od7rfL6evdOOciABQUFBSiVRSlKUFRSysPvKOf3ef2Tf5m5bSkLIEfeWP1nH1lj9ZQlInHGWHDPHr53CfMuL6Ljadjs+5zeGo2x6Z1vPJDhNfc5e7VyZYyJ6zq9DDXn1LS6g9H7nnuwbuhhnLLnhlyx+pVEPnDLFVniqzmMyEifmJ4XU3usaPU1sLJCJhCEIQhEwgJCAgIAQBOxVjlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PXunFM1JAFBQUFlYCzFKUFKUpUCll9HL7Wn2De53L7WlZWQIJBFmEvhOHHNTl84T5NwvTxPo3W4HnXK70ie37/K7Nt8/jKdjovO7Po3V4G5ZVYdC53a7jvcrzDj+jHcenyO7dXja855csfuYQmE/GGUiZBEyHzE8Rq7nWdDqaNV8hCEImEB8kIEwhICAhAAmIBOxVjlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PXunFM1JAAoKUFEqVFBSlKUoKVFlSgz54c1t6PM7mjymzq/U4kggfETjxywYWZMI1sLPLuL6SHqnZ815xyu/p13CFMuWHqnZ83Ziw8y5XofS+r5/wAr4vpMUZ9n3+b33r8PSpu+pZcsPuYqAiYfGOXCae913R6WlVeISEIQiYQhCETCCEICAgATEAnYqxy4x6p7Dym5fSAAAAAAAAAAAAB0Pzne63y+nr3TimRUkAUFBQUshSopSlBSlRSyoKUFMmWPJ7Grymzqcjs6u/fr/c4/MTixywYWfdbDjl5ZxfSj0zr+d4anb6ZzuuAO5dDk9o3OaMeOXl/I9H6n2PN+VcX0uOMu1b/M711+JoU3/aMuWGTKKiRPHa+zwupv8Jp72HHMQhASETCEIQhCJhBCEBAQAgATsVY5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT17pxTIqSAKCgoLJClmKClKUpSiYsLKlBSgoKWY3Lady6jYtpy5Ycpbq7GVflfF9Lhxz7jv8ntO5zet6vQ63qb9OybfP7HtaCQ6zqdHiNfa7bu8zzXk+gHeOrxe2dHl8dRsWGHCzTpv4+jZ4vW28GFkBCAhIQhCJhCEIQiRCQEBCABMQCRsVY5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1rZx5ZECpIAoKUAsrCyIpSlKUFKWYpQUpQUAqCUpCHYd3m9j3eb0TmdngNbezZ4eldXz+1ZUgEgNOu7zjld70HqcPrmn0OtanQHqXf8zmmPP+H6L5xyoAICAhCCElImEIQhCEImCEICAgBAEgbFWOXGPVPYeU3L6QAAAAAAAAAAAAOh+c73W+X09a2ceWQIFSQKCgolYCyqKUFKUpSosrBKlKCgoBUEwht2U956vA4qna865XeG3ZV3no8blrtVIIcJRudL5/X7jv8AJyI6BzO3E81s6fpHb8/1vQ6fVeZ1vooBACEBCQhCETCEIQHylCEkhCAEATEAkDYqxy4x6p7Dym5fSAAAAAAAAAAAAB0Pzne63y+nrWzjyyBAFBQUAskKWQqKUpSlBSopZUFKCgoBURMIdx6XF5S/U6Nzuz17V3/qY3rKPuY2s6xpV28jbR2rd5vFUbPTNDrfEZfc4+m9zzm/bT57w/R69dtKAQEICEBIQiYQhCEIRMgICEBEkCABIGxVjlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PVty+MpAIFAKAUoKCypQilKUpSoSsLKlBSgFACCYbNlXeOpwYee8vu8XTs1HNbGnyFtO3nVmyw0Kr+A1t3RrvFR3/AK3D7DuaHVud1et6HU+gUgBAQhBCEImEIQhARMJCSQgICAJIgSANirHLjHqnsPKbl9IAAAAAAAAAAAAHQ/Od7rfL6erbl8ZSACCagUAoKCyQsqilKUoKVFTZiwolSgoBQAD5OW2NPt3R4/xE9K5/X69q74AAA2c6+99Tic3tafD6u70zldulAAICEBCA+YRIhCEIRMJAQEICAAgCQBsVY5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1bcvjKQAQKAUFAKWQpQilKUpShFKWVBSgoBQAQhy2xp9s6HI+8seKo2us6fQ4ajbw45io5C2jsO3o9m3edmyw4TV3uo83sImgAEBCAhICETCEIQhEiEhJIQgBAExAJAA2KscuMeqew8puX0gAAAAAAAAAAAAdD853ut8vp6tuXxlIAIFSQAKUFBQWVRSgpSlKUqBSyFBSgFABCGzZV2je5XKX6qYJwYZ/CdjKv7yio18bOsaHV4XV3fooABAQgIIQiYiJhCEBCETIQEBAQAgASABsVY5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1bcvjKQACKkgAUFBQUSpUUpQUpSlRZClBSgoBQAQhDcsp5fZ0+Qu1tjOv6Rhxz0q7+L19ritfbiaUAAgIQEEIQhEiEIQhCJghJIQgIAQAJABETs1Y5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1bcvjKQACBUkACgpQClkKilKUpQVFKUSpQCgoKAQEBACAoKAUAgBAQghCBPyCEIQgImEhJIQEBACAJAAiCdmrHLjHqnsPKbl9IAAAAAAAAAAAAHQ/Od7rfL6erbl8ZSAACBUkAmoFALKgpUClKUpSgqLKwSoKCgoBQCAEAABQACAgICAkICJhCEICEImAkBCAgAIAkAiAJ2ascuMeqew8puX0gAAAAAAAAAAAAdD853ut8vp6tuXxlIAAIAoAKAUoLJCyqKClKUpShFEqUFBQUAAAAAAAAgBAQEEJKQETCEBCEImEgICAgIAmIAJERSAJ2ascuMeqew8puX0gAAAAAAAAAAAAdD853ut8vp6tuXxlIAAAIFSQSRQUFBQWVRSgpSlKCoolYJUoKACgAAAAAgBACAkBCSRMIQEIQhAmEhJIQEBAAmIBIEQASNmrHLjHqnsPKbl9IAAAAAAAAAAAAHQ/Od7rfL6erbl8ZSAAACBUkACgoKJWFEqilBSlKUIpZIUSoKAUAFIUEAABACAgBIQSkTCAhCEBEwghCAEBAExABIIgASNmrHLjHqnsPKbl9IAAAAAAAAAAAAHQ/Od7rfL6erbl8ZSAICgBAqQQBQUFBZWCVKigpSlBUUFBSyAoAKAAACAAgBBCAkkImEBCEICETBCSQgICAEACQCIAEjZqxy4x6p7Dym5fSAAAAAAAAAAAAB0Pzne63y+nq25Y8poIAUABFSCAKAUFkhSyFRSgpSlBUCpoRRKgAoAAAAIAQQSggIQJhAQhCAhEyAgICAiSATEAkAEQBIGzVjlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PUty+MpoIAUABAFSQBQUFBRKgpUUFKUFBSoFkhZIJUAAAAAEEBBJCBMICAhCAhCJQhJIQEBAAmIBIAiAASBs1Y5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1LcvjKQABQAAgAmoAoKCgSpQVFKClBSgqBRKwAskEgAAAgkIIJSBMQTAQgIQEImAkJJAQgBAExABIBEASABs1Y5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1LcvjKQABQAAEAE1AFBQCgpZIWYoKUFBSgoRQUAAoAIJIJIQAgTAQEBCEBCJQhACAgIAQAJAEQCQABs1Y5cY9U9h5TcvpAAAAAAAAAAAAA6H5zvdb5fT1LcvjKQAAKAAAgUAAoKCgFkKUFRQUoKUAoKgkgE2YQAEkgAIEwEBAQgICEShCAEBAQAJiACQIAAAAbNWOXGPVPYeU3L6QAAAAAAAAAAAAOh+c73W+X09S3L4ykAACgEKAEAVJAFBQCgolSoFBSgoKCgFCAKkAgCBIgBAQEBAQiRASEAICAgATEAEgRAJAAAGzVjlxj1T2HlNy+kAAAAAAAAAAAADofnO91vl9PUty+MpAAAFIAUAIFSCAKCgFBZClBUCgoKCgFABQACAAgBAQEBARIgISAgBAQAJiACQCIEgAAAbNWOXGPVPYeU3L6QAAAAAAAAAAAAOh+c73W+X09W3LHlIAAAAAoACKEggCgFBQUFkKEUFBQUAoAAKCAAEAICAgIEwEEICAEBAAExAJAIgSAAAANunD7h6p7Dym5fSAAAAAAAAAAAAB0Xz3d6zyeprWTizyAAAAAAqCQQBUkACgFBQUAshQigoBQCgAAAAAgBAQECRAQEEIAQEACYikCQCBAkAAACxG7TiPWPZ+S2LKwAAAAAAAAAAAAOq8fq9J4HcxZTrW5AAAAAAEUJBAFSCABQUAoKJUAoRQCgAoAAABAAQAgCYCCEkgIAQEACYgAkAEQJAAAAGxXjmwjbup9V9j5QAAAAAAAAAAAAAadF3lnj/VROpbl8ZSAAAAACBUgAgUAAoBQCgFEhQUBAoABQACAAAgSQTAQCEAICAgSQCYgAkARABIAAAGXDHZrgdu7XH7l3eMAAAAAAAAAAAAAB0jgdvq3H60Na3LHlIAAAAAIqQACAKkgACgoBQJWCQoBQgkgkigAAESABACCEkgBACAESQCYgAEgRABIAAAsRmwjPhA27qfTvW+Xz2YAAAAAAAAAAAAAAfGM+e+Z9FwmhvD4ljykAAAAAAAAAUAAApCgApJUQSAApCgAAAAEAAAEJJAAACAAAgAAAAAAAB9QyYxQbFlXo3qfOcltawAAAAAAAAAAAAAAHzE9T43W6pxutgrsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+pjsHS53c+9xdu6oAAAAAAAAAAAAAAAAfGM8Vp7epTdIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYtr5Tc1diysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//EAEwQAAECAgIKDQoFBAICAwEAAAECAwAEBVMGEBESFjE1krLSEyAyM0BBUWJxc3ST0RQhIjRQYGGBobEHMDZSgkJykcEVVCMlJEOAsP/aAAgBAQABPwD/APobNoW6sIbSVKOIAXSYlLGn3AFTLoZ5o9IwLGJPjef+nhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhGDMlWv5w8IwZkq1/OHhD9i6ccvMnoWInZCZkV3H27gOJQ84PsptCnXEobBUtRuARRFFt0exiCn1btf+h7uPMtvtKaeQFoVjBimKOVR03e42V+dCvZNisqHJtyYViaFxPSbapglZRLt7KpOM3biR0mL2drWE/DYir63wi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeTtex3B14vJ2vY7g68Xk7XsdwdeLydr2O4OvF5O17HcHXi8na9juDrxeztcx3J1oEwtogTLd4D/Wk3U/Pkt0/Kiaod797Y2RHSIbXfD2RYnk108rp+wtTKlFSGG1XqnMZHEkYz9hCEJbQEIFxIxD3YIBBBF0GGLrL5lybqCL5vo4x8rSkhaCk4iLhiUcuiB7HsTyW71x0RaT56Td5rKPqVeA92pnzTUoeVwp+V4o/6tyZhOLgZBSSDjHBLE8lu9cdEWkZTf6lv7r92pr1iT646C7cnCcXA6RlsbqP5cEsTyW71x0RaRlN/qW/uv3amvWJPrjoLtycJxcCabLrgSmHm4nJcsOXRuDi4HYnkt3rjoptIym/1Lf3X7tTXrEn1x0F25OE4uAgXYkpa8TdO6OOHW4mmA4gpUIeaUy4UK4DOT4RdbZ86uNXJFgBKqDf7SrRTaRlN/qW/uv3amvWJPrjoLtyUyWVC750wytLjYUg3QeAyEt/9ih0Qy3DiIdbidlQ6gjjGIwtJQopULhH59ITly6y0f7ja/D3IL/aToptIym/1Lf3X7tTXrEn1x0F224k5lUuvlQcYhC0uIC0G6D+fJy5dVfKHoj6wy1DTcLTDiIdbielNkF8ndiCCCQfzZ6Y2Bn0d2rFb/D3IL/aToptIym/1Lf3X7tTXrEn1x0F224EUbM7G5sSz6CvofzpZgvL5oxww0AAAIabhtEEQtMOIh1uJ6Tvrq0D0x9fzZt4vzCl8WJPRb/D3IL/AGk6KbSMpv8AUt/dfu1NesSfXHQXbbgWpJ7Z5YE7oeY/mS7JeXcGLjMS7ASkBI8whpuG0QhMEQRC0w43DrUT0ndurbHpcY5fy6Qc2OUVyq9EbT8Pcgv9pOim0jKb/Ut/dfu1NesSfXHQXbbgWqLdvJgo4lj8thlTy7gxcZiWYCEgJENNw2iEJhItEQoQtEONw61E7J311bY9LjHL+VS6/TbRyC7tPw9yC/2k6KbSMpv9S391+7U16xJ9cdBdtuBaZXsbyF8hB/KYZU8u4MXGYlmAhICRDTUNohCYSIFsiCIWiHG4daidk7+6tHmX94IKSQRcI/IpM3ZxQ5ANp+HuQX+0nRTaRlN/qW/uv3amvWJPrjoLttwLbJvmUHlSPyJeXU8rkTyxLsBKQAIaahtEITCRA2pEEQtEONw61E5JhwXR5lwtCkKKVC4Rt6R9ec+X22n4e5Bf7SdFNpGU3+pb+6/dqa9Yk+uOgu23Aty3qrX9g+23lZUum6rzI+8MMgAAC4IaahtuEJhIgDbkQUwtEONw61E1KpdTcI6DDzK2VXFjoO2pD15z5fbafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3Leqtf2D7baVkyohTg6BDLMNNQ2iEphIgD8kiCIUiFtw41D8ulaSFC6ImZVTJJHnRtaQ9ec+X22n4e5Bf7SdFNpGU3+pb+6/dqa9Yk+uOgu23Aty3qrX9g+20SkrVcSLpiUkwi4pfnVDTUNtQhEJTAEAflkQRCkwtuHGodZiakcams2CCDcNukPXnPl9tp+HuQX+0nRTaRlN/qW/uv3amvWJPrjoLttwLct6q1/YPtbZYW8r0cXLEtKpbFwDpMNNQ23CEQlMAQB+cRCkwtEONw41E1Jpd+CuWHmVsquLHQbVIevOfL7bT8Pcgv9pOim0jKb/Ut/dfu1NesSfXHQXbbgW5b1Vr+wfa1LSZX6TnmHJDLAAAAhtqG24QiEpgDgJEFMKRC24cah5gKBChdETMipF1TfnHJFI+vOfL7bT8Pcgv9pOim0jKb/Ut/dfu1NesSfXHQXbbgW5Fpbsu0ED+gfaJaTSjz41csNMw21CG4SiAmAOBkQUwpELbhbUOMxT4vabmB/bojafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3RTP/rZb4tJP0htmG2oQiEpgCAOC3IIgphSIW3Fk4uWQzX8dEbT8Pcgv9pOim0jKb/Ut/dfu1NesSfXHQXbbgW6Hbu0TJ9QjREIbhKICYAgcIIgphSIss/U03/DQG0/D3IL/aToptIym/1Lf3X7tTXrEn1x0F224FuhUf8ApZHs7eiISmAmAOGERZh+qJz+GgNp+HuQX+0nRTaRlN/qW/uv3amvWJPrjoLttwLdCZDkOzN6IgDh9mP6qnP4aA2n4e5Bf7SdFNpGU3+pb+6/dqa9Yk+uOgu23At0JkKQ7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZl+qpz+Ggnafh7kF/tJ0U2kZTf6lv7r92pr1iT646C7bcC3QmQaP7M3oj2BZkk4UTh/s0BtPw9yC/2k6KbSMpv9S391+65cQMaxBfaH9ceUt8ph51K3WFDE24VHNUP9x5UjkVHlSORUYH0mn+tjPPhBsWpQYm21dCxC7HaWRjlCehaTDlFUg3u5J/uyYoUEUHIA4xLtg5o9gTHrC/l9oVLsL3bLaulIg0fInHJsd0mP+Lo7/oS3cpiWablWy3KoSygm6Uti9BMbIv8AeqLpuk3TdMXx5TF0xdPLAWsYlGA84P6zCZpYxgGEzSTugRCXEL3KgfcpTiE7pQEKmkjcgmDNLOIAQXXDjWYJJ/Lk96PTw+kKYkaO80y+Av8AYnzqhican2vKmAoNrxBQuHzeb89Dy0cd3phEyk7sXIBChdBu+w7vsFSgkXVECFzQG4F2FvOLxq4AaakpB8S02strUL8Kvbohpxt5sONLStCvOFJN0HhtktKmi5D/AMXrD3oo/wBmFrU4tS3FFS1G6STdJixtQ/4RgXRd9LSPAUqUk3Um5CJniWPmISoKF1Ju8OuxdteePPHni7AMA8KJAF0m4IcmuJv/ACYUoqN1RJ26lJSLqiAOUw5SMi1u5xgHrBC6eotGObT8gTCrJqLGJ1Z6EGMK6O5H8yMLaPqpnNHjGFtH1Uzmp8YFllG8j+YPGE2UUXWOJ6UGEWQ0UvFNgdKFCG6Uo9zcTrHeARZUtDlJtFCgobCNJUWOUwujZ1KFrJlXDcWnk53DbOlk0qwjiDH3JtP7sdEImH0bh5xPQowKQnhinJjvVQKUpD/vTPeqj/k6Q/70z3qoNIzxxzsx3qoM5NHHMvZ5jZ3jjdXnGNlc/er/ADAedGJ1ecYRPTiNxNPp6HDDVN0m1inF/wArivvDFlU8jfUNO/QxLWVyq/WGHGjnCJWkZOb9XmELP7cR/wAHapJSboMNzHEuAQRdHCibQG3uRcIgGAeDuvJbHKrkhxxTh9I7WZpCTlfWJhtB5Lt0/wCImbKpRG8MuOnNEP2Uzy95Q00M4w9TFIvbucd/ib37Qta3DdWtSjyk3fy2Nwem1Ray5RMmtWNTCCc0cMs5y0z2caSrT+7HR+fJU1PylwIfK0fsc9IRI2US7txM22WT+4edMMvNPthxlxLiDxpN3aIWpGIw28FY/MeDkwTAFuepujZC6JmaQFj+hPpK/wACJmzmWR6rJuufFZCPGF2czp3uUYGcYw4pKolc1WtDFnbg3+QzHIk7MKKmCA6pyXJrE/7EMPtTDQcYdQ4g4lIUCLRFoHgrz4T6KPOqCSSSbb77Uu2VvuJbTyqMTtlDDd1Mm0XT+5XmETlMz83dC3ylH7UeiOAMbg9Nqh8iyPZ29EcMs5y0z2caSrT+7HRwGWmX5Vy/l3VNq5pij7KSLiJ9u6KxHhErMsTTWyS7qXE/DaIcUn4iELSvFwQmCYAtUvTUnRLV2YXdcO5aTujFK2T0hSBKELMsx+xs/c7eTnZmRd2SUfW0vmmKFszQ4QzSoDZrkYvmIQtLiAtCgpChdCgboMY4xQDA4CtxKBdUYdfUvzDzJtuuIabK3VhCBjKjcEUjZMBdbkE3TWr/ANCJiYemXC4+6pxXKo8CY3B6bVD5Fkezt6I4ZZzlpns40lWn92OjgcvMPSzocYcU2scaTFG2UA3G59Fw1qP9iGXW3mg4ytK0HEUm2IQ8RuvPCVBWI8BJgmBaslskRRoMrKELm/o3Dzzj7ynXlqW4s3SpRuk/lUBZDMUQ6EKuuyh3TerEpNMzkqiYllhbSxdBFrFAMD84kAXSYcmeJv8AzBJJuk26UpZijkXFem8cTYifpGZn3L59fojEgYhwSX3B6bVD5Fkezt6I4ZZzlpns40lWn92OjgsjPTMi5fyzpTyjiPSIouyKXmrjczcYeOaYFsGEukbrzwlQViP5xMKMDzm1ZPTYoqUvGfWndxzRywtSlrUtaipSjdJOMm0kFRuARKSr85MhiWQXHDEhYg0i4uefLh40N4oZoijmRcRJs/yTffePIJL/AKjHdiJmx6jH8cuEHlQbkUhYm+0CuRc2YfsV5jDra2XC26goWnGCLdjVNromcvXCTKO74nk5whC0rQlaFBSFC6CMREKF0QkwDA/McfSnzJ85ha1LN1R2lM06iWBZlFBb/GrGEQ4tTi1LcUVLUbpJ4LL72em1Q+RZHs7eiOGWc5aZ7ONJVp/djo4PRdOTUhcQTsrH7Ff6MUdSkrSCP/Au4vjbV5lDapcUPjCXEn4flmFGFGBE1Mtysq7MPG422kqMUjOu0hPOzT2NZzRxC1Iyb09MhhjpUs7lCeMmJpbV95PIgloG5fndOnl6OQRQVFoouQSjG+sAur21K0RLUmyQ4Al0blwYxFIyD9HTRYfHQeJQt2DUsXGlUa+fOgXzPRxi0rzKhJgQPyVvpTi85hbil4ztJ2el5Fu/mHAORIxmKTp2YnLrbV1lnkGM9J4PL7g9Nqh8iyPZ29EcMs5y0z2caSrT+7HRwIbZClIUFIUUqGIg3CIo2yZ5m4idGzI/eN1EnOy063fSzoXyjjHSNqCRiMB08cBxJgbcwoxjVas5nyllmQQd36bnRxWm0LdcS22kqWs3EjlMUulFCUQii2fWpkBcysaMWOsh+n5RCsQXff429IvLlGPK0JK0tb4jlRx/MRSchL0zRovSDdF8y7D7Lku+tl1N6tBuEWpCaXIzzM01u2lBUMPIfYbebN1DiQpJ+BhzcwkwkwNsSBCnwNyLsLcUrGdo64hpsrdWEIGMkxSVkeNuQ71X+hDrrjzhcdWVrOMk8Il97PTaofIsj2dvRHDLOctM9nGkq0/ux0cKadW04FtLUhYxKSbhiQsnfauInUbMn96fMqJKkZSdF2XeBV+w+ZX+NsIDihAd5RAWkwCDaMKhZgWrIZozdOTTnEF3iegea1YTIB2bcnnMTPoo/uMU1MmbpmaeP7yB0CKEmRKUzKvq3IXcPQdpZVSPkNFFDZuPvbjoBukxLOh6VadGJaAq0tAdQptQuhYKTFiM2W3ZqinTvCiWv9iLM5De55scxy3YVNbPQAbONhZRGMEQgwkwNoXEiC8eIXIJJxnaEgAkm4BFIWQsMXUSoD7nL/SInJ6YnV30w4VcieIcKl97PTaofIsj2dvRHDLOctM9nGkq0/ux0cEH5CSUm6kkEYiIkrIZ6WuJcUH0ci8f+Yk7IpGYuB0lhfPxf5hC0rSFIUFJOIg3R+RfKHHGyqhTvwhbohJuph5wNMOOHEhJVCiVKKibpJum1Y2x5PY8wONaVOHpMKulxd3HfH72qAslaDCJWkl3pQLiHvGETUstF+iYaKeULEUlZFISKCELEw9xIR/sxPzr9ITa5mZVdWr/AAkcgihgRQkiDUJtCFv+Q2brWMQmLh6DFLSwmqMmWMZUg3vTxW/w+euOzrPKErtYnFQlQGMiA6gccbMOIQXVQSTjO1JABJifp+VlrqWTs7nNxD5xP0pNTxIdcuIq0+YcMl97PTaofIsj2dvRHDLOctM9nGkq1MbsdHBR+VLTcxKqvpd5bZ5piUsomW/NMtIeHKPRMStkFHv43CyrkcENuIcRfNrStPKk3RtjCoXCNwOiKVNyiJwioXom0cRijwBR8qOLYUaIil5YylLTTB/pcJHQbdwWpWXXNTTUu3unVhIhCA02ltG5QkJHyt0w7f0/NuivjG2P7RE2kInHkDElZH1tWBZZf7OdJNp71hUIhMDauuNtIK3VpQkcajcETtkcs1dTKpLy+XEmJ2k5udJDzpvP2J8yeHS+9nptUPkWR7O3ojhlnOWmezjSVamN2OjhI/JZedZVfMuLbPKkkRLWQ0gzjcS6OeIYspbPrEsofFBuwxTlHPYpgIPIsEQ2626LrTiVjlSbtowqFwjcCJ9Bco6ZR+5pQ+luhHg/Qkm4KsA/LzRZhRSn2kz7CSXGhcdHKnl2tiFEKY/9hMpuLULjKTxDltzLyZaVdfWbgbQVRLpVNT7Y/qedH1MLIShROICJhd/Mur/csm1YCi7SUyvkZ+5tPesrhEJgWiQASSABE1TUhLY3g4rkb9KJuyZ9d0SrQa5yvOYmJl+ZXfvuqcPOPsCX3s9Nqh8iyPZ29EcMs5y0z2caSrUxvg6OCD80bVKik3Ukg8ohmlZ9ncTbn8jffeG7I59G72JzpT4Qiyetlc1cCyGUXukOoiRmmpuWDjKrqbpFqcZMtOvsVayn/BtWEzwUw9ILxoOyI/3apaxVmZWp6QWGHTjQdwYfoGlWCQqTWvq/ShigKVfVcEmtHxc9GKIsWZlFh6dWH3RiQNwNpZnPhqURIIPpvekv4JixCTMzTIeO4lxffPiinpoSlDzDnGU3qek27AmCiRmpisWED5Wib51R5TBfZa315CP7lAQumaPaxzIUeaCYdsnl07yw4vpITD9kk65vQbZ+piYm5iZN195bnSfYcvvZ6bVD5Fkezt6I4ZZzlpns40lWn98+X5I/PEDgJixR/f5foWPsbVmEoWKWD43D6fqPMbUlNOyU43MsG4ts3Yo2fZpKTTMMH4KTxoPIdvSlIsUZJl9/+CONZiYefpCfU6u64+8rEPoBFBUYKLo5LJ35fpOn4xZhSIfmUybRuoa86/7rdByZkKHl2D5lhN1fSfOYpKY8lo5967cKUG508UF55e7dWrpUTA9jy+9nptUPkWR7O3ojhlnOWmezjSVaf3z5ey6KmfJKSadO4u3qug2rIqP8vopaUC6836aPC3RtIzNGzOzSy/7kHEochii6fkqRATfhh+rcP2O1pWySTkQUMETL/IjcjpMTMzOUrPBbpU88s3EoSPoBFjtACjgJmaAVNkfJuLIaZRR0uWmiDNLHoj9vxMKUVKKlElRN0m1YrRxn6WSpYussemv/AELVl02EstSicazfr6IHsiX3s9Nqh8iyPZ29EcMs5y0z2caSrT++fLg44LQE75VIBCt9Z9E9HEbVlVEmUmjNsJ/8DxzVWkKCVXSkKHGDDNG+Wpu0c4HFjGwsgLHRxKhE/S9GG8Lr7IH9Dguj6wiyyk01C+lHgYXZXSaqlHQjxMOTlK0obwuPvg/0pxf4HmiQsTnXyDNkSyP8qijqLkqLbOwIuK/qdXujFMWTsy4UzIEOu/v/AKUw864+6p15ZWtRulRtMtOPvIaaSVuLNxKRFB0YiiqOSxjcPpOK5VQ64hppTjhCUIBJMUhNqnZ52YV/UfMOQcUD2RL7g9Nqh8iyPZ29EcMs5y0z2caSrT2+nhI4HR04uRnEvJxYlp5RDLqHmUutKvkKF0GH2G5lhbLyAttYuKBim6Hdot/jXLq3Dn+jaSopUFJJBGIiJOyadZQG5kIm2uR3xhum6Ce9ZotKVdWCIapWxpvzoYaQeoMGymi2gQ1f9CG7kTNmP/Ulfm4Yn6Xnp+6H3zefsT5k20JUtYQgFSlG4ABdJMWM0CKOR5TNAGaWO7Fqyik74+QsHrfCB7Jl97PTaofIsj2dvRHDLOctM9nGkq09vp9m0HSpknNhf9XWcwwCFJBBBBxEQ+w1MsKZfQFtqFwpMUzY0/KFT0kC8xyf1J/JkZGZn39ilWis8Z4h0mKCoBiiwHXCHZr9/EnotU7S4kWiywQZlYzBBJUSSbpOMn2VL72em1Q+RZHs7eiOGWc5aZ7ONJVp7fT7OoemFyRDL91bH1RDLrbzQcaWFoViItUlQMjSBK1I2J6sbidsVn2CSwUTCM0w/KTMsbj7Djf96SLaQVG4kEnkESlB0lNb3KLSP3OeiPrFH2HoSQufev8AmN+MS0uzKshqXaS2gcSRapinUSgUxKkLf4zxIha1OOKW4oqUo3ST7Ll97PTaofIsj2dvRHDLOctM9nGkq09vp4SODSM/MSLl8wvzHGg4jEhTkrN3EuHYXeRWI9B2i5KUc3yVZX0tgwKNkBikZbukw2020LjTaEDmgC3Nz0tJIvph0J5E8Z+UUnT780C3LAstHOPs2X3s9Nqh8iyPZ29EcMs5y0z2caSrT2+n2hciUpOclPMy8bz9ivOIYsm/7Mv82/Aw1T1HuY3Sg85JhNJyKsU2zngQaRkf+4x3ghdM0e3jmUnoBMP2TSqN5accOaImqfnnwQ2QynmY/wDMKUpaipaipRxkn2dL72em1Q+RZHs7eiOGWc5aZ7ONJVp7fT7zy+9nptUPkWR7O3ojhlnOWmezjSVae30+88vvZ6bVD5Fkezt6I4ZZzlpns40lWnt9PvPL72em1Q+RZHs7eiOGWc5aZ7ONJVp7fTwQe6cvvfztUPkWR7O3ojhlnOWmezjSVae30+88vvfztUPkWR7O3ojhlnOWmezjSVae31XvPL7387VD5Fkezt6I4ZZzlpns40lWnt9V7zy+9/O1Q+RZHs7eiOGWc5aZ7ONJVp7fVe88vvfztUPkWR7O3ojhlnOWmezjSVae31XvPL7387VD5Fkezt6I4ZZzlpns40lWnt9V7zy+9/O1Q+RZHs7eiOGWc5aZ7ONJVp7fVe88vvfztUPkWR7O3ojhlnOWmezjSVae31XvPL7387VD5Fkezt6I4ZZzlpns40lWnt9V7zy+92qHyLI9nb0RwyznLTPZxpKtPb6r3nZFxoWqHyLI9nb0RwyzpBFKML5WfsTamBcc95kJvlAW5FstSEu2caGkp/wOGWdS5VJy0zVrKD87T6bqLvJ7zMIuC+PHaoqWM5SksxjC1i70Yz9OG0rJifox+W41p9HpxiFpUhakLBCkm4QeI2nEXivh7yMtXxunc27B5Albs+vq2/8AZ4dZjRJafNIMD0HN9+CuW0pIUCDC2in4j3hAJNwQ2xxrt0ZIO0jPIlmRj3SuJI4zEpLNyco3Lsi422Lg4c62h5pbTqQtCxcUk8Yin6Bdox0usgrlFYlfs+BtqaQrigy44lR5PzvpHk/O+keT876R5PzvpHk/O+keT876R5PzvpHk/O+keT876R5PzvpHk/O+kbBzvpGwc+Ng50bBzo2DnRsHOjYOd9I2DnRsHO+kbBzo2DnRsHOjYed9I2DnRsPOjYedGw86Nh50bDzo2LnRsXOjYvjGxc6Ni+MbF8Y2PnRsfxjY/jGx/GNj+MXnxjY/jF58YvPjF58YvIvIvIvIvPjF58YvPjGx/GNj+MbH8Y2P4xsfxjY/jGx86Ni+MbFzo2LnRsXOjYudGxc6Nh50bDzo2HnRsPOjYedGwc6Ng50bBzo2DnRsHOjYOdGwc6Ng50bBzo2DnRsHOjYOfHk/Pjyfnx5PzvpHk/O+keT876R5PzvpHk/O+keT876R5PzvpAl+dAYQOUwABiFuRkpifmQxLNlaz/gDlMUJRLNEyl4j0nVb45y+wFJStBQtIUlQuEEXQYpexELJeowhJqVf6MTUpMSbl5MsraVzh7xIQpxYQhJUo4gBdJii7FJyaIXOf/GZ5DuzEhIS1HMbDKthCeM8auk+w3G23kFDqErQcaVC6Ifsbol8+q3hNWSINh1G1sznjwjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0dXzWenVjA2jq+az06sYG0bXTWenVhmxWim8bS3f71mJaTlpRNyWYba/sSB/+If/xAA7EQABAgEHCgQGAwEAAgMAAAABAAIDBBARFTFRcQUSIDNAkaHB0eEhUGCxEzAyNEGBFCJhQiNSgLDw/9oACAECAQE/AP8A7DYAuNAUOQPPi80Kr4d5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4V5VXwryqvhXlVfCvKq+FeVV8K8qr4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39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7Zv39z3MqWww5mo2YxPL00zwuw5itqFdItn4n38goH7dv39z3MqWww5mo2YxPL0v2Tcuw5fDcmsIBF/5XwivhFNpkMXoU2ChS4J/khHhHY4KkWz8T5AzwhB7hsK+LE/seK+NF/seKeS8zdrXZFykFKuQXYbcjCCMIotI9FBpKEIoQggxt3zIu3f4VGixvCEYZhHsO2j55Y0owz9FKXoQAlCEfqgwDcM1iRR22CaLS0yO+0Oj/Hfr2BAACQVLtjuJAKMO5EEegWwr0AB3wJoQYh2NKFFjH+KzKNcsxi/4swi3hZhFvCzGL/izKMjRIw/ijAija0qhAiGZ3ql0YRmTHiG+5MH/In/AGoIsadoXwof9RwXwYX9RwXwYX9RwXwof9RwXw2XBdltykF2RcjCYdoCNGgn+KdQYZ2TCdQHjwmafBiM8Q7pAKMO7z5rC5NaG91kGI/whMoLz4jJNoMMbdabR4TdjUABs+WaowlFcBed8yZYnH8VN+e+jQom0KJQXjwGac1zTJw7hAKLCN8h0aLF8LUzJjz4nSQyZD+ritGQrynZLH8XJ+T4zNmtOa5pk4S3ljJ6z3Gsc8yaFDoLj4zJMo0Jmwbgao9s/E75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"
 
 /***/ }),
 
@@ -18699,7 +18613,450 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 298:
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 30:
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// TODO(Babel 8): Remove this file.
+
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 31)();
+module.exports = runtime;
+
+/***/ }),
+
+/***/ 31:
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+    return e;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  var t,
+    e = {},
+    r = Object.prototype,
+    n = r.hasOwnProperty,
+    o = Object.defineProperty || function (t, e, r) {
+      t[e] = r.value;
+    },
+    i = "function" == typeof Symbol ? Symbol : {},
+    a = i.iterator || "@@iterator",
+    c = i.asyncIterator || "@@asyncIterator",
+    u = i.toStringTag || "@@toStringTag";
+  function define(t, e, r) {
+    return Object.defineProperty(t, e, {
+      value: r,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), t[e];
+  }
+  try {
+    define({}, "");
+  } catch (t) {
+    define = function define(t, e, r) {
+      return t[e] = r;
+    };
+  }
+  function wrap(t, e, r, n) {
+    var i = e && e.prototype instanceof Generator ? e : Generator,
+      a = Object.create(i.prototype),
+      c = new Context(n || []);
+    return o(a, "_invoke", {
+      value: makeInvokeMethod(t, r, c)
+    }), a;
+  }
+  function tryCatch(t, e, r) {
+    try {
+      return {
+        type: "normal",
+        arg: t.call(e, r)
+      };
+    } catch (t) {
+      return {
+        type: "throw",
+        arg: t
+      };
+    }
+  }
+  e.wrap = wrap;
+  var h = "suspendedStart",
+    l = "suspendedYield",
+    f = "executing",
+    s = "completed",
+    y = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var p = {};
+  define(p, a, function () {
+    return this;
+  });
+  var d = Object.getPrototypeOf,
+    v = d && d(d(values([])));
+  v && v !== r && n.call(v, a) && (p = v);
+  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+  function defineIteratorMethods(t) {
+    ["next", "throw", "return"].forEach(function (e) {
+      define(t, e, function (t) {
+        return this._invoke(e, t);
+      });
+    });
+  }
+  function AsyncIterator(t, e) {
+    function invoke(r, o, i, a) {
+      var c = tryCatch(t[r], t, o);
+      if ("throw" !== c.type) {
+        var u = c.arg,
+          h = u.value;
+        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
+          invoke("next", t, i, a);
+        }, function (t) {
+          invoke("throw", t, i, a);
+        }) : e.resolve(h).then(function (t) {
+          u.value = t, i(u);
+        }, function (t) {
+          return invoke("throw", t, i, a);
+        });
+      }
+      a(c.arg);
+    }
+    var r;
+    o(this, "_invoke", {
+      value: function value(t, n) {
+        function callInvokeWithMethodAndArg() {
+          return new e(function (e, r) {
+            invoke(t, n, e, r);
+          });
+        }
+        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(e, r, n) {
+    var o = h;
+    return function (i, a) {
+      if (o === f) throw Error("Generator is already running");
+      if (o === s) {
+        if ("throw" === i) throw a;
+        return {
+          value: t,
+          done: !0
+        };
+      }
+      for (n.method = i, n.arg = a;;) {
+        var c = n.delegate;
+        if (c) {
+          var u = maybeInvokeDelegate(c, n);
+          if (u) {
+            if (u === y) continue;
+            return u;
+          }
+        }
+        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
+          if (o === h) throw o = s, n.arg;
+          n.dispatchException(n.arg);
+        } else "return" === n.method && n.abrupt("return", n.arg);
+        o = f;
+        var p = tryCatch(e, r, n);
+        if ("normal" === p.type) {
+          if (o = n.done ? s : l, p.arg === y) continue;
+          return {
+            value: p.arg,
+            done: n.done
+          };
+        }
+        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(e, r) {
+    var n = r.method,
+      o = e.iterator[n];
+    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
+    var i = tryCatch(o, e.iterator, r.arg);
+    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
+    var a = i.arg;
+    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
+  }
+  function pushTryEntry(t) {
+    var e = {
+      tryLoc: t[0]
+    };
+    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
+  }
+  function resetTryEntry(t) {
+    var e = t.completion || {};
+    e.type = "normal", delete e.arg, t.completion = e;
+  }
+  function Context(t) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], t.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(e) {
+    if (e || "" === e) {
+      var r = e[a];
+      if (r) return r.call(e);
+      if ("function" == typeof e.next) return e;
+      if (!isNaN(e.length)) {
+        var o = -1,
+          i = function next() {
+            for (; ++o < e.length;) {
+              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
+            }
+            return next.value = t, next.done = !0, next;
+          };
+        return i.next = i;
+      }
+    }
+    throw new TypeError(_typeof(e) + " is not iterable");
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), o(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
+    var e = "function" == typeof t && t.constructor;
+    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
+  }, e.mark = function (t) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
+  }, e.awrap = function (t) {
+    return {
+      __await: t
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
+    return this;
+  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
+    void 0 === i && (i = Promise);
+    var a = new AsyncIterator(wrap(t, r, n, o), i);
+    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
+      return t.done ? t.value : a.next();
+    });
+  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
+    return this;
+  }), define(g, "toString", function () {
+    return "[object Generator]";
+  }), e.keys = function (t) {
+    var e = Object(t),
+      r = [];
+    for (var n in e) {
+      r.push(n);
+    }
+    return r.reverse(), function next() {
+      for (; r.length;) {
+        var t = r.pop();
+        if (t in e) return next.value = t, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, e.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function reset(e) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
+        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
+      }
+    },
+    stop: function stop() {
+      this.done = !0;
+      var t = this.tryEntries[0].completion;
+      if ("throw" === t.type) throw t.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(e) {
+      if (this.done) throw e;
+      var r = this;
+      function handle(n, o) {
+        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
+      }
+      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
+        var i = this.tryEntries[o],
+          a = i.completion;
+        if ("root" === i.tryLoc) return handle("end");
+        if (i.tryLoc <= this.prev) {
+          var c = n.call(i, "catchLoc"),
+            u = n.call(i, "finallyLoc");
+          if (c && u) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          } else if (c) {
+            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
+          } else {
+            if (!u) throw Error("try statement without catch or finally");
+            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function abrupt(t, e) {
+      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+        var o = this.tryEntries[r];
+        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
+          var i = o;
+          break;
+        }
+      }
+      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
+      var a = i ? i.completion : {};
+      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
+    },
+    complete: function complete(t, e) {
+      if ("throw" === t.type) throw t.arg;
+      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
+    },
+    finish: function finish(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
+      }
+    },
+    "catch": function _catch(t) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var r = this.tryEntries[e];
+        if (r.tryLoc === t) {
+          var n = r.completion;
+          if ("throw" === n.type) {
+            var o = n.arg;
+            resetTryEntry(r);
+          }
+          return o;
+        }
+      }
+      throw Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(e, r, n) {
+      return this.delegate = {
+        iterator: values(e),
+        resultName: r,
+        nextLoc: n
+      }, "next" === this.method && (this.arg = t), y;
+    }
+  }, e;
+}
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 310:
+/*!************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/fq.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, wx) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.base64ToTempPath = base64ToTempPath;
+// 将Base64转为临时文件路径（兼容所有平台）
+function base64ToTempPath(base64Data) {
+  return new Promise(function (resolve) {
+    // 小程序端写入临时文件
+    var base64 = base64Data.split(',')[1] || base64Data; // 去除可能的头部
+    var fileManager = uni.getFileSystemManager();
+    var tempFilePath = "".concat(wx.env.USER_DATA_PATH, "/qrcode_").concat(Date.now(), ".png");
+    fileManager.writeFile({
+      filePath: tempFilePath,
+      data: base64,
+      encoding: 'base64',
+      success: function success() {
+        return resolve(tempFilePath);
+      }
+    });
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 32:
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 332:
 /*!*****************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-icons/components/uni-icons/uniicons_file_vue.js ***!
   \*****************************************************************************************************/
@@ -19203,38 +19560,7 @@ exports.fontData = fontData;
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 306:
+/***/ 340:
 /*!********************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
   \********************************************************************************************************/
@@ -19249,11 +19575,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 307));
-var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 308));
-var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 309));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 310));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 311));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 341));
+var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 342));
+var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 343));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 344));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 345));
 var _default = {
   en: _en.default,
   es: _es.default,
@@ -19265,7 +19591,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 307:
+/***/ 341:
 /*!*******************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
   \*******************************************************************************************************/
@@ -19276,7 +19602,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-paginat
 
 /***/ }),
 
-/***/ 308:
+/***/ 342:
 /*!*******************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
   \*******************************************************************************************************/
@@ -19287,7 +19613,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pag
 
 /***/ }),
 
-/***/ 309:
+/***/ 343:
 /*!*******************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
   \*******************************************************************************************************/
@@ -19298,7 +19624,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni
 
 /***/ }),
 
-/***/ 310:
+/***/ 344:
 /*!************************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
   \************************************************************************************************************/
@@ -19309,7 +19635,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pa
 
 /***/ }),
 
-/***/ 311:
+/***/ 345:
 /*!************************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
   \************************************************************************************************************/
@@ -19320,7 +19646,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pa
 
 /***/ }),
 
-/***/ 32:
+/***/ 35:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
   \**********************************************************************************************************/
@@ -19452,7 +19778,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 33:
+/***/ 36:
 /*!****************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/store/index.js ***!
   \****************************************************/
@@ -19468,34 +19794,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 34));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 37));
 _vue.default.use(_vuex.default);
-var store = new _vuex.default.Store({
+
+// 存储用户信息
+var _default = new _vuex.default.Store({
   state: {
-    /**
-     * 是否需要强制登录
-     */
-    forcedLogin: false,
-    hasLogin: false,
-    userName: ""
+    userInfo: null,
+    token: null
+  },
+  getters: {
+    isLoggedIn: function isLoggedIn(state) {
+      return !!state.token;
+    }
   },
   mutations: {
-    login: function login(state, userName) {
-      state.userName = userName || '新用户';
-      state.hasLogin = true;
+    setUserInfo: function setUserInfo(state, userInfo) {
+      state.userInfo = userInfo;
+    },
+    setToken: function setToken(state, token) {
+      state.token = token;
     },
     logout: function logout(state) {
-      state.userName = "";
-      state.hasLogin = false;
+      state.userInfo = null;
+      state.token = null;
     }
   }
 });
-var _default = store;
 exports.default = _default;
 
 /***/ }),
 
-/***/ 34:
+/***/ 37:
 /*!**************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vuex3/dist/vuex.common.js ***!
   \**************************************************************************************/
@@ -20752,7 +21082,28 @@ module.exports = index_cjs;
 
 /***/ }),
 
-/***/ 347:
+/***/ 38:
+/*!******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/common/config.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  webUrl: 'http://49.234.123.211:8000'
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 388:
 /*!********************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \********************************************************************************************/
@@ -20767,11 +21118,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 59));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 172));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 173));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 175));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 61));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 190));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 191));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 193));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -21444,7 +21795,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 348:
+/***/ 389:
 /*!*****************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \*****************************************************************************************/
@@ -21780,28 +22131,7 @@ exports.isEqual = isEqual;
 
 /***/ }),
 
-/***/ 35:
-/*!******************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/common/config.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  webUrl: 'http://49.234.123.211:8000'
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 36:
+/***/ 39:
 /*!*******************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/common/request.js ***!
   \*******************************************************/
@@ -21816,7 +22146,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 35));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 38));
 var _default = {
   config: {
     baseUrl: _config.default.webUrl,
@@ -21866,40 +22196,534 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 384:
-/*!*************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/util/day.js ***!
-  \*************************************************/
+/***/ 4:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 432:
+/*!******************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/index.js ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formatTime = void 0;
-var formatTime = function formatTime(data) {
-  var date = new Date(data);
-
-  // 获取年、月、日、时、分、秒
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
-  var padZero = function padZero(num) {
-    return String(num).padStart(2, '0');
-  };
-  return "".concat(year, "-").concat(padZero(month), "-").concat(padZero(day), " ").concat(padZero(hours), ":").concat(padZero(minutes), ":").concat(padZero(seconds));
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 433));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 434));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 435));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
 };
-exports.formatTime = formatTime;
+exports.default = _default;
 
 /***/ }),
 
-/***/ 392:
+/***/ 433:
+/*!*****************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/en.json ***!
+  \*****************************************************************************************************************/
+/*! exports provided: uni-datetime-picker.selectDate, uni-datetime-picker.selectTime, uni-datetime-picker.selectDateTime, uni-datetime-picker.startDate, uni-datetime-picker.endDate, uni-datetime-picker.startTime, uni-datetime-picker.endTime, uni-datetime-picker.ok, uni-datetime-picker.clear, uni-datetime-picker.cancel, uni-datetime-picker.year, uni-datetime-picker.month, uni-calender.MON, uni-calender.TUE, uni-calender.WED, uni-calender.THU, uni-calender.FRI, uni-calender.SAT, uni-calender.SUN, uni-calender.confirm, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"select date\",\"uni-datetime-picker.selectTime\":\"select time\",\"uni-datetime-picker.selectDateTime\":\"select date and time\",\"uni-datetime-picker.startDate\":\"start date\",\"uni-datetime-picker.endDate\":\"end date\",\"uni-datetime-picker.startTime\":\"start time\",\"uni-datetime-picker.endTime\":\"end time\",\"uni-datetime-picker.ok\":\"ok\",\"uni-datetime-picker.clear\":\"clear\",\"uni-datetime-picker.cancel\":\"cancel\",\"uni-datetime-picker.year\":\"-\",\"uni-datetime-picker.month\":\"\",\"uni-calender.MON\":\"MON\",\"uni-calender.TUE\":\"TUE\",\"uni-calender.WED\":\"WED\",\"uni-calender.THU\":\"THU\",\"uni-calender.FRI\":\"FRI\",\"uni-calender.SAT\":\"SAT\",\"uni-calender.SUN\":\"SUN\",\"uni-calender.confirm\":\"confirm\"}");
+
+/***/ }),
+
+/***/ 434:
+/*!**********************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hans.json ***!
+  \**********************************************************************************************************************/
+/*! exports provided: uni-datetime-picker.selectDate, uni-datetime-picker.selectTime, uni-datetime-picker.selectDateTime, uni-datetime-picker.startDate, uni-datetime-picker.endDate, uni-datetime-picker.startTime, uni-datetime-picker.endTime, uni-datetime-picker.ok, uni-datetime-picker.clear, uni-datetime-picker.cancel, uni-datetime-picker.year, uni-datetime-picker.month, uni-calender.SUN, uni-calender.MON, uni-calender.TUE, uni-calender.WED, uni-calender.THU, uni-calender.FRI, uni-calender.SAT, uni-calender.confirm, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"选择日期\",\"uni-datetime-picker.selectTime\":\"选择时间\",\"uni-datetime-picker.selectDateTime\":\"选择日期时间\",\"uni-datetime-picker.startDate\":\"开始日期\",\"uni-datetime-picker.endDate\":\"结束日期\",\"uni-datetime-picker.startTime\":\"开始时间\",\"uni-datetime-picker.endTime\":\"结束时间\",\"uni-datetime-picker.ok\":\"确定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"确认\"}");
+
+/***/ }),
+
+/***/ 435:
+/*!**********************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hant.json ***!
+  \**********************************************************************************************************************/
+/*! exports provided: uni-datetime-picker.selectDate, uni-datetime-picker.selectTime, uni-datetime-picker.selectDateTime, uni-datetime-picker.startDate, uni-datetime-picker.endDate, uni-datetime-picker.startTime, uni-datetime-picker.endTime, uni-datetime-picker.ok, uni-datetime-picker.clear, uni-datetime-picker.cancel, uni-datetime-picker.year, uni-datetime-picker.month, uni-calender.SUN, uni-calender.MON, uni-calender.TUE, uni-calender.WED, uni-calender.THU, uni-calender.FRI, uni-calender.SAT, uni-calender.confirm, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"選擇日期\",\"uni-datetime-picker.selectTime\":\"選擇時間\",\"uni-datetime-picker.selectDateTime\":\"選擇日期時間\",\"uni-datetime-picker.startDate\":\"開始日期\",\"uni-datetime-picker.endDate\":\"結束日期\",\"uni-datetime-picker.startTime\":\"開始时间\",\"uni-datetime-picker.endTime\":\"結束时间\",\"uni-datetime-picker.ok\":\"確定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"確認\"}");
+
+/***/ }),
+
+/***/ 436:
+/*!************************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-datetime-picker/components/uni-datetime-picker/util.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Calendar = void 0;
+exports.addZero = addZero;
+exports.checkDate = checkDate;
+exports.dateCompare = dateCompare;
+exports.fixIosDateFormat = fixIosDateFormat;
+exports.getDate = getDate;
+exports.getDateTime = getDateTime;
+exports.getDefaultSecond = getDefaultSecond;
+exports.getTime = getTime;
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var Calendar = /*#__PURE__*/function () {
+  function Calendar() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      selected = _ref.selected,
+      startDate = _ref.startDate,
+      endDate = _ref.endDate,
+      range = _ref.range;
+    (0, _classCallCheck2.default)(this, Calendar);
+    // 当前日期
+    this.date = this.getDateObj(new Date()); // 当前初入日期
+    // 打点信息
+    this.selected = selected || [];
+    // 起始时间
+    this.startDate = startDate;
+    // 终止时间
+    this.endDate = endDate;
+    // 是否范围选择
+    this.range = range;
+    // 多选状态
+    this.cleanMultipleStatus();
+    // 每周日期
+    this.weeks = {};
+    this.lastHover = false;
+  }
+  /**
+   * 设置日期
+   * @param {Object} date
+   */
+  (0, _createClass2.default)(Calendar, [{
+    key: "setDate",
+    value: function setDate(date) {
+      var selectDate = this.getDateObj(date);
+      this.getWeeks(selectDate.fullDate);
+    }
+
+    /**
+     * 清理多选状态
+     */
+  }, {
+    key: "cleanMultipleStatus",
+    value: function cleanMultipleStatus() {
+      this.multipleStatus = {
+        before: '',
+        after: '',
+        data: []
+      };
+    }
+  }, {
+    key: "setStartDate",
+    value: function setStartDate(startDate) {
+      this.startDate = startDate;
+    }
+  }, {
+    key: "setEndDate",
+    value: function setEndDate(endDate) {
+      this.endDate = endDate;
+    }
+  }, {
+    key: "getPreMonthObj",
+    value: function getPreMonthObj(date) {
+      date = fixIosDateFormat(date);
+      date = new Date(date);
+      var oldMonth = date.getMonth();
+      date.setMonth(oldMonth - 1);
+      var newMonth = date.getMonth();
+      if (oldMonth !== 0 && newMonth - oldMonth === 0) {
+        date.setMonth(newMonth - 1);
+      }
+      return this.getDateObj(date);
+    }
+  }, {
+    key: "getNextMonthObj",
+    value: function getNextMonthObj(date) {
+      date = fixIosDateFormat(date);
+      date = new Date(date);
+      var oldMonth = date.getMonth();
+      date.setMonth(oldMonth + 1);
+      var newMonth = date.getMonth();
+      if (newMonth - oldMonth > 1) {
+        date.setMonth(newMonth - 1);
+      }
+      return this.getDateObj(date);
+    }
+
+    /**
+     * 获取指定格式Date对象
+     */
+  }, {
+    key: "getDateObj",
+    value: function getDateObj(date) {
+      date = fixIosDateFormat(date);
+      date = new Date(date);
+      return {
+        fullDate: getDate(date),
+        year: date.getFullYear(),
+        month: addZero(date.getMonth() + 1),
+        date: addZero(date.getDate()),
+        day: date.getDay()
+      };
+    }
+
+    /**
+     * 获取上一个月日期集合
+     */
+  }, {
+    key: "getPreMonthDays",
+    value: function getPreMonthDays(amount, dateObj) {
+      var result = [];
+      for (var i = amount - 1; i >= 0; i--) {
+        var month = dateObj.month - 1;
+        result.push({
+          date: new Date(dateObj.year, month, -i).getDate(),
+          month: month,
+          disable: true
+        });
+      }
+      return result;
+    }
+    /**
+     * 获取本月日期集合
+     */
+  }, {
+    key: "getCurrentMonthDays",
+    value: function getCurrentMonthDays(amount, dateObj) {
+      var _this = this;
+      var result = [];
+      var fullDate = this.date.fullDate;
+      var _loop = function _loop(i) {
+        var currentDate = "".concat(dateObj.year, "-").concat(dateObj.month, "-").concat(addZero(i));
+        var isToday = fullDate === currentDate;
+        // 获取打点信息
+        var info = _this.selected && _this.selected.find(function (item) {
+          if (_this.dateEqual(currentDate, item.date)) {
+            return item;
+          }
+        });
+
+        // 日期禁用
+        var disableBefore = true;
+        var disableAfter = true;
+        if (_this.startDate) {
+          disableBefore = dateCompare(_this.startDate, currentDate);
+        }
+        if (_this.endDate) {
+          disableAfter = dateCompare(currentDate, _this.endDate);
+        }
+        var multiples = _this.multipleStatus.data;
+        var multiplesStatus = -1;
+        if (_this.range && multiples) {
+          multiplesStatus = multiples.findIndex(function (item) {
+            return _this.dateEqual(item, currentDate);
+          });
+        }
+        var checked = multiplesStatus !== -1;
+        result.push({
+          fullDate: currentDate,
+          year: dateObj.year,
+          date: i,
+          multiple: _this.range ? checked : false,
+          beforeMultiple: _this.isLogicBefore(currentDate, _this.multipleStatus.before, _this.multipleStatus.after),
+          afterMultiple: _this.isLogicAfter(currentDate, _this.multipleStatus.before, _this.multipleStatus.after),
+          month: dateObj.month,
+          disable: _this.startDate && !dateCompare(_this.startDate, currentDate) || _this.endDate && !dateCompare(currentDate, _this.endDate),
+          isToday: isToday,
+          userChecked: false,
+          extraInfo: info
+        });
+      };
+      for (var i = 1; i <= amount; i++) {
+        _loop(i);
+      }
+      return result;
+    }
+    /**
+     * 获取下一个月日期集合
+     */
+  }, {
+    key: "_getNextMonthDays",
+    value: function _getNextMonthDays(amount, dateObj) {
+      var result = [];
+      var month = dateObj.month + 1;
+      for (var i = 1; i <= amount; i++) {
+        result.push({
+          date: i,
+          month: month,
+          disable: true
+        });
+      }
+      return result;
+    }
+
+    /**
+     * 获取当前日期详情
+     * @param {Object} date
+     */
+  }, {
+    key: "getInfo",
+    value: function getInfo(date) {
+      var _this2 = this;
+      if (!date) {
+        date = new Date();
+      }
+      var res = this.calendar.find(function (item) {
+        return item.fullDate === _this2.getDateObj(date).fullDate;
+      });
+      return res ? res : this.getDateObj(date);
+    }
+
+    /**
+     * 比较时间是否相等
+     */
+  }, {
+    key: "dateEqual",
+    value: function dateEqual(before, after) {
+      before = new Date(fixIosDateFormat(before));
+      after = new Date(fixIosDateFormat(after));
+      return before.valueOf() === after.valueOf();
+    }
+
+    /**
+     *  比较真实起始日期
+     */
+  }, {
+    key: "isLogicBefore",
+    value: function isLogicBefore(currentDate, before, after) {
+      var logicBefore = before;
+      if (before && after) {
+        logicBefore = dateCompare(before, after) ? before : after;
+      }
+      return this.dateEqual(logicBefore, currentDate);
+    }
+  }, {
+    key: "isLogicAfter",
+    value: function isLogicAfter(currentDate, before, after) {
+      var logicAfter = after;
+      if (before && after) {
+        logicAfter = dateCompare(before, after) ? after : before;
+      }
+      return this.dateEqual(logicAfter, currentDate);
+    }
+
+    /**
+     * 获取日期范围内所有日期
+     * @param {Object} begin
+     * @param {Object} end
+     */
+  }, {
+    key: "geDateAll",
+    value: function geDateAll(begin, end) {
+      var arr = [];
+      var ab = begin.split('-');
+      var ae = end.split('-');
+      var db = new Date();
+      db.setFullYear(ab[0], ab[1] - 1, ab[2]);
+      var de = new Date();
+      de.setFullYear(ae[0], ae[1] - 1, ae[2]);
+      var unixDb = db.getTime() - 24 * 60 * 60 * 1000;
+      var unixDe = de.getTime() - 24 * 60 * 60 * 1000;
+      for (var k = unixDb; k <= unixDe;) {
+        k = k + 24 * 60 * 60 * 1000;
+        arr.push(this.getDateObj(new Date(parseInt(k))).fullDate);
+      }
+      return arr;
+    }
+
+    /**
+     *  获取多选状态
+     */
+  }, {
+    key: "setMultiple",
+    value: function setMultiple(fullDate) {
+      if (!this.range) return;
+      var _this$multipleStatus = this.multipleStatus,
+        before = _this$multipleStatus.before,
+        after = _this$multipleStatus.after;
+      if (before && after) {
+        if (!this.lastHover) {
+          this.lastHover = true;
+          return;
+        }
+        this.multipleStatus.before = fullDate;
+        this.multipleStatus.after = '';
+        this.multipleStatus.data = [];
+        this.multipleStatus.fulldate = '';
+        this.lastHover = false;
+      } else {
+        if (!before) {
+          this.multipleStatus.before = fullDate;
+          this.multipleStatus.after = undefined;
+          this.lastHover = false;
+        } else {
+          this.multipleStatus.after = fullDate;
+          if (dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
+          } else {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
+          }
+          this.lastHover = true;
+        }
+      }
+      this.getWeeks(fullDate);
+    }
+
+    /**
+     *  鼠标 hover 更新多选状态
+     */
+  }, {
+    key: "setHoverMultiple",
+    value: function setHoverMultiple(fullDate) {
+      //抖音小程序点击会触发hover事件，需要避免一下
+
+      if (!this.range || this.lastHover) return;
+      var before = this.multipleStatus.before;
+      if (!before) {
+        this.multipleStatus.before = fullDate;
+      } else {
+        this.multipleStatus.after = fullDate;
+        if (dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
+          this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
+        } else {
+          this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
+        }
+      }
+      this.getWeeks(fullDate);
+    }
+
+    /**
+     * 更新默认值多选状态
+     */
+  }, {
+    key: "setDefaultMultiple",
+    value: function setDefaultMultiple(before, after) {
+      this.multipleStatus.before = before;
+      this.multipleStatus.after = after;
+      if (before && after) {
+        if (dateCompare(before, after)) {
+          this.multipleStatus.data = this.geDateAll(before, after);
+          this.getWeeks(after);
+        } else {
+          this.multipleStatus.data = this.geDateAll(after, before);
+          this.getWeeks(before);
+        }
+      }
+    }
+
+    /**
+     * 获取每周数据
+     * @param {Object} dateData
+     */
+  }, {
+    key: "getWeeks",
+    value: function getWeeks(dateData) {
+      var _this$getDateObj = this.getDateObj(dateData),
+        year = _this$getDateObj.year,
+        month = _this$getDateObj.month;
+      var preMonthDayAmount = new Date(year, month - 1, 1).getDay();
+      var preMonthDays = this.getPreMonthDays(preMonthDayAmount, this.getDateObj(dateData));
+      var currentMonthDayAmount = new Date(year, month, 0).getDate();
+      var currentMonthDays = this.getCurrentMonthDays(currentMonthDayAmount, this.getDateObj(dateData));
+      var nextMonthDayAmount = 42 - preMonthDayAmount - currentMonthDayAmount;
+      var nextMonthDays = this._getNextMonthDays(nextMonthDayAmount, this.getDateObj(dateData));
+      var calendarDays = [].concat((0, _toConsumableArray2.default)(preMonthDays), (0, _toConsumableArray2.default)(currentMonthDays), (0, _toConsumableArray2.default)(nextMonthDays));
+      var weeks = new Array(6);
+      for (var i = 0; i < calendarDays.length; i++) {
+        var index = Math.floor(i / 7);
+        if (!weeks[index]) {
+          weeks[index] = new Array(7);
+        }
+        weeks[index][i % 7] = calendarDays[i];
+      }
+      this.calendar = calendarDays;
+      this.weeks = weeks;
+    }
+  }]);
+  return Calendar;
+}();
+exports.Calendar = Calendar;
+function getDateTime(date, hideSecond) {
+  return "".concat(getDate(date), " ").concat(getTime(date, hideSecond));
+}
+function getDate(date) {
+  date = fixIosDateFormat(date);
+  date = new Date(date);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  return "".concat(year, "-").concat(addZero(month), "-").concat(addZero(day));
+}
+function getTime(date, hideSecond) {
+  date = fixIosDateFormat(date);
+  date = new Date(date);
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  return hideSecond ? "".concat(addZero(hour), ":").concat(addZero(minute)) : "".concat(addZero(hour), ":").concat(addZero(minute), ":").concat(addZero(second));
+}
+function addZero(num) {
+  if (num < 10) {
+    num = "0".concat(num);
+  }
+  return num;
+}
+function getDefaultSecond(hideSecond) {
+  return hideSecond ? '00:00' : '00:00:00';
+}
+function dateCompare(startDate, endDate) {
+  startDate = new Date(fixIosDateFormat(startDate));
+  endDate = new Date(fixIosDateFormat(endDate));
+  return startDate <= endDate;
+}
+function checkDate(date) {
+  var dateReg = /((19|20)\d{2})(-|\/)\d{1,2}(-|\/)\d{1,2}/g;
+  return date.match(dateReg);
+}
+//ios低版本15及以下，无法匹配 没有 ’秒‘ 时的情况，所以需要在末尾 秒 加上 问号
+var dateTimeReg = /^\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])( [0-5]?[0-9]:[0-5]?[0-9](:[0-5]?[0-9])?)?$/;
+function fixIosDateFormat(value) {
+  if (typeof value === 'string' && dateTimeReg.test(value)) {
+    value = value.replace(/-/g, '/');
+  }
+  return value;
+}
+
+/***/ }),
+
+/***/ 444:
 /*!*************************************************************************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*************************************************************************************************************/
@@ -22034,57 +22858,6 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 4:
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 451:
-/*!************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/util/fq.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni, wx) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.base64ToTempPath = base64ToTempPath;
-// 将Base64转为临时文件路径（兼容所有平台）
-function base64ToTempPath(base64Data) {
-  return new Promise(function (resolve) {
-    // 小程序端写入临时文件
-    var base64 = base64Data.split(',')[1] || base64Data; // 去除可能的头部
-    var fileManager = uni.getFileSystemManager();
-    var tempFilePath = "".concat(wx.env.USER_DATA_PATH, "/qrcode_").concat(Date.now(), ".png");
-    fileManager.writeFile({
-      filePath: tempFilePath,
-      data: base64,
-      encoding: 'base64',
-      success: function success() {
-        return resolve(tempFilePath);
-      }
-    });
-  });
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 5:
 /*!**************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
@@ -22103,17 +22876,47 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 
 /***/ }),
 
-/***/ 59:
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
-  \************************************************************************************************/
+/***/ 533:
+/*!**************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/pages/user/images/iconPark-level.svg ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// TODO(Babel 8): Remove this file.
+module.exports = __webpack_require__.p + "static/img/iconPark-level.e0a1774f.svg";
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 60)();
-module.exports = runtime;
+/***/ }),
+
+/***/ 582:
+/*!******************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/util/throttle.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.throttle = throttle;
+// utils/throttle.js
+function throttle(fn) {
+  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+  var timer = null;
+  return function () {
+    var _this = this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    if (timer) return;
+    timer = setTimeout(function () {
+      fn.apply(_this, args);
+      timer = null;
+    }, delay);
+  };
+}
 
 /***/ }),
 
@@ -22131,369 +22934,6 @@ module.exports = _arrayWithHoles, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 60:
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-function _regeneratorRuntime() {
-  "use strict";
-
-  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
-    return e;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  var t,
-    e = {},
-    r = Object.prototype,
-    n = r.hasOwnProperty,
-    o = Object.defineProperty || function (t, e, r) {
-      t[e] = r.value;
-    },
-    i = "function" == typeof Symbol ? Symbol : {},
-    a = i.iterator || "@@iterator",
-    c = i.asyncIterator || "@@asyncIterator",
-    u = i.toStringTag || "@@toStringTag";
-  function define(t, e, r) {
-    return Object.defineProperty(t, e, {
-      value: r,
-      enumerable: !0,
-      configurable: !0,
-      writable: !0
-    }), t[e];
-  }
-  try {
-    define({}, "");
-  } catch (t) {
-    define = function define(t, e, r) {
-      return t[e] = r;
-    };
-  }
-  function wrap(t, e, r, n) {
-    var i = e && e.prototype instanceof Generator ? e : Generator,
-      a = Object.create(i.prototype),
-      c = new Context(n || []);
-    return o(a, "_invoke", {
-      value: makeInvokeMethod(t, r, c)
-    }), a;
-  }
-  function tryCatch(t, e, r) {
-    try {
-      return {
-        type: "normal",
-        arg: t.call(e, r)
-      };
-    } catch (t) {
-      return {
-        type: "throw",
-        arg: t
-      };
-    }
-  }
-  e.wrap = wrap;
-  var h = "suspendedStart",
-    l = "suspendedYield",
-    f = "executing",
-    s = "completed",
-    y = {};
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-  var p = {};
-  define(p, a, function () {
-    return this;
-  });
-  var d = Object.getPrototypeOf,
-    v = d && d(d(values([])));
-  v && v !== r && n.call(v, a) && (p = v);
-  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
-  function defineIteratorMethods(t) {
-    ["next", "throw", "return"].forEach(function (e) {
-      define(t, e, function (t) {
-        return this._invoke(e, t);
-      });
-    });
-  }
-  function AsyncIterator(t, e) {
-    function invoke(r, o, i, a) {
-      var c = tryCatch(t[r], t, o);
-      if ("throw" !== c.type) {
-        var u = c.arg,
-          h = u.value;
-        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
-          invoke("next", t, i, a);
-        }, function (t) {
-          invoke("throw", t, i, a);
-        }) : e.resolve(h).then(function (t) {
-          u.value = t, i(u);
-        }, function (t) {
-          return invoke("throw", t, i, a);
-        });
-      }
-      a(c.arg);
-    }
-    var r;
-    o(this, "_invoke", {
-      value: function value(t, n) {
-        function callInvokeWithMethodAndArg() {
-          return new e(function (e, r) {
-            invoke(t, n, e, r);
-          });
-        }
-        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-      }
-    });
-  }
-  function makeInvokeMethod(e, r, n) {
-    var o = h;
-    return function (i, a) {
-      if (o === f) throw Error("Generator is already running");
-      if (o === s) {
-        if ("throw" === i) throw a;
-        return {
-          value: t,
-          done: !0
-        };
-      }
-      for (n.method = i, n.arg = a;;) {
-        var c = n.delegate;
-        if (c) {
-          var u = maybeInvokeDelegate(c, n);
-          if (u) {
-            if (u === y) continue;
-            return u;
-          }
-        }
-        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
-          if (o === h) throw o = s, n.arg;
-          n.dispatchException(n.arg);
-        } else "return" === n.method && n.abrupt("return", n.arg);
-        o = f;
-        var p = tryCatch(e, r, n);
-        if ("normal" === p.type) {
-          if (o = n.done ? s : l, p.arg === y) continue;
-          return {
-            value: p.arg,
-            done: n.done
-          };
-        }
-        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
-      }
-    };
-  }
-  function maybeInvokeDelegate(e, r) {
-    var n = r.method,
-      o = e.iterator[n];
-    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
-    var i = tryCatch(o, e.iterator, r.arg);
-    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
-    var a = i.arg;
-    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
-  }
-  function pushTryEntry(t) {
-    var e = {
-      tryLoc: t[0]
-    };
-    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
-  }
-  function resetTryEntry(t) {
-    var e = t.completion || {};
-    e.type = "normal", delete e.arg, t.completion = e;
-  }
-  function Context(t) {
-    this.tryEntries = [{
-      tryLoc: "root"
-    }], t.forEach(pushTryEntry, this), this.reset(!0);
-  }
-  function values(e) {
-    if (e || "" === e) {
-      var r = e[a];
-      if (r) return r.call(e);
-      if ("function" == typeof e.next) return e;
-      if (!isNaN(e.length)) {
-        var o = -1,
-          i = function next() {
-            for (; ++o < e.length;) {
-              if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
-            }
-            return next.value = t, next.done = !0, next;
-          };
-        return i.next = i;
-      }
-    }
-    throw new TypeError(_typeof(e) + " is not iterable");
-  }
-  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
-    value: GeneratorFunctionPrototype,
-    configurable: !0
-  }), o(GeneratorFunctionPrototype, "constructor", {
-    value: GeneratorFunction,
-    configurable: !0
-  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
-    var e = "function" == typeof t && t.constructor;
-    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
-  }, e.mark = function (t) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
-  }, e.awrap = function (t) {
-    return {
-      __await: t
-    };
-  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
-    return this;
-  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
-    void 0 === i && (i = Promise);
-    var a = new AsyncIterator(wrap(t, r, n, o), i);
-    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
-      return t.done ? t.value : a.next();
-    });
-  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
-    return this;
-  }), define(g, "toString", function () {
-    return "[object Generator]";
-  }), e.keys = function (t) {
-    var e = Object(t),
-      r = [];
-    for (var n in e) {
-      r.push(n);
-    }
-    return r.reverse(), function next() {
-      for (; r.length;) {
-        var t = r.pop();
-        if (t in e) return next.value = t, next.done = !1, next;
-      }
-      return next.done = !0, next;
-    };
-  }, e.values = values, Context.prototype = {
-    constructor: Context,
-    reset: function reset(e) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) {
-        "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
-      }
-    },
-    stop: function stop() {
-      this.done = !0;
-      var t = this.tryEntries[0].completion;
-      if ("throw" === t.type) throw t.arg;
-      return this.rval;
-    },
-    dispatchException: function dispatchException(e) {
-      if (this.done) throw e;
-      var r = this;
-      function handle(n, o) {
-        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
-      }
-      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
-        var i = this.tryEntries[o],
-          a = i.completion;
-        if ("root" === i.tryLoc) return handle("end");
-        if (i.tryLoc <= this.prev) {
-          var c = n.call(i, "catchLoc"),
-            u = n.call(i, "finallyLoc");
-          if (c && u) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          } else if (c) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-          } else {
-            if (!u) throw Error("try statement without catch or finally");
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          }
-        }
-      }
-    },
-    abrupt: function abrupt(t, e) {
-      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
-        var o = this.tryEntries[r];
-        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
-          var i = o;
-          break;
-        }
-      }
-      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
-      var a = i ? i.completion : {};
-      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
-    },
-    complete: function complete(t, e) {
-      if ("throw" === t.type) throw t.arg;
-      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
-    },
-    finish: function finish(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
-      }
-    },
-    "catch": function _catch(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.tryLoc === t) {
-          var n = r.completion;
-          if ("throw" === n.type) {
-            var o = n.arg;
-            resetTryEntry(r);
-          }
-          return o;
-        }
-      }
-      throw Error("illegal catch attempt");
-    },
-    delegateYield: function delegateYield(e, r, n) {
-      return this.delegate = {
-        iterator: values(e),
-        resultName: r,
-        nextLoc: n
-      }, "next" === this.method && (this.arg = t), y;
-    }
-  }, e;
-}
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 61:
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
 /***/ 62:
 /*!*************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/api/work.js ***!
@@ -22508,7 +22948,7 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateWarehouse = exports.updateStockTakingString = exports.updateStockTaking = exports.updateHotelClass = exports.updateGoodsItme = exports.submitHotel = exports.reportEmail = exports.getWarehouse = exports.getStockTakingStringSummary = exports.getStockTakingString = exports.getStockTaking = exports.getStockOperate = exports.getReportGoodsCurrent = exports.getReportConsumeMonth = exports.getQrcode = exports.getHotelClass = exports.getGoodsString = exports.getGoodsItme = exports.deleteWarehouse = exports.deleteHotelClass = exports.deleteGoodsItme = exports.addWarehouse = exports.addStockTakingString = exports.addStockTaking = exports.addStockOperate = exports.addHotelClass = exports.addGoodsItme = void 0;
+exports.updateWarehouse = exports.updateStockTakingString = exports.updateStockTaking = exports.updateHotelClass = exports.updateGoodsItme = exports.submitHotel = exports.reportEmail = exports.goodsDirectly = exports.getWarehouse = exports.getStockTakingStringSummary = exports.getStockTakingString = exports.getStockTaking = exports.getStockOperate = exports.getReportGoodsCurrent = exports.getReportConsumeMonth = exports.getQrcode = exports.getHotelClass = exports.getGoodsString = exports.getGoodsItme = exports.deleteWarehouse = exports.deleteHotelClass = exports.deleteGoodsItme = exports.addWarehouse = exports.addStockTakingString = exports.addStockTaking = exports.addStockOperate = exports.addHotelClass = exports.addGoodsItme = void 0;
 var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 63));
 // 获取分类
 var getHotelClass = function getHotelClass(data) {
@@ -22757,7 +23197,16 @@ var getQrcode = function getQrcode(data) {
     data: data
   });
 };
+// 商品详情进入盘点
 exports.getQrcode = getQrcode;
+var goodsDirectly = function goodsDirectly(data) {
+  return (0, _request.default)({
+    url: '/api/stock/taking/goods/directly',
+    method: 'POST',
+    data: data
+  });
+};
+exports.goodsDirectly = goodsDirectly;
 
 /***/ }),
 
@@ -22807,9 +23256,9 @@ var responseInterceptor = function responseInterceptor(response) {
       title: '登录已过期，请重新登录',
       icon: 'none'
     });
-    uni.navigateTo({
-      url: '/pages/login/login'
-    });
+    // uni.navigateTo({
+    //   url: '/pages/user/user',
+    // });
     return Promise.reject(response.data);
   } else {
     // 处理其他错误状态码
@@ -22826,6 +23275,13 @@ var request = function request(config) {
   // 请求拦截
   config = requestInterceptor(config);
   return new Promise(function (resolve, reject) {
+    var token = uni.getStorageSync('token');
+
+    // 设置请求头
+    config.header = config.header || {};
+    if (token) {
+      config.header['Authorization'] = "Bearer ".concat(token);
+    }
     uni.request({
       url: baseUrl + config.url,
       // 拼接完整 URL
@@ -22845,6 +23301,11 @@ var request = function request(config) {
           title: '网络请求失败',
           icon: 'none'
         });
+        uni.removeStorageSync('token');
+        uni.reLaunch({
+          url: '/pages/user/user'
+        });
+        reject(new Error('登录已过期，请重新登录'));
         reject(err);
       }
     });
@@ -22913,6 +23374,180 @@ function _unsupportedIterableToArray(o, minLen) {
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
 }
 module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 80:
+/*!*************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/api/user.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.userPage = exports.userLogin = exports.updateHotelUser = exports.submitHotel = exports.readAppMessage = exports.getUserShopping = exports.getUserPrime = exports.getUserInvite = exports.getUserInfo = exports.getUserConfig = exports.getHotelUser = exports.getAppMessage = exports.getAppHelp = exports.getAppFeedback = exports.deleteHotelUser = exports.appConfig = exports.addAppFeedback = void 0;
+var _request = _interopRequireDefault(__webpack_require__(/*! @/api/request.js */ 63));
+// 初始化提交
+var submitHotel = function submitHotel(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/item',
+    method: 'POST',
+    data: data
+  });
+};
+
+// 获取反馈
+exports.submitHotel = submitHotel;
+var getAppFeedback = function getAppFeedback(data) {
+  return (0, _request.default)({
+    url: '/api/app/feedback',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 新增反馈
+exports.getAppFeedback = getAppFeedback;
+var addAppFeedback = function addAppFeedback(data) {
+  return (0, _request.default)({
+    url: '/api/app/feedback',
+    method: 'POST',
+    data: data
+  });
+};
+
+// 获取帮助文档
+exports.addAppFeedback = addAppFeedback;
+var getAppHelp = function getAppHelp(data) {
+  return (0, _request.default)({
+    url: '/api/app/help',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取消息
+exports.getAppHelp = getAppHelp;
+var getAppMessage = function getAppMessage(data) {
+  return (0, _request.default)({
+    url: '/api/app/message',
+    method: 'GET',
+    data: data
+  });
+};
+exports.getAppMessage = getAppMessage;
+var readAppMessage = function readAppMessage(data) {
+  return (0, _request.default)({
+    url: '/api/app/message/read',
+    method: 'POST',
+    data: data
+  });
+};
+// 获取酒店人员
+exports.readAppMessage = readAppMessage;
+var getHotelUser = function getHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'GET',
+    data: data
+  });
+};
+// 更新酒店人员角色
+exports.getHotelUser = getHotelUser;
+var updateHotelUser = function updateHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'PUT',
+    data: data
+  });
+};
+// 删除酒店人员
+exports.updateHotelUser = updateHotelUser;
+var deleteHotelUser = function deleteHotelUser(data) {
+  return (0, _request.default)({
+    url: '/api/hotel/user',
+    method: 'DELETE',
+    data: data
+  });
+};
+// 获取用户配置
+exports.deleteHotelUser = deleteHotelUser;
+var getUserConfig = function getUserConfig(data) {
+  return (0, _request.default)({
+    url: '/api/user/config',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取用户信息
+exports.getUserConfig = getUserConfig;
+var getUserInfo = function getUserInfo(data) {
+  return (0, _request.default)({
+    url: '/api/user/info',
+    method: 'GET',
+    data: data
+  });
+};
+
+// 获取邀请记录
+exports.getUserInfo = getUserInfo;
+var getUserInvite = function getUserInvite(data) {
+  return (0, _request.default)({
+    url: '/api/user/invite',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取会员套餐
+exports.getUserInvite = getUserInvite;
+var getUserPrime = function getUserPrime(data) {
+  return (0, _request.default)({
+    url: '/api/user/prime/plan',
+    method: 'GET',
+    data: data
+  });
+};
+// 获取可用优惠卷
+exports.getUserPrime = getUserPrime;
+var getUserShopping = function getUserShopping(data) {
+  return (0, _request.default)({
+    url: '/api/user/shopping/coupon',
+    method: 'GET',
+    data: data
+  });
+};
+// 登录
+exports.getUserShopping = getUserShopping;
+var userLogin = function userLogin(data) {
+  return (0, _request.default)({
+    url: '/api/user/login',
+    method: 'POST',
+    data: data
+  });
+};
+exports.userLogin = userLogin;
+var userPage = function userPage(data) {
+  return (0, _request.default)({
+    url: '/api/app/page',
+    method: 'GET',
+    data: data
+  });
+};
+exports.userPage = userPage;
+var appConfig = function appConfig(data) {
+  return (0, _request.default)({
+    url: '/api/app/config',
+    method: 'GET',
+    data: data
+  });
+};
+exports.appConfig = appConfig;
 
 /***/ }),
 

@@ -83,6 +83,10 @@
 
 
 
+
+
+
+
 /* 遮罩层（置灰禁用） */
 .popup-mask.data-v-9076fe78 {
   position: fixed;
@@ -106,6 +110,8 @@
   max-height: 70vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+  z-index: 9999;
 }
 .popup-show.data-v-9076fe78 {
   bottom: 0;

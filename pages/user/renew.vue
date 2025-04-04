@@ -9,21 +9,21 @@
         v-for="(item, index) in packageList"
         :class="['package-item', selectedIndex === index ? 'active' : '']"
         :key="index"
-        @click="selectPackage(index)"
+        @click="selectPackage(item.ID, index)"
       >
-        <view class="package-title">{{ item.title }}</view>
-        <text class="package-price">{{ item.price }}</text>
-        <text class="package-unit">{{ item.unit ? item.unit : "" }}</text>
+        <view class="package-title">{{ item.Name }}</view>
+        <text class="package-price">{{ item.Price }}元</text>
+        <text class="package-unit" v-if="item.Month !== -1">/{{ item.Month}}月</text>
       </view>
     </view>
     <!-- 优惠信息区 -->
     <view class="discount-info">
       <view class="discount-item">
         <text>扣减优惠券</text>
-        <text>20元</text>
+        <text>{{ coupon }}</text>
       </view>
       <view class="discount-item">
-        <text>实际支付（已优惠 20 元）</text>
+        <text>实际支付（已优惠 {{coupon}} 元）</text>
         <text class="final-price">{{ finalPrice }}元</text>
       </view>
     </view>
@@ -39,7 +39,7 @@
 </template>
 <script>
 import commonHeader from "./components/commonHeader.vue";
-
+import { getUserPrime, getUserShopping } from "@/api/user";
 export default {
   components: {
     commonHeader,
@@ -49,16 +49,52 @@ export default {
       //将data文件夹中的数据读入
       // 套餐数据
       packageList: [
-        { title: "年费会员", price: "198 ", unit: "元 / 年", index: 0 },
-        { title: "3 年会员", price: "298 ", unit: "元 / 3年", index: 1 },
-        { title: "终身会员", price: "998 ", unit: "元", index: 2 },
+        { Name: "年费会员", Price: "198", Month: 12, index: 0 },
+        { Name: "3年会员", Price: "298", Month: 36, index: 1 },
+        { Name: "终身会员", Price: "998", Month: -1, index: 2 },
       ],
+      couponList: [],
+      one: '',
+      two: '',
       selectedIndex: 0, // 选中的套餐索引
-      coupon: 20, // 优惠券
-      finalPrice: 178, // 初始实际支付价格
+      coupon: 0, // 优惠券
+      finalPrice: 0, // 初始实际支付价格
     };
   },
   methods: {
+    // 获取优惠券
+    async getUserShopping(){
+      await getUserShopping().then((res)=>{
+        if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+          this.couponList = res.Data
+          // this.couponList.map(item => {
+          //   if (item.ID == id){
+          //     this.two = item.Price
+          //   } else {
+          //     this.two = 0
+          //   }
+          // });
+				}
+      })
+    },
+    // 获取会员套餐
+    async getUserPrime(){
+      await getUserPrime().then((res)=>{
+        if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+					this.packageList = res.Data
+				}
+      })
+    },
     async handlePayment() {
       try {
         // 调用后端接口获取支付参数
@@ -106,13 +142,32 @@ export default {
       });
     },
 
-    selectPackage(e) {
-      const index = e;
-      const price = this.packageList[index].price;
-      this.finalPrice = price - this.coupon;
+    selectPackage(id, index) {
+      console.log(id, index);
+      this.packageList.map(item => {
+        if (item.ID == id){
+          this.one = item.Price
+        }
+      });
+      this.couponList.map(item => {
+        if (item.ID == id){
+          this.two = item.Price
+        } else {
+          this.two = 0
+        }
+      });
+      this.coupon = this.two;
+      this.finalPrice = this.one - this.two;
       this.selectedIndex = index;
     },
   },
+  mounted() {
+    this.getUserPrime();
+    this.getUserShopping();
+    setTimeout(() => {
+      this.selectPackage(this.packageList[0].ID, 0);
+    },100)
+  }
 };
 </script>
 

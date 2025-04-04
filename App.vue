@@ -1,16 +1,107 @@
 <script>
+import { userPage, appConfig } from '@/api/user.js'
 	export default {
 		globalData: {
 			bluetoothConnected: false,
 		},
-		onLaunch: function() {
-			console.log('App Launch');
+		onLaunch(options) {
+			console.log('场景值:', options.scene) // 场景值
+			console.log('进入路径:', options.path) // 页面路径
+			console.log('参数:', options.query) // 页面参数
+			uni.setStorageSync('launchOptions', options)
+			this.userPage();
+			this.appConfig();
 		},
 		onShow: function() {
 			console.log('App Show');
 		},
 		onHide: function() {
 			console.log('App Hide');
+		},
+		methods: {
+			async appConfig() {
+			  await appConfig().then(res => {
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+						uni.setStorageSync('user_config', res.Data)  
+					}
+			  })
+			},
+			async userPage() {
+			  await userPage().then(res => {
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+						uni.setStorageSync('user_page', res.Data)  
+					}
+			  })
+			},
+			async checkLoginStatus() {
+				const token = uni.getStorageSync('token')
+				if (token) {
+					// 已登录，验证token有效性
+					try {
+						const res = await uni.request({
+							url: '/api/checkToken',
+							header: { Authorization: `Bearer ${token}` }
+						})
+						
+						if (res.data.valid) {
+							this.$store.commit('setToken', token)
+							this.handlePostLogin()
+						} else {
+							this.goToLogin()
+						}
+					} catch (error) {
+						this.goToLogin()
+					}
+				} else {
+					this.goToLogin()
+				}
+			},
+  
+			handlePostLogin() {
+				// 获取进入时的参数
+				const launchParams = uni.getStorageSync('launchParams') || {}
+				const { path, query } = launchParams
+				
+				if (path) {
+					// 跳转到原目标页面并携带参数
+					let url = path
+					if (query && Object.keys(query).length > 0) {
+						url += `?${this.serializeQuery(query)}`
+					}
+					
+					setTimeout(() => {
+						uni.reLaunch({ url })
+					}, 300)
+				} else {
+					// 默认跳转到首页
+					uni.switchTab({ url: '/pages/home/home' })
+				}
+			},
+  
+			goToLogin() {
+				const launchParams = uni.getStorageSync('launchParams') || {}
+				const { path, query } = launchParams
+				
+				let loginUrl = '/pages/user/user'
+				if (path) {
+					loginUrl += `?redirect=${encodeURIComponent(path)}`
+					if (query) {
+						loginUrl += `&${this.serializeQuery(query)}`
+					}
+				}
+				
+				uni.reLaunch({ url: loginUrl })
+			}
 		}
 	}
 </script>

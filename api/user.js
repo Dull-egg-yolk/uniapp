@@ -43,6 +43,13 @@ export const getAppMessage = (data) => {
     data: data,
   });
 };
+export const readAppMessage = (data) => {
+  return request({
+    url: '/api/app/message/read',
+    method: 'POST',
+    data: data,
+  });
+};
 // 获取酒店人员
 export const getHotelUser = (data) => {
   return request({
@@ -105,6 +112,29 @@ export const getUserPrime = (data) => {
 export const getUserShopping = (data) => {
   return request({
     url: '/api/user/shopping/coupon',
+    method: 'GET',
+    data: data,
+  });
+};
+// 登录
+export const userLogin = (data) => {
+  return request({
+    url: '/api/user/login',
+    method: 'POST',
+    data: data,
+  });
+};
+
+export const userPage = (data) => {
+  return request({
+    url: '/api/app/page',
+    method: 'GET',
+    data: data,
+  });
+};
+export const appConfig = (data) => {
+  return request({
+    url: '/api/app/config',
     method: 'GET',
     data: data,
   });

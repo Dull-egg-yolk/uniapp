@@ -1,29 +1,18 @@
 <template>
     <view >
-		<!-- <view class="person-head">
-			<cmd-avatar src="https://avatar.bbs.miui.com/images/noavatar_small.gif" @click="mydetail()" size="md" :make="{'background-color': '#fff', 'margin-right': '10upx'}"></cmd-avatar>
-			<view class="person-head-box" @click="mydetail()">
-				<view class="user-name">{{ user_name }}</view>
-				<view class="user-id">ID：{{ user_id }}</view>
-			</view>
-		</view> -->
 		<!-- 登录/注册区 -->
   <view class="login-section">
-    <image src="/images/login-avatar.png" mode="aspectFit" class="avatar"></image>
+    <image src="@/static/img/user.png" mode="aspectFit" class="avatar"></image>
     <view class="login-info">
       <view class="login-title">
 		<view>
 			<!-- 在页面中添加按钮 -->
 			<button 
-				open-type="getPhoneNumber" 
-				@getphonenumber="onGetPhoneNumber"
 				class="login-btn"
+				@click="getWxUserInfo"
 			>
-			 登录/注册
+			 微信一键登录
 			</button>
-			<!-- <span  @click="loginFun()">登录</span>
-			<span>/</span>
-			<span>注册</span> -->
 		</view>
 		
 	  </view>
@@ -53,8 +42,8 @@
    <!-- 邀请有礼 -->
   <view class="invite-section">
     <view class="invite-banner">
-      <view class="invite-title">邀请有礼</view>
-      <view class="invite-desc">每邀请 2 名用户，赠送 1 个月使用期</view>
+      <view class="invite-title">自己有会员，经营更稳健</view>
+      <view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
     </view>
   </view>
 
@@ -80,23 +69,11 @@
       </view>
     </view>
   </view>
-		<!-- <view class="person-list">
-			<cmd-cell-item title="联系我们12" slot-left arrow @click="phone">
-			    <cmd-icon type="phone" size="24" color="#368dff"></cmd-icon>
-			</cmd-cell-item>
-			<cmd-cell-item title="系统设置" slot-left arrow @click="setting">
-			    <cmd-icon type="settings" size="24" color="#368dff"></cmd-icon>
-			</cmd-cell-item>
-		</view> -->
     </view>
 </template>
 
 <script>
-	// import cmdAvatar from "../../components/cmd-avatar/cmd-avatar.vue"
-	// import cmdIcon from "../../components/cmd-icon/cmd-icon.vue"
-	// import cmdCellItem from "../../components/cmd-cell-item/cmd-cell-item.vue"
-	var _this;
-
+import { userLogin } from '@/api/user.js'
   export default {
 		components: {
 			// cmdAvatar,
@@ -107,11 +84,17 @@
 			return {
 				//将data文件夹中的数据读入
 				user_name: '',
-				user_id: ''
+				user_id: '',
+				personalInvitePage: ''
 			}
 		},
 		mounted() {
-			_this = this;
+			const configList = uni.getStorageSync('user_config')
+			configList.forEach(item => {
+				if (item.Key === "PersonalInvitePage") {
+					this.personalInvitePage = item.Value
+				}
+			});
 		},
 		onLoad: function() {
 			var myinfo = uni.getStorageSync('user_info')
@@ -119,7 +102,65 @@
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
+			gotoWebsite() {
+				wx.navigateTo({
+					url: '/pages/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
+				})
+			},
+			async getWxUserInfo() {
+				try {
+        // 1. 获取用户信息
+        const userInfo = await this.getUserProfile()
+				console.log(userInfo, 'userInfo');
+				uni.setStorageSync('user_info', userInfo);
+        // 2. 微信登录获取code
+        const [ErrorMsg,loginRes] = await uni.login({ provider: 'weixin' })
+				console.log(loginRes, 'loginRes');
+				
+        // 3. 发送到后端
+				const params = {
+					Name: userInfo.nickName,
+					WxCode: loginRes.code,
+					// InvitedByHotelID: null
+				}
+				const res = await userLogin(params)
+				if (res.ErrorMsg) {
+          uni.showToast({
+            title: res.ErrorMsg,
+            icon: "none"
+          });
+        } else {
+          uni.setStorageSync('token', res.Data.Token);
+          uni.setStorageSync('user_info', res.Data);
+          uni.showToast({
+            title: '登录成功',
+            icon: "none"
+          });
+					uni.$emit('user_info', { data: res.Data });
+					// setToken
+					this.$store.commit('setToken', res.Data.Token);
+          uni.switchTab({
+            url: '/pages/home/home'
+          });
+        }
+					
+					// 处理登录结果...
+				} catch (error) {
+					console.error('登录失败:', error)
+				}
+			},
+			getUserProfile() {
+				return new Promise((resolve, reject) => {
+					uni.getUserProfile({
+						desc: '用于完善会员信息',
+						success: (res) => resolve(res.userInfo),
+						fail: (err) => reject(err)
+					})
+				})
+			},
 			async onGetPhoneNumber(e) {
+				console.log('999');
+				
 				// 1. 检查是否授权成功
 				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
@@ -130,22 +171,30 @@
 				uni.showLoading({ title: '登录中...', mask: true });
 
 				try {
+					console.log(1111);
+					
+					// 1. 获取用户信息
+					const userInfo = await this.getUserProfile()
+          console.log(userInfo, 'userInfo');
+					console.log(12222);
 					// 3. 获取微信登录code
 					const [loginErr, loginRes] = await uni.login({
 						provider: 'weixin'
 					});
+					console.log(1333);
 					if (loginErr) throw new Error('微信登录失败');
-
+					// this.getWxUserInfo()
 					// 4. 发送到后端解密
-					const [requestErr, res] = await uni.request({
-						url: 'https://your-api-domain.com/api/decrypt-phone',
-						method: 'POST',
-						data: {
-							code: loginRes.code,
-							encryptedData: e.detail.encryptedData,
-							iv: e.detail.iv
-						}
-					});
+					// const [requestErr, res] = await uni.request({
+					// 	url: 'https://your-api-domain.com/api/decrypt-phone',
+					// 	method: 'POST',
+					// 	data: {
+					// 		code: loginRes.code,
+					// 		encryptedData: e.detail.encryptedData,
+					// 		iv: e.detail.iv
+					// 	}
+					// });
+					console.log(loginRes, 'loginRes');
 					
 					if (requestErr || res.data.code !== 200) {
 						throw new Error(res.data?.msg || '解密手机号失败');
@@ -280,6 +329,7 @@
 	padding: 30rpx;
 	background-color: white;
 	margin: 20rpx 0;
+	border-radius: 10rpx;
 	}
 
 	.avatar {
@@ -287,6 +337,7 @@
 	height: 120rpx;
 	border-radius: 50%;
 	margin-right: 30rpx;
+	background-color: #f5f5f5;
 	}
 
 	.login-info .login-title {
@@ -300,8 +351,7 @@
 	}
 
 	.price-section {
-		background-color: white;
-		padding: 20rpx;
+		/* padding: 20rpx; */
 		margin: 20rpx 0;
 	}
 
@@ -322,9 +372,13 @@
 		padding: 18rpx 30rpx;
 		border: 1rpx solid #e5e5e5;
 		border-radius: 8rpx;
+		background-color: #fff;
+		border-radius: 10rpx;
 	}
 	.free-btn{
-		width: 38%;
+		width: 40%;
+		background-color: #fff;
+		border-radius: 10rpx;
 	}
 
 
@@ -342,13 +396,19 @@
 	.invite-section {
 		background-color: white;
 		margin: 20rpx 0;
+	
 	}
 
 	.invite-banner {
 		background-color: #1a1a1a;
-		color: #ffd700;
+		color: #E99D42;
 		padding: 30rpx;
 		text-align: center;
+		border-radius: 10rpx;
+	}
+	.invite-banner a {
+		color: #E99D42;
+		padding-left: 4rpx;
 	}
 
 	.invite-title {
@@ -362,7 +422,7 @@
 
 	.advantage-section {
 		
-		padding: 20rpx;
+		/* padding: 20rpx; */
 		margin: 20rpx 0;
 	}
 
@@ -371,6 +431,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		border-radius: 10rpx;
 	}
 
 	.advantage-item {

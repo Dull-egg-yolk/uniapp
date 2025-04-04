@@ -76,8 +76,12 @@
 }
 .item-status.data-v-5b3d3ad4 {
   font-size: 28rpx;
-  color: #07c160;
+  color: #fff;
+  background-color: #f97762;
   margin-top: 8rpx;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  margin-left: 8rpx;
 }
 .item-detail.data-v-5b3d3ad4 {
   margin-top: 16rpx;

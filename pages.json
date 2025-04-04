@@ -52,6 +52,16 @@
                 "navigationBarTitleText": "实时库存"
             }
         },{
+            "path": "pages/monthTimeInventoryDetails/index",
+            "style": {
+                "navigationBarTitleText": "月度消耗明细"
+            }
+        },{
+            "path": "pages/stockInventoryDetails/index",
+            "style": {
+                "navigationBarTitleText": "盘点明细"
+            }
+        },{
             "path": "pages/newStocktaking/index",
             "style": {
                 "navigationBarTitleText": "新盘点"
@@ -77,6 +87,16 @@
                 "navigationBarTitleText": "链接打印机"
             }
         },{
+            "path": "pages/earlyWarning/index",
+            "style": {
+                "navigationBarTitleText": "预警"
+            }
+        },{
+            "path": "pages/user/myFeedback",
+            "style": {
+                "navigationBarTitleText": "我的反馈"
+            }
+        },{
             "path": "pages/itemDetail/index",
             "style": {
                 "navigationBarTitleText": ""
@@ -98,9 +118,25 @@
                 "navigationBarTitleText": "个人中心"
             }
         },{
+            "path": "pages/user/InvitationGifts",
+            "style": {
+                "navigationBarTitleText": "邀请有礼"
+            }
+        },{
             "path": "pages/user/setting",
             "style": {
                 "navigationBarTitleText": "系统设置"
+            }
+        },{
+            "path": "pages/user/addHome",
+            "style": {
+                "navigationBarTitleText": "添加到桌面"
+            }
+        },
+        {
+            "path": "pages/webview/webview",
+            "style": {
+              "navigationBarTitleText": "外部网页"
             }
         },
         {
@@ -135,26 +171,22 @@
         }
     ],
     "tabBar": {
+        "custom": true,
         "color": "#7a7e83",
         "selectedColor": "#0faeff",
         "backgroundColor": "#ffffff",
         "list": [
             {
-            "pagePath": "pages/home/home",
-            "text": "工作台",
-            "iconPath": "static/img/all.png",
-            "selectedIconPath": "static/img/all.png"
-        }, {
-            "pagePath": "pages/user/teamData",
-            "text": "扫码",
-            "iconPath": "static/img/all.png",
-            "selectedIconPath": "static/img/all.png"
-        },{
-            "pagePath": "pages/user/user",
-            "text": "个人中心",
-            "iconPath": "static/img/user.png",
-            "selectedIconPath": "static/img/userHL.png"
-        }
+                "pagePath": "pages/home/home",
+                "text": "工作台",
+                "iconPath": "static/img/all.png",
+                "selectedIconPath": "static/img/all.png"
+            },{
+                "pagePath": "pages/user/user",
+                "text": "个人中心",
+                "iconPath": "static/img/user.png",
+                "selectedIconPath": "static/img/userHL.png"
+            }
 		]
     },
     "globalStyle": {

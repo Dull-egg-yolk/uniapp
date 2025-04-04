@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { addStockTaking, updateStockTaking, getWarehouse, getHotelClass } from '@/api/work.js'
 export default {
   components: {},
@@ -65,7 +66,7 @@ export default {
     };
   },
   methods: {
-    async nextStep() {
+    nextStep: throttle(async function() {
       const params = {
         WarehouseID: this.WarehouseID,
         Note: this.remarks
@@ -81,7 +82,7 @@ export default {
             url: '../changeItem/index?id=' + res.Data.ID
           });
 				}
-    },
+    }, 1000),
     // 获取仓库
     async getWarehouseList() {
       const res = await getWarehouse();

@@ -220,3 +220,11 @@ export const getQrcode = (data) => {
     data: data,
   });
 };
+// 商品详情进入盘点
+export const goodsDirectly = (data) => {
+  return request({
+    url: '/api/stock/taking/goods/directly',
+    method: 'POST',
+    data: data,
+  });
+};

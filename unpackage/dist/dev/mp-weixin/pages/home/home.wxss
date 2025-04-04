@@ -2,7 +2,20 @@
 .header.data-v-92bb8f34 {
   height: 28px;
   padding: 0 20rpx;
-  background-color: rgba(235,240,253,1);
+  background-color: #f8f8f8
+}
+.unread-count.data-v-92bb8f34 {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
 }
 .header .title.data-v-92bb8f34 {
   line-height: 28px;
@@ -24,7 +37,6 @@
   justify-content: space-between;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 60px; /* 导航栏高度 */
   padding: 0 16px;
 }
 .custom-navbar-left.data-v-92bb8f34 {
@@ -32,14 +44,21 @@
   align-items: center;
 }
 .avatar.data-v-92bb8f34 {
-  width: 40px;
-  height: 40px;
+  width: 70rpx;
+  height: 70rpx;
+  margin: 10rpx;
   border-radius: 50%;
+  border: 1px solid #ccc;
+}
+.meg.data-v-92bb8f34 {
+  width: 56rpx;
+  height: 56rpx;
 }
 .message.data-v-92bb8f34 {
   margin-left: 10px;
   font-size: 16px;
   color: #333;
+  position: relative;
 }
 swiper.data-v-92bb8f34 {
   width: 100%;
@@ -77,8 +96,9 @@ swiper.data-v-92bb8f34 {
   /* border-radius: 10rpx; */
 }
 ._img.data-v-92bb8f34{
-  height: 80rpx;
-  width: 80rpx;
+  height: 60rpx;
+  width: 60rpx;
+  margin-bottom: 16rpx;
 }
 .function-button.data-v-92bb8f34::after{
   border: none;
@@ -90,6 +110,8 @@ swiper.data-v-92bb8f34 {
   padding: 0;
   line-height: normal;
   font-size: 24rpx;
+  background-color: #fff;
+  color: #666;
 }
 .btn.data-v-92bb8f34::after{
   border: none;

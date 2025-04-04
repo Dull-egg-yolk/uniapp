@@ -5,27 +5,38 @@
     <view class="function-section">
       <view class="section-title">常用功能</view>
       <view class="function-grid">
-        <view class="function-item" v-for="(item,index) in functionList" :key="index">
-          <!-- <image src="{{item.icon}}" mode="aspectFit" class="function-icon"></image> -->
-          <view :class="['function-icon', item.icon]" @click="goToPage(item.url)"></view>
+        <view class="function-item" v-for="(item,index) in functionList" :key="index" @click="goToPage(item.url)">
+          <image :src="`/static/images/${item.img}.svg`" class="function-icon" />
           <text class="function-text">{{ item.name }}</text>
+        </view>
+        <view class="function-item">
+          <button open-type="contact" class="contact-btn">
+            <image src='/static/images/riLine-mail-send-line.svg' class="function-icon" />
+            <text class="function-text">联系客服</text>
+          </button>
         </view>
       </view>
     </view>
 
     <!-- 广告横幅 -->
-    <view class="ad-banner" @click="goToAdPage()">
-      <view class="ad-title">自己有会员，经营更稳健</view>
-      <text class="ad-desc"
-        >点击了解 <text class="link-text">九点荟会员管理系统</text></text
-      >
+    <view class="invite-section">
+      <view class="invite-banner">
+        <view class="invite-title">自己有会员，经营更稳健</view>
+        <view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
+      </view>
     </view>
+    <global-popup 
+      ref="globalPopup"
+      title="新手指引"
+      :content="popupContent"
+      confirmText="我已掌握，关闭并不在提示"
+      @confirm="onConfirm"
+    />
   </view>
 </template>
 
 <script>
 import headerInfo from "./headerInfo.vue";
-var _this;
 
 export default {
   components: {
@@ -39,6 +50,7 @@ export default {
   },
   data() {
     return {
+      personalInvitePage: '',
       //将data文件夹中的数据读入
       userAvatar: "用户头像地址",
       userName: "佟湘玉",
@@ -46,26 +58,47 @@ export default {
       storeName: "同福客栈七侠镇衙门口店",
       expireDate: "2025-12-31",
       functionList: [
-        { icon: "person-info", name: "用户信息",url:'pages/user/userInfo' },
-        { icon: "team-setting", name: "团队设置" ,url:'pages/user/teamData'},
-        { icon: "invite-gift", name: "邀请有礼" ,url:'pages/user/userInfo'},
-        { icon: "help-doc", name: "帮助文档",url:'pages/user/helpDoc' },
-        { icon: "online-service", name: "在线客服" ,url:'pages/user/userInfo' },
-        { icon: "new-guide", name: "新手指南" ,url:'pages/user/guide' },
-        { icon: "info-feedback", name: "需求反馈" ,url:'pages/user/feedback' },
-        { icon: "add-desktop", name: "添加到桌面" ,url:'pages/user/userInfo' },
+        { icon: "person-info", name: "用户信息",url:'pages/user/userInfo', img: 'riLine-contacts-line' },
+        { icon: "team-setting", name: "团队设置" ,url:'pages/user/teamData', img: 'antOutline-team'},
+        { icon: "invite-gift", name: "邀请有礼" ,url:'pages/user/InvitationGifts', img: 'riLine-feedback-line' },
+        { icon: "help-doc", name: "帮助文档",url:'pages/user/helpDoc', img: 'iconPark-doc-search-two' },
+        { icon: "new-guide", name: "新手指南" ,url:'pages/user/guide', img: 'if-compass' },
+        { icon: "info-feedback", name: "需求反馈" ,url:'pages/user/feedback', img: 'riLine-feedback-line' },
+        { icon: "add-desktop", name: "添加到桌面" ,url:'pages/user/addHome', img: 'md-airplay' },
       ],
+      popupContent: ''
     };
   },
   mounted() {
-    _this = this;
+    const tabList = uni.getStorageSync('user_page')['fe:user']
+    const result = this.functionList.filter(itemA => 
+      tabList.some(itemB => itemB.Name === itemA.name)
+      );
+    this.functionList = result;
+    const configList = uni.getStorageSync('user_config')
+    configList.forEach(item => {
+      if (item.Key === "BeginnerGuide") {
+        this.popupContent = item.Value
+      }else if (item.Key === "PersonalInvitePage") {
+        this.personalInvitePage = item.Value
+      }
+    });
   },
-  onLoad: function () {
-    // var myinfo = uni.getStorageSync("user_info");
-    // this.user_name = myinfo.data.user.user_name;
-    // this.user_id = myinfo.data.user.username;
-  },
+  onLoad(option) {
+    console.log(11111);
+    
+		if(uni.getStorageSync('user_page')) {
+			console.log(uni.getStorageSync('user_page'));
+		} else {
+			this.isLoginStatus = false;
+		}
+	},
   methods: {
+    gotoWebsite() {
+      wx.navigateTo({
+        url: '/pages/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
+      })
+    },
     // 广告横幅点击跳转
     goToAdPage() {
       wx.navigateTo({
@@ -74,6 +107,10 @@ export default {
     },
     goToPage(url) {
       console.log(url);
+      if (url === 'pages/user/guide') {
+        this.$refs.globalPopup.open()
+        return;
+      }
       uni.navigateTo({
         url: `/${url}`, // 替换为实际页面路径
       })
@@ -89,7 +126,7 @@ export default {
 
 /* 常用功能 */
 .function-section {
-  padding: 20rpx;
+  /* padding: 20rpx; */
   margin: 20rpx 0;
 }
 .section-title {
@@ -102,8 +139,39 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 15rpx 10rpx;
+  padding: 25rpx 10rpx 15rpx 10rpx;
+  border-radius: 10rpx;
 }
+.invite-section {
+		background-color: white;
+		margin-top: 40rpx;
+	
+	}
+
+	.invite-banner {
+		background-color: #1a1a1a;
+		color: #E99D42;
+		padding: 30rpx;
+		text-align: center;
+		border-radius: 10rpx;
+	}
+	.invite-banner a {
+		color: #E99D42;
+		padding-left: 4rpx;
+	}
+
+	.invite-title {
+		font-size: 32rpx;
+		margin-bottom: 10rpx;
+	}
+
+ .invite-desc {
+	font-size: 28rpx;
+	}
+  .invite-desc a {
+    display: inline-block;
+    text-decoration: underline;
+  }
 .function-item {
   width: 23%;
   text-align: center;
@@ -120,33 +188,19 @@ export default {
   background-size: cover;
   background-position: center;
 }
-.person-info {
-  background-image: url("../images/riLine-contacts-line.svg");
+.contact-btn {
+  background-color: #fff;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.team-setting {
-  background-image: url("../images/antOutline-team.svg");
-}
-.invite-gift {
-  background-image: url("../images/riLine-feedback-line.svg");
-}
-.help-doc {
-  background-image: url("../images/iconPark-doc-search-two.svg");
-}
-.online-service {
-  background-image: url("../images/riLine-mail-send-line.svg");
-}
-.new-guide {
-  background-image: url("../images/if-compass.svg");
-}
-.info-feedback {
-  background-image: url("../images/riLine-feedback-line.svg");
-}
-.add-desktop {
-  background-image: url("../images/md-airplay.svg");
+.contact-btn::after {
+  border: none;
 }
 
 .function-text {
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #666;
 }
 

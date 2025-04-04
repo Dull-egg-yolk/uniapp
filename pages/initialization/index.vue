@@ -20,9 +20,21 @@ export default {
   },
   methods: {
     startFrom(){
-      uni.navigateTo({
-				url: '../form/form'
-			});
+      if (uni.getStorageSync('token')) {
+        if (uni.getStorageSync('user_info').Hotel) {
+          uni.switchTab({
+            url: '../home/home'
+          });
+        } else {
+          uni.navigateTo({
+            url: '../form/form'
+          });
+        }
+      }else {
+        uni.switchTab({
+          url: '../user/user'
+        });
+      }
     }
   }
 }

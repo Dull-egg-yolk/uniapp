@@ -10,30 +10,32 @@
       <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
       <text class="tab">生成报表</text>
      </view>
-     <view class="content">
+     <view class="content-list">
       <view class="list">
         <view class="item" v-for="(item, index) in inventoryList" :key="index">
           <view class="info">
-            <text class="name">盘点 <text class="icon">{{ item.title }}</text></text>
+            <view class="name">盘点 {{ item.ID }}</view><view class="icon">{{ statusList[item.Status] }}</view>
           </view>
           <view class="actions">
-            <text class="edit">{{ item.date }}</text>
+            <text class="edit">{{ item.CreatedAt | getData }}</text>
           </view>
         </view>
       </view>
-      <view>
-        <uni-pagination :total="50" title="标题文字" prev-text="上一页" next-text="下一页" />
+      <view class="pagination">
+        <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
      </view>
     <!-- 点击新盘点 -->
-    <view class="add-button" @click="navigateTo">
+    <view class="add-stock" @click="navigateTo">
       <text>新盘点</text>
     </view>
   </view>
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { getStockTaking } from '@/api/work.js'
+import { formatTime } from '@/util/day.js'
 export default {
   data() {
     return {
@@ -42,23 +44,61 @@ export default {
         { title: '已完成', date: '2024.11.01' },
         { title: '已完成', date: '2024.10.01' },
         { title: '已完成', date: '2024.09.01' },
-        { title: '已完成', date: '2024.08.01' }
+        { title: '已完成', date: '2024.08.01' },
+        { title: '盘点中', date: '2024.12.01' },
+        { title: '已完成', date: '2024.11.01' },
+        { title: '已完成', date: '2024.10.01' },
+        { title: '已完成', date: '2024.09.01' },
+        { title: '已完成', date: '2024.09.01' }
       ],
+      statusList:  {
+        'InProgress': '未盘点',
+        'Completed': '已盘点',
+        'Discard': '已审核'
+      },
+      totalPages: 0,
       queryList: {
         Page: 1,
-        Size: 10
+        Size: 9
       }
     }
   },
+  filters: {
+    getData (val) {
+      if (!val) return '';
+      return formatTime(val);
+    },
+  },
   methods: {
-    navigateTo(){
+    handlePageChange(e) {
+      // e.type 可能的值: 'prev'(上一页), 'next'(下一页), 'current'(页码按钮)
+      if (e.type === 'prev') {
+        this.queryList.Page = e.current
+        this.getStockTakingList()
+      } else if (e.type === 'next') {
+        this.queryList.Page = e.current
+        this.getStockTakingList()
+      }
+    },
+    navigateTo: throttle(function() {
       uni.navigateTo({
 				url: '../newStocktaking/index'
 			});
-    },
+    }, 500),
     async getStockTakingList(){
       const res = await getStockTaking(this.queryList)
-      console.log(res);
+      if (res.ErrorMsg) {
+				uni.showToast({
+					title: res.ErrorMsg,
+					icon: "none"
+				});
+      } else {
+        this.inventoryList = res.Data;
+        this.totalPages = parseInt(res.Total)
+        // uni.navigateTo({
+        //   url: `/pages/inventoryReport/index?id=${this.StockTakingRecordID}`
+        // });   
+      }
       
     }
   },
@@ -71,15 +111,49 @@ export default {
 <style scoped>
 @import '../../common/index.css';
 .list {
-  margin-bottom: 100rpx;
+  /* margin-bottom: 100rpx; */
   background-color: #fff;
   border-radius: 20rpx;
+  flex: 1;
 }
-.content {
+.info {
+  display: flex;
+  align-items: center;
+}
+.info .name {
+  width: 120rpx;
+}
+.container {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: calc(100vh - var(--status-bar-height));
+}
+.add-stock {
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+}
+.pagination {
+  padding: 20rpx;
+}
+.content-list {
   background-color: #fff;
   border-radius: 20rpx;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 .title {
+  height: 70rpx;
   margin: 20rpx 0;
   display: flex;
   justify-content: center;
@@ -93,9 +167,6 @@ export default {
   color: #918d8d;
 }
 
-.container {
-  background-color: #f5f5f5;
-}
 .item {
   display: flex;
   justify-content: space-between;
@@ -106,7 +177,7 @@ export default {
 .icon {
   margin-left: 5rpx;
   display: inline-block;
-  background-color: #ff9500;
+  background-color: #ed3b3b;
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;

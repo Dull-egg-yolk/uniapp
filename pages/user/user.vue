@@ -2,10 +2,12 @@
     <view class="content">
 		<noLoginPage v-if="!isLoginStatus"></noLoginPage>
 		<loginPage v-else :userInfo="userInfoList"></loginPage>
+		<TabBar :activeIndex=1></TabBar>
     </view>
 </template>
 
 <script>
+	import TabBar from "../../components/custom-tab-bar/tabBar.vue"
 	import loginPage from "./components/loginPage.vue"
 	import  noLoginPage from "./components/noLoginPage.vue"
 	import { getUserInfo } from '../../api/user.js';
@@ -14,18 +16,24 @@
 		components: {
 			loginPage,
 			noLoginPage,
+			TabBar
 		},
 		data() {
 			return {
 				//将data文件夹中的数据读入
-				isLoginStatus: true,
+				isLoginStatus:false,
 				userInfoList: []
 			}
 		},
 		mounted() {
 			this.getUserInfoList()
 		},
-		onLoad: function() {
+		onLoad(option) {
+			if(uni.getStorageSync('user_info')) {
+					this.isLoginStatus = true;
+				} else {
+					this.isLoginStatus = false;
+				}
 		},
     methods: {
 			async getUserInfoList() {
@@ -71,6 +79,7 @@
 <style>
 	.content {
 		padding: 10;
+		background-color: #f8f8f8;
 	}
 	.person-head {
 		display: flex;

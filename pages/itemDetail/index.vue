@@ -34,19 +34,19 @@
       </view>
       <view class="form-item">
         <text class="label">最低库存</text>
-        <input class="input" v-model="form.minStock" disabled />
+        <input class="input" v-model="form.MinStock" disabled />
       </view>
       <view class="form-item">
         <text class="label">最高库存</text>
-        <input class="input" v-model="form.maxStock" disabled />
+        <input class="input" v-model="form.MaxStock" disabled />
       </view>
-      <view class="form-item">
+      <!-- <view class="form-item">
         <text class="label">期初库存</text>
         <input class="input" v-model="form.initialStock" disabled />
-      </view>
+      </view> -->
       <view class="form-item">
         <text class="label">备注</text>
-        <input class="input" v-model="form.remark" disabled />
+        <input class="input" v-model="form.Note" disabled />
       </view>
     </view>
 
@@ -93,6 +93,23 @@
       ref="imagePopup"
       title="二维码"
       :imageUrl="imageUrl"
+      :imgContent="imgContent"
+      @save="onSave"
+      @close="onClose"
+    />
+    <inout-popup 
+      ref="inoutPopup"
+      :ID="parseInt(form.ID)"
+      :Note="form.Note"
+      :title=title
+      @save="onSave"
+      @close="onClose"
+    />
+    <stock-popup 
+      ref="stockPopup"
+      :ID="parseInt(form.ID)"
+      :Note="form.Note"
+      :title=title
       @save="onSave"
       @close="onClose"
     />
@@ -100,31 +117,15 @@
 </template>
 
 <script>
-import { getQrcode } from '@/api/work.js';
-import { usePrint } from '@/util/print';
+import { throttle } from '@/util/throttle';
+import { getQrcode, getGoodsItme, deleteGoodsItme } from '@/api/work.js';
 const app = getApp(); // 获取 App 实例
 
-const {
-  startJob,
-  startDrawLabel,
-  drawText,
-  drawBarcode,
-  drawQRCode,
-  drawRectangle,
-  drawLine,
-  drawImage,
-  endDrawLabel,
-  print,
-  didReadPrintCountInfo,
-  didReadPrintErrorInfo,
-  getMultiple,
-  getSn,
-  setPlatform,
-  setBuildPlatform
-} = usePrint();
 export default {
   data() {
     return {
+      imgContent: '',
+      title: '',
       imageUrl: '',
       screenWidth: '',
       buttonX: 140, // 悬浮按钮的 X 坐标
@@ -133,6 +134,7 @@ export default {
       isButtonDisabled: false, // 是否禁用中间按钮的拖动
       additionalButtons: [], // 动态生成的按钮
       headerTitle: '',
+      GoodsId: null,
       // 表单数据
       form: {
         Image: '',
@@ -147,7 +149,8 @@ export default {
         minStock: "1",
         maxStock: "1",
         initialStock: "1",
-        remark: "1"
+        remark: "1",
+        ID: ''
       },
       list: {},
       imagePath: '',
@@ -156,22 +159,54 @@ export default {
     };
   },
   onLoad(option) {
-    this.headerTitle = option
-    setTimeout(() => {
-      uni.$on('data-detail', (res) => {
-        this.form = res.data
-      });
-    }, 100);
+    console.log(option, 'option');
+    this.GoodsId = option.goosId
+    this.headerTitle = option.id
+    // setTimeout(() => {
+    //   uni.$on('data-detail', (res) => {
+    //     this.form = res.data
+    //     this.getGoodsItme()
+    //   });
+    // }, 100);
 	},
   onUnload() {
     uni.$off('data-detail'); // 解绑
   },
   onReady(){
 	  uni.setNavigationBarTitle({
-        title: this.headerTitle.id
+        title: this.headerTitle
      });
   },
   methods: {
+    delectItme: throttle(async function() {
+      await deleteGoodsItme(this.form).then(res => {
+        console.log(res);
+        if(res.ErrorMsg){
+          uni.showToast({
+            title: res.ErrorMsg,
+            icon: "none"
+          });
+        }else{
+          uni.showToast({
+            title: '删除成功',
+            icon: "none"
+          });
+          uni.navigateBack({
+            delta: 1
+          });
+        }
+      })
+    }, 1000),
+    async getGoodsItme(){
+      await getGoodsItme({ID: this.GoodsId}).then(res => {
+        console.log(res, 'res');
+        this.form = res.Data[0]
+        this.headerTitle = res.Data[0].Name
+        uni.setNavigationBarTitle({
+            title: this.headerTitle
+        });
+      })
+    },
     showPopup() {
       this.$refs.imagePopup.open()
     },
@@ -181,7 +216,7 @@ export default {
     onClose() {
       console.log('弹窗已关闭')
     },
-    async clickQrCode(){
+    clickQrCode: throttle(async function() {
       const params = {
         WarehouseID: this.form.HotelID,
         GoodsID: this.form.ID
@@ -194,6 +229,8 @@ export default {
         });
       } else {
         this.imageUrl = res.Data
+        this.imgContent = this.form.Name + ' ' + this.form.Format + '/' + this.form.Uint
+        
         this.$refs.imagePopup.open()
 
         // this.decodeAndShowImage(res.Data)
@@ -202,7 +239,7 @@ export default {
         // this.decodeAndShowImage(res.Data)
         
       }
-    },
+    }, 1000),
     // 悬浮按钮移动事件
     onMove(e) {
       this.buttonX = e.detail.x;
@@ -212,6 +249,8 @@ export default {
 
     // 切换新增按钮的显示和隐藏
     toggleButtons() {
+      console.log(111111);
+      
       if (this.showAdditionalButtons) {
         this.showAdditionalButtons = false; // 隐藏新增按钮
         this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
@@ -233,10 +272,46 @@ export default {
     },
     // 处理动态按钮点击
     handleButtonClick(text) {
-      uni.showToast({
-        title: `点击了：${text}`,
-        icon: 'none',
-      });
+      
+      // uni.showToast({
+      //   title: `点击了：${text}`,
+      //   icon: 'none',
+      // });
+      if(text === '明细'){
+        uni.navigateTo({
+          url: '/pages/inventoryDetails/index?id=' + this.form.ID
+        });
+      }
+      if(text === '盘点'){
+        this.title = text
+        this.$refs.stockPopup.open()
+      }
+      if(text === '入库'){
+        const otherList = uni.getStorageSync('user_page')['fe:workbench']
+        const showRenew = otherList.find(item => item.Name === '入库');
+        if (showRenew) {
+          this.title = text
+          this.$refs.inoutPopup.open()
+        } else {
+          uni.showToast({
+            title: '暂无权限',
+            icon: 'error'
+          })
+        }
+        
+      }
+      if(text === '出库'){
+        const otherList = uni.getStorageSync('user_page')['fe:workbench']
+        const showRenew = otherList.find(item => item.Name === '出库');
+        if (showRenew) {
+          this.title = text
+          this.$refs.inoutPopup.open()
+        } else {
+          uni.showToast({
+            title: '暂无权限',
+          })
+        }
+      }
       this.showAdditionalButtons = false; // 点击后隐藏新增按钮
       this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
     },
@@ -281,6 +356,9 @@ export default {
       const base64 = base64Str.replace(/^data:.+;base64,/, '');
       return uni.base64ToArrayBuffer(base64); // UniApp 提供的API
     }
+  },
+  mounted() {
+    this.getGoodsItme();
   }
 };
 </script>

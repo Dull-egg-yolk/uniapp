@@ -158,6 +158,7 @@
 
 				>.connect-stop {
 					padding: 12px 32px;
+          margin-left: 10px;
 					border-radius: 36px;
 					text-align: center;
 					background-color: #ebebeb;

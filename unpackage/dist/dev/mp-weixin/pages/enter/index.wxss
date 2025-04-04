@@ -20,6 +20,9 @@
 .upload-section.data-v-505ae51c {
   margin-bottom: 40rpx;
 }
+.date-picker.data-v-505ae51c {
+  color: grey;
+}
 .upload-label.data-v-505ae51c {
   font-size: 32rpx;
   font-weight: bold;

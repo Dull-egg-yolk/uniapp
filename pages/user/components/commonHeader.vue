@@ -5,14 +5,14 @@
       <image :src="myinfo.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ myinfo.PrimeRight.Name }} <text class="role">{{ myinfo.UserHotelRole.Role }}</text></view
+          >{{ myinfo.Name }} <text class="role">{{ myinfo.UserHotelRole.Role }}</text></view
         >
         <view class="shop"
           >{{ storeName }}
           <view class="svg-bkg-diamond"></view>
         </view>
         <view class="member"
-          >年费会员，有效期至
+          >{{ myinfo.PrimeRight.Name }}，有效期至
           <text class="expire-date"> {{ myinfo.PrimeRight.ExpireAt | getData }}</text>
         </view>
       </view>

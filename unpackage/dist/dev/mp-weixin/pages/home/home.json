@@ -2,6 +2,7 @@
   "navigationBarTitleText": "工作台",
   "navigationStyle": "custom",
   "usingComponents": {
-    "global-popup": "/components/global-popup/global-popup"
+    "global-popup": "/components/global-popup/global-popup",
+    "tab-bar": "/components/custom-tab-bar/tabBar"
   }
 }

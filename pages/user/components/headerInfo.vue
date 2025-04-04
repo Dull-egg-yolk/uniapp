@@ -5,23 +5,25 @@
       <image :src="userList.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ userList.PrimeRight.Name }} <text class="role">{{ userList.UserHotelRole.Role }}</text></view
+          >{{ userList.Name }} <text class="role">{{ userList.UserHotelRole.Role }}</text></view
         >
         <view class="shop"
           >{{ storeName }}
-          <view class="svg-bkg-diamond"></view>
+          <!-- <view class="svg-bkg-diamond"></view> -->
+          <img class="svg-bkg-diamond" src="../images/iconPark-level.svg" alt="">
         </view>
         <view class="member"
-          >年费会员，有效期至 
+          >{{userList.PrimeRight.Name}}，有效期至 
           <text class="expire-date"> {{ userList.PrimeRight.ExpireAt | getData }}</text>
         </view>
       </view>
-      <button class="renew-btn" @click="goRenewPage()">续费</button>
+      <button class="renew-btn" v-if="showRenew" @click="goRenewPage()">续费</button>
     </view>
   </view>
 </template>
 
 <script>
+import { throttle } from '@/util/throttle';
 import { formatTime } from "../../../util/day";
 
 export default {
@@ -45,8 +47,9 @@ export default {
         },
         UserHotelRole: {
           Role: ''
-        }
+        },
       },
+      showRenew: true,
       //将data文件夹中的数据读入
       userAvatar: "用户头像地址",
       userName: "佟湘玉",
@@ -59,15 +62,24 @@ export default {
     if (uni.getStorageSync("user_info")) {
       this.userList = uni.getStorageSync("user_info");
     }
+    const otherList = uni.getStorageSync('user_page')['fe:other']
+    const renew = otherList.find(item => item.Name === '续费');
+    if (renew) {
+      this.showRenew = true;
+    } else {
+      this.showRenew = false;
+    }
   },
   methods: {
-    // 广告横幅点击跳转
-    goRenewPage() {
+    // 续费
+    goRenewPage: throttle(function() {
       wx.navigateTo({
         url: "/pages/user/renew", // 替换为实际广告页面路径
       });
-    },
+    }, 1000),
   },
+  onLoad(option) {
+	},
 };
 </script>
 
@@ -129,7 +141,7 @@ export default {
   height: 48rpx;
 }
 .svg-bkg-diamond {
-  background-image: url("../images/iconPark-level.svg");
+  /* background-image: url("../images/iconPark-level.svg"); */
   width: 22rpx;
   height: 22rpx;
   background-size: cover;
