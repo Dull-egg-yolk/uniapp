@@ -29,8 +29,13 @@
         /> -->
         <canvas
           canvas-id="myCanvas" 
-          id="myCanvas" 
-          class="content-image"
+          id="myCanvas"
+          :width="canvasWidthResponsive"
+          :height="canvasHeightResponsive"
+          :style="{
+          width: canvasWidthResponsive + 'px',
+          height: canvasHeightResponsive + 'px'
+          }"
         ></canvas>
       </scroll-view>
 
@@ -88,9 +93,20 @@ export default {
     return {
       rqImg: '',
       visible: false,
-      saveImg: ''
+      saveImg: '',
+      canvasHeight: 320,
+      canvasWidth: 400
     }
   },
+  computed: {
+      // 响应式宽高
+      canvasWidthResponsive() {
+        return this.canvasWidth;
+      },
+      canvasHeightResponsive() {
+        return this.canvasHeight;
+      },
+    },
   methods: {
     async draw() {
       // 获取Canvas节点
@@ -141,7 +157,7 @@ export default {
     async starPrint() {
       this.printed += 1
       //标签尺寸
-      const labelWidth = 60
+      const labelWidth = 50
       const labelHeight = 40
 
       const multiple = 8
@@ -155,8 +171,12 @@ export default {
     async handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
       const localPath = await this.generateImage();
       startDrawLabel(canvasId, this, labelWidth, labelHeight, rotation, ctx);
-      drawImage(localPath, 0, 0, 40, 40);
+      drawImage(localPath, 0, 3, 50, 40);
       endDrawLabel(() => {
+        console.log('打印完成');
+        setTimeout(() => {
+          this.close();
+        }, 500);
         print(1, () => {
           if (this.quantity > this.printed) {
             this.starPrint();
@@ -285,6 +305,7 @@ export default {
           didReadPrintErrorInfo((res) => {
             console.log(res.errCode);
           });
+          console.log('code', '4')
           startJob(1, 3, this.quantity, () => {
             this.starPrint();
           });
@@ -399,6 +420,8 @@ export default {
   width: 100%;
   height: 600rpx;
   border-radius: 8rpx;
+  background: #ffffff;
+  opacity: 1;
 }
 
 /* 底部按钮 */
@@ -406,6 +429,10 @@ export default {
   display: flex;
   padding: 20rpx;
   border-top: 1rpx solid #f5f5f5;
+}
+/deep/uni-canvas>canvas {
+  background-color: #fff;
+  opacity: 1;
 }
 
 .footer-btn {

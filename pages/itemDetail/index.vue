@@ -239,7 +239,7 @@ export default {
         // this.decodeAndShowImage(res.Data)
         
       }
-    }, 1000),
+    }, 500),
     // 悬浮按钮移动事件
     onMove(e) {
       this.buttonX = e.detail.x;

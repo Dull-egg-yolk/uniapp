@@ -68,6 +68,11 @@ export default {
       onlyFromCamera: true, // 是否只能从相机扫码
       scanType: ['qrCode'], // 扫码类型，qrCode为二维码
         success: (res) => {
+          console.log(res.result);
+          const result = JSON.parse(res.result)
+          uni.navigateTo({
+            url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+          })
           // 处理扫码结果
           this.handleScanResult(res.result);
         },
@@ -81,9 +86,9 @@ export default {
       });
     },
     handleScanResult(result) {
-      uni.navigateTo({
-        url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
-      })
+      // uni.navigateTo({
+      //   url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+      // })
     }
   }
 };

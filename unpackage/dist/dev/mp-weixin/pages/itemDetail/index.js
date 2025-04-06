@@ -471,7 +471,7 @@ var _default = {
           }
         }
       }, _callee3, this);
-    })), 1000),
+    })), 500),
     // 悬浮按钮移动事件
     onMove: function onMove(e) {
       this.buttonX = e.detail.x;

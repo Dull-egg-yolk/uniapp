@@ -191,6 +191,11 @@ var _default = {
         scanType: ['qrCode'],
         // 扫码类型，qrCode为二维码
         success: function success(res) {
+          console.log(res.result);
+          var result = JSON.parse(res.result);
+          uni.navigateTo({
+            url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+          });
           // 处理扫码结果
           _this.handleScanResult(res.result);
         },
@@ -204,9 +209,9 @@ var _default = {
       });
     },
     handleScanResult: function handleScanResult(result) {
-      uni.navigateTo({
-        url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
-      });
+      // uni.navigateTo({
+      //   url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+      // })
     }
   }
 };

@@ -170,6 +170,11 @@ var _fq = __webpack_require__(/*! @/util/fq */ 310);
 //
 //
 //
+//
+//
+//
+//
+//
 
 var _usePrint = (0, _print.usePrint)(),
   startJob = _usePrint.startJob,
@@ -211,8 +216,19 @@ var _default = {
     return {
       rqImg: '',
       visible: false,
-      saveImg: ''
+      saveImg: '',
+      canvasHeight: 320,
+      canvasWidth: 400
     };
+  },
+  computed: {
+    // 响应式宽高
+    canvasWidthResponsive: function canvasWidthResponsive() {
+      return this.canvasWidth;
+    },
+    canvasHeightResponsive: function canvasHeightResponsive() {
+      return this.canvasHeight;
+    }
   },
   methods: {
     draw: function draw() {
@@ -299,7 +315,7 @@ var _default = {
               case 0:
                 _this2.printed += 1;
                 //标签尺寸
-                labelWidth = 60;
+                labelWidth = 50;
                 labelHeight = 40;
                 multiple = 8;
                 canvasId = '';
@@ -328,8 +344,12 @@ var _default = {
               case 2:
                 localPath = _context4.sent;
                 startDrawLabel(canvasId, _this3, labelWidth, labelHeight, rotation, ctx);
-                drawImage(localPath, 0, 0, 40, 40);
+                drawImage(localPath, 0, 3, 50, 40);
                 endDrawLabel(function () {
+                  console.log('打印完成');
+                  setTimeout(function () {
+                    _this3.close();
+                  }, 500);
                   print(1, function () {
                     if (_this3.quantity > _this3.printed) {
                       _this3.starPrint();
@@ -507,6 +527,7 @@ var _default = {
           didReadPrintErrorInfo(function (res) {
             console.log(res.errCode);
           });
+          console.log('code', '4');
           startJob(1, 3, _this8.quantity, function () {
             _this8.starPrint();
           });
