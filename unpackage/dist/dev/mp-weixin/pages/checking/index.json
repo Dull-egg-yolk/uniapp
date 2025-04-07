@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "盘点",
-  "usingComponents": {
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
-    "tips-popup": "/components/tips-popup/tips-popup"
-  }
-}

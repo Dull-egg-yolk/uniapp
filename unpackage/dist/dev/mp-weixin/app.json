@@ -57,14 +57,14 @@
       {
         "pagePath": "pages/home/home",
         "text": "工作台",
-        "iconPath": "static/img/all.png",
-        "selectedIconPath": "static/img/all.png"
+        "iconPath": "static/img/tabbar/workbench.png",
+        "selectedIconPath": "/static/img/tabbar/workbench.png"
       },
       {
         "pagePath": "pages/user/user",
         "text": "个人中心",
-        "iconPath": "static/img/user.png",
-        "selectedIconPath": "static/img/userHL.png"
+        "iconPath": "static/img/tabbar/profile.png",
+        "selectedIconPath": "static/img/tabbar/profile.png"
       }
     ]
   },

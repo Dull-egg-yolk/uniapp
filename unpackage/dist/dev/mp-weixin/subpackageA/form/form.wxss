@@ -1,1 +1,49 @@
-/* subpackageA/form/form.wxss */
+.container.data-v-a7313206 {
+  padding: 20rpx;
+  width: 100%;
+}
+.add-button.data-v-a7313206 {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.container.data-v-a7313206 {
+		background-color: #f8f8f8;
+}
+.title.data-v-a7313206 {
+		text-align: center;
+		margin: 20rpx 0;
+}
+.example.data-v-a7313206 {
+		padding: 15px;
+		background-color: #fff;
+}
+.segmented-control.data-v-a7313206 {
+		margin-bottom: 15px;
+}
+.button-group.data-v-a7313206 {
+		margin-top: 15px;
+		display: flex;
+		justify-content: space-around;
+}
+.form-item.data-v-a7313206 {
+		display: flex;
+		align-items: center;
+}
+.button.data-v-a7313206 {
+		display: flex;
+		align-items: center;
+		height: 35px;
+		margin-left: 10px;
+}
+

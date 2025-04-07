@@ -9,14 +9,16 @@
         "appid" : "wxda8dce2c465f8f12",
         "setting" : {
             "urlCheck" : false,
-            "libVersion": "2.16.1"
+            "libVersion" : "2.16.1"
         },
-        "optimization": {
-            "minifyJS": true,
-            "minifyWXML": true,
-            "minifyWXSS": true
+        "optimization" : {
+            "minifyJS" : true,
+            "minifyWXML" : true,
+            "minifyWXSS" : true,
+            "subPackages" : true,
+            "treeShaking" : true
         },
-        "lazyCodeLoading": "requiredComponents",
+        "lazyCodeLoading" : "requiredComponents",
         "usingComponents" : true
     },
     "mp-alipay" : {

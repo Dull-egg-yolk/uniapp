@@ -6,7 +6,7 @@
  */
 // 引入打印类，CommonJs规范
 // const api = require('../static/JCAPI/JCAPI.js');
-import api from "../static/img/JCAPI/JCAPI.js";
+import api from "../subpackageB/JCAPI/JCAPI.js";
 
 export function usePrint() {
 

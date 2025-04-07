@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的反馈",
-  "usingComponents": {
-    "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination"
-  }
-}

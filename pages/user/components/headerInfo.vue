@@ -2,7 +2,7 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="userAvatar" mode="aspectFill" class="avatar"></image>
+      <image :src="userAvatar.avatarUrl" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
           >{{ userList.Name }} <text class="role">{{ teamData[userList.UserHotelRole.Role] }}</text></view
@@ -49,12 +49,6 @@ export default {
         },
       },
       showRenew: true,
-      //将data文件夹中的数据读入
-      userAvatar: "",
-      userName: "佟湘玉",
-      userRole: "掌柜",
-      storeName: "同福客栈七侠镇衙门口店",
-      expireDate: "2025-12-31",
       teamData: {
         'superuser': '超级管理员',
         'operator': '操作员',
@@ -64,7 +58,7 @@ export default {
   },
   mounted() {
     if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+      this.userAvatar = uni.getStorageSync("userInfo")
     }
     if (uni.getStorageSync("user_info")) {
       this.userList = uni.getStorageSync("user_info");

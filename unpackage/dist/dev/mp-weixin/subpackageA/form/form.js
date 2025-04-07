@@ -1,25 +1,2 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["subpackageA/form/form"],{
-
-/***/ 197:
-/*!**********************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/main.js?{"page":"subpackageA%2Fform%2Fform"} ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(wx, createPage) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-__webpack_require__(/*! uni-pages */ 26);
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-var _form = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './subpackageA/form/form.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-// @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
-createPage(_form.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createPage"]))
-
-/***/ })
-
-},[[197,"common/runtime","common/vendor"]]]);
+require('../common/vendor.js');(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["subpackageA/form/form"],{221:function(e,n,r){"use strict";(function(e,n){var t=r(4);r(26);t(r(25));var o=t(r(222));e.__webpack_require_UNI_MP_PLUGIN__=r,n(o.default)}).call(this,r(1)["default"],r(2)["createPage"])},222:function(e,n,r){"use strict";r.r(n);var t=r(223),o=r(225);for(var u in o)["default"].indexOf(u)<0&&function(e){r.d(n,e,(function(){return o[e]}))}(u);r(227);var i,s=r(32),a=Object(s["default"])(o["default"],t["render"],t["staticRenderFns"],!1,null,"a7313206",null,!1,t["components"],i);a.options.__file="subpackageA/form/form.vue",n["default"]=a.exports},223:function(e,n,r){"use strict";r.r(n);var t=r(224);r.d(n,"render",(function(){return t["render"]})),r.d(n,"staticRenderFns",(function(){return t["staticRenderFns"]})),r.d(n,"recyclableRender",(function(){return t["recyclableRender"]})),r.d(n,"components",(function(){return t["components"]}))},224:function(e,n,r){"use strict";var t;r.r(n),r.d(n,"render",(function(){return o})),r.d(n,"staticRenderFns",(function(){return i})),r.d(n,"recyclableRender",(function(){return u})),r.d(n,"components",(function(){return t}));try{t={uniForms:function(){return Promise.all([r.e("common/vendor"),r.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(r.bind(null,413))},uniFormsItem:function(){return r.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(r.bind(null,422))},uniEasyinput:function(){return r.e("uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(r.bind(null,429))}}}catch(s){if(-1===s.message.indexOf("Cannot find module")||-1===s.message.indexOf(".vue"))throw s;console.error(s.message),console.error("1. 排查组件名称拼写是否正确"),console.error("2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"),console.error("3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件")}var o=function(){var e=this,n=e.$createElement;e._self._c},u=!1,i=[];o._withStripped=!0},225:function(e,n,r){"use strict";r.r(n);var t=r(226),o=r.n(t);for(var u in t)["default"].indexOf(u)<0&&function(e){r.d(n,e,(function(){return t[e]}))}(u);n["default"]=o.a},226:function(e,n,r){"use strict";(function(e){var t=r(4);Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var o=t(r(51)),u=t(r(53)),i=r(54),s={data:function(){return{valiFormData:{Address:"",BankAccount:"",BankAddress:"",Company:"",Name:"",SocialCode:"",Telephone:""},rules:{Name:{rules:[{required:!0,errorMessage:"店名不能为空"}]},Address:{rules:[{required:!0,errorMessage:"地址不能为空"}]},Telephone:{rules:[{required:!0,errorMessage:"电话不能为空"},{}]},Company:{rules:[{required:!0,errorMessage:"公司名称不能为空"}]},SocialCode:{rules:[{required:!0,errorMessage:"信用代码不能为空"}]},BankAddress:{rules:[{required:!0,errorMessage:"开户行不能为空"}]},BankAccount:{rules:[{required:!0,errorMessage:"账号不能为空"}]}}}},computed:{},onLoad:function(){},onReady:function(){},methods:{submit:function(){var n=this;this.$refs.valiForm.validate().then(function(){var r=(0,u.default)(o.default.mark((function r(t){return o.default.wrap((function(r){while(1)switch(r.prev=r.next){case 0:return r.next=2,(0,i.submitHotel)(n.valiFormData).then((function(n){n.Data?(e.showToast({title:"提交成功",icon:"success"}),setTimeout((function(){e.switchTab({url:"../home/home"})}),200)):e.showToast({title:"提交失败",icon:"none"})}));case 2:case"end":return r.stop()}}),r)})));return function(e){return r.apply(this,arguments)}}())}}};n.default=s}).call(this,r(2)["default"])},227:function(e,n,r){"use strict";r.r(n);var t=r(228),o=r.n(t);for(var u in t)["default"].indexOf(u)<0&&function(e){r.d(n,e,(function(){return t[e]}))}(u);n["default"]=o.a},228:function(e,n,r){}},[[221,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/subpackageA/form/form.js.map
