@@ -2,10 +2,10 @@
   <view class="box">
      <!-- 自定义导航栏 -->
     <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
-      <view class="custom-navbar-left">
-        <image src="/static/img/logo.png" class="avatar" />
+      <view class="custom-navbar-left" @click="gotoUser">
+        <image :src="userInfo.avatarUrl" class="avatar" />
         <view class="name">
-          <text>终湘玉</text>
+          <text>{{userInfo.nickName}}</text>
         </view>
       </view>
       <view class="message" v-if="showMeg" :style="{ marginRight: menuButtonWidth + 'px' }" @click="navigateTo('earlyWarning')">
@@ -13,7 +13,7 @@
         <text class="unread-count" v-if="unreadMessageCount > 0">{{ unreadMessageCount }}</text>
       </view>
     </view>
-    <view class="header" @click="showPopup">
+    <view class="header" @click="showPopup" v-if="isShow">
       <text class="title">点击查看新手指引，1 分钟快速掌握！ </text>
     </view>
     <view class="container">
@@ -52,13 +52,13 @@
       confirmText="我已掌握，关闭并不在提示"
       @confirm="onConfirm"
     />
-    <TabBar :activeIndex=0 @change="changeTO"></TabBar>
+    <TabBar :activeIndex=0 @parent1Event="changeTO"></TabBar>
   </view>
 </template>
 
 <script>
 import TabBar from '../../components/custom-tab-bar/tabBar.vue';
-import { getAppMessage } from '@/api/user.js';
+import { userPage, appConfig, getAppMessage } from '@/api/user.js'
 export default {
   data() {
     return {
@@ -77,38 +77,42 @@ export default {
       navBarHeight: 0,
       unreadMessageCount: 0, // 未读消息数量
       appMessage: [],
-      swiperList: []
+      swiperList: [],
+      userInfo: {},
+      isShow: false
     };
   },
   onLoad() {
-    const tabList = uni.getStorageSync('user_page')['fe:workbench']
-    const result = this.functionList.filter(itemA => 
-      tabList.some(itemB => itemB.Name === itemA.name)
-      );
-    this.functionList = result;
-    const showMeg = tabList.find(item => item.Name === '查看预警');
-    if (showMeg) {
-      this.showMeg = true;
-    } else {
-      this.showMeg = false;
-    }
-    
     // 获取状态栏高度
     const systemInfo = uni.getWindowInfo();
     this.statusBarHeight = systemInfo.statusBarHeight || 0;
     const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
     this.menuButtonWidth = menuButtonInfo.width;
     this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
-    
+    this.userInfo = uni.getStorageSync('userInfo');
   },
+  onShow() {
+    this.getAppMessage();
+    this.userPage();
+    this.appConfig();
+    const isSHow = uni.getStorageSync('isShow')
+    if (isSHow !== '') {
+      this.isShow = isSHow
+    }else {
+      this.isShow = true
+    }
+	},
   components: {
     TabBar
     // 'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
   },
   methods: {
+    gotoUser(){
+      uni.navigateTo({
+        url: '/pages/user/userInfo'
+      })
+    },
     changeTO(data){
-      console.log('changeTO',data);
-      this.getAppMessage()
     },
     async getAppMessage(){
       await getAppMessage().then(res=>{
@@ -127,6 +131,9 @@ export default {
       this.$refs.globalPopup.open()
     },
     onConfirm() {
+      this.$refs.globalPopup.close()
+      this.isShow = false
+      uni.setStorageSync('isShow', false)
     },
     navigateTo(page) {
       uni.navigateTo({
@@ -138,20 +145,53 @@ export default {
           }, 100); // 适当延迟
         }
       });
-    }
+    },
+    async appConfig() {
+			  await appConfig().then(res => {
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+            const configList = res.Data;
+            configList.forEach(item => {
+            if (item.Key === "Slideshow") {
+                // this.swiperList = item.Value
+                this.swiperList = item.Value.split(',')
+              } else if (item.Key === "BeginnerGuide") {
+                this.popupContent = item.Value
+              }
+            });
+						uni.setStorageSync('user_config', res.Data)  
+					}
+			  })
+			},
+		async userPage() {
+		  await userPage().then(res => {
+				if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+				} else {
+          const tabList = res.Data['fe:workbench']
+          const result = this.functionList.filter(itemA => 
+            tabList.some(itemB => itemB.Name === itemA.name)
+            );
+          this.functionList = result;
+          const showMeg = tabList.find(item => item.Name === '查看预警');
+          if (showMeg) {
+            this.showMeg = true;
+          } else {
+            this.showMeg = false;
+          }
+					uni.setStorageSync('user_page', res.Data)  
+				}
+		  })
+		},
 	},
   mounted() {
-    this.getAppMessage();
-    const configList = uni.getStorageSync('user_config')
-    configList.forEach(item => {
-      if (item.Key === "Slideshow") {
-        // this.swiperList = item.Value
-        this.swiperList = item.Value.split(',')
-      } else if (item.Key === "BeginnerGuide") {
-        this.popupContent = item.Value
-      }
-    });
-
   },
   onReady() {
 	},

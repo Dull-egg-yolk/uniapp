@@ -217,32 +217,30 @@ var _default = {
       unreadMessageCount: 0,
       // 未读消息数量
       appMessage: [],
-      swiperList: []
+      swiperList: [],
+      userInfo: {},
+      isShow: false
     };
   },
   onLoad: function onLoad() {
-    var tabList = uni.getStorageSync('user_page')['fe:workbench'];
-    var result = this.functionList.filter(function (itemA) {
-      return tabList.some(function (itemB) {
-        return itemB.Name === itemA.name;
-      });
-    });
-    this.functionList = result;
-    var showMeg = tabList.find(function (item) {
-      return item.Name === '查看预警';
-    });
-    if (showMeg) {
-      this.showMeg = true;
-    } else {
-      this.showMeg = false;
-    }
-
     // 获取状态栏高度
     var systemInfo = uni.getWindowInfo();
     this.statusBarHeight = systemInfo.statusBarHeight || 0;
     var menuButtonInfo = uni.getMenuButtonBoundingClientRect();
     this.menuButtonWidth = menuButtonInfo.width;
     this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
+    this.userInfo = uni.getStorageSync('userInfo');
+  },
+  onShow: function onShow() {
+    this.getAppMessage();
+    this.userPage();
+    this.appConfig();
+    var isSHow = uni.getStorageSync('isShow');
+    if (isSHow !== '') {
+      this.isShow = isSHow;
+    } else {
+      this.isShow = true;
+    }
   },
   components: {
     TabBar: TabBar
@@ -250,10 +248,12 @@ var _default = {
   },
 
   methods: {
-    changeTO: function changeTO(data) {
-      console.log('changeTO', data);
-      this.getAppMessage();
+    gotoUser: function gotoUser() {
+      uni.navigateTo({
+        url: '/pages/user/userInfo'
+      });
     },
+    changeTO: function changeTO(data) {},
     getAppMessage: function getAppMessage() {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -284,7 +284,11 @@ var _default = {
     showPopup: function showPopup() {
       this.$refs.globalPopup.open();
     },
-    onConfirm: function onConfirm() {},
+    onConfirm: function onConfirm() {
+      this.$refs.globalPopup.close();
+      this.isShow = false;
+      uni.setStorageSync('isShow', false);
+    },
     navigateTo: function navigateTo(page) {
       var _this2 = this;
       uni.navigateTo({
@@ -298,21 +302,85 @@ var _default = {
           }, 100); // 适当延迟
         }
       });
+    },
+    appConfig: function appConfig() {
+      var _this3 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return (0, _user.appConfig)().then(function (res) {
+                  if (res.ErrorMsg) {
+                    uni.showToast({
+                      title: res.ErrorMsg,
+                      icon: "none"
+                    });
+                  } else {
+                    var configList = res.Data;
+                    configList.forEach(function (item) {
+                      if (item.Key === "Slideshow") {
+                        // this.swiperList = item.Value
+                        _this3.swiperList = item.Value.split(',');
+                      } else if (item.Key === "BeginnerGuide") {
+                        _this3.popupContent = item.Value;
+                      }
+                    });
+                    uni.setStorageSync('user_config', res.Data);
+                  }
+                });
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    userPage: function userPage() {
+      var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return (0, _user.userPage)().then(function (res) {
+                  if (res.ErrorMsg) {
+                    uni.showToast({
+                      title: res.ErrorMsg,
+                      icon: "none"
+                    });
+                  } else {
+                    var tabList = res.Data['fe:workbench'];
+                    var result = _this4.functionList.filter(function (itemA) {
+                      return tabList.some(function (itemB) {
+                        return itemB.Name === itemA.name;
+                      });
+                    });
+                    _this4.functionList = result;
+                    var showMeg = tabList.find(function (item) {
+                      return item.Name === '查看预警';
+                    });
+                    if (showMeg) {
+                      _this4.showMeg = true;
+                    } else {
+                      _this4.showMeg = false;
+                    }
+                    uni.setStorageSync('user_page', res.Data);
+                  }
+                });
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
-  mounted: function mounted() {
-    var _this3 = this;
-    this.getAppMessage();
-    var configList = uni.getStorageSync('user_config');
-    configList.forEach(function (item) {
-      if (item.Key === "Slideshow") {
-        // this.swiperList = item.Value
-        _this3.swiperList = item.Value.split(',');
-      } else if (item.Key === "BeginnerGuide") {
-        _this3.popupContent = item.Value;
-      }
-    });
-  },
+  mounted: function mounted() {},
   onReady: function onReady() {}
 };
 exports.default = _default;

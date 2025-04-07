@@ -81,13 +81,11 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var m0 = __webpack_require__(/*! ../images/iconPark-level.svg */ 533)
   var f0 = _vm._f("getData")(_vm.userList.PrimeRight.ExpireAt)
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        m0: m0,
         f0: f0,
       },
     }
@@ -156,7 +154,6 @@ var _day = __webpack_require__(/*! ../../../util/day */ 113);
 //
 //
 //
-//
 var _default = {
   components: {
     // cmdAvatar,
@@ -182,14 +179,22 @@ var _default = {
       },
       showRenew: true,
       //将data文件夹中的数据读入
-      userAvatar: "用户头像地址",
+      userAvatar: "",
       userName: "佟湘玉",
       userRole: "掌柜",
       storeName: "同福客栈七侠镇衙门口店",
-      expireDate: "2025-12-31"
+      expireDate: "2025-12-31",
+      teamData: {
+        'superuser': '超级管理员',
+        'operator': '操作员',
+        'financial': '财务员'
+      }
     };
   },
   mounted: function mounted() {
+    if (uni.getStorageSync("userInfo")) {
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+    }
     if (uni.getStorageSync("user_info")) {
       this.userList = uni.getStorageSync("user_info");
     }
@@ -211,7 +216,12 @@ var _default = {
       });
     }, 1000)
   },
-  onLoad: function onLoad(option) {}
+  onLoad: function onLoad(option) {
+    if (uni.getStorageSync("userInfo")) {
+      console.log(uni.getStorageSync("userInfo").avatarUrl);
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+    }
+  }
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))

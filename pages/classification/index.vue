@@ -142,7 +142,7 @@ export default {
     },
       // 提交编辑分类
     confirmWarehouse: throttle(async function() {
-      if (!this.editWarehouse.name || !this.editWarehouse.selectedCategory) {
+      if (!this.editWarehouse.name) {
         uni.showToast({
           title: "请填写完整信息",
           icon: "none"

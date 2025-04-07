@@ -23,6 +23,10 @@
   border-radius: 20rpx;
   flex: 1;
 }
+.actions.data-v-61cd9af4 {
+  display: flex;
+  align-items: center;
+}
 .info.data-v-61cd9af4 {
   display: flex;
   align-items: center;
@@ -84,6 +88,15 @@
   margin-left: 5rpx;
   display: inline-block;
   background-color: #ed3b3b;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+.icon-in-progress.data-v-61cd9af4 {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: green;
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;

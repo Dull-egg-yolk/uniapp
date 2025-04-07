@@ -22876,17 +22876,6 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 
 /***/ }),
 
-/***/ 533:
-/*!**************************************************************************!*\
-  !*** /Users/edy/Desktop/jiu/uniapp/pages/user/images/iconPark-level.svg ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/iconPark-level.e0a1774f.svg";
-
-/***/ }),
-
 /***/ 582:
 /*!******************************************************!*\
   !*** /Users/edy/Desktop/jiu/uniapp/util/throttle.js ***!
@@ -22917,6 +22906,108 @@ function throttle(fn) {
     }, delay);
   };
 }
+
+/***/ }),
+
+/***/ 587:
+/*!*****************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-popup/components/uni-popup/popup.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.popup = this.getParent();
+  },
+  methods: {
+    /**
+     * 获取父元素实例
+     */
+    getParent: function getParent() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uniPopup';
+      var parent = this.$parent;
+      var parentName = parent.$options.name;
+      while (parentName !== name) {
+        parent = parent.$parent;
+        if (!parent) return false;
+        parentName = parent.$options.name;
+      }
+      return parent;
+    }
+  }
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 588:
+/*!**********************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 589));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 590));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 591));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 589:
+/*!*********************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
+  \*********************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
+
+/***/ }),
+
+/***/ 590:
+/*!**************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
+  \**************************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
+
+/***/ }),
+
+/***/ 591:
+/*!**************************************************************************************************!*\
+  !*** /Users/edy/Desktop/jiu/uniapp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
+  \**************************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
 
@@ -23256,9 +23347,12 @@ var responseInterceptor = function responseInterceptor(response) {
       title: '登录已过期，请重新登录',
       icon: 'none'
     });
-    // uni.navigateTo({
-    //   url: '/pages/user/user',
-    // });
+    uni.removeStorageSync('userInfo');
+    uni.removeStorageSync('user_info'); // 清除本地存储的 用户信息
+    uni.removeStorageSync('token'); // 清除本地存储的 token
+    uni.switchTab({
+      url: '/pages/user/user'
+    });
     return Promise.reject(response.data);
   } else {
     // 处理其他错误状态码

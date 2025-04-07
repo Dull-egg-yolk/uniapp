@@ -174,13 +174,28 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    this.getUserInfoList();
+    // console.log('mounted');
+
+    // if (uni.getStorageSync('token')) {
+    //   this.getUserInfoList()
+    // }
   },
   onLoad: function onLoad(option) {
+    // if(uni.getStorageSync('user_info')) {
+    // 	this.isLoginStatus = true;
+    // } else {
+    // 	this.isLoginStatus = false;
+    // }
+  },
+  onShow: function onShow() {
     if (uni.getStorageSync('user_info')) {
       this.isLoginStatus = true;
     } else {
       this.isLoginStatus = false;
+    }
+    // 每次页面显示时都请求数据
+    if (uni.getStorageSync('token')) {
+      this.getUserInfoList();
     }
   },
   methods: {
@@ -204,6 +219,9 @@ var _default = {
                 } else {
                   _this.userInfoList = res.Data.Hotel;
                   uni.setStorageSync('user_info', res.Data);
+                  if (res.Data.Token) {
+                    uni.setStorageSync('token', res.Data.Token);
+                  }
                 }
               case 4:
               case "end":
@@ -213,29 +231,8 @@ var _default = {
         }, _callee);
       }))();
     },
-    mydetail: function mydetail() {
-      uni.navigateTo({
-        url: 'myinfo'
-      });
-    },
-    //登陆
-    loginFun: function loginFun() {
-      // uni.navigateTo({
-      // 	url: 'userLoginPage'
-      // })
-      uni.switchTab({
-        url: '../home/home'
-      });
-    },
-    phone: function phone() {
-      uni.navigateTo({
-        url: 'phoneus'
-      });
-    },
-    setting: function setting() {
-      uni.navigateTo({
-        url: 'setting'
-      });
+    changeTO: function changeTO() {
+      console.log(1111);
     }
   }
 };

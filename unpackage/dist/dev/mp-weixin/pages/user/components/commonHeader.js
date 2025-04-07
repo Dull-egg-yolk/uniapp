@@ -176,17 +176,19 @@ var _default = {
         },
         UserHotelRole: {
           Role: ''
+        },
+        Hotel: {
+          Name: ''
         }
       },
-      //将data文件夹中的数据读入
-      userAvatar: "用户头像地址",
-      userName: "佟湘玉",
-      userRole: "掌柜",
-      storeName: "同福客栈七侠镇衙门口店",
-      expireDate: "2025-12-31"
+      userAvatar: ""
     };
   },
   mounted: function mounted() {
+    if (uni.getStorageSync("userInfo")) {
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+      console.log(this.userAvatar, '8989');
+    }
     var cachedUser = uni.getStorageSync('user_info');
     if (cachedUser) {
       this.myinfo = cachedUser; // 覆盖默认值

@@ -373,7 +373,17 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              if (!this.form.CurrentStock) {
+                _context.next = 3;
+                break;
+              }
+              uni.showToast({
+                title: '当前库存不为0，无法删除',
+                icon: "none"
+              });
+              return _context.abrupt("return");
+            case 3:
+              _context.next = 5;
               return (0, _work.deleteGoodsItme)(this.form).then(function (res) {
                 console.log(res);
                 if (res.ErrorMsg) {
@@ -391,7 +401,7 @@ var _default = {
                   });
                 }
               });
-            case 2:
+            case 5:
             case "end":
               return _context.stop();
           }

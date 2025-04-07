@@ -2,15 +2,14 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="userList.Avatar" mode="aspectFill" class="avatar"></image>
+      <image :src="userAvatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ userList.Name }} <text class="role">{{ userList.UserHotelRole.Role }}</text></view
+          >{{ userList.Name }} <text class="role">{{ teamData[userList.UserHotelRole.Role] }}</text></view
         >
         <view class="shop"
-          >{{ storeName }}
-          <!-- <view class="svg-bkg-diamond"></view> -->
-          <img class="svg-bkg-diamond" src="../images/iconPark-level.svg" alt="">
+          >{{ userList.Hotel.Name }}
+          <!-- <img class="svg-bkg-diamond" src="/static/images/iconPark-level.svg" alt=""> -->
         </view>
         <view class="member"
           >{{userList.PrimeRight.Name}}，有效期至 
@@ -51,14 +50,22 @@ export default {
       },
       showRenew: true,
       //将data文件夹中的数据读入
-      userAvatar: "用户头像地址",
+      userAvatar: "",
       userName: "佟湘玉",
       userRole: "掌柜",
       storeName: "同福客栈七侠镇衙门口店",
       expireDate: "2025-12-31",
+      teamData: {
+        'superuser': '超级管理员',
+        'operator': '操作员',
+        'financial': '财务员',
+      }
     };
   },
   mounted() {
+    if (uni.getStorageSync("userInfo")) {
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+    }
     if (uni.getStorageSync("user_info")) {
       this.userList = uni.getStorageSync("user_info");
     }
@@ -79,6 +86,11 @@ export default {
     }, 1000),
   },
   onLoad(option) {
+    if (uni.getStorageSync("userInfo")) {
+      console.log(uni.getStorageSync("userInfo").avatarUrl);
+      
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+    }
 	},
 };
 </script>

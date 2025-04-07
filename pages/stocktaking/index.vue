@@ -12,12 +12,13 @@
      </view>
      <view class="content-list">
       <view class="list">
-        <view class="item" v-for="(item, index) in inventoryList" :key="index">
+        <view class="item" v-for="(item, index) in inventoryList" :key="index" @click="gotoReport(item)">
           <view class="info">
-            <view class="name">盘点 {{ item.ID }}</view><view class="icon">{{ statusList[item.Status] }}</view>
+            <view class="name">{{ item.Warehouse.Name }}</view><view :class="{'icon': item.Status === 'Completed', 'icon-in-progress': item.Status === 'InProgress'}">{{ statusList[item.Status] }}</view>
           </view>
           <view class="actions">
             <text class="edit">{{ item.CreatedAt | getData }}</text>
+            <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
           </view>
         </view>
       </view>
@@ -52,9 +53,8 @@ export default {
         { title: '已完成', date: '2024.09.01' }
       ],
       statusList:  {
-        'InProgress': '未盘点',
+        'InProgress': '盘点中',
         'Completed': '已盘点',
-        'Discard': '已审核'
       },
       totalPages: 0,
       queryList: {
@@ -100,6 +100,11 @@ export default {
         // });   
       }
       
+    },
+    gotoReport(item) {
+      uni.navigateTo({
+        url: `/pages/inventoryReport/index?id=${item.ID}`
+      });
     }
   },
   mounted(){
@@ -115,6 +120,10 @@ export default {
   background-color: #fff;
   border-radius: 20rpx;
   flex: 1;
+}
+.actions {
+  display: flex;
+  align-items: center;
 }
 .info {
   display: flex;
@@ -178,6 +187,15 @@ export default {
   margin-left: 5rpx;
   display: inline-block;
   background-color: #ed3b3b;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+.icon-in-progress {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: green;
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;

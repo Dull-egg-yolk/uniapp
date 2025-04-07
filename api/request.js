@@ -26,9 +26,12 @@ const responseInterceptor = (response) => {
       title: '登录已过期，请重新登录',
       icon: 'none',
     });
-    // uni.navigateTo({
-    //   url: '/pages/user/user',
-    // });
+    uni.removeStorageSync('userInfo')
+    uni.removeStorageSync('user_info'); // 清除本地存储的 用户信息
+    uni.removeStorageSync('token'); // 清除本地存储的 token
+    uni.switchTab({
+      url: '/pages/user/user',
+    });
     return Promise.reject(response.data);
   } else {
     // 处理其他错误状态码

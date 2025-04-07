@@ -137,14 +137,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-var _user = __webpack_require__(/*! ../../api/user.js */ 80);
 var commonHeader = function commonHeader() {
   Promise.all(/*! require.ensure | pages/user/components/commonHeader */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/user/components/commonHeader")]).then((function () {
     return resolve(__webpack_require__(/*! ./components/commonHeader.vue */ 420));
@@ -182,40 +178,13 @@ var _default = {
       userInfo: {}
     };
   },
-  methods: {
-    getHotelInfoList: function getHotelInfoList() {
-      var _this = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var res;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                console.info("13");
-                _context.next = 3;
-                return (0, _user.getUserInfo)();
-              case 3:
-                res = _context.sent;
-                if (res.ErrorMsg) {
-                  uni.showToast({
-                    title: res.ErrorMsg,
-                    icon: "none"
-                  });
-                } else {
-                  _this.hotelInfoList = res.Data.Hotel;
-                  uni.setStorageSync('user_info', res.Data);
-                }
-              case 5:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    }
-  },
+  methods: {},
   mounted: function mounted() {
-    this.getHotelInfoList();
+    if (uni.getStorageSync("user_info")) {
+      this.hotelInfoList = uni.getStorageSync("user_info");
+      this.userInfo = this.hotelInfoList.Hotel;
+      console.log(this.userInfo, '995559');
+    }
   }
 };
 exports.default = _default;

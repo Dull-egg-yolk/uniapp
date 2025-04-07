@@ -179,6 +179,13 @@ export default {
   },
   methods: {
     delectItme: throttle(async function() {
+      if (this.form.CurrentStock) {
+        uni.showToast({
+          title: '当前库存不为0，无法删除',
+          icon: "none"
+        });
+        return;
+      }
       await deleteGoodsItme(this.form).then(res => {
         console.log(res);
         if(res.ErrorMsg){

@@ -221,19 +221,46 @@ var _default = {
       },
       // 校验规则
       rules: {
-        name: {
+        Name: {
           rules: [{
             required: true,
-            errorMessage: '姓名不能为空'
+            errorMessage: '店名不能为空'
           }]
         },
-        age: {
+        Address: {
           rules: [{
             required: true,
-            errorMessage: '年龄不能为空'
-          }, {
-            format: 'number',
-            errorMessage: '年龄只能输入数字'
+            errorMessage: '地址不能为空'
+          }]
+        },
+        Telephone: {
+          rules: [{
+            required: true,
+            errorMessage: '电话不能为空'
+          }, {}]
+        },
+        Company: {
+          rules: [{
+            required: true,
+            errorMessage: '公司名称不能为空'
+          }]
+        },
+        SocialCode: {
+          rules: [{
+            required: true,
+            errorMessage: '信用代码不能为空'
+          }]
+        },
+        BankAddress: {
+          rules: [{
+            required: true,
+            errorMessage: '开户行不能为空'
+          }]
+        },
+        BankAccount: {
+          rules: [{
+            required: true,
+            errorMessage: '账号不能为空'
           }]
         }
       }
@@ -243,47 +270,44 @@ var _default = {
   onLoad: function onLoad() {},
   onReady: function onReady() {},
   methods: {
-    submit: function submit(ref) {
+    submit: function submit() {
       var _this = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var valid;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                valid = _this.$refs[ref].validate();
-                uni.switchTab({
-                  url: '../home/home'
-                });
-                // if (valid) {
-                // 	const res = await submitHotel(this.valiFormData);
-                // 	console.log(res, '000');
-                // 	if (res.Data) {
-                // 		uni.showToast({
-                // 			title: '提交成功',
-                // 			icon: 'success'
-                // 		});
-                // 		setTimeout(() => {
-                // 		  uni.switchTab({
-                // 				url: '../home/home'
-                // 			})
-                // 		}, 200)
-                // 	} else {
-                // 		uni.showToast({
-                // 			title: '提交失败',
-                // 			icon: 'none'
-                // 		});
-                // 	}
-                // } else {
-                // 	console.log('表单校验失败');
-                // }
-              case 2:
-              case "end":
-                return _context.stop();
+      this.$refs.valiForm.validate().then( /*#__PURE__*/function () {
+        var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {
+          return _regenerator.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return (0, _user.submitHotel)(_this.valiFormData).then(function (res) {
+                    if (res.Data) {
+                      uni.showToast({
+                        title: '提交成功',
+                        icon: 'success'
+                      });
+                      setTimeout(function () {
+                        uni.switchTab({
+                          url: '../home/home'
+                        });
+                      }, 200);
+                    } else {
+                      uni.showToast({
+                        title: '提交失败',
+                        icon: 'none'
+                      });
+                    }
+                  });
+                case 2:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee);
-      }))();
+          }, _callee);
+        }));
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
     }
   }
 };

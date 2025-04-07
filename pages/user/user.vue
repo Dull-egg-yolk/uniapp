@@ -2,7 +2,7 @@
     <view class="content">
 		<noLoginPage v-if="!isLoginStatus"></noLoginPage>
 		<loginPage v-else :userInfo="userInfoList"></loginPage>
-		<TabBar :activeIndex=1></TabBar>
+		<TabBar :activeIndex=1 @parent2Event="changeTO"></TabBar>
     </view>
 </template>
 
@@ -26,14 +26,29 @@
 			}
 		},
 		mounted() {
-			this.getUserInfoList()
+			// console.log('mounted');
+			
+			// if (uni.getStorageSync('token')) {
+			//   this.getUserInfoList()
+			// }
 		},
 		onLoad(option) {
+			// if(uni.getStorageSync('user_info')) {
+			// 	this.isLoginStatus = true;
+			// } else {
+			// 	this.isLoginStatus = false;
+			// }
+		},
+		onShow() {
 			if(uni.getStorageSync('user_info')) {
-					this.isLoginStatus = true;
-				} else {
-					this.isLoginStatus = false;
-				}
+				this.isLoginStatus = true;
+			} else {
+				this.isLoginStatus = false;
+			}
+			// 每次页面显示时都请求数据
+			if (uni.getStorageSync('token')) {
+			  this.getUserInfoList()
+			}
 		},
     methods: {
 			async getUserInfoList() {
@@ -46,33 +61,15 @@
 				} else {
 					this.userInfoList = res.Data.Hotel
 					uni.setStorageSync('user_info', res.Data);
+					if (res.Data.Token) {
+						uni.setStorageSync('token', res.Data.Token);
+					}
 				}
 			},
-			mydetail() {
-				uni.navigateTo({
-				    url: 'myinfo',
-				});
+			changeTO(){
+				console.log(1111);
 			},
-			//登陆
-			loginFun() {
-				// uni.navigateTo({
-				// 	url: 'userLoginPage'
-				// })
-				uni.switchTab({
-					url: '../home/home'
-					})
-			},
-			phone() {
-				uni.navigateTo({
-				    url: 'phoneus',
-				});
-			},
-			setting() {
-				uni.navigateTo({
-				    url: 'setting',
-				});
-			}
-        }
+     }
     }
 </script>
 

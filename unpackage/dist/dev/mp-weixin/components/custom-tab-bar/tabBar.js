@@ -177,11 +177,17 @@ var _default = {
   methods: {
     //switchTab
     switchTab: function switchTab(index) {
+      console.log(index, '0000');
+      if (index === 0) {
+        // 通知父组件更新状态
+        this.$emit("parent1Event", index);
+      } else if (index === 1) {
+        // 通知父组件更新状态
+        this.$emit("parent2Event", index);
+      }
       uni.switchTab({
         url: this.list[index].pagePath
       });
-      // 通知父组件更新状态
-      this.$emit("change", index);
     },
     scanQRCode: function scanQRCode() {
       var _this = this;

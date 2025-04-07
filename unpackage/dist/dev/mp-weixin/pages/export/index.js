@@ -147,7 +147,7 @@ var _default = {
         key: 'realTimeInventoryDetails'
       }, {
         name: '盘点明细',
-        key: 'stockInventoryDetails'
+        key: 'stocktaking'
       }, {
         name: '月度消耗明细',
         key: 'monthTimeInventoryDetails'

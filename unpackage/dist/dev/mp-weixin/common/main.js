@@ -148,14 +148,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-var _user = __webpack_require__(/*! @/api/user.js */ 80);
 var _default = {
   globalData: {
     bluetoothConnected: false
@@ -165,8 +161,6 @@ var _default = {
     console.log('进入路径:', options.path); // 页面路径
     console.log('参数:', options.query); // 页面参数
     uni.setStorageSync('launchOptions', options);
-    this.userPage();
-    this.appConfig();
   },
   onShow: function onShow() {
     console.log('App Show');
@@ -174,144 +168,7 @@ var _default = {
   onHide: function onHide() {
     console.log('App Hide');
   },
-  methods: {
-    appConfig: function appConfig() {
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return (0, _user.appConfig)().then(function (res) {
-                  if (res.ErrorMsg) {
-                    uni.showToast({
-                      title: res.ErrorMsg,
-                      icon: "none"
-                    });
-                  } else {
-                    uni.setStorageSync('user_config', res.Data);
-                  }
-                });
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    userPage: function userPage() {
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return (0, _user.userPage)().then(function (res) {
-                  if (res.ErrorMsg) {
-                    uni.showToast({
-                      title: res.ErrorMsg,
-                      icon: "none"
-                    });
-                  } else {
-                    uni.setStorageSync('user_page', res.Data);
-                  }
-                });
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    checkLoginStatus: function checkLoginStatus() {
-      var _this = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
-        var token, res;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                token = uni.getStorageSync('token');
-                if (!token) {
-                  _context3.next = 14;
-                  break;
-                }
-                _context3.prev = 2;
-                _context3.next = 5;
-                return uni.request({
-                  url: '/api/checkToken',
-                  header: {
-                    Authorization: "Bearer ".concat(token)
-                  }
-                });
-              case 5:
-                res = _context3.sent;
-                if (res.data.valid) {
-                  _this.$store.commit('setToken', token);
-                  _this.handlePostLogin();
-                } else {
-                  _this.goToLogin();
-                }
-                _context3.next = 12;
-                break;
-              case 9:
-                _context3.prev = 9;
-                _context3.t0 = _context3["catch"](2);
-                _this.goToLogin();
-              case 12:
-                _context3.next = 15;
-                break;
-              case 14:
-                _this.goToLogin();
-              case 15:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, null, [[2, 9]]);
-      }))();
-    },
-    handlePostLogin: function handlePostLogin() {
-      // 获取进入时的参数
-      var launchParams = uni.getStorageSync('launchParams') || {};
-      var path = launchParams.path,
-        query = launchParams.query;
-      if (path) {
-        // 跳转到原目标页面并携带参数
-        var url = path;
-        if (query && Object.keys(query).length > 0) {
-          url += "?".concat(this.serializeQuery(query));
-        }
-        setTimeout(function () {
-          uni.reLaunch({
-            url: url
-          });
-        }, 300);
-      } else {
-        // 默认跳转到首页
-        uni.switchTab({
-          url: '/pages/home/home'
-        });
-      }
-    },
-    goToLogin: function goToLogin() {
-      var launchParams = uni.getStorageSync('launchParams') || {};
-      var path = launchParams.path,
-        query = launchParams.query;
-      var loginUrl = '/pages/user/user';
-      if (path) {
-        loginUrl += "?redirect=".concat(encodeURIComponent(path));
-        if (query) {
-          loginUrl += "&".concat(this.serializeQuery(query));
-        }
-      }
-      uni.reLaunch({
-        url: loginUrl
-      });
-    }
-  }
+  methods: {}
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

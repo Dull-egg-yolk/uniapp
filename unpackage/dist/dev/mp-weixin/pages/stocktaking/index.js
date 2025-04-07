@@ -223,6 +223,7 @@ var _day = __webpack_require__(/*! @/util/day.js */ 113);
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -258,9 +259,8 @@ var _default = {
         date: '2024.09.01'
       }],
       statusList: {
-        'InProgress': '未盘点',
-        'Completed': '已盘点',
-        'Discard': '已审核'
+        'InProgress': '盘点中',
+        'Completed': '已盘点'
       },
       totalPages: 0,
       queryList: {
@@ -322,6 +322,11 @@ var _default = {
           }
         }, _callee);
       }))();
+    },
+    gotoReport: function gotoReport(item) {
+      uni.navigateTo({
+        url: "/pages/inventoryReport/index?id=".concat(item.ID)
+      });
     }
   },
   mounted: function mounted() {

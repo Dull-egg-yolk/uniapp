@@ -12,14 +12,13 @@
         :key="index"
       >
         <text class="label">{{ item.label }}：</text>
-        <text class="value">{{ hotelInfoList[item.value] }}</text>
+        <text class="value">{{ userInfo[item.value] }}</text>
       </view>
     </view>
   </view>
 </template>
 <script>
 import commonHeader from "./components/commonHeader.vue";
-import { getUserInfo } from '../../api/user.js';
 export default {
   components: {
     commonHeader,
@@ -40,22 +39,14 @@ export default {
     };
   },
   methods: {
-    async getHotelInfoList() {
-      console.info("13");
-      const res = await getUserInfo();
-      if (res.ErrorMsg) {
-        uni.showToast({
-          title: res.ErrorMsg,
-          icon: "none"
-        });
-      } else {
-        this.hotelInfoList = res.Data.Hotel
-        uni.setStorageSync('user_info', res.Data);
-      }
-    },
   },
   mounted(){
-    this.getHotelInfoList();
+    if (uni.getStorageSync("user_info")) {
+      this.hotelInfoList = uni.getStorageSync("user_info");
+      this.userInfo = this.hotelInfoList.Hotel
+      console.log(this.userInfo, '995559');
+      
+    }
   }
 };
 </script>

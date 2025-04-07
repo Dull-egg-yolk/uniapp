@@ -103,6 +103,12 @@ try {
     uniIcons: function () {
       return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 327))
     },
+    uniPopup: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 320))
+    },
+    uniPopupDialog: function () {
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 533))
+    },
     inviteFriendsPopup: function () {
       return __webpack_require__.e(/*! import() | components/inviteFriends-popup/inviteFriends-popup */ "components/inviteFriends-popup/inviteFriends-popup").then(__webpack_require__.bind(null, /*! @/components/inviteFriends-popup/inviteFriends-popup.vue */ 552))
     },
@@ -211,17 +217,83 @@ var _user = __webpack_require__(/*! @/api/user */ 80);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       adminGroups: [],
-      InvitedCode: ''
+      InvitedCode: '',
+      teamData: {
+        'superuser': '超级管理员',
+        'operator': '操作员',
+        'financial': '财务员'
+      },
+      roleOptions: [{
+        label: '超级管理员',
+        value: 'superuser'
+      }, {
+        label: '财务员',
+        value: 'financial'
+      }, {
+        label: '操作员',
+        value: 'operator'
+      }],
+      currentUser: {},
+      selectedRole: ''
     };
   },
   methods: {
+    // 显示筛选弹窗
+    showFilter: function showFilter(user) {
+      this.currentUser = JSON.parse(JSON.stringify(user));
+      this.selectedRole = user.roleValue;
+      this.$refs.popup.open();
+    },
+    // 关闭弹窗
+    closeFilter: function closeFilter() {
+      this.selectedRole = '';
+      this.$refs.popup.close();
+    },
+    // 角色选择变化
+    roleChange: function roleChange(e) {
+      this.selectedRole = e.detail.value;
+    },
+    // 确认角色修改
+    confirmRole: function confirmRole() {
+      var _this = this;
+      var index = this.adminGroups.findIndex(function (user) {
+        return user.ID === _this.currentUser.ID;
+      });
+      if (index !== -1) {
+        // 更新角色
+        var selectedOption = this.roleOptions.find(function (role) {
+          return role.value === _this.selectedRole;
+        });
+        if (selectedOption) {
+          this.adminGroups[index].UserHotelRole.Role = this.selectedRole;
+        }
+      }
+      this.updateHotelUser(this.currentUser.ID, this.selectedRole);
+    },
     // 获取酒店用户信息
     getHotelUsers: function getHotelUsers() {
-      var _this = this;
+      var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
         var res;
         return _regenerator.default.wrap(function _callee$(_context) {
@@ -235,7 +307,7 @@ var _default = {
                 res = _context.sent;
                 console.log(res);
                 // 处理返回的数据，生成adminGroups
-                _this.adminGroups = res.Data;
+                _this2.adminGroups = res.Data;
                 _context.next = 11;
                 break;
               case 8:
@@ -250,17 +322,49 @@ var _default = {
         }, _callee, null, [[0, 8]]);
       }))();
     },
-    // 切换分组展开/折叠
-    toggleGroup: function toggleGroup(index) {
-      this.adminGroups[index].expanded = !this.adminGroups[index].expanded;
-    },
-    // 跳转到设置页
-    navToSettings: function navToSettings(admin) {
-      if (admin.name === '设置') {
-        uni.navigateTo({
-          url: '/pages/admin/settings?id=' + admin.id
-        });
-      }
+    updateHotelUser: function updateHotelUser(id, role) {
+      var _this3 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var params;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (role === 'superuser') {
+                  uni.showToast({
+                    title: '超级管理员一旦修改，你将不再是超级管理员，请谨慎操作',
+                    icon: 'none'
+                  });
+                }
+                params = {
+                  ID: id,
+                  UserHotelRole: {
+                    Role: role
+                  }
+                };
+                _context2.next = 4;
+                return (0, _user.updateHotelUser)(params).then(function (res) {
+                  if (res.ErrorMsg) {
+                    uni.showToast({
+                      title: res.ErrorMsg,
+                      icon: "none"
+                    });
+                  } else {
+                    uni.showToast({
+                      title: '权限修改成功',
+                      icon: 'none'
+                    });
+                    _this3.$refs.popup.close();
+                    _this3.getHotelUsers();
+                  }
+                });
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     // 新增管理员
     addAdmin: function addAdmin() {

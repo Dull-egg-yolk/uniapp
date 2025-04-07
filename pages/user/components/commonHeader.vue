@@ -2,14 +2,14 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="myinfo.Avatar" mode="aspectFill" class="avatar"></image>
+      <image :src="userAvatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
           >{{ myinfo.Name }} <text class="role">{{ myinfo.UserHotelRole.Role }}</text></view
         >
         <view class="shop"
-          >{{ storeName }}
-          <view class="svg-bkg-diamond"></view>
+          >{{ myinfo.Hotel.Name }}
+          <img class="svg-bkg-diamond" src="/static/images/iconPark-level.svg" alt="">
         </view>
         <view class="member"
           >{{ myinfo.PrimeRight.Name }}，有效期至
@@ -49,17 +49,20 @@ export default {
         },
         UserHotelRole: {
           Role: ''
+        },
+        Hotel: {
+          Name: ''
         }
       },
-      //将data文件夹中的数据读入
-      userAvatar: "用户头像地址",
-      userName: "佟湘玉",
-      userRole: "掌柜",
-      storeName: "同福客栈七侠镇衙门口店",
-      expireDate: "2025-12-31",
+      userAvatar: "",
     };
   },
   mounted() {
+    if (uni.getStorageSync("userInfo")) {
+      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
+      console.log( this.userAvatar, '8989');
+      
+    }
     const cachedUser = uni.getStorageSync('user_info');
     if (cachedUser) {
       this.myinfo = cachedUser; // 覆盖默认值
@@ -131,7 +134,6 @@ export default {
   height: 48rpx;
 }
 .svg-bkg-diamond {
-  background-image: url("../images/iconPark-level.svg");
   width: 22rpx;
   height: 22rpx;
   background-size: cover;

@@ -110,9 +110,12 @@ import { userLogin } from '@/api/user.js'
 			async getWxUserInfo() {
 				try {
         // 1. 获取用户信息
+				uni.showLoading({
+					title: '登录中...',
+				})
         const userInfo = await this.getUserProfile()
 				console.log(userInfo, 'userInfo');
-				uni.setStorageSync('user_info', userInfo);
+				uni.setStorageSync('userInfo', userInfo);
         // 2. 微信登录获取code
         const [ErrorMsg,loginRes] = await uni.login({ provider: 'weixin' })
 				console.log(loginRes, 'loginRes');
@@ -121,7 +124,8 @@ import { userLogin } from '@/api/user.js'
 				const params = {
 					Name: userInfo.nickName,
 					WxCode: loginRes.code,
-					// InvitedByHotelID: null
+					Avatar: userInfo.avatarUrl,
+					InvitedByHotelID: 0
 				}
 				const res = await userLogin(params)
 				if (res.ErrorMsg) {
@@ -130,18 +134,24 @@ import { userLogin } from '@/api/user.js'
             icon: "none"
           });
         } else {
+					uni.hideLoading()
           uni.setStorageSync('token', res.Data.Token);
           uni.setStorageSync('user_info', res.Data);
           uni.showToast({
             title: '登录成功',
             icon: "none"
           });
-					uni.$emit('user_info', { data: res.Data });
-					// setToken
-					this.$store.commit('setToken', res.Data.Token);
-          uni.switchTab({
-            url: '/pages/home/home'
-          });
+					setTimeout(() => {
+						if (res.Data.Hotel.ID === 0) {
+							uni.navigateTo({
+								url: '/pages/form/form'
+							});
+						} else {
+							uni.switchTab({
+								url: '/pages/home/home'
+							});
+						}
+					}, 300)
         }
 					
 					// 处理登录结果...
@@ -419,6 +429,10 @@ import { userLogin } from '@/api/user.js'
 	.invite-desc {
 	font-size: 28rpx;
 	}
+	.invite-desc a {
+    display: inline-block;
+    text-decoration: underline;
+  }
 
 	.advantage-section {
 		

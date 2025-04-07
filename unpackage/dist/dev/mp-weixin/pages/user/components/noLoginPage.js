@@ -171,18 +171,22 @@ var _default = (0, _defineProperty2.default)({
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
+                // 1. 获取用户信息
+                uni.showLoading({
+                  title: '登录中...'
+                });
+                _context.next = 4;
                 return _this2.getUserProfile();
-              case 3:
+              case 4:
                 userInfo = _context.sent;
                 console.log(userInfo, 'userInfo');
-                uni.setStorageSync('user_info', userInfo);
+                uni.setStorageSync('userInfo', userInfo);
                 // 2. 微信登录获取code
-                _context.next = 8;
+                _context.next = 9;
                 return uni.login({
                   provider: 'weixin'
                 });
-              case 8:
+              case 9:
                 _yield$uni$login = _context.sent;
                 _yield$uni$login2 = (0, _slicedToArray2.default)(_yield$uni$login, 2);
                 ErrorMsg = _yield$uni$login2[0];
@@ -192,12 +196,13 @@ var _default = (0, _defineProperty2.default)({
                 // 3. 发送到后端
                 params = {
                   Name: userInfo.nickName,
-                  WxCode: loginRes.code
-                  // InvitedByHotelID: null
+                  WxCode: loginRes.code,
+                  Avatar: userInfo.avatarUrl,
+                  InvitedByHotelID: 0
                 };
-                _context.next = 16;
+                _context.next = 17;
                 return (0, _user.userLogin)(params);
-              case 16:
+              case 17:
                 _res = _context.sent;
                 if (_res.ErrorMsg) {
                   uni.showToast({
@@ -205,35 +210,39 @@ var _default = (0, _defineProperty2.default)({
                     icon: "none"
                   });
                 } else {
+                  uni.hideLoading();
                   uni.setStorageSync('token', _res.Data.Token);
                   uni.setStorageSync('user_info', _res.Data);
                   uni.showToast({
                     title: '登录成功',
                     icon: "none"
                   });
-                  uni.$emit('user_info', {
-                    data: _res.Data
-                  });
-                  // setToken
-                  _this2.$store.commit('setToken', _res.Data.Token);
-                  uni.switchTab({
-                    url: '/pages/home/home'
-                  });
+                  setTimeout(function () {
+                    if (_res.Data.Hotel.ID === 0) {
+                      uni.navigateTo({
+                        url: '/pages/form/form'
+                      });
+                    } else {
+                      uni.switchTab({
+                        url: '/pages/home/home'
+                      });
+                    }
+                  }, 300);
                 }
 
                 // 处理登录结果...
-                _context.next = 23;
+                _context.next = 24;
                 break;
-              case 20:
-                _context.prev = 20;
+              case 21:
+                _context.prev = 21;
                 _context.t0 = _context["catch"](0);
                 console.error('登录失败:', _context.t0);
-              case 23:
+              case 24:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 20]]);
+        }, _callee, null, [[0, 21]]);
       }))();
     },
     getUserProfile: function getUserProfile() {

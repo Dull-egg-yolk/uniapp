@@ -372,7 +372,7 @@ var _default = {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              if (!(!this.editWarehouse.name || !this.editWarehouse.selectedCategory)) {
+              if (this.editWarehouse.name) {
                 _context4.next = 3;
                 break;
               }

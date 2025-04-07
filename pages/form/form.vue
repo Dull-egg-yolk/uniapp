@@ -3,7 +3,7 @@
 		<view class="title">快速初始化</view>
 		<view class="example">
 				<!-- 基础表单校验 -->
-				<uni-forms ref="valiForm" :modelValue="valiFormData">
+				<uni-forms ref="valiForm" :modelValue="valiFormData" :rules="rules" validate-trigger="bind">
 					<uni-forms-item label="店名" required name="Name">
 						<uni-easyinput v-model="valiFormData.Name" placeholder="请输入店名" />
 					</uni-forms-item>
@@ -26,7 +26,7 @@
 						<uni-easyinput v-model="valiFormData.BankAccount" placeholder="请输入账号" />
 					</uni-forms-item>
 				</uni-forms>
-				<button type="primary" @click="submit('valiForm')">提交</button>
+				<button type="primary" @click="submit()">提交</button>
 			</view>
 	</view>
 </template>
@@ -47,19 +47,48 @@
 				},
 				// 校验规则
 				rules: {
-					name: {
+					Name: {
 						rules: [{
 							required: true,
-							errorMessage: '姓名不能为空'
+							errorMessage: '店名不能为空'
 						}]
 					},
-					age: {
+					Address: {
 						rules: [{
 							required: true,
-							errorMessage: '年龄不能为空'
-						}, {
-							format: 'number',
-							errorMessage: '年龄只能输入数字'
+							errorMessage: '地址不能为空'
+						}]
+					},
+					Telephone: {
+						rules: [{
+							required: true,
+							errorMessage: '电话不能为空'
+						},{
+
+						}]
+					},
+					Company: {
+						rules: [{
+							required: true,
+							errorMessage: '公司名称不能为空'
+						}]
+					},
+					SocialCode: {
+						rules: [{
+						  required: true,
+							errorMessage: '信用代码不能为空'
+						}]
+					},
+					BankAddress: {
+						rules: [{
+							required: true,
+							errorMessage: '开户行不能为空'
+						}]
+					},
+					BankAccount: {
+						rules: [{
+							required: true,
+							errorMessage: '账号不能为空'
 						}]
 					}
 				},
@@ -71,35 +100,29 @@
 		onReady() {
 		},
 		methods: {
-			async	submit(ref) {
-				const valid = this.$refs[ref].validate();
-				uni.switchTab({
-								url: '../home/home'
-							})
-				// if (valid) {
-				// 	const res = await submitHotel(this.valiFormData);
-				// 	console.log(res, '000');
-				// 	if (res.Data) {
-				// 		uni.showToast({
-				// 			title: '提交成功',
-				// 			icon: 'success'
-				// 		});
-				// 		setTimeout(() => {
-				// 		  uni.switchTab({
-				// 				url: '../home/home'
-				// 			})
-				// 		}, 200)
-				// 	} else {
-				// 		uni.showToast({
-				// 			title: '提交失败',
-				// 			icon: 'none'
-				// 		});
-				// 	}
-				// } else {
-				// 	console.log('表单校验失败');
-				// }
-			}
-	  }
+			submit() {
+				this.$refs.valiForm.validate().then(async (res) => {
+				  await submitHotel(this.valiFormData).then(res => {
+				    if (res.Data) {
+							uni.showToast({
+								title: '提交成功',
+								icon: 'success'
+							});
+							setTimeout(() => {
+								uni.switchTab({
+									url: '../home/home'
+								})
+							}, 200)
+						}else {
+							uni.showToast({
+								title: '提交失败',
+								icon: 'none'
+							});
+						}
+				  })
+			})
+		}
+	 }
 	}
 </script>
 <style scoped>
