@@ -146,7 +146,7 @@
  font-size: 32rpx;
  font-weight: 500;
 }
-uni-button.data-v-3aa6fcdc {
-  border-radius: 0;
+.data-v-3aa6fcdc uni-button {
+  border-radius: 0 !important;
 }
 

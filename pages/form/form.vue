@@ -126,7 +126,7 @@
 	}
 </script>
 <style scoped>
-@import '../../common/index.css';
+@import '@/common/index.css';
 	.container {
 		background-color: #f8f8f8;
 	}

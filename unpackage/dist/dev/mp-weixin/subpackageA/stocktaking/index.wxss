@@ -1,0 +1,105 @@
+.container.data-v-58e7cb6b {
+  padding: 20rpx;
+  width: 100%;
+}
+.add-button.data-v-58e7cb6b {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.list.data-v-58e7cb6b {
+  /* margin-bottom: 100rpx; */
+  background-color: #fff;
+  border-radius: 20rpx;
+  flex: 1;
+}
+.actions.data-v-58e7cb6b {
+  display: flex;
+  align-items: center;
+}
+.info.data-v-58e7cb6b {
+  display: flex;
+  align-items: center;
+}
+.info .name.data-v-58e7cb6b {
+  width: 120rpx;
+}
+.container.data-v-58e7cb6b {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: calc(100vh - 25px);
+}
+.add-stock.data-v-58e7cb6b {
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+}
+.pagination.data-v-58e7cb6b {
+  padding: 20rpx;
+}
+.content-list.data-v-58e7cb6b {
+  background-color: #fff;
+  border-radius: 20rpx;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.title.data-v-58e7cb6b {
+  height: 70rpx;
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tab.data-v-58e7cb6b {
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  background-color: #fff;
+  color: #918d8d;
+}
+.item.data-v-58e7cb6b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.icon.data-v-58e7cb6b {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: #ed3b3b;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+.icon-in-progress.data-v-58e7cb6b {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: green;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+

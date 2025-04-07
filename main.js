@@ -6,12 +6,6 @@ import store from './store'
 import config from './common/config.js'
 Vue.prototype.config = config
 import request from './common/request.js'
-import GlobalPopup from '@/components/global-popup/global-popup.vue'
-import TipsPopup from '@/components/tips-popup/tips-popup.vue'
-import InoutPopup from '@/components/inout-popup/inout-popup.vue'
-import ImgPopup from '@/components/img-popup/img-popup.vue'
-import InviteFriendsPopup from './components/inviteFriends-popup/inviteFriends-popup.vue'
-import StockPopup from './components/stock-popup/stock-popup.vue'
 Vue.prototype.$http = request
 
 Vue.config.productionTip = false
@@ -27,12 +21,6 @@ Vue.prototype.checkLogin = function(backpage, backtype) {
 	// 	});
 	// }
 }
-Vue.component('GlobalPopup', GlobalPopup)
-Vue.component('TipsPopup', TipsPopup)
-Vue.component('InoutPopup', InoutPopup)
-Vue.component('ImgPopup', ImgPopup)
-Vue.component('InviteFriendsPopup', InviteFriendsPopup)
-Vue.component('StockPopup', StockPopup)
 
 App.mpType = 'app'
 

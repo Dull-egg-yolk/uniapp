@@ -37,10 +37,12 @@
 
 <script>
 import headerInfo from "./headerInfo.vue";
+import globalPopup from '@/components/global-popup/global-popup.vue'
 
 export default {
   components: {
     headerInfo,
+    globalPopup
   },
   props: {
     userInfoList: {
@@ -58,13 +60,13 @@ export default {
       storeName: "同福客栈七侠镇衙门口店",
       expireDate: "2025-12-31",
       functionList: [
-        { icon: "person-info", name: "用户信息",url:'pages/user/userInfo', img: 'riLine-contacts-line' },
-        { icon: "team-setting", name: "团队设置" ,url:'pages/user/teamData', img: 'antOutline-team'},
-        { icon: "invite-gift", name: "邀请有礼" ,url:'pages/user/InvitationGifts', img: 'riLine-feedback-line' },
-        { icon: "help-doc", name: "帮助文档",url:'pages/user/helpDoc', img: 'iconPark-doc-search-two' },
-        { icon: "new-guide", name: "新手指南" ,url:'pages/user/guide', img: 'if-compass' },
-        { icon: "info-feedback", name: "需求反馈" ,url:'pages/user/feedback', img: 'riLine-feedback-line' },
-        { icon: "add-desktop", name: "添加到桌面" ,url:'pages/user/addHome', img: 'md-airplay' },
+        { icon: "person-info", name: "用户信息",url:'subpackageB/userInfo', img: 'riLine-contacts-line' },
+        { icon: "team-setting", name: "团队设置" ,url:'subpackageB/teamData', img: 'antOutline-team'},
+        { icon: "invite-gift", name: "邀请有礼" ,url:'subpackageB/InvitationGifts', img: 'riLine-feedback-line' },
+        { icon: "help-doc", name: "帮助文档",url:'subpackageB/helpDoc', img: 'iconPark-doc-search-two' },
+        { icon: "new-guide", name: "新手指南" ,url:'subpackageB/guide', img: 'if-compass' },
+        { icon: "info-feedback", name: "需求反馈" ,url:'subpackageB/feedback', img: 'riLine-feedback-line' },
+        { icon: "add-desktop", name: "添加到桌面" ,url:'subpackageB/addHome', img: 'md-airplay' },
       ],
       popupContent: ''
     };
@@ -96,18 +98,12 @@ export default {
   methods: {
     gotoWebsite() {
       wx.navigateTo({
-        url: '/pages/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
+        url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
       })
-    },
-    // 广告横幅点击跳转
-    goToAdPage() {
-      wx.navigateTo({
-        url: "/pages/ad/ad", // 替换为实际广告页面路径
-      });
     },
     goToPage(url) {
       console.log(url);
-      if (url === 'pages/user/guide') {
+      if (url === 'subpackageB/guide') {
         this.$refs.globalPopup.open()
         return;
       }

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "续费",
+  "usingComponents": {
+    "common-header": "/subpackageB/components/commonHeader"
+  }
+}

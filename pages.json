@@ -5,102 +5,6 @@
             "style": {
                 "navigationBarTitleText": "九点绘库存管理系统"
             }
-        },
-        {
-            "path": "pages/login/login",
-            "style": {
-                "navigationBarTitleText": "登录"
-            }
-        },{
-            "path": "pages/warehouseManagement/index",
-            "style": {
-                "navigationBarTitleText": "库房管理"
-            }
-        },{
-            "path": "pages/classification/index",
-            "style": {
-                "navigationBarTitleText": "分类列表"
-            }
-        },{
-            "path": "pages/enter/index",
-            "style": {
-                "navigationBarTitleText": "物品录入"
-            }
-        },{
-            "path": "pages/itemPage/index",
-            "style": {
-                "navigationBarTitleText": "物品列表"
-            }
-        },{
-            "path": "pages/stocktaking/index",
-            "style": {
-                "navigationBarTitleText": "物品盘点"
-            }
-        },{
-            "path": "pages/export/index",
-            "style": {
-                "navigationBarTitleText": "报表下载"
-            }
-        },{
-            "path": "pages/inventoryDetails/index",
-            "style": {
-                "navigationBarTitleText": "物品出入库明细"
-            }
-        },{
-            "path": "pages/realTimeInventoryDetails/index",
-            "style": {
-                "navigationBarTitleText": "实时库存"
-            }
-        },{
-            "path": "pages/monthTimeInventoryDetails/index",
-            "style": {
-                "navigationBarTitleText": "月度消耗明细"
-            }
-        },{
-            "path": "pages/stockInventoryDetails/index",
-            "style": {
-                "navigationBarTitleText": "盘点明细"
-            }
-        },{
-            "path": "pages/newStocktaking/index",
-            "style": {
-                "navigationBarTitleText": "新盘点"
-            }
-        },{
-            "path": "pages/changeItem/index",
-            "style": {
-                "navigationBarTitleText": "选择物品"
-            }
-        },{
-            "path": "pages/checking/index",
-            "style": {
-                "navigationBarTitleText": "盘点"
-            }
-        },{
-            "path": "pages/inventoryReport/index",
-            "style": {
-                "navigationBarTitleText": "盘点报表"
-            }
-        },{
-            "path": "pages/lian/lian",
-            "style": {
-                "navigationBarTitleText": "链接打印机"
-            }
-        },{
-            "path": "pages/earlyWarning/index",
-            "style": {
-                "navigationBarTitleText": "预警"
-            }
-        },{
-            "path": "pages/user/myFeedback",
-            "style": {
-                "navigationBarTitleText": "我的反馈"
-            }
-        },{
-            "path": "pages/itemDetail/index",
-            "style": {
-                "navigationBarTitleText": ""
-            }
         },{
             "path": "pages/home/home",
             "style": {
@@ -108,67 +12,169 @@
                 "navigationStyle": "custom"
             }
         },{
-            "path": "pages/form/form",
-            "style": {
-                "navigationBarTitleText": "初始化"
-            }
-        },{
             "path": "pages/user/user",
             "style": {
                 "navigationBarTitleText": "个人中心"
             }
-        },{
-            "path": "pages/user/InvitationGifts",
-            "style": {
-                "navigationBarTitleText": "邀请有礼"
-            }
-        },{
-            "path": "pages/user/setting",
-            "style": {
-                "navigationBarTitleText": "系统设置"
-            }
-        },{
-            "path": "pages/user/addHome",
-            "style": {
-                "navigationBarTitleText": "添加到桌面"
-            }
-        },
-        {
-            "path": "pages/webview/webview",
-            "style": {
-              "navigationBarTitleText": "外部网页"
-            }
-        },
-        {
-            "path": "pages/user/userInfo",
-            "style": {
-                "navigationBarTitleText": "我的信息"
-            }
-        },
-        {
-            "path": "pages/user/renew",
-            "style": {
-                "navigationBarTitleText": "续费"
-            }
-        },
-        {
-            "path": "pages/user/feedback",
-            "style": {
-                "navigationBarTitleText": "需求反馈"
-            }
-        },
-        {
-            "path": "pages/user/helpDoc",
-            "style": {
-                "navigationBarTitleText": "帮助文档"
-            }
-        },
-        {
-            "path": "pages/user/teamData",
-            "style": {
-                "navigationBarTitleText": "团队建设"
-            }
         }
+    ],
+    "subPackages": [
+      {
+        "root": "subpackageA",
+        "pages": [
+            {
+                "path": "warehouseManagement/index",
+                "style": {
+                    "navigationBarTitleText": "库房管理"
+                }
+            },{
+                "path": "classification/index",
+                "style": {
+                    "navigationBarTitleText": "分类列表"
+                }
+            },{
+                "path": "enter/index",
+                "style": {
+                    "navigationBarTitleText": "物品录入"
+                }
+            },{
+                "path": "itemPage/index",
+                "style": {
+                    "navigationBarTitleText": "物品列表"
+                }
+            },{
+                "path": "stocktaking/index",
+                "style": {
+                    "navigationBarTitleText": "物品盘点"
+                }
+            },{
+                "path": "export/index",
+                "style": {
+                    "navigationBarTitleText": "报表下载"
+                }
+            },{
+                "path": "inventoryDetails/index",
+                "style": {
+                    "navigationBarTitleText": "物品出入库明细"
+                }
+            },{
+                "path": "realTimeInventoryDetails/index",
+                "style": {
+                    "navigationBarTitleText": "实时库存"
+                }
+            },{
+                "path": "monthTimeInventoryDetails/index",
+                "style": {
+                    "navigationBarTitleText": "月度消耗明细"
+                }
+            },{
+                "path": "stockInventoryDetails/index",
+                "style": {
+                    "navigationBarTitleText": "盘点明细"
+                }
+            },{
+                "path": "newStocktaking/index",
+                "style": {
+                    "navigationBarTitleText": "新盘点"
+                }
+            },{
+                "path": "changeItem/index",
+                "style": {
+                    "navigationBarTitleText": "选择物品"
+                }
+            },{
+                "path": "checking/index",
+                "style": {
+                    "navigationBarTitleText": "盘点"
+                }
+            },{
+                "path": "inventoryReport/index",
+                "style": {
+                    "navigationBarTitleText": "盘点报表"
+                }
+            },{
+                "path": "lian/lian",
+                "style": {
+                    "navigationBarTitleText": "链接打印机"
+                }
+            },{
+                "path": "earlyWarning/index",
+                "style": {
+                    "navigationBarTitleText": "预警"
+                }
+            },
+            {
+                "path": "itemDetail/index",
+                "style": {
+                    "navigationBarTitleText": ""
+                }
+            },
+            {
+                "path": "form/form",
+                "style": {
+                    "navigationBarTitleText": "初始化"
+                }
+            }
+        ]
+      },
+      {
+        "root": "subpackageB",
+        "pages": [
+            {
+                "path": "myFeedback",
+                "style": {
+                    "navigationBarTitleText": "我的反馈"
+                }
+            },
+            {
+                "path": "InvitationGifts",
+                "style": {
+                    "navigationBarTitleText": "邀请有礼"
+                }
+            },{
+                "path": "addHome",
+                "style": {
+                    "navigationBarTitleText": "添加到桌面"
+                }
+            },
+            {
+                "path": "webview/webview",
+                "style": {
+                  "navigationBarTitleText": "外部网页"
+                }
+            },
+            {
+                "path": "userInfo",
+                "style": {
+                    "navigationBarTitleText": "我的信息"
+                }
+            },
+            {
+                "path": "renew",
+                "style": {
+                    "navigationBarTitleText": "续费"
+                }
+            },
+            {
+                "path": "feedback",
+                "style": {
+                    "navigationBarTitleText": "需求反馈"
+                }
+            },
+            {
+                "path": "helpDoc",
+                "style": {
+                    "navigationBarTitleText": "帮助文档"
+                }
+            },
+            {
+                "path": "teamData",
+                "style": {
+                    "navigationBarTitleText": "团队建设"
+                }
+            }
+        ]
+      }
     ],
     "tabBar": {
         "custom": true,

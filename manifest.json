@@ -11,6 +11,12 @@
             "urlCheck" : false,
             "libVersion": "2.16.1"
         },
+        "optimization": {
+            "minifyJS": true,
+            "minifyWXML": true,
+            "minifyWXSS": true
+        },
+        "lazyCodeLoading": "requiredComponents",
         "usingComponents" : true
     },
     "mp-alipay" : {

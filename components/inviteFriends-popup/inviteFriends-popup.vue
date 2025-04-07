@@ -154,7 +154,7 @@ export default {
  font-size: 32rpx;
  font-weight: 500;
 }
-uni-button {
-  border-radius: 0;
+/deep/uni-button {
+  border-radius: 0 !important;
 }
 </style>

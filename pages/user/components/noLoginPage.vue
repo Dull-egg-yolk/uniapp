@@ -52,19 +52,19 @@
     <view class="section-title">我们的优点</view>
     <view class="advantage-list">
       <view class="advantage-item">
-        <image src="/images/advantage1.png" mode="aspectFit" class="advantage-icon"></image>
+        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
         <view class="advantage-text">易操作</view>
       </view>
       <view class="advantage-item">
-        <image src="/images/advantage2.png" mode="aspectFit" class="advantage-icon"></image>
+        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
         <view class="advantage-text">库存准</view>
       </view>
       <view class="advantage-item">
-        <image src="/images/advantage3.png" mode="aspectFit" class="advantage-icon"></image>
+        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
         <view class="advantage-text">有报表</view>
       </view>
       <view class="advantage-item">
-        <image src="/images/advantage4.png" mode="aspectFit" class="advantage-icon"></image>
+        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
         <view class="advantage-text">码上见</view>
       </view>
     </view>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { userLogin } from '@/api/user.js'
+import { userLogin, appConfig } from '@/api/user.js'
   export default {
 		components: {
 			// cmdAvatar,
@@ -85,16 +85,12 @@ import { userLogin } from '@/api/user.js'
 				//将data文件夹中的数据读入
 				user_name: '',
 				user_id: '',
-				personalInvitePage: ''
+				personalInvitePage: '',
+				configList: []
 			}
 		},
 		mounted() {
-			const configList = uni.getStorageSync('user_config')
-			configList.forEach(item => {
-				if (item.Key === "PersonalInvitePage") {
-					this.personalInvitePage = item.Value
-				}
-			});
+			this.appConfig()
 		},
 		onLoad: function() {
 			var myinfo = uni.getStorageSync('user_info')
@@ -102,9 +98,27 @@ import { userLogin } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
+			async appConfig() {
+			  await appConfig().then(res => {
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+            const configList = res.Data;
+            configList.forEach(item => {
+							if (item.Key === "PersonalInvitePage") {
+								this.personalInvitePage = item.Value
+							}
+						});
+						uni.setStorageSync('user_config', res.Data)  
+					}
+			  })
+			},
 			gotoWebsite() {
 				wx.navigateTo({
-					url: '/pages/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
+					url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
 				})
 			},
 			async getWxUserInfo() {
@@ -144,7 +158,7 @@ import { userLogin } from '@/api/user.js'
 					setTimeout(() => {
 						if (res.Data.Hotel.ID === 0) {
 							uni.navigateTo({
-								url: '/pages/form/form'
+								url: '/subpackageA/form/form'
 							});
 						} else {
 							uni.switchTab({
@@ -224,30 +238,6 @@ import { userLogin } from '@/api/user.js'
 				} finally {
 					uni.hideLoading();
 				}
-			},
-			mydetail() {
-				uni.navigateTo({
-				    url: 'myinfo',
-				});
-			},
-			//登陆
-			loginFun() {
-				// uni.navigateTo({
-				// 	url: 'userLoginPage'
-				// })
-				uni.switchTab({
-					url: '../home/home'
-					})
-			},
-			phone() {
-				uni.navigateTo({
-				    url: 'phoneus',
-				});
-			},
-			setting() {
-				uni.navigateTo({
-				    url: 'setting',
-				});
 			}
     },
 		onLoad() {
@@ -449,19 +439,26 @@ import { userLogin } from '@/api/user.js'
 	}
 
 	.advantage-item {
-	width: 23%;
-	text-align: center;
-	margin-bottom: 20rpx;
+		width: 23%;
+		text-align: center;
+		margin-top: 20rpx;
+		position: relative;
 	}
 
 	.advantage-icon {
-	width: 80rpx;
-	height: 80rpx;
-	margin-bottom: 10rpx;
+		width: 120rpx;
+		height: 120rpx;
+		margin-bottom: 10rpx;
 	}
 
 	.advantage-text {
-	font-size: 26rpx;
+		font-size: 26rpx;
+		position: absolute;
+		left: 0;
+		right:0;
+		top:30rpx;
+		bottom:0;
+		margin:auto;
 	}
 
 	.custom-tab {

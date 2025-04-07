@@ -72,10 +72,12 @@ const request = (config) => {
           title: '网络请求失败',
           icon: 'none',
         });
-        uni.removeStorageSync('token')
-        uni.reLaunch({
-          url: '/pages/user/user'
-        })
+        uni.removeStorageSync('userInfo')
+        uni.removeStorageSync('user_info'); // 清除本地存储的 用户信息
+        uni.removeStorageSync('token'); // 清除本地存储的 token
+        uni.switchTab({
+          url: '/pages/user/user',
+        });
         reject(new Error('登录已过期，请重新登录'))
         reject(err);
       },

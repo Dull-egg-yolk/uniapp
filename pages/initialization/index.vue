@@ -27,7 +27,7 @@ export default {
           });
         } else {
           uni.navigateTo({
-            url: '../form/form'
+            url: '/subpackageA/form/from'
           });
         }
       }else {
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../../common/index.css';
+@import '@/common/index.css';
 .container {
   background-color: #f6f6f6;
 }

@@ -1,39 +1,48 @@
 {
   "pages": [
     "pages/initialization/index",
-    "pages/login/login",
-    "pages/warehouseManagement/index",
-    "pages/classification/index",
-    "pages/enter/index",
-    "pages/itemPage/index",
-    "pages/stocktaking/index",
-    "pages/export/index",
-    "pages/inventoryDetails/index",
-    "pages/realTimeInventoryDetails/index",
-    "pages/monthTimeInventoryDetails/index",
-    "pages/stockInventoryDetails/index",
-    "pages/newStocktaking/index",
-    "pages/changeItem/index",
-    "pages/checking/index",
-    "pages/inventoryReport/index",
-    "pages/lian/lian",
-    "pages/earlyWarning/index",
-    "pages/user/myFeedback",
-    "pages/itemDetail/index",
     "pages/home/home",
-    "pages/form/form",
-    "pages/user/user",
-    "pages/user/InvitationGifts",
-    "pages/user/setting",
-    "pages/user/addHome",
-    "pages/webview/webview",
-    "pages/user/userInfo",
-    "pages/user/renew",
-    "pages/user/feedback",
-    "pages/user/helpDoc",
-    "pages/user/teamData"
+    "pages/user/user"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "subpackageA",
+      "pages": [
+        "warehouseManagement/index",
+        "classification/index",
+        "enter/index",
+        "itemPage/index",
+        "stocktaking/index",
+        "export/index",
+        "inventoryDetails/index",
+        "realTimeInventoryDetails/index",
+        "monthTimeInventoryDetails/index",
+        "stockInventoryDetails/index",
+        "newStocktaking/index",
+        "changeItem/index",
+        "checking/index",
+        "inventoryReport/index",
+        "lian/lian",
+        "earlyWarning/index",
+        "itemDetail/index",
+        "form/form"
+      ]
+    },
+    {
+      "root": "subpackageB",
+      "pages": [
+        "myFeedback",
+        "InvitationGifts",
+        "addHome",
+        "webview/webview",
+        "userInfo",
+        "renew",
+        "feedback",
+        "helpDoc",
+        "teamData"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#fff",
@@ -59,12 +68,6 @@
       }
     ]
   },
-  "usingComponents": {
-    "global-popup": "/components/global-popup/global-popup",
-    "tips-popup": "/components/tips-popup/tips-popup",
-    "inout-popup": "/components/inout-popup/inout-popup",
-    "img-popup": "/components/img-popup/img-popup",
-    "invite-friends-popup": "/components/inviteFriends-popup/inviteFriends-popup",
-    "stock-popup": "/components/stock-popup/stock-popup"
-  }
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
 }

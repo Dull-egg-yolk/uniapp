@@ -163,17 +163,24 @@
 		border-radius: 10rpx;
 }
 .advantage-item.data-v-66183739 {
-	width: 23%;
-	text-align: center;
-	margin-bottom: 20rpx;
+		width: 23%;
+		text-align: center;
+		margin-top: 20rpx;
+		position: relative;
 }
 .advantage-icon.data-v-66183739 {
-	width: 80rpx;
-	height: 80rpx;
-	margin-bottom: 10rpx;
+		width: 120rpx;
+		height: 120rpx;
+		margin-bottom: 10rpx;
 }
 .advantage-text.data-v-66183739 {
-	font-size: 26rpx;
+		font-size: 26rpx;
+		position: absolute;
+		left: 0;
+		right:0;
+		top:30rpx;
+		bottom:0;
+		margin:auto;
 }
 .custom-tab.data-v-66183739 {
 	position: fixed;

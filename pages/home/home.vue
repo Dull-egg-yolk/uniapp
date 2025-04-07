@@ -58,6 +58,7 @@
 
 <script>
 import TabBar from '../../components/custom-tab-bar/tabBar.vue';
+import globalPopup from '@/components/global-popup/global-popup.vue'
 import { userPage, appConfig, getAppMessage } from '@/api/user.js'
 export default {
   data() {
@@ -89,9 +90,9 @@ export default {
     const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
     this.menuButtonWidth = menuButtonInfo.width;
     this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
-    this.userInfo = uni.getStorageSync('userInfo');
   },
   onShow() {
+    this.userInfo = uni.getStorageSync('userInfo');
     this.getAppMessage();
     this.userPage();
     this.appConfig();
@@ -103,8 +104,8 @@ export default {
     }
 	},
   components: {
-    TabBar
-    // 'custom-tab-bar': () => import('../custom-tab-bar/index.vue'),
+    TabBar,
+    globalPopup
   },
   methods: {
     gotoUser(){
@@ -137,7 +138,7 @@ export default {
     },
     navigateTo(page) {
       uni.navigateTo({
-        url: `/pages/${page}/index`,
+        url: `/subpackageA/${page}/index`,
         success: () => {
           // 跳转成功后触发事件（确保B页面已初始化）
           setTimeout(() => {

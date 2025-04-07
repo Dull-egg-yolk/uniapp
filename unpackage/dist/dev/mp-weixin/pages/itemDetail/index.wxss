@@ -25,12 +25,15 @@
   left: 0;
 }
 .movable-view.data-v-0e6d1140 {
-  width: 60px;
-  height: 60px;
+  width: 120rpx;
+  height: 120rpx;
+}
+.floating-button-icon.data-v-0e6d1140 {
+  margin-bottom: 26rpx;
 }
 .floating-button.data-v-0e6d1140 {
-  width: 60px;
-  height: 60px;
+  width: 120rpx;
+  height: 120rpx;
   background-color: red;
   border-radius: 50%;
   display: flex;
@@ -43,10 +46,15 @@
   transition: background-color 0.3s, transform 0.3s;
   transition: background-color 0.3s, transform 0.3s, -webkit-transform 0.3s;
 }
+.floating-button-img.data-v-0e6d1140 {
+  height: 120rpx;
+}
+.floating-button-img .img.data-v-0e6d1140 {
+  width: 120rpx;
+  height: 120rpx;
+}
 .floating-button-active.data-v-0e6d1140 {
-  background-color: #ff3b30; /* 中间按钮激活时的背景色 */
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg); /* 中间按钮激活时的旋转效果 */
+  background-color: #fff;
 }
 .additional-button.data-v-0e6d1140 {
   width: 60px;
