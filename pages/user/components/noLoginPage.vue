@@ -2,17 +2,26 @@
     <view >
 		<!-- 登录/注册区 -->
   <view class="login-section">
-    <image src="@/static/img/user.png" mode="aspectFit" class="avatar"></image>
+    <image src="@/static/img/header-img.svg" mode="aspectFit" class="avatar"></image>
     <view class="login-info">
       <view class="login-title">
 		<view>
 			<!-- 在页面中添加按钮 -->
-			<button 
+			<!-- <button 
 				class="login-btn"
 				@click="getWxUserInfo"
 			>
 			 微信一键登录
+			</button> -->
+			<button 
+				open-type="getPhoneNumber"
+				@getphonenumber="onGetPhoneNumber"
+				class="login-btn"
+				@click="getUserInfo"
+			>
+			登录/注册
 			</button>
+			<!-- <button type="primary" class="btn-login" @click="getUserInfo">一键登录</button> -->
 		</view>
 		
 	  </view>
@@ -98,6 +107,15 @@ import { userLogin, appConfig } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
+		async getUserInfo(e) {
+			const res = await uni.getUserProfile({
+				desc: '用于获取您的个人信息',
+				success: res => {
+					uni.setStorageSync('userInfo', res.userInfo);
+				},
+				fail: res => console.log('取消了授权')
+			});
+		},
 			async appConfig() {
 			  await appConfig().then(res => {
 					if (res.ErrorMsg) {
@@ -121,70 +139,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 					url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
 				})
 			},
-			async getWxUserInfo() {
-				try {
-        // 1. 获取用户信息
-				uni.showLoading({
-					title: '登录中...',
-				})
-        const userInfo = await this.getUserProfile()
-				console.log(userInfo, 'userInfo');
-				uni.setStorageSync('userInfo', userInfo);
-        // 2. 微信登录获取code
-        const [ErrorMsg,loginRes] = await uni.login({ provider: 'weixin' })
-				console.log(loginRes, 'loginRes');
-				
-        // 3. 发送到后端
-				const params = {
-					Name: userInfo.nickName,
-					WxCode: loginRes.code,
-					Avatar: userInfo.avatarUrl,
-					InvitedByHotelID: 0
-				}
-				const res = await userLogin(params)
-				if (res.ErrorMsg) {
-          uni.showToast({
-            title: res.ErrorMsg,
-            icon: "none"
-          });
-        } else {
-					uni.hideLoading()
-          uni.setStorageSync('token', res.Data.Token);
-          uni.setStorageSync('user_info', res.Data);
-          uni.showToast({
-            title: '登录成功',
-            icon: "none"
-          });
-					setTimeout(() => {
-						if (res.Data.Hotel.ID === 0) {
-							uni.navigateTo({
-								url: '/subpackageA/form/form'
-							});
-						} else {
-							uni.switchTab({
-								url: '/pages/home/home'
-							});
-						}
-					}, 300)
-        }
-					
-					// 处理登录结果...
-				} catch (error) {
-					console.error('登录失败:', error)
-				}
-			},
-			getUserProfile() {
-				return new Promise((resolve, reject) => {
-					uni.getUserProfile({
-						desc: '用于完善会员信息',
-						success: (res) => resolve(res.userInfo),
-						fail: (err) => reject(err)
-					})
-				})
-			},
 			async onGetPhoneNumber(e) {
-				console.log('999');
-				
 				// 1. 检查是否授权成功
 				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
@@ -195,55 +150,57 @@ import { userLogin, appConfig } from '@/api/user.js'
 				uni.showLoading({ title: '登录中...', mask: true });
 
 				try {
-					console.log(1111);
-					
-					// 1. 获取用户信息
-					const userInfo = await this.getUserProfile()
-          console.log(userInfo, 'userInfo');
-					console.log(12222);
 					// 3. 获取微信登录code
 					const [loginErr, loginRes] = await uni.login({
 						provider: 'weixin'
 					});
-					console.log(1333);
-					if (loginErr) throw new Error('微信登录失败');
-					// this.getWxUserInfo()
-					// 4. 发送到后端解密
-					// const [requestErr, res] = await uni.request({
-					// 	url: 'https://your-api-domain.com/api/decrypt-phone',
-					// 	method: 'POST',
-					// 	data: {
-					// 		code: loginRes.code,
-					// 		encryptedData: e.detail.encryptedData,
-					// 		iv: e.detail.iv
-					// 	}
-					// });
-					console.log(loginRes, 'loginRes');
-					
-					if (requestErr || res.data.code !== 200) {
-						throw new Error(res.data?.msg || '解密手机号失败');
+					const userInfo =  uni.getStorageSync('userInfo')
+					const invited = uni.getStorageSync('launchOptions')
+					invited.query.InvitedByHotelID
+					const params = {
+						Name: userInfo.nickName,
+						WxCode: loginRes.code,
+						Avatar: userInfo.avatarUrl,
+						InvitedByHotelID: invited.query.InvitedByHotelID || 0,
+						InvitedCode: invited.query.InvitedCode || '',
 					}
-					this.hasLogin = true;
-					this.userInfo = {
-						...res.data.data,
-						phoneNumber: res.data.data.phoneNumber.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2')
-					};
-					
-					// 6. 存储登录状态
-					uni.setStorageSync('token', res.data.token);
-					uni.showToast({ title: '登录成功' });
+					const res = await userLogin(params)
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+						uni.hideLoading()
+						uni.setStorageSync('token', res.Data.Token);
+						uni.setStorageSync('user_info', res.Data);
+						uni.showToast({
+							title: '登录成功',
+							icon: "none"
+						});
+						setTimeout(() => {
+							if (res.Data.Hotel.ID === 0) {
+								uni.navigateTo({
+									url: '/subpackageA/form/form'
+								});
+							} else {
+								uni.switchTab({
+									url: '/pages/home/home'
+								});
+							}
+						}, 300)
+					}
 					
 				} catch (error) {
 					uni.showToast({ title: error.message, icon: 'none' });
 				} finally {
-					uni.hideLoading();
 				}
 			}
     },
-		onLoad() {
+		onLoad(options) {
+			console.log(options, 11111);
 			// 检查已有登录状态
 			if (uni.getStorageSync('token')) {
-				this.hasLogin = true;
 				this.userInfo = uni.getStorageSync('userInfo') || {};
 			}
 		}
@@ -425,9 +382,8 @@ import { userLogin, appConfig } from '@/api/user.js'
   }
 
 	.advantage-section {
-		
-		/* padding: 20rpx; */
 		margin: 20rpx 0;
+		padding: 40rpx 0;
 	}
 
 	.advantage-list {
@@ -443,6 +399,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 		text-align: center;
 		margin-top: 20rpx;
 		position: relative;
+		margin-bottom: 0;
 	}
 
 	.advantage-icon {

@@ -21,7 +21,30 @@ Vue.prototype.checkLogin = function(backpage, backtype) {
 	// 	});
 	// }
 }
-
+Vue.mixin({
+  onShareAppMessage(res) {
+		const InvitedCode = uni.getStorageSync('user_info').InvitedCode
+    return {
+      title: '自己有会员，经营更稳健',  // 必填
+      path: `/pages/user/user?InvitedByCode=${InvitedCode}`, // 必填，分享页面路径
+      imageUrl: '/static/img/logo.png',
+      success(res) {
+        console.log('分享成功', res);
+        uni.showToast({ title: '分享成功' });
+      },
+      fail(err) {
+        console.log('分享失败', err);
+      }
+    }
+  },
+	onShareTimeline() {
+		return {
+			title: '快来加入我们吧',
+			query: `InvitedByCode=${InvitedCode}`,
+			imageUrl: '/static/img/logo.png'
+		};
+	}
+});
 App.mpType = 'app'
 
 const app = new Vue({

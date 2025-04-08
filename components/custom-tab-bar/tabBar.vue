@@ -113,7 +113,7 @@ export default {
 .tabbar {
   display: flex;
   height: 120rpx;
-  background: url("/static/img/tab.jpg") no-repeat;
+  background: url("/static/img/tab1.png") no-repeat;
   background-size: 100% auto;
   /* border-top: 1rpx solid #f0f0f0; */
 }
@@ -129,9 +129,10 @@ export default {
 }
 
 .icon {
-  width: 66rpx;
-  height: 66rpx;
+  width: 60rpx;
+  height: 60rpx;
   color:rgba(190,190,190,1);
+  margin-top: 14rpx;
 }
 
 .text {
@@ -175,7 +176,7 @@ export default {
    position: absolute;
   width: 110rpx;
   height: 110rpx;
-  top:-20rpx;
+  top:-26rpx;
   left: 50%;
   margin-left: -55rpx;
   background-size: cover;

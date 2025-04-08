@@ -155,10 +155,14 @@ export default {
       this.$refs.InviteFriendsPopup.open()
     },
     // 分享好友功能配置
-    onShareAppMessage() {
+    onShareAppMessage(res) {
+      console.log(res, '分享好友');
+      const userInfo = uni.getStorageSync('user_info')
+      console.log(userInfo.Hotel.ID, '888');
+      
       return {
         title: '快来加入我们吧',  // 必填
-        path: `/pages/user/user?InvitedCode=${this.InvitedCode}`, // 必填，分享页面路径
+        path: `/pages/user/user?InvitedByCode=${this.InvitedCode}&InvitedByHotelID=${userInfo.Hotel.ID}`, // 必填，分享页面路径
         imageUrl: '/static/img/weixin.png', // 可选，分享图片
         desc: '自己有会员，经营更稳健',   // 可选，微信小程序支持
         success(res) {

@@ -9,7 +9,7 @@
         >
         <view class="shop"
           >{{ userList.Hotel.Name }}
-          <!-- <img class="svg-bkg-diamond" src="/static/images/iconPark-level.svg" alt=""> -->
+          <img class="svg-bkg-diamond" src="/static/images/iconPark-level.svg" alt="">
         </view>
         <view class="member"
           >{{userList.PrimeRight.Name}}，有效期至 
@@ -41,13 +41,16 @@ export default {
     return {
       userList: {
         PrimeRight:{
-          Name: '',
-          ExpireAt: ''
+          Name: ''
         },
         UserHotelRole: {
           Role: ''
         },
+        Hotel: {
+          Name: ''
+        }
       },
+      userAvatar: '',
       showRenew: true,
       teamData: {
         'superuser': '超级管理员',
@@ -58,10 +61,13 @@ export default {
   },
   mounted() {
     if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo")
+      this.userAvatar = uni.getStorageSync("userInfo");
     }
-    if (uni.getStorageSync("user_info")) {
-      this.userList = uni.getStorageSync("user_info");
+    const cachedUser = uni.getStorageSync('user_info');
+    if (cachedUser) {
+      this.userList = cachedUser; // 覆盖默认值
+    }else{
+      console.log('未找到用户缓存'); 
     }
     const otherList = uni.getStorageSync('user_page')['fe:other']
     const renew = otherList.find(item => item.Name === '续费');
@@ -72,32 +78,16 @@ export default {
     }
   },
   onShow() {
-    // if (uni.getStorageSync("userInfo")) {
-    //   this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
-    // }
-    // if (uni.getStorageSync("user_info")) {
-    //   this.userList = uni.getStorageSync("user_info");
-    // }
-    // const otherList = uni.getStorageSync('user_page')['fe:other']
-    // const renew = otherList.find(item => item.Name === '续费');
-    // if (renew) {
-    //   this.showRenew = true;
-    // } else {
-    //   this.showRenew = false;
-    // }
   },
   methods: {
     // 续费
     goRenewPage: throttle(function() {
       wx.navigateTo({
-        url: "/pages/user/renew", // 替换为实际广告页面路径
+        url: "/subpackageB/renew",
       });
     }, 1000),
   },
   onLoad(option) {
-    if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
-    }
 	},
 };
 </script>

@@ -3,7 +3,7 @@ import request from '@/api/request.js';
 // 初始化提交
 export const submitHotel = (data) => {
   return request({
-    url: '/api/hotel/item',
+    url: '/ims-webapp/hotel/item',
     method: 'POST',
     data: data,
   });
@@ -12,7 +12,7 @@ export const submitHotel = (data) => {
 // 获取反馈
 export const getAppFeedback = (data) => {
   return request({
-    url: '/api/app/feedback',
+    url: '/ims-webapp/app/feedback',
     method: 'GET',
     data: data,
   });
@@ -21,7 +21,7 @@ export const getAppFeedback = (data) => {
 // 新增反馈
 export const addAppFeedback = (data) => {
   return request({
-    url: '/api/app/feedback',
+    url: '/ims-webapp/app/feedback',
     method: 'POST',
     data: data,
   });
@@ -30,7 +30,7 @@ export const addAppFeedback = (data) => {
 // 获取帮助文档
 export const getAppHelp = (data) => {
   return request({
-    url: '/api/app/help',
+    url: '/ims-webapp/app/help',
     method: 'GET',
     data: data,
   });
@@ -38,14 +38,14 @@ export const getAppHelp = (data) => {
 // 获取消息
 export const getAppMessage = (data) => {
   return request({
-    url: '/api/app/message',
+    url: '/ims-webapp/app/message',
     method: 'GET',
     data: data,
   });
 };
 export const readAppMessage = (data) => {
   return request({
-    url: '/api/app/message/read',
+    url: '/ims-webapp/app/message/read',
     method: 'POST',
     data: data,
   });
@@ -53,7 +53,7 @@ export const readAppMessage = (data) => {
 // 获取酒店人员
 export const getHotelUser = (data) => {
   return request({
-    url: '/api/hotel/user',
+    url: '/ims-webapp/hotel/user',
     method: 'GET',
     data: data,
   });
@@ -61,7 +61,7 @@ export const getHotelUser = (data) => {
 // 更新酒店人员角色
 export const updateHotelUser = (data) => {
   return request({
-    url: '/api/hotel/user',
+    url: '/ims-webapp/hotel/user',
     method: 'PUT',
     data: data,
   });
@@ -69,7 +69,7 @@ export const updateHotelUser = (data) => {
 // 删除酒店人员
 export const deleteHotelUser = (data) => {
   return request({
-    url: '/api/hotel/user',
+    url: '/ims-webapp/hotel/user',
     method: 'DELETE',
     data: data,
   });
@@ -77,7 +77,7 @@ export const deleteHotelUser = (data) => {
 // 获取用户配置
 export const getUserConfig = (data) => {
   return request({
-    url: '/api/user/config',
+    url: '/ims-webapp/user/config',
     method: 'GET',
     data: data,
   });
@@ -86,7 +86,7 @@ export const getUserConfig = (data) => {
 // 获取用户信息
 export const getUserInfo = (data) => {
   return request({
-    url: '/api/user/info',
+    url: '/ims-webapp/user/info',
     method: 'GET',
     data: data,
   });
@@ -95,7 +95,7 @@ export const getUserInfo = (data) => {
 // 获取邀请记录
 export const getUserInvite = (data) => {
   return request({
-    url: '/api/user/invite',
+    url: '/ims-webapp/user/invite',
     method: 'GET',
     data: data,
   });
@@ -103,7 +103,7 @@ export const getUserInvite = (data) => {
 // 获取会员套餐
 export const getUserPrime = (data) => {
   return request({
-    url: '/api/user/prime/plan',
+    url: '/ims-webapp/user/prime/plan',
     method: 'GET',
     data: data,
   });
@@ -111,7 +111,7 @@ export const getUserPrime = (data) => {
 // 获取可用优惠卷
 export const getUserShopping = (data) => {
   return request({
-    url: '/api/user/shopping/coupon',
+    url: '/ims-webapp/user/shopping/coupon',
     method: 'GET',
     data: data,
   });
@@ -119,7 +119,7 @@ export const getUserShopping = (data) => {
 // 登录
 export const userLogin = (data) => {
   return request({
-    url: '/api/user/login',
+    url: '/ims-webapp/user/login',
     method: 'POST',
     data: data,
   });
@@ -127,14 +127,14 @@ export const userLogin = (data) => {
 
 export const userPage = (data) => {
   return request({
-    url: '/api/app/page',
+    url: '/ims-webapp/app/page',
     method: 'GET',
     data: data,
   });
 };
 export const appConfig = (data) => {
   return request({
-    url: '/api/app/config',
+    url: '/ims-webapp/app/config',
     method: 'GET',
     data: data,
   });

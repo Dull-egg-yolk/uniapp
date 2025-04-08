@@ -68,6 +68,10 @@
   margin-right: 10rpx;
   width: 160rpx;
 }
+.label .span.data-v-789c2329 {
+  color: red;
+  margin-left: 10rpx;
+}
 .input.data-v-789c2329 {
   height: 80rpx;
   /* border: 1rpx solid #eee; */

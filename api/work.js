@@ -2,7 +2,7 @@ import request from '@/api/request.js';
 // 获取分类
 export const getHotelClass = (data) => {
   return request({
-    url: '/api/hotel/class',
+    url: '/ims-webapp/hotel/class',
     method: 'GET',
     data: data,
   });
@@ -10,7 +10,7 @@ export const getHotelClass = (data) => {
 // 新增分类
 export const addHotelClass = (data) => {
   return request({
-    url: '/api/hotel/class',
+    url: '/ims-webapp/hotel/class',
     method: 'POST',
     data: data,
   });
@@ -18,7 +18,7 @@ export const addHotelClass = (data) => {
 // 修改分类
 export const updateHotelClass = (data) => {
   return request({
-    url: '/api/hotel/class',
+    url: '/ims-webapp/hotel/class',
     method: 'PUT',
     data: data,
   });
@@ -26,7 +26,7 @@ export const updateHotelClass = (data) => {
 // 删除分类
 export const deleteHotelClass = (data) => {
   return request({
-    url: '/api/hotel/class',
+    url: '/ims-webapp/hotel/class',
     method: 'DELETE',
     data: data,
   });
@@ -34,7 +34,7 @@ export const deleteHotelClass = (data) => {
 // 获取仓库列表
 export const getWarehouse = (data) => {
   return request({
-    url: '/api/hotel/warehouse',
+    url: '/ims-webapp/hotel/warehouse',
     method: 'GET',
     data: data,
   });
@@ -42,7 +42,7 @@ export const getWarehouse = (data) => {
 // 修改仓库
 export const updateWarehouse = (data) => {
   return request({
-    url: '/api/hotel/warehouse',
+    url: '/ims-webapp/hotel/warehouse',
     method: 'PUT',
     data: data,
   });
@@ -50,7 +50,7 @@ export const updateWarehouse = (data) => {
 // 新增仓库
 export const addWarehouse = (data) => {
   return request({
-    url: '/api/hotel/warehouse',
+    url: '/ims-webapp/hotel/warehouse',
     method: 'POST',
     data: data,
   });
@@ -58,7 +58,7 @@ export const addWarehouse = (data) => {
 // 删除仓库
 export const deleteWarehouse = (data) => {
   return request({
-    url: '/api/hotel/warehouse',
+    url: '/ims-webapp/hotel/warehouse',
     method: 'DELETE',
     data: data,
   });
@@ -66,7 +66,7 @@ export const deleteWarehouse = (data) => {
 // 删除商品
 export const deleteGoodsItme = (data) => {
   return request({
-    url: '/api/goods/item',
+    url: '/ims-webapp/goods/item',
     method: 'DELETE',
     data: data,
   });
@@ -74,7 +74,7 @@ export const deleteGoodsItme = (data) => {
 // 获取商品列表
 export const getGoodsItme = (data) => {
   return request({
-    url: '/api/goods/item',
+    url: '/ims-webapp/goods/item',
     method: 'GET',
     data: data,
   });
@@ -82,7 +82,7 @@ export const getGoodsItme = (data) => {
 // 修改商品
 export const updateGoodsItme = (data) => {
   return request({
-    url: '/api/goods/item',
+    url: '/ims-webapp/goods/item',
     method: 'PUT',
     data: data,
   });
@@ -90,7 +90,7 @@ export const updateGoodsItme = (data) => {
 // 新增商品
 export const addGoodsItme = (data) => {
   return request({
-    url: '/api/goods/item',
+    url: '/ims-webapp/goods/item',
     method: 'POST',
     data: data,
   });
@@ -99,7 +99,7 @@ export const addGoodsItme = (data) => {
 // 初始化提交
 export const submitHotel = (data) => {
   return request({
-    url: '/api/hotel/item',
+    url: '/ims-webapp/hotel/item',
     method: 'POST',
     data: data,
   });
@@ -107,7 +107,7 @@ export const submitHotel = (data) => {
 // 新增盘点
 export const addStockTaking = (data) => {
   return request({
-    url: '/api/stock/taking',
+    url: '/ims-webapp/stock/taking',
     method: 'POST',
     data: data,
   });
@@ -115,7 +115,7 @@ export const addStockTaking = (data) => {
 // 修改盘点
 export const updateStockTaking = (data) => {
   return request({
-    url: '/api/stock/taking',
+    url: '/ims-webapp/stock/taking',
     method: 'PUT',
     data: data,
   });
@@ -123,7 +123,7 @@ export const updateStockTaking = (data) => {
 // 获取盘点
 export const getStockTaking = (data) => {
   return request({
-    url: '/api/stock/taking',
+    url: '/ims-webapp/stock/taking',
     method: 'GET',
     data: data,
   });
@@ -132,7 +132,7 @@ export const getStockTaking = (data) => {
 // 商品列表下拉
 export const getGoodsString = (data) => {
   return request({
-    url: '/api/goods/string',
+    url: '/ims-webapp/goods/string',
     method: 'GET',
     data: data,
   });
@@ -140,7 +140,7 @@ export const getGoodsString = (data) => {
 // 获取当前盘点列表
 export const getStockTakingString = (data) => {
   return request({
-    url: '/api/stock/taking/goods',
+    url: '/ims-webapp/stock/taking/goods',
     method: 'GET',
     data: data,
   });
@@ -148,7 +148,7 @@ export const getStockTakingString = (data) => {
 // 盘点填写数量（个）
 export const updateStockTakingString = (data) => {
   return request({
-    url: '/api/stock/taking/goods',
+    url: '/ims-webapp/stock/taking/goods',
     method: 'PUT',
     data: data,
   });
@@ -156,7 +156,7 @@ export const updateStockTakingString = (data) => {
 // 新增选择商品
 export const addStockTakingString = (data) => {
   return request({
-    url: '/api/stock/taking/goods',
+    url: '/ims-webapp/stock/taking/goods',
     method: 'POST',
     data: data,
   });
@@ -164,7 +164,7 @@ export const addStockTakingString = (data) => {
 // 获取盘点统计信息
 export const getStockTakingStringSummary = (data) => {
   return request({
-    url: '/api/stock/taking/goods/summary',
+    url: '/ims-webapp/stock/taking/goods/summary',
     method: 'GET',
     data: data,
   });
@@ -173,7 +173,7 @@ export const getStockTakingStringSummary = (data) => {
 // 获取月度用户消耗表
 export const getReportConsumeMonth = (data) => {
   return request({
-    url: '/api/report/consume/month',
+    url: '/ims-webapp/report/consume/month',
     method: 'GET',
     data: data,
   });
@@ -181,7 +181,7 @@ export const getReportConsumeMonth = (data) => {
 // 发送邮件
 export const reportEmail = (data) => {
   return request({
-    url: '/api/report/email',
+    url: '/ims-webapp/report/email',
     method: 'POST',
     data: data,
   });
@@ -190,7 +190,7 @@ export const reportEmail = (data) => {
 // 获取实时库存明细
 export const getReportGoodsCurrent = (data) => {
   return request({
-    url: '/api/report/goods/current',
+    url: '/ims-webapp/report/goods/current',
     method: 'GET',
     data: data,
   });
@@ -199,7 +199,7 @@ export const getReportGoodsCurrent = (data) => {
 // 获取出入库明细
 export const getStockOperate = (data) => {
   return request({
-    url: '/api/stock/operate',
+    url: '/ims-webapp/stock/operate',
     method: 'GET',
     data: data,
   });
@@ -207,7 +207,7 @@ export const getStockOperate = (data) => {
 // 出入库
 export const addStockOperate = (data) => {
   return request({
-    url: '/api/stock/operate',
+    url: '/ims-webapp/stock/operate',
     method: 'POST',
     data: data,
   });
@@ -215,7 +215,7 @@ export const addStockOperate = (data) => {
 // 获取商品二维码
 export const getQrcode = (data) => {
   return request({
-    url: '/api/goods/item/qrcode',
+    url: '/ims-webapp/goods/item/qrcode',
     method: 'GET',
     data: data,
   });
@@ -223,7 +223,7 @@ export const getQrcode = (data) => {
 // 商品详情进入盘点
 export const goodsDirectly = (data) => {
   return request({
-    url: '/api/stock/taking/goods/directly',
+    url: '/ims-webapp/stock/taking/goods/directly',
     method: 'POST',
     data: data,
   });

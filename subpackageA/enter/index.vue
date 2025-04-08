@@ -14,37 +14,37 @@
     <!-- 表单 -->
     <view class="form">
       <view class="form-item">
-        <text class="label">物品名称 *</text>
+        <text class="label">物品名称 <text class="span">*</text></text> 
         <input class="input" v-model="form.Name" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">单位 *</text>
+        <text class="label">单位 <text class="span">*</text></text>
         <input class="input" v-model="form.Uint" placeholder="个" />
       </view>
       <view class="form-item">
-        <text class="label">规格</text>
+        <text class="label">规格 <text class="span">*</text></text>
         <input class="input" v-model="form.Format" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">单价</text>
+        <text class="label">单价 <text class="span">*</text></text>
         <input class="input" v-model="form.Price" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">分类</text>
+        <text class="label">分类 <text class="span">*</text></text>
         <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
           <view class="date-picker">{{ selectedClass }}</view>
         </picker>
       </view>
       <view class="form-item">
-        <text class="label">供货商</text>
+        <text class="label">供货商 <text class="span">*</text></text>
         <input class="input" v-model="form.Suppliers" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">最低库存</text>
+        <text class="label">最低库存 <text class="span">*</text></text>
         <input class="input" v-model="form.MinStock" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">最高库存</text>
+        <text class="label">最高库存 <text class="span">*</text></text>
         <input class="input" v-model="form.MaxStock" placeholder="请输入" />
       </view>
       <view class="form-item">
@@ -188,6 +188,56 @@ export default {
         });
         return;
       }
+      if (!this.form.Format) {
+        uni.showToast({
+          title: "请填写物品规格",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.Price) {
+        uni.showToast({
+          title: "请填写物品价格",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.ClassID) {
+        uni.showToast({
+          title: "请选择物品分类",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.Suppliers) {
+        uni.showToast({
+          title: "请填写物品供货商",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.MinStock) {
+        uni.showToast({
+          title: "请填写物品最小库存",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.MaxStock) {
+        uni.showToast({
+          title: "请填写物品最大库存",
+          icon: "none"
+        });
+        return;
+      }
+      if (!this.form.Image) {
+        uni.showToast({
+          title: "请上传物品图片",
+          icon: "none"
+        });
+        return;
+      }
+      
       // const res = await addGoodsItme(this.form);
       this.form.Price = Number(this.form.Price);
       this.form.MinStock = Number(this.form.MinStock);
@@ -294,6 +344,10 @@ export default {
   margin-bottom: 10rpx;
   margin-right: 10rpx;
   width: 160rpx;
+}
+.label .span {
+  color: red;
+  margin-left: 10rpx;
 }
 
 .input {

@@ -151,9 +151,8 @@
     text-decoration: underline;
 }
 .advantage-section.data-v-66183739 {
-		
-		/* padding: 20rpx; */
 		margin: 20rpx 0;
+		padding: 40rpx 0;
 }
 .advantage-list.data-v-66183739 {
 		background-color: #fff;
@@ -167,6 +166,7 @@
 		text-align: center;
 		margin-top: 20rpx;
 		position: relative;
+		margin-bottom: 0;
 }
 .advantage-icon.data-v-66183739 {
 		width: 120rpx;

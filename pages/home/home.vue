@@ -34,7 +34,7 @@
     </view>
     <view class="button-container">
       <view class="button-row">
-        <view class="function-button" v-for="item in functionList" :key="item.name" @click="navigateTo(item.url)">
+        <view class="function-button" v-for="item in functionData" :key="item.name" @click="navigateTo(item.url)">
           <img :src="`/static/images/${item.img}.svg`"/>
           <button class="btn">{{ item.name }}</button>
         </view>
@@ -71,6 +71,7 @@ export default {
         { icon: "new-guide", name: "盘点" ,url:'stocktaking', img: 'iconPark-checklist' },
         { icon: "info-feedback", name: "报表下载" ,url:'export', img: 'stLine-download-l' }
       ],
+      functionData: [],
       showMeg: true,
       popupContent: '',
       statusBarHeight: 0, // 状态栏高度
@@ -93,7 +94,6 @@ export default {
   },
   onShow() {
     this.userInfo = uni.getStorageSync('userInfo');
-    this.getAppMessage();
     this.userPage();
     this.appConfig();
     const isSHow = uni.getStorageSync('isShow')
@@ -102,6 +102,8 @@ export default {
     }else {
       this.isShow = true
     }
+    if (!this.userInfo) return;
+    this.getAppMessage();
 	},
   components: {
     TabBar,
@@ -180,7 +182,7 @@ export default {
           const result = this.functionList.filter(itemA => 
             tabList.some(itemB => itemB.Name === itemA.name)
             );
-          this.functionList = result;
+          this.functionData = result;
           const showMeg = tabList.find(item => item.Name === '查看预警');
           if (showMeg) {
             this.showMeg = true;
