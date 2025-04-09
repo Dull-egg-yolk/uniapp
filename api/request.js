@@ -1,6 +1,6 @@
 // utils/request.js
 
-const baseUrl = 'http://101.43.59.126:30001'; // 替换为你的接口地址
+const baseUrl = 'https://test-ims.jiudianhui.com.cn'; // 替换为你的接口地址
 
 // 请求拦截器
 const requestInterceptor = (config) => {
