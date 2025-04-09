@@ -125,6 +125,13 @@ export const userLogin = (data) => {
   });
 };
 
+export const userLogOut = (data) => {
+  return request({
+    url: '/ims-webapp/user/logout',
+    method: 'POST',
+    data: data,
+  });
+};
 export const userPage = (data) => {
   return request({
     url: '/ims-webapp/app/page',

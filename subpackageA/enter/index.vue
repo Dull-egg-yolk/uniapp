@@ -19,7 +19,7 @@
       </view>
       <view class="form-item">
         <text class="label">单位 <text class="span">*</text></text>
-        <input class="input" v-model="form.Uint" placeholder="个" />
+        <input class="input" v-model="form.Uint" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">规格 <text class="span">*</text></text>
@@ -155,7 +155,7 @@ export default {
                 const data = JSON.parse(res.data)
                 this.form.Image = `${this.qiniuDomain}/${data.key}`
                 this.imageUrl = `${this.qiniuDomain}/${data.key}`
-                console.log(this.form.Image);
+                console.log(this.form.Image, '0');
                 resolve(data)
               } else {
                 reject(new Error('上传失败'))
@@ -173,6 +173,10 @@ export default {
     },
     // 提交表单
     submitForm: throttle(async function() {
+      this.form.Price = Number(this.form.Price);
+      this.form.MinStock = Number(this.form.MinStock);
+      this.form.MaxStock = Number(this.form.MaxStock);
+      this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
       // 表单校验
       if (!this.form.Name) {
         uni.showToast({
@@ -237,13 +241,6 @@ export default {
         });
         return;
       }
-      
-      // const res = await addGoodsItme(this.form);
-      this.form.Price = Number(this.form.Price);
-      this.form.MinStock = Number(this.form.MinStock);
-      this.form.MaxStock = Number(this.form.MaxStock);
-      this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
-      // this.form.Image = 'https://cdn.uviewui.com/uview/album/1.jpg'
       await addGoodsItme(this.form).then(res=>{
         if (res.ErrorMsg) {
 					uni.showToast({
@@ -255,8 +252,6 @@ export default {
             title: "提交成功",
             icon: "success"
           });
-          // uni.navigateTo({ url: '/pages/itemPage/index' })
-                // 清空表单和图片
           this.form = {
             Name: "",
             Uint: "",
@@ -272,7 +267,7 @@ export default {
           this.imageUrl = "";
           }
       })
-    }, 1000),
+    }, 500),
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
     },

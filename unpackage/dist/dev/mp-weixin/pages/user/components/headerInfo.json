@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "logout-popup": "/components/logout-popup/lohout-popup"
+  },
   "component": true
 }
