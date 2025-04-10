@@ -78,7 +78,7 @@ export default {
           console.log(res.result);
           const result = JSON.parse(res.result)
           uni.navigateTo({
-            url: '/subpackageA/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+            url: '/subpackageA/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID + '&showScan=' + true
           })
           // 处理扫码结果
           // this.handleScanResult(res.result);

@@ -16,6 +16,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
+  z-index:1;
 }
 .container.data-v-22b2891c {
   background-color: #f6f6f6;

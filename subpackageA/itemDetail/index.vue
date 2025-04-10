@@ -10,7 +10,7 @@
     <view class="form">
       <view class="form-item">
         <text class="label">物品名称</text>
-        <input class="input" v-model="form.Name" disabled />
+        <input class="input" v-model="form.Name" :disabled="!showScan" />
       </view>
       <view class="form-item">
         <text class="label">单位</text>
@@ -40,10 +40,10 @@
         <text class="label">最高库存</text>
         <input class="input" v-model="form.MaxStock" disabled />
       </view>
-      <!-- <view class="form-item">
-        <text class="label">期初库存</text>
-        <input class="input" v-model="form.initialStock" disabled />
-      </view> -->
+      <view class="form-item">
+        <text class="label">实时库存</text>
+        <input class="input" v-model="form.CurrentStock" disabled />
+      </view>
       <view class="form-item">
         <text class="label">备注</text>
         <input class="input" v-model="form.Note" disabled />
@@ -54,6 +54,9 @@
      <view class="bottom-btn">
       <view class="qa-btn" @click="clickQrCode">
         <text>二维码</text>
+      </view>
+      <view class="update-btn" v-if="showScan" @click="updateItem">
+        <text>编辑</text>
       </view>
       <view class="del-btn" @click="delectItme">
         <text>删除</text>
@@ -124,6 +127,7 @@
 </template>
 
 <script>
+import { showModalAsync } from '@/util/modal.js';
 import imgPopup from '@/components/img-popup/img-popup.vue';
 import inoutPopup from '@/components/inout-popup/inout-popup.vue';
 import stockPopup from '@/components/stock-popup/stock-popup.vue';
@@ -134,12 +138,13 @@ const app = getApp(); // 获取 App 实例
 export default {
   data() {
     return {
+      showScan:false,
       imgContent: '',
       title: '',
       imageUrl: '',
       screenWidth: '',
       buttonX: 220, // 悬浮按钮的 X 坐标
-      buttonY: 340, // 悬浮按钮的 Y 坐标
+      buttonY: 380, // 悬浮按钮的 Y 坐标
       showAdditionalButtons: false, // 是否显示新增按钮
       isButtonDisabled: false, // 是否禁用中间按钮的拖动
       additionalButtons: [], // 动态生成的按钮
@@ -177,12 +182,7 @@ export default {
     console.log(option, 'option');
     this.GoodsId = option.goosId
     this.headerTitle = option.id
-    // setTimeout(() => {
-    //   uni.$on('data-detail', (res) => {
-    //     this.form = res.data
-    //     this.getGoodsItme()
-    //   });
-    // }, 100);
+    this.showScan = option.showScan
 	},
   onUnload() {
     uni.$off('data-detail'); // 解绑
@@ -193,6 +193,12 @@ export default {
      });
   },
   methods: {
+    updateItem(){
+      console.log(this.form, 'form');
+      uni.navigateTo({
+        url: '/subpackageA/enter/index?form=' + encodeURIComponent(JSON.stringify(this.form))
+      })
+    },
     closeSubButtons() {
       this.showAdditionalButtons = false
       this.isButtonDisabled = true;
@@ -205,26 +211,34 @@ export default {
         });
         return;
       }
-      const params = {
-        ID: this.form.ID
-      }
-      await deleteGoodsItme(params).then(res => {
-        console.log(res);
-        if(res.ErrorMsg){
-          uni.showToast({
-            title: res.ErrorMsg,
-            icon: "none"
+      try {
+        const confirm = await showModalAsync({
+          content: `确定删除${this.form.Name}吗？`
+        });
+        
+        if (confirm) {
+          const res = await deleteGoodsItme({
+            ID: this.form.ID
           });
-        }else{
-          uni.showToast({
-            title: '删除成功',
-            icon: "none"
-          });
-          uni.navigateTo({
-            url: '/subpackageA/itemPage/index'
-          })
+          
+          if (res.ErrorMsg) {
+            uni.showToast({ title: res.ErrorMsg, icon: "none" });
+          } else {
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 500,
+              complete: () => {
+                uni.navigateTo({
+                  url: '/subpackageA/itemPage/index'
+                })
+              }
+            });
+          }
         }
-      })
+      } catch (error) {
+        uni.showToast({ title: '删除失败', icon: "none" });
+      }
     }, 1000),
     async getGoodsItme(){
       await getGoodsItme({ID: this.GoodsId}).then(res => {
@@ -247,7 +261,7 @@ export default {
     },
     clickQrCode: throttle(async function() {
       const params = {
-        WarehouseID: this.form.HotelID,
+        WarehouseID: this.form.DefaultWarehouseID,
         GoodsID: this.form.ID
       }
       const res = await getQrcode(params)
@@ -261,11 +275,6 @@ export default {
         this.imgContent = this.form.Name + ' ' + this.form.Format + '/' + this.form.Uint
         
         this.$refs.imagePopup.open()
-
-        // this.decodeAndShowImage(res.Data)
-        // const decodedStr = this.decodeBase64(res.Data)
-        // console.log(decodedStr, '解码后的字符串');
-        // this.decodeAndShowImage(res.Data)
         
       }
     }, 500),
@@ -273,7 +282,6 @@ export default {
     onMove(e) {
       this.buttonX = e.detail.x;
       this.buttonY = e.detail.y;
-      // this.buttonX = Math.max(100, Math.min(this.screenWidth - 100, x));
     },
 
     // 切换新增按钮的显示和隐藏
@@ -301,11 +309,6 @@ export default {
     },
     // 处理动态按钮点击
     handleButtonClick(text) {
-      
-      // uni.showToast({
-      //   title: `点击了：${text}`,
-      //   icon: 'none',
-      // });
       if(text === '明细'){
         uni.navigateTo({
           url: '/subpackageA/inventoryDetails/index?id=' + this.form.ID
@@ -394,6 +397,9 @@ export default {
 
 <style scoped>
 @import '@/common/index.css';
+.container{
+  padding-top: 0;
+}
 .mask {
   position: fixed;
   top: 0;
@@ -466,34 +472,36 @@ export default {
   padding: 10rpx;
 }
 .image {
-    width: 160rpx;
-    height: 160rpx;
+    width: 200rpx;
+    height: 200rpx;
 }
 .form {
   margin-bottom: 100rpx;
 }
 
 .form-item {
+  height: 80rpx;
   display: flex;
   align-items: center;
   border-bottom: 1rpx solid #eee;
 }
 
 .label {
-  font-size: 32rpx;
-  font-weight: bold;
+  color: rgba(154,154,154,1);
+  font-size: 30rpx;
   margin-bottom: 10rpx;
   margin-right: 10rpx;
   width: 160rpx;
 }
 
 .input {
-  height: 80rpx;
+  height: 66rpx;
   /* border: 1rpx solid #eee; */
   padding: 10rpx;
   border-radius: 10rpx;
   display: flex;
   align-items: center;
+  font-size: 30rpx;
 }
 .bottom-btn {
   position: fixed;
@@ -517,6 +525,16 @@ export default {
   height: 80rpx;
   padding: 0 40rpx;
   background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.update-btn {
+  height: 80rpx;
+  padding: 0 40rpx;
+  background-color: #1587e8;
   color: #fff;
   display: flex;
   justify-content: center;

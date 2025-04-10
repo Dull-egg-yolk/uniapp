@@ -8,6 +8,14 @@ export const submitHotel = (data) => {
     data: data,
   });
 };
+// 更新酒店信息
+export const updateHotel = (data) => {
+  return request({
+    url: '/ims-webapp/hotel/item',
+    method: 'PUT',
+    data: data,
+  });
+};
 
 // 获取反馈
 export const getAppFeedback = (data) => {

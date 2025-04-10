@@ -45,11 +45,10 @@
           <view class="item-quantity">
             <text>盘点数量：</text>
             <input
-              :disabled ="item.Status !== 'InProgress'"
               lable="盘点数量"
-              v-model="item.Current"
+              :value="getValue(item.Current)"
               type="number"
-              placeholder="盘点数"
+              placeholder="请输入"
               class="input"
               @input="handleInput(item, index, $event)"
             />
@@ -100,6 +99,9 @@ export default {
     this.StockTakingRecordID = options.id;
   },
   methods: {
+    getValue(data) {
+      return data === 0 ?  '' : data
+    },
     onSave() {
       this.updateStockTaking();
     },
@@ -135,7 +137,7 @@ export default {
     // 盘点完成按钮
     nextStep: throttle(function() {
       // 校验 是否都盘点完成
-      const allFilled = this.inventoryList.every(item => item.Current !== '' && item.Current !== 0);
+      const allFilled = this.inventoryList.every(item => item.Current !== '');
       if(allFilled){
         this.$refs.tipsPopup.open()
       } else {

@@ -139,6 +139,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 20rpx;
+  border-bottom: 1px solid #e8e5e5;
+  padding-bottom: 10rpx;
 }
 .text {
   padding-left: 10rpx;

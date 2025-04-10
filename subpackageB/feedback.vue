@@ -345,7 +345,7 @@ export default {
   padding: 20rpx;
 }
 .label {
-  width: 160rpx;
+  width: 150rpx;
   color: #333;
 }
 .icon {

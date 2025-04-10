@@ -16,6 +16,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
+  z-index:1;
 }
 .container.data-v-3ac240c8 {
   background-color: #f5f5f5;
@@ -78,8 +79,14 @@
   border-radius: 10rpx;
   background-color: #fff;
   color: #918d8d;
+  font-size: 26rpx;
+}
+.uni-icon-wrapper.data-v-3ac240c8 {
+  margin-right: 10rpx;
 }
 .active-tab.data-v-3ac240c8 {
+  display: flex;
+  align-items: center;
   background-color: #fcca00;
   color: #000;
 }

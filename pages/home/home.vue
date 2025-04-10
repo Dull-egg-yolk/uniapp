@@ -3,7 +3,7 @@
      <!-- 自定义导航栏 -->
     <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
       <view class="custom-navbar-left" @click="gotoUser">
-        <image :src="userInfo.avatarUrl" class="avatar" />
+        <image :src="userInfo.avatarUrl || '/static/img/header-img.svg'" class="avatar" />
         <view class="name">
           <text>{{userInfo.nickName}}</text>
         </view>

@@ -16,6 +16,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
+  z-index:1;
 }
 .upload-section.data-v-789c2329 {
   margin-bottom: 40rpx;
@@ -56,17 +57,17 @@
   margin-bottom: 100rpx;
 }
 .form-item.data-v-789c2329 {
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
   display: flex;
   align-items: center;
   border-bottom: 1rpx solid #eee;
 }
 .label.data-v-789c2329 {
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 28rpx;
+  font-weight: 500;
   margin-bottom: 10rpx;
   margin-right: 10rpx;
-  width: 160rpx;
+  width: 150rpx;
 }
 .label .span.data-v-789c2329 {
   color: red;
@@ -79,6 +80,7 @@
   display: flex;
   align-items: center;
   color: #3e3c3c;
+  font-size: 28rpx;
 }
 .picker.data-v-789c2329 {
   height: 60rpx;

@@ -8,7 +8,8 @@
           <text class="description">{{ item.Place }}</text>
         </view>
         <view class="actions">
-          <text class="edit" @click="openEditPopup(index)">编辑 ></text>
+          <text class="edit" @click="openEditPopup(index)">编辑</text>
+          <text class="edit" @click="deletePopup(item)">删除</text>
         </view>
       </view>
     </view>
@@ -57,6 +58,7 @@
 </template>
 
 <script>
+import { showModalAsync } from '@/util/modal.js';
 import { throttle } from '@/util/throttle';
 import { getWarehouse, addWarehouse, updateWarehouse, deleteWarehouse } from "@/api/work.js";
 export default {
@@ -79,6 +81,37 @@ export default {
     };
   },
   methods: {
+    async deletePopup(data) {
+      try {
+        const confirm = await showModalAsync({
+          content: `确定删除${data.Name}吗？`
+        });
+        
+        if (confirm) {
+          const res = await deleteWarehouse({
+            ID: data.ID,
+            Name: data.Name,
+            Place: data.Place
+          });
+          
+          if (res.ErrorMsg) {
+            uni.showToast({ title: res.ErrorMsg, icon: "none" });
+          } else {
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 500,
+              complete: () => {
+                // 提示消失后执行
+                this.getWarehouseList();
+              }
+            });
+          }
+        }
+      } catch (error) {
+        uni.showToast({ title: '删除失败', icon: "none" });
+      }
+    },
     async getWarehouseList() {
       const res = await getWarehouse();
       console.log(res);
@@ -209,6 +242,12 @@ export default {
 .actions {
   /* color: #007aff; */
   font-size: 24rpx;
+}
+.edit {
+  border:1px solid #ccc;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
 }
 
 /deep/.uni-popup__wrapper{

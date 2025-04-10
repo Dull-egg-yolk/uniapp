@@ -2,7 +2,6 @@
   <view class="container">
     <!-- 上传照片 -->
     <view class="upload-section">
-      <view class="upload-label">照片</view>
       <view class="upload-div">
         <view class="upload-box" @click="chooseImage">
         <image v-if="imageUrl" :src="imageUrl" class="uploaded-image"></image>
@@ -70,7 +69,7 @@
 
 <script>
 import { throttle } from '@/util/throttle';
-import { addGoodsItme, getHotelClass, getQrcode } from "@/api/work";
+import { addGoodsItme, getHotelClass, getQrcode, updateGoodsItme } from "@/api/work";
 import { getUserConfig } from "@/api/user";
 import imgPopup from '@/components/img-popup/img-popup.vue';
 export default {
@@ -91,6 +90,7 @@ export default {
       uploadToken: '',
       classList: [],
       selectedClass: '请选择',
+      isUpdate: false,
       // 表单数据
       form: {
         Name: "",
@@ -187,23 +187,9 @@ export default {
           })
         })
     },
-    // 分类选择器变化事件
-    onCategoryChange(e) {
-      this.form.category = this.categories[e.detail.value];
-    },
     // 提交表单
     submitForm: throttle(async function() {
       this.form.Price = Number(this.form.Price);
-      console.log(typeof this.form.MinStock === 'number', '1');
-      console.log(this.form.MinStock === 0, '2');
-      
-      // if (this.form.MinStock === 0) {
-      //   this.form.MinStock = 0
-      // } else {
-      //   this.form.MinStock = Number(this.form.MinStock);
-      // }
-      
-      // this.form.MaxStock = Number(this.form.MaxStock);
       this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
       // 表单校验
       if (!this.form.Name) {
@@ -269,7 +255,41 @@ export default {
         });
         return;
       }
-      await addGoodsItme(this.form).then(res=>{
+      console.log(this.isUpdate, '1');
+      
+      if (this.isUpdate){
+        await updateGoodsItme(this.form).then(res=>{
+          if (res.ErrorMsg) {
+            uni.showToast({
+              title: res.ErrorMsg,
+              icon: "none"
+            });
+          } else{
+            this.DefaultWarehouseID = res.Data.DefaultWarehouseID
+            this.GoodsID = res.Data.ID
+            this.goodList = res.Data
+            uni.showToast({
+              title: "提交成功",
+              icon: "success"
+            });
+            this.form = {
+              Name: "",
+              Uint: "",
+              Format: "",
+              Price: "",
+              ClassID: "",
+              Suppliers: "",
+              MinStock: "",
+              MaxStock: "",
+              Image: "",
+              Note: ""
+            };
+            this.imageUrl = "";
+            this.getScan()
+            }
+        })
+      } else {
+        await addGoodsItme(this.form).then(res=>{
         if (res.ErrorMsg) {
 					uni.showToast({
 						title: res.ErrorMsg,
@@ -299,6 +319,7 @@ export default {
           this.getScan()
           }
       })
+      }
     }, 500),
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
@@ -333,6 +354,17 @@ export default {
     this.getHotelClassList();
     this.HotelID = uni.getStorageSync('user_info').Hotel.ID;
   },
+  async onLoad(options) {
+    await this.getHotelClassList();
+    const data = JSON.parse(decodeURIComponent(options.form))
+    if (data) {
+      this.isUpdate = true
+      console.log(data, 'options.form');
+      this.form = data;
+      this.imageUrl = data.Image;
+      this.selectedClass = this.classList.find(item => item.ID === data.ClassID).Name;
+    }
+  }
 };
 </script>
 
@@ -383,18 +415,18 @@ export default {
 }
 
 .form-item {
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
   display: flex;
   align-items: center;
   border-bottom: 1rpx solid #eee;
 }
 
 .label {
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 28rpx;
+  font-weight: 500;
   margin-bottom: 10rpx;
   margin-right: 10rpx;
-  width: 160rpx;
+  width: 150rpx;
 }
 .label .span {
   color: red;
@@ -407,7 +439,8 @@ export default {
   border-radius: 10rpx;
   display: flex;
   align-items: center;
-  color: #3e3c3c;;
+  color: #3e3c3c;
+  font-size: 28rpx;
 }
 .picker {
   height: 60rpx;

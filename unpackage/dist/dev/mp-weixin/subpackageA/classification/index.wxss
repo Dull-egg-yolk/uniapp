@@ -16,9 +16,16 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
+  z-index:1;
 }
 .list.data-v-df6765ea {
   margin-bottom: 100rpx;
+}
+.edit.data-v-df6765ea {
+  border:1px solid #ccc;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
 }
 .item.data-v-df6765ea {
   display: flex;

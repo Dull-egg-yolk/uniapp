@@ -15,7 +15,7 @@
         <text class="tab active-tab">生成报表</text>
       </view>
       <view class="filter-section">
-        <text>盘点人：洗发水</text>
+        <text>盘点人：{{ tableData[0].User.Name }}</text>
         <text>盘点日期：{{ tableData[0].UpdatedAt | getData }}</text>
       </view>
     </div>
@@ -127,12 +127,9 @@ export default {
     },
     sendEmail: throttle( async function() {
       const params = {
-        Emails: [
-          this.recipient
-        ],
-        ReportType: 'CurrentStock',
-        StockTakingRecordID: parseInt(this.StockTakingRecordID),
-        Subject: this.subject
+        Emails: this.recipient,
+        ReportType: 'StockTaking',
+        StockTakingRecordID: parseInt(this.StockTakingRecordID)
       };
       await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -145,9 +142,9 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
-          setTimeout(() => {
-            uni.switchTab({ url: '/pages/home/home' })
-          },200)
+          // setTimeout(() => {
+          //   uni.switchTab({ url: '/pages/home/home' })
+          // },200)
         }
       });
     }, 1000),
@@ -184,31 +181,6 @@ export default {
     //   // 这里执行你的拦截逻辑
     // }
   },
-  
-  onNavigationBarButtonTap(e) {
-    console.log(e, 'eeee');
-    
-    // if (e.float === 'left') { // 监听左上角返回按钮（部分场景）
-    //   console.log('点击了导航栏返回按钮');
-    //   // 自定义逻辑
-    // }
-  },
-  onBackPress(options) {
-    console.log(options.from, '9999');
-    
-    // 判断是返回按钮点击（Android物理返回键也会触发）
-    if (options.from === 'backbutton' || options.from === 'navigateBack') {
-      // 跳转到首页
-      // uni.reLaunch({
-      //   url: '/pages/home/home'
-      // });
-      uni.switchTab({
-				url: '../home/home'
-			})
-      // 阻止默认返回行为
-      return true;
-    }
-  }
 };
 </script>
 

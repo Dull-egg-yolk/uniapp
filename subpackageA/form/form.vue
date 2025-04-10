@@ -31,7 +31,7 @@
 	</view>
 </template>
 <script>
-  import { submitHotel } from '../../api/user.js';
+  import { submitHotel, updateHotel } from '../../api/user.js';
 	export default {
 		data() {
 			return {
@@ -45,6 +45,7 @@
 					SocialCode: '',
 					Telephone: ''
 				},
+				isUpdate: false,
 				// 校验规则
 				rules: {
 					Name: {
@@ -83,6 +84,7 @@
 			console.log(data, 'data')
 			this.valiFormData = data;
 			if (data) {
+				this.isUpdate = true
 			  this.valiFormData.ID = data.ID
 			}
 		},
@@ -90,23 +92,25 @@
 		},
 		methods: {
 			submit() {
+				const api = this.isUpdate ? updateHotel : submitHotel;
+				console.log(api, 'api');
+				
 				this.$refs.valiForm.validate().then(async (res) => {
-				  await submitHotel(this.valiFormData).then(res => {
-				    if (res.Data) {
-							uni.showToast({
-								title: '提交成功',
-								icon: 'success'
-							});
-							setTimeout(() => {
-								uni.switchTab({
-									url: '../home/home'
-								})
-							}, 200)
-						}else {
+				  await api(this.valiFormData).then(res => {
+				    if (res.ErrorMsg) {
 							uni.showToast({
 								title: '提交失败',
 								icon: 'none'
 							});
+						}else {
+							uni.showToast({
+								title: '提交成功',
+								icon: 'success'
+							});
+							
+							uni.switchTab({
+								url: '/pages/home/home'
+							})
 						}
 				  })
 			})

@@ -81,6 +81,14 @@ export default {
       }
     },
     navigateTo: throttle(function() {
+      const hasChecked = this.inventoryList.some(item => item.Status === 'InProgress');
+      if (hasChecked) {
+        uni.showToast({
+          title: '有盘点任务正在进行中，请先完成盘点',
+          icon: "none"
+        })
+        return; // 停止执行后续代码
+      }
       uni.navigateTo({
 				url: '../newStocktaking/index'
 			});

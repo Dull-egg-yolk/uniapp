@@ -1,9 +1,10 @@
 <template>
   <view class="container">
     <view class="title">
-      <text class="tab">
-        <!-- <uni-icons type="checkbox" size="22" color="#666666" /> -->
-        新盘点</text>
+      <!-- <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="checkbox" /> -->
+      <view class="tab">
+        <uni-icons :size="16" class="uni-icon-wrapper" color="#F65237" type="checkbox" />
+        新盘点</view>
       <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
       <text class="tab active-tab">选择物品</text>
       <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
@@ -222,8 +223,14 @@ export default {
   border-radius: 10rpx;
   background-color: #fff;
   color: #918d8d;
+  font-size: 26rpx;
+}
+.uni-icon-wrapper {
+  margin-right: 10rpx;
 }
 .active-tab {
+  display: flex;
+  align-items: center;
   background-color: #fcca00;
   color: #000;
 }

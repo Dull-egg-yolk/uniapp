@@ -7,10 +7,8 @@
           <text class="name">{{ item.Name }}</text>
         </view>
         <view class="actions">
-          <text class="edit" @click="openEditPopup(index)">
-            <text>编辑</text>
-            <uni-icons type="forward" size="16" color="#999"></uni-icons>
-          </text>
+          <text class="edit" @click="openEditPopup(index)">编辑</text>
+          <text class="edit" @click="deletePopup(item)">删除</text>
         </view>
       </view>
     </view>
@@ -60,6 +58,7 @@
 </template>
 
 <script>
+import { showModalAsync } from '@/util/modal.js';
 import { throttle } from '@/util/throttle';
 import { getWarehouse, getHotelClass, addHotelClass, updateHotelClass, deleteHotelClass} from '@/api/work.js'
 export default {
@@ -80,6 +79,36 @@ export default {
     }
   },
   methods: {
+    async deletePopup(data) {
+      try {
+        const confirm = await showModalAsync({
+          content: `确定删除${data.Name}吗？`
+        });
+        
+        if (confirm) {
+          const res = await deleteHotelClass({
+            ID: data.ID,
+            Name: data.Name
+          });
+          
+          if (res.ErrorMsg) {
+            uni.showToast({ title: res.ErrorMsg, icon: "none" });
+          } else {
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 500,
+              complete: () => {
+                // 提示消失后执行
+                this.getWarehouseList();
+              }
+            });
+          }
+        }
+      } catch (error) {
+        uni.showToast({ title: '删除失败', icon: "none" });
+      }
+    },
     // 获取仓库
     async getWarehouseList() {
       const res = await getWarehouse();
@@ -179,7 +208,12 @@ export default {
 .list {
   margin-bottom: 100rpx;
 }
-
+.edit {
+  border:1px solid #ccc;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+}
 .item {
   display: flex;
   justify-content: space-between;
