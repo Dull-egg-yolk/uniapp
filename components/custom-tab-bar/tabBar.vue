@@ -78,10 +78,10 @@ export default {
           console.log(res.result);
           const result = JSON.parse(res.result)
           uni.navigateTo({
-            url: '/pages/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
+            url: '/subpackageA/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID
           })
           // 处理扫码结果
-          this.handleScanResult(res.result);
+          // this.handleScanResult(res.result);
         },
         fail: (err) => {
           console.error('扫码失败:', err);

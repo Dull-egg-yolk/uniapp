@@ -49,7 +49,7 @@
       ref="globalPopup"
       title="新手指引"
       :content="popupContent"
-      confirmText="我已掌握，关闭并不在提示"
+      confirmText="我已掌握，关闭并不再提示"
       @confirm="onConfirm"
     />
     <TabBar :activeIndex=0 @parent1Event="changeTO"></TabBar>

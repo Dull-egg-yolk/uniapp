@@ -30,25 +30,28 @@
         
         <view class="form-item">
           <text>库房编号</text>
-          <picker mode="selector" :range="categories" range-key="Name" @change="onChange" >
-            <input class="input" v-model="form.WarehouseID" placeholder="请选择仓库" />
+          <picker 
+            mode="selector" 
+            :range="categories" 
+            range-key="Name" 
+            @change="onChange"
+          >
+            <view class="picker-input">
+              {{ form.WarehouseID || '请选择仓库' }}
+            </view>
           </picker>
         </view>
         
         <view class="form-item">
           <text>有效期</text>
-          <input v-model="form.ValidDate" placeholder="请输入" @focus="showDatePicker = true" />
-          <!-- <picker mode="datetime" @change="onDateChange">
-            <view class="date-picker">请选择{{ form.ValidDate }}</view>
-          </picker> -->
-          <uni-datetime-picker v-if="showDatePicker" type="datetime" :value="form.ValidDate" 
+          <uni-datetime-picker class="high-zindex" type="datetime" :value="form.ValidDate" 
             @change="dateChange" @maskClick="showDatePicker = false" />
         </view>
       </scroll-view>
 
       <!-- 底部按钮组 -->
       <view class="popup-footer">
-        <button class="footer-btn save-btn" @tap="confirmStockIn">确认{{title}}</button>
+        <view class="footer-btn save-btn" @tap="confirmStockIn">确认{{title}}</view>
       </view>
     </div>
   </div>
@@ -174,6 +177,9 @@ export default {
 </script>
 
 <style scoped>
+/* .high-zindex .uni-datepicker-modal {
+  z-index: 99999 !important;
+} */
 /* 遮罩层 */
 .popup-mask {
   position: fixed;
@@ -203,27 +209,32 @@ export default {
   padding: 0 20rpx;
   font-size: 28rpx;
 }
+.form-item .picker-input {
+  height: 80rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
 /* 弹窗容器（居中） */
 .popup-container {
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  width: 80%;
-  max-width: 600rpx;
+  left: 0;
+  right: 0;
+  bottom: -100%;
   background: #fff;
-  border-radius: 16rpx;
-  opacity: 0;
+  border-radius: 24rpx 24rpx 0 0;
   transition: all 0.3s ease;
-  z-index: 2;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
-  max-height: 80vh;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  z-index: 99999;
 }
 
 .popup-show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  bottom: 0;
 }
 
 /* 标题栏 */
@@ -284,6 +295,7 @@ export default {
   font-size: 30rpx;
   border-radius: 8rpx;
   margin: 0 10rpx;
+  text-align: center;
 }
 
 .print-btn {

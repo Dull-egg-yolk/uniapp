@@ -28,7 +28,6 @@
 .filter-section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 .page-button {
   background-color: #fff;
@@ -40,10 +39,13 @@
   height: 46rpx;
 }
 .date-picker {
-  border: 1px solid #ccc;
   padding: 10px;
-  border-radius: 5px;
   font-size: 14px;
+}
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
 }
 .pagination-section {
   background: #fff;
@@ -58,7 +60,7 @@
   border-radius: 20rpx 20rpx 0 0;
 }
 .email-section {
-  height: 400rpx;
+  height: 320rpx;
 }
 .email-section input {
   border: 1px solid #ccc;

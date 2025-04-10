@@ -27,7 +27,7 @@
       </view>
       <view class="form-item">
         <text class="label">单价 <text class="span">*</text></text>
-        <input class="input" v-model="form.Price" placeholder="请输入" />
+        <input class="input" type="digit" v-model="form.Price" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">分类 <text class="span">*</text></text>
@@ -41,11 +41,11 @@
       </view>
       <view class="form-item">
         <text class="label">最低库存 <text class="span">*</text></text>
-        <input class="input" v-model="form.MinStock" placeholder="请输入" />
+        <input class="input" type="number" v-model.number="form.MinStock" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">最高库存 <text class="span">*</text></text>
-        <input class="input" v-model="form.MaxStock" placeholder="请输入" />
+        <input class="input" type="number" v-model.number="form.MaxStock" placeholder="请输入" />
       </view>
       <view class="form-item">
         <text class="label">备注</text>
@@ -57,16 +57,34 @@
     <view class="add-button" @click="submitForm">
       <text>确定</text>
     </view>
+    <img-popup 
+      ref="imagePopup"
+      title="二维码"
+      :imageUrl="scanUrl"
+      :imgContent="imgContent"
+      @save="onSave"
+      @close="onClose"
+    />
   </view>
 </template>
 
 <script>
 import { throttle } from '@/util/throttle';
-import { addGoodsItme, getHotelClass } from "@/api/work";
+import { addGoodsItme, getHotelClass, getQrcode } from "@/api/work";
 import { getUserConfig } from "@/api/user";
+import imgPopup from '@/components/img-popup/img-popup.vue';
 export default {
+  components: {
+    imgPopup
+  },
   data() {
     return {
+      imgContent: '',
+      scanUrl: '',
+      title: '',
+      DefaultWarehouseID: 0,
+      GoodsID: 0,
+      goodList: {},
       // 上传的图片 URL
       imageUrl: "",
       imagePath: '',
@@ -81,8 +99,8 @@ export default {
         Price: "",
         ClassID: "",
         Suppliers: "",
-        MinStock: "",
-        MaxStock: "",
+        MinStock: 0,
+        MaxStock: 9999,
         Image: "",
         Note: ""
       },
@@ -117,6 +135,8 @@ export default {
         sourceType: ['album', 'camera'],
           success: async (res) => {
           this.imagePath = res.tempFilePaths[0]
+          console.log(this.imagePath, '1');
+          
           // 压缩图片
           const compressResult = await new Promise((resolve) => {
              wx.compressImage({
@@ -174,8 +194,16 @@ export default {
     // 提交表单
     submitForm: throttle(async function() {
       this.form.Price = Number(this.form.Price);
-      this.form.MinStock = Number(this.form.MinStock);
-      this.form.MaxStock = Number(this.form.MaxStock);
+      console.log(typeof this.form.MinStock === 'number', '1');
+      console.log(this.form.MinStock === 0, '2');
+      
+      // if (this.form.MinStock === 0) {
+      //   this.form.MinStock = 0
+      // } else {
+      //   this.form.MinStock = Number(this.form.MinStock);
+      // }
+      
+      // this.form.MaxStock = Number(this.form.MaxStock);
       this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
       // 表单校验
       if (!this.form.Name) {
@@ -220,14 +248,14 @@ export default {
         });
         return;
       }
-      if (!this.form.MinStock) {
+      if (typeof this.form.MinStock !== 'number') {
         uni.showToast({
           title: "请填写物品最小库存",
           icon: "none"
         });
         return;
       }
-      if (!this.form.MaxStock) {
+      if (typeof this.form.MaxStock !== 'number') {
         uni.showToast({
           title: "请填写物品最大库存",
           icon: "none"
@@ -248,6 +276,9 @@ export default {
 						icon: "none"
 					});
         } else{
+           this.DefaultWarehouseID = res.Data.DefaultWarehouseID
+           this.GoodsID = res.Data.ID
+           this.goodList = res.Data
           uni.showToast({
             title: "提交成功",
             icon: "success"
@@ -265,12 +296,37 @@ export default {
             Note: ""
           };
           this.imageUrl = "";
+          this.getScan()
           }
       })
     }, 500),
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
     },
+   async getScan(){
+      const params = {
+        WarehouseID: this.DefaultWarehouseID,
+        GoodsID: this.GoodsID
+      }
+      const res = await getQrcode(params)
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.scanUrl = res.Data
+        this.imgContent = this.goodList.Name + ' ' + this.goodList.Format + '/' + this.goodList.Uint
+        
+        this.$refs.imagePopup.open()
+
+        // this.decodeAndShowImage(res.Data)
+        // const decodedStr = this.decodeBase64(res.Data)
+        // console.log(decodedStr, '解码后的字符串');
+        // this.decodeAndShowImage(res.Data)
+        
+      }
+    }
   },
   mounted(){
     this.getUserConfig();
@@ -346,12 +402,23 @@ export default {
 }
 
 .input {
-  height: 80rpx;
-  /* border: 1rpx solid #eee; */
+  height: 60rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  color: #3e3c3c;;
+}
+.picker {
+  height: 60rpx;
   padding: 10rpx;
   border-radius: 10rpx;
   display: flex;
   align-items: center;
 }
+.date-picker {
+  color: #3e3c3c;;
+}
+
 
 </style>

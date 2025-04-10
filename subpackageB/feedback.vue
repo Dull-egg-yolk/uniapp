@@ -10,12 +10,12 @@
     </view>
     <!-- 需求详情部分 -->
     <view class="info-textarea">
-      <view class="label">需求详情</view>
+      <view class="label">需求详情<text class="icon">*</text></view>
       <textarea maxlength="200" class="detail-input" v-model="form.Demand"></textarea>
     </view>
     <!-- 上传图片部分 -->
      <view class="info-img">
-      <view class="label">上传图片</view>
+      <view class="label">上传图片<text class="icon">*</text></view>
       <view class="upload-area">
         <!-- 已选图片预览 -->
         <view 
@@ -252,6 +252,11 @@ export default {
           this.imageList = [];
           this.form.Demand = '';
           this.form.Telephone = '';
+          setTimeout(() => {
+            uni.navigateTo({
+              url: '/subpackageB/myFeedback'
+            })
+          }, 200)
         }
       }
       )

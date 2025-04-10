@@ -73,12 +73,23 @@
   margin-left: 10rpx;
 }
 .input.data-v-789c2329 {
-  height: 80rpx;
-  /* border: 1rpx solid #eee; */
+  height: 60rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  color: #3e3c3c;
+}
+.picker.data-v-789c2329 {
+  height: 60rpx;
   padding: 10rpx;
   border-radius: 10rpx;
   display: flex;
   align-items: center;
 }
+.date-picker.data-v-789c2329 {
+  color: #3e3c3c;
+}
+
 
 

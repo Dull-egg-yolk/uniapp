@@ -3,7 +3,7 @@
     <view class="section">
       <view class="filter-section">
         <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
-          <view class="picker-selected">物品分类：{{ selectedCategory }}</view>
+          <view class="picker-selected">分类：{{ selectedCategory }}</view>
         </picker>
       </view>
       <view class="filter-section">

@@ -1,5 +1,9 @@
 <template>
   <view class="container">
+    <!-- <view class="custom-nav">
+      <view @click="handleBack">></view>
+      <view>当前页面</view>
+    </view> -->
     <div class="header">
       <view class="title">
         <text class="tab">新盘点</text>
@@ -41,14 +45,11 @@
       <view class="pagination-section">
         <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
-      <view>
-        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text></text>
-      </view>
       <view class="email-button">
-        <input type="text" v-model="subject" placeholder="主题：名称 + 月份 + 进出库明细表" />
+        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
         <text @click="sendEmail">发送</text>
       </view>
+      <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
   </view>
 </template>
@@ -174,7 +175,27 @@ export default {
   onLoad(options) {
     this.StockTakingRecordID = options.id;
   },
+  onShow() {
+    const pages = getCurrentPages();
+    console.log(pages, '8888');
+    
+    // if (pages.length === 1) { // 返回后只剩当前页面
+    //   console.log('可能是返回操作触发的 onShow');
+    //   // 这里执行你的拦截逻辑
+    // }
+  },
+  
+  onNavigationBarButtonTap(e) {
+    console.log(e, 'eeee');
+    
+    // if (e.float === 'left') { // 监听左上角返回按钮（部分场景）
+    //   console.log('点击了导航栏返回按钮');
+    //   // 自定义逻辑
+    // }
+  },
   onBackPress(options) {
+    console.log(options.from, '9999');
+    
     // 判断是返回按钮点击（Android物理返回键也会触发）
     if (options.from === 'backbutton' || options.from === 'navigateBack') {
       // 跳转到首页
@@ -219,6 +240,11 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
+}
 .tab {
   padding: 10rpx 20rpx;
   border: 1rpx solid #eee;
@@ -236,6 +262,7 @@ export default {
   color: #000;
   padding: 10rpx 20rpx;
 }
+
 .filter-section {
   display: flex;
   justify-content: space-between;

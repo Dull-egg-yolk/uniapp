@@ -1,6 +1,12 @@
 {
     "pages": [
         {
+            "path": "pages/user/user",
+            "style": {
+                "navigationBarTitleText": "个人中心"
+            }
+        },
+        {
             "path": "pages/initialization/index",
             "style": {
                 "navigationBarTitleText": "九点绘库存管理系统"
@@ -10,11 +16,6 @@
             "style": {
                 "navigationBarTitleText": "工作台",
                 "navigationStyle": "custom"
-            }
-        },{
-            "path": "pages/user/user",
-            "style": {
-                "navigationBarTitleText": "个人中心"
             }
         }
     ],
@@ -90,7 +91,8 @@
             },{
                 "path": "inventoryReport/index",
                 "style": {
-                    "navigationBarTitleText": "盘点报表"
+                    "navigationBarTitleText": "盘点报表",
+                     "navigationStyle": "default"
                 }
             },{
                 "path": "lian/lian",
@@ -120,6 +122,12 @@
       {
         "root": "subpackageB",
         "pages": [
+            {
+                "path": "login",
+                "style": {
+                    "navigationBarTitleText": "登录"
+                }
+            },
             {
                 "path": "myFeedback",
                 "style": {

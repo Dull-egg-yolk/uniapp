@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "盘点报表",
+  "navigationStyle": "default",
   "usingComponents": {
     "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "uni-table": "/uni_modules/uni-table/components/uni-table/uni-table",

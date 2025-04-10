@@ -1,12 +1,7 @@
 <template>
   <view class="container">
     <view class="filter-section">
-      <!-- <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
-        <view class="date-picker">选择物品：{{ selectedClass }}</view>
-      </picker> -->
-      <picker mode="date" @change="onDateChange">
-        <view class="date-picker">日期筛选：{{ selectedDate }}</view>
-      </picker>
+      <view class="date-picker">日期：{{ selectedDate | getStamp }}</view>
     </view>
     <view class="table-section">
       <uni-table border fixedHeader>
@@ -34,14 +29,15 @@
       <view class="pagination-section">
         <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
-      <view>
+      <!-- <view>
         <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
         <text></text>
-      </view>
+      </view> -->
       <view class="email-button">
-        <input type="text" v-model="subject" placeholder="主题：名称 + 月份 + 进出库明细表" />
+        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
         <text @click="sendEmail">发送</text>
       </view>
+      <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
   </view>
 </template>
@@ -53,7 +49,7 @@ import { getGoodsItme, getReportGoodsCurrent, reportEmail } from '@/api/work.js'
 export default {
   data() {
     return {
-      selectedDate: '2024-12-01',
+      selectedDate: new Date().getTime() + 8 * 60 * 60 * 1000,
       tableData: [],
       classList: [],
       currentPage: 1,
@@ -74,6 +70,11 @@ export default {
       if (!val) return '';
       return formatTime(val);
     },
+    getStamp(selectedDate){
+      // 获取当前北京时间的时间戳（单位为毫秒）
+      var beijingTime = new Date(selectedDate).toISOString().replace(/T/, ' ').replace(/\..+/, '').substring(0, 19);
+      return beijingTime;
+      }
   },
   methods: {
     // 实时库存明细
@@ -115,12 +116,8 @@ export default {
     },
     sendEmail: throttle( async function() {
       const params = {
-        Emails: [
-          this.recipient
-        ],
-        ReportType: 'CurrentStock',
-        StockTakingRecordID: parseInt(this.StockTakingRecordID),
-        Subject: this.subject
+        Emails: this.recipient,
+        ReportType: 'CurrentStock'
       };
       await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -133,12 +130,9 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
-          setTimeout(() => {
-            uni.switchTab({ url: '/pages/home/home' })
-          },200)
         }
       });
-    }, 1000),
+    }, 500),
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
       this.query.Goods = this.classList[e.detail.value].ID;
@@ -165,7 +159,6 @@ export default {
 .filter-section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 .page-button {
   background-color: #fff;
@@ -177,10 +170,13 @@ export default {
   height: 46rpx;
 }
 .date-picker {
-  border: 1px solid #ccc;
   padding: 10px;
-  border-radius: 5px;
   font-size: 14px;
+}
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
 }
 .pagination-section {
   background: #fff;
@@ -195,7 +191,7 @@ export default {
   border-radius: 20rpx 20rpx 0 0;
 }
 .email-section {
-  height: 400rpx;
+  height: 320rpx;
 }
 .email-section input {
   border: 1px solid #ccc;

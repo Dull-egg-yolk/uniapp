@@ -90,11 +90,12 @@
           left: button.x + 'px',
           top: button.y + 'px',
         }"
-        @click="handleButtonClick(button.text)"
+        @click.stop="handleButtonClick(button.text)"
       >
         <text>{{ button.text }}</text>
       </view>
     </view>
+    <view class="mask" v-if="showAdditionalButtons" @click="closeSubButtons"></view>
     <img-popup 
       ref="imagePopup"
       title="二维码"
@@ -137,8 +138,8 @@ export default {
       title: '',
       imageUrl: '',
       screenWidth: '',
-      buttonX: 140, // 悬浮按钮的 X 坐标
-      buttonY: 140, // 悬浮按钮的 Y 坐标
+      buttonX: 220, // 悬浮按钮的 X 坐标
+      buttonY: 340, // 悬浮按钮的 Y 坐标
       showAdditionalButtons: false, // 是否显示新增按钮
       isButtonDisabled: false, // 是否禁用中间按钮的拖动
       additionalButtons: [], // 动态生成的按钮
@@ -192,6 +193,10 @@ export default {
      });
   },
   methods: {
+    closeSubButtons() {
+      this.showAdditionalButtons = false
+      this.isButtonDisabled = true;
+    },
     delectItme: throttle(async function() {
       if (this.form.CurrentStock) {
         uni.showToast({
@@ -215,9 +220,9 @@ export default {
             title: '删除成功',
             icon: "none"
           });
-          uni.navigateBack({
-            delta: 1
-          });
+          uni.navigateTo({
+            url: '/subpackageA/itemPage/index'
+          })
         }
       })
     }, 1000),
@@ -389,7 +394,15 @@ export default {
 
 <style scoped>
 @import '@/common/index.css';
-
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 99;
+}
 .movable-area {
   width: 100%;
   height: 80%;
@@ -441,6 +454,7 @@ export default {
   font-size: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: absolute;
+  z-index: 100;
 }
 .section {
   display: flex;

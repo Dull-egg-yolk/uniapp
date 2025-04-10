@@ -104,6 +104,7 @@ export const submitHotel = (data) => {
     data: data,
   });
 };
+
 // 新增盘点
 export const addStockTaking = (data) => {
   return request({

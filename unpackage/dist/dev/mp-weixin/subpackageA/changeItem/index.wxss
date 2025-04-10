@@ -54,7 +54,7 @@
 }
 .select-all.data-v-3ac240c8 {
     background: #fff;
-    padding: 10rpx 50rpx;
+    padding: 10rpx 30rpx;
     border-radius: 10rpx;
 }
 .tab-title.data-v-3ac240c8 {

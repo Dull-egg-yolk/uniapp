@@ -31,13 +31,16 @@ const responseInterceptor = (response) => {
       url: '/pages/user/user',
     });
     return Promise.reject(response.data);
-  } else {
+  } else if (response.statusCode === 403){
+    return response.data;
+  }else {
+    return response.data;
     // 处理其他错误状态码
-    uni.showToast({
-      title: `请求失败：${response.statusCode}`,
-      icon: 'none',
-    });
-    return Promise.reject(response.data);
+    // uni.showToast({
+    //   title: `请求失败：${response.statusCode}`,
+    //   icon: 'none',
+    // });
+    // return Promise.reject(response.data);
   }
 };
 

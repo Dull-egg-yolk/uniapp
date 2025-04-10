@@ -2,7 +2,7 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="userAvatar.avatarUrl" mode="aspectFill" class="avatar" @click="loginOut()"></image>
+      <image :src="userAvatar.avatarUrl" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
           >{{ userList.Name }} <text class="role">{{ teamData[userList.UserHotelRole.Role] }}</text></view
@@ -18,24 +18,15 @@
       </view>
       <button class="renew-btn" v-if="showRenew" @click="goRenewPage()">续费</button>
     </view>
-    <logout-popup
-      ref="logoutPopup"
-      title="退出登录"
-      @print="onPrint"
-      @save="onSave"
-    />
   </view>
 </template>
 
 <script>
-import { userLogOut } from '@/api/user.js';
 import { throttle } from '@/util/throttle';
 import { formatTime } from "../../../util/day";
-import logoutPopup from '@/components/logout-popup/lohout-popup.vue';
 
 export default {
   components: {
-    logoutPopup
   },
   filters: {
     getData (val) {
@@ -86,28 +77,6 @@ export default {
   onShow() {
   },
   methods: {
-    async onSave(){
-      await userLogOut().then(res => {
-        if (res.ErrorMsg) {
-					uni.showToast({
-						title: res.ErrorMsg,
-						icon: "none"
-					});
-        } else {
-          uni.showToast({
-						title: '退出成功',
-						icon: "none"
-					});
-          uni.clearStorageSync();
-          uni.reLaunch({
-            url: "/pages/user/user",
-          });
-        }
-      })
-    },
-    loginOut(){
-      this.$refs.logoutPopup.open()
-    },
     // 续费
     goRenewPage: throttle(function() {
       wx.navigateTo({

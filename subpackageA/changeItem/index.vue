@@ -198,7 +198,7 @@ export default {
 	}
   .select-all {
     background: #fff;
-    padding: 10rpx 50rpx;
+    padding: 10rpx 30rpx;
     border-radius: 10rpx;
   }
 .tab-title {

@@ -4,9 +4,9 @@
       <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
         <view class="date-picker">选择物品：{{ selectedClass }}</view>
       </picker>
-      <picker mode="date" @change="onDateChange">
-        <view class="date-picker">日期筛选：{{ selectedDate }}</view>
-      </picker>
+      <view class="example-body">
+        <uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" @change="onDateChange" />
+      </view>
     </view>
     <view class="table-section">
       <uni-table border fixedHeader>
@@ -32,14 +32,11 @@
       <view class="pagination-section">
         <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
-      <view>
-        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text></text>
-      </view>
       <view class="email-button">
-        <input type="text" v-model="subject" placeholder="主题：名称 + 月份 + 进出库明细表" />
+        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
         <text @click="sendEmail">发送</text>
       </view>
+      <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
   </view>
 </template>
@@ -51,7 +48,7 @@ import { getGoodsItme, getStockOperate, reportEmail } from '@/api/work.js';
 export default {
   data() {
     return {
-      selectedDate: '2024-12-01',
+      range: [],
       tableData: [],
       classList: [],
       currentPage: 1,
@@ -63,7 +60,8 @@ export default {
         Goods: null,
         Size: 1,
         Page: 10,
-        Date: '',
+        TimestampFrom: '',
+        TimestampTo: '',
       }
     };
   },
@@ -76,12 +74,10 @@ export default {
   methods: {
      sendEmail: throttle( async function() {
       const params = {
-        Emails: [
-          this.recipient
-        ],
+        Emails: this.recipient,
         ReportType: 'InOutDetail',
-        StockTakingRecordID: parseInt(this.StockTakingRecordID),
-        Subject: this.subject
+        TimestampFrom: this.query.TimestampFrom,
+        TimestampTo: this.query.TimestampTo,
       };
       await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -120,8 +116,8 @@ export default {
       this.classList = res.Data;
     },
     onDateChange(e) {
-      this.selectedDate = e.detail.value;
-      this.query.Date = e.detail.value;
+      this.query.TimestampFrom = e[0];
+      this.query.TimestampTo = e[1];
       this.getStockOperate();
       // 这里可以添加根据日期筛选数据的逻辑
     },
@@ -144,7 +140,8 @@ export default {
     this.getHotelClassList();
     this.getStockOperate();
   },
-  onLoad(option) {
+  async onLoad(option) {
+    await this.getHotelClassList();
     if (option.id) {
       this.query.Goods = option.id;
       this.selectedClass = this.classList[option.id].Name;
@@ -162,10 +159,28 @@ export default {
   flex-direction: column;
   height: calc(100vh - var(--status-bar-height));
 }
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
+}
+.example-body {
+	background-color: #fff;
+  width: 100%;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+.example-body .title {
+  margin-bottom: 10rpx;
+}
 .filter-section {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 20rpx;
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
 }
 .page-button {
   background-color: #fff;
@@ -196,7 +211,7 @@ export default {
   overflow-x: hidden;
 }
 .email-section {
-  height: 400rpx;
+  height: 320rpx;
 }
 .email-section input {
   border: 1px solid #ccc;

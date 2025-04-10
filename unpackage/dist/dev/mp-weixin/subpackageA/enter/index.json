@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "物品录入",
-  "usingComponents": {}
+  "usingComponents": {
+    "img-popup": "/components/img-popup/img-popup"
+  }
 }

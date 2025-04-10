@@ -2,89 +2,87 @@
     <view >
 		<!-- 登录/注册区 -->
   <view class="login-section">
-    <image src="@/static/img/header-img.svg" mode="aspectFit" class="avatar"></image>
     <view class="login-info">
       <view class="login-title">
 		<view>
-			<!-- 在页面中添加按钮 -->
-			<!-- <button 
-				class="login-btn"
-				@click="getWxUserInfo"
-			>
-			 微信一键登录
-			</button> -->
 			<button 
 				open-type="getPhoneNumber"
 				@getphonenumber="onGetPhoneNumber"
 				class="login-btn"
-				@click="getUserInfo"
 			>
-			登录/注册
+			<image src="@/static/img/header-img.svg" mode="aspectFit" class="avatar"></image>
+			<view class="login-btn-two">
+				<view>登录/注册</view>
+				<view class="login-subtitle">年费会员</view>
+			</view>
 			</button>
-			<!-- <button type="primary" class="btn-login" @click="getUserInfo">一键登录</button> -->
 		</view>
-		
-	  </view>
-      <view class="login-subtitle">年费会员</view>
-    </view>
+		</view>
+    </view> 
   </view>
 
-  <!-- 系统价格 -->
-  <view class="price-section">
-    <view class="section-title">系统价格</view>
-    <view class="price-btns">
-      <view class="price-btn free-btn">
-        <view class="btn-text">免费试用 2 个月</view>
-        <view class="btn-desc">注册后申请免费试用</view>
-      </view>
-      <view class="price-btn">
-        <view class="btn-text">年费会员</view>
-        <view class="btn-desc">198 元/年</view>
-      </view>
-      <view class="price-btn">
-        <view class="btn-text">终身会员</view>
-        <view class="btn-desc">998 元</view>
-      </view>
-    </view>
-  </view>
+		<!-- 系统价格 -->
+		<view class="price-section">
+			<view class="section-title">系统价格</view>
+			<view class="price-btns">
+				<view class="price-btn free-btn">
+					<view class="btn-text">免费试用 2 个月</view>
+					<view class="btn-desc">注册后申请免费试用</view>
+				</view>
+				<view class="price-btn">
+					<view class="btn-text">年费会员</view>
+					<view class="btn-desc">198 元/年</view>
+				</view>
+				<view class="price-btn">
+					<view class="btn-text">终身会员</view>
+					<view class="btn-desc">998 元</view>
+				</view>
+			</view>
+		</view>
 
-   <!-- 邀请有礼 -->
-  <view class="invite-section">
-    <view class="invite-banner">
-      <view class="invite-title">自己有会员，经营更稳健</view>
-      <view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
-    </view>
-  </view>
+		<!-- 邀请有礼 -->
+		<view class="invite-section">
+			<view class="invite-banner">
+				<view class="invite-title">自己有会员，经营更稳健</view>
+				<view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
+			</view>
+		</view>
 
-   <!-- 我们的优点 -->
-  <view class="advantage-section">
-    <view class="section-title">我们的优点</view>
-    <view class="advantage-list">
-      <view class="advantage-item">
-        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
-        <view class="advantage-text">易操作</view>
-      </view>
-      <view class="advantage-item">
-        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
-        <view class="advantage-text">库存准</view>
-      </view>
-      <view class="advantage-item">
-        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
-        <view class="advantage-text">有报表</view>
-      </view>
-      <view class="advantage-item">
-        <image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
-        <view class="advantage-text">码上见</view>
-      </view>
-    </view>
-  </view>
+		<!-- 我们的优点 -->
+		<view class="advantage-section">
+			<view class="section-title">我们的优点</view>
+			<view class="advantage-list">
+				<view class="advantage-item">
+					<image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
+					<view class="advantage-text">易操作</view>
+				</view>
+				<view class="advantage-item">
+					<image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
+					<view class="advantage-text">库存准</view>
+				</view>
+				<view class="advantage-item">
+					<image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
+					<view class="advantage-text">有报表</view>
+				</view>
+				<view class="advantage-item">
+					<image src="/static/img/mai.png" mode="aspectFit" class="advantage-icon"></image>
+					<view class="advantage-text">码上见</view>
+				</view>
+			</view>
+		</view>
+		<login-popup 
+				ref="loginPopup"
+				@confirm="onConfirm"
+			/>
     </view>
 </template>
 
 <script>
+import loginPopup from '@/components/login-popup/login-popup.vue'
 import { userLogin, appConfig } from '@/api/user.js'
   export default {
 		components: {
+			loginPopup
 			// cmdAvatar,
 			// cmdIcon,
 			// cmdCellItem
@@ -95,7 +93,8 @@ import { userLogin, appConfig } from '@/api/user.js'
 				user_name: '',
 				user_id: '',
 				personalInvitePage: '',
-				configList: []
+				configList: [],
+				WxCode: ''
 			}
 		},
 		mounted() {
@@ -107,59 +106,14 @@ import { userLogin, appConfig } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
-		async getUserInfo(e) {
-			const res = await uni.getUserProfile({
-				desc: '用于获取您的个人信息',
-				success: res => {
-					uni.setStorageSync('userInfo', res.userInfo);
-				},
-				fail: res => console.log('取消了授权')
-			});
-		},
-			async appConfig() {
-			  await appConfig().then(res => {
-					if (res.ErrorMsg) {
-						uni.showToast({
-							title: res.ErrorMsg,
-							icon: "none"
-						});
-					} else {
-            const configList = res.Data;
-            configList.forEach(item => {
-							if (item.Key === "PersonalInvitePage") {
-								this.personalInvitePage = item.Value
-							}
-						});
-						uni.setStorageSync('user_config', res.Data)  
-					}
-			  })
-			},
-			gotoWebsite() {
-				wx.navigateTo({
-					url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
-				})
-			},
-			async onGetPhoneNumber(e) {
-				// 1. 检查是否授权成功
-				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
-					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
-					return;
-				}
-
-				// 2. 显示加载状态
-				uni.showLoading({ title: '登录中...', mask: true });
-
-				try {
-					// 3. 获取微信登录code
-					const [loginErr, loginRes] = await uni.login({
-						provider: 'weixin'
-					});
-					const userInfo =  uni.getStorageSync('userInfo')
-					const invited = uni.getStorageSync('launchOptions')
-					invited.query.InvitedByHotelID
-					const params = {
+		async onConfirm(){
+			const userInfo =  uni.getStorageSync('userInfo')
+			const invited = uni.getStorageSync('launchOptions')
+			invited.query.InvitedByHotelID
+					
+			const params = {
 						Name: userInfo.nickName,
-						WxCode: loginRes.code,
+						WxCode: this.WxCode,
 						Avatar: userInfo.avatarUrl,
 						InvitedByHotelID: invited.query.InvitedByHotelID || 0,
 						InvitedCode: invited.query.InvitedCode || '',
@@ -190,7 +144,43 @@ import { userLogin, appConfig } from '@/api/user.js'
 							}
 						}, 300)
 					}
-					
+		},
+			async appConfig() {
+			  await appConfig().then(res => {
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+            const configList = res.Data;
+            configList.forEach(item => {
+							if (item.Key === "PersonalInvitePage") {
+								this.personalInvitePage = item.Value
+							}
+						});
+						uni.setStorageSync('user_config', res.Data)  
+					}
+			  })
+			},
+			gotoWebsite() {
+				wx.navigateTo({
+					url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)
+				})
+			},
+			async onGetPhoneNumber(e) {
+				// 1. 检查是否授权成功
+				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
+					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
+					return;
+				}
+				try {
+					// 3. 获取微信登录code
+					const [loginErr, loginRes] = await uni.login({
+						provider: 'weixin'
+					});
+					this.WxCode = loginRes.code
+					this.$refs.loginPopup.open()
 				} catch (error) {
 					uni.showToast({ title: error.message, icon: 'none' });
 				} finally {
@@ -209,6 +199,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 
 <style scoped>
 	.login-btn {
+		display: flex;
 		font-size: 26rpx;
 		background-color: #fff;
 		text-align: left;

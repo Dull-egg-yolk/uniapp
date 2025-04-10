@@ -121,7 +121,7 @@ export default {
       if (res.ErrorMsg) {
         uni.showToast({
           title: res.ErrorMsg,
-          icon: "none"
+          icon: "error"
         });
       } else {
         this.getHotelClassList();

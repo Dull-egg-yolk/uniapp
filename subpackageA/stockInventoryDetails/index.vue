@@ -33,14 +33,11 @@
       <view class="pagination-section">
         <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
-      <view>
-        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text></text>
-      </view>
       <view class="email-button">
-        <input type="text" v-model="subject" placeholder="主题：名称 + 月份 + 进出库明细表" />
+        <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
         <text @click="sendEmail">发送</text>
       </view>
+      <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
   </view>
 </template>
@@ -195,6 +192,11 @@ export default {
 
 .header {
   height: 1s00rpx;
+}
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
 }
 .date-picker {
   border: 1px solid #ccc;

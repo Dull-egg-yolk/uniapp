@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="title">快速初始化</view>
+		<view class="title">酒店信息</view>
 		<view class="example">
 				<!-- 基础表单校验 -->
 				<uni-forms ref="valiForm" :modelValue="valiFormData" :rules="rules" validate-trigger="bind">
@@ -16,13 +16,13 @@
 					<uni-forms-item label="公司名称" required name="Company">
 						<uni-easyinput v-model="valiFormData.Company" placeholder="请输入公司名称" />
 					</uni-forms-item>
-					<uni-forms-item label="信用代码" required name="SocialCode">
+					<uni-forms-item label="信用代码" name="SocialCode">
 						<uni-easyinput v-model="valiFormData.SocialCode" placeholder="请输入信用代码" />
 					</uni-forms-item>
-					<uni-forms-item label="开户行" required name="BankAddress">
+					<uni-forms-item label="开户行" name="BankAddress">
 						<uni-easyinput v-model="valiFormData.BankAddress" placeholder="请输入开户行" />
 					</uni-forms-item>
-					<uni-forms-item label="账号" required name="BankAccount">
+					<uni-forms-item label="账号" name="BankAccount">
 						<uni-easyinput v-model="valiFormData.BankAccount" placeholder="请输入账号" />
 					</uni-forms-item>
 				</uni-forms>
@@ -72,31 +72,20 @@
 							required: true,
 							errorMessage: '公司名称不能为空'
 						}]
-					},
-					SocialCode: {
-						rules: [{
-						  required: true,
-							errorMessage: '信用代码不能为空'
-						}]
-					},
-					BankAddress: {
-						rules: [{
-							required: true,
-							errorMessage: '开户行不能为空'
-						}]
-					},
-					BankAccount: {
-						rules: [{
-							required: true,
-							errorMessage: '账号不能为空'
-						}]
 					}
 				},
 			}
 		},
 		computed: {
 		},
-		onLoad() {},
+		onLoad(options) {
+			const data = JSON.parse(decodeURIComponent(options.data))
+			console.log(data, 'data')
+			this.valiFormData = data;
+			if (data) {
+			  this.valiFormData.ID = data.ID
+			}
+		},
 		onReady() {
 		},
 		methods: {

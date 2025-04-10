@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/initialization/index",
-    "pages/home/home",
-    "pages/user/user"
+    "pages/home/home"
   ],
   "subPackages": [
     {
@@ -31,6 +31,7 @@
     {
       "root": "subpackageB",
       "pages": [
+        "login",
         "myFeedback",
         "InvitationGifts",
         "addHome",

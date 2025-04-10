@@ -97,6 +97,7 @@
   background: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
+  z-index: 1;
 }
 /* 弹窗容器 */
 .popup-container.data-v-9076fe78 {
@@ -110,8 +111,8 @@
   max-height: 70vh;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
-  z-index: 9999;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  z-index: 99999;
 }
 .popup-show.data-v-9076fe78 {
   bottom: 0;

@@ -27,6 +27,11 @@
 .header {
   height: 1s00rpx;
 }
+.tips {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10px;
+}
 .date-picker {
   border: 1px solid #ccc;
   padding: 10px;
