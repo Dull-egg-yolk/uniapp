@@ -45,6 +45,7 @@
   background-color: #fff;
   padding: 40rpx;
   border-radius: 20rpx;
+  margin-bottom: 220rpx;
 }
 .form-item.data-v-df6765ea {
   margin-bottom: 40rpx;

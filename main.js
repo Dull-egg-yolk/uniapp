@@ -21,6 +21,7 @@ Vue.prototype.checkLogin = function(backpage, backtype) {
 	// 	});
 	// }
 }
+
 Vue.mixin({
   onShareAppMessage(res) {
 		const InvitedCode = uni.getStorageSync('user_info').InvitedCode

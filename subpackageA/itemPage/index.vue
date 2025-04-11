@@ -10,7 +10,7 @@
         <input class="picker in-picker" type="text" placeholder="请输入关键字" @input="onSearchInput" />
       </view>
     </view>
-    <scroll-view class="item-list">
+    <scroll-view class="item-list" scroll-y style="height: 800rpx;">
       <view class="item" v-for="(item, index) in categories" :key="index" @click="navigateToDetail(item)">
           <view class="info">
             <text class="name">{{ item.Name }}</text>

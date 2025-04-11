@@ -276,7 +276,7 @@ export default {
       const token = uni.getStorageSync('isBluetooth');
       if(!app.globalData.bluetoothConnected) {
         uni.navigateTo({
-          url: '/pages/lian/lian'
+          url: '/subpackageA/lian/lian'
         });
         return;
       } else {

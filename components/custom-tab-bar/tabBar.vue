@@ -72,16 +72,22 @@ export default {
     },
     scanQRCode(){
       uni.scanCode({
-      onlyFromCamera: true, // 是否只能从相机扫码
-      scanType: ['qrCode'], // 扫码类型，qrCode为二维码
+      // onlyFromCamera: true, // 是否只能从相机扫码
+      // scanType: ['qrCode'], // 扫码类型，qrCode为二维码
         success: (res) => {
-          console.log(res.result);
-          const result = JSON.parse(res.result)
+          var path = res.path; 
+          // 解析path获取scene参数
+          console.log(path, 'path');
+          
+          var scene = this.getSceneFromPath(path);
+          const sceneParams = decodeURIComponent(scene);
+          console.log(sceneParams, 'sceneParams');
+          const goods = this.getParamFromScene(sceneParams, 'g');
+          const warehouse = this.getParamFromScene(sceneParams, 'w');
           uni.navigateTo({
-            url: '/subpackageA/itemDetail/index?id=' + result.WarehouseID + '&goosId=' + result.GoodsID + '&showScan=' + true
+            url: '/subpackageA/itemDetail/index?id=' + warehouse + '&goosId=' + goods + '&showScan=' + true
           })
-          // 处理扫码结果
-          // this.handleScanResult(res.result);
+          
         },
         fail: (err) => {
           console.error('扫码失败:', err);
@@ -91,6 +97,32 @@ export default {
           });
         }
       });
+    },
+    getParamFromScene(scene, paramName) {
+      console.log(scene, paramName, 'getParamsFromScene');
+      
+        const params = scene.split(',');
+        for (let i = 0; i < params.length; i++) {
+            const param = params[i].split('=');
+            if (param[0] === paramName) {
+                return param[1];
+            }
+        }
+        return null;
+    },
+    getSceneFromPath(path) {
+      // 检查path中是否包含scene参数
+      var index = path.indexOf('scene=');
+      if (index === -1) {
+          return null;
+      }
+      // 提取scene参数的值
+      var start = index + 'scene='.length;
+      var end = path.indexOf('&', start);
+      if (end === -1) {
+          end = path.length;
+      }
+      return path.slice(start, end);
     },
     handleScanResult(result) {
       // uni.navigateTo({

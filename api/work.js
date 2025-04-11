@@ -229,3 +229,11 @@ export const goodsDirectly = (data) => {
     data: data,
   });
 };
+// 获取商品信息无需登录
+export const getNoGoodsItem = (data) => {
+  return request({
+    url: '/ims-webapp/app/goods/item',
+    method: 'GET',
+    data: data,
+  });
+};

@@ -11,6 +11,14 @@
             "urlCheck" : false,
             "libVersion" : "2.16.1"
         },
+        "permission": {
+            "scope.userLocation": {
+              "desc": "你的位置信息将用于扫码定位"
+            },
+            "scope.camera": {
+              "desc": "需要使用摄像头进行扫码"
+            }
+          },
         "optimization" : {
             "minifyJS" : true,
             "minifyWXML" : true,

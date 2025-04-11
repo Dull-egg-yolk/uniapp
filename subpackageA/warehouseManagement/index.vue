@@ -257,6 +257,7 @@ export default {
   background-color: #fff;
   padding: 40rpx;
   border-radius: 20rpx;
+  margin-bottom: 300rpx;
 }
 
 .form-item {

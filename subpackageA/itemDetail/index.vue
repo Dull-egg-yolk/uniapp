@@ -138,7 +138,7 @@ const app = getApp(); // 获取 App 实例
 export default {
   data() {
     return {
-      showScan:false,
+      showScan: false,
       imgContent: '',
       title: '',
       imageUrl: '',

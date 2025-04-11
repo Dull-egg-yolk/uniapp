@@ -25,17 +25,17 @@
         <input class="input" v-model="form.Format" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">单价 <text class="span">*</text></text>
+        <text class="label">单价</text>
         <input class="input" type="digit" v-model="form.Price" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">分类 <text class="span">*</text></text>
+        <text class="label">分类</text>
         <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
           <view class="date-picker">{{ selectedClass }}</view>
         </picker>
       </view>
       <view class="form-item">
-        <text class="label">供货商 <text class="span">*</text></text>
+        <text class="label">供货商</text>
         <input class="input" v-model="form.Suppliers" placeholder="请输入" />
       </view>
       <view class="form-item">
@@ -43,7 +43,7 @@
         <input class="input" type="number" v-model.number="form.MinStock" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">最高库存 <text class="span">*</text></text>
+        <text class="label">最高库存</text>
         <input class="input" type="number" v-model.number="form.MaxStock" placeholder="请输入" />
       </view>
       <view class="form-item">
@@ -189,8 +189,15 @@ export default {
     },
     // 提交表单
     submitForm: throttle(async function() {
-      this.form.Price = Number(this.form.Price);
-      this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
+      this.form.Price = Number(this.form.Price) || 0;
+      this.form.MinStock = Number(this.form.MinStock) || 0;
+      console.log((this.selectedClass, '请选择'))
+      
+      if (this.selectedClass === '请选择') {
+        this.form.ClassID = 0
+      } else {
+        this.form.ClassID = this.classList.find(item => item.Name === this.selectedClass).ID;
+      }
       // 表单校验
       if (!this.form.Name) {
         uni.showToast({
@@ -213,37 +220,9 @@ export default {
         });
         return;
       }
-      if (!this.form.Price) {
-        uni.showToast({
-          title: "请填写物品价格",
-          icon: "none"
-        });
-        return;
-      }
-      if (!this.form.ClassID) {
-        uni.showToast({
-          title: "请选择物品分类",
-          icon: "none"
-        });
-        return;
-      }
-      if (!this.form.Suppliers) {
-        uni.showToast({
-          title: "请填写物品供货商",
-          icon: "none"
-        });
-        return;
-      }
       if (typeof this.form.MinStock !== 'number') {
         uni.showToast({
           title: "请填写物品最小库存",
-          icon: "none"
-        });
-        return;
-      }
-      if (typeof this.form.MaxStock !== 'number') {
-        uni.showToast({
-          title: "请填写物品最大库存",
           icon: "none"
         });
         return;
@@ -255,8 +234,6 @@ export default {
         });
         return;
       }
-      console.log(this.isUpdate, '1');
-      
       if (this.isUpdate){
         await updateGoodsItme(this.form).then(res=>{
           if (res.ErrorMsg) {
@@ -285,8 +262,11 @@ export default {
               Note: ""
             };
             this.imageUrl = "";
-            this.getScan()
-            }
+            // 
+            uni.navigateTo({
+              url: '/subpackageA/itemPage/index'
+            })
+          }
         })
       } else {
         await addGoodsItme(this.form).then(res=>{
@@ -355,6 +335,10 @@ export default {
     this.HotelID = uni.getStorageSync('user_info').Hotel.ID;
   },
   async onLoad(options) {
+    console.log(options, 'options');
+    if (JSON.stringify(options) === '{}') {
+        return; // 如果为空,返回false
+    }
     await this.getHotelClassList();
     const data = JSON.parse(decodeURIComponent(options.form))
     if (data) {

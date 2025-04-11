@@ -12,6 +12,7 @@
         "classification/index",
         "enter/index",
         "itemPage/index",
+        "newItemDetail/index",
         "stocktaking/index",
         "export/index",
         "inventoryDetails/index",
@@ -68,6 +69,14 @@
         "selectedIconPath": "static/img/tabbar/profile.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于扫码定位"
+    },
+    "scope.camera": {
+      "desc": "需要使用摄像头进行扫码"
+    }
   },
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {}

@@ -7,6 +7,22 @@
 			console.log('场景值:', options.scene) // 场景值
 			console.log('进入路径:', options.path) // 页面路径
 			console.log('参数:', options.query) // 页面参数
+			const scanScenes = [1047, 1048, 1049];
+    
+			if (scanScenes.includes(options.scene)) {
+				console.log('用户通过微信扫一扫进入小程序');
+				
+				// 获取扫码携带的query参数
+				if (options.query) {
+					console.log('扫码携带的参数:', options.query);
+					
+					// 示例：处理扫码结果
+					if (options.query.q) {
+						const scanResult = decodeURIComponent(options.query.q);
+						console.log('扫码结果:', scanResult);
+					}
+				}
+			}
 			uni.setStorageSync('launchOptions', options)
 		},
 		onShow: function() {

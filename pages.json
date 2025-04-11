@@ -44,6 +44,12 @@
                     "navigationBarTitleText": "物品列表"
                 }
             },{
+                "path": "newItemDetail/index",
+                "style": {
+                    "navigationBarTitleText": ""
+                }
+            },
+            {
                 "path": "stocktaking/index",
                 "style": {
                     "navigationBarTitleText": "物品盘点"
