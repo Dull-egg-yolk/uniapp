@@ -128,6 +128,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 						uni.hideLoading()
 						uni.setStorageSync('token', res.Data.Token);
 						uni.setStorageSync('user_info', res.Data);
+						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
 						uni.showToast({
 							title: '登录成功',
 							icon: "none"

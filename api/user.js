@@ -154,3 +154,20 @@ export const appConfig = (data) => {
     data: data,
   });
 };
+// 支付
+export const shoppingBuy = (data) => {
+  return request({
+    url: '/ims-webapp/user/shopping/buy',
+    method: 'POST',
+    data: data,
+  });
+};
+// 支付回调
+export const shoppingBuyCallback = (data) => {
+  return request({
+    url: '/ims-webapp/user/shopping/buy/callback',
+    method: 'POST',
+    data: data,
+  });
+};
+

@@ -113,7 +113,7 @@
       :Note="form.Note"
       :title=title
       @save="onSave"
-      @close="onClose"
+      @close="onCloseInout"
     />
     <stock-popup 
       ref="stockPopup"
@@ -198,6 +198,9 @@ export default {
       uni.navigateTo({
         url: '/subpackageA/enter/index?form=' + encodeURIComponent(JSON.stringify(this.form))
       })
+    },
+    onCloseInout() {
+      this.getGoodsItme();
     },
     closeSubButtons() {
       this.showAdditionalButtons = false

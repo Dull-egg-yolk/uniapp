@@ -24,8 +24,22 @@
 <script>
 import { throttle } from '@/util/throttle';
 import { formatTime } from "../../../util/day";
+import UserInfo from '../../../subpackageB/userInfo.vue';
 
 export default {
+  props: {
+    userInfon:{
+      type: Object,
+      default: () => ({})
+    }
+  },
+  watch: {
+    userInfon(newVal) {
+      this.userList.Hotel.Name = newVal.Hotel.Name;
+      this.userList.PrimeRight.Name = newVal.PrimeRight.Name;
+      console.log(newVal, 'userInfon4444');
+    }
+  },
   components: {
   },
   filters: {
@@ -61,6 +75,8 @@ export default {
       this.userAvatar = uni.getStorageSync("userInfo");
     }
     const cachedUser = uni.getStorageSync('user_info');
+    console.log(cachedUser, 7777);
+    
     if (cachedUser) {
       this.userList = cachedUser; // 覆盖默认值
     }else{
@@ -75,6 +91,7 @@ export default {
     }
   },
   onShow() {
+    console.log('666666');
   },
   methods: {
     // 续费
@@ -85,6 +102,27 @@ export default {
     }, 1000),
   },
   onLoad(option) {
+    console.log(this.userList, '00000');
+    
+    if (uni.getStorageSync("userInfo")) {
+      this.userAvatar = uni.getStorageSync("userInfo");
+    }
+    const cachedUser = uni.getStorageSync('user_info');
+    console.log(cachedUser, 7777);
+    
+    if (cachedUser) {
+      this.userList = cachedUser; // 覆盖默认值
+    }else{
+      console.log('未找到用户缓存'); 
+    }
+    console.log(this.userList, '0033300');
+    const otherList = uni.getStorageSync('user_page')['fe:other']
+    const renew = otherList.find(item => item.Name === '续费');
+    if (renew) {
+      this.showRenew = true;
+    } else {
+      this.showRenew = false;
+    }
 	},
 };
 </script>

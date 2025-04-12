@@ -15,7 +15,7 @@
     >
       <!-- 标题栏 -->
       <view class="popup-header">
-        <text class="popup-title">{{ title }}</text>
+        <text class="popup-title">{{ Title }}</text>
         <view class="close-btn" @tap="close">
           <text class="close-icon">×</text>
         </view>
@@ -24,8 +24,9 @@
       <!-- 图片内容区域 -->
       <scroll-view class="popup-content" scroll-y>
         <view class="form-item">
-          <text>入库数量</text>
-          <input v-model="form.InCount" placeholder="请输入" type="number" />
+          <text>{{Title}}数量</text>
+          <input v-if="Title === '入库'" v-model="form.InCount" placeholder="请输入入库数量" type="number" />
+          <input v-if="Title === '出库'" v-model="form.OutCount" placeholder="请输入出库数量" type="number" />
         </view>
         
         <view class="form-item">
@@ -42,7 +43,7 @@
           </picker>
         </view>
         
-        <view class="form-item">
+        <view class="form-item" v-if="Title === '入库'">
           <text>有效期</text>
           <uni-datetime-picker class="high-zindex" type="datetime" :value="form.ValidDate" 
             @change="dateChange" @maskClick="showDatePicker = false" />
@@ -51,7 +52,7 @@
 
       <!-- 底部按钮组 -->
       <view class="popup-footer">
-        <view class="footer-btn save-btn" @tap="confirmStockIn">确认{{title}}</view>
+        <view class="footer-btn save-btn" @tap="confirmStockIn">确认{{Title}}</view>
       </view>
     </div>
   </div>
@@ -64,7 +65,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '图片预览'
+      default: ''
     },
     closeOnClickMask: {
       type: Boolean,
@@ -79,8 +80,15 @@ export default {
       default: true
     }
   },
+  watch: {
+    title(newVal) {
+      console.log(newVal, 'title');
+      this.Title = newVal
+    }
+  },
   data() {
     return {
+      Title: '',
       visible: false,
       showDatePicker: false,
       categories: [],
@@ -90,7 +98,8 @@ export default {
         Note: '', 
         OperateType: 'In', 
         InCount: '', 
-        ValidDate: ''
+        ValidDate: '',
+        OutCount: ''
       }
     }
   },
@@ -101,6 +110,7 @@ export default {
       this.categories = res.Data;
     },
     async addStockOperate(){
+
       await addStockOperate(this.form).then(res=>{
         console.log(res);
         uni.hideLoading()
@@ -125,14 +135,36 @@ export default {
       this.form.GoodsID = this.ID
       this.form.Note = this.Note
       this.form.WarehouseID = this.categories.find(item => item.Name === this.form.WarehouseID).ID
-      this.form.InCount = parseInt(this.form.InCount)
+      // this.form.InCount = parseInt(this.form.InCount)
+      if (this.Title === '入库') {
+        delete this.form.OutCount
+        this.form.InCount = parseInt(this.form.InCount)
+      }else {
+        this.form.OperateType = 'Out'
+        delete this.form.InCount
+        delete this.form.ValidDate
+        this.form.OutCount = parseInt(this.form.OutCount)
+      }
+
       this.addStockOperate()
     },
     validateForm() {
-      if (!this.form.InCount) {
-        uni.showToast({ title: '请输入入库数量', icon: 'none' })
-        return false
+      if (this.Title === '入库') {
+        console.log(1111, this.Title);
+        console.log(this.form.InCount, this.form.OutCount, '0000');
+        if (!this.form.InCount) {
+          console.log('9999');
+          
+          uni.showToast({ title: '请输入入库数量', icon: 'none' })
+          return false
+        }
+      } else {
+        if (!this.form.OutCount) {
+          uni.showToast({ title: '请输入出库数量', icon: 'none' })
+          return false
+        }
       }
+
       if (!this.form.WarehouseID) {
         uni.showToast({ title: '请输入库房编号', icon: 'none' })
         return false
@@ -171,6 +203,8 @@ export default {
     }
   },
   mounted() {
+    console.log(this.title, '99999');
+    
     this.getWarehouseList()
   }
 }

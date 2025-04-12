@@ -5,7 +5,7 @@
       <image :src="userAvatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
-          >{{ myinfo.Name }} <text class="role">{{ myinfo.UserHotelRole.Role }}</text></view
+          >{{ myinfo.Name }} <text class="role">{{ teamData[myinfo.UserHotelRole.Role] }}</text></view
         >
         <view class="shop"
           >{{ myinfo.Hotel.Name }}
@@ -53,6 +53,11 @@ export default {
         Hotel: {
           Name: ''
         }
+      },
+      teamData: {
+        'superuser': '超级管理员',
+        'operator': '操作员',
+        'financial': '财务员',
       },
       userAvatar: "",
     };

@@ -1,7 +1,7 @@
 <template>
     <view class="content">
 		<noLoginPage v-if="!isLoginStatus"></noLoginPage>
-		<loginPage v-else :userInfo="userInfoList"></loginPage>
+		<loginPage v-else :userInfo="userInfoList" :updateUser="updateUser"></loginPage>
 		<TabBar :activeIndex=1 @parent2Event="changeTO"></TabBar>
     </view>
 </template>
@@ -22,7 +22,8 @@
 			return {
 				//将data文件夹中的数据读入
 				isLoginStatus:false,
-				userInfoList: []
+				userInfoList: [],
+				updateUser: uni.getStorageSync('user_info')
 			}
 		},
 		mounted() {
@@ -60,7 +61,10 @@
 					});
 				} else {
 					this.userInfoList = res.Data.Hotel
+					this.updateUser = res.Data;
 					uni.setStorageSync('user_info', res.Data);
+					console.log(this.updateUser, 'updateUser');
+					uni.setStorageSync('hotalName', res.Data.Hotel.Name);
 					if (res.Data.Token) {
 						uni.setStorageSync('token', res.Data.Token);
 					}

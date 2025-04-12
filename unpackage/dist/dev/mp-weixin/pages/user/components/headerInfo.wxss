@@ -1,3 +1,139 @@
+.container.data-v-2729075a {
+  padding: 20rpx;
+  width: 100%;
+}
+.add-button.data-v-2729075a {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40%;
+  height: 80rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  z-index:1;
+}
+.page-container.data-v-2729075a {
+  background-color: #f5f5f5;
+  padding: 20rpx;
+  width: 100%;
+}
+.hotel-info-header.data-v-2729075a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.hotel-info-edit.data-v-2729075a {
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  border:1px solid #ccc;
+}
+.user-info.data-v-2729075a {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+}
+.avatar.data-v-2729075a {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.user-detail .name.data-v-2729075a {
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+.user-detail .store.data-v-2729075a {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+.user-detail .store .verified-icon.data-v-2729075a {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  /* background-image: url("认证图标地址"); */
+  background-size: contain;
+  margin-left: 10rpx;
+}
+.user-detail .expire.data-v-2729075a {
+  font-size: 28rpx;
+  color: #ff5722;
+}
+.hotel-info.data-v-2729075a {
+  background-color: #fff;
+  border-radius: 15rpx;
+  padding: 20rpx;
+}
+.section-title.data-v-2729075a {
+  font-size: 28rpx;
+  color: #333;
+  margin: 20rpx 0rpx;
+}
+.hotel-info .info-item.data-v-2729075a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+.hotel-info .info-item .label.data-v-2729075a {
+  width: 200rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+.hotel-info .info-item .value.data-v-2729075a {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

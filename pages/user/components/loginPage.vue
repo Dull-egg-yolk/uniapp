@@ -1,6 +1,6 @@
 <template>
   <view>
-    <header-info></header-info>
+    <header-info :userInfon="userInfon"></header-info>
     <!-- 常用功能 -->
     <view class="function-section">
       <view class="section-title">常用功能</view>
@@ -45,13 +45,20 @@ export default {
     globalPopup
   },
   props: {
-    userInfoList: {
+    updateUser: {
       type: Object,
       default: () => ({})
     }
   },
+  watch: {
+    updateUser(newVal) {
+      this.userInfon = newVal;
+      console.log(newVal, 22222);
+    }
+  },
   data() {
     return {
+      userInfon: {},
       personalInvitePage: '',
       //将data文件夹中的数据读入
       userAvatar: "用户头像地址",
@@ -87,14 +94,15 @@ export default {
     });
   },
   onLoad(option) {
-    console.log(11111);
-    
 		if(uni.getStorageSync('user_page')) {
 			console.log(uni.getStorageSync('user_page'));
 		} else {
 			this.isLoginStatus = false;
 		}
 	},
+  onShow() {
+    console.log(this.updateUser, 11111);
+  },
   methods: {
     gotoWebsite() {
       wx.navigateTo({
