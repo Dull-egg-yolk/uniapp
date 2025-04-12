@@ -6,11 +6,17 @@
     </view> -->
     <div class="header">
       <view class="title">
-        <text class="tab">新盘点</text>
+        <view class="tab">
+          <uni-icons :size="16" class="uni-icon-wrapper uni-icon-left" color="#F65237" type="checkbox" />
+          新盘点</view>
         <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-        <text class="tab">选择物品</text>
+        <view class="tab">
+          <uni-icons :size="16" class="uni-icon-wrapper uni-icon-left" color="#F65237" type="checkbox" />
+          选择物品</view>
         <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-        <text class="tab">盘点</text>
+        <view class="tab">
+          <uni-icons :size="16" class="uni-icon-wrapper uni-icon-left" color="#F65237" type="checkbox" />
+          盘点</view>
         <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
         <text class="tab active-tab">生成报表</text>
       </view>
@@ -218,11 +224,17 @@ export default {
   margin-top: 10px;
 }
 .tab {
-  padding: 10rpx 20rpx;
+  padding: 10rpx 15rpx;
   border: 1rpx solid #eee;
   border-radius: 10rpx;
   background-color: #fff;
   color: #918d8d;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.uni-icon-left {
+  margin-right: 10rpx;
 }
 .active-tab {
   background-color: #fcca00;

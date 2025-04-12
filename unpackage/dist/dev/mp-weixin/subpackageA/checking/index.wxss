@@ -113,6 +113,12 @@
   border-radius: 10rpx;
   background-color: #fff;
   color: #918d8d;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+}
+.uni-icon-left.data-v-55f24502 {
+  margin-right: 10rpx;
 }
 .active-tab.data-v-55f24502 {
   background-color: #fcca00;

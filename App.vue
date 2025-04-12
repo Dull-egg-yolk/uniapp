@@ -2,13 +2,16 @@
 	export default {
 		globalData: {
 			bluetoothConnected: false,
+			hasToken: false
 		},
 		onLaunch(options) {
 			console.log('场景值:', options.scene) // 场景值
 			console.log('进入路径:', options.path) // 页面路径
 			console.log('参数:', options.query) // 页面参数
 			const scanScenes = [1047, 1048, 1049];
-    
+			const getToken = uni.getStorageSync('token');
+			console.log(getToken, 'getToken');
+			this.globalData.hasToken = getToken ? true : false;
 			if (scanScenes.includes(options.scene)) {
 				console.log('用户通过微信扫一扫进入小程序');
 				

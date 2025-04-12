@@ -210,6 +210,8 @@ export default {
 }
 .list {
   margin-bottom: 100rpx;
+  height: 500px;
+  overflow-y: scroll;
 }
 
 .item {

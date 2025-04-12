@@ -1,33 +1,43 @@
 <template>
-  <view class="container">
+  <view class="container" v-if="hasToken === false">
+    <view class="content">
     <!-- 上传照片 -->
-    <view class="section">
-      <view class="image-box">
-        <image :src="form.Image" class="image"></image>
+      <view class="section">
+        <view class="image-box">
+          <image :src="form.Image" class="image"></image>
+        </view>
+      </view>
+      <!-- 表单 -->
+      <view class="form">
+        <view class="form-item">
+          <text class="label">物品名称</text>
+          <input class="input" v-model="form.Name" :disabled="!showScan" />
+        </view>
+        <view class="form-item">
+          <text class="label">单位</text>
+          <input class="input" v-model="form.Uint" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">规格</text>
+          <input class="input" v-model="form.Format" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">最低库存</text>
+          <input class="input" v-model="form.MinStock" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">库存</text>
+          <input class="input" v-model="form.CurrentStock" disabled />
+        </view>
       </view>
     </view>
-    <!-- 表单 -->
-    <view class="form">
-      <view class="form-item">
-        <text class="label">物品名称</text>
-        <input class="input" v-model="form.Name" :disabled="!showScan" />
+    <view class="botm">
+      <view>
+        <view class="text-title"><text>由 </text>
+        九点荟库存管理<text> 提供服务</text></view>
+        <view class="text-center">出库入库、盘点、查库存、查用量，“码”上见！</view>
       </view>
-      <view class="form-item">
-        <text class="label">单位</text>
-        <input class="input" v-model="form.Uint" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">规格</text>
-        <input class="input" v-model="form.Format" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">最低库存</text>
-        <input class="input" v-model="form.MinStock" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">库存</text>
-        <input class="input" v-model="form.CurrentStock" disabled />
-      </view>
+      <view class="btn" @click="toUse">我也要用</view>
     </view>
   </view>
 </template>
@@ -56,6 +66,7 @@ export default {
         Class: {
           Name: '',
         },
+        hasToken: true,
         Suppliers: "1",
         minStock: "1",
         maxStock: "1",
@@ -72,18 +83,20 @@ export default {
   },
   components: {
   },
-  onLoad(option) {
+  async onLoad(option) {
+    const app = getApp();
+    this.hasToken = app.globalData.hasToken;
     const launchOptions = uni.getLaunchOptionsSync();
-    const sceneParams = decodeURIComponent(option.scene);
-    console.log(sceneParams, 'sceneParams');
-    // const sceneParams = 'g=21,w=0,h=93'
+    const sceneParams = 'g=21,w=0,h=93'
     this.GoodsId = this.getParamFromScene(sceneParams, 'g');
     this.HotelID = this.getParamFromScene(sceneParams, 'h');
-    console.log(this.GoodsId, 'this.GoodsId');
-    console.log(this.HotelID, 'this.HotelID');
+    if(this.hasToken){
+      uni.navigateTo({
+        url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
+      });
+    }
       // 微信扫一扫进入的场景值
       const WX_SCAN_SCENES = [1047, 1048, 1049];
-      
       if (WX_SCAN_SCENES.includes(launchOptions.scene)) {
         console.log('来自微信主界面扫一扫');
         // 微信扫一扫进入会携带scene参数
@@ -96,6 +109,7 @@ export default {
         // 处理小程序内扫码或其他入口
       }
 	},
+  onShow() {},
   onUnload() {
   },
   onReady(){
@@ -104,6 +118,11 @@ export default {
      });
   },
   methods: {
+    toUse(){
+      uni.switchTab({
+        url: 'pages/user/user'
+      });
+    },
     getParamFromScene(scene, paramName) {
       console.log(scene, paramName, 'getParamsFromScene');
       
@@ -135,7 +154,6 @@ export default {
   },
   mounted() {
     this.getNoGoodsItem();
-    
   }
 };
 </script>
@@ -144,6 +162,13 @@ export default {
 @import '@/common/index.css';
 .container{
   padding-top: 0;
+  background-color: #f6f6f6;
+}
+.content {
+  margin: 20rpx 10rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
 }
 .mask {
   position: fixed;
@@ -181,6 +206,30 @@ export default {
   font-size: 24px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.3s;
+}
+.botm {
+  position: absolute;
+  bottom: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn {
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  border: 1px solid #ccc;
+  margin-left: 30rpx;
+}
+.text-title {
+  font-size: 28rpx;
+  color: #000;
+}
+.text-title text {
+  color: #999;
+  font-size: 26rpx;
+}
+.text-center {
+  font-size: 24rpx;
 }
 .floating-button-img {
   height: 120rpx;

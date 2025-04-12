@@ -207,6 +207,8 @@ export default {
 
 .list {
   margin-bottom: 100rpx;
+  height: 500px;
+  overflow-y: scroll;
 }
 .edit {
   border:1px solid #ccc;

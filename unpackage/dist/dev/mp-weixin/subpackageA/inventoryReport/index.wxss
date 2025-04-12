@@ -50,11 +50,17 @@
   margin-top: 10px;
 }
 .tab {
-  padding: 10rpx 20rpx;
+  padding: 10rpx 15rpx;
   border: 1rpx solid #eee;
   border-radius: 10rpx;
   background-color: #fff;
   color: #918d8d;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.uni-icon-left {
+  margin-right: 10rpx;
 }
 .active-tab {
   background-color: #fcca00;

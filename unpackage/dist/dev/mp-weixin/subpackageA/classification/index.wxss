@@ -20,6 +20,8 @@
 }
 .list.data-v-df6765ea {
   margin-bottom: 100rpx;
+  height: 500px;
+  overflow-y: scroll;
 }
 .edit.data-v-df6765ea {
   border:1px solid #ccc;

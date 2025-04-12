@@ -115,14 +115,15 @@ export default {
           url: `/subpackageA/checking/index?id=${item.ID}`
         });
         return;
-      }else {
+      }else if(item.Status === 'InProgress' && item.GoodsCount === 0) {
         uni.navigateTo({
           url: `/subpackageA/changeItem/index?id=${item.ID}`
         });
+      } else {
+        uni.navigateTo({
+          url: `/subpackageA/inventoryReport/index?id=${item.ID}`
+        });
       }
-      uni.navigateTo({
-        url: `/subpackageA/inventoryReport/index?id=${item.ID}`
-      });
     }
   },
   mounted(){

@@ -24,6 +24,8 @@
 }
 .list.data-v-f1bab892 {
   margin-bottom: 100rpx;
+  height: 500px;
+  overflow-y: scroll;
 }
 .item.data-v-f1bab892 {
   display: flex;
