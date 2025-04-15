@@ -175,7 +175,10 @@ export default {
       endDrawLabel(() => {
         console.log('打印完成');
         setTimeout(() => {
-          this.close();
+          // this.close();
+          uni.navigateTo({
+            url: '/subpackageA/itemPage/index'
+          })
         }, 500);
         print(1, () => {
           if (this.quantity > this.printed) {
@@ -319,6 +322,9 @@ export default {
         filePath: localPath, // 临时路径
         success() {
           uni.showToast({ title: '保存成功', icon: 'success' });
+          uni.navigateTo({
+            url: '/subpackageA/itemPage/index'
+          })
         },
         fail(err) {
           console.error('保存失败:', err);
@@ -373,6 +379,7 @@ export default {
   display: flex;
   flex-direction: column;
   max-height: 80vh;
+  z-index: 99999;
 }
 
 .popup-show {

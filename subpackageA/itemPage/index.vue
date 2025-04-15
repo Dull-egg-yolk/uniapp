@@ -1,12 +1,13 @@
 <template>
   <view class="container">
     <view class="section">
-      <view class="filter-section">
-        <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
+      <view class="filter-section filter-section-left">
+        <picker class="picker picker-left" mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
           <view class="picker-selected">分类：{{ selectedCategory }}</view>
         </picker>
       </view>
-      <view class="filter-section">
+      <view class="filter-section filter-section-right">
+        <uni-icons :size="22" class="uni-icon-wrapper" color="#bbb" type="search" />
         <input class="picker in-picker" type="text" placeholder="请输入关键字" @input="onSearchInput" />
       </view>
     </view>
@@ -101,7 +102,14 @@ export default {
   mounted() {
     this.getGoodsItmeList()
     this.getHotelClassList()
-  }
+  },
+  onUnload() {
+    //#ifdef MP-WEIXIN
+    uni.switchTab({
+      url: '/pages/home/home'
+    });
+    //#endif
+  },
 };
 </script>
 <style scoped>
@@ -125,6 +133,17 @@ export default {
 }
 .filter-section {
   margin-bottom: 20rpx;
+}
+.filter-section-right {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+  width: 55%;
+}
+.filter-section-left {
+  width: 40%;
 }
 .picker-selected {
   font-size: 32rpx;
@@ -154,7 +173,10 @@ export default {
   padding: 10rpx;
   background-color: #fff;
   border-radius: 10rpx;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+}
+.picker-left {
+  padding-left: 20rpx;
 }
 .in-picker {
   padding: 10rpx;
@@ -164,6 +186,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 100rpx;
+  width: 100%;
 }
 uni-button::after {
   content: none !important;

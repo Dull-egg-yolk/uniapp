@@ -148,9 +148,11 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
-          // setTimeout(() => {
-          //   uni.switchTab({ url: '/pages/home/home' })
-          // },200)
+          setTimeout(() => {
+            uni.navigateTo({
+              url: '/subpackageA/stocktaking/index'
+            })
+          },200)
         }
       });
     }, 1000),

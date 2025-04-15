@@ -111,6 +111,11 @@ export default {
     };
   },
   methods: {
+    onClose(){
+      // uni.switchTab({
+      //   url: '/pages/home/home'
+      // });
+    },
     async getHotelClassList(){
       const res = await getHotelClass();
       this.classList = res.Data;
@@ -191,6 +196,7 @@ export default {
     submitForm: throttle(async function() {
       this.form.Price = Number(this.form.Price) || 0;
       this.form.MinStock = Number(this.form.MinStock) || 0;
+      this.form.MaxStock = Number(this.form.MaxStock) || 0;
       console.log((this.selectedClass, '请选择'))
       
       if (this.selectedClass === '请选择') {
@@ -333,6 +339,13 @@ export default {
     this.getUserConfig();
     this.getHotelClassList();
     this.HotelID = uni.getStorageSync('user_info').Hotel.ID;
+  },
+  onUnload() {
+    //#ifdef MP-WEIXIN
+    uni.switchTab({
+      url: '/pages/home/home'
+    });
+    //#endif
   },
   async onLoad(options) {
     console.log(options, 'options');

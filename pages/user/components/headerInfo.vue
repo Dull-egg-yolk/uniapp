@@ -17,6 +17,7 @@
         </view>
       </view>
       <button class="renew-btn" v-if="showRenew" @click="goRenewPage()">续费</button>
+      <button class="form-btn" v-if="!userList.Hotel.ID" @click="goToFormPage()">注册酒店</button>
     </view>
   </view>
 </template>
@@ -94,6 +95,12 @@ export default {
     console.log('666666');
   },
   methods: {
+    goToFormPage(){
+      console.log('注册酒店');
+      wx.navigateTo({
+        url: "/subpackageA/form/form",
+      })
+    },
     // 续费
     goRenewPage: throttle(function() {
       wx.navigateTo({
@@ -183,6 +190,17 @@ export default {
   text-align: center;
   width: 74rpx;
   height: 48rpx;
+} 
+.form-btn {
+  background: #44a8ff;
+  color: white;
+  padding: 0rpx 6rpx 6rpx 3rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  text-align: center;
+  width: 100rpx;
+  height: 48rpx;
+  margin-left: 20rpx;
 }
 .svg-bkg-diamond {
   /* background-image: url("../images/iconPark-level.svg"); */

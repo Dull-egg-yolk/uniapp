@@ -56,10 +56,11 @@ export default {
       recipient: '',
       subject: '',
       selectedClass: '全部',
+      goodsID: null,
       query: {
-        Goods: null,
-        Size: 1,
-        Page: 10,
+        GoodsID: '',
+        Size: 10,
+        Page: 1,
         TimestampFrom: '',
         TimestampTo: '',
       }
@@ -95,7 +96,7 @@ export default {
     }, 1000),
     // 出入库明细
     async getStockOperate(){
-     const  params = this.query
+     const params = this.query
      await getStockOperate(params).then(res=>{
         if (res.ErrorMsg) {
 					uni.showToast({
@@ -132,7 +133,7 @@ export default {
     },
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
-      this.query.Goods = this.classList[e.detail.value].ID;
+      this.query.GoodsID = this.classList[e.detail.value].ID;
       this.getStockOperate();
     },
   },
@@ -142,9 +143,13 @@ export default {
   },
   async onLoad(option) {
     await this.getHotelClassList();
+    console.log(this.classList, '9999');
+    
     if (option.id) {
-      this.query.Goods = option.id;
-      this.selectedClass = this.classList[option.id].Name;
+      this.query.GoodsID = option.id;
+      this.goodsID = parseInt(option.id)
+      this.selectedClass = this.classList[this.classList.findIndex( item => item.ID == option.id)].Name
+      this.getStockOperate();
     }
   }
 };

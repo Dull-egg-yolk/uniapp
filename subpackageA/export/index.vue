@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       classList: [
-        { name: '物品出库明细',
+        { name: '物品出入库明细',
           key: 'inventoryDetails'
          },
         { name: '实时库存明细',

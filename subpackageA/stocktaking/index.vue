@@ -149,7 +149,8 @@ export default {
   align-items: center;
 }
 .info .name {
-  width: 120rpx;
+  max-width: 160rpx;
+  margin-right: 10rpx;
 }
 .container {
   background-color: #f5f5f5;

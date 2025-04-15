@@ -80,6 +80,10 @@
 		computed: {
 		},
 		onLoad(options) {
+			console.log(options, 'options');
+			if (JSON.stringify(options) === '{}') {
+				return;
+			}
 			const data = JSON.parse(decodeURIComponent(options.data))
 			console.log(data, 'data')
 			this.valiFormData = data;
