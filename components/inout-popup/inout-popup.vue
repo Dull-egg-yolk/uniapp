@@ -45,7 +45,7 @@
         
         <view class="form-item" v-if="Title === '入库'">
           <text>有效期</text>
-          <uni-datetime-picker class="high-zindex" type="datetime" :value="form.ValidDate" 
+          <uni-datetime-picker class="high-zindex" type="date" :value="form.ValidDate" 
             @change="dateChange" @maskClick="showDatePicker = false" />
         </view>
       </scroll-view>
@@ -113,14 +113,14 @@ export default {
 
       await addStockOperate(this.form).then(res=>{
         console.log(res);
-        uni.hideLoading()
+        // uni.hideLoading()
         if (res.ErrorMsg) {
               uni.showToast({
                 title: res.ErrorMsg,
                 icon: "none"
               });
           } else {
-            uni.hideLoading()
+            // uni.hideLoading()
             this.close()
           }
       })
@@ -131,7 +131,7 @@ export default {
     confirmStockIn() {
       if (!this.validateForm()) return
       
-      uni.showLoading({ title: '提交中...' })
+      // uni.showLoading({ title: '提交中...' })
       this.form.GoodsID = this.ID
       this.form.Note = this.Note
       this.form.WarehouseID = this.categories.find(item => item.Name === this.form.WarehouseID).ID

@@ -35,7 +35,8 @@
       </view>
       <view class="email-button">
         <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text @click="sendEmail">发送</text>
+        <button @click="sendEmail" :class="{'gray-button': isDisabled}" 
+        :disabled="isDisabled">发送</button>
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
@@ -50,42 +51,13 @@ export default {
   data() {
     return {
       selectedDate: '2024-12-01',
-      tableData: [
-          {
-          "ID": 12,
-          "CreatedAt": "2025-03-30T15:34:02.883+08:00",
-          "UpdatedAt": "2025-03-30T15:34:12.021+08:00",
-          "DeletedAt": null,
-          "StockTakingRecordID": 51,
-          "GoodsID": 1,
-          "Goods": {
-              "ID": 1,
-              "CreatedAt": "2025-03-23T23:56:44.117+08:00",
-              "UpdatedAt": "2025-03-23T23:56:44.117+08:00",
-              "DeletedAt": null,
-              "Image": "https://avatars.githubusercontent.com/u/53512912?v=4",
-              "Name": "lemon tea",
-              "Uint": "瓶",
-              "Format": "500ML",
-              "Price": 10.11,
-              "Suppliers": "wahaha",
-              "Note": "this is a note",
-              "MinStock": 1,
-              "MaxStock": 100,
-              "HotelID": 1,
-              "ClassID": 1,
-            },
-            "WarehouseID": 2,
-            "Expect": 0,
-            "Current": 3,
-            "Status": "Completed"
-        }
-      ],
+      tableData: [],
       StockTakingRecordID: '',
       currentPage: 1,
       totalPages: 5,
       recipient: '',
       subject: '',
+      isDisabled: false,
       query: {
         Page: 1,
         Size: 10,
@@ -139,7 +111,7 @@ export default {
           });
         }
       });
-    }, 1000),
+    }, 500),
     async getStockTakingString(){
      await getStockTakingString(this.query).then(res=>{
         if (res.ErrorMsg) {
@@ -268,15 +240,15 @@ export default {
   width: 70%;
   height: 46rpx;
 }
-.email-button text{
-  height: 46rpx;
+.email-button button{
+  height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
   border: 1rpx solid #ccc;
   text-align: center;
   line-height: 46rpx;
   margin-left: 20rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
 }
 /deep/.uni-table{

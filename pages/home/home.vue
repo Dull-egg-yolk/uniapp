@@ -208,7 +208,7 @@ export default {
   background-color: #f8f8f8
 }
 .unread-count {
-  background-color: red;
+  background-color: #F65237;
   color: white;
   border-radius: 50%;
   font-size: 10px;

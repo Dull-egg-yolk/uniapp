@@ -127,7 +127,7 @@ export default {
     },
     // 提交新增库房
     confirmAddWarehouse: throttle( async function() {
-      if (!this.newWarehouse.name || !this.newWarehouse.description) {
+      if (!this.newWarehouse.name) {
         uni.showToast({
           title: "请填写完整信息",
           icon: "none"
@@ -169,7 +169,7 @@ export default {
     },
     // 提交编辑库房
     confirmWarehouse: throttle( async function() {
-      if (!this.editWarehouse.name || !this.editWarehouse.description) {
+      if (!this.editWarehouse.name) {
         uni.showToast({
           title: "请填写完整信息",
           icon: "none"

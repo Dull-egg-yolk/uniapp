@@ -130,7 +130,7 @@
 }
 .add-btn.data-v-b6fd4e30 {
   margin-top: 40rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;

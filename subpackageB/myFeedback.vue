@@ -68,7 +68,15 @@ export default {
   },
   mounted(){
     this.getAppFeedbackList()
+  },
+  onUnload() {
+    //#ifdef MP-WEIXIN
+    uni.switchTab({
+      url: '/pages/user/user'
+    });
+    //#endif
   }
+
 }
 </script>
 

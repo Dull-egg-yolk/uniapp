@@ -37,7 +37,7 @@
         <input class="input" v-model="form.MinStock" disabled />
       </view>
       <view class="form-item">
-        <text class="label">最高库存</text>
+        <text class="label">备货量</text>
         <input class="input" v-model="form.MaxStock" disabled />
       </view>
       <view class="form-item">
@@ -76,7 +76,7 @@
             <!-- <text class="floating-button-icon">...</text> -->
             <view class="floating-button-img" v-if="showAdditionalButtons"><image
               class="img"
-              src="/static/img/logo.png"
+              src="/static/img/logo-1.jpeg"
               mode="scaleToFill"
             /></view>
             <view class="floating-button-icon" v-else>...</view>
@@ -458,7 +458,7 @@ export default {
 .floating-button {
   width: 120rpx;
   height: 120rpx;
-  background-color: red;
+  background-color: #F65237;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -474,6 +474,7 @@ export default {
 .floating-button-img .img {
   width: 120rpx;
   height: 120rpx;
+  border-radius: 50% ;
 }
 .floating-button-active {
   background-color: #fff;
@@ -482,7 +483,7 @@ export default {
 .additional-button {
   width: 60px;
   height: 60px;
-  background-color: red;
+  background-color: #F65237;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -496,15 +497,17 @@ export default {
 .section {
   display: flex;
   justify-content: center;
+  margin-bottom: 40rpx;
 }
 .image-box {
-  border: 1rpx solid #eee;
+  border: 1px solid rgba(187,187,187,1);
   border-radius: 10rpx;
-  padding: 10rpx;
+  padding: 20rpx;
 }
 .image {
-    width: 200rpx;
-    height: 200rpx;
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 10rpx;
 }
 .form {
   margin-bottom: 100rpx;
@@ -555,7 +558,7 @@ export default {
 .del-btn {
   height: 80rpx;
   padding: 0 40rpx;
-  background-color: red;
+  background-color: #bebebe;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -565,7 +568,7 @@ export default {
 .update-btn {
   height: 80rpx;
   padding: 0 40rpx;
-  background-color: #1587e8;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;

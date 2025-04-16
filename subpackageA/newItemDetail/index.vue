@@ -44,7 +44,6 @@
 
 <script>
 import { getNoGoodsItem } from '@/api/work.js';
-const app = getApp(); // 获取 App 实例
 
 export default {
   data() {
@@ -84,8 +83,12 @@ export default {
   components: {
   },
   async onLoad(option) {
+    await this.getNoGoodsItem();
+    console.log(option, 'option');
     const app = getApp();
     this.hasToken = app.globalData.hasToken;
+    console.log(this.hasToken , 'this.hasToken');
+    
     const launchOptions = uni.getLaunchOptionsSync();
     const sceneParams = 'g=21,w=0,h=93'
     this.GoodsId = this.getParamFromScene(sceneParams, 'g');
@@ -95,19 +98,16 @@ export default {
         url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
       });
     }
-      // 微信扫一扫进入的场景值
-      const WX_SCAN_SCENES = [1047, 1048, 1049];
-      if (WX_SCAN_SCENES.includes(launchOptions.scene)) {
-        console.log('来自微信主界面扫一扫');
-        // 微信扫一扫进入会携带scene参数
-        if (options.scene) {
-          const sceneParams = decodeURIComponent(options.scene);
-          this.handleWxScan(sceneParams);
-        }
-      } else {
-        console.log('来自小程序内部或其他方式');
-        // 处理小程序内扫码或其他入口
-      }
+
+    // 微信扫一扫进入的场景值
+    const WX_SCAN_SCENES = [1047, 1048, 1049];
+    if (WX_SCAN_SCENES.includes(launchOptions.scene)) {
+      console.log('来自微信主界面扫一扫');
+      
+    } else {
+      console.log('来自小程序内部或其他方式');
+      // 处理小程序内扫码或其他入口
+    }
 	},
   onShow() {},
   onUnload() {
@@ -197,7 +197,7 @@ export default {
 .floating-button {
   width: 120rpx;
   height: 120rpx;
-  background-color: red;
+  background-color: #F65237;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -245,7 +245,7 @@ export default {
 .additional-button {
   width: 60px;
   height: 60px;
-  background-color: red;
+  background-color: #F65237;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -318,7 +318,7 @@ export default {
 .del-btn {
   height: 80rpx;
   padding: 0 40rpx;
-  background-color: red;
+  background-color:#F65237;
   color: #fff;
   display: flex;
   justify-content: center;

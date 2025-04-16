@@ -178,11 +178,11 @@ export default {
   color: #999;
 }
 .expire-date {
-  color: #ff4444;
+  color: #F65237;
   padding-left: 5rpx;
 }
 .renew-btn {
-  background: #ff4444;
+  background: #F65237;
   color: white;
   padding: 0rpx 6rpx 6rpx 3rpx;
   border-radius: 8rpx;

@@ -38,7 +38,8 @@
       </view>
       <view class="email-button">
         <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text @click="sendEmail">发送</text>
+        <button @click="sendEmail" :class="{'gray-button': isDisabled}" 
+        :disabled="isDisabled">发送</button>
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
@@ -61,12 +62,14 @@ export default {
       recipient: '',
       subject: '',
       selectedClass: '',
+      isDisabled: false,
       query: {
         Page: 1,
         Size: 10,
         TimestampFrom: '',
         TimestampTo: '',
-      }
+      },
+      timer: null
     };
   },
   filters: {
@@ -86,6 +89,13 @@ export default {
       }
     },
     sendEmail: throttle( async function() {
+      if (this.recipient === '') {
+        uni.showToast({
+          title: '请输入接收邮箱',
+          icon: 'none'
+        });
+        return;
+      }
       const params = {
         Emails: this.recipient,
         ReportType: 'MonthConsume',
@@ -103,11 +113,18 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
+          this.isDisabled = true;
+          this.timer = setTimeout(() => {
+            this.isDisabled = false;
+          },1000*60)
         }
       });
-    }, 1000),
-    // 实时库存明细
+    }, 0),
+    // 月度明细
     async getReportConsumeMonth(){
+      if (this.query.TimestampFrom === '' || this.query.TimestampTo === ''){
+        return;
+      }
      await getReportConsumeMonth(this.query).then(res=>{
         if (res.ErrorMsg) {
 					uni.showToast({
@@ -150,6 +167,12 @@ export default {
     this.getHotelClassList();
     this.getReportConsumeMonth();
   },
+  beforeDestroy() {
+    // 组件销毁时清除定时器
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
 };
 </script>
 
@@ -162,6 +185,10 @@ export default {
   overflow: hidden;
   flex-direction: column;
   height: calc(100vh - var(--status-bar-height));
+}
+.gray-button {
+  background-color: #ccc !important;
+  color: #999 !important;
 }
 .example-body {
 	background-color: #fff;
@@ -226,16 +253,20 @@ export default {
   width: 70%;
   height: 46rpx;
 }
-.email-button text{
-  height: 46rpx;
+.email-button button{
+  height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
   border: 1rpx solid #ccc;
   text-align: center;
   line-height: 46rpx;
   margin-left: 20rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
+}
+wx-button:after {
+  content: none;
+  border: none;
 }
 /deep/.uni-table{
   min-width: auto !important;

@@ -60,6 +60,7 @@ export default {
 }
 .title img{
   width: 100%;
+  height: 600rpx;
 }
 .title {
   position: relative;

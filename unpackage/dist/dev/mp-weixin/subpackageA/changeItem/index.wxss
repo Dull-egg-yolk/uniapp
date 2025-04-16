@@ -10,7 +10,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -38,6 +38,7 @@
   height: 34rpx;
 }
 .input-view.data-v-3ac240c8 {
+    width: 50%;
 		align-items: center;
 		justify-content: center;
 		display: flex;
@@ -68,7 +69,7 @@
 .title.data-v-3ac240c8 {
   margin: 20rpx 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .form-title.data-v-3ac240c8 {

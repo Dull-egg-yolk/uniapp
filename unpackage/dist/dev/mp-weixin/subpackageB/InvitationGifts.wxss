@@ -5,6 +5,7 @@
 }
 .title ._img.data-v-d2615f4e{
   width: 100%;
+  height: 600rpx;
 }
 .title.data-v-d2615f4e {
   position: relative;

@@ -49,7 +49,7 @@
   right: 0;
   width: 40rpx;
   height: 40rpx;
-  background: red;
+  background: #F65237;
   color: white;
   border-radius: 0 0 0 10rpx;
   display: flex;
@@ -68,6 +68,7 @@
   display: flex;
   border-radius: 10rpx;
   padding: 20rpx;
+  width: 60%;
 }
 .info-textarea.data-v-39141474 {
   background-color: #fff;
@@ -80,7 +81,7 @@
   color: #333;
 }
 .icon.data-v-39141474 {
-  color: red;
+  color: #F65237;
 }
 .value.data-v-39141474 {
   flex: 1;
@@ -95,7 +96,7 @@
   color: #000;
   border-radius: 10rpx;
   background-color: #fff;
-  padding: 20rpx 10rpx;
+  padding: 20rpx;
 }
 .detail-input.data-v-39141474 {
   width: 100%;

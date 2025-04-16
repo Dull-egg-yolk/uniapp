@@ -124,7 +124,7 @@ export default {
   margin-top: 40rpx;
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color:#F65237;
   color: #fff;
   display: flex;
   justify-content: center;

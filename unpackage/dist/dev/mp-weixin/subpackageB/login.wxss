@@ -36,7 +36,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;

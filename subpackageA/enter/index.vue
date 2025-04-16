@@ -43,7 +43,7 @@
         <input class="input" type="number" v-model.number="form.MinStock" placeholder="请输入" />
       </view>
       <view class="form-item">
-        <text class="label">最高库存</text>
+        <text class="label">备货量</text>
         <input class="input" type="number" v-model.number="form.MaxStock" placeholder="请输入" />
       </view>
       <view class="form-item">
@@ -100,7 +100,7 @@ export default {
         ClassID: "",
         Suppliers: "",
         MinStock: 0,
-        MaxStock: 9999,
+        MaxStock: 0,
         Image: "",
         Note: ""
       },
@@ -387,8 +387,8 @@ export default {
   justify-content: center;
 }
 .upload-box {
-  width: 200rpx;
-  height: 200rpx;
+  width: 240rpx;
+  height: 240rpx;
   border: 1rpx dashed #ccc;
   display: flex;
   justify-content: center;
@@ -426,7 +426,7 @@ export default {
   width: 150rpx;
 }
 .label .span {
-  color: red;
+  color: #F65237;
   margin-left: 10rpx;
 }
 

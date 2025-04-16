@@ -14,7 +14,7 @@
       <view class="list">
         <view class="item" v-for="(item, index) in inventoryList" :key="index" @click="gotoReport(item)">
           <view class="info">
-            <view class="name">{{ item.Warehouse.Name }}</view><view :class="{'icon': item.Status === 'Completed', 'icon-in-progress': item.Status === 'InProgress'}">{{ statusList[item.Status] }}</view>
+            <view class="name">{{ item.Warehouse.Name }}</view><view :class="{'icon': item.Status === 'Completed', 'icon-in-progress': item.Status === 'InProgress', 'icon-in-progress': item.Status === 'Discard'}">{{ statusList[item.Status] }}</view>
           </view>
           <view class="actions">
             <text class="edit">{{ item.CreatedAt | getData }}</text>
@@ -55,6 +55,7 @@ export default {
       statusList:  {
         'InProgress': '盘点中',
         'Completed': '已盘点',
+        'Discard': '未盘点'
       },
       totalPages: 0,
       queryList: {
@@ -128,7 +129,14 @@ export default {
   },
   mounted(){
     this.getStockTakingList()
-  }
+  },
+  onUnload() {
+    //#ifdef MP-WEIXIN
+    uni.switchTab({
+      url: '/pages/home/home'
+    });
+    //#endif
+  },
 }
 </script>
 
@@ -162,7 +170,7 @@ export default {
 .add-stock {
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -206,7 +214,7 @@ export default {
 .icon {
   margin-left: 5rpx;
   display: inline-block;
-  background-color: #ed3b3b;
+  background-color: rgba(246,82,55,0.8);
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;
@@ -215,7 +223,7 @@ export default {
 .icon-in-progress {
   margin-left: 5rpx;
   display: inline-block;
-  background-color: green;
+  background-color: rgba(86,119,34,0.7);
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;

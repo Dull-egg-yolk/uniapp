@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "实时库存",
+  "navigationBarTitleText": "实时库存明细",
   "usingComponents": {
     "uni-table": "/uni_modules/uni-table/components/uni-table/uni-table",
     "uni-tr": "/uni_modules/uni-table/components/uni-tr/uni-tr",

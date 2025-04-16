@@ -85,7 +85,7 @@ export default {
   border-bottom: 1rpx solid #e5e5e5;
 }
 .active {
-  color:red;
+  color:#F65237;
 }
 .message {
   width: 60%;

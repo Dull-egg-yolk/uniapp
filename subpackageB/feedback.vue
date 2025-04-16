@@ -318,7 +318,7 @@ export default {
   right: 0;
   width: 40rpx;
   height: 40rpx;
-  background: red;
+  background: #F65237;
   color: white;
   border-radius: 0 0 0 10rpx;
   display: flex;
@@ -337,6 +337,7 @@ export default {
   display: flex;
   border-radius: 10rpx;
   padding: 20rpx;
+  width: 60%;
 }
 .info-textarea {
   background-color: #fff;
@@ -349,7 +350,7 @@ export default {
   color: #333;
 }
 .icon {
-  color: red;
+  color: #F65237;
 }
 .value {
   flex: 1;
@@ -364,7 +365,7 @@ export default {
   color: #000;
   border-radius: 10rpx;
   background-color: #fff;
-  padding: 20rpx 10rpx;
+  padding: 20rpx;
 }
 .detail-input {
   width: 100%;

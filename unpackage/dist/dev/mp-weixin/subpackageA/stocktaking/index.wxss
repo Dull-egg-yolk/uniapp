@@ -10,7 +10,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -46,7 +46,7 @@
 .add-stock.data-v-58e7cb6b {
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -89,7 +89,7 @@
 .icon.data-v-58e7cb6b {
   margin-left: 5rpx;
   display: inline-block;
-  background-color: #ed3b3b;
+  background-color: rgba(246,82,55,0.8);
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;
@@ -98,7 +98,7 @@
 .icon-in-progress.data-v-58e7cb6b {
   margin-left: 5rpx;
   display: inline-block;
-  background-color: green;
+  background-color: rgba(86,119,34,0.7);
   border-radius: 10rpx;
   padding: 5rpx 10rpx;
   color: #fff;

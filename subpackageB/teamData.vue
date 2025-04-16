@@ -45,7 +45,7 @@
 
       <!-- 新增按钮 -->
       <view class="add-btn" @click="addAdmin">
-        <text class="btn-text">新增</text>
+        <text class="btn-text">添加同事加入</text>
       </view>
       <inviteFriends-popup 
         ref="InviteFriendsPopup"
@@ -337,7 +337,7 @@ export default {
 
 .add-btn {
   margin-top: 40rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;

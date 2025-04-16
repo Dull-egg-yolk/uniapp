@@ -67,7 +67,7 @@
             },{
                 "path": "realTimeInventoryDetails/index",
                 "style": {
-                    "navigationBarTitleText": "实时库存"
+                    "navigationBarTitleText": "实时库存明细"
                 }
             },{
                 "path": "monthTimeInventoryDetails/index",
@@ -120,7 +120,7 @@
             {
                 "path": "form/form",
                 "style": {
-                    "navigationBarTitleText": "初始化"
+                    "navigationBarTitleText": "注册酒店"
                 }
             }
         ]

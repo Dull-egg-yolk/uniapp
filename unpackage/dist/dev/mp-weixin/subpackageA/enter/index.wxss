@@ -10,7 +10,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -36,8 +36,8 @@
   justify-content: center;
 }
 .upload-box.data-v-789c2329 {
-  width: 200rpx;
-  height: 200rpx;
+  width: 240rpx;
+  height: 240rpx;
   border: 1rpx dashed #ccc;
   display: flex;
   justify-content: center;
@@ -70,7 +70,7 @@
   width: 150rpx;
 }
 .label .span.data-v-789c2329 {
-  color: red;
+  color: #F65237;
   margin-left: 10rpx;
 }
 .input.data-v-789c2329 {

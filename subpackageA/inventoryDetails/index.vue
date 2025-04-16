@@ -2,7 +2,7 @@
   <view class="container">
     <view class="filter-section">
       <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
-        <view class="date-picker">选择物品：{{ selectedClass }}</view>
+        <view class="date-picker">物品：{{ selectedClass }}</view>
       </picker>
       <view class="example-body">
         <uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" @change="onDateChange" />
@@ -34,7 +34,8 @@
       </view>
       <view class="email-button">
         <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text @click="sendEmail">发送</text>
+        <button @click="sendEmail" :class="{'gray-button': isDisabled}" 
+        :disabled="isDisabled">发送</button>
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
@@ -55,15 +56,17 @@ export default {
       totalPages: 0,
       recipient: '',
       subject: '',
-      selectedClass: '全部',
+      selectedClass: '请选择',
       goodsID: null,
+      isDisabled: false,
       query: {
         GoodsID: '',
         Size: 10,
         Page: 1,
         TimestampFrom: '',
         TimestampTo: '',
-      }
+      },
+      timer: null
     };
   },
   filters: {
@@ -74,6 +77,20 @@ export default {
   },
   methods: {
      sendEmail: throttle( async function() {
+      if (this.recipient === '') {
+        uni.showToast({
+          title: '请输入接收邮箱',
+          icon: 'none'
+        });
+        return;
+      }
+      if (this.query.TimestampFrom === '' || this.query.TimestampTo === '') {
+        uni.showToast({
+          title: '请选择时间',
+          icon: 'none'
+        });
+        return;
+      }
       const params = {
         Emails: this.recipient,
         ReportType: 'InOutDetail',
@@ -91,11 +108,18 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
+          this.isDisabled = true;
+          this.timer = setTimeout(() => {
+            this.isDisabled = false;
+          },1000*60)
         }
       });
-    }, 1000),
+    }, 0),
     // 出入库明细
     async getStockOperate(){
+      if (this.query.GoodsID === '') {
+        return;
+      }
      const params = this.query
      await getStockOperate(params).then(res=>{
         if (res.ErrorMsg) {
@@ -141,6 +165,12 @@ export default {
     this.getHotelClassList();
     this.getStockOperate();
   },
+  beforeDestroy() {
+    // 组件销毁时清除定时器
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  },
   async onLoad(option) {
     await this.getHotelClassList();
     console.log(this.classList, '9999');
@@ -158,7 +188,7 @@ export default {
 <style>
 @import '@/common/index.css';
 .container {
-  padding: 20px;
+  padding: 20rpx;
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
@@ -231,15 +261,15 @@ export default {
   width: 70%;
   height: 46rpx;
 }
-.email-button text{
-  height: 46rpx;
+.email-button button{
+  height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
   border: 1rpx solid #ccc;
   text-align: center;
   line-height: 46rpx;
   margin-left: 20rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
 }
 /deep/.uni-table{

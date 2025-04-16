@@ -10,7 +10,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@
   border-bottom: 1rpx solid #e5e5e5;
 }
 .active.data-v-f5bf1ac4 {
-  color:red;
+  color:#F65237;
 }
 .message.data-v-f5bf1ac4 {
   width: 60%;

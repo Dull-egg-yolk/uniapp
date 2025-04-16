@@ -42,7 +42,7 @@
       <view v-for="(item, index) in inventoryList" :key="index" class="list-item">
         <text class="item-name">{{ item.Goods.Name}}</text>
         <text>{{ ' ' + item.Goods.Format }}</text>
-        <text class="item-status">{{ statusList[item.Status] }}</text>
+        <text class="item-status" :class="{'icon': item.Status === 'Completed', 'icon-in-progress': item.Status === 'InProgress', 'icon-in-progress': item.Status === 'Discard'}">{{ statusList[item.Status] }}</text>
         <view class="item-detail">
           <view>
             <text>账面数量：{{ item.Expect }}</text>
@@ -218,7 +218,7 @@ export default {
 .sub-button {
   width: 40%;
   height: 40px;
-  background-color: red;
+  background-color: rgba(246,82,55,1);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -237,7 +237,6 @@ export default {
   border-radius: 20rpx;
   padding: 20rpx;
 }
-
 .stat-item {
   text-align: center;
   display: flex;
@@ -299,7 +298,7 @@ export default {
 .title {
   margin: 20rpx 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .form-title {
@@ -341,5 +340,23 @@ export default {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
+}
+.icon {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: rgba(246,82,55,0.8);
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+.icon-in-progress {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: rgba(86,119,34,0.7);
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
 }
 </style>

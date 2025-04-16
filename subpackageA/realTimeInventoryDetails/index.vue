@@ -12,16 +12,16 @@
           <uni-th>单位</uni-th>
           <uni-th>单价</uni-th>
           <uni-th>库存</uni-th>
-          <uni-th>小计</uni-th>
+          <!-- <uni-th>小计</uni-th> -->
         </uni-tr>
         <uni-tr v-for="(item, index) in tableData" :key="index">
           <uni-td>{{ index + 1 }}</uni-td>
-          <uni-td>{{ item.Goods.Name }}</uni-td>
+          <uni-td>{{ item.Warehouse.Name + item.Goods.Name }}</uni-td>
           <uni-td>{{ item.Goods.Format }}</uni-td>
           <uni-td>{{ item.Goods.Uint }}</uni-td>
           <uni-td>{{ item.Goods.Price }}</uni-td>
           <uni-td>{{ item.CurrentCount }}</uni-td>
-          <uni-td>{{ item.TotalPrice }}</uni-td>
+          <!-- <uni-td>{{ item.TotalPrice }}</uni-td> -->
         </uni-tr>
       </uni-table>
     </view>
@@ -35,7 +35,8 @@
       </view> -->
       <view class="email-button">
         <input type="text" v-model="recipient" placeholder="请输入接收邮箱" />
-        <text @click="sendEmail">发送</text>
+        <button @click="sendEmail" :class="{'gray-button': isDisabled}" 
+        :disabled="isDisabled">发送</button>
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
@@ -57,12 +58,12 @@ export default {
       recipient: '',
       subject: '',
       selectedClass: '',
+      isDisabled: false,
       query: {
-        Goods: null,
-        Size: 1,
-        Page: 10,
-        Date: '2024-12-01',
-      }
+        Page: 1,
+        Size: 5,
+      },
+      timer: null
     };
   },
   filters: {
@@ -102,10 +103,10 @@ export default {
     handlePageChange(e) {
       if (e.type === 'prev') {
         this.query.Page = e.current
-        this.getStockOperate()
+        this.getReportGoodsCurrent()
       } else if (e.type === 'next') {
         this.query.Page = e.current
-        this.getStockOperate()
+        this.getReportGoodsCurrent()
       }
     },
     onDateChange(e) {
@@ -115,6 +116,13 @@ export default {
       // 这里可以添加根据日期筛选数据的逻辑
     },
     sendEmail: throttle( async function() {
+      if (this.recipient === '') {
+        uni.showToast({
+          title: '请输入接收邮箱',
+          icon: 'none'
+        });
+        return;
+      }
       const params = {
         Emails: this.recipient,
         ReportType: 'CurrentStock'
@@ -130,9 +138,13 @@ export default {
             title: '邮件已发送',
             icon: 'none'
           });
+          this.isDisabled = true;
+          this.timer = setTimeout(() => {
+            this.isDisabled = false;
+          },1000*60)
         }
       });
-    }, 500),
+    }, 0),
     onClassChange(e) {
       this.selectedClass = this.classList[e.detail.value].Name;
       this.query.Goods = this.classList[e.detail.value].ID;
@@ -143,13 +155,19 @@ export default {
     this.getHotelClassList();
     this.getReportGoodsCurrent();
   },
+  beforeDestroy() {
+    // 组件销毁时清除定时器
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
 };
 </script>
 
 <style>
 @import '@/common/index.css';
 .container {
-  padding: 20px;
+  padding: 20rpx;
   background: #f5f5f5;
   display: flex;
   overflow: hidden;
@@ -206,15 +224,15 @@ export default {
   width: 70%;
   height: 46rpx;
 }
-.email-button text{
-  height: 46rpx;
+.email-button button{
+  height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
   border: 1rpx solid #ccc;
   text-align: center;
   line-height: 46rpx;
   margin-left: 20rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
 }
 /deep/.uni-table{

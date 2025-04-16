@@ -20,7 +20,7 @@
         <text class="text">{{ item.text }}</text>
       </div>
       <view class="scan-btn" @click="scanQRCode">
-       <image class='scan-icon' src="/static/img/tabbar/erweima2.png"/>
+       <image class='scan-icon' src="/static/img/erweima3.png"/>
       </view>
     </di>
     <!-- 适配 iPhone X 底部安全区域 -->
@@ -42,14 +42,14 @@ export default {
         {
           pagePath: "/pages/home/home",  // 工作台页面路径
           text: "工作台",
-          iconPath: "/static/img/tabbar/workbench-active.png",
-          selectedIconPath: "/static/img/tabbar/workbench.png"
+          iconPath: "/static/img/workbench-active.png",
+          selectedIconPath: "/static/img/workbench.png"
         },
         {
           pagePath: "/pages/user/user",      // 个人中心页面路径
           text: "个人中心",
-          iconPath: "/static/img/tabbar/profile-active.png",
-          selectedIconPath: "/static/img/tabbar/profile.png"
+          iconPath: "/static/img/profile-active.png",
+          selectedIconPath: "/static/img/profile.png"
         }
       ]
     };
@@ -195,24 +195,28 @@ export default {
 }
 .scan-btn .scan-icon{
   position: absolute;
-  width: 74rpx;
-  height: 74rpx;
-  left: 50%;
-  margin-left: -37rpx;
-  display: flex;
-  justify-content: center;
-  top:15rpx
-}
-.scan-btn{
-  background-image: url(/static/img/tabbar/erweima1.png);
-   position: absolute;
   width: 110rpx;
   height: 110rpx;
-  top:-26rpx;
+  top: -45rpx;
+  left: 50%;
+  margin-left: -55rpx;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 2px 6px 0px rgba(255,0,0,0.65);
+  border-radius: 50%;
+}
+.scan-btn{
+  /* background-color: rgba(246,82,55,1);
+  box-shadow: 0px 2px 6px 0px rgba(255,0,0,0.65); */
+  /* border-radius: 50%; */
+  /* position: absolute;
+  width: 110rpx;
+  height: 110rpx;
+  top: -45rpx;
   left: 50%;
   margin-left: -55rpx;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 
 }
 </style>

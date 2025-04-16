@@ -182,6 +182,7 @@ export default {
   height: 34rpx;
 }
 .input-view {
+    width: 50%;
 		align-items: center;
 		justify-content: center;
 		display: flex;
@@ -212,7 +213,7 @@ export default {
 .title {
   margin: 20rpx 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .form-title {

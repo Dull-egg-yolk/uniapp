@@ -10,7 +10,7 @@
           transform: translateX(-50%);
   width: 40%;
   height: 80rpx;
-  background-color: red;
+  background-color: #F65237;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@
 .sub-button.data-v-55f24502 {
   width: 40%;
   height: 40px;
-  background-color: red;
+  background-color: rgba(246,82,55,1);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -100,7 +100,7 @@
 .title.data-v-55f24502 {
   margin: 20rpx 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .form-title.data-v-55f24502 {
@@ -142,5 +142,23 @@
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
+}
+.icon.data-v-55f24502 {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: rgba(246,82,55,0.8);
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
+}
+.icon-in-progress.data-v-55f24502 {
+  margin-left: 5rpx;
+  display: inline-block;
+  background-color: rgba(86,119,34,0.7);
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  font-size: 18rpx;
 }
 
