@@ -79,7 +79,7 @@ export default {
 					});
 				} else {
           uni.navigateTo({
-            url: '../changeItem/index?id=' + res.Data.ID
+            url: '../changeItem/index?id=' + res.Data.ID + '&warehouse=' + this.WarehouseID
           });
 				}
     }, 1000),

@@ -1,9 +1,15 @@
 <template>
   <view class="container">
     <view class="filter-section">
-      <picker class="picker" mode="selector" :range="classList" range-key="Name" @change="onClassChange">
-        <view class="date-picker">物品：{{ selectedClass }}</view>
-      </picker>
+      <view class="filter-header">
+        <view class="picker" @click="showPopup">
+            <view class="date-picker">物品：{{ selectedClass }}</view>
+            <uni-icons type="arrowdown" size="20" color="#999" />
+        </view>
+        <picker style="margin-left:10rpx;" class="picker" mode="selector" :range="warehouseList" range-key="Name" @change="onWarehouseChange">
+          <view class="date-picker">库房：{{ selectedonWarehouse }}</view>
+        </picker>
+      </view>
       <view class="example-body">
         <uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" @change="onDateChange" />
       </view>
@@ -39,27 +45,44 @@
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
+    <uni-popup ref="popup" type="bottom" :mask-click="false" @maskClick="closeCalssPopup">
+        <view class="popup-content">
+            <input v-model="searchKeyword" placeholder="搜索物品" @input="filterOptions" />
+            <scroll-view scroll-y class="picker-content">
+                <view v-for="(item, index) in filteredClassList" :key="index" @click="selectClass(item)">
+                    {{ item.Name }}
+                </view>
+            </scroll-view>
+        </view>
+    </uni-popup>
   </view>
 </template>
 
 <script>
 import { throttle } from '@/util/throttle';
 import { formatTime } from '@/util/day.js'
-import { getGoodsItme, getStockOperate, reportEmail } from '@/api/work.js';
+import { getGoodsItme, getStockOperate, reportEmail, getWarehouse } from '@/api/work.js';
 export default {
   data() {
     return {
+      searchKeyword: '',
+      filteredClassList: [],
       range: [],
       tableData: [],
       classList: [],
+      classList1: [],
+      warehouseList: [],
       currentPage: 1,
       totalPages: 0,
       recipient: '',
       subject: '',
       selectedClass: '请选择',
+      selectedText: '',
+      selectedonWarehouse: '请选择',
       goodsID: null,
       isDisabled: false,
       query: {
+        WarehouseIDs: '',
         GoodsID: '',
         Size: 10,
         Page: 1,
@@ -76,6 +99,17 @@ export default {
     },
   },
   methods: {
+    showPopup(){
+      this.$refs.popup.open();
+    },
+    closeCalssPopup(){
+      this.$refs.popup.close();
+    },
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      console.log(res);
+      this.warehouseList = res.Data;
+    },
      sendEmail: throttle( async function() {
       if (this.recipient === '') {
         uni.showToast({
@@ -96,6 +130,8 @@ export default {
         ReportType: 'InOutDetail',
         TimestampFrom: this.query.TimestampFrom,
         TimestampTo: this.query.TimestampTo,
+        GoodsID: this.query.GoodsID,
+        WarehouseIDs: this.query.WarehouseIDs.toString()
       };
       await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -139,6 +175,7 @@ export default {
     async getHotelClassList(){
       const res = await getGoodsItme();
       this.classList = res.Data;
+      this.filteredClassList = this.classList;
     },
     onDateChange(e) {
       this.query.TimestampFrom = e[0];
@@ -156,14 +193,35 @@ export default {
       }
     },
     onClassChange(e) {
-      this.selectedClass = this.classList[e.detail.value].Name;
+      this.selectedClass = this.classList[e.detail.value].Name
       this.query.GoodsID = this.classList[e.detail.value].ID;
       this.getStockOperate();
     },
+    onWarehouseChange(e){
+      this.selectedonWarehouse = this.warehouseList[e.detail.value].Name;
+      this.query.WarehouseIDs = this.warehouseList[e.detail.value].ID;
+      this.getStockOperate();
+    },
+    filterOptions() {
+      if (this.searchKeyword) {
+          this.filteredClassList = this.classList.filter(item =>
+              item.Name.includes(this.searchKeyword)
+          );
+      } else {
+          this.filteredClassList = this.classList;
+      }
+    },
+    selectClass(item) {
+        this.query.GoodsID = item.ID;
+        this.selectedClass = item.Name;
+        this.$refs.popup.close();
+        this.getStockOperate();
+    }
   },
   mounted(){
     this.getHotelClassList();
     this.getStockOperate();
+    this.getWarehouseList();
   },
   beforeDestroy() {
     // 组件销毁时清除定时器
@@ -185,7 +243,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import '@/common/index.css';
 .container {
   padding: 20rpx;
@@ -193,6 +251,13 @@ export default {
   display: flex;
   flex-direction: column;
   height: calc(100vh - var(--status-bar-height));
+}
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-header .picker {
+  flex: 1;
 }
 .tips {
   font-size: 26rpx;
@@ -277,5 +342,26 @@ export default {
 }
 /deep/.uni-table-th-content {
   font-size: 20rpx!important;
+}
+.popup-content {
+    padding: 20rpx;
+    background-color: #fff;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+}
+
+.popup-content input {
+    padding: 10rpx;
+    margin-bottom: 20rpx;
+    border: 1px solid #ccc;
+    border-radius: 5rpx;
+}
+
+scroll-view view {
+    padding: 10rpx;
+    border-bottom: 1px solid #eee;
+}
+.picker-content {
+  height: 600rpx;
 }
 </style>

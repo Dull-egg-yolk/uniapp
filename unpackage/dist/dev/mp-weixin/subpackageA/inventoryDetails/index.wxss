@@ -1,8 +1,8 @@
-.container {
+.container.data-v-5cbc17eb {
   padding: 20rpx;
   width: 100%;
 }
-.add-button {
+.add-button.data-v-5cbc17eb {
   position: fixed;
   bottom: 40rpx;
   left: 50%;
@@ -18,28 +18,35 @@
   border-radius: 10rpx;
   z-index:1;
 }
-.container {
+.container.data-v-5cbc17eb {
   padding: 20rpx;
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 25px);
 }
-.tips {
+.filter-header.data-v-5cbc17eb {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-header .picker.data-v-5cbc17eb {
+  flex: 1;
+}
+.tips.data-v-5cbc17eb {
   font-size: 26rpx;
   color: #999;
   margin-top: 10px;
 }
-.example-body {
+.example-body.data-v-5cbc17eb {
 	background-color: #fff;
   width: 100%;
   border-radius: 10rpx;
   margin-top: 20rpx;
 }
-.example-body .title {
+.example-body .title.data-v-5cbc17eb {
   margin-bottom: 10rpx;
 }
-.filter-section {
+.filter-section.data-v-5cbc17eb {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,51 +55,51 @@
   padding: 20rpx;
   border-radius: 10rpx;
 }
-.page-button {
+.page-button.data-v-5cbc17eb {
   background-color: #fff;
   border-radius: 20rpx;
   color: #000;
   padding: 10rpx 20rpx;
 }
-.uni-picker {
+.uni-picker.data-v-5cbc17eb {
   height: 46rpx;
 }
-.date-picker {
+.date-picker.data-v-5cbc17eb {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
   font-size: 14px;
 }
-.pagination-section {
+.pagination-section.data-v-5cbc17eb {
   background: #fff;
   border-radius: 0 0 10rpx 10rpx;
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
-.table-section {
+.table-section.data-v-5cbc17eb {
   flex: 1;
   overflow-y: auto;
   background-color: #fff;
   border-radius: 20rpx 20rpx 0 0;
   overflow-x: hidden;
 }
-.email-section {
+.email-section.data-v-5cbc17eb {
   height: 320rpx;
 }
-.email-section input {
+.email-section input.data-v-5cbc17eb {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.email-button { 
+.email-button.data-v-5cbc17eb { 
   display: flex;
 }
-.email-button input {
+.email-button input.data-v-5cbc17eb {
   width: 70%;
   height: 46rpx;
 }
-.email-button button{
+.email-button button.data-v-5cbc17eb{
   height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
@@ -103,10 +110,29 @@
   background-color: #F65237;
   color: #fff;
 }
- .uni-table{
+.data-v-5cbc17eb .uni-table{
   min-width: auto !important;
 }
- .uni-table-th-content {
+.data-v-5cbc17eb .uni-table-th-content {
   font-size: 20rpx!important;
+}
+.popup-content.data-v-5cbc17eb {
+    padding: 20rpx;
+    background-color: #fff;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+}
+.popup-content input.data-v-5cbc17eb {
+    padding: 10rpx;
+    margin-bottom: 20rpx;
+    border: 1px solid #ccc;
+    border-radius: 5rpx;
+}
+scroll-view view.data-v-5cbc17eb {
+    padding: 10rpx;
+    border-bottom: 1px solid #eee;
+}
+.picker-content.data-v-5cbc17eb {
+  height: 600rpx;
 }
 

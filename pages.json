@@ -62,7 +62,10 @@
             },{
                 "path": "inventoryDetails/index",
                 "style": {
-                    "navigationBarTitleText": "物品出入库明细"
+                    "navigationBarTitleText": "物品出入库明细",
+                    "componentPlaceholder": {
+                    "uni-data-select": "view"
+                    }
                 }
             },{
                 "path": "realTimeInventoryDetails/index",

@@ -8,22 +8,11 @@
 			console.log('场景值:', options.scene) // 场景值
 			console.log('进入路径:', options.path) // 页面路径
 			console.log('参数:', options.query) // 页面参数
-			var myinfo = uni.getStorageSync('user_info')
-			var mytoken = uni.getStorageSync('token')
-			var hotelinfo = uni.getStorageSync('hotalName')
-			if(myinfo && mytoken && hotelinfo){
-				uni.reLaunch({
-					url: "/pages/home/home"
-				});
-			} else {
-				uni.reLaunch({
-					url: "/pages/user/user"
-				});
-			}
 			const scanScenes = [1047, 1048, 1049];
 			const getToken = uni.getStorageSync('token');
 			console.log(getToken, 'getToken');
 			this.globalData.hasToken = getToken ? true : false;
+			uni.setStorageSync('launchOptions', options)
 			if (scanScenes.includes(options.scene)) {
 				console.log('用户通过微信扫一扫进入小程序');
 				
@@ -37,8 +26,21 @@
 						console.log('扫码结果:', scanResult);
 					}
 				}
+				return;
 			}
-			uni.setStorageSync('launchOptions', options)
+						
+			var myinfo = uni.getStorageSync('user_info')
+			var mytoken = uni.getStorageSync('token')
+			var hotelinfo = uni.getStorageSync('hotalName')
+			if(myinfo && mytoken && hotelinfo){
+				uni.reLaunch({
+					url: "/pages/home/home"
+				});
+			} else {
+				uni.reLaunch({
+					url: "/pages/user/user"
+				});
+			}
 		},
 		onShow: function() {
 			console.log('App Show');

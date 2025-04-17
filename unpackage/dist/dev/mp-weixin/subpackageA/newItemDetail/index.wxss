@@ -68,9 +68,10 @@
 }
 .botm.data-v-46f83b56 {
   position: absolute;
-  bottom: 40rpx;
+  width: 100%;
+  bottom: 80rpx;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .btn.data-v-46f83b56 {

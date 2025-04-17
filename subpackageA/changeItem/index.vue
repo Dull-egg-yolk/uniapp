@@ -59,7 +59,9 @@ export default {
         Page: 1,
         Size: 10,
         Search: '',
-        Status: ''
+        Status: '',
+        WarehouseID: null,
+        OnlyInStock: true
       },
       remarks: '',
       selectedDate: '',
@@ -150,7 +152,8 @@ export default {
   },
   onLoad(options) {
     this.query.StockTakingRecordID = options.id;
-    console.log(options.id); // 输出 "value"
+    this.query.WarehouseID = options.warehouse;
+    console.log(options, 'ba'); // 输出 "value"
   },
   mounted(){
     if(this.query.StockTakingRecordID) {

@@ -1,12 +1,16 @@
 {
   "navigationBarTitleText": "物品出入库明细",
+  "componentPlaceholder": {
+    "uni-data-select": "view"
+  },
   "usingComponents": {
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "uni-datetime-picker": "/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
     "uni-table": "/uni_modules/uni-table/components/uni-table/uni-table",
     "uni-tr": "/uni_modules/uni-table/components/uni-tr/uni-tr",
     "uni-th": "/uni_modules/uni-table/components/uni-th/uni-th",
     "uni-td": "/uni_modules/uni-table/components/uni-td/uni-td",
     "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination",
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup"
   }
 }

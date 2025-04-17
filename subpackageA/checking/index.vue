@@ -164,6 +164,7 @@ export default {
 						icon: "none"
 					});
 			} else {
+        this.getStockTakingStringSummary()
           
 			}
     },

@@ -1,5 +1,5 @@
 <template>
-  <view class="container" v-if="hasToken === false">
+  <view class="container">
     <view class="content">
     <!-- 上传照片 -->
       <view class="section">
@@ -65,7 +65,7 @@ export default {
         Class: {
           Name: '',
         },
-        hasToken: true,
+        hasToken: uni.getStorageSync('token'),
         Suppliers: "1",
         minStock: "1",
         maxStock: "1",
@@ -83,16 +83,18 @@ export default {
   components: {
   },
   async onLoad(option) {
-    await this.getNoGoodsItem();
     console.log(option, 'option');
-    const app = getApp();
-    this.hasToken = app.globalData.hasToken;
-    console.log(this.hasToken , 'this.hasToken');
+    // const app = getApp();
+    this.hasToken = uni.getStorageSync('token');
+    console.log(this.hasToken , 'this.hasToken11');
     
     const launchOptions = uni.getLaunchOptionsSync();
-    const sceneParams = 'g=21,w=0,h=93'
+    // const sceneParams = 'g=21,w=0,h=93'
+    const sceneParams = decodeURIComponent(option.scene);
+    console.log(sceneParams, 'sceneParams');
     this.GoodsId = this.getParamFromScene(sceneParams, 'g');
     this.HotelID = this.getParamFromScene(sceneParams, 'h');
+    await this.getNoGoodsItem();
     if(this.hasToken){
       uni.navigateTo({
         url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
@@ -119,8 +121,9 @@ export default {
   },
   methods: {
     toUse(){
-      uni.switchTab({
-        url: 'pages/user/user'
+      console.log('toUse111');
+      uni.reLaunch({
+        url: '/pages/user/user'
       });
     },
     getParamFromScene(scene, paramName) {
@@ -209,9 +212,10 @@ export default {
 }
 .botm {
   position: absolute;
-  bottom: 40rpx;
+  width: 100%;
+  bottom: 80rpx;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .btn {

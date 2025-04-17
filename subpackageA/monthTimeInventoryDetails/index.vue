@@ -18,7 +18,7 @@
           <uni-th>规格</uni-th>
           <uni-th>单位</uni-th>
           <uni-th>单价</uni-th>
-          <uni-th>库存</uni-th>
+          <uni-th>出库数量</uni-th>
           <uni-th>小计</uni-th>
         </uni-tr>
         <uni-tr v-for="(item, index) in tableData" :key="index">
@@ -27,7 +27,7 @@
           <uni-td>{{ item.Goods.Format }}</uni-td>
           <uni-td>{{ item.Goods.Uint }}</uni-td>
           <uni-td>{{ item.Goods.Price }}</uni-td>
-          <uni-td>{{ item.CurrentCount }}</uni-td>
+          <uni-td>{{ item.ChangedCount }}</uni-td>
           <uni-td>{{ item.TotalPrice }}</uni-td>
         </uni-tr>
       </uni-table>

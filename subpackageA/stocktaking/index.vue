@@ -82,14 +82,14 @@ export default {
       }
     },
     navigateTo: throttle(function() {
-      const hasChecked = this.inventoryList.some(item => item.Status === 'InProgress');
-      if (hasChecked) {
-        uni.showToast({
-          title: '有盘点任务正在进行中，请先完成盘点',
-          icon: "none"
-        })
-        return; // 停止执行后续代码
-      }
+      // const hasChecked = this.inventoryList.some(item => item.Status === 'InProgress');
+      // if (hasChecked) {
+      //   uni.showToast({
+      //     title: '有盘点任务正在进行中，请先完成盘点',
+      //     icon: "none"
+      //   })
+      //   return; // 停止执行后续代码
+      // }
       uni.navigateTo({
 				url: '../newStocktaking/index'
 			});
@@ -111,6 +111,8 @@ export default {
       
     },
     gotoReport(item) {
+      console.log(item, '8888');
+      
       if (item.Status === 'InProgress' && item.GoodsCount > 0) {
         uni.navigateTo({
           url: `/subpackageA/checking/index?id=${item.ID}`
@@ -118,7 +120,7 @@ export default {
         return;
       }else if(item.Status === 'InProgress' && item.GoodsCount === 0) {
         uni.navigateTo({
-          url: `/subpackageA/changeItem/index?id=${item.ID}`
+          url: `/subpackageA/changeItem/index?id=${item.ID}&warehouse=${item.WarehouseID}`
         });
       } else {
         uni.navigateTo({
