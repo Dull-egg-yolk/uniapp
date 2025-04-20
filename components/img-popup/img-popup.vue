@@ -87,6 +87,10 @@ export default {
     imgContent: {
       type: String,
       required: true
+    },
+    warehouseName: {
+      type: String,
+      default: true
     }
   },
   data() {
@@ -94,7 +98,7 @@ export default {
       rqImg: '',
       visible: false,
       saveImg: '',
-      canvasHeight: 320,
+      canvasHeight: 400,
       canvasWidth: 400
     }
   },
@@ -171,7 +175,7 @@ export default {
     async handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
       const localPath = await this.generateImage();
       startDrawLabel(canvasId, this, labelWidth, labelHeight, rotation, ctx);
-      drawImage(localPath, 0, 3, 50, 40);
+      drawImage(localPath, 1, 1, 50, 50);
       endDrawLabel(() => {
         console.log('打印完成');
         setTimeout(() => {
@@ -191,12 +195,13 @@ export default {
       const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
       return new Promise((resolve) => {
         const ctx = uni.createCanvasContext('myCanvas', this);
-        ctx.drawImage(imagePath, 40, 20, 220, 220);
+        ctx.drawImage(imagePath, 16, -5, 260, 260);
         ctx.setFontSize(20);
         ctx.setFillStyle("#000000");
         ctx.setTextAlign("center");
-        const textY = 20 + 220 + 30; // 图片Y + 图片高度 + 间距
+        const textY = 10 + 260 + 10; // 图片Y + 图片高度 + 间距
         ctx.fillText(this.imgContent, 150, textY);
+        ctx.fillText(this.warehouseName, 150, textY + 30);
         // ctx.draw();
         // resolve();
         ctx.draw(false, () => {

@@ -56,11 +56,33 @@
     <view class="add-button" @click="submitForm">
       <text>确定</text>
     </view>
+    <uni-popup ref="popup" type="bottom" background-color="#fff">
+      <view class="popup-content">
+        <view class="popup-header">
+          <text class="title">选择库房</text>
+          <uni-icons type="close" size="20" @click="closePopup"></uni-icons>
+        </view>
+        
+        <scroll-view scroll-y class="warehouse-list">
+          <view v-for="(item, index) in warehouseList" 
+            :key="index" 
+            class="warehouse-item"
+            :class="{ 'selected': selectedWarehouse === item.Name }"
+            @click="selectWarehouse(item)">
+            <text>{{ item.Name }}</text>
+            <uni-icons v-if="selectedWarehouse === item.Name" type="checkmarkempty" color="#007AFF" size="18"></uni-icons>
+          </view>
+        </scroll-view>
+                
+        <button class="confirm-btn" @click="confirmSelection">确定</button>
+      </view>
+    </uni-popup>
     <img-popup 
       ref="imagePopup"
       title="二维码"
       :imageUrl="scanUrl"
       :imgContent="imgContent"
+      :warehouseName="selectedWarehouse"
       @save="onSave"
       @close="onClose"
     />
@@ -69,7 +91,7 @@
 
 <script>
 import { throttle } from '@/util/throttle';
-import { addGoodsItme, getHotelClass, getQrcode, updateGoodsItme } from "@/api/work";
+import { addGoodsItme, getHotelClass, getQrcode, updateGoodsItme, getWarehouse } from "@/api/work";
 import { getUserConfig } from "@/api/user";
 import imgPopup from '@/components/img-popup/img-popup.vue';
 export default {
@@ -78,7 +100,13 @@ export default {
   },
   data() {
     return {
+      warehouseList: [],
+      selectedWarehouse: '', // 当前选中的库房
+      tempSelected: '',     // 临时选择（用于确认前）
+      currentItem: {},     // 当前操作的物品
+      selectedWarehouseId: null, // 当前选中的库房ID
       imgContent: '',
+      warehouseName: '',
       scanUrl: '',
       title: '',
       DefaultWarehouseID: 0,
@@ -111,6 +139,39 @@ export default {
     };
   },
   methods: {
+        // 显示弹出框
+        showPopup() {
+      this.tempSelected = this.selectedWarehouse;
+      this.$refs.popup.open();
+    },
+    
+    // 关闭弹出框
+    closePopup() {
+      this.$refs.popup.close();
+    },
+    
+    // 选择库房
+    selectWarehouse(item) {
+      this.tempSelected = item.Name;
+      this.selectedWarehouse = item.Name;
+      this.selectedWarehouseId = item.ID
+    },
+    // 确认选择
+    confirmSelection() {
+      this.selectedWarehouse = this.tempSelected;
+      console.log(this.selectedWarehouse, '确认选择');
+      
+      this.closePopup();
+      this.getScan();
+      
+      // 也可以触发父组件事件
+      this.$emit('selected', this.selectedWarehouse);
+    },
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      console.log(res);
+      this.warehouseList = res.Data;
+    },
     onClose(){
       // uni.switchTab({
       //   url: '/pages/home/home'
@@ -285,6 +346,8 @@ export default {
            this.DefaultWarehouseID = res.Data.DefaultWarehouseID
            this.GoodsID = res.Data.ID
            this.goodList = res.Data
+           this.warehouseName = this.selectedWarehouse
+           
           uni.showToast({
             title: "提交成功",
             icon: "success"
@@ -302,7 +365,7 @@ export default {
             Note: ""
           };
           this.imageUrl = "";
-          this.getScan()
+          this.showPopup()
           }
       })
       }
@@ -312,7 +375,7 @@ export default {
     },
    async getScan(){
       const params = {
-        WarehouseID: this.DefaultWarehouseID,
+        WarehouseID: this.selectedWarehouseId,
         GoodsID: this.GoodsID
       }
       const res = await getQrcode(params)
@@ -326,16 +389,12 @@ export default {
         this.imgContent = this.goodList.Name + ' ' + this.goodList.Format + '/' + this.goodList.Uint
         
         this.$refs.imagePopup.open()
-
-        // this.decodeAndShowImage(res.Data)
-        // const decodedStr = this.decodeBase64(res.Data)
-        // console.log(decodedStr, '解码后的字符串');
-        // this.decodeAndShowImage(res.Data)
         
       }
     }
   },
   mounted(){
+    this.getWarehouseList();
     this.getUserConfig();
     this.getHotelClassList();
     this.HotelID = uni.getStorageSync('user_info').Hotel.ID;
@@ -449,6 +508,59 @@ export default {
 .date-picker {
   color: #3e3c3c;;
 }
+/* 选择框样式 */
+.select-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 8rpx;
+  background-color: #f9f9f9;
+}
 
+/* 弹出框内容样式 */
+.popup-content {
+  padding: 30rpx;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 库房列表样式 */
+.warehouse-list {
+  max-height: 600rpx;
+  padding: 0 30rpx;
+}
+.warehouse-item {
+  padding: 25rpx 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.warehouse-item uni-icons {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 确认按钮样式 */
+.confirm-btn {
+  margin-top: 30rpx;
+  background-color: #F65237;
+  color: white;
+  border-radius: 50rpx;
+}
 
 </style>

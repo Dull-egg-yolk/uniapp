@@ -109,14 +109,15 @@ import { userLogin, appConfig } from '@/api/user.js'
 		async onConfirm(){
 			const userInfo =  uni.getStorageSync('userInfo')
 			const invited = uni.getStorageSync('launchOptions')
-			invited.query.InvitedByHotelID
-					
+			if (invited && invited.query.InvitedByHotelID !== 'undefined') {
+				invited.query.InvitedByHotelID === parseInt(invited.query.InvitedByHotelID)
+			}
 			const params = {
 						Name: userInfo.nickName,
 						WxCode: this.WxCode,
 						Avatar: userInfo.avatarUrl,
-						InvitedByHotelID: invited.query.InvitedByHotelID || 0,
-						InvitedCode: invited.query.InvitedCode || '',
+						InvitedByHotelID: invited ? invited.query.InvitedByHotelID : 0 || 0,
+						InvitedCode: invited ? invited.query.InvitedCode : '' || '',
 					}
 					const res = await userLogin(params)
 					if (res.ErrorMsg) {
@@ -129,6 +130,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 						uni.setStorageSync('token', res.Data.Token);
 						uni.setStorageSync('user_info', res.Data);
 						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
+						uni.setStorageSync('hotalID', res.Data.Hotel.ID);
 						uni.showToast({
 							title: '登录成功',
 							icon: "none"

@@ -55,6 +55,7 @@ export default {
       headerTitle: '',
       GoodsId: null,
       HotelID: null,
+      WarehouseID: null,
       // 表单数据
       form: {
         Image: '',
@@ -65,7 +66,7 @@ export default {
         Class: {
           Name: '',
         },
-        hasToken: uni.getStorageSync('token'),
+        hasToken: uni.getStorageSync('hotalID'),
         Suppliers: "1",
         minStock: "1",
         maxStock: "1",
@@ -83,29 +84,55 @@ export default {
   components: {
   },
   async onLoad(option) {
-    console.log(option, 'option');
+    console.log(option, 'option11');
+    console.log(option.goosId, 'goosId');
     // const app = getApp();
-    this.hasToken = uni.getStorageSync('token');
-    console.log(this.hasToken , 'this.hasToken11');
+    this.hasToken = uni.getStorageSync('hotalID');
+    console.log(this.hasToken , 'this.hotalID');
     
     const launchOptions = uni.getLaunchOptionsSync();
     // const sceneParams = 'g=21,w=0,h=93'
     const sceneParams = decodeURIComponent(option.scene);
     console.log(sceneParams, 'sceneParams');
-    this.GoodsId = this.getParamFromScene(sceneParams, 'g');
-    this.HotelID = this.getParamFromScene(sceneParams, 'h');
-    await this.getNoGoodsItem();
-    if(this.hasToken){
+    if (sceneParams !== 'undefined') {
+      console.log(1);
+      this.GoodsId = this.getParamFromScene(sceneParams, 'g');
+      this.HotelID = this.getParamFromScene(sceneParams, 'h');
+      this.WarehouseID = this.getParamFromScene(sceneParams, 'w');
+      await this.getNoGoodsItem();
+    } else {
+      console.log(2);
+      
+      this.GoodsId = parseInt(option.goosId);
+      this.HotelID = parseInt(option.hotalId);
+      this.WarehouseID = parseInt(option.warehouseId);
+      await this.getNoGoodsItem();
+    }
+    console.log(this.GoodsId,this.HotelID,this.WarehouseID, 'this.option');
+    
+    if(this.hasToken === this.HotelID){
+      console.log('this.hasToken === this.HotelID');
       uni.navigateTo({
-        url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
+        // url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
+        url: '/subpackageA/itemDetail/index?warehouseId=' + this.WarehouseID + '&goosId=' + this.GoodsId + '&hotalId=' + this.HotelID + '&showScan=' + true
       });
     }
-
     // 微信扫一扫进入的场景值
     const WX_SCAN_SCENES = [1047, 1048, 1049];
     if (WX_SCAN_SCENES.includes(launchOptions.scene)) {
       console.log('来自微信主界面扫一扫');
+      console.log(this.hasToken, 'this.hasToken');
+      console.log(this.HotelID, 'this.HotelID');
+      console.log(typeof this.hasToken, 'this.hasToken');
+      console.log(typeof this.HotelID, 'this.HotelID');
       
+      if(parseInt(this.hasToken) === parseInt(this.HotelID)){
+        console.log('this.hasToken === this.HotelID');
+        uni.navigateTo({
+          // url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
+          url: '/subpackageA/itemDetail/index?warehouseId=' + this.WarehouseID + '&goosId=' + this.GoodsId + '&hotalId=' + this.HotelID + '&showScan=' + true
+        });
+      }
     } else {
       console.log('来自小程序内部或其他方式');
       // 处理小程序内扫码或其他入口

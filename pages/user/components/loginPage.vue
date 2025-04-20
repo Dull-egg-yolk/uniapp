@@ -10,7 +10,7 @@
           <text class="function-text">{{ item.name }}</text>
         </view>
         <view class="function-item">
-          <button open-type="contact" class="contact-btn">
+          <button class="contact-btn" @click="contactCustomerService">
             <image src='/static/images/riLine-mail-send-line.svg' class="function-icon" />
             <text class="function-text">联系客服</text>
           </button>
@@ -104,6 +104,18 @@ export default {
     console.log(this.updateUser, 11111);
   },
   methods: {
+    contactCustomerService(){
+      wx.openCustomerServiceChat({
+        extInfo: {url: 'https://work.weixin.qq.com/kfid/kfc31c83ef5ca238ab7'},
+        corpId: 'ww00aa5bcecce5872d', // 如果是企业微信客服
+        success(res) {
+          console.log('客服打开成功', res);
+        },
+        fail(err) {
+          console.error('客服打开失败', err);
+        }
+      });
+    },
     gotoWebsite() {
       wx.navigateTo({
         url: '/subpackageB/webview/webview?url=' + encodeURIComponent(this.personalInvitePage)

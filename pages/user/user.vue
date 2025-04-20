@@ -65,6 +65,7 @@
 					uni.setStorageSync('user_info', res.Data);
 					console.log(this.updateUser, 'updateUser');
 					uni.setStorageSync('hotalName', res.Data.Hotel.Name);
+					uni.setStorageSync('hotalID', res.Data.Hotel.ID);
 					if (res.Data.Token) {
 						uni.setStorageSync('token', res.Data.Token);
 					}

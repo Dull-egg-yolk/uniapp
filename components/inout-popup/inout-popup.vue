@@ -29,7 +29,7 @@
           <input v-if="Title === '出库'" v-model="form.OutCount" placeholder="请输入出库数量" type="number" />
         </view>
         
-        <view class="form-item">
+        <!-- <view class="form-item">
           <text>库房编号</text>
           <picker 
             mode="selector" 
@@ -41,7 +41,7 @@
               {{ form.WarehouseID || '请选择仓库' }}
             </view>
           </picker>
-        </view>
+        </view> -->
         
         <view class="form-item" v-if="Title === '入库'">
           <text>有效期</text>
@@ -78,6 +78,24 @@ export default {
     ID: {
       type: Number,
       default: true
+    },
+    WarehouseID: {
+      type: Number,
+      default: true
+    }
+  },
+  mounted() {
+    this.getWarehouseList()
+  },
+  methods: {
+    dateChange(e) {
+      this.form.ValidDate = transformDateTime(e.detail.value)
+    },
+    close() {
+      this.visible = false
+      this.$emit('close')
+    },
+    handleMaskClick() {
     }
   },
   watch: {
@@ -134,7 +152,7 @@ export default {
       // uni.showLoading({ title: '提交中...' })
       this.form.GoodsID = this.ID
       this.form.Note = this.Note
-      this.form.WarehouseID = this.categories.find(item => item.Name === this.form.WarehouseID).ID
+      this.form.WarehouseID = this.WarehouseID
       // this.form.InCount = parseInt(this.form.InCount)
       if (this.Title === '入库') {
         delete this.form.OutCount
@@ -163,11 +181,6 @@ export default {
           uni.showToast({ title: '请输入出库数量', icon: 'none' })
           return false
         }
-      }
-
-      if (!this.form.WarehouseID) {
-        uni.showToast({ title: '请输入库房编号', icon: 'none' })
-        return false
       }
       return true
     },

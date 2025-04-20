@@ -84,9 +84,19 @@ export default {
           console.log(sceneParams, 'sceneParams');
           const goods = this.getParamFromScene(sceneParams, 'g');
           const warehouse = this.getParamFromScene(sceneParams, 'w');
-          uni.navigateTo({
-            url: '/subpackageA/itemDetail/index?id=' + warehouse + '&goosId=' + goods + '&showScan=' + true
-          })
+          const hotalId = this.getParamFromScene(sceneParams, 'h');
+          const HotelId = uni.getStorageSync('hotalID');
+          console.log(hotalId, HotelId , '00000');
+          
+          if (HotelId === hotalId) {
+            uni.navigateTo({
+              url: '/subpackageA/itemDetail/index?warehouseId=' + warehouse + '&goosId=' + goods + '&hotalId=' + hotalId + '&showScan=' + true
+            })
+          } else {
+            uni.navigateTo({
+              url: '/subpackageA/newItemDetail/index?warehouseId=' + warehouse + '&goosId=' + goods + '&hotalId=' + hotalId + '&showScan=' + true
+            })
+          }
           
         },
         fail: (err) => {

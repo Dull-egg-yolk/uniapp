@@ -38,6 +38,7 @@ export default {
     userInfon(newVal) {
       this.userList.Hotel.Name = newVal.Hotel.Name;
       this.userList.PrimeRight.Name = newVal.PrimeRight.Name;
+      this.userList.Hotel.ID = newVal.Hotel.ID;
       console.log(newVal, 'userInfon4444');
     }
   },

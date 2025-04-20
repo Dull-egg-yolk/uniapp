@@ -39,8 +39,8 @@
     </view>
 
     <!-- 联系客服 -->
-    <view class="contact-customer">
-      <button open-type="contact" class="contact-btn">
+    <view class="contact-customer" @click="contactCustomerService">
+      <button class="contact-btn">
         <text class="function-text">如有疑问，请联系客服 ></text>
       </button>
     </view>
@@ -80,6 +80,18 @@ export default {
   computed: {
   },
   methods: {
+    contactCustomerService(){
+      wx.openCustomerServiceChat({
+        extInfo: {url: 'https://work.weixin.qq.com/kfid/kfc31c83ef5ca238ab7'},
+        corpId: 'ww00aa5bcecce5872d', // 如果是企业微信客服
+        success(res) {
+          console.log('客服打开成功', res);
+        },
+        fail(err) {
+          console.error('客服打开失败', err);
+        }
+      });
+    },
     // 套餐选择变化
     handlePackageChange(e) {
       this.selectedPackage = e.detail.value

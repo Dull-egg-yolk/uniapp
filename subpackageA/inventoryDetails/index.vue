@@ -45,7 +45,7 @@
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
-    <uni-popup ref="popup" type="bottom" :mask-click="false" @maskClick="closeCalssPopup">
+    <uni-popup ref="popup" type="bottom" mode="bottom" :mask-click="false" @maskClick="closeCalssPopup" :safe-area="flase">
         <view class="popup-content">
             <input v-model="searchKeyword" placeholder="搜索物品" @input="filterOptions" />
             <scroll-view scroll-y class="picker-content">
@@ -231,12 +231,21 @@ export default {
   },
   async onLoad(option) {
     await this.getHotelClassList();
+    await this.getWarehouseList();
     console.log(this.classList, '9999');
     
     if (option.id) {
       this.query.GoodsID = option.id;
+      this.query.WarehouseIDs = parseInt(option.warehouseId);
+      console.log(option, 'option');
+      
       this.goodsID = parseInt(option.id)
+      console.log(this.warehouseList, 'this.warehouseLis');
+      
+      console.log(this.warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs), 'warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs)');
+      
       this.selectedClass = this.classList[this.classList.findIndex( item => item.ID == option.id)].Name
+      this.selectedonWarehouse = this.warehouseList[this.warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs)].Name
       this.getStockOperate();
     }
   }
@@ -344,10 +353,14 @@ export default {
   font-size: 20rpx!important;
 }
 .popup-content {
-    padding: 20rpx;
+    padding: 40rpx 20rpx 0 20rpx;
     background-color: #fff;
-    border-top-left-radius: 10rpx;
-    border-top-right-radius: 10rpx;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    padding-bottom: constant(safe-area-inset-bottom); /* iOS */
+    padding-bottom: env(safe-area-inset-bottom); /* Android */
+    -webkit-overflow-scrolling: touch;
+    overflow-anchor: none;
 }
 
 .popup-content input {
@@ -363,5 +376,16 @@ scroll-view view {
 }
 .picker-content {
   height: 600rpx;
+}
+/* 覆盖 uni-popup 默认样式 */
+:deep(.uni-popup__wrapper.uni-popup__wrapper--bottom) {
+  background-color: #fff !important; /* 强制白色背景 */
+  border-radius: 16rpx 16rpx 0 0 !important;
+}
+
+/* 去除遮罩层默认透明度 */
+:deep(.uni-popup__mask) {
+  opacity: 1;
+  background-color: rgba(0,0,0,0.5);
 }
 </style>

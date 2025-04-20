@@ -117,10 +117,14 @@
   font-size: 20rpx!important;
 }
 .popup-content.data-v-5cbc17eb {
-    padding: 20rpx;
+    padding: 40rpx 20rpx 0 20rpx;
     background-color: #fff;
-    border-top-left-radius: 10rpx;
-    border-top-right-radius: 10rpx;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    padding-bottom: constant(safe-area-inset-bottom); /* iOS */
+    padding-bottom: env(safe-area-inset-bottom); /* Android */
+    -webkit-overflow-scrolling: touch;
+    overflow-anchor: none;
 }
 .popup-content input.data-v-5cbc17eb {
     padding: 10rpx;
@@ -134,5 +138,15 @@ scroll-view view.data-v-5cbc17eb {
 }
 .picker-content.data-v-5cbc17eb {
   height: 600rpx;
+}
+/* 覆盖 uni-popup 默认样式 */
+.data-v-5cbc17eb:deep(.uni-popup__wrapper.uni-popup__wrapper--bottom) {
+  background-color: #fff !important; /* 强制白色背景 */
+  border-radius: 16rpx 16rpx 0 0 !important;
+}
+/* 去除遮罩层默认透明度 */
+.data-v-5cbc17eb:deep(.uni-popup__mask) {
+  opacity: 1;
+  background-color: rgba(0,0,0,0.5);
 }
 

@@ -58,7 +58,7 @@
       </view>
       <view class="tips"><uni-icons type="info" size="16" color="#999"></uni-icons>发件邮箱为 ims@jiudianhui.com.cn，请添加至白名单</view>
     </view>
-    <uni-popup ref="popup" type="bottom" :mask-click="false" @maskClick="closePopup">
+    <uni-popup ref="popup" type="bottom" :mask-click="false" @maskClick="closePopup" :safe-area="false">
       <view class="picker-container">
         <view class="picker-header">
           <text class="title">选择库房（可多选）</text>
@@ -85,7 +85,7 @@
         </view>
       </view>
     </uni-popup>
-    <uni-popup ref="classpopup" type="bottom" :mask-click="false" @maskClick="closeCalssPopup">
+    <uni-popup ref="classpopup" type="bottom" :mask-click="false" @maskClick="closeCalssPopup" :safe-area="false">
       <view class="picker-container">
         <view class="picker-header">
           <text class="title">选择分类（可多选）</text>
@@ -221,6 +221,14 @@ export default {
     async getWarehouseList() {
       const res = await getWarehouse();
       console.log(res);
+      res.Data.push({
+        CreatedAt: "2025-04-19T21:11:34.41+08:00",
+        DeletedAt: null,
+        ID: 0,
+        Name: "汇总",
+        Place: "",
+        UpdatedAt: "2025-04-19T21:11:34.41+08:00",
+      })
       this.warehouseList = res.Data;
     },
     // 实时库存明细
@@ -387,7 +395,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import '@/common/index.css';
 .container {
   padding: 20rpx;
@@ -508,7 +516,8 @@ export default {
 .picker-container {
   background-color: #fff;
   border-radius: 20rpx 20rpx 0 0;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS */
+  padding-bottom: env(safe-area-inset-bottom); /* Android */
 }
 .picker-header {
   display: flex;
@@ -584,8 +593,10 @@ export default {
 }
 
 .cancel {
-  background-color: #f5f5f5;
   color: #333;
+}
+.cancel::after {
+  border: none;
 }
 
 .confirm {
@@ -597,5 +608,8 @@ export default {
   white-space: nowrap;      /* 禁止换行 */
   overflow: hidden;        /* 隐藏超出内容 */
   text-overflow: ellipsis; /* 显示省略号 */
+}
+/deep/.uni-popup__wrapper {
+  padding-bottom: 0 !important;
 }
 </style>

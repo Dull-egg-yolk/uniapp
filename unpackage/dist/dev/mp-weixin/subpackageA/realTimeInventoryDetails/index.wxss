@@ -1,8 +1,8 @@
-.container {
+.container.data-v-c651f854 {
   padding: 20rpx;
   width: 100%;
 }
-.add-button {
+.add-button.data-v-c651f854 {
   position: fixed;
   bottom: 40rpx;
   left: 50%;
@@ -18,7 +18,7 @@
   border-radius: 10rpx;
   z-index:1;
 }
-.container {
+.container.data-v-c651f854 {
   padding: 20rpx;
   background: #f5f5f5;
   display: flex;
@@ -26,12 +26,12 @@
   flex-direction: column;
   height: calc(100vh - 25px);
 }
-.filter-header {
+.filter-header.data-v-c651f854 {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.filter-header .multi-picker {
+.filter-header .multi-picker.data-v-c651f854 {
   flex: 1;
   min-width: 0;          /* 关键：允许内容收缩 */
   width: 50%;            /* 固定宽度50% */
@@ -40,57 +40,57 @@
   overflow-wrap: break-word; /* 更现代的属性 */
   white-space: normal;    /* 允许换行 */
 }
-.filter-section {
+.filter-section.data-v-c651f854 {
   display: flex;
   justify-content: space-between;
 }
-.page-button {
+.page-button.data-v-c651f854 {
   background-color: #fff;
   border-radius: 20rpx;
   color: #000;
   padding: 10rpx 20rpx;
 }
-.uni-picker {
+.uni-picker.data-v-c651f854 {
   height: 46rpx;
 }
-.date-picker {
+.date-picker.data-v-c651f854 {
   padding: 10px;
   font-size: 14px;
 }
-.tips {
+.tips.data-v-c651f854 {
   font-size: 26rpx;
   color: #999;
   margin-top: 10px;
 }
-.pagination-section {
+.pagination-section.data-v-c651f854 {
   background: #fff;
   border-radius: 0 0 10rpx 10rpx;
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
-.table-section {
+.table-section.data-v-c651f854 {
   flex: 1;
   overflow: auto;
   background-color: #fff;
   border-radius: 20rpx 20rpx 0 0;
 }
-.email-section {
+.email-section.data-v-c651f854 {
   height: 320rpx;
 }
-.email-section input {
+.email-section input.data-v-c651f854 {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.email-button { 
+.email-button.data-v-c651f854 { 
   display: flex;
 }
-.email-button input {
+.email-button input.data-v-c651f854 {
   width: 70%;
   height: 46rpx;
 }
-.email-button button{
+.email-button button.data-v-c651f854{
   height: 90rpx;
   padding: 20rpx 30rpx;
   border-radius: 20rpx;
@@ -101,13 +101,13 @@
   background-color: #F65237;
   color: #fff;
 }
- .uni-table{
+.data-v-c651f854 .uni-table{
   min-width: auto !important;
 }
- .uni-table-th-content {
+.data-v-c651f854 .uni-table-th-content {
   font-size: 20rpx!important;
 }
-.multi-picker {
+.multi-picker.data-v-c651f854 {
   display: flex;
   align-items: center;
   padding: 10rpx;
@@ -115,65 +115,66 @@
   border-radius: 8rpx;
   background-color: #fff;
 }
-.multi-picker:first-child{
+.multi-picker.data-v-c651f854:first-child{
   margin-right: 10rpx;
 }
-.multi-picker:last-child{
+.multi-picker.data-v-c651f854:last-child{
   margin-left: 10rpx;
 }
-.arrow {
+.arrow.data-v-c651f854 {
   margin-left: auto;
   font-size: 24rpx;
   color: #999;
 }
-.count {
+.count.data-v-c651f854 {
   margin-left: 10rpx;
   color: #07c160;
   font-size: 24rpx;
 }
-.picker-container {
+.picker-container.data-v-c651f854 {
   background-color: #fff;
   border-radius: 20rpx 20rpx 0 0;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS */
+  padding-bottom: env(safe-area-inset-bottom); /* Android */
 }
-.picker-header {
+.picker-header.data-v-c651f854 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30rpx;
   border-bottom: 1rpx solid #f5f5f5;
 }
-.title {
+.title.data-v-c651f854 {
   font-size: 32rpx;
   font-weight: bold;
 }
-.select-all {
+.select-all.data-v-c651f854 {
   color: #07c160;
   font-size: 28rpx;
 }
-.picker-content {
+.picker-content.data-v-c651f854 {
   height: 600rpx;
   padding: 0 30rpx;
 }
-.picker-item {
+.picker-item.data-v-c651f854 {
   display: flex;
   align-items: center;
   padding: 25rpx 0;
   border-bottom: 1rpx solid #f5f5f5;
 }
-.checkbox {
+.checkbox.data-v-c651f854 {
   width: 36rpx;
   height: 36rpx;
   border: 1rpx solid #ddd;
   border-radius: 8rpx;
   margin-right: 20rpx;
 }
-.checkbox.checked {
+.checkbox.checked.data-v-c651f854 {
   background-color: #07c160;
   position: relative;
   border-color: #07c160;
 }
-.checkbox.checked::after {
+.checkbox.checked.data-v-c651f854::after {
   content: '';
   position: absolute;
   top: 6rpx;
@@ -185,15 +186,15 @@
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
-.item-name {
+.item-name.data-v-c651f854 {
   font-size: 28rpx;
 }
-.picker-footer {
+.picker-footer.data-v-c651f854 {
   display: flex;
   padding: 20rpx 30rpx;
   border-top: 1rpx solid #f5f5f5;
 }
-.btn {
+.btn.data-v-c651f854 {
   flex: 1;
   height: 80rpx;
   line-height: 80rpx;
@@ -201,18 +202,23 @@
   border-radius: 40rpx;
   margin: 0 15rpx;
 }
-.cancel {
-  background-color: #f5f5f5;
+.cancel.data-v-c651f854 {
   color: #333;
 }
-.confirm {
+.cancel.data-v-c651f854::after {
+  border: none;
+}
+.confirm.data-v-c651f854 {
   background-color: #07c160;
   color: #fff;
 }
-.arrow-text {
+.arrow-text.data-v-c651f854 {
   width: 100%;
   white-space: nowrap;      /* 禁止换行 */
   overflow: hidden;        /* 隐藏超出内容 */
   text-overflow: ellipsis; /* 显示省略号 */
+}
+.data-v-c651f854 .uni-popup__wrapper {
+  padding-bottom: 0 !important;
 }
 

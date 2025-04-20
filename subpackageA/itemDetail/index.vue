@@ -104,6 +104,7 @@
       title="二维码"
       :imageUrl="imageUrl"
       :imgContent="imgContent"
+      :warehouseName = warehouseName
       @save="onSave"
       @close="onImgClose"
     />
@@ -112,6 +113,7 @@
       :ID="parseInt(form.ID)"
       :Note="form.Note"
       :title=title
+      :WarehouseID = WarehouseID
       @save="onSave"
       @close="onCloseInout"
     />
@@ -150,6 +152,8 @@ export default {
       additionalButtons: [], // 动态生成的按钮
       headerTitle: '',
       GoodsId: null,
+      WarehouseID: null,
+      warehouseName: '',
       // 表单数据
       form: {
         Image: '',
@@ -183,6 +187,9 @@ export default {
     this.GoodsId = option.goosId
     this.headerTitle = option.id
     this.showScan = option.showScan
+    this.WarehouseID = option.warehouseId
+    console.log(this.WarehouseID, 'WarehouseID');
+    
 	},
   onUnload() {
     uni.$off('data-detail'); // 解绑
@@ -244,10 +251,11 @@ export default {
       }
     }, 1000),
     async getGoodsItme(){
-      await getGoodsItme({ID: this.GoodsId}).then(res => {
+      await getGoodsItme({ID: this.GoodsId, WarehouseID: this.WarehouseID}).then(res => {
         console.log(res, 'res');
         this.form = res.Data[0]
         this.headerTitle = res.Data[0].Name
+        this.warehouseName = res.Data[0].Warehouse.Name
         uni.setNavigationBarTitle({
             title: this.headerTitle
         });
@@ -261,7 +269,7 @@ export default {
     },
     clickQrCode: throttle(async function() {
       const params = {
-        WarehouseID: this.form.DefaultWarehouseID,
+        WarehouseID: this.WarehouseID,
         GoodsID: this.form.ID
       }
       const res = await getQrcode(params)
@@ -273,6 +281,7 @@ export default {
       } else {
         this.imageUrl = res.Data
         this.imgContent = this.form.Name + ' ' + this.form.Format + '/' + this.form.Uint
+        this.warehouseName = this.form.Warehouse.Name
         console.log(this.$refs.imagePopup, 'this.$refs.imagePopup');
         
         this.$refs.imagePopup.open()
@@ -334,7 +343,7 @@ export default {
         console.log(this.form.ID, 'this.form.ID');
         
         uni.navigateTo({
-          url: '/subpackageA/inventoryDetails/index?id=' + this.form.ID
+          url: '/subpackageA/inventoryDetails/index?id=' + this.form.ID + '&warehouseId=' + this.WarehouseID
         });
       }
       if(text === '盘点'){
