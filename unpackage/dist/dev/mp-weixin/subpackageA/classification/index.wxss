@@ -36,6 +36,12 @@
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
 }
+.item .info.data-v-df6765ea{
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .edit.data-v-df6765ea {
   font-size: 24rpx;
   color: #666;

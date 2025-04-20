@@ -93,7 +93,7 @@ export default {
   align-items: center;
 }
 .info .name {
-  width: auto;
+  width: 400rpx;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;

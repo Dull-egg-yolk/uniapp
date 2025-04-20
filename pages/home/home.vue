@@ -13,7 +13,8 @@
         <text class="unread-count" v-if="unreadMessageCount > 0">{{ unreadMessageCount }}</text>
       </view>
     </view>
-    <view class="header" @click="showPopup" v-if="isShow">
+    <view class="header-top">
+      <view class="header" @click="showPopup" v-if="isShow">
       <text class="title">点击查看新手指引，1 分钟快速掌握！ </text>
     </view>
     <view class="container">
@@ -31,6 +32,7 @@
           <image class="swiper-image" :src="item" mode="aspectFill"></image>
         </swiper-item>
       </swiper>
+    </view>
     </view>
     <view class="button-container">
       <view class="button-row">
@@ -205,7 +207,10 @@ export default {
 .header {
   height: 28px;
   padding: 0 20rpx;
-  background-color: #f8f8f8
+  background-color: #f8f8f8;
+}
+.header-top {
+  margin-top: 134rpx;
 }
 .unread-count {
   background-color: #F65237;
@@ -241,6 +246,10 @@ export default {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  z-index: 99999999;
 }
 .custom-navbar-left {
   display: flex;

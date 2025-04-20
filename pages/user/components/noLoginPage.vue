@@ -116,8 +116,8 @@ import { userLogin, appConfig } from '@/api/user.js'
 						Name: userInfo.nickName,
 						WxCode: this.WxCode,
 						Avatar: userInfo.avatarUrl,
-						InvitedByHotelID: invited ? invited.query.InvitedByHotelID : 0 || 0,
-						InvitedCode: invited ? invited.query.InvitedCode : '' || '',
+						InvitedByHotelID: invited ? parseInt(invited.query.InvitedByHotelID) : 0 || 0,
+						InvitedByCode: invited ? invited.query.InvitedByCode : '' || '',
 					}
 					const res = await userLogin(params)
 					if (res.ErrorMsg) {

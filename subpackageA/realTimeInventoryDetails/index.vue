@@ -8,7 +8,7 @@
           <view class="date-picker">库房：{{ selectedonWarehouse }}</view>
         </picker> -->
         <view class="multi-picker" @click="showClassPicker = true">
-          <text class="arrow-text">物品分类：{{ selectedCalssNames || '请选择' }}</text>
+          <text class="arrow-text">物品：{{ selectedCalssNames || '请选择' }}</text>
           <text class="arrow"></text>
         </view>
         <view class="multi-picker" @click="showPicker = true">
@@ -88,16 +88,24 @@
     <uni-popup ref="classpopup" type="bottom" :mask-click="false" @maskClick="closeCalssPopup" :safe-area="false">
       <view class="picker-container">
         <view class="picker-header">
-          <text class="title">选择分类（可多选）</text>
+          <text class="title">选择物品（可多选）</text>
           <view class="select-all" @click="toggleClassSelectAll">
             <text>{{ isAllClassSelected ? '取消全选' : '全选' }}</text>
           </view>
         </view>
-        
+        <view class="search-box">
+          <uni-icons type="search" size="18" color="#999"></uni-icons>
+          <input 
+            class="search-input" 
+            placeholder="请输入物品名称搜索" 
+            v-model="searchKeyword" 
+            @input="handleSearch"
+          />
+        </view>
         <scroll-view scroll-y class="picker-content">
           <view 
             class="picker-item" 
-            v-for="(item, index) in classList" 
+            v-for="(item, index) in filteredClassList" 
             :key="index"
             @click="toggleClassItem(item)"
           >
@@ -139,10 +147,12 @@ export default {
         WarehouseIDs: ''
       },
       timer: null,
+      searchKeyword: '', // 搜索关键词
       selectedIds: [], // 选中的ID数组
       selectedClassIds: [], // 选中的分类ID数组
       tempSelectedIds: [], // 临时存储的选中ID（用于取消时恢复）
       classSelectedIds: [], // 选中的分类ID数组
+      filteredClassList: [], // 过滤后的分类列表
       showPicker: false,
       showClassPicker: false,
     };
@@ -208,9 +218,20 @@ export default {
     this.getReportGoodsCurrent();
   },
   methods: {
+    // 搜索处理
+    handleSearch() {
+      if (!this.searchKeyword.trim()) {
+        this.filteredClassList = [...this.classList]
+        return
+      }
+      
+      this.filteredClassList = this.classList.filter(item => 
+        item.Name.includes(this.searchKeyword.trim())
+      )
+    },
     async getClassList(){
       const res = await getHotelClass();
-      this.classList = res.Data;
+      // this.classList = res.Data;
     },
     closePopup(){
       this.showPicker = false;
@@ -234,7 +255,13 @@ export default {
     // 实时库存明细
     async getReportGoodsCurrent(){
     //  const  params = this.query
-     await getReportGoodsCurrent(this.query).then(res=>{
+    const params = {
+        Page: this.query.Page,
+        Size: this.query.Size,
+        GoodsIDs: this.query.ClassIDs,
+        WarehouseIDs: this.query.WarehouseIDs
+      }
+     await getReportGoodsCurrent(params).then(res=>{
         if (res.ErrorMsg) {
 					uni.showToast({
 						title: res.ErrorMsg,
@@ -251,7 +278,8 @@ export default {
     },
     async getHotelClassList(){
       const res = await getGoodsItme();
-      // this.classList = res.Data;
+      this.classList = res.Data;
+      this.filteredClassList = [...this.classList]
     },
     handlePageChange(e) {
       if (e.type === 'prev') {
@@ -280,7 +308,7 @@ export default {
         Emails: this.recipient,
         ReportType: 'CurrentStock',
         WarehouseIDs: this.selectedIds.toString(),
-        ClassIDs: this.selectedClassIds.toString(),
+        GoodsIDs: this.selectedClassIds.toString(),
       };
       await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -404,6 +432,24 @@ export default {
   overflow: hidden;
   flex-direction: column;
   height: calc(100vh - var(--status-bar-height));
+}
+.gray-button {
+  background-color: #ccc !important;
+  color: #999 !important;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 16rpx 20rpx;
+  margin: 20rpx 0;
+}
+
+.search-input {
+  flex: 1;
+  margin-left: 10rpx;
+  font-size: 28rpx;
 }
 .filter-header {
   width: 100%;

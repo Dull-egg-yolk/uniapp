@@ -99,8 +99,10 @@ export default {
     
     // 优惠券选择变化
     handleCouponChange(e) {
+      console.log(typeof e.detail.value, 'e.detail.value');
+      
       this.coupon = e.detail.value
-      this.CouponID = this.couponList[e.detail.value].ID;
+      this.CouponID = this.couponList.find(item => item.Price === parseInt(e.detail.value)).ID
       this.finalPrice = this.currtPrice - this.coupon
     },
     // 获取优惠券
@@ -141,10 +143,11 @@ export default {
     async handlePayment() {
       try {
         // 调用后端接口获取支付参数
+        const amountFen = Math.round(this.finalPrice * 100); // 分（避免浮点数问题）
         const params = {
           PrimePlanID: this.PrimePlanID,
           CouponID: this.CouponID,
-          PayMoney: this.finalPrice
+          PayMoney: amountFen
         }
         const paymentParams = await shoppingBuy(params).then((res) => {
           if (res.ErrorMsg) {
@@ -158,7 +161,10 @@ export default {
             return res.Data;
           }
         })
-
+        
+        if (!paymentParams) {
+          return;
+        }
         // 调用微信支付
         uni.requestPayment({
           provider: "wxpay",

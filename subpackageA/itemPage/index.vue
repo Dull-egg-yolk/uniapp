@@ -62,7 +62,8 @@ export default {
       selectedWarehouse: '', // 当前选中的库房
       tempSelected: '',     // 临时选择（用于确认前）
       currentItem: {},     // 当前操作的物品
-      selectedWarehouseId: null
+      selectedWarehouseId: null,
+      GoodsClassID: null,
     };
   },
   computed: {
@@ -113,6 +114,10 @@ export default {
       this.classList = res.Data;
     },
     async getGoodsItmeList(params){
+      uni.showLoading({
+        title: '加载中...', // 提示文本
+        mask: true        // 是否显示透明蒙层，防止触摸穿透
+      });
       const res = await getGoodsItme(params)
       console.log(res);
       if (res.ErrorMsg) {
@@ -123,7 +128,11 @@ export default {
       } else {
         this.categories = res.Data
         console.log(this.categories, '000');
-        if (this.categories.length === 0) {
+        setTimeout(() => {
+          uni.hideLoading();
+        }, 500)
+        uni.hideLoading();
+        if (this.categories === null || this.categories.length === 0) {
           uni.showToast({
             title: "暂无数据",
             icon: "none"
@@ -138,8 +147,10 @@ export default {
     },
     onCategoryChange(e) {
       this.selectedCategory = this.classList[e.detail.value].Name;
+      this.GoodsClassID = this.classList[e.detail.value].ID
       const params = {
-        GoodsClassID: this.classList[e.detail.value].ID
+        GoodsClassID: this.classList[e.detail.value].ID,
+        Search: this.searchKeyword
       }
       this.getGoodsItmeList(params)
     },
@@ -148,6 +159,7 @@ export default {
       
       this.searchKeyword = e.detail.value;
       const params = {
+        GoodsClassID: this.GoodsClassID,
         Search: this.searchKeyword
       }
       this.getGoodsItmeList(params)
@@ -285,6 +297,10 @@ export default {
   border-bottom: 1px solid #e8e5e5;
   padding-bottom: 10rpx;
 }
+.item .info{
+  display: flex;
+  align-items: center;
+}
 .text {
   padding-left: 10rpx;
   color: #999;
@@ -292,6 +308,11 @@ export default {
 }
 .name {
   font-size: 36rpx;
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
 }
 .picker {
   padding: 10rpx;

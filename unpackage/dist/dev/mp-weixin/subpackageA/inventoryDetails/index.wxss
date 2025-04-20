@@ -25,6 +25,10 @@
   flex-direction: column;
   height: calc(100vh - 25px);
 }
+.gray-button.data-v-5cbc17eb {
+  background-color: #ccc !important;
+  color: #999 !important;
+}
 .filter-header.data-v-5cbc17eb {
   display: flex;
   justify-content: space-between;

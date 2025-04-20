@@ -153,7 +153,7 @@ export default {
     }, 0),
     // 出入库明细
     async getStockOperate(){
-      if (this.query.GoodsID === '') {
+      if (this.query.GoodsID === '' || this.query.WarehouseIDs === '') {
         return;
       }
      const params = this.query
@@ -235,14 +235,12 @@ export default {
     console.log(this.classList, '9999');
     
     if (option.id) {
-      this.query.GoodsID = option.id;
+      this.query.GoodsID = parseInt(option.id);
       this.query.WarehouseIDs = parseInt(option.warehouseId);
       console.log(option, 'option');
       
       this.goodsID = parseInt(option.id)
       console.log(this.warehouseList, 'this.warehouseLis');
-      
-      console.log(this.warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs), 'warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs)');
       
       this.selectedClass = this.classList[this.classList.findIndex( item => item.ID == option.id)].Name
       this.selectedonWarehouse = this.warehouseList[this.warehouseList.findIndex( item => item.ID == this.query.WarehouseIDs)].Name
@@ -260,6 +258,10 @@ export default {
   display: flex;
   flex-direction: column;
   height: calc(100vh - var(--status-bar-height));
+}
+.gray-button {
+  background-color: #ccc !important;
+  color: #999 !important;
 }
 .filter-header {
   display: flex;

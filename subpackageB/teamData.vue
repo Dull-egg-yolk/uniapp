@@ -99,14 +99,14 @@ export default {
     },
      // 确认角色修改
      confirmRole() {
-      const index = this.adminGroups.findIndex(user => user.ID === this.currentUser.ID)
-      if (index !== -1) {
-        // 更新角色
-        const selectedOption = this.roleOptions.find(role => role.value === this.selectedRole)
-        if (selectedOption) {
-          this.adminGroups[index].UserHotelRole.Role = this.selectedRole
-        }
-      }
+      // const index = this.adminGroups.findIndex(user => user.ID === this.currentUser.ID)
+      // if (index !== -1) {
+      //   // 更新角色
+      //   const selectedOption = this.roleOptions.find(role => role.value === this.selectedRole)
+      //   if (selectedOption) {
+      //     this.adminGroups[index].UserHotelRole.Role = this.selectedRole
+      //   }
+      // }
       this.updateHotelUser(this.currentUser.ID, this.selectedRole)
     },
     // 获取酒店用户信息
@@ -144,6 +144,14 @@ export default {
             title: '权限修改成功',
             icon: 'none'
           });
+          const index = this.adminGroups.findIndex(user => user.ID === this.currentUser.ID)
+          if (index !== -1) {
+            // 更新角色
+            const selectedOption = this.roleOptions.find(role => role.value === this.selectedRole)
+            if (selectedOption) {
+              this.adminGroups[index].UserHotelRole.Role = this.selectedRole
+            }
+          }
           this.$refs.popup.close()
           this.getHotelUsers()
         }

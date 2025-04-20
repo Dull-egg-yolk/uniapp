@@ -170,7 +170,8 @@ export default {
       console.log(this.HotelID, 'this.HotelID');
       const params = {
         GoodsID: this.GoodsId,
-        HotelID: this.HotelID
+        HotelID: this.HotelID,
+        WarehouseID: this.WarehouseID
       }
       await getNoGoodsItem(params).then(res => {
         console.log(res, 'res');

@@ -223,6 +223,12 @@ export default {
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
 }
+.item .info{
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .edit {
   font-size: 24rpx;
   color: #666;

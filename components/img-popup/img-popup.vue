@@ -98,8 +98,8 @@ export default {
       rqImg: '',
       visible: false,
       saveImg: '',
-      canvasHeight: 400,
-      canvasWidth: 400
+      canvasWidth: 380,
+      canvasHeight: 420,
     }
   },
   computed: {
@@ -153,7 +153,7 @@ export default {
           const img = canvas.createImage();
           img.src = tempFilePath;
           img.onload = () => {
-            ctx.drawImage(img, 50, 30, 100, 100);
+            ctx.drawImage(img, 50, 40, 100, 100);
           };
         });
     },
@@ -162,7 +162,7 @@ export default {
       this.printed += 1
       //标签尺寸
       const labelWidth = 50
-      const labelHeight = 40
+      const labelHeight = 50
 
       const multiple = 8
       let canvasId = '';
@@ -175,7 +175,7 @@ export default {
     async handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
       const localPath = await this.generateImage();
       startDrawLabel(canvasId, this, labelWidth, labelHeight, rotation, ctx);
-      drawImage(localPath, 1, 1, 50, 50);
+      drawImage(localPath, -1, 1, 50, 55);
       endDrawLabel(() => {
         console.log('打印完成');
         setTimeout(() => {
@@ -195,11 +195,11 @@ export default {
       const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
       return new Promise((resolve) => {
         const ctx = uni.createCanvasContext('myCanvas', this);
-        ctx.drawImage(imagePath, 16, -5, 260, 260);
+        ctx.drawImage(imagePath, 20, 10, 260, 260);
         ctx.setFontSize(20);
         ctx.setFillStyle("#000000");
         ctx.setTextAlign("center");
-        const textY = 10 + 260 + 10; // 图片Y + 图片高度 + 间距
+        const textY = 20 + 260 + 20; // 图片Y + 图片高度 + 间距
         ctx.fillText(this.imgContent, 150, textY);
         ctx.fillText(this.warehouseName, 150, textY + 30);
         // ctx.draw();

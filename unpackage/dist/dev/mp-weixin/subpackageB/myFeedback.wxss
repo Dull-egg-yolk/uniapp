@@ -29,7 +29,7 @@
   align-items: center;
 }
 .info .name.data-v-6403615c {
-  width: auto;
+  width: 400rpx;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;

@@ -2,7 +2,10 @@
 .header.data-v-92bb8f34 {
   height: 28px;
   padding: 0 20rpx;
-  background-color: #f8f8f8
+  background-color: #f8f8f8;
+}
+.header-top.data-v-92bb8f34 {
+  margin-top: 134rpx;
 }
 .unread-count.data-v-92bb8f34 {
   background-color: #F65237;
@@ -38,6 +41,10 @@
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  z-index: 99999999;
 }
 .custom-navbar-left.data-v-92bb8f34 {
   display: flex;

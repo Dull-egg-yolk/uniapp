@@ -35,6 +35,8 @@ Vue.prototype.checkLogin = function(backpage, backtype) {
 Vue.mixin({
   onShareAppMessage(res) {
 		const InvitedCode = uni.getStorageSync('user_info').InvitedCode
+		console.log(InvitedCode, 'InvitedCode');
+		
     return {
       title: '自己有会员，经营更稳健',  // 必填
       path: `/pages/user/user?InvitedByCode=${InvitedCode}`, // 必填，分享页面路径

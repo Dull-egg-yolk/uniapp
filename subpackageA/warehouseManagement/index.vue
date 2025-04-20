@@ -231,6 +231,10 @@ export default {
 }
 
 .name {
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 28rpx;
   font-weight: bold;
   color: #000;
