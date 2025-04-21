@@ -71,8 +71,9 @@
           :y="buttonY"
           :disabled="isButtonDisabled"
           @change="onMove"
+          @click.stop
         >
-          <div class="floating-button" @click="toggleButtons" :class="{ 'floating-button-active': showAdditionalButtons }">
+          <div class="floating-button" @click.stop="toggleButtons" :class="{ 'floating-button-active': showAdditionalButtons }">
             <!-- <text class="floating-button-icon">...</text> -->
             <view class="floating-button-img" v-if="showAdditionalButtons"><image
               class="img"

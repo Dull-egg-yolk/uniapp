@@ -35,6 +35,13 @@
   border-radius: 5px;
   margin: 20rpx auto;
 }
+.content-list.data-v-55f24502 {
+  flex: 1;
+  overflow:hidden;
+  background-color: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
 .header.data-v-55f24502 {
   height: 260rpx;
 }
@@ -60,11 +67,8 @@
   font-weight: bold;
 }
 .list.data-v-55f24502 {
-  flex: 1;
+  height: 660rpx;
   overflow-y: auto;
-  background-color: #fff;
-  padding: 30rpx;
-  border-radius: 16rpx;
 }
 .list-item.data-v-55f24502 {
   margin-bottom: 40rpx;

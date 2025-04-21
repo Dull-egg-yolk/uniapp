@@ -28,17 +28,22 @@
 			</view>
      </view>
     <!-- 商品列表 -->
-    <view class="product-list">
-      <view
-        v-for="(product, index) in filteredProducts"
-        :key="index"
-        class="product-item"
-      >
-        <checkbox-group @change="handleSelectProduct($event, index)">
-          <label>
-            <checkbox :value="JSON.stringify(product.ID)" :checked="product.selected" /> {{ product.Name + ' ' + product.Format + '/' + product.Uint }}
-          </label>
-        </checkbox-group>
+    <view class="content-list">
+      <view class="product-list">
+        <view
+          v-for="(product, index) in filteredProducts"
+          :key="index"
+          class="product-item"
+        >
+          <checkbox-group @change="handleSelectProduct($event, index)">
+            <label>
+              <checkbox :value="JSON.stringify(product.ID)" :checked="product.selected" /> {{ product.Name + ' ' + product.Format + '/' + product.Uint }}
+            </label>
+          </checkbox-group>
+        </view>
+      </view>
+      <view class="pagination-section">
+        <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
       </view>
     </view>
     <view class="add-button" @click="nextStep">
@@ -169,11 +174,14 @@ export default {
   background-color: #f5f5f5;
 }
 .product-list {
+  height: 740rpx;
+  overflow-y: scroll;
+}
+.content-list {
   background: #fff;
   border-radius: 20rpx;
   padding: 20rpx;
   height: 800rpx;
-  overflow-y: scroll;
 }
 .product-item {
   margin-bottom: 20rpx;

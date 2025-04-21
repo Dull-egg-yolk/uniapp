@@ -33,6 +33,7 @@
       "root": "subpackageB",
       "pages": [
         "login",
+        "login1",
         "myFeedback",
         "InvitationGifts",
         "addHome",

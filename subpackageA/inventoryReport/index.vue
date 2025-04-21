@@ -22,7 +22,7 @@
       </view>
       <view class="filter-section">
         <text>盘点人：{{ tableData[0].User.Name }}</text>
-        <text>盘点日期：{{ tableData[0].UpdatedAt | getData }}</text>
+        <text>盘点日期：{{ UpdatedAt | getData }}</text>
       </view>
     </div>
     <view class="table-section">
@@ -68,6 +68,7 @@ import { getStockTakingString, reportEmail } from '@/api/work.js'
 export default {
   data() {
     return {
+      UpdatedAt: '',
       selectedDate: '2024-12-01',
       tableData: [],
       isDisabled: false,
@@ -147,6 +148,7 @@ export default {
         } else {
           this.tableData = res.Data;
           this.totalPages = parseInt(res.Total)
+          this.UpdatedAt = res.Data[0].UpdatedAt
           // uni.navigateTo({
           //   url: `/pages/inventoryReport/index?id=${this.StockTakingRecordID}`
           // });   
@@ -168,6 +170,13 @@ export default {
     //   console.log('可能是返回操作触发的 onShow');
     //   // 这里执行你的拦截逻辑
     // }
+  },
+  onUnload() {
+    //#ifdef MP-WEIXIN
+    uni.switchTab({
+      url: '/pages/home/home'
+    });
+    //#endif
   },
 };
 </script>

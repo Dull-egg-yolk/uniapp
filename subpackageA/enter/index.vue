@@ -401,7 +401,7 @@ export default {
   },
   onUnload() {
     //#ifdef MP-WEIXIN
-    uni.reLaunch({
+    uni.switchTab({
       url: '/pages/home/home'
     });
     //#endif

@@ -28,8 +28,19 @@
           class="content-image"
         /> -->
         <canvas
+          canvas-id="displayCanvas" 
+          id="displayCanvas"
+          :width="canvasWidthResponsive"
+          :height="canvasHeightResponsive"
+          :style="{
+          width: canvasWidthResponsive + 'px',
+          height: canvasHeightResponsive + 'px'
+          }"
+        ></canvas>
+        <canvas
           canvas-id="myCanvas" 
           id="myCanvas"
+          class="print-canvas"
           :width="canvasWidthResponsive"
           :height="canvasHeightResponsive"
           :style="{
@@ -175,11 +186,11 @@ export default {
     async handleLabelDrawing(canvasId, ctx, labelWidth, labelHeight, rotation) {
       const localPath = await this.generateImage();
       startDrawLabel(canvasId, this, labelWidth, labelHeight, rotation, ctx);
-      drawImage(localPath, -1, 1, 50, 55);
+      drawImage(localPath, 2, 1, 55, 60);
       endDrawLabel(() => {
         console.log('打印完成');
         setTimeout(() => {
-          // this.close();
+          this.close();
           uni.navigateTo({
             url: '/subpackageA/itemPage/index'
           })
@@ -191,11 +202,30 @@ export default {
         });
       });
     },
+    async drawDisplayCanvas() {
+      const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
+      return new Promise((resolve) => {
+        const ctx = uni.createCanvasContext('displayCanvas', this);
+        ctx.drawImage(imagePath, 25, 10, 260, 260);
+        ctx.setFontSize(20);
+        ctx.setFillStyle("#000000");
+        ctx.setTextAlign("center");
+        const textY = 20 + 260 + 20; // 图片Y + 图片高度 + 间距
+        ctx.fillText(this.imgContent, 150, textY);
+        ctx.fillText(this.warehouseName, 150, textY + 30);
+        // ctx.draw();
+        // resolve();
+        ctx.draw(false, () => {
+          setTimeout(resolve, 300); // 延迟确保渲染完成
+        });
+      })
+   
+    },
     async drawCanvas() {
       const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
       return new Promise((resolve) => {
         const ctx = uni.createCanvasContext('myCanvas', this);
-        ctx.drawImage(imagePath, 20, 10, 260, 260);
+        ctx.drawImage(imagePath, 25, 10, 260, 260);
         ctx.setFontSize(20);
         ctx.setFillStyle("#000000");
         ctx.setTextAlign("center");
@@ -211,7 +241,10 @@ export default {
    
     },
     async generateImage() {
+      // 绘制打印Canvas
       await this.drawCanvas();
+      // 绘制显示Canvas
+      await this.drawDisplayCanvas();
       return new Promise((resolve, reject) => {
         uni.canvasToTempFilePath({
           canvasId: "myCanvas",
@@ -366,6 +399,11 @@ export default {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(2px);
   z-index: 999;
+}
+.print-canvas {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
 }
 
 /* 弹窗容器（居中） */

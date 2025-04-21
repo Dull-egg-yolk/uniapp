@@ -38,7 +38,8 @@
         </view>
       </view>
     </div>
-    <view class="list" v-if="inventoryList.length > 0">
+    <view class="content-list">
+      <view class="list" v-if="inventoryList.length > 0">
       <view v-for="(item, index) in inventoryList" :key="index" class="list-item">
         <text class="item-name">{{ item.Goods.Name}}</text>
         <text>{{ ' ' + item.Goods.Format }}</text>
@@ -61,6 +62,11 @@
         </view>
       </view>
     </view>
+    <view class="pagination-section">
+      <uni-pagination :total="totalPages" title="" prev-text="上一页" next-text="下一页" @change="handlePageChange" />
+    </view>
+    </view>
+
     <view class="sub-button" @click="nextStep">
       <text>盘点完成</text>
     </view>
@@ -84,12 +90,19 @@ export default {
   },
   data() {
     return {
+      currentPage: 1,
+      totalPages: 5,
       StockTakingRecordID: '',
       inventoryList: [],
       statusList:  {
         'InProgress': '未盘点',
         'Completed': '已盘点',
         'Discard': '已审核'
+      },
+      query: {
+        Page: 1,
+        Size: 10,
+        StockTakingRecordID: ''
       },
       summaryList: {
         Already: 0,
@@ -104,6 +117,27 @@ export default {
     this.StockTakingRecordID = options.id;
   },
   methods: {
+    // 上一页
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    // 下一页
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    handlePageChange(e) {
+      if (e.type === 'prev') {
+        this.query.Page = e.current
+        this.getStockTakingString()
+      } else if (e.type === 'next') {
+        this.query.Page = e.current
+        this.getStockTakingString()
+      }
+    },
     getValue(data) {
       return data === 0 ?  '' : data
     },
@@ -142,7 +176,10 @@ export default {
     // 盘点完成按钮
     nextStep: throttle(function() {
       // 校验 是否都盘点完成
+      console.log(this.inventoryList, 'this.inventoryList');
       const allFilled = this.inventoryList.every(item => item.Current !== '');
+      console.log(allFilled, 'allFilled');
+      
       if(allFilled){
         this.$refs.tipsPopup.open()
       } else {
@@ -185,10 +222,8 @@ export default {
     },
     // 获取盘点列表
     async getStockTakingString(){
-      const params = {
-        StockTakingRecordID: this.StockTakingRecordID
-      }
-      const res = await getStockTakingString(params)
+      this.query.StockTakingRecordID = this.StockTakingRecordID
+      const res = await getStockTakingString(this.query)
       if (res.ErrorMsg) {
 					uni.showToast({
 						title: res.ErrorMsg,
@@ -196,6 +231,7 @@ export default {
 					});
 			} else {
         this.inventoryList = res.Data
+        this.totalPages = parseInt(res.Total)
 			}
     }
   },
@@ -227,6 +263,13 @@ export default {
   border-radius: 5px;
   margin: 20rpx auto;
 }
+.content-list {
+  flex: 1;
+  overflow:hidden;
+  background-color: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
 .header {
   height: 260rpx;
 }
@@ -255,11 +298,8 @@ export default {
 }
 
 .list {
-  flex: 1;
+  height: 660rpx;
   overflow-y: auto;
-  background-color: #fff;
-  padding: 30rpx;
-  border-radius: 16rpx;
 }
 
 .list-item {

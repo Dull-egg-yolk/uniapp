@@ -1,311 +1,655 @@
 <template>
   <view class="container">
-    <!-- 登录标题 -->
-    <view class="login-title">微信登录</view>
-    
-    <!-- 头像选择区域 -->
-    <view class="avatar-section">
-      <text class="section-title">选择头像</text>
-      <button 
-        class="avatar-btn" 
-        open-type="chooseAvatar" 
-        @chooseavatar="handleChooseAvatar"
+    <!-- 上传照片 -->
+    <view class="section">
+      <view class="image-box">
+        <image :src="form.Image" class="image"></image>
+      </view>
+    </view>
+    <!-- 表单 -->
+    <view class="form">
+      <view class="form-item">
+        <text class="label">物品名称</text>
+        <input class="input" v-model="form.Name" :disabled="!showScan" />
+      </view>
+      <view class="form-item">
+        <text class="label">单位</text>
+        <input class="input" v-model="form.Uint" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">规格</text>
+        <input class="input" v-model="form.Format" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">单价</text>
+        <input class="input" v-model="form.Price" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">分类</text>
+        <input class="input" v-model="form.Class.Name" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">供货商</text>
+        <input class="input" v-model="form.Suppliers" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">最低库存</text>
+        <input class="input" v-model="form.MinStock" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">备货量</text>
+        <input class="input" v-model="form.MaxStock" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">实时库存</text>
+        <input class="input" v-model="form.CurrentStock" disabled />
+      </view>
+      <view class="form-item">
+        <text class="label">备注</text>
+        <input class="input" v-model="form.Note" disabled />
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+     <view class="bottom-btn">
+      <!-- <view class="qa-btn" @click="clickQrCode">
+        <text>二维码</text>
+      </view> -->
+      <view class="update-btn" @click="updateItem">
+        <text>编辑</text>
+      </view>
+      <view class="del-btn" @click="delectItme">
+        <text>删除</text>
+      </view>
+     </view>
+     <view>
+      <view class="floating-container">
+        <view 
+          class="floating-button" 
+          :class="{ 'floating-button-active': showAdditionalButtons }"
+          :style="{left: buttonX + 'px', top: buttonY + 'px'}"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd"
+          @click.stop="toggleButtons($event)"
+        >
+          <view class="floating-button-img" v-if="showAdditionalButtons">
+            <image class="img" src="/static/img/logo-1.jpeg" mode="scaleToFill" />
+          </view>
+          <view class="floating-button-icon" v-else>...</view>
+        </view>
+      </view>
+		 </view>
+     <view v-if="showAdditionalButtons">
+      <view
+        v-for="(button, index) in additionalButtons"
+        :key="index"
+        class="additional-button"
+        :style="{
+          left: button.x + 'px',
+          top: button.y + 'px',
+        }"
+        @click.stop="handleButtonClick(button.text)"
       >
-        <image 
-          class="avatar-image" 
-          :src="avatarUrl || '/static/img/header-img.svg'" 
-          mode="aspectFill"
-        />
-      </button>
+        <text>{{ button.text }}</text>
+      </view>
     </view>
-    
-    <!-- 昵称输入区域 -->
-    <view class="nickname-section">
-      <text class="section-title">输入昵称</text>
-      <input 
-        class="nickname-input" 
-        type="nickname" 
-        v-model="nickname" 
-        placeholder="请输入昵称"
-        @input="handleNicknameInput"
-      />
-    </view>
-    
-    <!-- 登录按钮 -->
-    <button 
-      class="login-btn" 
-      :disabled="!canLogin" 
-      @click="handleLogin"
-    >
-      立即登录
-    </button>
-    
-    <!-- 用户协议 -->
-    <!-- <view class="agreement">
-      <checkbox-group @change="toggleAgreement">
-        <checkbox :checked="agreed" color="#07C160"/>
-      </checkbox-group>
-      <text>我已阅读并同意</text>
-      <text class="agreement-link" @click="navigateToAgreement">《用户协议》</text>
-      <text>和</text>
-      <text class="agreement-link" @click="navigateToPrivacy">《隐私政策》</text>
-    </view> -->
+    <view class="mask" v-if="showAdditionalButtons" @click="closeSubButtons"></view>
+    <img-popup 
+      ref="imagePopup"
+      title="二维码"
+      :imageUrl="imageUrl"
+      :imgContent="imgContent"
+      :warehouseName = warehouseName
+      @save="onSave"
+      @close="onImgClose"
+    />
+    <inout-popup 
+      ref="inoutPopup"
+      :ID="parseInt(form.ID)"
+      :Note="form.Note"
+      :title=title
+      :WarehouseID = WarehouseID
+      @save="onSave"
+      @close="onCloseInout"
+    />
+    <stock-popup 
+      ref="stockPopup"
+      :ID="parseInt(form.ID)"
+      :Note="form.Note"
+      :title=title
+      @save="onSave"
+      @close="onClose"
+    />
   </view>
 </template>
+
 <script>
-import { getUserConfig } from "@/api/user";
+import { showModalAsync } from '@/util/modal.js';
+import imgPopup from '@/components/img-popup/img-popup.vue';
+import inoutPopup from '@/components/inout-popup/inout-popup.vue';
+import stockPopup from '@/components/stock-popup/stock-popup.vue';
+import { throttle } from '@/util/throttle';
+import { getQrcode, getGoodsItme, deleteGoodsItme } from '@/api/work.js';
+const app = getApp(); // 获取 App 实例
+
 export default {
   data() {
     return {
-      avatarUrl: '', // 用户头像URL
-      nickname: '',  // 用户昵称
-      agreed: false, // 是否同意协议
-      canLogin: false, // 是否可以登录
-      qiniuDomain: 'https://staticweb.jiudianhui.com.cn', // 七牛域名
-      uploadToken: '', // 七牛上传token
-    }
+      showScan: false,
+      imgContent: '',
+      title: '',
+      imageUrl: '',
+      screenWidth: '',
+      buttonX: 220, // 悬浮按钮的 X 坐标
+      buttonY: 380, // 悬浮按钮的 Y 坐标
+      showAdditionalButtons: false, // 是否显示新增按钮
+      isButtonDisabled: false, // 是否禁用中间按钮的拖动
+      additionalButtons: [], // 动态生成的按钮
+      headerTitle: '',
+      GoodsId: null,
+      WarehouseID: null,
+      warehouseName: '',
+      // 表单数据
+      form: {
+        Image: '',
+        Name: '',
+        Uint: '',
+        Format: '',
+        Price: '',
+        Class: {
+          Name: '',
+        },
+        Suppliers: "1",
+        minStock: "1",
+        maxStock: "1",
+        initialStock: "1",
+        remark: "1",
+        ID: ''
+      },
+      list: {},
+      imagePath: '',
+      // 分类选项
+      categories: ["默认分类", "分类1", "分类2", "分类3"],
+      // 新增触摸相关数据
+      touchStartX: 0,
+      touchStartY: 0,
+      initialButtonX: 220,
+      initialButtonY: 380,
+      isDragging: false
+    };
   },
-  watch: {
-    // 监听数据变化，更新登录按钮状态
-    avatarUrl() {
-      this.checkCanLogin();
-    },
-    nickname() {
-      this.checkCanLogin();
-    },
-    agreed() {
-      this.checkCanLogin();
-    }
+  components: {
+    imgPopup,
+    inoutPopup,
+    stockPopup
+  },
+  onLoad(option) {
+    console.log(option, 'option');
+    this.GoodsId = option.goosId
+    this.headerTitle = option.id
+    this.showScan = option.showScan
+    this.WarehouseID = option.warehouseId
+    console.log(this.WarehouseID, 'WarehouseID');
+    
+	},
+  onUnload() {
+    uni.$off('data-detail'); // 解绑
+  },
+  onReady(){
+	  uni.setNavigationBarTitle({
+        title: this.headerTitle
+     });
   },
   methods: {
-    // 处理选择头像
-    handleChooseAvatar(e) {
-      this.avatarUrl = e.detail.avatarUrl;
-      console.log(this.avatarUrl);
-      this.uploadImage(this.avatarUrl, this.uploadToken);
-      // 如果需要上传到服务器s
-      // this.uploadAvatar(e.detail.avatarUrl);
+    // 新增触摸处理方法
+    handleTouchStart(e) {
+      this.touchStartX = e.touches[0].clientX;
+      this.touchStartY = e.touches[0].clientY;
+      this.initialButtonX = this.buttonX;
+      this.initialButtonY = this.buttonY;
+      this.isDragging = false;
     },
-    async getUserConfig(){
-      const res = await getUserConfig().then(res=>{
-        if (res.ErrorMsg) {
-					uni.showToast({
-						title: res.ErrorMsg,
-						icon: "none"
-					});
-        } else {
-          this.uploadToken = res.Data.CdnT; 
-        }
+    handleTouchMove(e) {
+      const moveX = e.touches[0].clientX - this.touchStartX;
+      const moveY = e.touches[0].clientY - this.touchStartY;
+      
+      // 判断是否达到拖动阈值
+      if (Math.abs(moveX) > 5 || Math.abs(moveY) > 5) {
+        this.isDragging = true;
+      }
+      
+      if (this.isDragging) {
+        const screenWidth = uni.getWindowInfo().windowWidth;
+        const screenHeight = uni.getWindowInfo().windowHeight;
+        const buttonSize = 60; // 按钮大小
+        
+        let newX = this.initialButtonX + moveX;
+        let newY = this.initialButtonY + moveY;
+        
+        // 限制边界
+        newX = Math.max(0, Math.min(screenWidth - buttonSize, newX));
+        newY = Math.max(0, Math.min(screenHeight - buttonSize, newY));
+        
+        this.buttonX = newX;
+        this.buttonY = newY;
+      }
+    },
+    handleTouchEnd() {
+      if (!this.isDragging) {
+        this.toggleButtons();
+      }
+    },
+    updateItem(){
+      console.log(this.form, 'form');
+      uni.navigateTo({
+        url: '/subpackageA/enter/index?form=' + encodeURIComponent(JSON.stringify(this.form))
       })
     },
-    // 上传图片到七牛
-    uploadImage(filePath, token) {
-      return new Promise((resolve, reject) => {
-          const fileName = `ims/dev/goods/${this.HotelID}/${Date.now()}.${filePath.split('.').pop()}`;
-          uni.uploadFile({
-            url: 'https://up-z1.qiniup.com', // 根据区域修改s
-            filePath: filePath,
-            name: 'file',
-            header: {
-              'Content-Type': 'multipart/form-data' // 确保设置正确的Content-Type
-            },
-            formData: {
-              token: token,
-              key: fileName // 生成唯一文件名
-            },
-            success: (res) => {
-              if (res.statusCode === 200) {
-                const data = JSON.parse(res.data)
-                this.form.Image = `${this.qiniuDomain}/${data.key}`
-                this.imageUrl = `${this.qiniuDomain}/${data.key}`
-                console.log(this.form.Image, '0');
-                resolve(data)
-              } else {
-                reject(new Error('上传失败'))
-              }
-            },
-            fail: (err) => {
-              reject(err)
-            }
-          })
-        })
+    onCloseInout() {
+      this.getGoodsItme();
     },
-    // 处理昵称输入
-    handleNicknameInput(e) {
-      this.nickname = e.detail.value;
+    closeSubButtons() {
+      this.showAdditionalButtons = false
+      this.isButtonDisabled = true;
     },
-    
-    // 切换协议状态
-    toggleAgreement(e) {
-      this.agreed = e.detail.value.length > 0;
-    },
-    
-    // 检查是否可以登录
-    checkCanLogin() {
-      this.canLogin = this.avatarUrl && this.nickname && this.agreed;
-    },
-    
-    // 处理登录
-    async handleLogin() {
+    delectItme: throttle(async function() {
+      if (this.form.CurrentStock) {
+        uni.showToast({
+          title: '当前库存不为0，无法删除',
+          icon: "none"
+        });
+        return;
+      }
       try {
-        // 1. 获取微信登录code
-        const loginRes = await uni.login({
-          provider: 'weixin'
+        const confirm = await showModalAsync({
+          content: `确定删除${this.form.Name}吗？`
         });
         
-        // 2. 发送数据到服务器（示例）
-        const res = await uni.request({
-          url: 'https://your-api-domain.com/login',
-          method: 'POST',
-          data: {
-            code: loginRes.code,
-            avatar: this.avatarUrl,
-            nickname: this.nickname
-          }
-        });
-        
-        // 3. 登录成功处理
-        if (res.data.success) {
-          uni.setStorageSync('token', res.data.token);
-          uni.showToast({
-            title: '登录成功',
-            icon: 'success'
+        if (confirm) {
+          const res = await deleteGoodsItme({
+            ID: this.form.ID
           });
           
-          // 跳转到首页
-          setTimeout(() => {
-            uni.switchTab({
-              url: '/pages/home/index'
+          if (res.ErrorMsg) {
+            uni.showToast({ title: res.ErrorMsg, icon: "none" });
+          } else {
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 500,
+              complete: () => {
+                uni.navigateTo({
+                  url: '/subpackageA/itemPage/index'
+                })
+              }
             });
-          }, 1500);
+          }
+        }
+      } catch (error) {
+        uni.showToast({ title: '删除失败', icon: "none" });
+      }
+    }, 1000),
+    async getGoodsItme(){
+      await getGoodsItme({ID: this.GoodsId, WarehouseID: this.WarehouseID}).then(res => {
+        console.log(res, 'res');
+        this.form = res.Data[0]
+        this.headerTitle = res.Data[0].Name
+        this.warehouseName = res.Data[0].Warehouse.Name
+        uni.setNavigationBarTitle({
+            title: this.headerTitle
+        });
+      })
+    },
+    onSave() {
+      uni.showToast({ title: '执行保存操作', icon: 'none' })
+    },
+    onImgClose() {
+      console.log('弹窗已关闭')
+    },
+    clickQrCode: throttle(async function() {
+      const params = {
+        WarehouseID: this.WarehouseID,
+        GoodsID: this.form.ID
+      }
+      const res = await getQrcode(params)
+      if (res.ErrorMsg) {
+        uni.showToast({
+          title: res.ErrorMsg,
+          icon: "none"
+        });
+      } else {
+        this.imageUrl = res.Data
+        this.imgContent = this.form.Name + ' ' + this.form.Format + '/' + this.form.Uint
+        this.warehouseName = this.form.Warehouse.Name
+        console.log(this.$refs.imagePopup, 'this.$refs.imagePopup');
+        
+        this.$refs.imagePopup.open()
+        
+      }
+    }, 0),
+    // 悬浮按钮移动事件
+    onMove(e) {
+      this.buttonX = e.detail.x;
+      this.buttonY = e.detail.y;
+    },
+
+    // 切换新增按钮的显示和隐藏
+    toggleButtons(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      if (e && e.target !== e.currentTarget) return;
+      console.log(111111);
+      console.log(this.showAdditionalButtons);
+      
+      if (this.showAdditionalButtons) {
+        this.showAdditionalButtons = false; // 隐藏新增按钮
+        this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
+      } else {
+        const offset = 80; // 按钮之间的间距
+        const radius = 80; 
+        const screenWidth = uni.getWindowInfo().windowWidth;
+        const screenHeight = uni.getWindowInfo().windowHeight;
+        this.additionalButtons = [];
+        // 计算新增按钮的位置，确保不超出屏幕
+        this.additionalButtons = [
+          { text: '明细', x: this.buttonX, y: Math.max(0, this.buttonY - offset) },
+          { text: '二维码', x: this.buttonX, y: Math.min(screenHeight - 60, this.buttonY + offset) },
+          { text: '入库', x: Math.max(0, this.buttonX - offset), y: this.buttonY },
+          { text: '出库', x: Math.min(screenWidth - 60, this.buttonX + offset), y: this.buttonY },
+          // { 
+          //   text: '调拨', 
+          //   x: Math.min(screenWidth - 60, this.buttonX + offset * 0.7), 
+          //   y: Math.max(0, this.buttonY - offset * 0.7)
+          // }
+        ];
+        // for (let i = 0; i < 5; i++) {
+        //   const startAngle = -90; // 起始角度设为-90度（正上方）
+        //   const angle = (startAngle + i * 72) * Math.PI / 180;
+        //   // const angle = (i * 72 * Math.PI) / 180; // 转换为弧度
+        //   const x = this.buttonX + radius * Math.cos(angle);
+        //   const y = this.buttonY + radius * Math.sin(angle);
+          
+        //   // 确保按钮不会超出屏幕边界
+        //   this.additionalButtons.push({
+        //     text: ['明细', '转入库', '入库', '出库', '二维码'][i],
+        //     x: Math.max(10, Math.min(screenWidth - 60, x)),
+        //     y: Math.max(10, Math.min(screenHeight - 60, y))
+        //   });
+        // }
+        this.showAdditionalButtons = true; // 显示新增按钮
+        this.isButtonDisabled = true; // 禁用中间按钮的拖动功能
+      }
+    },
+    // 处理动态按钮点击
+    handleButtonClick(text) {
+      if(text === '明细'){
+        console.log(this.form.ID, 'this.form.ID');
+        
+        uni.navigateTo({
+          url: '/subpackageA/inventoryDetails/index?id=' + this.form.ID + '&warehouseId=' + this.WarehouseID
+        });
+      }
+      if(text === '盘点'){
+        this.title = text
+        this.$refs.stockPopup.open()
+      }
+      if(text === '转入库'){
+        this.title = text
+        this.$refs.imagePopup.open()
+      }
+      if(text === '二维码'){
+        // this.$refs.imagePopup.open()
+        this.clickQrCode()
+      }
+      if(text === '入库'){
+        const otherList = uni.getStorageSync('user_page')['fe:workbench']
+        const showRenew = otherList.find(item => item.Name === '入库');
+        if (showRenew) {
+          this.title = text
+          this.$refs.inoutPopup.open()
         } else {
           uni.showToast({
-            title: res.data.message || '登录失败',
-            icon: 'none'
-          });
+            title: '暂无权限',
+            icon: 'error'
+          })
         }
-      } catch (error) {
-        console.error('登录失败:', error);
-        uni.showToast({
-          title: '登录失败，请重试',
-          icon: 'none'
-        });
-      }
-    },
-    
-    // 上传头像到服务器（可选）
-    async uploadAvatar(tempFilePath) {
-      try {
-        const res = await uni.uploadFile({
-          url: 'https://your-api-domain.com/upload',
-          filePath: tempFilePath,
-          name: 'avatar',
-          formData: {
-            userId: '123' // 替换为实际用户ID
-          }
-        });
         
-        const data = JSON.parse(res.data);
-        if (data.success) {
-          this.avatarUrl = data.url; // 使用服务器返回的URL
-        }
-      } catch (error) {
-        console.error('头像上传失败:', error);
       }
+      if(text === '出库'){
+        const otherList = uni.getStorageSync('user_page')['fe:workbench']
+        const showRenew = otherList.find(item => item.Name === '出库');
+        if (showRenew) {
+          this.title = text
+          this.$refs.inoutPopup.open()
+        } else {
+          uni.showToast({
+            title: '暂无权限',
+          })
+        }
+      }
+      this.showAdditionalButtons = false; // 点击后隐藏新增按钮
+      this.isButtonDisabled = false; // 恢复中间按钮的拖动功能
     },
-    
-    // // 查看用户协议
-    // navigateToAgreement() {
-    //   uni.navigateTo({
-    //     url: '/pages/agreement/index?type=user'
-    //   });
-    // },
-    
-    // // 查看隐私政策
-    // navigateToPrivacy() {
-    //   uni.navigateTo({
-    //     url: '/pages/agreement/index?type=privacy'
-    //   });
-    // }
+    // 分类选择器变化事件
+    onCategoryChange(e) {
+      this.form.category = this.categories[e.detail.value];
+    },
+    async decodeAndShowImage(data) {
+      try {
+        // 1. 获取纯Base64数据
+        const pureBase64 = this.getPureBase64(data);
+        
+        // 2. 转换为临时文件路径
+        this.imagePath = await this.base64ToTempFilePath(pureBase64);
+        console.log(this.imagePath, 'this.imagePath');
+        
+      } catch (err) {
+        uni.showToast({ title: '图片解码失败', icon: 'none' });
+        console.error(err);
+      }
+    }, 
+    getPureBase64(base64Str) {
+      return base64Str.replace(/^data:image\/\w+;base64,/, '');
+    },
+    base64ToTempFilePath(base64Data) {
+      return new Promise((resolve, reject) => {
+        const buffer = wx.base64ToArrayBuffer(base64Data);
+        const tempFilePath = `${wx.env.USER_DATA_PATH}/temp_${Date.now()}.png`;
+        
+        wx.getFileSystemManager().writeFile({
+          filePath: tempFilePath,
+          data: buffer,
+          encoding: 'binary',
+          success: () => resolve(tempFilePath),
+          fail: (err) => reject(err)
+        });
+      });
+    },
+    // Base64 解码字符串
+    decodeBase64(base64Str) {
+      // 兼容处理（去除可能的数据URL前缀）
+      const base64 = base64Str.replace(/^data:.+;base64,/, '');
+      return uni.base64ToArrayBuffer(base64); // UniApp 提供的API
+    }
   },
-  mounted(){
-    this.getUserConfig()
+  mounted() {
+    this.getGoodsItme();
   }
-}
+};
 </script>
+
 <style scoped>
 @import '@/common/index.css';
-
-.login-title {
-  font-size: 48rpx;
-  font-weight: bold;
-  text-align: center;
-  margin: 60rpx 0 80rpx;
+.container{
+  padding-top: 0;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 99;
+}
+.movable-area {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.avatar-section, .nickname-section {
-  text-align: center;
-  margin-bottom: 60rpx;
+.movable-view {
+  width: 120rpx;
+  height: 120rpx;
 }
-
-.section-title {
-  font-size: 32rpx;
-  color: #666;
-  margin-bottom: 20rpx;
-  display: block;
+.floating-button-icon {
+  margin-bottom: 26rpx;
 }
-
-.avatar-btn {
-  padding: 0;
-  background: none;
-  border: none;
-  line-height: 1;
-}
-
-.avatar-image {
-  width: 160rpx;
-  height: 160rpx;
+.floating-button {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #F65237;
   border-radius: 50%;
-  border: 2rpx solid #eee;
-}
-
-.nickname-input {
-  height: 80rpx;
-  border-bottom: 1rpx solid #eee;
-  padding: 10rpx 0;
-  font-size: 32rpx;
-}
-
-.login-btn {
-  height: 90rpx;
-  line-height: 90rpx;
-  background: #07C160;
-  color: white;
-  border-radius: 45rpx;
-  margin-top: 80rpx;
-  font-size: 34rpx;
-  text-align: center;
-}
-
-.login-btn[disabled] {
-  background: #DDD;
-}
-
-.agreement {
-  margin-top: 40rpx;
-  font-size: 24rpx;
-  color: #999;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+.floating-button-img {
+  height: 120rpx;
+}
+.floating-button-img .img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50% ;
+}
+.floating-button-active {
+  background-color: #fff;
 }
 
-.agreement-link {
-  color: #576B95;
-  margin: 0 5rpx;
+.additional-button {
+  width: 60px;
+  height: 60px;
+  background-color: #F65237;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 100;
 }
-wx-button:after {
-  border: none;
+.section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+.image-box {
+  border: 1px solid rgba(187,187,187,1);
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+.image {
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 10rpx;
+}
+.form {
+  margin-bottom: 100rpx;
+}
+
+.form-item {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.label {
+  color: rgba(154,154,154,1);
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+  margin-right: 10rpx;
+  width: 160rpx;
+}
+
+.input {
+  height: 66rpx;
+  /* border: 1rpx solid #eee; */
+  padding: 10rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+.bottom-btn {
+  position: fixed;
+  bottom: 40rpx;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.qa-btn{
+  height: 80rpx;
+  padding: 0 40rpx;
+  background-color: #bebebe;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.del-btn {
+  height: 80rpx;
+  padding: 0 40rpx;
+  background-color: #bebebe;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.update-btn {
+  height: 80rpx;
+  padding: 0 40rpx;
+  background-color: #F65237;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.floating-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-button {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #F65237;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+  position: fixed;
+  z-index: 100;
+  touch-action: none; /* 防止触摸事件被浏览器拦截 */
 }
 </style>

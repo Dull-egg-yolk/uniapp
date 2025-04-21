@@ -171,3 +171,10 @@ export const shoppingBuyCallback = (data) => {
   });
 };
 
+export const prelogin = (data) => {
+  return request({
+    url: '/ims-webapp/user/prelogin',
+    method: 'POST',
+    data: data,
+  });
+};

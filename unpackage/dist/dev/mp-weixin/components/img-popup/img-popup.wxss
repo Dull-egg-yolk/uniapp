@@ -356,6 +356,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 遮罩层 */
 .popup-mask.data-v-03fdd90a {
   position: fixed;
@@ -367,6 +400,11 @@
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   z-index: 999;
+}
+.print-canvas.data-v-03fdd90a {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
 }
 /* 弹窗容器（居中） */
 .popup-container.data-v-03fdd90a {

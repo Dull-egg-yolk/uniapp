@@ -22,11 +22,14 @@
   background-color: #f5f5f5;
 }
 .product-list.data-v-3ac240c8 {
+  height: 740rpx;
+  overflow-y: scroll;
+}
+.content-list.data-v-3ac240c8 {
   background: #fff;
   border-radius: 20rpx;
   padding: 20rpx;
   height: 800rpx;
-  overflow-y: scroll;
 }
 .product-item.data-v-3ac240c8 {
   margin-bottom: 20rpx;

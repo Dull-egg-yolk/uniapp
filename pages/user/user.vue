@@ -60,9 +60,11 @@
 						icon: "none"
 					});
 				} else {
+
 					this.userInfoList = res.Data.Hotel
 					this.updateUser = res.Data;
 					uni.setStorageSync('user_info', res.Data);
+					uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
 					console.log(this.updateUser, 'updateUser');
 					uni.setStorageSync('hotalName', res.Data.Hotel.Name);
 					uni.setStorageSync('hotalID', res.Data.Hotel.ID);

@@ -54,7 +54,7 @@ export default {
           Name: ''
         }
       },
-      teamData: {
+       teamData: {
         'superuser': '超级管理员',
         'operator': '操作员',
         'financial': '财务员',
@@ -65,8 +65,9 @@ export default {
   mounted() {
     if (uni.getStorageSync("userInfo")) {
       this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
-      console.log( this.userAvatar, '8989');
-      
+    }
+    if (uni.getStorageSync("user_info")) {
+      this.userAvatar = uni.getStorageSync("user_info").Avatar;
     }
     const cachedUser = uni.getStorageSync('user_info');
     if (cachedUser) {

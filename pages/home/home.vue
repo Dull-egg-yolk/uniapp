@@ -3,9 +3,9 @@
      <!-- 自定义导航栏 -->
     <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
       <view class="custom-navbar-left" @click="gotoUser">
-        <image :src="userInfo.avatarUrl || '/static/img/header-img.svg'" class="avatar" />
+        <image :src="userInfo.Avatar || '/static/img/header-img.svg'" class="avatar" />
         <view class="name">
-          <text>{{userInfo.nickName}}</text>
+          <text>{{userInfo.Name}}</text>
         </view>
       </view>
       <view class="message" v-if="showMeg" :style="{ marginRight: menuButtonWidth + 'px' }" @click="navigateTo('earlyWarning')">
@@ -95,7 +95,7 @@ export default {
     this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
   },
   onShow() {
-    this.userInfo = uni.getStorageSync('userInfo');
+    this.userInfo = uni.getStorageSync('user_info');
     this.userPage();
     this.appConfig();
     const isSHow = uni.getStorageSync('isShow')

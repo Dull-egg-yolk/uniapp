@@ -79,7 +79,7 @@
 
 <script>
 import loginPopup from '@/components/login-popup/login-popup.vue'
-import { userLogin, appConfig } from '@/api/user.js'
+import { userLogin, appConfig, prelogin } from '@/api/user.js'
   export default {
 		components: {
 			loginPopup
@@ -106,7 +106,60 @@ import { userLogin, appConfig } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
+		async	prelogin(Code, EncryptedData, IV){
+			const params = {
+				Code: Code,
+				EncryptedData: EncryptedData,
+				IV: IV
+			}
+			await prelogin(params).then(res => {
+				if (res.ErrorMsg) {
+					uni.showToast({
+						title: res.ErrorMsg,
+						icon: "none"
+					});
+					// 接口不成功走原有逻辑
+					this.$refs.loginPopup.open()
+				} else {
+					// 接口成功就是登录成功
+					if (res.Data.Avatar && res.Data.Name) {
+						uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
+						uni.setStorageSync('token', res.Data.Token);
+						uni.setStorageSync('user_info', res.Data);
+						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
+						uni.setStorageSync('hotalID', res.Data.Hotel.ID);
+						uni.showToast({
+							title: '登录成功',
+							icon: "none"
+						});
+						setTimeout(() => {
+							if (res.Data.Hotel.ID === 0) {
+								uni.navigateTo({
+									url: '/subpackageA/form/form'
+								});
+							} else {
+								uni.switchTab({
+									url: '/pages/home/home'
+								});
+							}
+						}, 300)
+					} else {
+						this.$refs.loginPopup.open()
+					}
+				}
+			})
+		},
 		async onConfirm(){
+			try {
+					// 3. 获取微信登录code
+					const [loginErr, loginRes] = await uni.login({
+						provider: 'weixin'
+					});
+					this.WxCode = loginRes.code
+				} catch (error) {
+					uni.showToast({ title: error.message, icon: 'none' });
+				} finally {
+			}
 			const userInfo =  uni.getStorageSync('userInfo')
 			const invited = uni.getStorageSync('launchOptions')
 			if (invited && invited.query.InvitedByHotelID !== 'undefined') {
@@ -127,6 +180,7 @@ import { userLogin, appConfig } from '@/api/user.js'
 						});
 					} else {
 						uni.hideLoading()
+						uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
 						uni.setStorageSync('token', res.Data.Token);
 						uni.setStorageSync('user_info', res.Data);
 						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
@@ -183,7 +237,9 @@ import { userLogin, appConfig } from '@/api/user.js'
 						provider: 'weixin'
 					});
 					this.WxCode = loginRes.code
-					this.$refs.loginPopup.open()
+					// this.$refs.loginPopup.open()
+					// 调用预登录接口
+					this.prelogin(loginRes.code,e.detail.encryptedData,e.detail.iv)
 				} catch (error) {
 					uni.showToast({ title: error.message, icon: 'none' });
 				} finally {

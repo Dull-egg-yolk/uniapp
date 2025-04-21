@@ -2,7 +2,7 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="userAvatar.avatarUrl" mode="aspectFill" class="avatar"></image>
+      <image :src="userAvatar.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
           >{{ userList.Name }} <text class="role">{{ teamData[userList.UserHotelRole.Role] }}</text></view
@@ -36,6 +36,7 @@ export default {
   },
   watch: {
     userInfon(newVal) {
+      this.userList.UserHotelRole.Role = newVal.UserHotelRole.Role;
       this.userList.Hotel.Name = newVal.Hotel.Name;
       this.userList.PrimeRight.Name = newVal.PrimeRight.Name;
       this.userList.Hotel.ID = newVal.Hotel.ID;
@@ -63,6 +64,7 @@ export default {
           Name: ''
         }
       },
+      role: '',
       userAvatar: '',
       showRenew: true,
       teamData: {
@@ -73,16 +75,14 @@ export default {
     };
   },
   mounted() {
-    if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo");
+    if (uni.getStorageSync("user_info")) {
+      this.userAvatar = uni.getStorageSync("user_info");
     }
     const cachedUser = uni.getStorageSync('user_info');
-    console.log(cachedUser, 7777);
     
     if (cachedUser) {
       this.userList = cachedUser; // 覆盖默认值
     }else{
-      console.log('未找到用户缓存'); 
     }
     const otherList = uni.getStorageSync('user_page')['fe:other']
     const renew = otherList.find(item => item.Name === '续费');
@@ -110,27 +110,6 @@ export default {
     }, 1000),
   },
   onLoad(option) {
-    console.log(this.userList, '00000');
-    
-    if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo");
-    }
-    const cachedUser = uni.getStorageSync('user_info');
-    console.log(cachedUser, 7777);
-    
-    if (cachedUser) {
-      this.userList = cachedUser; // 覆盖默认值
-    }else{
-      console.log('未找到用户缓存'); 
-    }
-    console.log(this.userList, '0033300');
-    const otherList = uni.getStorageSync('user_page')['fe:other']
-    const renew = otherList.find(item => item.Name === '续费');
-    if (renew) {
-      this.showRenew = true;
-    } else {
-      this.showRenew = false;
-    }
 	},
 };
 </script>

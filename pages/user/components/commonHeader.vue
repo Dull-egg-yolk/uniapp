@@ -2,7 +2,7 @@
   <view class="user-info-content">
     <!-- 用户信息区 -->
     <view class="user-info">
-      <image :src="userAvatar" mode="aspectFill" class="avatar"></image>
+      <image :src="myinfo.Avatar" mode="aspectFill" class="avatar"></image>
       <view class="user-desc">
         <view class="name"
           >{{ myinfo.Name }} <text class="role">{{ teamData[myinfo.UserHotelRole.Role] }}</text></view
@@ -41,6 +41,15 @@ export default {
       return formatTime(val);
     },
   },
+  watch: {
+    myinfo(newVal) {
+      this.myinfo.UserHotelRole.Role = newVal.UserHotelRole.Role;
+      this.myinfo.Hotel.Name = newVal.Hotel.Name;
+      this.myinfo.PrimeRight.Name = newVal.PrimeRight.Name;
+      this.myinfo.Hotel.ID = newVal.Hotel.ID;
+      this.myinfo.Avatar = newVal.Avatar;
+    }
+  },
   data() {
     return {
       myinfo: {
@@ -52,7 +61,8 @@ export default {
         },
         Hotel: {
           Name: ''
-        }
+        },
+        Avatar: ""
       },
       teamData: {
         'superuser': '超级管理员',
@@ -63,10 +73,8 @@ export default {
     };
   },
   mounted() {
-    if (uni.getStorageSync("userInfo")) {
-      this.userAvatar = uni.getStorageSync("userInfo").avatarUrl;
-      console.log( this.userAvatar, '8989');
-      
+    if (uni.getStorageSync("user_info")) {
+      this.userAvatar = uni.getStorageSync("user_info");
     }
     const cachedUser = uni.getStorageSync('user_info');
     if (cachedUser) {
@@ -74,8 +82,9 @@ export default {
     }else{
       console.log('未找到用户缓存'); 
     }
-  },
-  onLoad() {
+    console.log(this.userAvatar, 'this.userAvatar');
+    console.log(this.myinfo, 'this.myinfo');
+    
   },
   methods: {},
 };
