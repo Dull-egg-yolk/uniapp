@@ -71,6 +71,10 @@ export default {
       
     },
     scanQRCode(){
+      wx.showLoading({
+        title: '处理中...',
+        mask: true
+      });
       uni.scanCode({
       // onlyFromCamera: true, // 是否只能从相机扫码
       // scanType: ['qrCode'], // 扫码类型，qrCode为二维码
@@ -89,11 +93,13 @@ export default {
           console.log(hotalId, HotelId , '00000');
           
           if (HotelId === hotalId) {
-            uni.navigateTo({
+            wx.hideLoading();
+            uni.redirectTo({
               url: '/subpackageA/itemDetail/index?warehouseId=' + warehouse + '&goosId=' + goods + '&hotalId=' + hotalId + '&showScan=' + true
             })
           } else {
-            uni.navigateTo({
+            wx.hideLoading();
+            uni.redirectTo({
               url: '/subpackageA/newItemDetail/index?warehouseId=' + warehouse + '&goosId=' + goods + '&hotalId=' + hotalId + '&showScan=' + true
             })
           }

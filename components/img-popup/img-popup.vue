@@ -30,11 +30,9 @@
         <canvas
           canvas-id="displayCanvas" 
           id="displayCanvas"
-          :width="canvasWidthResponsive"
-          :height="canvasHeightResponsive"
           :style="{
-          width: canvasWidthResponsive + 'px',
-          height: canvasHeightResponsive + 'px'
+          width: displayCanvasWidth + 'px',
+          height: displayCanvasHeight + 'px'
           }"
         ></canvas>
         <canvas
@@ -111,6 +109,10 @@ export default {
       saveImg: '',
       canvasWidth: 380,
       canvasHeight: 420,
+      imgWidth: 220,     // 图片实际宽度
+      imgHeight: 220,     // 图片实际高度
+      displayCanvasWidth: 300,  // 画布宽度
+      displayCanvasHeight: 300,  // 画布高度
     }
   },
   computed: {
@@ -205,12 +207,14 @@ export default {
     async drawDisplayCanvas() {
       const imagePath = await base64ToTempPath(`data:image/png;base64,${this.imageUrl}`);
       return new Promise((resolve) => {
+        const x = (this.displayCanvasWidth - this.imgWidth) / 2
+        const y = (this.displayCanvasHeight - this.imgHeight) / 5
         const ctx = uni.createCanvasContext('displayCanvas', this);
-        ctx.drawImage(imagePath, 25, 10, 260, 260);
+        ctx.drawImage(imagePath, x, 1, this.imgWidth, this.imgHeight);
         ctx.setFontSize(20);
         ctx.setFillStyle("#000000");
         ctx.setTextAlign("center");
-        const textY = 20 + 260 + 20; // 图片Y + 图片高度 + 间距
+        const textY = 20 + 220 + 20; // 图片Y + 图片高度 + 间距
         ctx.fillText(this.imgContent, 150, textY);
         ctx.fillText(this.warehouseName, 150, textY + 30);
         // ctx.draw();

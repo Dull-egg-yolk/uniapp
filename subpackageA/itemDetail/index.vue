@@ -63,27 +63,22 @@
       </view>
      </view>
      <view>
-      <movable-area class="movable-area">
-        <movable-view
-          class="movable-view"
-          direction="all"
-          :x="buttonX"
-          :y="buttonY"
-          :disabled="isButtonDisabled"
-          @change="onMove"
-          @click.stop
+      <view class="floating-container">
+        <view 
+          class="floating-button" 
+          :class="{ 'floating-button-active': showAdditionalButtons }"
+          :style="{left: buttonX + 'px', top: buttonY + 'px'}"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd"
+          @click.stop="toggleButtons($event)"
         >
-          <div class="floating-button" @click.stop="toggleButtons" :class="{ 'floating-button-active': showAdditionalButtons }">
-            <!-- <text class="floating-button-icon">...</text> -->
-            <view class="floating-button-img" v-if="showAdditionalButtons"><image
-              class="img"
-              src="/static/img/logo-1.jpeg"
-              mode="scaleToFill"
-            /></view>
-            <view class="floating-button-icon" v-else>...</view>
-          </div>
-        </movable-view>
-      </movable-area>
+          <view class="floating-button-img" v-if="showAdditionalButtons">
+            <image class="img" src="/static/img/logo-1.jpeg" mode="scaleToFill" />
+          </view>
+          <view class="floating-button-icon" v-else>...</view>
+        </view>
+      </view>
 		 </view>
      <view v-if="showAdditionalButtons">
       <view
@@ -175,7 +170,13 @@ export default {
       list: {},
       imagePath: '',
       // 分类选项
-      categories: ["默认分类", "分类1", "分类2", "分类3"]
+      categories: ["默认分类", "分类1", "分类2", "分类3"],
+      // 新增触摸相关数据
+      touchStartX: 0,
+      touchStartY: 0,
+      initialButtonX: 220,
+      initialButtonY: 380,
+      isDragging: false
     };
   },
   components: {
@@ -201,6 +202,44 @@ export default {
      });
   },
   methods: {
+    // 新增触摸处理方法
+    handleTouchStart(e) {
+      this.touchStartX = e.touches[0].clientX;
+      this.touchStartY = e.touches[0].clientY;
+      this.initialButtonX = this.buttonX;
+      this.initialButtonY = this.buttonY;
+      this.isDragging = false;
+    },
+    handleTouchMove(e) {
+      const moveX = e.touches[0].clientX - this.touchStartX;
+      const moveY = e.touches[0].clientY - this.touchStartY;
+      
+      // 判断是否达到拖动阈值
+      if (Math.abs(moveX) > 5 || Math.abs(moveY) > 5) {
+        this.isDragging = true;
+      }
+      
+      if (this.isDragging) {
+        const screenWidth = uni.getWindowInfo().windowWidth;
+        const screenHeight = uni.getWindowInfo().windowHeight;
+        const buttonSize = 60; // 按钮大小
+        
+        let newX = this.initialButtonX + moveX;
+        let newY = this.initialButtonY + moveY;
+        
+        // 限制边界
+        newX = Math.max(0, Math.min(screenWidth - buttonSize, newX));
+        newY = Math.max(0, Math.min(screenHeight - buttonSize, newY));
+        
+        this.buttonX = newX;
+        this.buttonY = newY;
+      }
+    },
+    handleTouchEnd() {
+      if (!this.isDragging) {
+        this.toggleButtons();
+      }
+    },
     updateItem(){
       console.log(this.form, 'form');
       uni.navigateTo({
@@ -296,8 +335,14 @@ export default {
     },
 
     // 切换新增按钮的显示和隐藏
-    toggleButtons() {
+    toggleButtons(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      if (e && e.target !== e.currentTarget) return;
       console.log(111111);
+      console.log(this.showAdditionalButtons);
       
       if (this.showAdditionalButtons) {
         this.showAdditionalButtons = false; // 隐藏新增按钮
@@ -585,5 +630,26 @@ export default {
   align-items: center;
   border-radius: 10rpx;
 }
+.floating-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
+.floating-button {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #F65237;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+  position: fixed;
+  z-index: 100;
+  touch-action: none; /* 防止触摸事件被浏览器拦截 */
+}
 </style>

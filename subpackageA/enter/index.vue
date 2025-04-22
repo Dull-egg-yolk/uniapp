@@ -158,6 +158,13 @@ export default {
     },
     // 确认选择
     confirmSelection() {
+      if (this.tempSelected === ''){
+        uni.showToast({
+          title: '请选择库房',
+          icon: 'none'
+        });
+        return;
+      }
       this.selectedWarehouse = this.tempSelected;
       console.log(this.selectedWarehouse, '确认选择');
       

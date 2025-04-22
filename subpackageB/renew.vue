@@ -242,11 +242,11 @@ export default {
     async handlePayment() {
       try {
         // 调用后端接口获取支付参数
-        // const amountFen = Math.round(this.finalPrice * 100); // 分（避免浮点数问题）
+        const amountFen = Math.round(this.finalPrice * 100); // 分（避免浮点数问题）
         const params = {
           PrimePlanID: this.PrimePlanID,
           CouponID: this.CouponID,
-          PayMoney: this.finalPrice,
+          PayMoney: amountFen,
           ShoppingAddress: this.formData.address || '',
           ShoppingPhone: this.formData.phone || '',
           ShoppingUser: this.formData.recipient || '',
@@ -281,7 +281,10 @@ export default {
               title: "支付成功",
               icon: "success",
             });
-            this.shoppingBuyCallback(paymentParams.BuyRecord.ID, paymentParams.PrepayID, 'SUCCESS')
+            console.log(res, '8888');
+            console.log(paymentParams, '999');
+            
+            this.shoppingBuyCallback(paymentParams.BuyRecord.ID, paymentParams.BuyRecord.PrepayID, 'SUCCESS')
           },
           fail: (err) => {
             console.error("支付失败:", err);
@@ -289,7 +292,7 @@ export default {
               title: "支付失败",
               icon: "none",
             });
-            this.shoppingBuyCallback(paymentParams.BuyRecord.ID, paymentParams.PrepayID, 'CLOSED')
+            this.shoppingBuyCallback(paymentParams.BuyRecord.ID, paymentParams.BuyRecord.PrepayID, 'CLOSED')
           },
         });
       } catch (err) {
@@ -308,6 +311,8 @@ export default {
       this.currtPrice = price;
     },
     async shoppingBuyCallback(id, prepayId, status){
+      console.log(id, prepayId, status, '回调参数');
+      
       const params = {
         PrepayID: prepayId,
         status: status

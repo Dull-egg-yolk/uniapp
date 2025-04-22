@@ -84,24 +84,16 @@ export default {
   components: {
   },
   async onLoad(option) {
-    console.log(option, 'option11');
-    console.log(option.goosId, 'goosId');
-    // const app = getApp();
     this.hasToken = uni.getStorageSync('hotalID');
-    console.log(this.hasToken , 'this.hotalID');
-    
     const launchOptions = uni.getLaunchOptionsSync();
     // const sceneParams = 'g=21,w=0,h=93'
     const sceneParams = decodeURIComponent(option.scene);
-    console.log(sceneParams, 'sceneParams');
     if (sceneParams !== 'undefined') {
-      console.log(1);
       this.GoodsId = this.getParamFromScene(sceneParams, 'g');
       this.HotelID = this.getParamFromScene(sceneParams, 'h');
       this.WarehouseID = this.getParamFromScene(sceneParams, 'w');
       await this.getNoGoodsItem();
     } else {
-      console.log(2);
       
       this.GoodsId = parseInt(option.goosId);
       this.HotelID = parseInt(option.hotalId);
