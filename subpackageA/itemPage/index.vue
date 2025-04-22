@@ -97,24 +97,17 @@ export default {
       }
       this.selectedWarehouse = this.tempSelected;
       this.closePopup();
-      
+   
       uni.navigateTo({
-        url: `/subpackageB/login1?id=${this.currentItem.Name}&goosId=${this.currentItem.ID}&warehouseId=${this.selectedWarehouseId}`,
+        url: `/subpackageA/itemDetail/index?id=${this.currentItem.Name}&goosId=${this.currentItem.ID}&warehouseId=${this.selectedWarehouseId}`,
         success: () => {
+          this.selectedWarehouse =''
+          // 跳转成功后触发事件（确保B页面已初始化）
           setTimeout(() => {
             uni.$emit('data-detail', { data: this.currentItem });
           }, 300); // 适当延迟
         }
       });
-      // uni.navigateTo({
-      //   url: `/subpackageA/itemDetail/index?id=${this.currentItem.Name}&goosId=${this.currentItem.ID}&warehouseId=${this.selectedWarehouseId}`,
-      //   success: () => {
-      //     // 跳转成功后触发事件（确保B页面已初始化）
-      //     setTimeout(() => {
-      //       uni.$emit('data-detail', { data: this.currentItem });
-      //     }, 300); // 适当延迟
-      //   }
-      // });
       
       // 也可以触发父组件事件
       this.$emit('selected', this.selectedWarehouse);
