@@ -16,6 +16,7 @@
           <text class="expire-date"> {{ myinfo.PrimeRight.ExpireAt | getData }}</text>
         </view>
       </view>
+      <button class="renew-btn" @click="goSetting()">设置</button>
     </view>
   </view>
 </template>
@@ -78,7 +79,13 @@ export default {
   },
   onLoad() {
   },
-  methods: {},
+  methods: {
+    goSetting(){
+      uni.navigateTo({
+        url: '/subpackageB/setting'
+      })
+    }
+  },
 };
 </script>
 
@@ -90,6 +97,7 @@ export default {
   padding: 20rpx 30rpx;
   background: white;
   margin: 20rpx 0;
+  border-radius: 10rpx;
 }
 .avatar {
   width: 120rpx;

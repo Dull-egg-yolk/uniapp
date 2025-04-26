@@ -206,6 +206,7 @@ wx-button.data-v-34af35c8:after {
   flex-wrap: wrap;
 }
 .package-item.data-v-34af35c8 {
+  min-height: 168rpx;
   text-align: center;
   padding: 20rpx;
   border: 1rpx solid #ddd;
@@ -227,15 +228,19 @@ wx-button.data-v-34af35c8:after {
   color: #ff5722;
 }
 .package-title.data-v-34af35c8 {
-  font-size: 30rpx;
-  margin-bottom: 10rpx;
+  font-size: 26rpx;
+  margin-bottom: 5rpx;
+}
+.original-price.data-v-34af35c8 {
+  font-size: 24rpx;
+  text-decoration: line-through;
 }
 .package-price.data-v-34af35c8 {
-  font-size: 26rpx;
+  font-size: 30rpx;
   color: #ff5722;
 }
 .package-unit.data-v-34af35c8 {
-  font-size: 26rpx;
+  font-size: 30rpx;
 }
 .discount-info.data-v-34af35c8 {
   background-color: #fff;

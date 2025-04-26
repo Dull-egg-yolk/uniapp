@@ -74,6 +74,16 @@
 				ref="loginPopup"
 				@confirm="onConfirm"
 			/>
+		  <!-- 3. 自定义协议弹窗 -->
+			<view v-if="showAgreement" class="custom-modal">
+				<view class="modal-content">
+					<text>同意并遵行九点荟库存管理</text>
+					<text class="link" @click="goAgreement('userAgreement')">《用户协议》</text>
+					<text>和</text>
+					<text class="link" @click="goAgreement('privacyPolicy')">《隐私政策》</text>
+					<button class="custom-btn" @click="handleAgree">同意并继续</button>
+				</view>
+			</view>
     </view>
 </template>
 
@@ -89,12 +99,16 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 		},
 		data() {
 			return {
-				//将data文件夹中的数据读入
 				user_name: '',
 				user_id: '',
 				personalInvitePage: '',
 				configList: [],
-				WxCode: ''
+				WxCode: '',
+				isAuthorize: false,
+				showAgreement: false,
+        showRealAuthBtn: false,
+				IV: '',
+				EncryptedData: ''
 			}
 		},
 		mounted() {
@@ -106,102 +120,117 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
-		async	prelogin(Code, EncryptedData, IV){
-			const params = {
-				Code: Code,
-				EncryptedData: EncryptedData,
-				IV: IV
-			}
-			await prelogin(params).then(res => {
-				if (res.ErrorMsg) {
-					uni.showToast({
-						title: res.ErrorMsg,
-						icon: "none"
-					});
-					// 接口不成功走原有逻辑
-					this.$refs.loginPopup.open()
-				} else {
-					// 接口成功就是登录成功
-					if (res.Data.Avatar && res.Data.Name) {
-						uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
-						uni.setStorageSync('token', res.Data.Token);
-						uni.setStorageSync('user_info', res.Data);
-						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
-						uni.setStorageSync('hotalID', res.Data.Hotel.ID);
-						uni.showToast({
-							title: '登录成功',
-							icon: "none"
-						});
-						setTimeout(() => {
-							if (res.Data.Hotel.ID === 0) {
-								uni.navigateTo({
-									url: '/subpackageA/form/form'
-								});
-							} else {
-								uni.switchTab({
-									url: '/pages/home/home'
-								});
-							}
-						}, 300)
-					} else {
-						this.$refs.loginPopup.open()
-					}
+			goAgreement(page){
+				uni.navigateTo({
+					url: `/subpackageB/agreement/${page}`
+				});
+			},
+			// 1. 点击登录按钮时先显示协议弹窗
+			showAgreementModal() {
+				this.showAgreement = true;
+			},
+			// 2. 用户同意协议后触发真实授权
+			handleAgree() {
+				this.showAgreement = false;
+				this.showRealAuthBtn = true;
+				this.prelogin(this.WxCode, this.EncryptedData, this.IV)
+			},
+			async	prelogin(Code, EncryptedData, IV){
+				const params = {
+					Code: Code,
+					EncryptedData: EncryptedData,
+					IV: IV
 				}
-			})
-		},
-		async onConfirm(){
-			try {
-					// 3. 获取微信登录code
-					const [loginErr, loginRes] = await uni.login({
-						provider: 'weixin'
-					});
-					this.WxCode = loginRes.code
-				} catch (error) {
-					uni.showToast({ title: error.message, icon: 'none' });
-				} finally {
-			}
-			const userInfo =  uni.getStorageSync('userInfo')
-			const invited = uni.getStorageSync('launchOptions')
-			if (invited && invited.query.InvitedByHotelID !== 'undefined') {
-				invited.query.InvitedByHotelID === parseInt(invited.query.InvitedByHotelID)
-			}
-			const params = {
-						Name: userInfo.nickName,
-						WxCode: this.WxCode,
-						Avatar: userInfo.avatarUrl,
-						InvitedByHotelID: invited ? parseInt(invited.query.InvitedByHotelID) : 0 || 0,
-						InvitedByCode: invited ? invited.query.InvitedByCode : '' || '',
-					}
-					const res = await userLogin(params)
+				await prelogin(params).then(res => {
 					if (res.ErrorMsg) {
 						uni.showToast({
 							title: res.ErrorMsg,
 							icon: "none"
 						});
+						// 接口不成功走原有逻辑
+						this.$refs.loginPopup.open()
 					} else {
-						uni.hideLoading()
-						uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
-						uni.setStorageSync('token', res.Data.Token);
-						uni.setStorageSync('user_info', res.Data);
-						uni.setStorageSync('hotalName', res.Data.Hotel.Name);
-						uni.setStorageSync('hotalID', res.Data.Hotel.ID);
-						uni.showToast({
-							title: '登录成功',
-							icon: "none"
-						});
-						setTimeout(() => {
-							if (res.Data.Hotel.ID === 0) {
-								uni.navigateTo({
-									url: '/subpackageA/form/form'
-								});
-							} else {
-								uni.switchTab({
-									url: '/pages/home/home'
-								});
-							}
-						}, 300)
+						// 接口成功就是登录成功
+						if (res.Data.Avatar && res.Data.Name) {
+							uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
+							uni.setStorageSync('token', res.Data.Token);
+							uni.setStorageSync('user_info', res.Data);
+							uni.setStorageSync('hotalName', res.Data.Hotel.Name);
+							uni.setStorageSync('hotalID', res.Data.Hotel.ID);
+							uni.showToast({
+								title: '登录成功',
+								icon: "none"
+							});
+							setTimeout(() => {
+								if (res.Data.Hotel.ID === 0) {
+									uni.navigateTo({
+										url: '/subpackageA/form/form'
+									});
+								} else {
+									uni.switchTab({
+										url: '/pages/home/home'
+									});
+								}
+							}, 300)
+						} else {
+							this.$refs.loginPopup.open()
+						}
 					}
-		},
+				})
+			},
+			async onConfirm(){
+				try {
+						// 3. 获取微信登录code
+						const [loginErr, loginRes] = await uni.login({
+							provider: 'weixin'
+						});
+						this.WxCode = loginRes.code
+					} catch (error) {
+						uni.showToast({ title: error.message, icon: 'none' });
+					} finally {
+				}
+				const userInfo =  uni.getStorageSync('userInfo')
+				const invited = uni.getStorageSync('launchOptions')
+				if (invited && invited.query.InvitedByHotelID !== 'undefined') {
+					invited.query.InvitedByHotelID === parseInt(invited.query.InvitedByHotelID)
+				}
+				const params = {
+							Name: userInfo.nickName,
+							WxCode: this.WxCode,
+							Avatar: userInfo.avatarUrl,
+							InvitedByHotelID: invited ? parseInt(invited.query.InvitedByHotelID) : 0 || 0,
+							InvitedByCode: invited ? invited.query.InvitedByCode : '' || '',
+						}
+						const res = await userLogin(params)
+						if (res.ErrorMsg) {
+							uni.showToast({
+								title: res.ErrorMsg,
+								icon: "none"
+							});
+						} else {
+							uni.hideLoading()
+							uni.setStorageSync('Role', res.Data.UserHotelRole.Role);
+							uni.setStorageSync('token', res.Data.Token);
+							uni.setStorageSync('user_info', res.Data);
+							uni.setStorageSync('hotalName', res.Data.Hotel.Name);
+							uni.setStorageSync('hotalID', res.Data.Hotel.ID);
+							uni.showToast({
+								title: '登录成功',
+								icon: "none"
+							});
+							setTimeout(() => {
+								if (res.Data.Hotel.ID === 0) {
+									uni.navigateTo({
+										url: '/subpackageA/form/form'
+									});
+								} else {
+									uni.switchTab({
+										url: '/pages/home/home'
+									});
+								}
+							}, 300)
+						}
+			},
 			async appConfig() {
 			  await appConfig().then(res => {
 					if (res.ErrorMsg) {
@@ -228,18 +257,21 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 			async onGetPhoneNumber(e) {
 				// 1. 检查是否授权成功
 				if (e.detail.errMsg !== 'getPhoneNumber:ok') {
-					uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
-					return;
+						uni.showToast({ title: '用户拒绝了授权', icon: 'none' });
+						return;
 				}
 				try {
-					// 3. 获取微信登录code
-					const [loginErr, loginRes] = await uni.login({
-						provider: 'weixin'
-					});
-					this.WxCode = loginRes.code
-					// this.$refs.loginPopup.open()
-					// 调用预登录接口
-					this.prelogin(loginRes.code,e.detail.encryptedData,e.detail.iv)
+						// 3. 获取微信登录code
+						const [loginErr, loginRes] = await uni.login({
+							provider: 'weixin'
+						});
+						this.WxCode = loginRes.code
+						this.EncryptedData =  e.detail.encryptedData
+						this.IV = e.detail.iv
+						// this.$refs.loginPopup.open()
+						// 调用预登录接口
+						this.showAgreement = true
+						// this.prelogin(loginRes.code,e.detail.encryptedData,e.detail.iv)
 				} catch (error) {
 					uni.showToast({ title: error.message, icon: 'none' });
 				} finally {
@@ -257,6 +289,31 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 </script>
 
 <style scoped>
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+.link {
+  color: #007AFF;
+  text-decoration: underline;
+}
+.modal-content {
+	background-color: #fff;
+	padding: 50rpx 30rpx;
+	border-radius: 10rpx;
+	margin: 0 40rpx;
+}
+.custom-btn {
+	margin-top: 30rpx;
+}
 	.login-btn {
 		display: flex;
 		font-size: 26rpx;

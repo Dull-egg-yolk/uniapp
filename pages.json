@@ -195,6 +195,24 @@
                 "style": {
                     "navigationBarTitleText": "团队建设"
                 }
+            },
+            {
+                "path": "setting",
+                "style": {
+                    "navigationBarTitleText": "设置"
+                }
+            },
+            {
+              "path": "agreement/userAgreement",
+              "style": {
+                "navigationBarTitleText": "用户协议"
+              }
+            },
+            {
+              "path": "agreement/privacyPolicy",
+              "style": {
+                "navigationBarTitleText": "隐私政策"
+              }
             }
         ]
       }

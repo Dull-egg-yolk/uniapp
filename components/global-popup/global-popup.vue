@@ -154,8 +154,11 @@ export default {
   flex: 1;
   padding: 32rpx;
   font-size: 30rpx;
-  color: #666;
+  color: #666; 
   line-height: 1.6;
+  width: auto;
+  white-space: pre-line;
+  overflow-y: scroll;
 }
 
 /* 底部按钮 */

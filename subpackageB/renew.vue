@@ -11,6 +11,7 @@
         @click="selectPackage(item.ID, index, item.Price)"
       >
         <view class="package-title">{{ item.Name }}</view>
+        <view class="original-price" v-if="item.OriginPrice !== item.Price">原价 {{ item.OriginPrice + '/' + item.Month}}月</view>
         <text class="package-price">¥{{ item.Price }}元</text>
         <text class="package-unit" v-if="item.Month !== -1">/{{ item.Month}}月</text>
       </view>
@@ -551,6 +552,7 @@ wx-button:after {
   flex-wrap: wrap;
 }
 .package-item {
+  min-height: 168rpx;
   text-align: center;
   padding: 20rpx;
   border: 1rpx solid #ddd;
@@ -573,15 +575,19 @@ wx-button:after {
   color: #ff5722;
 }
 .package-title {
-  font-size: 30rpx;
-  margin-bottom: 10rpx;
+  font-size: 26rpx;
+  margin-bottom: 5rpx;
+}
+.original-price {
+  font-size: 24rpx;
+  text-decoration: line-through;
 }
 .package-price {
-  font-size: 26rpx;
+  font-size: 30rpx;
   color: #ff5722;
 }
 .package-unit {
-  font-size: 26rpx;
+  font-size: 30rpx;
 }
 
 .discount-info {

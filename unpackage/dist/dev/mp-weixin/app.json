@@ -42,7 +42,10 @@
         "renew",
         "feedback",
         "helpDoc",
-        "teamData"
+        "teamData",
+        "setting",
+        "agreement/userAgreement",
+        "agreement/privacyPolicy"
       ]
     }
   ],

@@ -20,6 +20,7 @@
               </view>
             </view>
             <view>
+              <text class="del" v-if="group.UserHotelRole.Role !== 'superuser'" @click.stop="delAdmin(group)">删除</text>
               <text class="set">设置</text><uni-icons type="forward" size="16" color="#999"></uni-icons>
             </view>
           </view>
@@ -57,7 +58,7 @@
 </template>
 <script>
 import inviteFriendsPopup from '../components/inviteFriends-popup/inviteFriends-popup.vue'
-import { getHotelUser, updateHotelUser } from '@/api/user'
+import { getHotelUser, updateHotelUser, deleteHotelUser } from '@/api/user'
 export default {
   data() {
     return {
@@ -81,6 +82,24 @@ export default {
     inviteFriendsPopup
   },
   methods: {
+    // 删除用户
+    async delAdmin(user){
+      console.log(user);
+      await deleteHotelUser({ID: user.ID}).then(res => {
+        if (res.ErrorMsg) {
+          uni.showToast({
+            title: res.ErrorMsg,
+            icon: "none"
+          });
+        } else {
+          uni.showToast({
+            title: '删除成功',
+            icon: 'none'
+          });
+          this.getHotelUsers()
+        }
+      })
+    },
      // 显示筛选弹窗
      showFilter(user) {
       this.currentUser = JSON.parse(JSON.stringify(user))
@@ -315,6 +334,11 @@ export default {
 .set {
   font-size: 30rpx;
   color: #999;
+}
+.del {
+  font-size: 30rpx;
+  color: #f40e0e;
+  margin-right: 20rpx;
 }
 
 .role {

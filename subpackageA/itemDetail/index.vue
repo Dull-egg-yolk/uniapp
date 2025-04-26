@@ -195,6 +195,11 @@ export default {
 	},
   onUnload() {
     uni.$off('data-detail'); // 解绑
+    //#ifdef MP-WEIXIN
+    uni.redirectTo({
+      url: '/subpackageA/itemPage/index'
+    });
+    //#endif
   },
   onReady(){
 	  uni.setNavigationBarTitle({

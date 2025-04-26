@@ -116,7 +116,7 @@ export default {
         Note: '', 
         OperateType: 'In', 
         InCount: '', 
-        ValidDate: '',
+        ValidDate: null,
         OutCount: ''
       }
     }
@@ -138,6 +138,10 @@ export default {
                 icon: "none"
               });
           } else {
+            uni.showToast({
+              title: `成功${this.Title}`,
+              icon: "none"
+            });
             // uni.hideLoading()
             this.close()
           }
