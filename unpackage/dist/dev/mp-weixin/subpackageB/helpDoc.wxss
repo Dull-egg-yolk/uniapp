@@ -2,5 +2,7 @@
 .doc-container.data-v-7e3a1e06 {
   padding: 20rpx 50rpx;
   white-space: pre-line;
+  box-sizing: border-box;
+  width: 100%;
 }
 

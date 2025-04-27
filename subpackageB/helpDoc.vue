@@ -1,6 +1,14 @@
 <template>
   <view class="doc-container">
-    {{ txt }}
+    <view>{{ txt }}</view>
+    <view style="width: 100%;display: flex;">
+      <image style="width: 400rpx;
+      height: 600rpx;
+      margin: 0 auto;"
+        src="https://staticweb.jiudianhui.com.cn/ims/production/app/help_text_qr_code.jpeg"
+        mode="scaleToFill"
+      />
+    </view>
   </view>
 </template>
 <script>
@@ -37,6 +45,8 @@ export default {
 .doc-container {
   padding: 20rpx 50rpx;
   white-space: pre-line;
+  box-sizing: border-box;
+  width: 100%;
 }
 </style>
 

@@ -85,20 +85,26 @@ export default {
     // 删除用户
     async delAdmin(user){
       console.log(user);
-      await deleteHotelUser({ID: user.ID}).then(res => {
-        if (res.ErrorMsg) {
-          uni.showToast({
-            title: res.ErrorMsg,
-            icon: "none"
-          });
-        } else {
-          uni.showToast({
-            title: '删除成功',
-            icon: 'none'
-          });
-          this.getHotelUsers()
-        }
-      })
+      uni.showModal({
+				title: '提示',
+				content: '确认删除吗?',
+				success: async (res)=> {
+          await deleteHotelUser({ID: user.ID}).then(res => {
+            if (res.ErrorMsg) {
+              uni.showToast({
+                title: res.ErrorMsg,
+                icon: "none"
+              });
+            } else {
+              uni.showToast({
+                title: '删除成功',
+                icon: 'none'
+              });
+              this.getHotelUsers()
+            }
+          })
+				}
+				});
     },
      // 显示筛选弹窗
      showFilter(user) {

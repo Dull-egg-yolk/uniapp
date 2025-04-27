@@ -1,1 +1,1 @@
-<view class="doc-container data-v-7e3a1e06">{{''+txt+''}}</view>
+<view class="doc-container data-v-7e3a1e06"><view class="data-v-7e3a1e06">{{txt}}</view><view style="width:100%;display:flex;" class="data-v-7e3a1e06"><image style="width:400rpx;height:600rpx;margin:0 auto;" src="https://staticweb.jiudianhui.com.cn/ims/production/app/help_text_qr_code.jpeg" mode="scaleToFill" class="data-v-7e3a1e06"></image></view></view>

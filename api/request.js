@@ -4,7 +4,7 @@ const baseUrl = 'https://test-ims.jiudianhui.com.cn'; // 接口地址
 
 // 请求拦截器
 const requestInterceptor = (config) => {
-  // 在请求发送之前做一些处理
+  // 请求发送之前做处理
   const token = uni.getStorageSync('token'); // 从本地存储获取 token
   if (token) {
     config.header = {
@@ -17,7 +17,7 @@ const requestInterceptor = (config) => {
 
 // 响应拦截器
 const responseInterceptor = (response) => {
-  // 对响应数据做一些处理
+  // 响应数据处理
   if (response.statusCode === 200) {
     return response.data; // 返回响应数据
   } else if (response.statusCode === 401) {
@@ -58,7 +58,7 @@ const request = (config) => {
       config.header['Authorization'] = `Bearer ${token}`
     }
     uni.request({
-      url: baseUrl + config.url, // 拼接完整 URL
+      url: baseUrl + config.url, // URL
       method: config.method || 'GET', // 默认 GET 请求
       data: config.data || {}, // 请求参数
       header: config.header || {}, // 请求头
