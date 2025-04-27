@@ -276,7 +276,7 @@ export default {
 
 swiper {
   width: 100%;
-  height: 400rpx;
+  height: 300rpx;
 }
 
 .swiper-image {
