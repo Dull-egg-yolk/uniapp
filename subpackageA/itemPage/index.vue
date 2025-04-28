@@ -22,7 +22,7 @@
           </view>
       </view>
     </scroll-view>
-    <button class="addButton" @click="addItem">新增</button>
+    <button class="addButton" @click="addItem">物品录入</button>
     <uni-popup ref="popup" type="bottom" background-color="#fff">
       <view class="popup-content">
         <view class="popup-header">

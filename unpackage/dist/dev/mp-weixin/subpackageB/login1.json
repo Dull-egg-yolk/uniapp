@@ -1,8 +1,4 @@
 {
   "navigationBarTitleText": "ceshi",
-  "usingComponents": {
-    "img-popup": "/components/img-popup/img-popup",
-    "inout-popup": "/components/inout-popup/inout-popup",
-    "stock-popup": "/components/stock-popup/stock-popup"
-  }
+  "usingComponents": {}
 }

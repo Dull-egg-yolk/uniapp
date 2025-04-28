@@ -226,13 +226,13 @@
             {
                 "pagePath": "pages/home/home",
                 "text": "工作台",
-                "iconPath": "static/img/tabbar/workbench.png",
-                "selectedIconPath": "/static/img/tabbar/workbench.png"
+                "iconPath": "static/img/workbench.png",
+                "selectedIconPath": "/static/img/workbench.png"
             },{
                 "pagePath": "pages/user/user",
                 "text": "个人中心",
-                "iconPath": "static/img/tabbar/profile.png",
-                "selectedIconPath": "static/img/tabbar/profile.png"
+                "iconPath": "static/img/profile.png",
+                "selectedIconPath": "static/img/profile.png"
             }
 		]
     },

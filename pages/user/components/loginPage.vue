@@ -11,7 +11,7 @@
         </view>
         <view class="function-item">
           <button class="contact-btn" @click="contactCustomerService">
-            <image src='/static/images/riLine-mail-send-line.svg' class="function-icon" />
+            <image src='/static/images/iconPark-headset.svg' class="function-icon" />
             <text class="function-text">联系客服</text>
           </button>
         </view>
@@ -69,7 +69,7 @@ export default {
       functionList: [
         { icon: "person-info", name: "用户信息",url:'subpackageB/userInfo', img: 'riLine-contacts-line' },
         { icon: "team-setting", name: "团队设置" ,url:'subpackageB/teamData', img: 'antOutline-team'},
-        { icon: "invite-gift", name: "邀请有礼" ,url:'subpackageB/InvitationGifts', img: 'riLine-feedback-line' },
+        { icon: "invite-gift", name: "邀请有礼" ,url:'subpackageB/InvitationGifts', img: 'riLine-mail-send-line' },
         { icon: "help-doc", name: "帮助文档",url:'subpackageB/helpDoc', img: 'iconPark-doc-search-two' },
         { icon: "new-guide", name: "新手指南" ,url:'subpackageB/guide', img: 'if-compass' },
         { icon: "info-feedback", name: "需求反馈" ,url:'subpackageB/feedback', img: 'riLine-feedback-line' },

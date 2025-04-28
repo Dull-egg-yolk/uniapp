@@ -38,9 +38,9 @@ Vue.mixin({
 		console.log(InvitedCode, 'InvitedCode');
 		
     return {
-      title: '自己有会员，经营更稳健',  // 必填
+      title: '出入库、查库存、查用量，“码”上见 免费使用2个月',  // 必填
       path: `/pages/user/user?InvitedByCode=${InvitedCode}`, // 必填，分享页面路径
-      imageUrl: '/static/img/logo.png',
+      imageUrl: '/static/img/share.jpg',
       success(res) {
         console.log('分享成功', res);
         uni.showToast({ title: '分享成功' });
