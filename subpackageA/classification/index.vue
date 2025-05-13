@@ -100,7 +100,7 @@ export default {
               duration: 500,
               complete: () => {
                 // 提示消失后执行
-                this.getWarehouseList();
+                this.getHotelClassList();
               }
             });
           }

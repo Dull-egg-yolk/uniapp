@@ -4,7 +4,7 @@
       <img src="@/static/img/Invitation.jpg" alt="">
       <view class="text">
         <text class="big">邀好友，有好礼</text>
-        <text class="sm">每邀请2名用户，赠送1个月使用期</text>
+        <text class="sm">每邀请{{ value }}名用户，赠送1个月使用期</text>
         <text class="sm">一个酒店为一个用户</text>
       </view>
     </view>
@@ -22,7 +22,7 @@
   </view>
 </template>
 <script>
-import { getUserInvite } from '@/api/user'
+import { getUserInvite,appConfig } from '@/api/user'
 
 export default {
   components: {
@@ -31,6 +31,7 @@ export default {
     return {
       BonusMonth: 0,
       InvitedFriends: 0,
+      value: 2,
     };
   },
   methods: {
@@ -50,6 +51,12 @@ export default {
   },
   mounted() {
     this.getUserInvite()
+    const configList = uni.getStorageSync('user_config')
+    configList.forEach(item => {
+      if (item.Key === "xUsersToBonusPrime") {
+        this.value = item.Value
+      }
+    });
   }
 };
 </script>

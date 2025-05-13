@@ -1,127 +1,135 @@
 <template>
-  <view class="container">
-    <!-- 上传照片 -->
-    <view class="section">
-      <view class="image-box">
-        <image :src="form.Image" class="image"></image>
+  <div style="width: 100%;">
+    <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
+      <view class="navbar-left" @click="handleBack">
+        <image src="../../static/img/back.svg" class="back-icon"></image>
       </view>
+      <view class="navbar-title">{{ headerTitle }}</view>
     </view>
-    <!-- 表单 -->
-    <view class="form">
-      <view class="form-item">
-        <text class="label">物品名称</text>
-        <input class="input" v-model="form.Name" :disabled="!showScan" />
-      </view>
-      <view class="form-item">
-        <text class="label">单位</text>
-        <input class="input" v-model="form.Uint" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">规格</text>
-        <input class="input" v-model="form.Format" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">单价</text>
-        <input class="input" v-model="form.Price" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">分类</text>
-        <input class="input" v-model="form.Class.Name" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">供货商</text>
-        <input class="input" v-model="form.Suppliers" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">最低库存</text>
-        <input class="input" v-model="form.MinStock" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">备货量</text>
-        <input class="input" v-model="form.MaxStock" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">实时库存</text>
-        <input class="input" v-model="form.CurrentStock" disabled />
-      </view>
-      <view class="form-item">
-        <text class="label">备注</text>
-        <input class="input" v-model="form.Note" disabled />
-      </view>
-    </view>
-
-    <!-- 提交按钮 -->
-     <view class="bottom-btn">
-      <!-- <view class="qa-btn" @click="clickQrCode">
-        <text>二维码</text>
-      </view> -->
-      <view class="update-btn" @click="updateItem">
-        <text>编辑</text>
-      </view>
-      <view class="del-btn" @click="delectItme">
-        <text>删除</text>
-      </view>
-     </view>
-     <view>
-      <view class="floating-container">
-        <view 
-          class="floating-button" 
-          :class="{ 'floating-button-active': showAdditionalButtons }"
-          :style="{left: buttonX + 'px', top: buttonY + 'px'}"
-          @touchstart="handleTouchStart"
-          @touchmove="handleTouchMove"
-          @touchend="handleTouchEnd"
-          @click.stop="toggleButtons($event)"
-        >
-          <view class="floating-button-img" v-if="showAdditionalButtons">
-            <image class="img" src="/static/img/logo-1.jpeg" mode="scaleToFill" />
-          </view>
-          <view class="floating-button-icon" v-else>...</view>
+    <view class="container">
+      <!-- 上传照片 -->
+      <view class="section">
+        <view class="image-box">
+          <image :src="form.Image" class="image"></image>
         </view>
       </view>
-		 </view>
-     <view v-if="showAdditionalButtons">
-      <view
-        v-for="(button, index) in additionalButtons"
-        :key="index"
-        class="additional-button"
-        :style="{
-          left: button.x + 'px',
-          top: button.y + 'px',
-        }"
-        @click.stop="handleButtonClick(button.text)"
-      >
-        <text>{{ button.text }}</text>
+      <!-- 表单 -->
+      <view class="form">
+        <view class="form-item">
+          <text class="label">物品名称</text>
+          <input class="input" v-model="form.Name" :disabled="!showScan" />
+        </view>
+        <view class="form-item">
+          <text class="label">单位</text>
+          <input class="input" v-model="form.Uint" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">规格</text>
+          <input class="input" v-model="form.Format" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">单价</text>
+          <input class="input" v-model="form.Price" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">分类</text>
+          <input class="input" v-model="form.Class.Name" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">供货商</text>
+          <input class="input" v-model="form.Suppliers" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">最低库存</text>
+          <input class="input" v-model="form.MinStock" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">备货量</text>
+          <input class="input" v-model="form.MaxStock" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">实时库存</text>
+          <input class="input" v-model="form.CurrentStock" disabled />
+        </view>
+        <view class="form-item">
+          <text class="label">备注</text>
+          <input class="input" v-model="form.Note" disabled />
+        </view>
       </view>
+
+      <!-- 提交按钮 -->
+      <view class="bottom-btn">
+        <!-- <view class="qa-btn" @click="clickQrCode">
+          <text>二维码</text>
+        </view> -->
+        <view class="update-btn" @click="updateItem">
+          <text>编辑</text>
+        </view>
+        <view class="del-btn" @click="delectItme">
+          <text>删除</text>
+        </view>
+      </view>
+      <view>
+        <view class="floating-container">
+          <view 
+            class="floating-button" 
+            :class="{ 'floating-button-active': showAdditionalButtons }"
+            :style="{left: buttonX + 'px', top: buttonY + 'px'}"
+            @touchstart="handleTouchStart"
+            @touchmove="handleTouchMove"
+            @touchend="handleTouchEnd"
+            @click.stop="toggleButtons($event)"
+          >
+            <view class="floating-button-img" v-if="showAdditionalButtons">
+              <image class="img" src="/static/img/logo-1.jpeg" mode="scaleToFill" />
+            </view>
+            <view class="floating-button-icon" v-else>...</view>
+          </view>
+        </view>
+      </view>
+      <view v-if="showAdditionalButtons">
+        <view
+          v-for="(button, index) in additionalButtons"
+          :key="index"
+          class="additional-button"
+          :style="{
+            left: button.x + 'px',
+            top: button.y + 'px',
+          }"
+          @click.stop="handleButtonClick(button.text)"
+        >
+          <text>{{ button.text }}</text>
+        </view>
+      </view>
+      <view class="mask" v-if="showAdditionalButtons" @click="closeSubButtons"></view>
+      <img-popup 
+        ref="imagePopup"
+        title="二维码"
+        :imageUrl="imageUrl"
+        :imgContent="imgContent"
+        :warehouseName = warehouseName
+        @save="onSave"
+        @close="onImgClose"
+      />
+      <inout-popup 
+        ref="inoutPopup"
+        :ID="parseInt(form.ID)"
+        :Note="form.Note"
+        :title=title
+        :WarehouseID = WarehouseID
+        @save="onSave"
+        @close="onCloseInout"
+      />
+      <stock-popup 
+        ref="stockPopup"
+        :ID="parseInt(form.ID)"
+        :Note="form.Note"
+        :title=title
+        @save="onSave"
+        @close="onClose"
+      />
     </view>
-    <view class="mask" v-if="showAdditionalButtons" @click="closeSubButtons"></view>
-    <img-popup 
-      ref="imagePopup"
-      title="二维码"
-      :imageUrl="imageUrl"
-      :imgContent="imgContent"
-      :warehouseName = warehouseName
-      @save="onSave"
-      @close="onImgClose"
-    />
-    <inout-popup 
-      ref="inoutPopup"
-      :ID="parseInt(form.ID)"
-      :Note="form.Note"
-      :title=title
-      :WarehouseID = WarehouseID
-      @save="onSave"
-      @close="onCloseInout"
-    />
-    <stock-popup 
-      ref="stockPopup"
-      :ID="parseInt(form.ID)"
-      :Note="form.Note"
-      :title=title
-      @save="onSave"
-      @close="onClose"
-    />
-  </view>
+  </div>
 </template>
 
 <script>
@@ -136,6 +144,8 @@ const app = getApp(); // 获取 App 实例
 export default {
   data() {
     return {
+      statusBarHeight: 0, // 状态栏高度
+      menuButtonWidth: 0, // 菜单按钮宽度
       showScan: false,
       imgContent: '',
       title: '',
@@ -191,22 +201,29 @@ export default {
     this.showScan = option.showScan
     this.WarehouseID = option.warehouseId
     console.log(this.WarehouseID, 'WarehouseID');
-    
+    // 获取状态栏高度
+    const systemInfo = uni.getWindowInfo();
+    this.statusBarHeight = systemInfo.statusBarHeight || 0;
+    const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
+    this.menuButtonWidth = menuButtonInfo.width;
+    this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
 	},
-  onUnload() {
-    uni.$off('data-detail'); // 解绑
-    //#ifdef MP-WEIXIN
-    uni.redirectTo({
-      url: '/subpackageA/itemPage/index'
-    });
-    //#endif
-  },
   onReady(){
 	  uni.setNavigationBarTitle({
         title: this.headerTitle
      });
   },
   methods: {
+    handleBack(){
+      // uni.redirectTo({
+      //   url: '/subpackageA/itemPage/index'
+      // })
+      setTimeout(() => {
+        uni.navigateTo({
+          url: '/subpackageA/itemPage/index'
+        });
+      }, 100); // 100ms 延迟
+    },
     // 新增触摸处理方法
     handleTouchStart(e) {
       this.touchStartX = e.touches[0].clientX;
@@ -488,8 +505,41 @@ export default {
 
 <style scoped>
 @import '@/common/index.css';
+.custom-navbar {
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    z-index: 99999999;
+}
+
+.navbar-left {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  width: 80rpx;
+  height: 66rpx;
+}
+
+.navbar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  margin-right: 60rpx;
+  font-weight: 500;
+}
 .container{
-  padding-top: 0;
+  width: auto;
 }
 .mask {
   position: fixed;
@@ -558,6 +608,7 @@ export default {
   display: flex;
   justify-content: center;
   margin-bottom: 40rpx;
+  margin-top: 160rpx;
 }
 .image-box {
   border: 1px solid rgba(187,187,187,1);

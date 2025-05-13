@@ -100,9 +100,9 @@ export default {
       this.WarehouseID = parseInt(option.warehouseId);
       await this.getNoGoodsItem();
     }
-    console.log(this.GoodsId,this.HotelID,this.WarehouseID, 'this.option');
+    console.log(this.GoodsId,this.HotelID,this.hasToken,this.WarehouseID, 'this.option');
     
-    if(this.hasToken === this.HotelID){
+    if(parseInt(this.hasToken) === parseInt(this.HotelID)){
       console.log('this.hasToken === this.HotelID');
       uni.navigateTo({
         // url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,

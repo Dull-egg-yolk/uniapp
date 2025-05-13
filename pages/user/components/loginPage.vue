@@ -19,12 +19,12 @@
     </view>
 
     <!-- 广告横幅 -->
-    <view class="invite-section">
+    <!-- <view class="invite-section">
       <view class="invite-banner">
         <view class="invite-title">自己有会员，经营更稳健</view>
         <view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
       </view>
-    </view>
+    </view> -->
     <global-popup 
       ref="globalPopup"
       title="新手指引"

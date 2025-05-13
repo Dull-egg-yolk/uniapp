@@ -30,6 +30,10 @@
         <canvas
           canvas-id="displayCanvas" 
           id="displayCanvas"
+          style="position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);"
           :style="{
           width: displayCanvasWidth + 'px',
           height: displayCanvasHeight + 'px'
@@ -465,7 +469,12 @@ export default {
 
 /* 内容区域 */
 .popup-content {
-  flex: 1;
+  /* flex: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600rpx;
+  position: relative;
   /* padding: 20rpx; */
   overflow-y: auto;
 }

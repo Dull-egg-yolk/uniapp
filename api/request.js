@@ -1,7 +1,8 @@
 // utils/request.js
 
-const baseUrl = 'https://test-ims.jiudianhui.com.cn'; // 接口地址
-
+const baseUrl = 'https://api.jiudianhui.com.cn'; // 接口地址
+// const baseUrl = 'https://test-ims.jiudianhui.com.cn'; // 接口地址
+// const baseUrl = 'http://101.43.59.126:30001'; // 接口地址
 // 请求拦截器
 const requestInterceptor = (config) => {
   // 请求发送之前做处理

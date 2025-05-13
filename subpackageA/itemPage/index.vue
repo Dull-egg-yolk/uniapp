@@ -1,50 +1,61 @@
 <template>
-  <view class="container">
-    <view class="section">
-      <view class="filter-section filter-section-left">
-        <picker class="picker picker-left" mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
-          <view class="picker-selected">分类：{{ selectedCategory }}</view>
-        </picker>
+  <div style="width: 100%;" @touchstart.capture="handleTouchStart"
+    @touchmove.capture="handleTouchMove"
+    @touchend.capture="handleTouchEnd"
+    @touchcancel.capture="handleTouchEnd">
+    <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
+      <view class="navbar-left" @click.stop="handleBack">
+        <image src="../../static/img/back.svg" class="back-icon"></image>
       </view>
-      <view class="filter-section filter-section-right">
-        <uni-icons :size="22" class="uni-icon-wrapper" color="#bbb" type="search" />
-        <input class="picker in-picker" type="text" placeholder="请输入关键字" @input="onSearchInput" />
-      </view>
+      <view class="navbar-title">物品列表</view>
     </view>
-    <scroll-view class="item-list" scroll-y style="height: 800rpx;">
-      <view class="item" v-for="(item, index) in categories" :key="index" @click="navigateToDetail(item)">
-          <view class="info">
-            <text class="name">{{ item.Name }}</text>
-            <text class="text">{{ item.Format + '/' + item.Uint }}</text>
-          </view>
-          <view class="actions">
-              <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
-          </view>
-      </view>
-    </scroll-view>
-    <button class="addButton" @click="addItem">物品录入</button>
-    <uni-popup ref="popup" type="bottom" background-color="#fff">
-      <view class="popup-content">
-        <view class="popup-header">
-          <text class="title">选择库房</text>
-          <uni-icons type="close" size="20" @click="closePopup"></uni-icons>
+    <view class="container">
+      <view class="section">
+        <view class="filter-section filter-section-left">
+          <picker class="picker picker-left" mode="selector" :range="classList" range-key="Name" @change="onCategoryChange">
+            <view class="picker-selected">分类：{{ selectedCategory }}</view>
+          </picker>
         </view>
-        
-        <scroll-view scroll-y class="warehouse-list">
-          <view v-for="(item, index) in warehouseList" 
-            :key="index" 
-            class="warehouse-item"
-            :class="{ 'selected': selectedWarehouse === item.Name }"
-            @click="selectWarehouse(item)">
-            <text>{{ item.Name }}</text>
-            <uni-icons v-if="selectedWarehouse === item.Name" type="checkmarkempty" color="#007AFF" size="18"></uni-icons>
-          </view>
-        </scroll-view>
-                
-        <button class="confirm-btn" @click="confirmSelection">确定</button>
+        <view class="filter-section filter-section-right">
+          <uni-icons :size="22" class="uni-icon-wrapper" color="#bbb" type="search" />
+          <input class="picker in-picker" type="text" placeholder="请输入关键字" @input="onSearchInput" />
+        </view>
       </view>
-    </uni-popup>
-  </view>
+      <scroll-view class="item-list" scroll-y style="height: 800rpx;">
+        <view class="item" v-for="(item, index) in categories" :key="index" @click.stop="navigateToDetail(item)">
+            <view class="info">
+              <text class="name">{{ item.Name }}</text>
+              <text class="text">{{ item.Format + '/' + item.Uint }}</text>
+            </view>
+            <view class="actions">
+                <uni-icons :size="18" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+            </view>
+        </view>
+      </scroll-view>
+      <button class="addButton" @click.stop="addItem">物品录入</button>
+      <uni-popup ref="popup" type="bottom" background-color="#fff">
+        <view class="popup-content">
+          <view class="popup-header">
+            <text class="title">选择库房</text>
+            <uni-icons type="close" size="20" @click.stop="closePopup"></uni-icons>
+          </view>
+          
+          <scroll-view scroll-y class="warehouse-list">
+            <view v-for="(item, index) in warehouseList" 
+              :key="index" 
+              class="warehouse-item"
+              :class="{ 'selected': selectedWarehouse === item.Name }"
+              @click="selectWarehouse(item)">
+              <text>{{ item.Name }}</text>
+              <uni-icons v-if="selectedWarehouse === item.Name" type="checkmarkempty" color="#007AFF" size="18"></uni-icons>
+            </view>
+          </scroll-view>
+                  
+          <button class="confirm-btn" @click.stop="confirmSelection">确定</button>
+        </view>
+      </uni-popup>
+    </view>
+  </div>
 </template>
 
 <script>
@@ -53,6 +64,14 @@ import { getGoodsItme, getHotelClass, getWarehouse, upgateGoodsItem, addGoodsIte
 export default {
   data() {
     return {
+      touchStartX: 0,
+      touchStartY: 0,
+      touchMoveX: 0,
+      isSwiping: false,
+      swipeThreshold: 10, // 滑动阈值（单位px）
+      translateX: 0, // 滑动位移
+      statusBarHeight: 0, // 状态栏高度
+      menuButtonWidth: 0, // 菜单按钮宽度
       categories: [],
       selectedCategory: '全部',
       searchKeyword: '',
@@ -64,11 +83,78 @@ export default {
       currentItem: {},     // 当前操作的物品
       selectedWarehouseId: null,
       GoodsClassID: null,
+      
     };
   },
   computed: {
   },
   methods: {
+     // 新增触摸方法
+     handleTouchStart(e) {
+       // 统一获取触点（兼容多指触摸）
+       this.touchStartX = e.touches[0].clientX
+       this.touchStartY = e.touches[0].clientY
+       this.isSwiping = true;
+    },
+    
+    handleTouchMove(e) {
+      if (!this.isSwiping) return
+      
+      this.touchMoveX = e.touches[0].clientX
+      const moveY = e.touches[0].clientY - this.touchStartY
+      
+      // 只处理水平滑动且Y轴移动小于阈值(防止与滚动冲突)
+      if (Math.abs(moveY) < 30) {
+        const distance = this.touchMoveX - this.touchStartX
+        // 只处理右滑
+        if (distance > 0) {
+          this.translateX = Math.min(distance, 150) * 0.5 // 阻尼效果
+        }
+      }
+    },
+    handleTouchEnd(e) {
+      console.log(e, 'touchend');
+      
+      if (!this.isSwiping) return
+      const endX = this.touchMoveX;
+      const distance = endX - this.touchStartX
+      
+      console.log(distance, 'distance');
+      console.log(this.swipeThreshold, 'this.swipeThreshold');
+      
+      if (distance > this.swipeThreshold) {
+        // 滑动超过阈值，执行跳转
+        this.translateX = uni.getSystemInfoSync().windowWidth
+        setTimeout(() => {
+          this.navigateToHome()
+        }, 300)
+      } else {
+        // 未达阈值，恢复原位
+        this.translateX = 0
+      }
+      this.isSwiping = false
+    },
+    
+    navigateToHome() {
+      console.log('跳转到首页');
+      
+      // uni.reLaunch({
+      //   url: '/pages/home/home'
+      // })
+      wx.switchTab({ url: '/pages/home/home',
+      success() {
+        console.log('跳转成功');
+      },
+      fail(err) {
+        console.error('跳转失败:', err);
+      }
+       })
+    },
+    handleBack(){
+      wx.switchTab({
+        url: '/pages/home/home'
+      });
+    },
     // 显示弹出框
     showPopup() {
       this.tempSelected = this.selectedWarehouse;
@@ -178,23 +264,82 @@ export default {
       uni.navigateTo({ url: '/subpackageA/enter/index' })
     }, 500),
   },
+  onLoad(){
+    // 获取状态栏高度
+    const systemInfo = uni.getWindowInfo();
+    this.statusBarHeight = systemInfo.statusBarHeight || 0;
+    const menuButtonInfo = uni.getMenuButtonBoundingClientRect();
+    this.menuButtonWidth = menuButtonInfo.width;
+    this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
+  },
+  touchStart(e) {
+    console.log(e, 'touchStart');
+    
+    this.setData({ startX: e.touches[0].clientX });
+  },
+  touchEnd(e) {
+    console.log(e, 'touchEnd');
+    
+    const endX = e.changedTouches[0].clientX;
+    const distance = endX - this.data.startX;
+    console.log(distance, 'distance');
+    
+    // 右滑距离阈值（建议50px）
+    if (distance > 50) {
+      this.navigateToTargetPage();
+    }
+  },
+  navigateToTargetPage() {
+    uni.switchTab({
+      url: '/pages/home/home'
+    });
+  },
   mounted() {
     this.getGoodsItmeList()
     this.getHotelClassList()
     this.getWarehouseList()
-  },
-  onUnload() {
-    //#ifdef MP-WEIXIN
-    uni.switchTab({
-      url: '/pages/home/home'
-    });
-    //#endif
-  },
+  }
 };
 </script>
 <style scoped>
 @import '@/common/index.css';
+.custom-navbar {
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    z-index: 99999999;
+}
+
+.navbar-left {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  width: 80rpx;
+  height: 66rpx;
+}
+
+.navbar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  margin-right: 60rpx;
+  font-weight: 500;
+}
 .container {
+  transition: transform 0.3s ease;
+  will-change: transform;
+  width: auto;
   background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
@@ -340,6 +485,7 @@ export default {
   justify-content: space-between;
   height: 100rpx;
   width: 100%;
+  margin-top: 160rpx;
 }
 uni-button::after {
   content: none !important;

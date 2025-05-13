@@ -141,7 +141,7 @@ export default {
     // 上传图片到七牛
     uploadImage(filePath, token) {
       return new Promise((resolve, reject) => {
-          const fileName = `ims/dev/avatar/${Date.now()}.${filePath.split('.').pop()}`;
+          const fileName = `ims/production/avatar/${Date.now()}.${filePath.split('.').pop()}`;
           uni.uploadFile({
             url: 'https://up-z1.qiniup.com', // 根据区域修改s
             filePath: filePath,

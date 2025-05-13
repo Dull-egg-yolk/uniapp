@@ -393,6 +393,10 @@
 
 
 
+
+
+
+
 /* 遮罩层 */
 .popup-mask.data-v-03fdd90a {
   position: fixed;
@@ -461,7 +465,12 @@
 }
 /* 内容区域 */
 .popup-content.data-v-03fdd90a {
-  flex: 1;
+  /* flex: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600rpx;
+  position: relative;
   /* padding: 20rpx; */
   overflow-y: auto;
 }

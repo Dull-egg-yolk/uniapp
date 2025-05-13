@@ -579,15 +579,15 @@ wx-button:after {
   margin-bottom: 5rpx;
 }
 .original-price {
-  font-size: 24rpx;
+  font-size: 23rpx;
   text-decoration: line-through;
 }
 .package-price {
-  font-size: 30rpx;
+  font-size: 27rpx;
   color: #ff5722;
 }
 .package-unit {
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 
 .discount-info {

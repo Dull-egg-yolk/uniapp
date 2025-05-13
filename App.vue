@@ -13,21 +13,6 @@
 			console.log(getToken, 'getToken');
 			this.globalData.hasToken = getToken ? true : false;
 			uni.setStorageSync('launchOptions', options)
-			if (scanScenes.includes(options.scene)) {
-				console.log('用户通过微信扫一扫进入小程序');
-				
-				// 获取扫码携带的query参数
-				if (options.query) {
-					console.log('扫码携带的参数:', options.query);
-					
-					// 示例：处理扫码结果
-					if (options.query.q) {
-						const scanResult = decodeURIComponent(options.query.q);
-						console.log('扫码结果:', scanResult);
-					}
-				}
-				return;
-			}
 						
 			var myinfo = uni.getStorageSync('user_info')
 			var mytoken = uni.getStorageSync('token')

@@ -232,15 +232,15 @@ wx-button.data-v-34af35c8:after {
   margin-bottom: 5rpx;
 }
 .original-price.data-v-34af35c8 {
-  font-size: 24rpx;
+  font-size: 23rpx;
   text-decoration: line-through;
 }
 .package-price.data-v-34af35c8 {
-  font-size: 30rpx;
+  font-size: 27rpx;
   color: #ff5722;
 }
 .package-unit.data-v-34af35c8 {
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 .discount-info.data-v-34af35c8 {
   background-color: #fff;

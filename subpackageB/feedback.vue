@@ -209,7 +209,7 @@ export default {
     // 上传单张图片
     uploadSingleImage(item, index) {
       return new Promise((resolve, reject) => {
-        const fileName = `ims/dev/feedback/${this.HotelID}/${Date.now()}.${item.tempPath.split('.').pop()}`;
+        const fileName = `ims/production/feedback/${this.HotelID}/${Date.now()}.${item.tempPath.split('.').pop()}`;
         const uploadTask = uni.uploadFile({
           url: 'https://up-z1.qiniup.com', // 七牛上传地址
           filePath: item.tempPath,

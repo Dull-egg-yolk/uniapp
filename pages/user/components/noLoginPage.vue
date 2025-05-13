@@ -30,23 +30,23 @@
 					<view class="btn-desc">注册后申请免费试用</view>
 				</view>
 				<view class="price-btn">
-					<view class="btn-text">年费会员</view>
-					<view class="btn-desc">198 元/年</view>
+					<view class="btn-text">{{ packageList[0].Name }}</view>
+					<view class="btn-desc">{{packageList[0].Price}} 元 /{{ packageList[0].Month }}月</view>
 				</view>
 				<view class="price-btn">
-					<view class="btn-text">终身会员</view>
-					<view class="btn-desc">998 元</view>
+					<view class="btn-text">{{ packageList[1].Name }}</view>
+					<view class="btn-desc">{{packageList[1].Price}} 元</view>
 				</view>
 			</view>
 		</view>
 
 		<!-- 邀请有礼 -->
-		<view class="invite-section">
+		<!-- <view class="invite-section">
 			<view class="invite-banner">
 				<view class="invite-title">自己有会员，经营更稳健</view>
 				<view class="invite-desc">点击了解 <a @click="gotoWebsite">九点荟会员管理系统</a></view>
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 我们的优点 -->
 		<view class="advantage-section">
@@ -89,7 +89,7 @@
 
 <script>
 import loginPopup from '@/components/login-popup/login-popup.vue'
-import { userLogin, appConfig, prelogin } from '@/api/user.js'
+import { userLogin, appConfig, prelogin, getUserPrime } from '@/api/user.js'
   export default {
 		components: {
 			loginPopup
@@ -108,11 +108,13 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 				showAgreement: false,
         showRealAuthBtn: false,
 				IV: '',
-				EncryptedData: ''
+				EncryptedData: '',
+				packageList: []
 			}
 		},
 		mounted() {
 			this.appConfig()
+			this.getUserPrime()
 		},
 		onLoad: function() {
 			var myinfo = uni.getStorageSync('user_info')
@@ -120,6 +122,18 @@ import { userLogin, appConfig, prelogin } from '@/api/user.js'
 			this.user_id = myinfo.data.user.username
 		},
     methods: {
+			async getUserPrime(){
+				await getUserPrime({IsLogin: false}).then((res)=>{
+					if (res.ErrorMsg) {
+						uni.showToast({
+							title: res.ErrorMsg,
+							icon: "none"
+						});
+					} else {
+						this.packageList = res.Data
+					}
+				})
+			},
 			goAgreement(page){
 				uni.navigateTo({
 					url: `/subpackageB/agreement/${page}`
