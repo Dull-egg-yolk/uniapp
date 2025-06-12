@@ -104,7 +104,7 @@ export default {
     
     if(parseInt(this.hasToken) === parseInt(this.HotelID)){
       console.log('this.hasToken === this.HotelID');
-      uni.navigateTo({
+      uni.redirectTo({
         // url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
         url: '/subpackageA/itemDetail/index?warehouseId=' + this.WarehouseID + '&goosId=' + this.GoodsId + '&hotalId=' + this.HotelID + '&showScan=' + true
       });
@@ -120,7 +120,7 @@ export default {
       
       if(parseInt(this.hasToken) === parseInt(this.HotelID)){
         console.log('this.hasToken === this.HotelID');
-        uni.navigateTo({
+        uni.redirectTo({
           // url: `/subpackageA/itemDetail/index?id=${this.form.Name}&goosId=${this.GoodsId}`,
           url: '/subpackageA/itemDetail/index?warehouseId=' + this.WarehouseID + '&goosId=' + this.GoodsId + '&hotalId=' + this.HotelID + '&showScan=' + true
         });

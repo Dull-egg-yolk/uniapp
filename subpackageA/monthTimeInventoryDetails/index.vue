@@ -19,6 +19,9 @@
           <uni-th>单位</uni-th>
           <uni-th>单价</uni-th>
           <uni-th>出库数量</uni-th>
+          <uni-th>期初数量</uni-th>
+          <uni-th>入库数量</uni-th>
+          <uni-th>期末数量</uni-th>
           <uni-th>小计</uni-th>
         </uni-tr>
         <uni-tr v-for="(item, index) in tableData" :key="index">
@@ -28,6 +31,9 @@
           <uni-td>{{ item.Goods.Uint }}</uni-td>
           <uni-td>{{ item.Goods.Price }}</uni-td>
           <uni-td>{{ item.ChangedCount }}</uni-td>
+          <uni-td>{{ item.StartCount }}</uni-td>
+          <uni-td>{{ item.InCount }}</uni-td>
+          <uni-td>{{ item.EndCount }}</uni-td>
           <uni-td>{{ item.TotalPrice }}</uni-td>
         </uni-tr>
       </uni-table>

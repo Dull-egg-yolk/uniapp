@@ -13,7 +13,7 @@
         <text class="unread-count" v-if="unreadMessageCount > 0">{{ unreadMessageCount }}</text>
       </view>
     </view>
-    <view class="header-top">
+    <view class="header-top" :style="{ marginTop: statusBarHeight + 52 + 'px' }">
       <view class="header" @click="showPopup" v-if="isShow">
       <text class="title">点击查看新手指引，1 分钟快速掌握！ </text>
     </view>
@@ -210,7 +210,7 @@ export default {
   background-color: #f8f8f8;
 }
 .header-top {
-  margin-top: 134rpx;
+  /* margin-top: 134rpx; */
 }
 .unread-count {
   background-color: #F65237;

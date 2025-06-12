@@ -76,7 +76,7 @@
             },{
                 "path": "monthTimeInventoryDetails/index",
                 "style": {
-                    "navigationBarTitleText": "月度消耗明细"
+                    "navigationBarTitleText": "月度汇总"
                 }
             },{
                 "path": "stockInventoryDetails/index",

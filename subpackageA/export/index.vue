@@ -28,7 +28,7 @@ export default {
         { name: '盘点明细',
           key: 'stocktaking'
          },
-        { name: '月度消耗明细',
+        { name: '月度汇总',
           key: 'monthTimeInventoryDetails'
          },
       ],

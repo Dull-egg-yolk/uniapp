@@ -13,7 +13,7 @@
         <view class="package-title">{{ item.Name }}</view>
         <view class="original-price" v-if="item.OriginPrice !== item.Price">原价 {{ item.OriginPrice + '/' + item.Month}}月</view>
         <text class="package-price">¥{{ item.Price }}元</text>
-        <text class="package-unit" v-if="item.Month !== -1">/{{ item.Month}}月</text>
+        <text class="package-unit" v-if="item.Month !== -1">/{{ item.Month > 36 ? '永久' : item.Month/12 + '年' }}</text>
       </view>
     </view>
     <!-- 会员套餐区 -->
