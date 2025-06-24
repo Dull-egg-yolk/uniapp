@@ -4,7 +4,11 @@
       <!-- <picker mode="date" @change="onDateChange">
         <view class="date-picker">日期筛选：{{ selectedDate }}</view>
       </picker> -->
-      
+      <view style="background-color: #fff;padding: 5px;">
+        <picker style="margin-left:10rpx;" class="picker" mode="selector" :range="warehouseList" range-key="Name" @change="onWarehouseChange">
+          <view class="date-picker">库房：{{ selectedonWarehouse }}</view>
+        </picker>
+      </view>
       <view class="example-body">
         <view class="title">日期筛选：</view>
         <uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" @change="onDateChange" />
@@ -55,7 +59,7 @@
 <script>
 import { throttle } from '@/util/throttle';
 import { formatTime } from '@/util/day.js'
-import { getGoodsItme, getReportConsumeMonth, reportEmail } from '@/api/work.js';
+import { getGoodsItme, getReportConsumeMonth, reportEmail, getWarehouse } from '@/api/work.js';
 export default {
   data() {
     return {
@@ -63,6 +67,8 @@ export default {
       tableData: [],
       classList: [],
       range: [],
+      warehouseList: [],
+      selectedonWarehouse: '请选择',
       currentPage: 1,
       totalPages: 5,
       recipient: '',
@@ -74,6 +80,7 @@ export default {
         Size: 10,
         TimestampFrom: '',
         TimestampTo: '',
+        WarehouseIDs: 0
       },
       timer: null
     };
@@ -85,6 +92,16 @@ export default {
     },
   },
   methods: {
+    onWarehouseChange(e){
+      this.selectedonWarehouse = this.warehouseList[e.detail.value].Name;
+      this.query.WarehouseIDs = this.warehouseList[e.detail.value].ID;
+      this.getReportConsumeMonth();
+    },
+    async getWarehouseList() {
+      const res = await getWarehouse();
+      console.log(res);
+      this.warehouseList = res.Data;
+    },
     handlePageChange(e) {
       if (e.type === 'prev') {
         this.query.Page = e.current
@@ -107,6 +124,7 @@ export default {
         ReportType: 'MonthConsume',
         TimestampFrom: this.query.TimestampFrom,
         TimestampTo: this.query.TimestampTo,
+        WarehouseIDs: JSON.stringify(this.query.WarehouseIDs)
       };
      await reportEmail(params).then(res => {
         if (res.ErrorMsg) {
@@ -172,6 +190,7 @@ export default {
   mounted(){
     this.getHotelClassList();
     this.getReportConsumeMonth();
+    this.getWarehouseList();
   },
   beforeDestroy() {
     // 组件销毁时清除定时器
@@ -199,7 +218,7 @@ export default {
 .example-body {
 	background-color: #fff;
 	padding: 10px;
-  width: 100%;
+  /* width: 100%; */
   border-radius: 10rpx;
 }
 .example-body .title {
@@ -207,6 +226,7 @@ export default {
 }
 .filter-section {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20rpx;
 }
