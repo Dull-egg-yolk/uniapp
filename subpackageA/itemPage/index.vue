@@ -1,8 +1,8 @@
 <template>
-  <div style="width: 100%;" @touchstart.capture="handleTouchStart"
-    @touchmove.capture="handleTouchMove"
-    @touchend.capture="handleTouchEnd"
-    @touchcancel.capture="handleTouchEnd">
+  <div style="width: 100%;" @touchstart="handleTouchStart"
+    @touchmove="handleTouchMove"
+    @touchend="handleTouchEnd"
+    @touchcancel="handleTouchEnd">
     <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
       <view class="navbar-left" @click.stop="handleBack">
         <image src="../../static/img/back.svg" class="back-icon"></image>
@@ -68,7 +68,7 @@ export default {
       touchStartY: 0,
       touchMoveX: 0,
       isSwiping: false,
-      swipeThreshold: 10, // 滑动阈值（单位px）
+      swipeThreshold: 50, // 滑动阈值（单位px）
       translateX: 0, // 滑动位移
       statusBarHeight: 0, // 状态栏高度
       menuButtonWidth: 0, // 菜单按钮宽度
@@ -98,41 +98,51 @@ export default {
     },
     
     handleTouchMove(e) {
-      if (!this.isSwiping) return
-      
-      this.touchMoveX = e.touches[0].clientX
-      const moveY = e.touches[0].clientY - this.touchStartY
-      
-      // 只处理水平滑动且Y轴移动小于阈值(防止与滚动冲突)
-      if (Math.abs(moveY) < 30) {
-        const distance = this.touchMoveX - this.touchStartX
-        // 只处理右滑
-        if (distance > 0) {
-          this.translateX = Math.min(distance, 150) * 0.5 // 阻尼效果
-        }
+      if (!this.isSwiping) return;
+
+      const touch = e.touches[0];
+      const moveX = touch.clientX - this.touchStartX; // 水平位移（正=右滑，负=左滑）
+      const moveY = touch.clientY - this.touchStartY; // 垂直位移（正=下滑，负=上滑）
+
+      // 核心：优先判断滑动方向——垂直滑动（滚动列表）直接终止处理
+      if (Math.abs(moveY) > Math.abs(moveX)) { 
+        // 垂直滑动（下滑/上滑），属于scroll-view的滚动，不处理水平滑动
+        this.isSwiping = false; 
+        this.translateX = 0; // 恢复原位，避免界面偏移
+        return;
+      }
+
+      // 仅处理水平滑动（且Y轴偏移小于20px，避免斜滑干扰）
+      if (Math.abs(moveY) < 20) { 
+        // 只允许右滑（moveX>0），左滑不处理；添加阻尼效果（*0.5）
+        this.translateX = Math.min(moveX * 0.5, 150); 
       }
     },
     handleTouchEnd(e) {
-      console.log(e, 'touchend');
-      
-      if (!this.isSwiping) return
-      const endX = this.touchMoveX;
-      const distance = endX - this.touchStartX
-      
-      console.log(distance, 'distance');
-      console.log(this.swipeThreshold, 'this.swipeThreshold');
-      
-      if (distance > this.swipeThreshold) {
-        // 滑动超过阈值，执行跳转
-        this.translateX = uni.getSystemInfoSync().windowWidth
-        setTimeout(() => {
-          this.navigateToHome()
-        }, 300)
-      } else {
-        // 未达阈值，恢复原位
-        this.translateX = 0
+      if (!this.isSwiping) return;
+
+      const touch = e.changedTouches[0];
+      const moveX = touch.clientX - this.touchStartX; // 最终水平位移
+      const moveY = touch.clientY - this.touchStartY; // 最终垂直位移
+
+      // 1. 垂直滑动/水平左滑：直接恢复原位，不跳转
+      if (Math.abs(moveY) > Math.abs(moveX) || moveX <= 0) {
+        this.translateX = 0;
+        this.isSwiping = false;
+        return;
       }
-      this.isSwiping = false
+
+      // 2. 水平右滑：判断是否超过阈值（建议设为50px，避免轻微滑动触发）
+      if (moveX > this.swipeThreshold) { 
+        this.translateX = uni.getSystemInfoSync().windowWidth; // 右滑动画
+        setTimeout(() => {
+          this.navigateToHome();
+        }, 300);
+      } else {
+        this.translateX = 0; // 未达阈值，恢复原位
+      }
+
+      this.isSwiping = false;
     },
     
     navigateToHome() {
@@ -272,28 +282,6 @@ export default {
     this.menuButtonWidth = menuButtonInfo.width;
     this.navBarHeight = menuButtonInfo.bottom + (menuButtonInfo.top - this.statusBarHeight);
   },
-  touchStart(e) {
-    console.log(e, 'touchStart');
-    
-    this.setData({ startX: e.touches[0].clientX });
-  },
-  touchEnd(e) {
-    console.log(e, 'touchEnd');
-    
-    const endX = e.changedTouches[0].clientX;
-    const distance = endX - this.data.startX;
-    console.log(distance, 'distance');
-    
-    // 右滑距离阈值（建议50px）
-    if (distance > 50) {
-      this.navigateToTargetPage();
-    }
-  },
-  navigateToTargetPage() {
-    uni.switchTab({
-      url: '/pages/home/home'
-    });
-  },
   mounted() {
     this.getGoodsItmeList()
     this.getHotelClassList()
@@ -386,9 +374,6 @@ export default {
   position: relative;
 }
 
-.selected {
-  // color: #07C160;
-}
 
 .address {
   font-size: 24rpx;
