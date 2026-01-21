@@ -1,8 +1,5 @@
 <template>
-  <div style="width: 100%;" @touchstart="handleTouchStart"
-    @touchmove="handleTouchMove"
-    @touchend="handleTouchEnd"
-    @touchcancel="handleTouchEnd">
+  <div style="width: 100%;">
     <view class="custom-navbar" :style="{ paddingTop: statusBarHeight + 'px' }">
       <view class="navbar-left" @click.stop="handleBack">
         <image src="../../static/img/back.svg" class="back-icon"></image>
@@ -64,12 +61,6 @@ import { getGoodsItme, getHotelClass, getWarehouse, upgateGoodsItem, addGoodsIte
 export default {
   data() {
     return {
-      touchStartX: 0,
-      touchStartY: 0,
-      touchMoveX: 0,
-      isSwiping: false,
-      swipeThreshold: 50, // 滑动阈值（单位px）
-      translateX: 0, // 滑动位移
       statusBarHeight: 0, // 状态栏高度
       menuButtonWidth: 0, // 菜单按钮宽度
       categories: [],
@@ -89,61 +80,6 @@ export default {
   computed: {
   },
   methods: {
-     // 新增触摸方法
-     handleTouchStart(e) {
-       // 统一获取触点（兼容多指触摸）
-       this.touchStartX = e.touches[0].clientX
-       this.touchStartY = e.touches[0].clientY
-       this.isSwiping = true;
-    },
-    
-    handleTouchMove(e) {
-      if (!this.isSwiping) return;
-
-      const touch = e.touches[0];
-      const moveX = touch.clientX - this.touchStartX; // 水平位移（正=右滑，负=左滑）
-      const moveY = touch.clientY - this.touchStartY; // 垂直位移（正=下滑，负=上滑）
-
-      // 核心：优先判断滑动方向——垂直滑动（滚动列表）直接终止处理
-      if (Math.abs(moveY) > Math.abs(moveX)) { 
-        // 垂直滑动（下滑/上滑），属于scroll-view的滚动，不处理水平滑动
-        this.isSwiping = false; 
-        this.translateX = 0; // 恢复原位，避免界面偏移
-        return;
-      }
-
-      // 仅处理水平滑动（且Y轴偏移小于20px，避免斜滑干扰）
-      if (Math.abs(moveY) < 20) { 
-        // 只允许右滑（moveX>0），左滑不处理；添加阻尼效果（*0.5）
-        this.translateX = Math.min(moveX * 0.5, 150); 
-      }
-    },
-    handleTouchEnd(e) {
-      if (!this.isSwiping) return;
-
-      const touch = e.changedTouches[0];
-      const moveX = touch.clientX - this.touchStartX; // 最终水平位移
-      const moveY = touch.clientY - this.touchStartY; // 最终垂直位移
-
-      // 1. 垂直滑动/水平左滑：直接恢复原位，不跳转
-      if (Math.abs(moveY) > Math.abs(moveX) || moveX <= 0) {
-        this.translateX = 0;
-        this.isSwiping = false;
-        return;
-      }
-
-      // 2. 水平右滑：判断是否超过阈值（建议设为50px，避免轻微滑动触发）
-      if (moveX > this.swipeThreshold) { 
-        this.translateX = uni.getSystemInfoSync().windowWidth; // 右滑动画
-        setTimeout(() => {
-          this.navigateToHome();
-        }, 300);
-      } else {
-        this.translateX = 0; // 未达阈值，恢复原位
-      }
-
-      this.isSwiping = false;
-    },
     
     navigateToHome() {
       console.log('跳转到首页');

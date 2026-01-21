@@ -96,9 +96,6 @@
   flex-direction: column;
   position: relative;
 }
-.selected.data-v-14d955e7 {
-  /* color: #07C160; */
-}
 .address.data-v-14d955e7 {
   font-size: 24rpx;
   color: #999;
